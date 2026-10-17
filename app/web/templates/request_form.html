@@ -16,16 +16,35 @@
       </select>
     </div>
 
-    <div class="row">
-      <div class="field">
-        <label class="name" for="f-device-type">Equipment needed</label>
-        <input type="text" id="f-device-type" name="device_type" placeholder="ventilator">
+    <fieldset class="lines">
+      <legend class="name">What you need</legend>
+      <div id="request-lines">
+        <div class="line-row">
+          <div class="field">
+            <label class="name" for="f-device-type-0">Equipment</label>
+            <input type="text" id="f-device-type-0" name="device_type"
+                   list="device-types" placeholder="ventilator">
+          </div>
+          <div class="field line-qty">
+            <label class="name" for="f-quantity-0">How many</label>
+            <input type="text" id="f-quantity-0" name="quantity" value="1">
+          </div>
+          <button type="button" class="line-drop" aria-label="Remove this line">Remove</button>
+        </div>
       </div>
-      <div class="field">
-        <label class="name" for="f-quantity">How many</label>
-        <input type="text" id="f-quantity" name="quantity" value="1">
-      </div>
-    </div>
+      <button type="button" class="line-add" id="add-line">Add another kind of equipment</button>
+      <p class="note">Ask for everything you need in one go. Each kind is screened
+         and sourced separately, so a shortage of one does not hold up the rest.</p>
+    </fieldset>
+
+    <datalist id="device-types">
+      {% for kind in ("ventilator", "anaesthesia machine", "patient monitor",
+                      "infusion pump", "syringe pump", "oxygen concentrator",
+                      "defibrillator", "ultrasound scanner", "autoclave",
+                      "infant incubator", "infant warmer", "suction pump") %}
+      <option value="{{ kind }}"></option>
+      {% endfor %}
+    </datalist>
 
     <div class="field">
       <label class="name" for="f-note">Anything the donor should know</label>
@@ -35,4 +54,46 @@
     <button class="go" type="submit">Find what fits</button>
   </form>
 </section>
+
+<script>
+  // Progressive enhancement: without JavaScript the form still posts one line.
+  (function () {
+    var host = document.getElementById('request-lines');
+    var add = document.getElementById('add-line');
+    if (!host || !add) return;
+    var next = 1;
+
+    function sync() {
+      var rows = host.querySelectorAll('.line-row');
+      rows.forEach(function (row) {
+        row.querySelector('.line-drop').disabled = rows.length === 1;
+      });
+    }
+
+    add.addEventListener('click', function () {
+      var row = host.querySelector('.line-row').cloneNode(true);
+      var n = next++;
+      row.querySelectorAll('input').forEach(function (input) {
+        var field = input.getAttribute('name');
+        input.id = 'f-' + field.replace(/_/g, '-') + '-' + n;
+        input.value = field === 'quantity' ? '1' : '';
+      });
+      row.querySelectorAll('label').forEach(function (label, index) {
+        label.setAttribute('for', row.querySelectorAll('input')[index].id);
+      });
+      host.appendChild(row);
+      sync();
+      row.querySelector('input').focus();
+    });
+
+    host.addEventListener('click', function (event) {
+      if (!event.target.classList.contains('line-drop')) return;
+      if (host.querySelectorAll('.line-row').length === 1) return;
+      event.target.closest('.line-row').remove();
+      sync();
+    });
+
+    sync();
+  })();
+</script>
 {% endblock %}

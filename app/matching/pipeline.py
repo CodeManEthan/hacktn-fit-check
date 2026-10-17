@@ -65,18 +65,17 @@ def empty_intel(device: DeviceFacts, country: str) -> SupplyIntel:
 
 
 def rank_candidates(
-    request: Request,
     facility: FacilityProfile,
     offers: Iterable[Offer],
     intel_for: IntelLookup = empty_intel,
     *,
     today: date | None = None,
 ) -> list[Candidate]:
-    """Compatible offers for `request`, nearest-and-cleanest first.
+    """Compatible offers, nearest-and-cleanest first.
 
-    `request` names what the clinic asked for; selecting the offers of that
-    device type is the caller's query. This function decides which of the
-    offers handed to it can work at `facility`, and in what order.
+    Selecting which offers to consider is the caller's query, one request line
+    at a time. This function decides which of the offers handed to it can work
+    at `facility`, and in what order.
     """
     destination = facility_point(facility)
     matchable = tuple(offer for offer in offers if offer.is_matchable(today))

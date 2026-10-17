@@ -6,7 +6,14 @@ from datetime import date
 import pytest
 
 from app.domain.device import SupplyIntel
-from app.domain.marketplace import GeoPoint, MatchState, Offer, OfferStatus, Request
+from app.domain.marketplace import (
+    GeoPoint,
+    MatchState,
+    Offer,
+    OfferStatus,
+    Request,
+    RequestLine,
+)
 from app.domain.provenance import Provenance, fact
 from app.domain.result import Outcome
 from app.matching.pipeline import Candidate, empty_intel, propose_match, rank_candidates
@@ -43,7 +50,12 @@ def offer(**overrides) -> Offer:
 
 
 def request(**overrides) -> Request:
-    return replace(Request(facility_slug="test-clinic", device_type="ventilator", id=7), **overrides)
+    base = Request(
+        facility_slug="test-clinic",
+        lines=(RequestLine(device_type="ventilator", quantity=1),),
+        id=7,
+    )
+    return replace(base, **overrides)
 
 
 def wrong_frequency_device():
@@ -69,7 +81,7 @@ def test_a_device_blocked_by_the_fit_check_never_appears_however_near_it_is():
     workable = offer(id=2, device=device(), origin=FAR)
 
     # Act
-    ranked = rank_candidates(request(), site(mains_frequency_hz=50), [blocked, workable], full_intel)
+    ranked = rank_candidates(site(mains_frequency_hz=50), [blocked, workable], full_intel)
 
     # Assert
     assert [c.offer.id for c in ranked] == [2]
@@ -80,7 +92,7 @@ def test_an_offer_with_no_available_stock_is_excluded():
     reserved_out = offer(id=1, quantity_offered=2, quantity_reserved=1, quantity_shipped=1)
     in_stock = offer(id=2, origin=FAR)
 
-    ranked = rank_candidates(request(), site(), [reserved_out, in_stock], full_intel)
+    ranked = rank_candidates(site(), [reserved_out, in_stock], full_intel)
 
     assert [c.offer.id for c in ranked] == [2]
 
@@ -89,7 +101,7 @@ def test_an_expired_offer_is_excluded():
     expired = offer(id=1, available_until=YESTERDAY)
     still_open = offer(id=2, available_until=TOMORROW, origin=FAR)
 
-    ranked = rank_candidates(request(), site(), [expired, still_open], full_intel, today=TODAY)
+    ranked = rank_candidates(site(), [expired, still_open], full_intel, today=TODAY)
 
     assert [c.offer.id for c in ranked] == [2]
 
@@ -99,7 +111,7 @@ def test_an_offer_that_is_not_open_is_excluded():
     exhausted = offer(id=2, status=OfferStatus.EXHAUSTED)
     open_offer = offer(id=3, origin=FAR)
 
-    ranked = rank_candidates(request(), site(), [withdrawn, exhausted, open_offer], full_intel)
+    ranked = rank_candidates(site(), [withdrawn, exhausted, open_offer], full_intel)
 
     assert [c.offer.id for c in ranked] == [3]
 
@@ -109,7 +121,7 @@ def test_the_nearest_donor_wins_among_equally_compatible_offers():
     nearby = offer(id=2, origin=NEARBY)
     here = offer(id=3, origin=HERE)
 
-    ranked = rank_candidates(request(), site(), [far, nearby, here], full_intel)
+    ranked = rank_candidates(site(), [far, nearby, here], full_intel)
 
     assert [c.offer.id for c in ranked] == [3, 2, 1]
     assert ranked[0].distance_km == pytest.approx(0.0, abs=1e-9)
@@ -119,7 +131,7 @@ def test_fewer_conditions_outrank_a_nearer_offer_that_needs_more_sent_with_it():
     conditional_next_door = offer(id=1, device=needs_a_transformer_device(), origin=HERE)
     clean_but_far = offer(id=2, device=device(), origin=FAR)
 
-    ranked = rank_candidates(request(), site(mains_voltage_v=230), [conditional_next_door, clean_but_far], full_intel)
+    ranked = rank_candidates(site(mains_voltage_v=230), [conditional_next_door, clean_but_far], full_intel)
 
     assert [c.offer.id for c in ranked] == [2, 1]
     assert len(ranked[1].verdict.conditional) == 1
@@ -129,7 +141,7 @@ def test_an_offer_without_coordinates_sorts_last():
     unlocated = offer(id=1, origin=UNLOCATED)
     far = offer(id=2, origin=FAR)
 
-    ranked = rank_candidates(request(), site(), [unlocated, far], full_intel)
+    ranked = rank_candidates(site(), [unlocated, far], full_intel)
 
     assert [c.offer.id for c in ranked] == [2, 1]
     assert ranked[-1].distance_km is None
@@ -139,7 +151,7 @@ def test_an_unlocated_offer_still_sorts_ahead_of_a_located_one_with_more_conditi
     unlocated_clean = offer(id=1, origin=UNLOCATED)
     near_conditional = offer(id=2, device=needs_a_transformer_device(), origin=HERE)
 
-    ranked = rank_candidates(request(), site(), [near_conditional, unlocated_clean], full_intel)
+    ranked = rank_candidates(site(), [near_conditional, unlocated_clean], full_intel)
 
     assert [c.offer.id for c in ranked] == [1, 2]
 
@@ -147,7 +159,7 @@ def test_an_unlocated_offer_still_sorts_ahead_of_a_located_one_with_more_conditi
 def test_the_default_lookup_needs_no_model_and_still_ranks():
     offers = [offer(id=1, origin=FAR), offer(id=2, origin=HERE)]
 
-    ranked = rank_candidates(request(), site(), offers)
+    ranked = rank_candidates(site(), offers)
 
     assert [c.offer.id for c in ranked] == [2, 1]
     assert all(c.intel == SupplyIntel(country="Testland") for c in ranked)
@@ -168,7 +180,7 @@ def test_the_intel_lookup_sees_each_offer_device_and_the_facility_country():
         seen.append((device_facts.model.value, country))
         return intel(country=country)
 
-    rank_candidates(request(), site(country="Malawi"), [offer(id=1), offer(id=2)], recording_lookup)
+    rank_candidates(site(country="Malawi"), [offer(id=1), offer(id=2)], recording_lookup)
 
     assert seen == [("V100", "Malawi"), ("V100", "Malawi")]
 
@@ -178,24 +190,24 @@ def test_a_lookup_that_returns_the_wrong_type_is_rejected_loudly():
         return {"country": country}
 
     with pytest.raises(TypeError, match="SupplyIntel"):
-        rank_candidates(request(), site(), [offer()], broken_lookup)
+        rank_candidates(site(), [offer()], broken_lookup)
 
 
 def test_ranking_never_mutates_the_offers_it_was_given():
     offers = (offer(id=1, origin=FAR), offer(id=2, origin=HERE))
     before = tuple(replace(o) for o in offers)
 
-    rank_candidates(request(), site(), offers, full_intel)
+    rank_candidates(site(), offers, full_intel)
 
     assert offers == before
 
 
 def test_an_empty_offer_list_ranks_to_nothing():
-    assert rank_candidates(request(), site(), [], full_intel) == []
+    assert rank_candidates(site(), [], full_intel) == []
 
 
 def test_propose_match_builds_a_proposed_record_carrying_the_verdict_and_distance():
-    ranked = rank_candidates(request(), site(), [offer(id=4, origin=NEARBY, quantity_offered=3)], full_intel)
+    ranked = rank_candidates(site(), [offer(id=4, origin=NEARBY, quantity_offered=3)], full_intel)
     candidate = ranked[0]
 
     record = propose_match(request(id=7), candidate, quantity=2)
@@ -235,5 +247,5 @@ def test_propose_match_refuses_an_unsaved_request_or_offer():
 
 
 def _clean_verdict():
-    ranked = rank_candidates(request(), site(), [offer()], full_intel)
+    ranked = rank_candidates(site(), [offer()], full_intel)
     return ranked[0].verdict

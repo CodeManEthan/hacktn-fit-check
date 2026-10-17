@@ -2,17 +2,39 @@
 {% block title %}What fits{% endblock %}
 {% block content %}
 <section class="plate">
-  <p class="eyebrow">{{ request_row.device_type }} for {{ facility.name }}, {{ facility.country }}</p>
-  <h1>{{ candidates | length }} of {{ screened }} offers can work here</h1>
+  <p class="eyebrow">{{ facility.name }}, {{ facility.country }}</p>
+  <h1>{{ request_row.summary }}</h1>
   <p class="sub">Everything blocked by the screening has already been removed.
      What is left is ordered by how little has to ship alongside it, then by distance.</p>
 
-  {% if not candidates %}
-  <p class="empty">No open offer of this type passes the screening for
+  <div class="coverage">
+    {% for cover in coverages %}
+    <div class="coverage-line {{ 'is-met' if cover.complete else 'is-short' }}">
+      <span class="coverage-what">{{ cover.line.device_type }}</span>
+      <span class="coverage-count">{{ cover.headline }}</span>
+      {% if cover.needs_split %}
+      <span class="coverage-note">no single donor has all {{ cover.line.quantity }} &mdash;
+        {{ cover.donors_needed }} donors together do</span>
+      {% elif cover.shortfall %}
+      <span class="coverage-note">{{ cover.shortfall }} short</span>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% for cover in coverages %}
+<section class="plate">
+  <h2>{{ cover.line.label }}</h2>
+  <p class="sub">{{ cover.candidates | length }} of {{ cover.screened }} offers of this
+     kind can work at {{ facility.name }}.</p>
+
+  {% if not cover.candidates %}
+  <p class="empty">No open offer of this kind passes the screening for
      {{ facility.name }}. The log shows which constraint keeps blocking them.</p>
   {% endif %}
 
-  {% for c in candidates %}
+  {% for c in cover.candidates %}
   <article class="candidate">
     <div class="candidate-head">
       <div>
@@ -62,4 +84,5 @@
   </article>
   {% endfor %}
 </section>
+{% endfor %}
 {% endblock %}

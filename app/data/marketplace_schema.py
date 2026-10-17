@@ -82,11 +82,22 @@ requests = Table(
     METADATA,
     Column("id", Integer, primary_key=True, autoincrement=True),
     Column("facility_slug", String(SLUG_LENGTH), nullable=False, index=True),
-    Column("device_type", String(DEVICE_TYPE_LENGTH), nullable=False, index=True),
-    Column("quantity", Integer, nullable=False, default=DEFAULT_QUANTITY),
     Column("note", Text, nullable=False, default=""),
     Column("status", String(STATUS_LENGTH), nullable=False, index=True),
     Column("created_at", DateTime, nullable=False, server_default=func.now()),
+)
+
+# One row per kind of equipment on a request. A clinic needing two ventilators
+# and five monitors is the normal case, so the quantity lives here and the
+# request itself holds only what is true of the whole ask.
+request_lines = Table(
+    "request_lines",
+    METADATA,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("request_id", Integer, nullable=False, index=True),
+    Column("device_type", String(DEVICE_TYPE_LENGTH), nullable=False, index=True),
+    Column("quantity", Integer, nullable=False, default=DEFAULT_QUANTITY),
+    Column("position", Integer, nullable=False, default=0),
 )
 
 matches = Table(

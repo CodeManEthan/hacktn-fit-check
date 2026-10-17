@@ -21,6 +21,7 @@ from app.data.marketplace_schema import (
     facilities_v2,
     matches,
     offers,
+    request_lines,
     requests,
 )
 from app.data.serialize import (
@@ -40,6 +41,7 @@ from app.domain.marketplace import (
     Offer,
     OfferStatus,
     Request,
+    RequestLine,
     RequestStatus,
 )
 
@@ -76,10 +78,11 @@ def _all_rows(statement: Any, failure: str) -> list[Any]:
         raise RepositoryError(f"{failure}: {exc}") from exc
 
 
-def _write(statement: Any, failure: str) -> None:
+def _write(statement: Any, failure: str, params: Any = None) -> None:
+    """Run a write. With params this is one executemany, not a loop of inserts."""
     try:
         with get_engine().begin() as conn:
-            conn.execute(statement)
+            conn.execute(statement) if params is None else conn.execute(statement, params)
     except Exception as exc:  # noqa: BLE001
         raise RepositoryError(f"{failure}: {exc}") from exc
 
@@ -271,11 +274,10 @@ def open_offers_for_type(device_type: str, today: date | None = None) -> list[Of
 # --- Requests -------------------------------------------------------------
 
 
-def _request_from_row(row: Any) -> Request:
+def _request_from_row(row: Any, lines: tuple[RequestLine, ...] = ()) -> Request:
     return Request(
         facility_slug=row["facility_slug"],
-        device_type=row["device_type"],
-        quantity=row["quantity"],
+        lines=lines,
         note=row["note"] or "",
         status=RequestStatus(row["status"]),
         id=row["id"],
@@ -283,23 +285,61 @@ def _request_from_row(row: Any) -> Request:
     )
 
 
+def _lines_for(request_ids: list[int]) -> dict[int, tuple[RequestLine, ...]]:
+    """Every line for these requests, in one query rather than one per request."""
+    if not request_ids:
+        return {}
+    rows = _all_rows(
+        select(request_lines)
+        .where(request_lines.c.request_id.in_(request_ids))
+        .order_by(request_lines.c.request_id, request_lines.c.position),
+        "Could not load the request lines",
+    )
+    grouped: dict[int, list[RequestLine]] = {rid: [] for rid in request_ids}
+    for row in rows:
+        grouped[row["request_id"]].append(
+            RequestLine(
+                device_type=row["device_type"],
+                quantity=row["quantity"],
+                id=row["id"],
+            )
+        )
+    return {rid: tuple(found) for rid, found in grouped.items()}
+
+
 def save_request(request: Request) -> int:
+    """Store the request and its lines. A request with no lines is refused."""
+    if not request.lines:
+        raise RepositoryError("A request must ask for at least one kind of equipment.")
+
     statement = insert(requests).values(
         facility_slug=request.facility_slug,
-        device_type=request.device_type,
-        quantity=request.quantity,
         note=request.note,
         status=request.status.value,
         created_at=request.created_at or datetime.now(),
     )
-    return _write_returning_id(statement, "Could not save the request")
+    request_id = _write_returning_id(statement, "Could not save the request")
+
+    rows = [
+        {
+            "request_id": request_id,
+            "device_type": line.device_type,
+            "quantity": line.quantity,
+            "position": position,
+        }
+        for position, line in enumerate(request.lines)
+    ]
+    _write(insert(request_lines), "Could not save the request lines", rows)
+    return request_id
 
 
 def load_request(request_id: int) -> Request | None:
     row = _first_row(
         select(requests).where(requests.c.id == request_id), "Could not load the request"
     )
-    return None if row is None else _request_from_row(row)
+    if row is None:
+        return None
+    return _request_from_row(row, _lines_for([request_id]).get(request_id, ()))
 
 
 def list_open_requests() -> list[Request]:
@@ -309,7 +349,8 @@ def list_open_requests() -> list[Request]:
         .order_by(requests.c.created_at),
         "Could not list the open requests",
     )
-    return [_request_from_row(row) for row in rows]
+    by_request = _lines_for([row["id"] for row in rows])
+    return [_request_from_row(row, by_request.get(row["id"], ())) for row in rows]
 
 
 # --- Matches --------------------------------------------------------------

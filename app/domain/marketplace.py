@@ -17,6 +17,10 @@ from app.domain.result import Verdict
 TOKEN_BYTES = 16
 DEFAULT_CONFIRM_WINDOW_HOURS = 72
 
+# A clinic asking for nothing is a form error, not a request.
+MIN_LINE_QUANTITY = 1
+DEFAULT_LINE_QUANTITY = 1
+
 
 class OfferStatus(str, Enum):
     OPEN = "open"
@@ -107,16 +111,69 @@ class Offer:
 
 
 @dataclass(frozen=True)
+class RequestLine:
+    """One kind of equipment a clinic needs, and how many of it.
+
+    The device type is normalised here rather than at every call site: it is
+    the string the inventory is searched on, and clinics type it by hand.
+    """
+
+    device_type: str
+    quantity: int = DEFAULT_LINE_QUANTITY
+    id: int | None = None
+
+    def __post_init__(self) -> None:
+        cleaned = " ".join(self.device_type.split()).lower()
+        if not cleaned:
+            raise ValueError("A request line must name a kind of equipment.")
+        if self.quantity < MIN_LINE_QUANTITY:
+            raise ValueError(
+                f"A request line must ask for at least {MIN_LINE_QUANTITY} unit; "
+                f"got {self.quantity}."
+            )
+        object.__setattr__(self, "device_type", cleaned)
+
+    @property
+    def label(self) -> str:
+        """The line as a person would say it: '2 ventilators'."""
+        plural = "" if self.quantity == MIN_LINE_QUANTITY else "s"
+        return f"{self.quantity} {self.device_type}{plural}"
+
+
+@dataclass(frozen=True)
 class Request:
-    """What a clinic needs."""
+    """Everything a clinic is asking for in one go."""
 
     facility_slug: str
-    device_type: str
-    quantity: int = 1
+    lines: tuple[RequestLine, ...] = ()
     note: str = ""
     status: RequestStatus = RequestStatus.OPEN
     id: int | None = None
     created_at: datetime | None = None
+
+    @property
+    def total_quantity(self) -> int:
+        """Every unit asked for, across every line."""
+        return sum(line.quantity for line in self.lines)
+
+    @property
+    def device_types(self) -> tuple[str, ...]:
+        """Each kind asked for, once, in the order the clinic listed them."""
+        seen: list[str] = []
+        for line in self.lines:
+            if line.device_type not in seen:
+                seen.append(line.device_type)
+        return tuple(seen)
+
+    @property
+    def summary(self) -> str:
+        """The whole request in one readable phrase."""
+        labels = [line.label for line in self.lines]
+        if not labels:
+            return "nothing yet"
+        if len(labels) == 1:
+            return labels[0]
+        return ", ".join(labels[:-1]) + f" and {labels[-1]}"
 
 
 def new_token() -> str:

@@ -22,6 +22,7 @@ from app.domain.marketplace import (
     Offer,
     OfferStatus,
     Request,
+    RequestLine,
     RequestStatus,
 )
 from app.domain.provenance import Provenance, fact
@@ -258,8 +259,10 @@ def test_a_request_round_trips_and_only_open_ones_are_listed(database):
     # Arrange
     open_request = Request(
         facility_slug="uganda-district",
-        device_type="oxygen concentrator",
-        quantity=3,
+        lines=(
+            RequestLine(device_type="oxygen concentrator", quantity=3),
+            RequestLine(device_type="patient monitor", quantity=2),
+        ),
         note="Maternity ward, two wards sharing one unit.",
     )
     request_id = repo.save_request(open_request)
@@ -272,8 +275,16 @@ def test_a_request_round_trips_and_only_open_ones_are_listed(database):
     still_open = repo.list_open_requests()
 
     # Assert
-    assert as_saved(loaded) == open_request
+    # Lines gain a database id on save, so compare what the clinic entered.
+    assert as_saved(replace(loaded, lines=())) == replace(open_request, lines=())
+    assert [(l.device_type, l.quantity) for l in loaded.lines] == [
+        ("oxygen concentrator", 3),
+        ("patient monitor", 2),
+    ]
+    assert all(line.id is not None for line in loaded.lines)
     assert [r.id for r in still_open] == [request_id]
+    assert loaded.total_quantity == 5
+    assert loaded.device_types == ("oxygen concentrator", "patient monitor")
 
 
 def test_matches_for_request_returns_only_that_requests_matches(database):
@@ -315,3 +326,26 @@ def test_update_match_state_records_when_the_donor_answered(database):
     assert loaded.state is MatchState.CONFIRMED
     assert loaded.responded_at == answered_at
     assert not loaded.is_open
+
+
+def test_request_lines_come_back_in_the_order_the_clinic_listed_them(database):
+    """Position is stored, so the order is not left to insertion luck."""
+    # Arrange: a deliberately non-alphabetical order.
+    wanted = ("ventilator", "autoclave", "patient monitor", "infant incubator")
+    saved = Request(
+        facility_slug="uganda-district",
+        lines=tuple(RequestLine(device_type=t, quantity=1) for t in wanted),
+    )
+
+    # Act
+    loaded = repo.load_request(repo.save_request(saved))
+
+    # Assert
+    assert tuple(line.device_type for line in loaded.lines) == wanted
+
+
+def test_a_request_with_no_lines_is_refused_rather_than_stored_empty(database):
+    empty = Request(facility_slug="uganda-district", lines=())
+
+    with pytest.raises(repo.RepositoryError):
+        repo.save_request(empty)

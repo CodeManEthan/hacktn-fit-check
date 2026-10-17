@@ -17,9 +17,16 @@ from app.data import marketplace_repo as repo
 from app.data.repository import RepositoryError
 from app.domain.device import DeviceFacts
 from app.domain.facility import FacilityProfile
-from app.domain.marketplace import GeoPoint, MatchState, Offer, Request as DonationRequest
+from app.domain.marketplace import (
+    GeoPoint,
+    MatchState,
+    Offer,
+    Request as DonationRequest,
+    RequestLine,
+)
 from app.domain.provenance import Provenance, fact
 from app.matching.bundle import build_bundle
+from app.matching.coverage import LineCoverage
 from app.matching.pipeline import propose_match, rank_candidates
 from app.matching.verification import confirm, request_confirmation, withdraw
 from app.reference.country_power import country_centroid, lookup
@@ -165,22 +172,26 @@ def request_form(request: Request) -> HTMLResponse:
 
 
 @router.post("/request", response_class=HTMLResponse)
-async def request_submit(
-    request: Request,
-    facility_slug: str = Form(...),
-    device_type: str = Form(default=""),
-    quantity: str = Form(default="1"),
-    note: str = Form(default=""),
-) -> HTMLResponse:
+async def request_submit(request: Request) -> HTMLResponse:
+    """Accept a request of any length.
+
+    The form posts one device_type and one quantity per row, so the fields
+    arrive as parallel lists and are read from the raw form rather than
+    declared as named parameters.
+    """
+    form = await request.form()
     try:
         row = DonationRequest(
-            facility_slug=facility_slug,
-            device_type=forms.text(device_type, "Equipment needed", required=True),
-            quantity=forms.whole_number(quantity, "How many", default=1, minimum=1),
-            note=forms.text(note, "Note", limit=600),
+            facility_slug=forms.text(
+                str(form.get("facility_slug") or ""), "Facility", required=True
+            ),
+            lines=_lines_from(
+                form.getlist("device_type"), form.getlist("quantity")
+            ),
+            note=forms.text(str(form.get("note") or ""), "Note", limit=600),
         )
         request_id = repo.save_request(row)
-    except (FormError, RepositoryError) as exc:
+    except (FormError, ValueError, RepositoryError) as exc:
         return _error(request, str(exc), back="/request")
     return RedirectResponse(url=f"/request/{request_id}/matches", status_code=303)
 
@@ -194,14 +205,22 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
     if facility is None:
         return _error(request, f"No facility profile for {row.facility_slug}.")
 
-    offers = repo.open_offers_for_type(row.device_type)
-    candidates = rank_candidates(row, facility, offers)
-    bundles = {c.offer.id: build_bundle(c.verdict, repo.offers_for_support) for c in candidates}
+    coverages = []
+    bundles: dict[int, object] = {}
+    for line in row.lines:
+        offers = repo.open_offers_for_type(line.device_type)
+        candidates = rank_candidates(facility, offers)
+        coverages.append(
+            LineCoverage(line=line, candidates=candidates, screened=len(offers))
+        )
+        for c in candidates:
+            bundles[c.offer.id] = build_bundle(c.verdict, repo.offers_for_support)
+
     return TEMPLATES.TemplateResponse(
         request=request, name="matches.html",
         context={
             "request_row": row, "facility": facility,
-            "candidates": candidates, "screened": len(offers), "bundles": bundles,
+            "coverages": coverages, "bundles": bundles,
             "symbol": TONE_BY_STATUS, "tone": TONE_BY_OUTCOME,
         },
     )
@@ -219,12 +238,16 @@ def create_match(
         return _error(request, "That request or offer no longer exists.")
     facility = repo.load_facility(row.facility_slug)
 
-    candidates = [c for c in rank_candidates(row, facility, [offer]) if c.offer.id == offer_id]
+    candidates = [c for c in rank_candidates(facility, [offer]) if c.offer.id == offer_id]
     if not candidates:
         return _error(request, "That device no longer passes the screening for this facility.")
 
     try:
-        quantity = min(row.quantity, offer.quantity_available)
+        wanted = next(
+            (l.quantity for l in row.lines if l.device_type == offer.device_type),
+            offer.quantity_available,
+        )
+        quantity = min(wanted, offer.quantity_available)
         match = request_confirmation(propose_match(row, candidates[0], quantity))
         match_id = repo.save_match(match)
         repo.update_offer(offer.reserve(quantity))
@@ -290,6 +313,30 @@ def _point(country: str, city: str) -> GeoPoint:
     latitude, longitude = (country_centroid(country) or (None, None))
     return GeoPoint(country=country, city=(city or "").strip(),
                     latitude=latitude, longitude=longitude)
+
+
+def _lines_from(types: list[str], quantities: list[str]) -> tuple[RequestLine, ...]:
+    """Build the request lines from the form's parallel device/quantity lists.
+
+    Blank rows are dropped so an empty extra row the clinic never filled in is
+    not an error. A request with nothing left after that is refused.
+    """
+    lines = []
+    for position, raw_type in enumerate(types):
+        if not raw_type.strip():
+            continue
+        raw_quantity = quantities[position] if position < len(quantities) else "1"
+        lines.append(
+            RequestLine(
+                device_type=raw_type,
+                quantity=forms.whole_number(
+                    raw_quantity, "How many", default=1, minimum=1
+                ),
+            )
+        )
+    if not lines:
+        raise FormError("Name at least one kind of equipment you need.")
+    return tuple(lines)
 
 
 def _with_expiry(device: DeviceFacts, expiry: date | None) -> DeviceFacts:
