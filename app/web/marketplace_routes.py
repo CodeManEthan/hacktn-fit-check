@@ -7,7 +7,7 @@ from datetime import date, datetime
 from pathlib import Path
 
 from fastapi import APIRouter, File, Form, Request, UploadFile
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
 from app.ai.categorise import categorise_support
@@ -34,9 +34,10 @@ from app.reference.country_power import country_centroid, lookup
 from app.reference.facility_registry import corroborates, find_candidates
 from app.web import forms
 from app.web.forms import FormError
-from app.web.presenters import TONE_BY_OUTCOME, TONE_BY_STATUS
+from app.web.presenters import rule_count, TONE_BY_OUTCOME, TONE_BY_STATUS
 
 TEMPLATES = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
+TEMPLATES.env.globals["rule_count"] = rule_count()
 router = APIRouter()
 
 
@@ -49,7 +50,27 @@ def _error(request: Request, message: str, back: str = "/") -> HTMLResponse:
 
 @router.get("/", response_class=HTMLResponse)
 def landing(request: Request) -> HTMLResponse:
-    return TEMPLATES.TemplateResponse(request=request, name="landing.html", context={})
+    """The landing workstation, with the seeded clinics as testbeds.
+
+    The telemetry on each card is read from the stored profile rather than
+    written into the template, so a figure on the front page cannot drift away
+    from the figure the screening actually uses.
+    """
+    testbeds = [
+        {
+            "slug": f.slug,
+            "name": f.name,
+            "country": f.country,
+            "voltage": f.mains_voltage_v,
+            "frequency": f.mains_frequency_hz,
+            "outages": f.outages_per_week,
+            "temp": f.ambient_temp_max_c,
+        }
+        for f in repo.list_facilities()
+    ]
+    return TEMPLATES.TemplateResponse(
+        request=request, name="landing.html", context={"testbeds": testbeds}
+    )
 
 
 # ---- donor side --------------------------------------------------------
@@ -315,6 +336,95 @@ def confirm_submit(request: Request, token: str, answer: str = Form(...)) -> HTM
         return _error(request, str(exc))
 
     return RedirectResponse(url=f"/confirm/{token}", status_code=303)
+
+
+# ---- live extraction ----------------------------------------------------
+
+# The five readings a rating plate carries, in the order it prints them.
+INSPECTOR_ROWS = (
+    ("Model", "model"),
+    ("Voltage", "voltage"),
+    ("Frequency", "frequency"),
+    ("Power", "power"),
+    ("Operating temp", "temperature"),
+)
+
+
+def _inspector_rows(device: DeviceFacts) -> list[dict[str, str]]:
+    """The extracted facts as rows, each carrying where it came from.
+
+    An unknown field is still a row. Showing it blank with an `unverified` tag
+    is the whole point: the gap is the finding.
+    """
+    supply = _range_text(device.voltage_min_v, device.voltage_max_v, "V")
+    frequency = (
+        "/".join(str(v) for v in device.frequencies_hz.value) + " Hz"
+        if device.frequencies_hz.known else ""
+    )
+    power = f"{device.power_watts.value} W" if device.power_watts.known else ""
+    temperature = _range_text(device.temp_min_c, device.temp_max_c, "\u00b0C")
+
+    values = {
+        "model": (device.label if device.model.known or device.manufacturer.known else "",
+                  device.model if device.model.known else device.manufacturer),
+        "voltage": (supply, device.voltage_min_v),
+        "frequency": (frequency, device.frequencies_hz),
+        "power": (power, device.power_watts),
+        "temperature": (temperature, device.temp_min_c),
+    }
+
+    rows = []
+    for label, key in INSPECTOR_ROWS:
+        shown, fact_used = values[key]
+        rows.append({
+            "label": label,
+            "value": shown,
+            "source": fact_used.source.value if shown else "unverified",
+            "known": bool(shown),
+        })
+    return rows
+
+
+def _range_text(low, high, unit: str) -> str:
+    if low.known and high.known:
+        return f"{low.value}\u2013{high.value} {unit}"
+    if low.known:
+        return f"from {low.value} {unit}"
+    if high.known:
+        return f"to {high.value} {unit}"
+    return ""
+
+
+@router.post("/offer/extract")
+async def offer_extract(request: Request) -> JSONResponse:
+    """Extract facts from what the donor has typed or photographed, without a reload.
+
+    Called by the inspector panel on the offer page. Never raises at the
+    client: a model failure comes back as an error string the panel shows in
+    place of the rows, because a blank panel would look like a device with no
+    facts rather than a service that did not answer.
+    """
+    form = await request.form()
+    typed = str(form.get("spec_text") or "").strip()
+    model_name = str(form.get("model_name") or "").strip()
+    combined = "\n".join(p for p in (model_name, typed) if p)
+
+    image_data_url = ""
+    upload = form.get("nameplate")
+    if upload is not None and getattr(upload, "filename", ""):
+        image_data_url = image_to_data_url(
+            await upload.read(), getattr(upload, "content_type", "") or ""
+        )
+
+    if not combined and not image_data_url:
+        return JSONResponse({"rows": [], "message": "Nothing to read yet."})
+
+    try:
+        device = extract_device(typed_text=combined, image_data_url=image_data_url)
+    except (GenAiError, ValueError) as exc:
+        return JSONResponse({"rows": [], "message": str(exc)}, status_code=200)
+
+    return JSONResponse({"rows": _inspector_rows(device), "message": ""})
 
 
 # ---- recipient verification --------------------------------------------

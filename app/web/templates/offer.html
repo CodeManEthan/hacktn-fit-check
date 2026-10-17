@@ -7,7 +7,11 @@
      model, the voltage and the frequency. Photograph it and most of the screening
      follows.</p>
 
-  <form method="post" action="/offer" enctype="multipart/form-data" class="form">
+  <form method="post" action="/offer" enctype="multipart/form-data" class="form" id="offer-form">
+    <div class="split split-wide">
+
+      <div class="plate workbench">
+        <h2 class="panel-head">Ingestion</h2>
     <label class="nameplate scan">
       <div class="scan-reticle" aria-hidden="true"></div>
       <p class="scan-head">Scan or upload the rating plate</p>
@@ -31,6 +35,36 @@
          question, never a guess.</p>
     </div>
 
+        <button type="button" class="go-quiet" id="extract-now">Read these facts now</button>
+        <p class="note">Reads the plate without posting the offer, so you can see what
+           was understood before you commit to anything.</p>
+      </div>
+
+      <div class="plate inspector" id="inspector">
+        <h2 class="panel-head">Extracted specifications</h2>
+        <p class="note">Every value carries where it came from. A blank row is a fact
+           nobody has established, which the screening will ask about rather than guess.</p>
+        <table class="audit inspector-table">
+          <thead>
+            <tr><th scope="col">Field</th><th scope="col">Value</th><th scope="col">Provenance</th></tr>
+          </thead>
+          <tbody data-inspector-body>
+            {% for label in ("Model", "Voltage", "Frequency", "Power", "Operating temp") %}
+            <tr>
+              <td class="audit-name">{{ label }}</td>
+              <td class="audit-value is-empty">&mdash;</td>
+              <td><span class="tag">unverified</span></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <p class="inspector-msg" data-inspector-msg></p>
+      </div>
+    </div>
+
+    <div class="plate">
+      <h2 class="panel-head">Offer details</h2>
+      <div class="stack">
     <div class="field">
       <label class="name" for="f-device-type">What kind of device is it?</label>
       <input type="text" id="f-device-type" name="device_type" list="device-types" placeholder="ventilator">
@@ -99,16 +133,92 @@
     </div>
 
     <button class="go" type="submit">Read the plate and post it</button>
+      </div>
+    </div>
   </form>
 </section>
 
 <script>
-  // Native file inputs show nothing once styled away; echo the chosen name.
-  document.querySelectorAll('.scan input[type="file"]').forEach(function (input) {
-    input.addEventListener('change', function () {
-      var out = input.closest('.scan').querySelector('[data-scan-name]');
-      if (out) out.textContent = input.files.length ? input.files[0].name : 'No file chosen';
+  // The inspector reads the plate without posting the offer, so the donor sees
+  // what was understood before committing. Fires on request, never per keystroke:
+  // each call is a model call.
+  (function () {
+    var form = document.getElementById('offer-form');
+    var button = document.getElementById('extract-now');
+    var body = document.querySelector('[data-inspector-body]');
+    var message = document.querySelector('[data-inspector-msg]');
+    if (!form || !button || !body) return;
+
+    var FIELDS = ['Model', 'Voltage', 'Frequency', 'Power', 'Operating temp'];
+
+    function blankRows() {
+      return FIELDS.map(function (label) {
+        return { label: label, value: '', source: 'unverified', known: false };
+      });
+    }
+
+    function render(rows) {
+      body.textContent = '';
+      rows.forEach(function (row) {
+        var tr = document.createElement('tr');
+
+        var name = document.createElement('td');
+        name.className = 'audit-name';
+        name.textContent = row.label;
+
+        var value = document.createElement('td');
+        value.className = row.known ? 'audit-value' : 'audit-value is-empty';
+        value.textContent = row.known ? row.value : '\u2014';
+
+        var source = document.createElement('td');
+        var tag = document.createElement('span');
+        tag.className = row.known ? 'tag is-trusted' : 'tag';
+        tag.textContent = row.source;
+        source.appendChild(tag);
+
+        tr.appendChild(name);
+        tr.appendChild(value);
+        tr.appendChild(source);
+        body.appendChild(tr);
+      });
+    }
+
+    function say(text) { if (message) message.textContent = text || ''; }
+
+    button.addEventListener('click', function () {
+      var payload = new FormData();
+      ['model_name', 'spec_text', 'nameplate'].forEach(function (field) {
+        var input = form.elements[field];
+        if (!input) return;
+        if (input.type === 'file') {
+          if (input.files && input.files.length) payload.append(field, input.files[0]);
+        } else {
+          payload.append(field, input.value);
+        }
+      });
+
+      button.disabled = true;
+      say('Reading\u2026');
+      fetch('/offer/extract', { method: 'POST', body: payload })
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+          render(data.rows && data.rows.length ? data.rows : blankRows());
+          say(data.message || '');
+        })
+        .catch(function () {
+          render(blankRows());
+          say('Could not reach the reader. The offer can still be posted; the facts are read again on submit.');
+        })
+        .finally(function () { button.disabled = false; });
     });
-  });
+
+    // Echo the chosen file name; a styled input shows nothing by itself.
+    document.querySelectorAll('.scan input[type="file"]').forEach(function (input) {
+      input.addEventListener('change', function () {
+        var out = input.closest('.scan').querySelector('[data-scan-name]');
+        if (out) out.textContent = input.files.length ? input.files[0].name : 'No file chosen';
+      });
+    });
+  })();
 </script>
 {% endblock %}
