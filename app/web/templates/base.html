@@ -4,26 +4,30 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}Fit-Check{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <header class="masthead">
-    <a class="wordmark" href="/donor">Fit&#8209;Check</a>
-    <p class="strapline">Will this donated device actually work there?</p>
-    <nav class="steps">
-      {% set current = step | default(0) %}
-      <span class="step {{ 'on' if current == 1 }}"><b>1</b> Device</span>
-      <span class="step {{ 'on' if current == 2 }}"><b>2</b> Clinic</span>
-      <span class="step {{ 'on' if current == 3 }}"><b>3</b> Verdict</span>
-      <a class="impact-link" href="/impact">Impact</a>
-    </nav>
-  </header>
-  <main>
-    {% block content %}{% endblock %}
-  </main>
-  <footer>
-    <p>Checks follow WHO <em>Medical device donations</em>, Annex 1, and
-       IEC&nbsp;60601&#8209;1 marking and default environmental conditions.</p>
-  </footer>
+  <div class="shell">
+    <header class="rail">
+      <a class="mark" href="/donor">Fit-Check <span>donation screening</span></a>
+      {% set now = step | default(0) %}
+      <nav class="rail-steps">
+        <i class="{{ 'now' if now == 1 }}">Device</i>
+        <i class="{{ 'now' if now == 2 }}">Clinic</i>
+        <i class="{{ 'now' if now == 3 }}">Verdict</i>
+        <a href="/impact" class="{{ 'now' if now == 4 }}">Log</a>
+      </nav>
+    </header>
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+    <footer>
+      <p>Screens against the acceptance criteria in WHO <em>Medical device donations</em>,
+         Annex 1, and the marking and default environmental conditions in IEC 60601-1.
+         A screen is not a clearance; a person still decides.</p>
+    </footer>
+  </div>
 </body>
 </html>

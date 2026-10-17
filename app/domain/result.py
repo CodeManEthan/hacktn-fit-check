@@ -56,9 +56,25 @@ class Verdict:
         return tuple(r for r in self.results if r.status is CheckStatus.NEEDS_INFO)
 
     @property
+    def conditional(self) -> tuple[CheckResult, ...]:
+        return tuple(r for r in self.results if r.status is CheckStatus.MITIGABLE)
+
+    @property
+    def stamp(self) -> str:
+        """Two words for the inspection stamp."""
+        if self.outcome is Outcome.WORKS:
+            return "Clear to ship"
+        if self.outcome is Outcome.WONT_WORK:
+            return "Do not ship"
+        return "Ship with"
+
+    @property
     def headline(self) -> str:
         if self.outcome is Outcome.WORKS:
             return f"All {len(self.results)} checks pass"
         if self.outcome is Outcome.WONT_WORK:
-            return f"{len(self.failures)} of {len(self.results)} checks failed"
-        return f"{len(self.requirements)} things must ship with it"
+            blockers = len(self.failures)
+            word = "blocker" if blockers == 1 else "blockers"
+            return f"{blockers} {word}, {len(self.conditional)} conditions"
+        count = len(self.requirements)
+        return f"{count} thing{'' if count == 1 else 's'} it cannot arrive without"

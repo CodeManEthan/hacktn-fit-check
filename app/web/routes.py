@@ -16,22 +16,16 @@ from app.data import repository
 from app.data.repository import RepositoryError
 from app.data.seed import FACILITIES, get_facility
 from app.domain.result import CheckStatus, Outcome
+from app.web.presenters import (
+    TONE_BY_OUTCOME,
+    TONE_BY_OUTCOME_VALUE,
+    TONE_BY_STATUS,
+    device_kind,
+    identity_pairs,
+)
 
 TEMPLATES = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 router = APIRouter()
-
-STATUS_SYMBOL = {
-    CheckStatus.PASS: "ok",
-    CheckStatus.FAIL: "bad",
-    CheckStatus.MITIGABLE: "warn",
-    CheckStatus.NEEDS_INFO: "ask",
-}
-OUTCOME_TONE = {
-    Outcome.WORKS: "ok",
-    Outcome.WORKS_IF: "warn",
-    Outcome.WONT_WORK: "bad",
-}
-
 
 def _error(request: Request, message: str, back: str = "/donor") -> HTMLResponse:
     return TEMPLATES.TemplateResponse(
@@ -145,8 +139,10 @@ def verdict_page(request: Request, verdict_id: str) -> HTMLResponse:
             "device": record["device"],
             "intel": record["intel"],
             "facility": facility,
-            "symbol": STATUS_SYMBOL,
-            "tone": OUTCOME_TONE,
+            "pairs": identity_pairs(record["device"]),
+            "kind": device_kind(record["device"]),
+            "symbol": TONE_BY_STATUS,
+            "tone": TONE_BY_OUTCOME,
         },
     )
 
@@ -154,10 +150,14 @@ def verdict_page(request: Request, verdict_id: str) -> HTMLResponse:
 @router.get("/impact", response_class=HTMLResponse)
 def impact_page(request: Request) -> HTMLResponse:
     try:
+        reasons = repository.failures_by_reason()
         context = {
+            "step": 4,
             "counts": repository.count_by_outcome(),
-            "reasons": repository.failures_by_reason(),
+            "reasons": reasons,
+            "peak": max((n for _, n in reasons), default=1),
             "recent": repository.recent_verdicts(),
+            "tone": TONE_BY_OUTCOME_VALUE,
         }
     except RepositoryError as exc:
         return _error(request, str(exc), back="/donor")

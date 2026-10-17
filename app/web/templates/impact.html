@@ -1,41 +1,45 @@
 {% extends "base.html" %}
-{% block title %}Impact &middot; Fit-Check{% endblock %}
+{% block title %}Log &middot; Fit-Check{% endblock %}
 {% block content %}
-<section class="panel">
-  <h1>What has been caught</h1>
-  <p class="lede">Every check that ran is in the database. These are the counts.</p>
+<section class="plate">
+  <h1>What the screening has caught</h1>
+  <p class="sub">Every device put through this tool, and the reasons donations kept
+     failing. A reason near the top is one the next donor will hit too.</p>
 
-  <div class="tally">
-    {% for outcome, total in counts.items() %}
-    <div class="tally-card"><b>{{ total }}</b><span>{{ outcome }}</span></div>
-    {% else %}
-    <p class="hint">Nothing checked yet.</p>
-    {% endfor %}
+  {% if counts %}
+  <div class="counters">
+    {% set total = counts.values() | sum %}
+    <div class="counter"><b>{{ total }}</b><span>devices screened</span></div>
+    <div class="counter bad"><b>{{ counts.get("won't work", 0) }}</b><span>stopped before shipping</span></div>
+    <div class="counter hold"><b>{{ counts.get('works if you also send', 0) }}</b><span>need extras sent with them</span></div>
+    <div class="counter good"><b>{{ counts.get('works', 0) }}</b><span>cleared as they are</span></div>
   </div>
+  {% else %}
+  <p class="empty">Nothing screened yet. Put a device through and it lands here.</p>
+  {% endif %}
 
   {% if reasons %}
-  <h2 class="section">Problems by reason</h2>
-  <table class="checks">
-    <thead><tr><th>Reason</th><th>Times flagged</th></tr></thead>
-    <tbody>
-      {% for label, total in reasons %}
-      <tr><td class="check-name">{{ label }}</td><td>{{ total }}</td></tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <h2>Why donations failed</h2>
+  <div class="bars">
+    {% for label, total in reasons %}
+    <span class="bar-name">{{ label }}</span>
+    <span class="track"><span class="fill" style="width: {{ (total / peak * 100) | round }}%"></span></span>
+    <span class="bar-num">{{ total }}</span>
+    {% endfor %}
+  </div>
   {% endif %}
 
   {% if recent %}
-  <h2 class="section">Recent checks</h2>
-  <table class="checks">
-    <thead><tr><th>Device</th><th>Clinic</th><th>Verdict</th><th></th></tr></thead>
+  <h2>Recent screenings</h2>
+  <table class="grid">
+    <thead><tr><th>Device</th><th>Clinic</th><th>Result</th><th></th></tr></thead>
     <tbody>
       {% for row in recent %}
       <tr>
-        <td class="check-name">{{ row.device_label }}</td>
+        <td class="what">{{ row.device_label }}</td>
         <td>{{ row.facility_name }}</td>
-        <td>{{ row.outcome }}</td>
-        <td><a href="/verdict/{{ row.id }}">open</a></td>
+        <td><span class="pill {{ tone.get(row.outcome, 'hold') }}">{{ row.outcome }}</span></td>
+        <td><a class="link" href="/verdict/{{ row.id }}">open</a></td>
       </tr>
       {% endfor %}
     </tbody>

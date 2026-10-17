@@ -1,62 +1,101 @@
 {% extends "base.html" %}
-{% block title %}Verdict &middot; Fit-Check{% endblock %}
+{% block title %}{{ verdict.stamp }} &middot; {{ record.device_label }}{% endblock %}
 {% block content %}
-<section class="panel">
-  <p class="eyebrow">{{ record.device_label }} &rarr; {{ facility.name }}, {{ facility.country }}</p>
-  <h1 class="verdict {{ tone[verdict.outcome] }}">{{ verdict.outcome.value | upper }}</h1>
-  <p class="lede">{{ verdict.headline }}</p>
 
-  {% if verdict.failures %}
-  <div class="callout bad">
-    <h2>What blocks it</h2>
-    <ul>{% for r in verdict.failures %}<li><b>{{ r.label }}.</b> {{ r.detail }}</li>{% endfor %}</ul>
+<section class="plate">
+  <div class="readout">
+    <div class="ident">
+      <h1 class="ident-name">{{ record.device_label }}</h1>
+      {% if kind %}<p class="ident-kind">{{ kind }}</p>{% endif %}
+
+      <dl class="pairs">
+        {% for label, value in pairs %}
+        <dt>{{ label }}</dt><dd>{{ value }}</dd>
+        {% endfor %}
+      </dl>
+
+    </div>
+
+    <div class="readout-side">
+      <div class="stamp {{ tone[verdict.outcome] }}">
+        <b>{{ verdict.stamp }}</b>
+        <i>{{ verdict.headline }}</i>
+      </div>
+      <div class="dest">
+        <p class="dest-name">{{ facility.name }} <em>{{ facility.country }}</em></p>
+        <span class="specs">
+          <span><b>{{ facility.mains_voltage_v }} V</b></span>
+          <span><b>{{ facility.mains_frequency_hz }} Hz</b></span>
+          <span>wards to <b>{{ facility.ambient_temp_max_c }}&deg;C</b></span>
+          <span><b>{{ facility.outages_per_week }}</b> outages a week</span>
+        </span>
+      </div>
+    </div>
   </div>
-  {% endif %}
 
-  {% if verdict.requirements %}
-  <div class="callout warn">
-    <h2>{% if verdict.failures %}Still short of, even then{% else %}Send these with it{% endif %}</h2>
-    <ul>{% for r in verdict.requirements %}<li>{{ r }}</li>{% endfor %}</ul>
+  <div class="segments">
+    {% for r in verdict.results %}
+    <span class="seg {{ symbol[r.status] }}" title="{{ r.label }}: {{ r.detail }}"></span>
+    {% endfor %}
   </div>
-  {% endif %}
-
-  {% if verdict.questions %}
-  <div class="callout ask">
-    <h2>The tool will not guess these</h2>
-    <ul>{% for q in verdict.questions %}<li>{{ q }}</li>{% endfor %}</ul>
+  <div class="key">
+    {% if verdict.failures %}<i><u class="bad"></u>{{ verdict.failures | length }} blocked</i>{% endif %}
+    {% if verdict.conditional %}<i><u class="hold"></u>{{ verdict.conditional | length }} conditional</i>{% endif %}
+    {% if verdict.unknowns %}<i><u class="ask"></u>{{ verdict.unknowns | length }} unanswered</i>{% endif %}
+    {% if verdict.passes %}<i><u class="good"></u>{{ verdict.passes | length }} clear</i>{% endif %}
   </div>
-  {% endif %}
+</section>
 
-  <h2 class="section">Every check</h2>
-  <table class="checks">
+{% if verdict.failures %}
+<div class="flag bad">
+  <h2>What blocks it</h2>
+  <ul>{% for r in verdict.failures %}<li><b>{{ r.label }}.</b> {{ r.detail }}</li>{% endfor %}</ul>
+</div>
+{% endif %}
+
+{% if verdict.requirements %}
+<div class="flag hold">
+  <h2>{% if verdict.failures %}Still missing, even if you solve that{% else %}It cannot arrive without{% endif %}</h2>
+  <ul>{% for r in verdict.requirements %}<li>{{ r }}</li>{% endfor %}</ul>
+</div>
+{% endif %}
+
+{% if verdict.questions %}
+<div class="flag ask">
+  <h2>Answer these and the screening sharpens</h2>
+  <ul>{% for q in verdict.questions %}<li>{{ q }}</li>{% endfor %}</ul>
+</div>
+{% endif %}
+
+<section class="plate plate-tight">
+  <h2>Every check</h2>
+  <table class="grid">
     <thead>
       <tr><th>Check</th><th>Finding</th><th>What would fix it</th><th>Fact from</th></tr>
     </thead>
     <tbody>
       {% for r in verdict.results %}
-      <tr class="row-{{ symbol[r.status] }}">
-        <td class="check-name">
-          <span class="dot {{ symbol[r.status] }}"></span>{{ r.label }}
-        </td>
+      <tr class="is-{{ symbol[r.status] }}">
+        <td class="what">{{ r.label }}</td>
         <td>{{ r.detail }}</td>
-        <td class="fix">{{ r.fix or r.question or '-' }}</td>
-        <td class="source">{{ r.source.value }}</td>
+        <td class="remedy">{{ r.fix or r.question or '' }}</td>
+        <td class="from">{{ r.source.value }}</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
 
   {% if intel.reasoning %}
-  <h2 class="section">What the model found about {{ intel.country }}</h2>
-  <p class="reasoning">{{ intel.reasoning }}</p>
-  <p class="hint">This is model knowledge, not a sourced fact. The checks above
-     label it so, and a human still decides.</p>
+  <h2>On supplying this in {{ intel.country }}</h2>
+  <p style="max-width:68ch">{{ intel.reasoning }}</p>
+  <p class="note">That paragraph is what the model knows, not a sourced fact. The three
+     supply checks above are marked <em>model knowledge</em> for the same reason.</p>
   {% endif %}
 
-  <p class="actions">
-    <a class="primary" href="/donor">Check another device</a>
-    <a class="secondary" href="/impact">See the tally</a>
-  </p>
-  <p class="permalink">Saved as <code>/verdict/{{ record.id }}</code></p>
+  <div class="after">
+    <a class="go" href="/donor" style="text-decoration:none">Screen another device</a>
+    <a class="link" href="/impact">See the log</a>
+  </div>
+  <p class="ref">Saved as /verdict/{{ record.id }}</p>
 </section>
 {% endblock %}
