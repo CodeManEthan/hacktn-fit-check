@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Fit-Check{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="masthead">
+    <a class="wordmark" href="/donor">Fit&#8209;Check</a>
+    <p class="strapline">Will this donated device actually work there?</p>
+    <nav class="steps">
+      {% set current = step | default(0) %}
+      <span class="step {{ 'on' if current == 1 }}"><b>1</b> Device</span>
+      <span class="step {{ 'on' if current == 2 }}"><b>2</b> Clinic</span>
+      <span class="step {{ 'on' if current == 3 }}"><b>3</b> Verdict</span>
+      <a class="impact-link" href="/impact">Impact</a>
+    </nav>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    <p>Checks follow WHO <em>Medical device donations</em>, Annex 1, and
+       IEC&nbsp;60601&#8209;1 marking and default environmental conditions.</p>
+  </footer>
+</body>
+</html>

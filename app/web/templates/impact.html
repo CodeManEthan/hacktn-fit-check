@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Impact &middot; Fit-Check{% endblock %}
+{% block content %}
+<section class="panel">
+  <h1>What has been caught</h1>
+  <p class="lede">Every check that ran is in the database. These are the counts.</p>
+
+  <div class="tally">
+    {% for outcome, total in counts.items() %}
+    <div class="tally-card"><b>{{ total }}</b><span>{{ outcome }}</span></div>
+    {% else %}
+    <p class="hint">Nothing checked yet.</p>
+    {% endfor %}
+  </div>
+
+  {% if reasons %}
+  <h2 class="section">Problems by reason</h2>
+  <table class="checks">
+    <thead><tr><th>Reason</th><th>Times flagged</th></tr></thead>
+    <tbody>
+      {% for label, total in reasons %}
+      <tr><td class="check-name">{{ label }}</td><td>{{ total }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+  {% if recent %}
+  <h2 class="section">Recent checks</h2>
+  <table class="checks">
+    <thead><tr><th>Device</th><th>Clinic</th><th>Verdict</th><th></th></tr></thead>
+    <tbody>
+      {% for row in recent %}
+      <tr>
+        <td class="check-name">{{ row.device_label }}</td>
+        <td>{{ row.facility_name }}</td>
+        <td>{{ row.outcome }}</td>
+        <td><a href="/verdict/{{ row.id }}">open</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</section>
+{% endblock %}

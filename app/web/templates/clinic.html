@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Pick the clinic &middot; Fit-Check{% endblock %}
+{% block content %}
+<section class="panel">
+  <h1>Where is it going?</h1>
+  <p class="lede">Each profile is the clinic's own account of its conditions.
+     None of this is on the web.</p>
+
+  <form method="post" action="/check" class="stack">
+    <input type="hidden" name="device_id" value="{{ device_id }}">
+    {% for f in facilities %}
+    <label class="choice">
+      <input type="radio" name="facility_slug" value="{{ f.slug }}"
+             {% if loop.first %}checked{% endif %}>
+      <span class="choice-body">
+        <span class="choice-name">{{ f.name }}<em>{{ f.country }}</em></span>
+        <span class="chips">
+          <span class="chip">{{ f.mains_voltage_v }} V</span>
+          <span class="chip">{{ f.mains_frequency_hz }} Hz</span>
+          <span class="chip">up to {{ f.ambient_temp_max_c }}&deg;C</span>
+          <span class="chip">{{ 'air conditioned' if f.has_air_conditioning else 'no A/C' }}</span>
+          <span class="chip">{{ f.outages_per_week }} outages/week</span>
+          <span class="chip">{{ 'biomed on site' if f.has_biomed_technician else 'no biomed tech' }}</span>
+          <span class="chip">{{ f.staff_languages | join(', ') }}</span>
+        </span>
+        <span class="choice-note">{{ f.notes }}</span>
+      </span>
+    </label>
+    {% endfor %}
+    <button class="primary" type="submit">Run the fit-check &rarr;</button>
+  </form>
+</section>
+{% endblock %}

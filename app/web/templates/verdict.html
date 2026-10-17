@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Verdict &middot; Fit-Check{% endblock %}
+{% block content %}
+<section class="panel">
+  <p class="eyebrow">{{ record.device_label }} &rarr; {{ facility.name }}, {{ facility.country }}</p>
+  <h1 class="verdict {{ tone[verdict.outcome] }}">{{ verdict.outcome.value | upper }}</h1>
+  <p class="lede">{{ verdict.headline }}</p>
+
+  {% if verdict.failures %}
+  <div class="callout bad">
+    <h2>What blocks it</h2>
+    <ul>{% for r in verdict.failures %}<li><b>{{ r.label }}.</b> {{ r.detail }}</li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+
+  {% if verdict.requirements %}
+  <div class="callout warn">
+    <h2>{% if verdict.failures %}Still short of, even then{% else %}Send these with it{% endif %}</h2>
+    <ul>{% for r in verdict.requirements %}<li>{{ r }}</li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+
+  {% if verdict.questions %}
+  <div class="callout ask">
+    <h2>The tool will not guess these</h2>
+    <ul>{% for q in verdict.questions %}<li>{{ q }}</li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+
+  <h2 class="section">Every check</h2>
+  <table class="checks">
+    <thead>
+      <tr><th>Check</th><th>Finding</th><th>What would fix it</th><th>Fact from</th></tr>
+    </thead>
+    <tbody>
+      {% for r in verdict.results %}
+      <tr class="row-{{ symbol[r.status] }}">
+        <td class="check-name">
+          <span class="dot {{ symbol[r.status] }}"></span>{{ r.label }}
+        </td>
+        <td>{{ r.detail }}</td>
+        <td class="fix">{{ r.fix or r.question or '-' }}</td>
+        <td class="source">{{ r.source.value }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  {% if intel.reasoning %}
+  <h2 class="section">What the model found about {{ intel.country }}</h2>
+  <p class="reasoning">{{ intel.reasoning }}</p>
+  <p class="hint">This is model knowledge, not a sourced fact. The checks above
+     label it so, and a human still decides.</p>
+  {% endif %}
+
+  <p class="actions">
+    <a class="primary" href="/donor">Check another device</a>
+    <a class="secondary" href="/impact">See the tally</a>
+  </p>
+  <p class="permalink">Saved as <code>/verdict/{{ record.id }}</code></p>
+</section>
+{% endblock %}
