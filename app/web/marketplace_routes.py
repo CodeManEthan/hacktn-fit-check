@@ -44,7 +44,7 @@ def landing(request: Request) -> HTMLResponse:
 
 @router.get("/offer", response_class=HTMLResponse)
 def offer_form(request: Request) -> HTMLResponse:
-    return TEMPLATES.TemplateResponse(request=request, name="offer.html", context={"step": 1})
+    return TEMPLATES.TemplateResponse(request=request, name="offer.html", context={})
 
 
 @router.post("/offer", response_class=HTMLResponse)
@@ -101,7 +101,7 @@ def offer_posted(request: Request, offer_id: int) -> HTMLResponse:
 
 @router.get("/clinic", response_class=HTMLResponse)
 def facility_form(request: Request) -> HTMLResponse:
-    return TEMPLATES.TemplateResponse(request=request, name="facility_form.html", context={"step": 2})
+    return TEMPLATES.TemplateResponse(request=request, name="facility_form.html", context={})
 
 
 @router.post("/clinic", response_class=HTMLResponse)
@@ -153,7 +153,7 @@ async def facility_submit(request: Request) -> HTMLResponse:
 def request_form(request: Request) -> HTMLResponse:
     return TEMPLATES.TemplateResponse(
         request=request, name="request_form.html",
-        context={"step": 2, "facilities": repo.list_facilities()},
+        context={"facilities": repo.list_facilities()},
     )
 
 
@@ -193,7 +193,7 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
     return TEMPLATES.TemplateResponse(
         request=request, name="matches.html",
         context={
-            "step": 3, "request_row": row, "facility": facility,
+            "request_row": row, "facility": facility,
             "candidates": candidates, "screened": len(offers), "bundles": bundles,
             "symbol": TONE_BY_STATUS, "tone": TONE_BY_OUTCOME,
         },

@@ -52,7 +52,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.shell { max-width: 1060px; margin: 0 auto; padding: 0 var(--s4); }
+.shell { max-width: 1060px; margin: 0 auto; padding: 0 var(--s4) var(--s6); }
 
 /* ---- top rail ---------------------------------------------------- */
 
@@ -71,15 +71,6 @@ body {
   text-decoration: none;
 }
 .mark span { color: var(--etch); font-weight: 600; margin-left: 7px; }
-
-.rail-steps { display: flex; gap: var(--s3); margin-left: auto; font-size: 14px; }
-.rail-steps a, .rail-steps i {
-  font-style: normal;
-  color: var(--etch);
-  text-decoration: none;
-  padding-bottom: 2px;
-}
-.rail-steps .now { color: var(--ink); font-weight: 600; box-shadow: 0 2px 0 var(--ink); }
 
 /* ---- plate --------------------------------------------------------- */
 
@@ -308,8 +299,6 @@ tr.is-good .what { border-left-color: var(--clear); }
 .after { display: flex; gap: var(--s4); align-items: baseline; margin-top: var(--s6); }
 .ref { color: var(--etch); font-size: 13px; margin-top: var(--s4); }
 
-footer { padding: 0 0 var(--s6); color: var(--etch); font-size: 13px; max-width: 72ch; }
-footer em { font-style: italic; }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }

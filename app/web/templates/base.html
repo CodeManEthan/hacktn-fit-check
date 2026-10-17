@@ -11,23 +11,11 @@
 <body>
   <div class="shell">
     <header class="rail">
-      <a class="mark" href="/donor">Fit-Check <span>donation screening</span></a>
-      {% set now = step | default(0) %}
-      <nav class="rail-steps">
-        <i class="{{ 'now' if now == 1 }}">Device</i>
-        <i class="{{ 'now' if now == 2 }}">Clinic</i>
-        <i class="{{ 'now' if now == 3 }}">Verdict</i>
-        <a href="/impact" class="{{ 'now' if now == 4 }}">Log</a>
-      </nav>
+      <a class="mark" href="/">Fit-Check <span>donation screening</span></a>
     </header>
     <main>
       {% block content %}{% endblock %}
     </main>
-    <footer>
-      <p>Screens against the acceptance criteria in WHO <em>Medical device donations</em>,
-         Annex 1, and the marking and default environmental conditions in IEC 60601-1.
-         A screen is not a clearance; a person still decides.</p>
-    </footer>
   </div>
 </body>
 </html>

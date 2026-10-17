@@ -39,7 +39,7 @@ def _error(request: Request, message: str, back: str = "/donor") -> HTMLResponse
 @router.get("/donor", response_class=HTMLResponse)
 def donor_form(request: Request) -> HTMLResponse:
     return TEMPLATES.TemplateResponse(
-        request=request, name="donor.html", context={"step": 1}
+        request=request, name="donor.html", context={}
     )
 
 
@@ -79,7 +79,7 @@ def clinic_form(request: Request, device_id: int) -> HTMLResponse:
     return TEMPLATES.TemplateResponse(
         request=request,
         name="clinic.html",
-        context={"step": 2, "device_id": device_id, "facilities": FACILITIES},
+        context={"device_id": device_id, "facilities": FACILITIES},
     )
 
 
@@ -128,7 +128,6 @@ def verdict_page(request: Request, verdict_id: str) -> HTMLResponse:
         request=request,
         name="verdict.html",
         context={
-            "step": 3,
             "record": record,
             "verdict": record["verdict"],
             "device": record["device"],
@@ -147,7 +146,6 @@ def impact_page(request: Request) -> HTMLResponse:
     try:
         reasons = repository.failures_by_reason()
         context = {
-            "step": 4,
             "counts": repository.count_by_outcome(),
             "reasons": reasons,
             "peak": max((n for _, n in reasons), default=1),
