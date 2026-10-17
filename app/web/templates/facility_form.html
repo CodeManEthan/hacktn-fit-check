@@ -10,12 +10,12 @@
   <form method="post" action="/clinic" class="form">
     <div class="row">
       <div class="field">
-        <span class="name">Facility name</span>
-        <input type="text" name="name" placeholder="Kayunga District Hospital">
+        <label class="name" for="f-name">Facility name</label>
+        <input type="text" id="f-name" name="name" placeholder="Kayunga District Hospital">
       </div>
       <div class="field">
-        <span class="name">Country</span>
-        <input type="text" name="country" placeholder="Uganda">
+        <label class="name" for="f-country">Country</label>
+        <input type="text" id="f-country" name="country" placeholder="Uganda">
         <p class="note">Sets the grid voltage and frequency automatically. You can correct them.</p>
       </div>
     </div>
@@ -23,16 +23,16 @@
     <h2>Power</h2>
     <div class="row">
       <div class="field">
-        <span class="name">Mains voltage</span>
-        <input type="text" name="mains_voltage_v" placeholder="240">
+        <label class="name" for="f-mains-voltage-v">Mains voltage</label>
+        <input type="text" id="f-mains-voltage-v" name="mains_voltage_v" placeholder="240">
       </div>
       <div class="field">
-        <span class="name">Frequency in Hz</span>
-        <input type="text" name="mains_frequency_hz" placeholder="50">
+        <label class="name" for="f-mains-frequency-hz">Frequency in Hz</label>
+        <input type="text" id="f-mains-frequency-hz" name="mains_frequency_hz" placeholder="50">
       </div>
       <div class="field">
-        <span class="name">Outages a week</span>
-        <input type="text" name="outages_per_week" value="0">
+        <label class="name" for="f-outages-per-week">Outages a week</label>
+        <input type="text" id="f-outages-per-week" name="outages_per_week" value="0">
       </div>
     </div>
     <div class="checks">
@@ -43,12 +43,12 @@
     <h2>Climate</h2>
     <div class="row">
       <div class="field">
-        <span class="name">Hottest ward temperature, &deg;C</span>
-        <input type="text" name="ambient_temp_max_c" placeholder="34">
+        <label class="name" for="f-ambient-temp-max-c">Hottest ward temperature, &deg;C</label>
+        <input type="text" id="f-ambient-temp-max-c" name="ambient_temp_max_c" placeholder="34">
       </div>
       <div class="field">
-        <span class="name">Peak humidity, %</span>
-        <input type="text" name="humidity_max_pct" placeholder="85">
+        <label class="name" for="f-humidity-max-pct">Peak humidity, %</label>
+        <input type="text" id="f-humidity-max-pct" name="humidity_max_pct" placeholder="85">
       </div>
     </div>
     <div class="checks">
@@ -68,14 +68,14 @@
       <label><input type="checkbox" name="trained_operators"> Staff trained on this class of device</label>
     </div>
     <div class="field">
-      <span class="name">Languages staff read</span>
-      <input type="text" name="staff_languages" placeholder="English, Luganda">
+      <label class="name" for="f-staff-languages">Languages staff read</label>
+      <input type="text" id="f-staff-languages" name="staff_languages" placeholder="English, Luganda">
       <p class="note">Comma separated. Used to check the manual is readable.</p>
     </div>
 
     <div class="field">
-      <span class="name">Anything else worth knowing</span>
-      <textarea name="notes" rows="3" placeholder="One generator shared across theatre and maternity. Nearest biomedical technician is in Kampala."></textarea>
+      <label class="name" for="f-notes">Anything else worth knowing</label>
+      <textarea id="f-notes" name="notes" rows="3" placeholder="One generator shared across theatre and maternity. Nearest biomedical technician is in Kampala."></textarea>
     </div>
 
     <button class="go" type="submit">Save the profile</button>

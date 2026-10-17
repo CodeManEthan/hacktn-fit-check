@@ -8,8 +8,8 @@
 
   <form method="post" action="/request" class="form">
     <div class="field">
-      <span class="name">Facility</span>
-      <select name="facility_slug">
+      <label class="name" for="f-facility-slug">Facility</label>
+      <select id="f-facility-slug" name="facility_slug">
         {% for f in facilities %}
         <option value="{{ f.slug }}">{{ f.name }} &mdash; {{ f.country }}</option>
         {% endfor %}
@@ -18,18 +18,18 @@
 
     <div class="row">
       <div class="field">
-        <span class="name">Equipment needed</span>
-        <input type="text" name="device_type" placeholder="ventilator">
+        <label class="name" for="f-device-type">Equipment needed</label>
+        <input type="text" id="f-device-type" name="device_type" placeholder="ventilator">
       </div>
       <div class="field">
-        <span class="name">How many</span>
-        <input type="text" name="quantity" value="1">
+        <label class="name" for="f-quantity">How many</label>
+        <input type="text" id="f-quantity" name="quantity" value="1">
       </div>
     </div>
 
     <div class="field">
-      <span class="name">Anything the donor should know</span>
-      <textarea name="note" rows="3" placeholder="For the neonatal unit. We have one working unit and no spare."></textarea>
+      <label class="name" for="f-note">Anything the donor should know</label>
+      <textarea id="f-note" name="note" rows="3" placeholder="For the neonatal unit. We have one working unit and no spare."></textarea>
     </div>
 
     <button class="go" type="submit">Find what fits</button>

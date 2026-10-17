@@ -210,6 +210,14 @@ a.link { color: var(--ink); text-underline-offset: 3px; }
 }
 .stamp b { display: block; font: 800 34px/1 var(--display); letter-spacing: -0.02em; text-transform: uppercase; }
 .stamp i { display: block; font-style: normal; font-size: 14px; margin-top: var(--s2); font-weight: 600; }
+.oversight {
+  color: var(--etch);
+  font-size: 13px;
+  line-height: 1.45;
+  margin: calc(-1 * var(--s3)) 0 0;
+  max-width: 34ch;
+}
+
 .stamp.bad { color: var(--block); background: var(--block-wash); }
 .stamp.hold { color: var(--hold); background: var(--hold-wash); }
 .stamp.good { color: var(--clear); background: var(--clear-wash); }
