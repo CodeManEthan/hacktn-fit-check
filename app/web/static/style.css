@@ -369,3 +369,21 @@ button.go-quiet {
 button.go-quiet:hover { border-color: var(--block); color: var(--block); }
 
 @media (max-width: 680px) { .doors { grid-template-columns: 1fr; } }
+
+
+/* ---- requirement bundle ---------------------------------------------- */
+
+.bundle { margin-top: var(--s4); border-top: 1px solid var(--rule); padding-top: var(--s3); }
+.bundle-head { font-size: 14px; margin: 0 0 var(--s2); }
+.bundle-row {
+  display: flex; justify-content: space-between; gap: var(--s4);
+  font-size: 14px; padding: var(--s2) 0 var(--s2) var(--s3);
+  border-left: 3px solid var(--rule); flex-wrap: wrap;
+}
+.bundle-row.is-covered { border-left-color: var(--clear); }
+.bundle-row.is-gap { border-left-color: var(--block); }
+.bundle-row.is-arranged { border-left-color: var(--query); }
+.bundle-what { max-width: 58ch; }
+.bundle-src { color: var(--etch); white-space: nowrap; }
+.bundle-row.is-covered .bundle-src { color: var(--clear); font-weight: 600; }
+.bundle-row.is-gap .bundle-src { color: var(--block); }

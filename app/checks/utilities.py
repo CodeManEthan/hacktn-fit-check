@@ -5,10 +5,12 @@ from __future__ import annotations
 from app.domain.device import DeviceFacts, SupplyIntel
 from app.domain.facility import FacilityProfile
 from app.domain.provenance import Fact
+from app.domain.requirement import Requirement, RequirementKind
 from app.domain.result import CheckResult, CheckStatus
 
 
 def _utility_check(
+    kind: RequirementKind,
     key: str,
     label: str,
     need: Fact,
@@ -52,6 +54,7 @@ def _utility_check(
         detail=f"The device needs {label.lower()}, which {facility_name} does not have.",
         fix=fix,
         source=need.source,
+        requirement=Requirement(kind, fix, key),
     )
 
 
@@ -59,6 +62,7 @@ def check_oxygen(
     device: DeviceFacts, facility: FacilityProfile, intel: SupplyIntel
 ) -> CheckResult:
     return _utility_check(
+        kind=RequirementKind.OXYGEN_SUPPLY,
         key="oxygen",
         label="Medical oxygen",
         need=device.needs_oxygen,
@@ -73,6 +77,7 @@ def check_distilled_water(
     device: DeviceFacts, facility: FacilityProfile, intel: SupplyIntel
 ) -> CheckResult:
     return _utility_check(
+        kind=RequirementKind.WATER_SUPPLY,
         key="water",
         label="Distilled water",
         need=device.needs_distilled_water,
@@ -87,6 +92,7 @@ def check_compressed_air(
     device: DeviceFacts, facility: FacilityProfile, intel: SupplyIntel
 ) -> CheckResult:
     return _utility_check(
+        kind=RequirementKind.AIR_COMPRESSOR,
         key="air",
         label="Compressed air",
         need=device.needs_compressed_air,

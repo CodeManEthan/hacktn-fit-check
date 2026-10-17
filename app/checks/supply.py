@@ -10,6 +10,7 @@ from datetime import date
 
 from app.domain.device import DeviceFacts, SupplyIntel
 from app.domain.facility import FacilityProfile
+from app.domain.requirement import Requirement, RequirementKind
 from app.domain.result import CheckResult, CheckStatus
 
 # WHO Annex 1 asks donors to confirm the manufacturer or distributor will
@@ -75,6 +76,8 @@ def check_consumables(
         fix=f"{CONSUMABLE_YEARS_TO_SHIP} years of {named}, shipped with the device, "
         "and a named supplier for after that.",
         source=available.source,
+        requirement=Requirement(RequirementKind.CONSUMABLES,
+                                 f"{CONSUMABLE_YEARS_TO_SHIP} years of {named}.", "consumables"),
     )
 
 
@@ -110,6 +113,8 @@ def check_spare_parts(
         "device becomes furniture.",
         fix="A spare parts kit for the usual failures, and a named service contact.",
         source=available.source,
+        requirement=Requirement(RequirementKind.SPARE_PARTS,
+                                 "A spare parts kit for the usual failures.", "spare_parts"),
     )
 
 

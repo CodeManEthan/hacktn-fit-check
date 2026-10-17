@@ -68,6 +68,7 @@ class Offer:
     device: DeviceFacts
     origin: GeoPoint
     device_type: str = ""
+    support_kind: str = ""
     quantity_offered: int = 1
     quantity_reserved: int = 0
     quantity_shipped: int = 0

@@ -5,6 +5,7 @@ from __future__ import annotations
 from app.domain.device import DeviceFacts, SupplyIntel
 from app.domain.facility import FacilityProfile
 from app.domain.provenance import Provenance
+from app.domain.requirement import Requirement, RequirementKind
 from app.domain.result import CheckResult, CheckStatus
 
 
@@ -52,6 +53,8 @@ def check_temperature(
         "is no air conditioning.",
         fix="Air conditioning for the room it will live in, or a device rated higher.",
         source=rated.source,
+        requirement=Requirement(RequirementKind.COOLING,
+                                 "Air conditioning for the room it will live in.", "temperature"),
     )
 
 
@@ -87,6 +90,8 @@ def check_humidity(
         f"{facility.humidity_max_pct:g} %. Boards corrode.",
         fix="A dehumidifier, or a sealed and conditioned room.",
         source=rated.source,
+        requirement=Requirement(RequirementKind.DEHUMIDIFIER,
+                                 "A dehumidifier for the room.", "humidity"),
     )
 
 
@@ -116,4 +121,7 @@ def check_grid_reliability(
         "kill power supplies in equipment that assumes a steady feed.",
         fix=" and ".join(protection) if protection else "Surge protection",
         source=Provenance.FACILITY_STATED,
+        requirement=Requirement(
+            RequirementKind.BACKUP_POWER if not facility.has_generator else RequirementKind.STABILISER,
+            " and ".join(protection) if protection else "Surge protection", "grid"),
     )

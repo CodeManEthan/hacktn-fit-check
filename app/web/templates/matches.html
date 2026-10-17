@@ -33,9 +33,24 @@
       {% endfor %}
     </div>
 
-    {% if c.verdict.requirements %}
-    <p class="candidate-needs"><b>Must ship with it:</b>
-      {{ c.verdict.requirements | join('; ') }}</p>
+    {% set bundle = bundles.get(c.offer.id) %}
+    {% if bundle and bundle.items %}
+    <div class="bundle">
+      <p class="bundle-head"><b>Must go with it</b> &mdash; {{ bundle.summary }}</p>
+      {% for item in bundle.items %}
+      <div class="bundle-row {{ 'is-covered' if item.available else ('is-arranged' if not item.requirement.shippable else 'is-gap') }}">
+        <span class="bundle-what">{{ item.requirement.detail }}</span>
+        {% if not item.requirement.shippable %}
+        <span class="bundle-src">arranged, not shipped</span>
+        {% elif item.available %}
+        <span class="bundle-src">{{ item.total_units }} available &mdash;
+          {{ item.offers | map(attribute='donor_name') | unique | join(', ') }}</span>
+        {% else %}
+        <span class="bundle-src">no donor has one yet</span>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
     {% endif %}
 
     <form method="post" action="/match" class="candidate-act">

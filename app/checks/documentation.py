@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from app.domain.device import DeviceFacts, SupplyIntel
 from app.domain.facility import FacilityProfile
+from app.domain.requirement import Requirement, RequirementKind
 from app.domain.result import CheckResult, CheckStatus
 
 HIGH_COMPLEXITY = "high"
@@ -45,6 +46,8 @@ def check_manual_language(
         f"{', '.join(staff)}.",
         fix=f"A service and user manual translated into {wanted}.",
         source=languages.source,
+        requirement=Requirement(RequirementKind.MANUAL,
+                                 f"A manual translated into {wanted}.", "manual"),
     )
 
 
@@ -95,4 +98,6 @@ def check_operation_and_repair(
         fix="Operator training on commissioning, and a service contract or a named "
         "regional technician.",
         source=complexity.source,
+        requirement=Requirement(RequirementKind.TRAINING,
+                                 "Operator training and a service contract.", "training"),
     )

@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from enum import Enum
 
 from app.domain.provenance import Provenance
+from app.domain.requirement import Requirement
 
 
 class CheckStatus(str, Enum):
@@ -30,6 +31,7 @@ class CheckResult:
     fix: str = ""
     source: Provenance = Provenance.UNKNOWN
     question: str = ""
+    requirement: Requirement | None = None
 
     @property
     def blocking(self) -> bool:
@@ -42,6 +44,11 @@ class Verdict:
     results: tuple[CheckResult, ...]
     requirements: tuple[str, ...] = ()
     questions: tuple[str, ...] = ()
+
+    @property
+    def needs(self) -> tuple[Requirement, ...]:
+        """Every structured requirement this verdict raised, in result order."""
+        return tuple(r.requirement for r in self.results if r.requirement is not None)
 
     @property
     def failures(self) -> tuple[CheckResult, ...]:

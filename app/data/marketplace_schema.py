@@ -31,6 +31,7 @@ COUNTRY_LENGTH = 100
 CITY_LENGTH = 120
 DEVICE_LABEL_LENGTH = 200
 DEVICE_TYPE_LENGTH = 120
+SUPPORT_KIND_LENGTH = 40
 STATUS_LENGTH = 40
 MATCH_ID_LENGTH = 12
 TOKEN_LENGTH = 64
@@ -62,6 +63,7 @@ offers = Table(
     Column("donor_email", String(EMAIL_LENGTH), nullable=False),
     Column("device_label", String(DEVICE_LABEL_LENGTH), nullable=False, index=True),
     Column("device_type", String(DEVICE_TYPE_LENGTH), nullable=False, default="", index=True),
+    Column("support_kind", String(SUPPORT_KIND_LENGTH), nullable=False, default="", index=True),
     Column("device_json", Text, nullable=False),
     Column("country", String(COUNTRY_LENGTH), nullable=False),
     Column("city", String(CITY_LENGTH), nullable=False, default=""),

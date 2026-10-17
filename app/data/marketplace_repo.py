@@ -183,6 +183,7 @@ def _offer_values(offer: Offer) -> dict[str, Any]:
         "donor_email": offer.donor_email,
         "device_label": offer.device.label,
         "device_type": offer.device_type,
+        "support_kind": offer.support_kind,
         "device_json": json.dumps(device_to_dict(offer.device)),
         "country": offer.origin.country,
         "city": offer.origin.city,
@@ -202,6 +203,7 @@ def _offer_from_row(row: Any) -> Offer:
         donor_email=row["donor_email"],
         device=device_from_dict(json.loads(row["device_json"])),
         device_type=row["device_type"] or "",
+        support_kind=row["support_kind"] or "",
         origin=GeoPoint(
             country=row["country"],
             city=row["city"] or "",
@@ -404,3 +406,32 @@ def open_matches_older_than(hours: int, now: datetime | None = None) -> list[Mat
         "Could not list the timed-out matches",
     )
     return [_match_from_row(row) for row in rows]
+
+
+def offers_for_support(kind_value: str, terms: tuple[str, ...], today: date | None = None) -> list[Offer]:
+    """Open offers that could satisfy a support requirement.
+
+    Matches the categorised support kind first, then falls back to the
+    requirement's own search terms against the donor's free-text device type,
+    so an uncategorised offer is still findable.
+    """
+    available = (
+        offers.c.quantity_offered - offers.c.quantity_reserved - offers.c.quantity_shipped
+    )
+    criteria = and_(
+        offers.c.status == OfferStatus.OPEN.value,
+        available > 0,
+        or_(offers.c.available_until.is_(None),
+            offers.c.available_until >= (today or date.today())),
+    )
+    rows = _all_rows(
+        select(offers).where(criteria).order_by(offers.c.created_at),
+        "Could not list the support offers",
+    )
+    found = []
+    for row in rows:
+        stored_kind = (row["support_kind"] or "").strip().lower()
+        haystack = f"{row['device_type']} {row['device_label']}".lower()
+        if stored_kind == kind_value.lower() or any(t in haystack for t in terms):
+            found.append(_offer_from_row(row))
+    return found

@@ -25,6 +25,9 @@ from app.matching.verification import (
 )
 
 __all__ = [
+    "Bundle",
+    "BundleItem",
+    "build_bundle",
     "EARTH_RADIUS_KM",
     "Candidate",
     "IntelLookup",
@@ -43,3 +46,5 @@ __all__ = [
     "transition",
     "withdraw",
 ]
+
+from app.matching.bundle import Bundle, BundleItem, build_bundle  # noqa: E402

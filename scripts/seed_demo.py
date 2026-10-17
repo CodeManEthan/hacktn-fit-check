@@ -87,6 +87,37 @@ DEMO_OFFERS = (
     ),
 )
 
+# Support equipment. Without these in the inventory a requirement stays advice.
+SUPPORT_OFFERS = (
+    Offer(
+        donor_name="Kampala Power Trust",
+        donor_email="trust@example.org",
+        device_type="voltage stabiliser",
+        support_kind="voltage stabiliser",
+        origin=GeoPoint(country="Uganda", city="Kampala", latitude=0.3476, longitude=32.5825),
+        quantity_offered=4,
+        device=_device(manufacturer="Sollatek", model="AVS30", year_of_manufacture=2022),
+    ),
+    Offer(
+        donor_name="Kampala Power Trust",
+        donor_email="trust@example.org",
+        device_type="UPS 3kVA",
+        support_kind="backup power",
+        origin=GeoPoint(country="Uganda", city="Kampala", latitude=0.3476, longitude=32.5825),
+        quantity_offered=2,
+        device=_device(manufacturer="APC", model="Smart-UPS 3000", year_of_manufacture=2021),
+    ),
+    Offer(
+        donor_name="Mombasa Medical Gases",
+        donor_email="gases@example.org",
+        device_type="medical air compressor",
+        support_kind="medical air compressor",
+        origin=GeoPoint(country="Kenya", city="Mombasa", latitude=-4.0435, longitude=39.6682),
+        quantity_offered=1,
+        device=_device(manufacturer="Bambi", model="VT200", year_of_manufacture=2020),
+    ),
+)
+
 
 def main() -> None:
     repository.setup()
@@ -95,7 +126,7 @@ def main() -> None:
     print(f"facilities: {len(FACILITIES)}")
 
     expires = date.today() + timedelta(days=OFFER_WINDOW_DAYS)
-    for offer in DEMO_OFFERS:
+    for offer in DEMO_OFFERS + SUPPORT_OFFERS:
         offer_id = repo.save_offer(
             Offer(**{**offer.__dict__, "available_until": expires})
             if offer.available_until is None else offer

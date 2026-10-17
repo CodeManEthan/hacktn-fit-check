@@ -9,12 +9,14 @@ from fastapi import APIRouter, File, Form, Request, UploadFile
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
+from app.ai.categorise import categorise_support
 from app.ai.client import GenAiError
 from app.ai.extract import extract_device, image_to_data_url
 from app.data import marketplace_repo as repo
 from app.data.repository import RepositoryError
 from app.domain.facility import FacilityProfile
 from app.domain.marketplace import GeoPoint, MatchState, Offer, Request as DonationRequest
+from app.matching.bundle import build_bundle
 from app.matching.pipeline import propose_match, rank_candidates
 from app.matching.verification import confirm, request_confirmation, withdraw
 from app.reference.country_power import country_centroid, lookup
@@ -72,6 +74,7 @@ async def offer_submit(
             donor_email=forms.text(donor_email, "Email", required=True),
             device=extract_device(typed_text=typed, image_data_url=image_data_url),
             device_type=forms.text(device_type, "Kind of device", required=True, limit=120),
+            support_kind=_support_kind(device_type, model_name),
             origin=_point(forms.text(country, "Country", required=True), city),
             quantity_offered=forms.whole_number(quantity, "How many", default=1, minimum=1),
             available_until=forms.iso_date(available_until, "Available until"),
@@ -186,11 +189,12 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
 
     offers = repo.open_offers_for_type(row.device_type)
     candidates = rank_candidates(row, facility, offers)
+    bundles = {c.offer.id: build_bundle(c.verdict, repo.offers_for_support) for c in candidates}
     return TEMPLATES.TemplateResponse(
         request=request, name="matches.html",
         context={
             "step": 3, "request_row": row, "facility": facility,
-            "candidates": candidates, "screened": len(offers),
+            "candidates": candidates, "screened": len(offers), "bundles": bundles,
             "symbol": TONE_BY_STATUS, "tone": TONE_BY_OUTCOME,
         },
     )
@@ -284,3 +288,14 @@ def _point(country: str, city: str) -> GeoPoint:
 def _device_pairs(offer: Offer) -> list[tuple[str, str]]:
     from app.web.presenters import identity_pairs
     return identity_pairs(offer.device)
+
+
+def _support_kind(device_type: str, label: str) -> str:
+    """Ask the model which support need this item meets, if any.
+
+    Never blocks the donor: a model failure falls back to keywords inside
+    categorise_support, and an uncategorised offer is still findable by the
+    requirement's own search terms.
+    """
+    kind = categorise_support(device_type, label)
+    return kind.value if kind else ""

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from app.domain.device import DeviceFacts, SupplyIntel
 from app.domain.facility import FacilityProfile
+from app.domain.requirement import Requirement, RequirementKind
 from app.domain.result import CheckResult, CheckStatus
 
 TRANSFORMER_HEADROOM = 1.25
@@ -89,4 +90,6 @@ def check_voltage(
         detail=f"Rated {low.value}-{high.value} V, but the grid is {mains} V.",
         fix=f"A step transformer {rating}, shipped with the device.",
         source=low.source,
+        requirement=Requirement(RequirementKind.TRANSFORMER,
+                                 f"A step transformer {rating}.", "voltage"),
     )
