@@ -11,19 +11,22 @@
 <body>
   <header class="topbar">
     <div class="topbar-in">
-      <div class="topbar-left">
-        <a class="mark" href="/">Fit-Check</a>
-        <span class="env">standards: IEC 60601-1 / WHO Annex 1</span>
-      </div>
-      <div class="topbar-right">
-        <span class="status"><i class="dot"></i>{{ rule_count }} deterministic rules active</span>
-        <a class="link" href="/review">Recipients</a>
-        <a class="link" href="/impact">Audit log</a>
-      </div>
+      <a class="mark" href="/">Fit-Check</a>
+      <span class="status"><i class="dot"></i>{{ rule_count }} deterministic rules active</span>
     </div>
   </header>
   <main class="deck">
     {% block content %}{% endblock %}
   </main>
+  <footer class="footer">
+    <div class="footer-in">
+      <span>Grounded in IEC 60601-1 and WHO Annex 1 standards</span>
+      <span class="footer-links">
+        <a href="/review">Recipients</a>
+        <a href="/impact">Audit log</a>
+        <span class="footer-mark">HackTN 2026</span>
+      </span>
+    </div>
+  </footer>
 </body>
 </html>
