@@ -1,0 +1,244 @@
+code,country,main_plugs,all_plugs,voltages,frequencies,sources
+AD,Andorra,C F,C F,230,50,wikipedia
+AE,United Arab Emirates,C D G,C D G,230,50,wikipedia + plugvoltage
+AF,Afghanistan,C F,C F,220,50,wikipedia
+AG,Antigua & Barbuda,A B,A B,230,60,wikipedia
+AI,Anguilla,A B,A B,120 127 240,60,wikipedia
+AL,Albania,C F,C F,230,50,wikipedia
+AM,Armenia,C F,C F,230,50,wikipedia
+AO,Angola,C F,C F,220,50,wikipedia
+AR,Argentina,I,C I,220,50,wikipedia + plugvoltage
+AS,American Samoa,A B I,A B I,120,60,wikipedia
+AT,Austria,C F,C F,230,50,wikipedia + plugvoltage
+AU,Australia,I,I,230,50,wikipedia + plugvoltage
+AW,Aruba,A B F,A B F,127,60,wikipedia
+AX,Åland Islands,C F,C F,230,50,same as FI
+AZ,Azerbaijan,C F,C F,220,50,wikipedia
+BA,Bosnia & Herzegovina,C F,C F,230,50,wikipedia
+BB,Barbados,A B,A B,115,50,wikipedia
+BD,Bangladesh,A C D G,A C D G,220,50,wikipedia
+BE,Belgium,C E,C E,230,50,wikipedia
+BF,Burkina Faso,C E,C E,220,50,wikipedia
+BG,Bulgaria,C F,C F,230,50,wikipedia
+BH,Bahrain,G,G,230,50,wikipedia
+BI,Burundi,C E,C E,220,50,wikipedia
+BJ,Benin,C E,C E,220,50,wikipedia
+BL,St. Barthélemy,C E,C E,230,50,same as FR
+BM,Bermuda,A B,A B,120,60,wikipedia
+BN,Brunei,G,G,240,50,wikipedia
+BO,Bolivia,A B C,A B C,230,50,wikipedia
+BQ,Caribbean Netherlands,A B,A B,127,50,wikipedia
+BR,Brazil,C N,C N,127 220,60,wikipedia + plugvoltage
+BS,Bahamas,A B,A B,120,60,wikipedia
+BT,Bhutan,C D F G M,C D F G M,230,50,wikipedia
+BW,Botswana,D G M,D G M,230,50,wikipedia
+BY,Belarus,C F,C F,230,50,wikipedia
+BZ,Belize,A B G,A B G,110 220,60,wikipedia
+CA,Canada,A B,A B,120,60,wikipedia + plugvoltage
+CC,Cocos (Keeling) Islands,I,I,230,50,same as AU
+CD,Congo - Kinshasa,C E,C E,220,50,wikipedia
+CF,Central African Republic,C E,C E,220,50,wikipedia
+CG,Congo - Brazzaville,C E,C E,230,50,wikipedia
+CH,Switzerland,C J,C J,230,50,wikipedia + plugvoltage
+CI,Côte d’Ivoire,C E,C E,230,50,wikipedia
+CK,Cook Islands,I,I,240,50,wikipedia
+CL,Chile,C L,C F L,220,50,wikipedia + plugvoltage
+CM,Cameroon,C E,C E,220,50,wikipedia
+CN,China mainland,A C I,A C I,220,50,wikipedia + plugvoltage
+CO,Colombia,A B,A B,120 240,60,wikipedia + plugvoltage
+CR,Costa Rica,A B,A B,120,60,wikipedia
+CU,Cuba,A B C L,A B C L,110,60,wikipedia
+CV,Cape Verde,C F,C F,220,50,wikipedia
+CW,Curaçao,A B F,A B F,127,50,wikipedia
+CX,Christmas Island,I,I,230,50,same as AU
+CY,Cyprus,G,G,240,50,wikipedia
+CZ,Czechia,C E,C E,230,50,wikipedia + plugvoltage
+DE,Germany,C F,C F,230,50,wikipedia + plugvoltage
+DJ,Djibouti,C E,C E,220,50,wikipedia
+DK,Denmark,C K,C E F K,230,50,wikipedia + plugvoltage
+DM,Dominica,D G,D G,230,50,wikipedia
+DO,Dominican Republic,A B C,A B C,120,60,wikipedia
+DZ,Algeria,C F,C F,230,50,wikipedia
+EA,Ceuta & Melilla,C F,C F,230,50,same as ES
+EC,Ecuador,A B,A B,120,60,wikipedia
+EE,Estonia,C F,C F,230,50,wikipedia
+EG,Egypt,C F,C F,220,50,wikipedia + plugvoltage
+EH,Western Sahara,C E,C E,220,50,same as MA
+ER,Eritrea,C L,C L,230,50,wikipedia
+ES,Spain,C F,C F,230,50,wikipedia + plugvoltage
+ET,Ethiopia,C E F L,C E F L,220,50,wikipedia
+FI,Finland,C F,C F,230,50,wikipedia
+FJ,Fiji,I,I,240,50,wikipedia
+FK,Falkland Islands,G,G,240,50,wikipedia
+FM,Micronesia,A B,A B,120,60,wikipedia
+FO,Faroe Islands,C E F K,C E F K,230,50,wikipedia
+FR,France,C E,C E,230,50,wikipedia + plugvoltage
+GA,Gabon,C E,C E,220,50,wikipedia
+GB,United Kingdom,G,D G M,230,50,wikipedia + plugvoltage
+GD,Grenada,G,G,230,50,wikipedia
+GE,Georgia,C F,C F,220,50,wikipedia
+GF,French Guiana,C E,C E,220,50,wikipedia
+GG,Guernsey,G,G,230,50,wikipedia
+GH,Ghana,D G,D G,230,50,wikipedia
+GI,Gibraltar,C G,C G,240,50,wikipedia
+GL,Greenland,C E F K,C E F K,230,50,wikipedia
+GM,Gambia,G,G,230,50,wikipedia
+GN,Guinea,C F K,C F K,220,50,wikipedia
+GP,Guadeloupe,C E,C E,230,50,wikipedia
+GQ,Equatorial Guinea,C E,C E,220,50,wikipedia
+GR,Greece,C F,C F,230,50,wikipedia + plugvoltage
+GT,Guatemala,A B,A B,120,60,wikipedia
+GU,Guam,A B,A B,110,60,wikipedia
+GW,Guinea-Bissau,C E F,C E F,220,50,wikipedia
+GY,Guyana,A B D G,A B D G,190 240,60,wikipedia
+HK,Hong Kong,D G M,D G M,220,50,wikipedia
+HN,Honduras,A B,A B,120,60,wikipedia
+HR,Croatia,C F,C F,230,50,wikipedia + plugvoltage
+HT,Haiti,A B,A B,110,60,wikipedia
+HU,Hungary,C F,C F,230,50,wikipedia
+IC,Canary Islands,C F,C F,230,50,same as ES
+ID,Indonesia,C F,C F,230,50,wikipedia + plugvoltage
+IE,Ireland,G,G,230,50,wikipedia + plugvoltage
+IL,Israel,C H,C H,230,50,wikipedia
+IM,Isle of Man,G,G,230,50,wikipedia
+IN,India,C D M,C D M,230,50,wikipedia + plugvoltage
+IQ,Iraq,C D G,C D G,230,50,wikipedia
+IR,Iran,C F,C F,220,50,wikipedia
+IS,Iceland,C F,C F,230,50,wikipedia
+IT,Italy,C F L,C F L,230,50,wikipedia + plugvoltage
+JE,Jersey,G,G,230,50,wikipedia
+JM,Jamaica,A B,A B,110,50,wikipedia
+JO,Jordan,B C D F G J,B C D F G J,230,50,wikipedia
+JP,Japan,A B,A B,100 200 210,50 60,wikipedia + plugvoltage
+KE,Kenya,G,G,240,50,wikipedia
+KG,Kyrgyzstan,C F,C F,220,50,wikipedia
+KH,Cambodia,A C G,A C G,230,50,wikipedia
+KI,Kiribati,I,I,230,50,wikipedia
+KM,Comoros,C E,C E,220,50,wikipedia
+KN,St. Kitts & Nevis,A B D G,A B D G,230,60,wikipedia
+KP,North Korea,C F,C F,220,50,wikipedia
+KR,South Korea,C F,C F,220,60,wikipedia + plugvoltage
+KW,Kuwait,C G,C G,240,50,wikipedia
+KY,Cayman Islands,A B,A B,120,60,wikipedia
+KZ,Kazakhstan,C F,C F,230,50,wikipedia
+LA,Laos,A B C E F,A B C E F,230,50,wikipedia
+LB,Lebanon,A B C D G,A B C D G,220,50,wikipedia
+LC,St. Lucia,A B G,A B G,240,50,wikipedia
+LI,Liechtenstein,C J,C J,230,50,wikipedia
+LK,Sri Lanka,D G M,D G M,230,50,wikipedia
+LR,Liberia,A B,A B,120,60,wikipedia
+LS,Lesotho,M,M,220,50,wikipedia
+LT,Lithuania,C F,C F,230,50,wikipedia
+LU,Luxembourg,C F,C F,230,50,wikipedia
+LV,Latvia,C F,C F,230,50,wikipedia
+LY,Libya,C F L,C F L,230,50,wikipedia
+MA,Morocco,C E,C E,220,50,wikipedia + plugvoltage
+MC,Monaco,C E,C E,230,50,wikipedia
+MD,Moldova,C F,C F,230,50,wikipedia
+ME,Montenegro,C F,C F,230,50,wikipedia
+MF,St. Martin,C E,C E,220,60,wikipedia
+MG,Madagascar,C E,C E,220,50,wikipedia
+MK,North Macedonia,C F,C F,230,50,wikipedia
+ML,Mali,C E,C E,220,50,wikipedia
+MM,Myanmar (Burma),A C D F G I,A C D F G I,230,50,wikipedia
+MN,Mongolia,C E F,C E F,220,50,wikipedia
+MO,Macao,D G M,D G M,230,50,wikipedia
+MP,Northern Mariana Islands,A B,A B,120,60,same as US
+MQ,Martinique,C E,C E,220,50,wikipedia
+MR,Mauritania,C E F,C E F,220,50,wikipedia
+MS,Montserrat,A B,A B,230,60,wikipedia
+MT,Malta,G,G,230,50,wikipedia
+MU,Mauritius,C E G,C E G,230,50,wikipedia
+MV,Maldives,D G J K L,D G J K L,230,50,wikipedia
+MW,Malawi,G,G,230,50,wikipedia
+MX,Mexico,A B,A B,120 127,60,wikipedia + plugvoltage
+MY,Malaysia,C G M,C G M,230,50,wikipedia
+MZ,Mozambique,C F M,C F M,220,50,wikipedia
+NA,Namibia,D M,D M,220,50,wikipedia
+NC,New Caledonia,C F,C F,220,50,wikipedia
+NE,Niger,A B C D E F,A B C D E F,220,50,wikipedia
+NF,Norfolk Island,I,I,230,50,same as AU
+NG,Nigeria,D G,D G,230,50,wikipedia
+NI,Nicaragua,A B,A B,120,60,wikipedia
+NL,Netherlands,C F,C F,230,50,wikipedia + plugvoltage
+NO,Norway,C F,C F,230,50,wikipedia + plugvoltage
+NP,Nepal,C D M,C D M,230,50,wikipedia
+NR,Nauru,I,I,240,50,wikipedia
+NU,Niue,I,I,230,50,wikipedia
+NZ,New Zealand,I,I,230,50,wikipedia + plugvoltage
+OM,Oman,G,G,240,50,wikipedia
+PA,Panama,A B,A B,120,60,wikipedia
+PE,Peru,A B C,A B C,220,60,wikipedia
+PF,French Polynesia,A B C E F,A B C E F,220,50 60,wikipedia
+PG,Papua New Guinea,I,I,240,50,wikipedia
+PH,Philippines,A B,A B C,230,60,wikipedia + plugvoltage
+PK,Pakistan,C D G M,C D G M,230,50,wikipedia
+PL,Poland,C E,C E,230,50,wikipedia + plugvoltage
+PM,St. Pierre & Miquelon,C E F,C E F,230,50,wikipedia
+PN,Pitcairn Islands,I,I,230,50,wikipedia
+PR,Puerto Rico,A B,A B,120,60,wikipedia
+PS,Palestinian Territories,C H,C H,230,50,wikipedia
+PT,Portugal,C F,C E F,230,50,wikipedia + plugvoltage
+PW,Palau,A B,A B,120,60,wikipedia
+PY,Paraguay,A B C N,A B C N,220,50,wikipedia
+QA,Qatar,D F G L,D F G L,240,50,wikipedia
+RE,Réunion,C E,C E,230,50,wikipedia
+RO,Romania,C F,C F,230,50,wikipedia
+RS,Serbia,C F,C F,230,50,wikipedia
+RU,Russia,C F,C F,220 230,50,wikipedia
+RW,Rwanda,C E G,C E G,230,50,wikipedia
+SA,Saudi Arabia,G,G,230,60,wikipedia
+SB,Solomon Islands,I,I,230,50,wikipedia
+SC,Seychelles,G,G,240,50,wikipedia
+SD,Sudan,C D F G,C D F G,230,50,wikipedia
+SE,Sweden,C F,C F,230,50,wikipedia + plugvoltage
+SG,Singapore,G,C G M,230,50,wikipedia + plugvoltage
+SH,St. Helena,G,G,230,50,wikipedia
+SI,Slovenia,C F,C F,230,50,wikipedia
+SJ,Svalbard & Jan Mayen,C F,C F,230,50,same as NO
+SK,Slovakia,C E F,C E F,230,50,wikipedia
+SL,Sierra Leone,D G,D G,230,50,wikipedia
+SM,San Marino,C F L,C F L,230,50,wikipedia
+SN,Senegal,C D E K,C D E K,230,50,wikipedia
+SO,Somalia,C G,C G,220,50,wikipedia
+SR,Suriname,C F,C F,127 220,60,wikipedia
+ST,São Tomé & Príncipe,C F,C F,220,50,wikipedia
+SV,El Salvador,A B,A B,115,60,wikipedia
+SX,Sint Maarten,A B,A B,120 127 220,60,wikipedia
+SY,Syria,C E L,C E L,220,50,wikipedia
+SZ,Eswatini,M,M,230,50,wikipedia
+TD,Chad,C D E F,C D E F,220,50,wikipedia
+TG,Togo,C E,C E,220,50,wikipedia
+TH,Thailand,A B C O,A B C O,230,50,wikipedia + plugvoltage
+TJ,Tajikistan,C F I,C F I,220,50,wikipedia
+TK,Tokelau,I,I,230,50,same as NZ
+TL,Timor-Leste,C E F I,C E F I,220,50,wikipedia
+TM,Turkmenistan,B C F,B C F,220,50,wikipedia
+TN,Tunisia,C E,C E,230,50,wikipedia
+TO,Tonga,I,I,230,50,wikipedia
+TR,Türkiye,C F,C F,230,50,wikipedia + plugvoltage
+TT,Trinidad & Tobago,A B,A B,115 230,60,wikipedia
+TV,Tuvalu,I,I,230,50,wikipedia
+TW,Taiwan,A B,A B,110 220,60,wikipedia
+TZ,Tanzania,D G,D G,230,50,wikipedia
+UA,Ukraine,C F,C F,230,50,wikipedia
+UG,Uganda,G,G,240,50,wikipedia
+UM,U.S. Outlying Islands,A B,A B,120,60,same as US
+US,United States,A B,A B,120,60,wikipedia + plugvoltage
+UY,Uruguay,C F I L,C F I L,230,50,wikipedia
+UZ,Uzbekistan,C E F,C E F,220,50,wikipedia
+VA,Vatican City,C F L,C F L,230,50,same as IT
+VC,St. Vincent & Grenadines,A B G,A B G,230,50,wikipedia
+VE,Venezuela,A B,A B,120,60,wikipedia
+VG,British Virgin Islands,A B,A B,110,60,wikipedia
+VI,U.S. Virgin Islands,A B,A B,110 190,60,wikipedia
+VN,Vietnam,A C,A B C F,220,50,wikipedia + plugvoltage
+VU,Vanuatu,I,I,230,50,wikipedia
+WF,Wallis & Futuna,C E,C E,230,50,same as FR
+WS,Samoa,I,I,230,50,wikipedia
+XK,Kosovo,C F,C F,230,50,wikipedia
+YE,Yemen,A D G,A D G,240,50,wikipedia
+YT,Mayotte,C E,C E,230,50,same as FR
+ZA,South Africa,M N,C M N,230,50,wikipedia + plugvoltage
+ZM,Zambia,C D G,C D G,230,50,wikipedia
+ZW,Zimbabwe,D G,D G,220,50,wikipedia

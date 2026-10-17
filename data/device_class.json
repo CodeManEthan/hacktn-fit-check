@@ -1,0 +1,442 @@
+{
+  "source": {
+    "title": "Technical Specifications of Medical Devices (WHO template)",
+    "publisher": "NHSRC / Health Care Technology, Ministry of Health, India",
+    "departments": [
+      "neonatal",
+      "ot"
+    ],
+    "method": "One record per spec sheet. Consumables come from section 5.x; utility flags are set True only where the sheet itself shows the device needs that supply, and stay null otherwise. Electrical and climate columns from the source are deliberately omitted: they are one country's procurement demands, not facts about a machine.",
+    "spec_sheets_read": 41,
+    "csv_rows": 41,
+    "device_classes": 39
+  },
+  "devices": [
+    {
+      "name": "Autoclave HP Horizontal",
+      "normalised_name": "autoclave hp horizontal",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": true,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Autoclave HP Vertical(2 bin)",
+      "normalised_name": "autoclave hp vertical(2 bin)",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": true,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Autoclave HP Vertical(single bin)",
+      "normalised_name": "autoclave hp vertical(single bin)",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": true,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "basic diagnostic x-ray system",
+      "normalised_name": "basic diagnostic x-ray system",
+      "department": "neonatal",
+      "typical_consumables": [
+        "X-ay films delat in different tendor"
+      ],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": null
+    },
+    {
+      "name": "Bed, Infant, general purpose.",
+      "normalised_name": "bed, infant, general purpose",
+      "department": "neonatal",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": null
+    },
+    {
+      "name": "Bilirubin measuring device",
+      "normalised_name": "bilirubin measuring device",
+      "department": "neonatal",
+      "typical_consumables": [
+        "Capillary tubes, haemofluorometric reagents (e.g., aqueous cyanide salt with stabilizers, if applicable)"
+      ],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": null
+    },
+    {
+      "name": "Blue light radiometer",
+      "normalised_name": "blue light radiometer",
+      "department": "neonatal",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": null
+    },
+    {
+      "name": "Bowl Sterilizer(big)",
+      "normalised_name": "bowl sterilizer(big)",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": true,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Bowl sterilizer(small)",
+      "normalised_name": "bowl sterilizer(small)",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": true,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Dehumidifier",
+      "normalised_name": "dehumidifier",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Electro- hydraulic table",
+      "normalised_name": "electro- hydraulic table",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Electrosurgical Unit",
+      "normalised_name": "electrosurgical unit",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Emergency suction systems",
+      "normalised_name": "emergency suction systems",
+      "department": "ot",
+      "typical_consumables": [
+        "silicon tubing - two sets"
+      ],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Ethylene Oxide Sterilizer",
+      "normalised_name": "ethylene oxide sterilizer",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "automatic"
+    },
+    {
+      "name": "Examination/treatment light",
+      "normalised_name": "examination/treatment light",
+      "department": "neonatal",
+      "typical_consumables": [
+        "Two sets of spare fuses (if replaceable fuses used)",
+        "Ten sets of replacement bulbs (if incandescent)"
+      ],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Flash Sterilizer with trolley",
+      "normalised_name": "flash sterilizer with trolley",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": false,
+      "needs_water": false,
+      "needs_compressed_air": false,
+      "complexity": "manual"
+    },
+    {
+      "name": "Focus Lamp Ordinary",
+      "normalised_name": "focus lamp ordinary",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "infant incubator",
+      "normalised_name": "infant incubator",
+      "department": "neonatal",
+      "typical_consumables": [
+        "Two extra sets of fliters, two extra set of fuses ( if replacable fuses used)"
+      ],
+      "needs_oxygen": true,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": null
+    },
+    {
+      "name": "Infant warmer",
+      "normalised_name": "infant warmer",
+      "department": "neonatal",
+      "typical_consumables": [
+        "Thermal refelctor to fix the skin probe on baby"
+      ],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": null
+    },
+    {
+      "name": "Laryngoscopes",
+      "normalised_name": "laryngoscopes",
+      "department": "neonatal",
+      "typical_consumables": [
+        "5 LED should be given as spare"
+      ],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Manual emergency suction system",
+      "normalised_name": "manual emergency suction system",
+      "department": "neonatal",
+      "typical_consumables": [
+        "10 nos. polypropylene microbial filter (size: 0.45 micrometerparticle size,90% filtration),air inlet: 8mm (outer diameter) 6mm(inner diameter), lubricant for foot paddle, Tubing:8 mm ID x 2 mtr (PVC), polycarbonate jar"
+      ],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Manual pulmonary resuscitator, reusable.",
+      "normalised_name": "manual pulmonary resuscitator, reusable",
+      "department": "neonatal",
+      "typical_consumables": [
+        "Neonatal Mask of 3 sizes viz 00, 0 and 1"
+      ],
+      "needs_oxygen": true,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Multichannel Electrocardiographic",
+      "normalised_name": "multichannel electrocardiographic",
+      "department": "neonatal",
+      "typical_consumables": [
+        "5 tubes electrode gel (if required)"
+      ],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Operation Table Hydraulic Major",
+      "normalised_name": "operation table hydraulic major",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Operation table hydraulic minor",
+      "normalised_name": "operation table hydraulic minor",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Operation table orthopedic",
+      "normalised_name": "operation table orthopedic",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Oxygen administration enclosures.",
+      "normalised_name": "oxygen administration enclosures",
+      "department": "neonatal",
+      "typical_consumables": [
+        "tubing"
+      ],
+      "needs_oxygen": true,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": null
+    },
+    {
+      "name": "Oxygenators",
+      "normalised_name": "oxygenators",
+      "department": "neonatal",
+      "typical_consumables": [
+        "Nasal Cannula with extension tubing-2 nos",
+        "Gross particle cabinet filter, compressor intake filter and bacterial filter of 0.8-1.0 micron",
+        "geolite crystal"
+      ],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": null
+    },
+    {
+      "name": "Patient Monitors/Monitoring Systems.",
+      "normalised_name": "patient monitors/monitoring systems",
+      "department": "neonatal",
+      "typical_consumables": [
+        "5 tubes electrode gel (if required)"
+      ],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": null
+    },
+    {
+      "name": "Phototherapy units/systems.",
+      "normalised_name": "phototherapy units/systems",
+      "department": "neonatal",
+      "typical_consumables": [
+        "Total 500 nos. Infant eye masks of both available sizes (term and pre term babies)"
+      ],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Pulse oximeter",
+      "normalised_name": "pulse oximeter",
+      "department": "neonatal",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": null
+    },
+    {
+      "name": "Shadowless lamp ceiling type major",
+      "normalised_name": "shadowless lamp ceiling type major",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Shadowless lamp ceiling type minor",
+      "normalised_name": "shadowless lamp ceiling type minor",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Shadowless lamp standing model",
+      "normalised_name": "shadowless lamp standing model",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Sterilizer(Big instruments)",
+      "normalised_name": "sterilizer(big instruments)",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "suction systems",
+      "normalised_name": "suction systems",
+      "department": "neonatal",
+      "typical_consumables": [
+        "10 nos. polypropelene microbial filter(size: 0.45 micrometer particle size; 90% filtration),Tair inlet: 8mm(outer diameter 6mm (inner diameter), tubing:8 mm ID x 2 mtr (PVC), polycarbonate jar",
+        "SiliconeTubing:8 mm ID x 2 mtr (PVC), 2x2 lt jar ( one set extra)"
+      ],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": true,
+      "complexity": "manual"
+    },
+    {
+      "name": "Syringe pump",
+      "normalised_name": "syringe pump",
+      "department": "neonatal",
+      "typical_consumables": [
+        "Battery, syringe holder, PMO lines"
+      ],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "automatic"
+    },
+    {
+      "name": "Table for examination",
+      "normalised_name": "table for examination",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    },
+    {
+      "name": "Table for Obstetric labour",
+      "normalised_name": "table for obstetric labour",
+      "department": "ot",
+      "typical_consumables": [],
+      "needs_oxygen": null,
+      "needs_water": null,
+      "needs_compressed_air": null,
+      "complexity": "manual"
+    }
+  ]
+}
