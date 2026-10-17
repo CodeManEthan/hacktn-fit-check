@@ -17,12 +17,21 @@ from app.checks.environment import (
 )
 from app.checks.power import check_frequency, check_voltage
 from app.checks.supply import check_consumables, check_spare_parts, check_support_window
+from app.checks.timing import check_shelf_life
 from app.checks.utilities import check_compressed_air, check_distilled_water, check_oxygen
 from app.domain.device import DeviceFacts, SupplyIntel
 from app.domain.facility import FacilityProfile
 from app.domain.result import CheckResult, CheckStatus, Outcome, Verdict
+from app.domain.shipment import Shipment
 
 Check = Callable[[DeviceFacts, FacilityProfile, SupplyIntel], CheckResult]
+
+# Checks that need to know the journey, not just the device and the clinic.
+# They are kept apart because the pair alone cannot answer them: the same
+# device sent to the same clinic by air and by sea gets different results.
+RouteCheck = Callable[
+    [DeviceFacts, FacilityProfile, SupplyIntel, "Shipment | None"], CheckResult
+]
 
 ALL_CHECKS: tuple[Check, ...] = (
     check_frequency,
@@ -40,6 +49,8 @@ ALL_CHECKS: tuple[Check, ...] = (
     check_operation_and_repair,
 )
 
+ROUTE_CHECKS: tuple[RouteCheck, ...] = (check_shelf_life,)
+
 STATUS_ORDER = {
     CheckStatus.FAIL: 0,
     CheckStatus.MITIGABLE: 1,
@@ -49,12 +60,20 @@ STATUS_ORDER = {
 
 
 def run_checks(
-    device: DeviceFacts, facility: FacilityProfile, intel: SupplyIntel
+    device: DeviceFacts,
+    facility: FacilityProfile,
+    intel: SupplyIntel,
+    shipment: Shipment | None = None,
 ) -> tuple[CheckResult, ...]:
-    """Run every check against one device and one facility."""
+    """Run every check against one device and one facility.
+
+    Without a shipment the route checks still run and report what they cannot
+    yet judge, rather than being skipped and leaving the gap invisible.
+    """
     prepared = device.with_defaults()
     results = tuple(check(prepared, facility, intel) for check in ALL_CHECKS)
-    return tuple(sorted(results, key=lambda r: STATUS_ORDER[r.status]))
+    routed = tuple(check(prepared, facility, intel, shipment) for check in ROUTE_CHECKS)
+    return tuple(sorted(results + routed, key=lambda r: STATUS_ORDER[r.status]))
 
 
 def build_verdict(results: tuple[CheckResult, ...]) -> Verdict:
@@ -81,7 +100,10 @@ def build_verdict(results: tuple[CheckResult, ...]) -> Verdict:
 
 
 def check_fit(
-    device: DeviceFacts, facility: FacilityProfile, intel: SupplyIntel
+    device: DeviceFacts,
+    facility: FacilityProfile,
+    intel: SupplyIntel,
+    shipment: Shipment | None = None,
 ) -> Verdict:
     """The whole deterministic half of the product, in one call."""
-    return build_verdict(run_checks(device, facility, intel))
+    return build_verdict(run_checks(device, facility, intel, shipment))

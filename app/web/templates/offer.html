@@ -60,6 +60,15 @@
         <input type="text" id="f-quantity" name="quantity" value="1">
       </div>
       <div class="field">
+        <label class="name" for="f-expiry-date">Earliest expiry date</label>
+        <input type="text" id="f-expiry-date" name="expiry_date" placeholder="2027-03-31">
+        <p class="note">Leave blank if nothing in the consignment is dated. Sterile
+           circuits, filters, reagents and batteries usually are.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
         <label class="name" for="f-available-until">Available until</label>
         <input type="text" id="f-available-until" name="available_until" placeholder="2027-03-31">
         <p class="note">After this date the offer stops being matched.</p>

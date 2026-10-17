@@ -22,6 +22,7 @@
       </div>
       <div class="candidate-meta">
         {% if c.distance_km %}<span class="chip">{{ c.distance_km | round | int }} km</span>{% endif %}
+        {% if c.shipment %}<span class="chip">about {{ c.shipment.transit_days }} days to deliver</span>{% endif %}
         <span class="chip">{{ c.offer.quantity_available }} available</span>
         <span class="pill {{ tone[c.verdict.outcome] }}">{{ c.verdict.stamp }}</span>
       </div>

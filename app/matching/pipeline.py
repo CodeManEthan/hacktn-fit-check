@@ -23,6 +23,7 @@ from app.domain.device import DeviceFacts, SupplyIntel
 from app.domain.facility import FacilityProfile
 from app.domain.marketplace import GeoPoint, MatchRecord, MatchState, Offer, Request
 from app.domain.result import Outcome, Verdict
+from app.domain.shipment import Shipment, estimate_shipment
 from app.matching.distance import facility_point, haversine_km
 
 #: Looks up what the country can support for one device. Injected so the
@@ -50,6 +51,7 @@ class Candidate:
     verdict: Verdict
     distance_km: float | None = None
     intel: SupplyIntel = SupplyIntel()
+    shipment: Shipment | None = None
 
     @property
     def condition_count(self) -> int:
@@ -129,11 +131,16 @@ def _assess(
         raise TypeError(
             f"The intel lookup must return a SupplyIntel; got {type(intel).__name__}."
         )
+    distance_km = haversine_km(offer.origin, destination)
+    shipment = estimate_shipment(
+        distance_km, crosses_border=offer.origin.country != facility.country
+    )
     return Candidate(
         offer=offer,
-        verdict=check_fit(offer.device, facility, intel),
-        distance_km=haversine_km(offer.origin, destination),
+        verdict=check_fit(offer.device, facility, intel, shipment),
+        distance_km=distance_km,
         intel=intel,
+        shipment=shipment,
     )
 
 

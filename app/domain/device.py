@@ -37,6 +37,7 @@ class DeviceFacts:
     needs_compressed_air: Fact = UNKNOWN
 
     consumables: Fact = UNKNOWN
+    expiry_date: Fact = UNKNOWN
     manual_languages: Fact = UNKNOWN
     operating_complexity: Fact = UNKNOWN
 

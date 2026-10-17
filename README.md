@@ -10,7 +10,7 @@ Built for HackTN, Track 1: From Surplus to Social Good.
 ## The pipeline
 
 1. **Filter** — offers of the right type, with stock, not past their expiry.
-2. **Screen** — thirteen constraint checks per candidate. Anything blocked is
+2. **Screen** — fourteen constraint checks per candidate. Anything blocked is
    dropped here, before distance is ever considered.
 3. **Rank** — survivors ordered by how little must ship alongside them, then by
    great-circle distance.
@@ -103,7 +103,7 @@ suite, which is why it runs in under a tenth of a second.
 ```
 app/
   domain/       frozen dataclasses: DeviceFacts, FacilityProfile, Verdict
-  checks/       the thirteen checks and the rollup. No model calls.
+  checks/       the fourteen checks and the rollup. No model calls.
   ai/           OCI Generative AI client, extraction, country research
   data/         SQLAlchemy schema, repository, seeded clinic profiles
   web/          routes, Jinja templates, one stylesheet
@@ -140,6 +140,10 @@ still fails on supply chain.
 - World Health Organization, *Medical device donations: considerations for
   solicitation and provision*, second edition. Annex 1 is the acceptance
   checklist these checks follow.
+- WHO, *Guidelines for medicine donations*, for the expectation that a donated
+  consignment lands with at least a year of shelf life left. The device
+  guidance sets no equivalent figure, so the shelf-life check borrows the
+  medicines one rather than inventing a number.
 - IEC 60601-1, clause 7.2 marking requirements and the default environmental
   conditions in 7.9.3.1.
 - National Academy of Medicine, *Access to Medical Devices in Low-Income

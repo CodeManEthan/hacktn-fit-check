@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from dataclasses import replace
+from datetime import date, datetime
 from pathlib import Path
 
 from fastapi import APIRouter, File, Form, Request, UploadFile
@@ -14,8 +15,10 @@ from app.ai.client import GenAiError
 from app.ai.extract import extract_device, image_to_data_url
 from app.data import marketplace_repo as repo
 from app.data.repository import RepositoryError
+from app.domain.device import DeviceFacts
 from app.domain.facility import FacilityProfile
 from app.domain.marketplace import GeoPoint, MatchState, Offer, Request as DonationRequest
+from app.domain.provenance import Provenance, fact
 from app.matching.bundle import build_bundle
 from app.matching.pipeline import propose_match, rank_candidates
 from app.matching.verification import confirm, request_confirmation, withdraw
@@ -55,6 +58,7 @@ async def offer_submit(
     device_type: str = Form(default=""),
     quantity: str = Form(default="1"),
     available_until: str = Form(default=""),
+    expiry_date: str = Form(default=""),
     country: str = Form(default=""),
     city: str = Form(default=""),
     donor_name: str = Form(default=""),
@@ -69,10 +73,13 @@ async def offer_submit(
         if not typed and not image_data_url:
             raise FormError("Give a model name, paste spec text, or add a nameplate photo.")
 
+        dated = forms.iso_date(expiry_date, "Expiry date")
         offer = Offer(
             donor_name=forms.text(donor_name, "Your name", required=True),
             donor_email=forms.text(donor_email, "Email", required=True),
-            device=extract_device(typed_text=typed, image_data_url=image_data_url),
+            device=_with_expiry(
+                extract_device(typed_text=typed, image_data_url=image_data_url), dated
+            ),
             device_type=forms.text(device_type, "Kind of device", required=True, limit=120),
             support_kind=_support_kind(device_type, model_name),
             origin=_point(forms.text(country, "Country", required=True), city),
@@ -283,6 +290,13 @@ def _point(country: str, city: str) -> GeoPoint:
     latitude, longitude = (country_centroid(country) or (None, None))
     return GeoPoint(country=country, city=(city or "").strip(),
                     latitude=latitude, longitude=longitude)
+
+
+def _with_expiry(device: DeviceFacts, expiry: date | None) -> DeviceFacts:
+    """Attach the donor's expiry date, leaving it unknown when none was given."""
+    if expiry is None:
+        return device
+    return replace(device, expiry_date=fact(expiry, Provenance.DONOR_STATED))
 
 
 def _device_pairs(offer: Offer) -> list[tuple[str, str]]:

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import fields
+from datetime import date
 from typing import Any
 
 from app.domain.device import DeviceFacts, SupplyIntel
@@ -12,15 +13,36 @@ from app.domain.result import CheckResult, CheckStatus, Outcome, Verdict
 _SOURCE_BY_VALUE = {p.value: p for p in Provenance}
 
 
+# JSON has no date type. A date is written as {"date": "2027-03-31"} so it can
+# be told apart from a string that merely looks like one, and comes back as a
+# date object: the shelf-life check does arithmetic on it, and a string there
+# would fail at request time rather than in a test.
+_DATE_KEY = "date"
+
+
+def _encode(value: Any) -> Any:
+    return {_DATE_KEY: value.isoformat()} if isinstance(value, date) else value
+
+
+def _decode(value: Any) -> Any:
+    if isinstance(value, dict) and set(value) == {_DATE_KEY}:
+        return date.fromisoformat(value[_DATE_KEY])
+    return value
+
+
 def fact_to_dict(value: Fact) -> dict[str, Any]:
-    return {"value": value.value, "source": value.source.value, "note": value.note}
+    return {
+        "value": _encode(value.value),
+        "source": value.source.value,
+        "note": value.note,
+    }
 
 
 def fact_from_dict(payload: dict[str, Any] | None) -> Fact:
     if not payload or payload.get("value") is None:
         return UNKNOWN
     source = _SOURCE_BY_VALUE.get(payload.get("source", ""), Provenance.UNKNOWN)
-    return fact(payload["value"], source, payload.get("note", ""))
+    return fact(_decode(payload["value"]), source, payload.get("note", ""))
 
 
 def device_to_dict(device: DeviceFacts) -> dict[str, Any]:

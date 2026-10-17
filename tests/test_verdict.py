@@ -42,11 +42,16 @@ def test_mitigable_gaps_become_the_list_of_things_to_also_send():
 
 
 def test_missing_facts_become_follow_up_questions_not_guesses():
+    # Arrange: two facts nobody recorded.
     dev = device(frequencies_hz=UNKNOWN, consumables=UNKNOWN)
 
+    # Act
     verdict = check_fit(dev, facility(), intel())
 
-    assert len(verdict.questions) == 2
+    # Assert: each unknown is asked about, and every question reads as one.
+    asked = " ".join(verdict.questions).lower()
+    assert "frequency" in asked or "hz" in asked
+    assert "consume" in asked
     assert all("?" in q for q in verdict.questions)
 
 
