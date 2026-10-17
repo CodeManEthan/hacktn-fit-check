@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Review {{ facility.name }}{% endblock %}
+{% block content %}
+<section class="plate">
+  <p class="eyebrow">{{ facility.country }}</p>
+  <h1>{{ facility.name }}</h1>
+
+  <dl class="pairs">
+    <dt>Stated location</dt>
+    <dd>{% if facility.latitude is not none %}{{ facility.latitude }}, {{ facility.longitude }}{% else %}not given{% endif %}</dd>
+    <dt>Grid</dt><dd>{{ facility.mains_voltage_v }} V, {{ facility.mains_frequency_hz }} Hz</dd>
+    <dt>Current grounds</dt><dd>{{ status.label }}</dd>
+  </dl>
+  {% if status.note %}<p class="note">{{ status.note }}</p>{% endif %}
+
+  <h2>Public registry</h2>
+  {% if not checked %}
+  <p class="sub">Nothing has been requested yet. The lookup asks OpenStreetMap
+     whether a health facility of this name sits near the stated coordinates.</p>
+  <a class="go" href="/review/{{ facility.slug }}?check=1">Check the public registry</a>
+  {% elif not candidates %}
+  <p class="empty">No candidate returned. That is not evidence against this clinic:
+     the registry does not carry every facility, and the service may simply have
+     been unreachable. Use a registration document or your own knowledge instead.</p>
+  {% else %}
+  <p class="sub">A name alone proves nothing. A health facility of this name within
+     {{ 25 }} km of the stated point is corroboration.</p>
+  <table class="audit">
+    <thead>
+      <tr><th scope="col">Candidate</th><th scope="col">Registry type</th>
+          <th scope="col">Distance</th><th scope="col">Corroborates</th></tr>
+    </thead>
+    <tbody>
+      {% for c in candidates %}
+      <tr>
+        <td class="audit-name">{{ c.name }}</td>
+        <td class="audit-value">{{ c.kind or '&mdash;' | safe }}</td>
+        <td class="audit-value">{% if c.distance_km is not none %}{{ c.distance_km | round(1) }} km{% else %}unknown{% endif %}</td>
+        <td><span class="pill {{ 'good' if corroborates(c) else 'ask' }}">{{ 'yes' if corroborates(c) else 'no' }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</section>
+
+<section class="plate">
+  <h2>Record a decision</h2>
+  <p class="sub">The registry informs this; it does not make it. A person decides.</p>
+  <form method="post" action="/review/{{ facility.slug }}" class="form">
+    <div class="field">
+      <label class="name" for="f-decision">Grounds</label>
+      <select id="f-decision" name="decision">
+        <option value="approved by a reviewer">Approved by a reviewer</option>
+        <option value="matched in a public registry"{{ ' selected' if supported }}>Matched in a public registry</option>
+        <option value="registration document on file">Registration document on file</option>
+        <option value="entered on the form">Entered on the form, unchecked</option>
+        <option value="contradicted by a check">Contradicted by a check</option>
+      </select>
+    </div>
+    <div class="field">
+      <label class="name" for="f-note">Why</label>
+      <textarea id="f-note" name="note" rows="2"
+                placeholder="Matched Kayunga Hospital in OpenStreetMap, 2 km from the stated point."></textarea>
+    </div>
+    <button class="go" type="submit">Record this decision</button>
+  </form>
+</section>
+{% endblock %}

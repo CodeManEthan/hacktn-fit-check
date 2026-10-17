@@ -583,3 +583,8 @@ button.go-quiet:hover { border-color: var(--block); color: var(--block); }
 /* Role cards: the two doors take different accents so they never blur. */
 .door:hover { border-color: var(--accent); background: var(--accent-wash); }
 .doors a[href="/clinic"]:hover { border-color: var(--clear); background: var(--clear-wash); }
+
+/* ---- recipient trust ------------------------------------------------- */
+
+.trust { display: flex; align-items: baseline; gap: var(--s3); flex-wrap: wrap; margin: var(--s4) 0; }
+.trust-note { color: var(--etch); font-size: 14px; max-width: 58ch; }

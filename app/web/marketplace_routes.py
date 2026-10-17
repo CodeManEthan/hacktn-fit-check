@@ -17,6 +17,7 @@ from app.data import marketplace_repo as repo
 from app.data.repository import RepositoryError
 from app.domain.device import DeviceFacts
 from app.domain.facility import FacilityProfile
+from app.domain.facility_trust import Verification, VerificationStatus
 from app.domain.marketplace import (
     GeoPoint,
     MatchState,
@@ -30,6 +31,7 @@ from app.matching.coverage import LineCoverage
 from app.matching.pipeline import propose_match, rank_candidates
 from app.matching.verification import confirm, request_confirmation, withdraw
 from app.reference.country_power import country_centroid, lookup
+from app.reference.facility_registry import corroborates, find_candidates
 from app.web import forms
 from app.web.forms import FormError
 from app.web.presenters import TONE_BY_OUTCOME, TONE_BY_STATUS
@@ -286,7 +288,10 @@ def confirm_page(request: Request, token: str) -> HTMLResponse:
     facility = repo.load_facility(row.facility_slug) if row else None
     return TEMPLATES.TemplateResponse(
         request=request, name="confirm.html",
-        context={"match": match, "offer": offer, "facility": facility},
+        context={
+            "match": match, "offer": offer, "facility": facility,
+            "trust": repo.load_verification(row.facility_slug) if row else VerificationStatus(),
+        },
     )
 
 
@@ -310,6 +315,83 @@ def confirm_submit(request: Request, token: str, answer: str = Form(...)) -> HTM
         return _error(request, str(exc))
 
     return RedirectResponse(url=f"/confirm/{token}", status_code=303)
+
+
+# ---- recipient verification --------------------------------------------
+
+# Nominatim wants an ISO 3166-1 alpha-2 code to scope a search to one country.
+COUNTRY_CODES = {
+    "uganda": "ug", "kenya": "ke", "haiti": "ht", "nepal": "np",
+    "nigeria": "ng", "ghana": "gh", "tanzania": "tz", "malawi": "mw",
+    "india": "in", "bangladesh": "bd", "ethiopia": "et", "zambia": "zm",
+}
+
+
+@router.get("/review", response_class=HTMLResponse)
+def review_list(request: Request) -> HTMLResponse:
+    """Every registered clinic and how far its claim has been checked."""
+    facilities = repo.list_facilities()
+    statuses = repo.verifications_for([f.slug for f in facilities])
+    return TEMPLATES.TemplateResponse(
+        request=request, name="review_list.html",
+        context={
+            "facilities": facilities,
+            "statuses": statuses,
+            "default_status": VerificationStatus(),
+        },
+    )
+
+
+@router.get("/review/{slug}", response_class=HTMLResponse)
+def review_facility(request: Request, slug: str, check: int = 0) -> HTMLResponse:
+    """One clinic, with registry evidence if the reviewer asked for it.
+
+    The lookup only runs on `?check=1` so that opening the page never waits on
+    a third-party service, and so a reviewer chooses to make the request.
+    """
+    facility = repo.load_facility(slug)
+    if facility is None:
+        return _error(request, f"No facility profile for {slug}.")
+
+    candidates: tuple = ()
+    if check:
+        candidates = find_candidates(
+            facility.name,
+            COUNTRY_CODES.get(facility.country.strip().lower(), ""),
+            facility.latitude,
+            facility.longitude,
+        )
+
+    return TEMPLATES.TemplateResponse(
+        request=request, name="review_facility.html",
+        context={
+            "facility": facility,
+            "status": repo.load_verification(slug),
+            "candidates": candidates,
+            "checked": bool(check),
+            "corroborates": corroborates,
+            "supported": any(corroborates(c) for c in candidates),
+        },
+    )
+
+
+@router.post("/review/{slug}", response_class=HTMLResponse)
+def review_decide(
+    request: Request,
+    slug: str,
+    decision: str = Form(...),
+    note: str = Form(default=""),
+) -> HTMLResponse:
+    """Record a reviewer's decision. Only a person moves a clinic's tier."""
+    try:
+        tier = Verification(decision)
+    except ValueError:
+        return _error(request, f"{decision!r} is not a verification tier.")
+    if repo.load_facility(slug) is None:
+        return _error(request, f"No facility profile for {slug}.")
+
+    repo.set_verification(slug, tier, forms.text(note, "Note", limit=400))
+    return RedirectResponse(url=f"/review/{slug}", status_code=303)
 
 
 # ---- helpers -----------------------------------------------------------

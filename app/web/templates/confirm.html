@@ -9,6 +9,11 @@
      {% if offer.created_at %}on {{ offer.created_at.date() }}{% else %}earlier{% endif %},
      so we are checking before anyone arranges shipping.</p>
 
+  <p class="trust">
+    <span class="pill {{ 'good' if trust.trusted else 'ask' }}">{{ trust.label }}</span>
+    <span class="trust-note">{% if trust.note %}{{ trust.note }}{% elif trust.trusted %}This recipient has been checked.{% else %}Nobody has checked this recipient beyond what they entered. Ask before you ship.{% endif %}</span>
+  </p>
+
   {% if match.verdict.requirements %}
   <div class="flag hold">
     <h2>It will need these sent with it</h2>

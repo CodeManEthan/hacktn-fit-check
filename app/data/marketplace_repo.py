@@ -33,6 +33,7 @@ from app.data.serialize import (
     verdict_to_dict,
 )
 from app.domain.facility import FacilityProfile
+from app.domain.facility_trust import Verification, VerificationStatus
 from app.domain.marketplace import (
     OPEN_STATES,
     GeoPoint,
@@ -139,6 +140,54 @@ def _facility_from_row(row: Any) -> FacilityProfile:
     for name in FACILITY_TUPLE_FIELDS:
         payload[name] = tuple(payload.get(name) or ())
     return FacilityProfile(**{k: v for k, v in payload.items() if k in FACILITY_FIELD_NAMES})
+
+
+def load_verification(slug: str) -> VerificationStatus:
+    """How far this facility's claim has been checked. Unknown slugs read as self-declared."""
+    row = _first_row(
+        select(facilities_v2.c.verification, facilities_v2.c.verification_note)
+        .where(facilities_v2.c.slug == slug),
+        "Could not load the verification status",
+    )
+    if row is None:
+        return VerificationStatus()
+    try:
+        tier = Verification(row["verification"])
+    except ValueError:
+        tier = Verification.SELF_DECLARED
+    return VerificationStatus(tier=tier, note=row["verification_note"] or "")
+
+
+def set_verification(slug: str, tier: Verification, note: str = "") -> None:
+    """Record a reviewer's decision about a facility."""
+    _write(
+        update(facilities_v2)
+        .where(facilities_v2.c.slug == slug)
+        .values(verification=tier.value, verification_note=note),
+        "Could not record the verification",
+    )
+
+
+def verifications_for(slugs: list[str]) -> dict[str, VerificationStatus]:
+    """Verification for many facilities in one query, for list pages."""
+    if not slugs:
+        return {}
+    rows = _all_rows(
+        select(
+            facilities_v2.c.slug,
+            facilities_v2.c.verification,
+            facilities_v2.c.verification_note,
+        ).where(facilities_v2.c.slug.in_(slugs)),
+        "Could not load the verification statuses",
+    )
+    found = {}
+    for row in rows:
+        try:
+            tier = Verification(row["verification"])
+        except ValueError:
+            tier = Verification.SELF_DECLARED
+        found[row["slug"]] = VerificationStatus(tier=tier, note=row["verification_note"] or "")
+    return found
 
 
 def save_facility(profile: FacilityProfile) -> str:

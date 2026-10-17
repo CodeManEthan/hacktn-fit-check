@@ -52,6 +52,11 @@ facilities_v2 = Table(
     Column("latitude", Float, nullable=True),
     Column("longitude", Float, nullable=True),
     Column("profile_json", Text, nullable=False),
+    # How hard anyone has looked before believing this clinic exists. Kept out
+    # of profile_json because the clinic writes the profile and a reviewer
+    # writes this, and a column can be listed and filtered on.
+    Column("verification", String(STATUS_LENGTH), nullable=False, default="entered on the form"),
+    Column("verification_note", Text, nullable=False, default=""),
     Column("created_at", DateTime, nullable=False, server_default=func.now()),
 )
 
