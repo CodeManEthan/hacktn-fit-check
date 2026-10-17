@@ -164,10 +164,15 @@ async def facility_submit(request: Request) -> HTMLResponse:
 # ---- requests and matching --------------------------------------------
 
 @router.get("/request", response_class=HTMLResponse)
-def request_form(request: Request) -> HTMLResponse:
+def request_form(request: Request, facility: str = "") -> HTMLResponse:
+    """The request form, optionally opened on a named facility.
+
+    `facility` is what the landing page's demo chips carry, so a judge lands
+    on the form with the clinic already chosen.
+    """
     return TEMPLATES.TemplateResponse(
         request=request, name="request_form.html",
-        context={"facilities": repo.list_facilities()},
+        context={"facilities": repo.list_facilities(), "chosen": facility},
     )
 
 

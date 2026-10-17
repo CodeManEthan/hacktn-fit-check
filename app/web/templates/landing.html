@@ -2,6 +2,7 @@
 {% block title %}Fit-Check{% endblock %}
 {% block content %}
 <section class="plate">
+  <p class="badge">IEC 60601-1 &amp; WHO Annex 1 &middot; deterministic engine</p>
   <h1>Equipment that fits the place it is going</h1>
   <p class="sub">Clinics state their conditions once. Donors post what they hold.
      Every offer is screened against the real power, climate, supply and staffing
@@ -20,6 +21,22 @@
         Every future offer is checked against it automatically.</span>
       <span class="door-go">Register a facility</span>
     </a>
+  </div>
+
+  <div class="presets">
+    <p class="presets-head">Try it against a seeded clinic</p>
+    <div class="preset-row">
+      {% for slug, name, where, spec in (
+          ("uganda-district", "Kayunga District Hospital", "Uganda", "240V 50Hz \u00b7 6 outages/wk"),
+          ("haiti-community", "H\u00f4pital Communautaire de Pignon", "Haiti", "110V 60Hz \u00b7 12 outages/wk"),
+          ("nepal-phc", "Bardiya Primary Health Centre", "Nepal", "230V 50Hz \u00b7 ward to 42\u00b0C")) %}
+      <a class="preset" href="/request?facility={{ slug }}">
+        <span class="preset-name">{{ name }}</span>
+        <span class="preset-where">{{ where }}</span>
+        <span class="preset-spec">{{ spec }}</span>
+      </a>
+      {% endfor %}
+    </div>
   </div>
 
   <p class="note">Already registered? <a class="link" href="/request">Post a request</a>

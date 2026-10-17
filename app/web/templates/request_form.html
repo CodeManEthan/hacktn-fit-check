@@ -11,7 +11,7 @@
       <label class="name" for="f-facility-slug">Facility</label>
       <select id="f-facility-slug" name="facility_slug">
         {% for f in facilities %}
-        <option value="{{ f.slug }}">{{ f.name }} &mdash; {{ f.country }}</option>
+        <option value="{{ f.slug }}"{{ ' selected' if f.slug == chosen }}>{{ f.name }} &mdash; {{ f.country }}</option>
         {% endfor %}
       </select>
     </div>

@@ -1,46 +1,51 @@
-/* Fit-Check. The page is an equipment rating plate: etched, not floating. */
+/* Fit-Check: a clinical field terminal. Dark by default, because that is what
+   this is read on - a laptop in a biomedical workshop, not a brochure.
 
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap');
+   Technical values carry the monospace face and ordinary prose does not. That
+   split is the whole typographic system: if it is a rating, a standard, a
+   provenance tag or a serial number, it is set in mono. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-  --plate:  #d7dad2;
-  --face:   #f3f4f0;
-  --ink:    #171a12;
-  --etch:   #99a091;
-  --rule:   #c3c7bc;
-  --block:  #8c2a1e;
-  --hold:   #95670f;
-  --clear:  #2d5c38;
-  --query:  #45566a;
-  --block-wash: #f0dedb;
-  --hold-wash:  #f5e9cf;
-  --clear-wash: #dde9de;
-  --query-wash: #dfe4ea;
+  /* surfaces */
+  --plate:  #0B0E14;   /* page */
+  --face:   #121721;   /* panel */
+  --raise:  #19202C;   /* panel on panel */
+  --rule:   #212838;   /* hairline */
 
-  --display: 'Archivo', system-ui, sans-serif;
-  --text: 'Public Sans', system-ui, sans-serif;
+  /* text */
+  --ink:    #E9EEF8;   /* primary */
+  --etch:   #A3B0C6;   /* secondary, AA on --face at body size */
+
+  /* Clinical blue. The fill and the text tone are different colours on
+     purpose: #3B82F6 reaches only 4.88:1 on --face, so text uses the lighter
+     --accent-text (7.06:1) and the saturated tone is kept for fills, borders
+     and the scanning reticle, where contrast is not a reading requirement. */
+  --accent:      #3B82F6;
+  --accent-deep: #2563EB;
+  --accent-text: #60A5FA;
+  --accent-wash: rgba(59, 130, 246, 0.10);
+  --accent-line: rgba(59, 130, 246, 0.32);
+
+  /* deterministic status. The wash/line pairs keep every badge on the same
+     10%/30% footing so no status shouts louder than its severity. */
+  --block:  #FB9090;  --block-wash: rgba(239, 68, 68, 0.10);  --block-line: rgba(239, 68, 68, 0.30);
+  --hold:   #FCD34D;  --hold-wash:  rgba(245, 158, 11, 0.10); --hold-line:  rgba(245, 158, 11, 0.30);
+  --clear:  #34D399;  --clear-wash: rgba(16, 185, 129, 0.10); --clear-line: rgba(16, 185, 129, 0.30);
+  --query:  #60A5FA;  --query-wash: var(--accent-wash);       --query-line: var(--accent-line);
+
+  --display: 'Inter', system-ui, sans-serif;
+  --text: 'Inter', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   --s1: 4px; --s2: 8px; --s3: 12px; --s4: 20px;
   --s5: 32px; --s6: 52px; --s7: 84px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --plate: #16180f;
-    --face:  #1f231a;
-    --ink:   #eef0e8;
-    --etch:  #8a9183;
-    --rule:  #343a2d;
-    --block: #e38478;
-    --hold:  #ddab54;
-    --clear: #7fba8c;
-    --query: #93a7bd;
-    --block-wash: #35201c;
-    --hold-wash:  #332814;
-    --clear-wash: #1c2c20;
-    --query-wash: #1e262f;
-  }
-}
+/* Technical values read as data, not prose. */
+.specs b, .pairs dd, .chip, .tag, .coverage-count, .bar-num, .counter b,
+.candidate-meta .chip, .ref { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 
 * { box-sizing: border-box; }
 
@@ -77,9 +82,10 @@ body {
 .plate {
   background: var(--face);
   border: 1px solid var(--rule);
-  border-radius: 3px;
+  border-radius: 8px;
   padding: var(--s6) var(--s5);
   margin: var(--s5) 0;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
 }
 .plate-tight { padding: var(--s5); }
 
@@ -100,20 +106,26 @@ h2:first-child { margin-top: 0; }
 .field { display: flex; flex-direction: column; gap: var(--s2); }
 .field > .name { font-weight: 600; font-size: 15px; }
 
-input[type="text"], textarea {
-  font: 400 16px/1.5 var(--text);
+input[type="text"], textarea, select {
+  font: 400 15px/1.5 var(--text);
   color: var(--ink);
   background: var(--plate);
   border: 1px solid var(--rule);
-  border-radius: 2px;
+  border-radius: 6px;
   padding: var(--s3) var(--s4);
   width: 100%;
 }
+input[type="text"]:hover, textarea:hover, select:hover { border-color: #2E3850; }
+input[type="text"]::placeholder, textarea::placeholder { color: #5A6880; }
 textarea { resize: vertical; min-height: 128px; }
-input[type="text"]:focus-visible, textarea:focus-visible,
-button:focus-visible, a:focus-visible, .pick:focus-within {
-  outline: 2px solid var(--ink);
+input[type="text"]:focus-visible, textarea:focus-visible, select:focus-visible,
+button:focus-visible, a:focus-visible, .pick:focus-within, .toggle:focus-within {
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+input[type="text"]:focus, textarea:focus, select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-wash);
 }
 
 /* the nameplate drop target: a ghost of the thing being photographed */
@@ -141,19 +153,19 @@ button:focus-visible, a:focus-visible, .pick:focus-within {
 .nameplate-call { font-weight: 600; font-size: 15px; color: var(--ink); }
 .nameplate input[type="file"] { margin-top: var(--s3); font: inherit; font-size: 14px; color: var(--etch); }
 
-button.go {
-  font: 600 16px/1 var(--text);
-  background: var(--ink);
-  color: var(--face);
-  border: none;
-  border-radius: 2px;
+button.go, a.go {
+  font: 600 15px/1 var(--text);
+  background: var(--accent-deep);
+  color: #fff;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
   padding: var(--s3) var(--s5);
   cursor: pointer;
   align-self: flex-start;
 }
-button.go:hover { background: var(--clear); }
+button.go:hover, a.go:hover { background: var(--accent); }
 
-a.link { color: var(--ink); text-underline-offset: 3px; }
+a.link { color: var(--accent-text); text-underline-offset: 3px; }
 
 /* ---- clinic picker ------------------------------------------------- */
 
@@ -200,15 +212,13 @@ a.link { color: var(--ink); text-underline-offset: 3px; }
 .dest-name em { font-style: normal; color: var(--etch); font-weight: 400; }
 
 .stamp {
-  transform: rotate(-1.5deg);
-  align-self: center;
-  border: 3px solid currentColor;
-  border-radius: 3px;
+  border: 1px solid currentColor;
+  border-radius: 8px;
   padding: var(--s4) var(--s5);
   text-align: center;
   min-width: 268px;
 }
-.stamp b { display: block; font: 800 34px/1 var(--display); letter-spacing: -0.02em; text-transform: uppercase; }
+.stamp b { display: block; font: 800 30px/1.05 var(--display); letter-spacing: -0.02em; text-transform: uppercase; }
 .stamp i { display: block; font-style: normal; font-size: 14px; margin-top: var(--s2); font-weight: 600; }
 .oversight {
   color: var(--etch);
@@ -218,9 +228,9 @@ a.link { color: var(--ink); text-underline-offset: 3px; }
   max-width: 34ch;
 }
 
-.stamp.bad { color: var(--block); background: var(--block-wash); }
-.stamp.hold { color: var(--hold); background: var(--hold-wash); }
-.stamp.good { color: var(--clear); background: var(--clear-wash); }
+.stamp.bad { color: var(--block); background: var(--block-wash); border-color: var(--block-line); }
+.stamp.hold { color: var(--hold); background: var(--hold-wash); border-color: var(--hold-line); }
+.stamp.good { color: var(--clear); background: var(--clear-wash); border-color: var(--clear-line); }
 
 /* ---- diagnostic rail ------------------------------------------------ */
 
@@ -297,10 +307,18 @@ tr.is-good .what { border-left-color: var(--clear); }
 .bars .fill { display: block; background: var(--hold); height: 100%; border-radius: 2px; min-width: 3px; }
 .bars .bar-num { font-variant-numeric: tabular-nums; font-weight: 600; font-size: 14px; }
 
-.pill { font-size: 13px; font-weight: 600; padding: 2px var(--s2); border-radius: 2px; white-space: nowrap; }
-.pill.bad { background: var(--block-wash); color: var(--block); }
-.pill.hold { background: var(--hold-wash); color: var(--hold); }
-.pill.good { background: var(--clear-wash); color: var(--clear); }
+.pill {
+  font: 600 12px/1.5 var(--mono);
+  letter-spacing: 0.02em;
+  padding: 3px var(--s2);
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.pill.bad { background: var(--block-wash); color: var(--block); border-color: var(--block-line); }
+.pill.hold { background: var(--hold-wash); color: var(--hold); border-color: var(--hold-line); }
+.pill.good { background: var(--clear-wash); color: var(--clear); border-color: var(--clear-line); }
+.pill.ask { background: var(--query-wash); color: var(--query); border-color: var(--query-line); }
 
 .empty { color: var(--etch); border: 1px dashed var(--rule); border-radius: 3px; padding: var(--s6); text-align: center; }
 
@@ -423,3 +441,145 @@ button.go-quiet:hover { border-color: var(--block); color: var(--block); }
 .coverage-line.is-met .coverage-count { color: var(--clear); font-weight: 600; }
 .coverage-line.is-short .coverage-count { color: var(--hold); font-weight: 600; }
 .coverage-note { color: var(--etch); font-size: 14px; }
+
+/* ---- provenance tags and the audit table ----------------------------- */
+
+/* Where a fact came from, never decoration: the tag is the audit trail. */
+.tag {
+  font: 500 11px/1.6 var(--mono);
+  color: var(--etch);
+  background: var(--plate);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 1px 6px;
+  white-space: nowrap;
+}
+.tag.is-trusted { color: var(--accent-text); border-color: var(--accent-line); background: var(--accent-wash); }
+
+.audit { width: 100%; border-collapse: collapse; margin-top: var(--s4); font-size: 14px; }
+.audit th {
+  text-align: left;
+  font: 600 12px/1.6 var(--text);
+  color: var(--etch);
+  padding: var(--s2) var(--s3);
+  border-bottom: 1px solid var(--rule);
+}
+.audit td { padding: var(--s3); border-bottom: 1px solid var(--rule); vertical-align: top; }
+.audit tr:last-child td { border-bottom: 0; }
+.audit .audit-name { font-weight: 600; color: var(--ink); }
+.audit .audit-value { font-family: var(--mono); color: var(--etch); }
+.audit .audit-detail { color: var(--etch); max-width: 54ch; }
+
+/* ---- toggle switches ------------------------------------------------- */
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s3) 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--rule);
+}
+.toggle:last-child { border-bottom: 0; }
+.toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+.toggle .switch {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 22px;
+  border-radius: 999px;
+  background: var(--plate);
+  border: 1px solid var(--rule);
+  position: relative;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+.toggle .switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--etch);
+  transition: transform 120ms ease, background 120ms ease;
+}
+.toggle input:checked + .switch { background: var(--accent-wash); border-color: var(--accent); }
+.toggle input:checked + .switch::after { transform: translateX(16px); background: var(--accent); }
+.toggle .toggle-name { font-size: 15px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .toggle .switch, .toggle .switch::after { transition: none; }
+}
+
+/* ---- rating plate scanner ------------------------------------------- */
+
+.scan { text-align: center; padding: var(--s6) var(--s5); }
+.scan-reticle {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--s4);
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  position: relative;
+  background: var(--accent-wash);
+}
+/* Four corner ticks and a centre line: a viewfinder, not a cloud icon. */
+.scan-reticle::before, .scan-reticle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+}
+.scan-reticle::before { top: 50%; width: 28px; height: 2px; }
+.scan-reticle::after { top: 30%; width: 14px; height: 2px; opacity: 0.6; }
+.scan-head { font: 700 19px/1.2 var(--display); margin: 0 0 var(--s2); }
+.scan-sub { color: var(--etch); font-size: 14px; max-width: 52ch; margin: 0 auto var(--s4); }
+.scan input[type="file"] { position: absolute; opacity: 0; width: 0; height: 0; }
+.scan .scan-act {
+  display: inline-block;
+  font: 600 15px/1 var(--text);
+  background: var(--accent-deep);
+  color: #fff;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  padding: var(--s3) var(--s5);
+}
+.scan-file { display: block; margin-top: var(--s3); font-family: var(--mono); font-size: 13px; color: var(--etch); }
+
+/* ---- hero badge and demo presets ------------------------------------- */
+
+.badge {
+  display: inline-block;
+  font: 500 12px/1.6 var(--mono);
+  color: var(--accent-text);
+  background: var(--accent-wash);
+  border: 1px solid var(--accent-line);
+  border-radius: 999px;
+  padding: 3px var(--s3);
+  margin: 0 0 var(--s4);
+}
+
+.presets { margin-top: var(--s5); padding-top: var(--s4); border-top: 1px solid var(--rule); }
+.presets-head { font-size: 14px; color: var(--etch); margin: 0 0 var(--s3); }
+.preset-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: var(--s3); }
+
+.preset {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--s3) var(--s4);
+  background: var(--plate);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.preset:hover { border-color: var(--accent); background: var(--accent-wash); }
+.preset-name { font-weight: 600; font-size: 14px; }
+.preset-where { font-size: 13px; color: var(--etch); }
+.preset-spec { font: 500 12px/1.6 var(--mono); color: var(--accent-text); margin-top: 2px; }
+
+/* Role cards: the two doors take different accents so they never blur. */
+.door:hover { border-color: var(--accent); background: var(--accent-wash); }
+.doors a[href="/clinic"]:hover { border-color: var(--clear); background: var(--clear-wash); }

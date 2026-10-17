@@ -7,15 +7,15 @@
      the voltage and the frequency. Photograph it and most of the screening follows.</p>
 
   <form method="post" action="/donor" enctype="multipart/form-data" class="form">
-    <label class="nameplate">
-      <div class="nameplate-grid">
-        <b>MODEL</b><u></u><b>SN</b><u></u>
-        <b>V</b><u></u><b>Hz</b><u></u>
-        <b>VA</b><u></u><b>YEAR</b><u></u>
-      </div>
-      <div class="nameplate-call">Photograph the rating plate</div>
-      <p class="note">Everything above is printed on it. A photo beats anything typed.</p>
+    <label class="nameplate scan">
+      <div class="scan-reticle" aria-hidden="true"></div>
+      <p class="scan-head">Scan or upload the rating plate</p>
+      <p class="scan-sub">The stamped metal plate on the rear or beside the power
+         inlet. Voltage, frequency, VA and year are read straight off it, and each
+         value keeps a tag saying it came from the plate.</p>
+      <span class="scan-act">Choose a photo</span>
       <input type="file" name="nameplate" accept="image/*">
+      <span class="scan-file" data-scan-name>No file chosen</span>
     </label>
 
     <div class="field">
@@ -33,4 +33,14 @@
     <button class="go" type="submit">Read the plate</button>
   </form>
 </section>
+
+<script>
+  // Native file inputs show nothing once styled away; echo the chosen name.
+  document.querySelectorAll('.scan input[type="file"]').forEach(function (input) {
+    input.addEventListener('change', function () {
+      var out = input.closest('.scan').querySelector('[data-scan-name]');
+      if (out) out.textContent = input.files.length ? input.files[0].name : 'No file chosen';
+    });
+  });
+</script>
 {% endblock %}

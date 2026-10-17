@@ -69,18 +69,27 @@
 {% endif %}
 
 <section class="plate plate-tight">
-  <h2>Every check</h2>
-  <table class="grid">
+  <h2>Audit trail &mdash; {{ verdict.results | length }} checks</h2>
+  <p class="note">Every row is decided by code, not by a model. The tag on the
+     right says where the fact came from, which is the only part a model touched.</p>
+  <table class="audit">
     <thead>
-      <tr><th>Check</th><th>Finding</th><th>What would fix it</th><th>Fact from</th></tr>
+      <tr>
+        <th scope="col">Check</th>
+        <th scope="col">Finding</th>
+        <th scope="col">What would fix it</th>
+        <th scope="col">Fact from</th>
+        <th scope="col">Status</th>
+      </tr>
     </thead>
     <tbody>
       {% for r in verdict.results %}
       <tr class="is-{{ symbol[r.status] }}">
-        <td class="what">{{ r.label }}</td>
-        <td>{{ r.detail }}</td>
-        <td class="remedy">{{ r.fix or r.question or '' }}</td>
-        <td class="from">{{ r.source.value }}</td>
+        <td class="audit-name">{{ r.label }}</td>
+        <td class="audit-detail">{{ r.detail }}</td>
+        <td class="audit-detail">{{ r.fix or r.question or '&mdash;' | safe }}</td>
+        <td><span class="tag{{ ' is-trusted' if r.source.value in ('nameplate', 'spec sheet') }}">{{ r.source.value }}</span></td>
+        <td><span class="pill {{ symbol[r.status] }}">{{ r.status.value | upper }}</span></td>
       </tr>
       {% endfor %}
     </tbody>
