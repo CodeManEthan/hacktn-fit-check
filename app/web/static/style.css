@@ -324,3 +324,48 @@ footer em { font-style: italic; }
   .grid .what, .grid .from { white-space: normal; }
   .nameplate-grid { grid-template-columns: auto 1fr; }
 }
+
+/* ---- two doors ------------------------------------------------------- */
+
+.doors { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s4); margin: var(--s5) 0; }
+.door {
+  display: flex; flex-direction: column; gap: var(--s2);
+  border: 1px solid var(--rule); border-radius: 3px;
+  padding: var(--s5); text-decoration: none; color: var(--ink);
+  background: var(--plate);
+}
+.door:hover { border-color: var(--ink); }
+.door-name { font: 700 20px/1.2 var(--display); letter-spacing: -0.015em; }
+.door-note { font-size: 14px; color: var(--etch); }
+.door-go { margin-top: var(--s3); font-weight: 600; font-size: 14px; }
+
+/* ---- form furniture -------------------------------------------------- */
+
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--s4); }
+.checks { display: flex; flex-direction: column; gap: var(--s2); }
+.checks label { display: flex; gap: var(--s2); align-items: center; font-size: 15px; }
+.checks input { accent-color: var(--ink); }
+select {
+  font: 400 16px/1.5 var(--text); color: var(--ink); background: var(--plate);
+  border: 1px solid var(--rule); border-radius: 2px; padding: var(--s3) var(--s4); width: 100%;
+}
+
+/* ---- candidate list -------------------------------------------------- */
+
+.candidate { border-top: 1px solid var(--rule); padding: var(--s5) 0; }
+.candidate-head { display: flex; justify-content: space-between; gap: var(--s4); flex-wrap: wrap; }
+.candidate-name { font: 700 20px/1.2 var(--display); letter-spacing: -0.015em; margin: 0; }
+.candidate-donor { color: var(--etch); font-size: 14px; margin: var(--s1) 0 0; }
+.candidate-meta { display: flex; gap: var(--s2); align-items: center; flex-wrap: wrap; }
+.candidate-needs { font-size: 14px; margin: var(--s3) 0 0; max-width: 72ch; }
+.candidate-act { margin-top: var(--s4); }
+
+.confirm-acts { display: flex; gap: var(--s4); flex-wrap: wrap; margin: var(--s5) 0 var(--s3); }
+button.go-quiet {
+  font: 600 16px/1 var(--text); background: none; color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 2px;
+  padding: var(--s3) var(--s5); cursor: pointer;
+}
+button.go-quiet:hover { border-color: var(--block); color: var(--block); }
+
+@media (max-width: 680px) { .doors { grid-template-columns: 1fr; } }

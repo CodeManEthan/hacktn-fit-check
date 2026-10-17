@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Offer posted{% endblock %}
+{% block content %}
+<section class="plate">
+  <p class="eyebrow">Offer {{ offer.id }}</p>
+  <h1>{{ offer.device.label }} is on the register</h1>
+  <p class="sub">{{ offer.quantity_available }} available from {{ offer.donor_name }}{% if offer.origin.city %}, {{ offer.origin.city }}{% endif %}, {{ offer.origin.country }}{% if offer.available_until %}, until {{ offer.available_until }}{% endif %}.</p>
+
+  <h2>What we read off it</h2>
+  <dl class="pairs">
+    {% for label, value in pairs %}
+    <dt>{{ label }}</dt><dd>{{ value }}</dd>
+    {% else %}
+    <dt>Nothing yet</dt><dd>no specifications were readable</dd>
+    {% endfor %}
+  </dl>
+
+  {% if offer.device.unknown_fields() %}
+  <div class="flag ask">
+    <h2>Still unknown</h2>
+    <p>These were not stated and will not be guessed. A clinic match may come back
+       with a question about them: {{ offer.device.unknown_fields() | join(', ') | replace('_', ' ') }}.</p>
+  </div>
+  {% endif %}
+
+  <p class="note">Nothing more is needed now. When a clinic needs this device we will
+     email you to check it is still there before anyone arranges shipping.</p>
+
+  <div class="after">
+    <a class="go" href="/offer" style="text-decoration:none">Post another</a>
+    <a class="link" href="/">Back to the start</a>
+  </div>
+</section>
+{% endblock %}

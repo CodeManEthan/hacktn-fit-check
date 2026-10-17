@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Fit-Check{% endblock %}
+{% block content %}
+<section class="plate">
+  <h1>Equipment that fits the place it is going</h1>
+  <p class="sub">Clinics state their conditions once. Donors post what they hold.
+     Every offer is screened against the real power, climate, supply and staffing
+     of the receiving facility before anyone books a container.</p>
+
+  <div class="doors">
+    <a class="door" href="/offer">
+      <span class="door-name">I have equipment to give</span>
+      <span class="door-note">Photograph the rating plate, say how many and where
+        they are, and we will tell you which clinics can actually use them.</span>
+      <span class="door-go">Post an offer</span>
+    </a>
+    <a class="door" href="/clinic">
+      <span class="door-name">I need equipment</span>
+      <span class="door-note">Describe your power, climate, utilities and staff once.
+        Every future offer is checked against it automatically.</span>
+      <span class="door-go">Register a facility</span>
+    </a>
+  </div>
+
+  <p class="note">Already registered? <a class="link" href="/request">Post a request</a>
+     or <a class="link" href="/impact">see the log</a>.</p>
+</section>
+{% endblock %}

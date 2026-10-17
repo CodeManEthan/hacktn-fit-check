@@ -38,6 +38,9 @@ class FacilityProfile:
     staff_languages: tuple[str, ...] = ("English",)
     notes: str = ""
 
+    latitude: float | None = None
+    longitude: float | None = None
+
     @property
     def power_is_unstable(self) -> bool:
         if self.has_generator and self.has_voltage_stabilizer:

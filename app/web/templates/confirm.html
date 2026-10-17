@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Confirm your donation{% endblock %}
+{% block content %}
+<section class="plate">
+  <p class="eyebrow">{{ match.id }}</p>
+  <h1>Do you still have it?</h1>
+  <p class="sub">{{ facility.name }} in {{ facility.country }} needs
+     {{ match.quantity }} &times; {{ offer.device.label }}. You posted this offer
+     {% if offer.created_at %}on {{ offer.created_at.date() }}{% else %}earlier{% endif %},
+     so we are checking before anyone arranges shipping.</p>
+
+  {% if match.verdict.requirements %}
+  <div class="flag hold">
+    <h2>It will need these sent with it</h2>
+    <ul>{% for r in match.verdict.requirements %}<li>{{ r }}</li>{% endfor %}</ul>
+  </div>
+  {% endif %}
+
+  {% if match.state.value in ('proposed', 'awaiting donor') %}
+  <div class="confirm-acts">
+    <form method="post" action="/confirm/{{ match.token }}">
+      <input type="hidden" name="answer" value="yes">
+      <button class="go" type="submit">Yes, it is still here</button>
+    </form>
+    <form method="post" action="/confirm/{{ match.token }}">
+      <input type="hidden" name="answer" value="no">
+      <button class="go-quiet" type="submit">No, it has gone</button>
+    </form>
+  </div>
+  <p class="note">Saying no is useful. The clinic is told straight away and the
+     next-nearest donor is approached automatically.</p>
+  {% else %}
+  <div class="flag {{ 'bad' if match.state.value == 'withdrawn' else 'hold' }}">
+    <h2>Already answered</h2>
+    <p>This match is marked <b>{{ match.state.value }}</b>. Nothing further is needed from you.</p>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}

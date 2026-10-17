@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block title %}Register a facility{% endblock %}
+{% block content %}
+<section class="plate">
+  <h1>Tell us about the place</h1>
+  <p class="sub">This is the questionnaire Project C.U.R.E. sends someone on a plane
+     to fill in. You fill it once, and every offer you are ever shown is screened
+     against it.</p>
+
+  <form method="post" action="/clinic" class="form">
+    <div class="row">
+      <div class="field">
+        <span class="name">Facility name</span>
+        <input type="text" name="name" placeholder="Kayunga District Hospital">
+      </div>
+      <div class="field">
+        <span class="name">Country</span>
+        <input type="text" name="country" placeholder="Uganda">
+        <p class="note">Sets the grid voltage and frequency automatically. You can correct them.</p>
+      </div>
+    </div>
+
+    <h2>Power</h2>
+    <div class="row">
+      <div class="field">
+        <span class="name">Mains voltage</span>
+        <input type="text" name="mains_voltage_v" placeholder="240">
+      </div>
+      <div class="field">
+        <span class="name">Frequency in Hz</span>
+        <input type="text" name="mains_frequency_hz" placeholder="50">
+      </div>
+      <div class="field">
+        <span class="name">Outages a week</span>
+        <input type="text" name="outages_per_week" value="0">
+      </div>
+    </div>
+    <div class="checks">
+      <label><input type="checkbox" name="has_generator"> There is a generator</label>
+      <label><input type="checkbox" name="has_voltage_stabilizer"> There is a voltage stabiliser</label>
+    </div>
+
+    <h2>Climate</h2>
+    <div class="row">
+      <div class="field">
+        <span class="name">Hottest ward temperature, &deg;C</span>
+        <input type="text" name="ambient_temp_max_c" placeholder="34">
+      </div>
+      <div class="field">
+        <span class="name">Peak humidity, %</span>
+        <input type="text" name="humidity_max_pct" placeholder="85">
+      </div>
+    </div>
+    <div class="checks">
+      <label><input type="checkbox" name="has_air_conditioning"> Wards are air conditioned</label>
+    </div>
+
+    <h2>Utilities</h2>
+    <div class="checks">
+      <label><input type="checkbox" name="has_oxygen_supply"> Piped or cylinder medical oxygen</label>
+      <label><input type="checkbox" name="has_distilled_water"> Distilled water</label>
+      <label><input type="checkbox" name="has_compressed_air"> Medical compressed air</label>
+    </div>
+
+    <h2>People</h2>
+    <div class="checks">
+      <label><input type="checkbox" name="has_biomed_technician"> A biomedical technician on site</label>
+      <label><input type="checkbox" name="trained_operators"> Staff trained on this class of device</label>
+    </div>
+    <div class="field">
+      <span class="name">Languages staff read</span>
+      <input type="text" name="staff_languages" placeholder="English, Luganda">
+      <p class="note">Comma separated. Used to check the manual is readable.</p>
+    </div>
+
+    <div class="field">
+      <span class="name">Anything else worth knowing</span>
+      <textarea name="notes" rows="3" placeholder="One generator shared across theatre and maternity. Nearest biomedical technician is in Kampala."></textarea>
+    </div>
+
+    <button class="go" type="submit">Save the profile</button>
+  </form>
+</section>
+{% endblock %}

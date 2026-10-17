@@ -8,6 +8,8 @@ FACILITIES: tuple[FacilityProfile, ...] = (
     FacilityProfile(
         slug="uganda-district",
         name="Kayunga District Hospital",
+        latitude=0.7028,
+        longitude=32.8856,
         country="Uganda",
         mains_voltage_v=240,
         mains_frequency_hz=50,
@@ -30,6 +32,8 @@ FACILITIES: tuple[FacilityProfile, ...] = (
     FacilityProfile(
         slug="haiti-community",
         name="Hopital Communautaire de Pignon",
+        latitude=19.3333,
+        longitude=-72.1167,
         country="Haiti",
         mains_voltage_v=110,
         mains_frequency_hz=60,
@@ -52,6 +56,8 @@ FACILITIES: tuple[FacilityProfile, ...] = (
     FacilityProfile(
         slug="nepal-phc",
         name="Bardiya Primary Health Centre",
+        latitude=28.3000,
+        longitude=81.4000,
         country="Nepal",
         mains_voltage_v=230,
         mains_frequency_hz=50,

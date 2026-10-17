@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Post a request{% endblock %}
+{% block content %}
+<section class="plate">
+  <h1>What do you need?</h1>
+  <p class="sub">We will screen every open offer of that type against your profile
+     and show you only the ones that can actually work, nearest first.</p>
+
+  <form method="post" action="/request" class="form">
+    <div class="field">
+      <span class="name">Facility</span>
+      <select name="facility_slug">
+        {% for f in facilities %}
+        <option value="{{ f.slug }}">{{ f.name }} &mdash; {{ f.country }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <span class="name">Equipment needed</span>
+        <input type="text" name="device_type" placeholder="ventilator">
+      </div>
+      <div class="field">
+        <span class="name">How many</span>
+        <input type="text" name="quantity" value="1">
+      </div>
+    </div>
+
+    <div class="field">
+      <span class="name">Anything the donor should know</span>
+      <textarea name="note" rows="3" placeholder="For the neonatal unit. We have one working unit and no spare."></textarea>
+    </div>
+
+    <button class="go" type="submit">Find what fits</button>
+  </form>
+</section>
+{% endblock %}

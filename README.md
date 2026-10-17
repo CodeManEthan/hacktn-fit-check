@@ -1,9 +1,27 @@
 # Fit-Check
 
-Tells a donor whether a piece of surplus medical equipment will actually work
-at a specific clinic, before it ships.
+A two-sided platform for medical equipment donations. Clinics state their real
+conditions once. Donors post what they hold. Every offer is screened against the
+receiving facility before anyone books a container, and only what can actually
+work is ranked by distance.
 
 Built for HackTN, Track 1: From Surplus to Social Good.
+
+## The pipeline
+
+1. **Filter** — offers of the right type, with stock, not past their expiry.
+2. **Screen** — thirteen constraint checks per candidate. Anything blocked is
+   dropped here, before distance is ever considered.
+3. **Rank** — survivors ordered by how little must ship alongside them, then by
+   great-circle distance.
+4. **Verify** — the donor is asked whether the stock still exists. Stock is held
+   against the request until they answer, and released if they say no.
+
+Compatibility and allocation are deliberately separate stages. Compatibility is
+a predicate: a 60 Hz motor either runs on a 50 Hz grid or it does not, which
+cannot be expressed as a cost inside a linear program. Allocation is the
+opposite: everything already fits, so only distance and quantity remain, and no
+model is involved. Nothing ever ranks on a score that blends the two.
 
 ## The design that matters
 

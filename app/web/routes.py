@@ -36,11 +36,6 @@ def _error(request: Request, message: str, back: str = "/donor") -> HTMLResponse
     )
 
 
-@router.get("/", response_class=HTMLResponse)
-def home() -> RedirectResponse:
-    return RedirectResponse(url="/donor", status_code=303)
-
-
 @router.get("/donor", response_class=HTMLResponse)
 def donor_form(request: Request) -> HTMLResponse:
     return TEMPLATES.TemplateResponse(

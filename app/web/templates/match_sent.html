@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Donor asked{% endblock %}
+{% block content %}
+<section class="plate">
+  <p class="eyebrow">Match {{ match.id }}</p>
+  <h1>Waiting on the donor</h1>
+  <p class="sub">{{ offer.donor_name }} has been asked whether
+     {{ match.quantity }} &times; {{ offer.device.label }} is still available.
+     The stock is held against this request until they answer.</p>
+
+  <div class="flag ask">
+    <h2>In a real deployment this is an email</h2>
+    <p>For the demo, open the donor's link yourself:</p>
+    <p><a class="link" href="/confirm/{{ match.token }}">/confirm/{{ match.token }}</a></p>
+  </div>
+
+  <p class="note">If they do not answer within 72 hours the match is withdrawn
+     automatically, the stock is released, and the next-nearest donor is approached.</p>
+
+  <div class="after">
+    <a class="go" href="/request/{{ match.request_id }}/matches" style="text-decoration:none">Back to the list</a>
+  </div>
+</section>
+{% endblock %}

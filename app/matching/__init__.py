@@ -1,0 +1,45 @@
+"""Matching: which compatible donor is nearest, and what happens next.
+
+Compatibility is decided in app.checks and nothing here second-guesses it.
+No model is called in this package.
+"""
+
+from app.matching.distance import EARTH_RADIUS_KM, facility_point, haversine_km
+from app.matching.pipeline import (
+    Candidate,
+    IntelLookup,
+    empty_intel,
+    propose_match,
+    rank_candidates,
+)
+from app.matching.verification import (
+    LEGAL_TRANSITIONS,
+    InvalidTransition,
+    confirm,
+    has_timed_out,
+    mark_shipped,
+    request_confirmation,
+    sweep_timeouts,
+    transition,
+    withdraw,
+)
+
+__all__ = [
+    "EARTH_RADIUS_KM",
+    "Candidate",
+    "IntelLookup",
+    "InvalidTransition",
+    "LEGAL_TRANSITIONS",
+    "confirm",
+    "empty_intel",
+    "facility_point",
+    "has_timed_out",
+    "haversine_km",
+    "mark_shipped",
+    "propose_match",
+    "rank_candidates",
+    "request_confirmation",
+    "sweep_timeouts",
+    "transition",
+    "withdraw",
+]
