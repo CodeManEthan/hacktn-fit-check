@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Log &middot; Fit-Check{% endblock %}
 {% block content %}
-<section class="plate">
+<section class="masthead">
   <h1>What the screening has caught</h1>
   <p class="sub">Every device put through this tool, and the reasons donations kept
      failing. A reason near the top is one the next donor will hit too.</p>
 
+</section>
+
+<section class="plate">
   {% if counts %}
   <div class="counters">
     {% set total = counts.values() | sum %}

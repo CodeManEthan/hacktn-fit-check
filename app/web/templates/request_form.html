@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Post a request{% endblock %}
 {% block content %}
-<section class="plate">
+<section class="masthead">
   <h1>What do you need?</h1>
   <p class="sub">We will screen every open offer of that type against your profile
      and show you only the ones that can actually work, nearest first.</p>
 
+</section>
+
+<section class="plate">
   <form method="post" action="/request" class="form">
     <div class="field">
       <label class="name" for="f-facility-slug">Facility</label>

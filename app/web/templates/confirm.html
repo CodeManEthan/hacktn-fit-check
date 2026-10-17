@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Confirm your donation{% endblock %}
 {% block content %}
-<section class="plate">
+<section class="masthead">
   <p class="eyebrow">{{ match.id }}</p>
   <h1>Do you still have it?</h1>
   <p class="sub">{{ facility.name }} in {{ facility.country }} needs
@@ -9,6 +9,9 @@
      {% if offer.created_at %}on {{ offer.created_at.date() }}{% else %}earlier{% endif %},
      so we are checking before anyone arranges shipping.</p>
 
+</section>
+
+<section class="plate">
   <p class="trust">
     <span class="pill {{ 'good' if trust.trusted else 'ask' }}">{{ trust.label }}</span>
     <span class="trust-note">{% if trust.note %}{{ trust.note }}{% elif trust.trusted %}This recipient has been checked.{% else %}Nobody has checked this recipient beyond what they entered. Ask before you ship.{% endif %}</span>

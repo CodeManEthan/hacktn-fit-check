@@ -88,7 +88,7 @@
         <td class="audit-name">{{ r.label }}</td>
         <td class="audit-detail">{{ r.detail }}</td>
         <td class="audit-detail">{{ r.fix or r.question or '&mdash;' | safe }}</td>
-        <td><span class="tag{{ ' is-trusted' if r.source.value in ('nameplate', 'spec sheet') }}">{{ r.source.value }}</span></td>
+        <td><span class="tag" data-source="{{ r.source.value }}">{{ r.source.value }}</span></td>
         <td><span class="pill {{ symbol[r.status] }}">{{ r.status.value | upper }}</span></td>
       </tr>
       {% endfor %}

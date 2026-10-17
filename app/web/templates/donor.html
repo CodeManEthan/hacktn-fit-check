@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Device &middot; Fit-Check{% endblock %}
 {% block content %}
-<section class="plate">
+<section class="masthead">
   <h1>What are you sending?</h1>
   <p class="sub">The rating plate on the back of the machine carries the maker, the model,
      the voltage and the frequency. Photograph it and most of the screening follows.</p>
 
+</section>
+
+<section class="plate">
   <form method="post" action="/donor" enctype="multipart/form-data" class="form">
     <label class="nameplate scan">
       <div class="scan-reticle" aria-hidden="true"></div>

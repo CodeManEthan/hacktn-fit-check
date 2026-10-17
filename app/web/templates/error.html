@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% block title %}Stopped &middot; Fit-Check{% endblock %}
 {% block content %}
-<section class="plate">
+<section class="masthead">
   <h1>The screening stopped</h1>
   <p class="sub">{{ message }}</p>
+</section>
+
+<section class="plate">
   <p><a class="go" href="{{ back }}" style="text-decoration:none;display:inline-block">Go back</a></p>
 </section>
 {% endblock %}

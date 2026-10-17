@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Clinic &middot; Fit-Check{% endblock %}
 {% block content %}
-<section class="plate">
+<section class="masthead">
   <h1>Where is it going?</h1>
   <p class="sub">Each profile is the clinic's own account of its power, climate and staff.
      None of it is on the web, which is why the clinic has to say it once.</p>
 
+</section>
+
+<section class="plate">
   <form method="post" action="/check" class="form">
     <input type="hidden" name="device_id" value="{{ device_id }}">
     <div class="picks">

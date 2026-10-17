@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 {% block title %}Donor asked{% endblock %}
 {% block content %}
-<section class="plate">
+<section class="masthead">
   <p class="eyebrow">Match {{ match.id }}</p>
   <h1>Waiting on the donor</h1>
   <p class="sub">{{ offer.donor_name }} has been asked whether
      {{ match.quantity }} &times; {{ offer.device.label }} is still available.
      The stock is held against this request until they answer.</p>
 
+</section>
+
+<section class="plate">
   <div class="flag ask">
     <h2>In a real deployment this is an email</h2>
     <p>For the demo, open the donor's link yourself:</p>

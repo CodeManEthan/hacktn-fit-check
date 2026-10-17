@@ -1,11 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Offer posted{% endblock %}
 {% block content %}
-<section class="plate">
+<section class="masthead">
   <p class="eyebrow">Offer {{ offer.id }}</p>
   <h1>{{ offer.device.label }} is on the register</h1>
   <p class="sub">{{ offer.quantity_available }} available from {{ offer.donor_name }}{% if offer.origin.city %}, {{ offer.origin.city }}{% endif %}, {{ offer.origin.country }}{% if offer.available_until %}, until {{ offer.available_until }}{% endif %}.</p>
 
+</section>
+
+<section class="plate">
   <h2>What we read off it</h2>
   <dl class="pairs">
     {% for label, value in pairs %}

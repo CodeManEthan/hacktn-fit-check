@@ -1,103 +1,122 @@
 {% extends "base.html" %}
 {% block title %}Post an offer{% endblock %}
 {% block content %}
-<section class="plate">
+<section class="masthead">
   <h1>What are you offering?</h1>
   <p class="sub">The rating plate on the back of the machine carries the maker, the
      model, the voltage and the frequency. Photograph it and most of the screening
      follows.</p>
+</section>
 
-  <form method="post" action="/offer" enctype="multipart/form-data" class="form" id="offer-form">
-    <div class="split split-wide">
+<form method="post" action="/offer" enctype="multipart/form-data" class="form" id="offer-form">
+  <div class="split split-wide">
 
-      <div class="plate workbench">
-        <h2 class="panel-head">Ingestion</h2>
-    <label class="nameplate scan">
-      <div class="scan-reticle" aria-hidden="true"></div>
-      <p class="scan-head">Scan or upload the rating plate</p>
-      <p class="scan-sub">The stamped metal plate on the rear or beside the power
-         inlet. Voltage, frequency, VA and year are read straight off it, and each
-         value keeps a tag saying it came from the plate.</p>
-      <span class="scan-act">Choose a photo</span>
-      <input type="file" name="nameplate" accept="image/*">
-      <span class="scan-file" data-scan-name>No file chosen</span>
-    </label>
+    <div class="plate workbench">
+      <h2 class="panel-head">Source material</h2>
 
-    <div class="field">
-      <label class="name" for="f-model-name">Make and model</label>
-      <input type="text" id="f-model-name" name="model_name" placeholder="Puritan Bennett 840 ventilator, made 2009">
-    </div>
-
-    <div class="field">
-      <label class="name" for="f-spec-text">Anything else you know</label>
-      <textarea id="f-spec-text" name="spec_text" placeholder="Paste the spec sheet, the label text, or what the biomed department told you."></textarea>
-      <p class="note">Whatever you leave blank stays unknown and comes back as a
-         question, never a guess.</p>
-    </div>
-
-        <button type="button" class="go-quiet" id="extract-now">Read these facts now</button>
-        <p class="note">Reads the plate without posting the offer, so you can see what
-           was understood before you commit to anything.</p>
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab" role="tab" id="tab-photo"
+                aria-controls="panel-photo" aria-selected="true">Rating plate photo</button>
+        <button type="button" class="tab" role="tab" id="tab-text"
+                aria-controls="panel-text" aria-selected="false">Spec sheet / biomed notes</button>
       </div>
 
-      <div class="plate inspector" id="inspector">
-        <h2 class="panel-head">Extracted specifications</h2>
-        <p class="note">Every value carries where it came from. A blank row is a fact
-           nobody has established, which the screening will ask about rather than guess.</p>
-        <table class="audit inspector-table">
-          <thead>
-            <tr><th scope="col">Field</th><th scope="col">Value</th><th scope="col">Provenance</th></tr>
-          </thead>
-          <tbody data-inspector-body>
-            {% for label in ("Model", "Voltage", "Frequency", "Power", "Operating temp") %}
-            <tr>
-              <td class="audit-name">{{ label }}</td>
-              <td class="audit-value is-empty">&mdash;</td>
-              <td><span class="tag">unverified</span></td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        <p class="inspector-msg" data-inspector-msg></p>
+      <div class="tab-panel" id="panel-photo" role="tabpanel" aria-labelledby="tab-photo">
+        <label class="nameplate scan">
+          <span class="scan-reticle" aria-hidden="true"></span>
+          <span class="scan-head">Drop or choose the rating plate</span>
+          <span class="scan-sub">The stamped metal plate on the rear or beside the power
+            inlet. Voltage, frequency, VA and year are read straight off it.</span>
+          <span class="scan-act">Choose a photo</span>
+          <input type="file" name="nameplate" accept="image/*">
+          <span class="scan-file" data-scan-name>No file chosen</span>
+        </label>
       </div>
+
+      <div class="tab-panel" id="panel-text" role="tabpanel" aria-labelledby="tab-text" hidden>
+        <div class="field">
+          <label class="name" for="f-spec-text">Paste what you have</label>
+          <textarea id="f-spec-text" name="spec_text" rows="9"
+                    placeholder="Puritan Bennett 840 ventilator, made 2009.&#10;100-120 V, 50/60 Hz, 400 W.&#10;Operating 10 to 40 C, up to 95% RH."></textarea>
+          <p class="note">A spec sheet, the label text, or what the biomed department
+             told you. Whatever you leave out stays unknown and comes back as a
+             question, never a guess.</p>
+        </div>
+      </div>
+
+      <div class="rowset ingest-meta">
+        <div class="field">
+          <label class="name" for="f-device-type">Device category</label>
+          <input type="text" id="f-device-type" name="device_type" list="device-types" placeholder="ventilator">
+          <p class="note">Plain words, not the model. This is what clinics search on.</p>
+        </div>
+        <div class="field">
+          <label class="name" for="f-quantity">Quantity</label>
+          <input type="text" id="f-quantity" name="quantity" value="1">
+        </div>
+        <div class="field">
+          <label class="name" for="f-expiry-date">Earliest expiry</label>
+          <input type="text" id="f-expiry-date" name="expiry_date" placeholder="2027-03-31">
+          <p class="note">Blank if nothing dated.</p>
+        </div>
+        <datalist id="device-types">
+          <option value="ventilator"></option>
+          <option value="anaesthesia machine"></option>
+          <option value="patient monitor"></option>
+          <option value="infusion pump"></option>
+          <option value="syringe pump"></option>
+          <option value="oxygen concentrator"></option>
+          <option value="defibrillator"></option>
+          <option value="ultrasound scanner"></option>
+          <option value="x-ray system"></option>
+          <option value="autoclave"></option>
+          <option value="infant incubator"></option>
+          <option value="infant warmer"></option>
+          <option value="phototherapy unit"></option>
+          <option value="suction pump"></option>
+          <option value="electrosurgical unit"></option>
+        </datalist>
+      </div>
+
+      <button type="button" class="go-quiet" id="extract-now">Read these facts now</button>
+      <p class="note">Reads the source without posting the offer, so you can see what
+         was understood before committing to anything.</p>
     </div>
+
+    <div class="plate inspector" id="inspector">
+      <h2 class="panel-head">Live extraction &amp; provenance telemetry</h2>
+      <p class="telemetry" data-telemetry>
+        <span class="dot" aria-hidden="true"></span>
+        <span data-telemetry-text>STATUS: AWAITING ARTIFACT</span>
+      </p>
+      <table class="audit inspector-table">
+        <thead>
+          <tr><th scope="col">Field</th><th scope="col">Value</th><th scope="col">Provenance</th></tr>
+        </thead>
+        <tbody data-inspector-body>
+          {% for label in ("Model", "Voltage", "Frequency", "Power", "Operating temp") %}
+          <tr>
+            <td class="audit-name">{{ label }}</td>
+            <td class="audit-value is-empty">&mdash;</td>
+            <td><span class="tag" data-source="unverified">unverified</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p class="inspector-msg" data-inspector-msg></p>
+    </div>
+  </div>
 
     <div class="plate">
       <h2 class="panel-head">Offer details</h2>
       <div class="stack">
-    <div class="field">
-      <label class="name" for="f-device-type">What kind of device is it?</label>
-      <input type="text" id="f-device-type" name="device_type" list="device-types" placeholder="ventilator">
-      <datalist id="device-types">
-        <option value="ventilator"></option>
-        <option value="anaesthesia machine"></option>
-        <option value="patient monitor"></option>
-        <option value="infusion pump"></option>
-        <option value="syringe pump"></option>
-        <option value="oxygen concentrator"></option>
-        <option value="defibrillator"></option>
-        <option value="ultrasound scanner"></option>
-        <option value="x-ray system"></option>
-        <option value="autoclave"></option>
-        <option value="infant incubator"></option>
-        <option value="infant warmer"></option>
-        <option value="phototherapy unit"></option>
-        <option value="suction pump"></option>
-        <option value="electrosurgical unit"></option>
-      </datalist>
-      <p class="note">Plain words, not the model name. This is what clinics search on.</p>
+
     </div>
 
     <div class="row">
-      <div class="field">
-        <label class="name" for="f-quantity">How many</label>
-        <input type="text" id="f-quantity" name="quantity" value="1">
+
       </div>
-      <div class="field">
-        <label class="name" for="f-expiry-date">Earliest expiry date</label>
-        <input type="text" id="f-expiry-date" name="expiry_date" placeholder="2027-03-31">
-        <p class="note">Leave blank if nothing in the consignment is dated. Sterile
-           circuits, filters, reagents and batteries usually are.</p>
+
       </div>
     </div>
 
@@ -172,7 +191,8 @@
 
         var source = document.createElement('td');
         var tag = document.createElement('span');
-        tag.className = row.known ? 'tag is-trusted' : 'tag';
+        tag.className = 'tag';
+        tag.setAttribute('data-source', row.source);
         tag.textContent = row.source;
         source.appendChild(tag);
 
@@ -184,6 +204,15 @@
     }
 
     function say(text) { if (message) message.textContent = text || ''; }
+
+    var banner = document.querySelector('[data-telemetry]');
+    var bannerText = document.querySelector('[data-telemetry-text]');
+
+    function status(state, text) {
+      if (!banner || !bannerText) return;
+      banner.className = 'telemetry' + (state ? ' is-' + state : '');
+      bannerText.textContent = text;
+    }
 
     button.addEventListener('click', function () {
       var payload = new FormData();
@@ -198,18 +227,38 @@
       });
 
       button.disabled = true;
-      say('Reading\u2026');
+      status('working', 'STATUS: READING ARTIFACT');
+      say('');
       fetch('/offer/extract', { method: 'POST', body: payload })
         .then(function (response) { return response.json(); })
         .then(function (data) {
-          render(data.rows && data.rows.length ? data.rows : blankRows());
+          var rows = data.rows && data.rows.length ? data.rows : blankRows();
+          render(rows);
+          var known = rows.filter(function (r) { return r.known; }).length;
+          status(known ? 'live' : '', known
+            ? 'STATUS: ' + known + ' FACT' + (known === 1 ? '' : 'S') + ' EXTRACTED'
+            : 'STATUS: NOTHING READ');
           say(data.message || '');
         })
         .catch(function () {
           render(blankRows());
-          say('Could not reach the reader. The offer can still be posted; the facts are read again on submit.');
+          status('', 'STATUS: READER UNREACHABLE');
+          say('The offer can still be posted; the facts are read again on submit.');
         })
         .finally(function () { button.disabled = false; });
+    });
+
+    // Tabs: one source panel visible at a time, both still posted.
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabs.forEach(function (other) {
+          var panel = document.getElementById(other.getAttribute('aria-controls'));
+          var active = other === tab;
+          other.setAttribute('aria-selected', String(active));
+          if (panel) panel.hidden = !active;
+        });
+      });
     });
 
     // Echo the chosen file name; a styled input shows nothing by itself.
@@ -217,6 +266,7 @@
       input.addEventListener('change', function () {
         var out = input.closest('.scan').querySelector('[data-scan-name]');
         if (out) out.textContent = input.files.length ? input.files[0].name : 'No file chosen';
+        if (input.files.length) status('working', 'STATUS: ARTIFACT LOADED, NOT YET READ');
       });
     });
   })();
