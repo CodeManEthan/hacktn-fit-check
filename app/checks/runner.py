@@ -77,9 +77,21 @@ def run_checks(
 
 
 def build_verdict(results: tuple[CheckResult, ...]) -> Verdict:
-    """Roll results up. One blocking failure outranks everything else."""
+    """Roll results up, in this order (design §2.1).
+
+    1. any FAIL → WONT_WORK;
+    2. else any NEEDS_INFO → NEEDS_INFO;
+    3. else any MITIGABLE → WORKS_IF;
+    4. else WORKS.
+
+    An unknown fact never reads as a pass. A NEEDS_INFO verdict still carries
+    its requirements, so what would ship with it is visible before the
+    questions are answered.
+    """
     if any(r.blocking for r in results):
         outcome = Outcome.WONT_WORK
+    elif any(r.status is CheckStatus.NEEDS_INFO for r in results):
+        outcome = Outcome.NEEDS_INFO
     elif any(r.status is CheckStatus.MITIGABLE for r in results):
         outcome = Outcome.WORKS_IF
     else:

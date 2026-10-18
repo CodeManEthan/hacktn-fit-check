@@ -22,7 +22,7 @@ from app.main import app
 from app.matching.pipeline import Candidate, Screening
 from app.web import marketplace_routes, routes
 from app.web.presenters import Advisory
-from tests.factories import device, facility
+from tests.factories import device, facility, intel
 
 CLINIC = facility(slug="test-clinic", name="Test Clinic", country="Testland",
                   latitude=0.0, longitude=0.0)
@@ -66,6 +66,16 @@ def verdict_of(outcome: Outcome, status: CheckStatus) -> Verdict:
                    questions=(result.question,) if result.question else ())
 
 
+def known_supply(monkeypatch):
+    """A supply lookup that knows the answers, so the factory device reads WORKS.
+
+    Since the rollup turned unknowns into NEEDS_INFO (§2.1), the default lookup's
+    silence on spare parts would leave the device needing info.
+    """
+    monkeypatch.setattr(marketplace_routes, "supply_lookup",
+                        lambda device_, type_, country: intel(country=country))
+
+
 def fake_screening(monkeypatch, *, ranked=(), rejected=()):
     calls = []
 
@@ -78,6 +88,7 @@ def fake_screening(monkeypatch, *, ranked=(), rejected=()):
 
 
 def test_matches_screens_with_the_supply_lookup_and_lists_known_survivors(client, monkeypatch):
+    known_supply(monkeypatch)
     request_id = a_request()
     repo.save_offer(an_offer())
     seen = []
@@ -152,7 +163,8 @@ def test_create_match_refuses_a_candidate_that_is_not_known_to_work(client, monk
     assert repo.matches_for_request(request_id) == []
 
 
-def test_create_match_proposes_a_working_candidate(client):
+def test_create_match_proposes_a_working_candidate(client, monkeypatch):
+    known_supply(monkeypatch)
     request_id = a_request()
     offer_id = repo.save_offer(an_offer())
 
