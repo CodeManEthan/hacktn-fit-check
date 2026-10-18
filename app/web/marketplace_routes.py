@@ -56,29 +56,12 @@ DEMO_CLINIC = "uganda-district"
 
 @router.get("/", response_class=HTMLResponse)
 def landing(request: Request) -> HTMLResponse:
-    """The landing workstation, with the seeded clinics as testbeds.
+    """The landing page (design §13): two doors and the operator between them.
 
-    The telemetry on each card is read from the stored profile rather than
-    written into the template, so a figure on the front page cannot drift away
-    from the figure the screening actually uses.
+    The seeded-clinic strip is gone, so the page needs no data; the role
+    cookie is read by base.html from the request.
     """
-    testbeds = [
-        {
-            "slug": f.slug,
-            "name": f.name,
-            "country": f.country,
-            "voltage": f.mains_voltage_v,
-            "frequency": f.mains_frequency_hz,
-            "outages": f.outages_per_week,
-            "temp": f.ambient_temp_max_c,
-        }
-        for f in repo.list_facilities()
-    ]
-    # The demo clinic leads the strip (§7.1); the rest keep their order.
-    testbeds.sort(key=lambda bed: bed["slug"] != DEMO_CLINIC)
-    return TEMPLATES.TemplateResponse(
-        request=request, name="landing.html", context={"testbeds": testbeds}
-    )
+    return TEMPLATES.TemplateResponse(request=request, name="landing.html", context={})
 
 
 # ---- role toggle (design §7.1) -----------------------------------------
