@@ -201,7 +201,14 @@ def offer_posted(request: Request, offer_id: int) -> HTMLResponse:
 
 @router.get("/clinic", response_class=HTMLResponse)
 def facility_form(request: Request) -> HTMLResponse:
-    return TEMPLATES.TemplateResponse(request=request, name="facility_form.html", context={})
+    """The clinic's profile form; country is a list so the grid lookup never misses."""
+    # Imported here, not at the top: this handler is the only reader ([B14], design §13).
+    from app.reference.country_power import known_countries
+
+    return TEMPLATES.TemplateResponse(
+        request=request, name="facility_form.html",
+        context={"countries": known_countries()},
+    )
 
 
 @router.post("/clinic", response_class=HTMLResponse)
@@ -245,7 +252,8 @@ async def facility_submit(request: Request) -> HTMLResponse:
     except (FormError, RepositoryError) as exc:
         return _error(request, str(exc), back="/clinic")
 
-    return RedirectResponse(url="/request", status_code=303)
+    # A registered clinic goes straight to the list upload (design §13, [B14]).
+    return RedirectResponse(url="/request/upload", status_code=303)
 
 
 # ---- requests and matching --------------------------------------------

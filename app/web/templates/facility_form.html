@@ -18,7 +18,12 @@
       </div>
       <div class="field">
         <label class="name" for="f-country">Country</label>
-        <input type="text" id="f-country" name="country" placeholder="Uganda">
+        <select id="f-country" name="country">
+          <option value="" disabled selected>Choose a country</option>
+          {% for name in countries %}
+          <option value="{{ name }}">{{ name }}</option>
+          {% endfor %}
+        </select>
         <p class="note">Sets grid voltage and frequency automatically. You can correct them.</p>
       </div>
     </div>
@@ -93,12 +98,12 @@
     <div class="rowset" style="margin-top: var(--s4)">
       <div class="field">
         <label class="name" for="f-staff-languages">Languages staff read</label>
-        <input type="text" id="f-staff-languages" name="staff_languages" placeholder="English, Luganda">
+        <input type="text" id="f-staff-languages" name="staff_languages">
         <p class="note">Comma separated. Checks the manual is readable.</p>
       </div>
       <div class="field">
         <label class="name" for="f-notes">Anything else worth knowing</label>
-        <textarea id="f-notes" name="notes" rows="3" placeholder="One generator shared across theatre and maternity. Nearest biomedical technician is in Kampala."></textarea>
+        <textarea id="f-notes" name="notes" rows="3"></textarea>
       </div>
     </div>
   </div>
