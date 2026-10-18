@@ -41,7 +41,9 @@ def build_signer_and_config(settings: Settings) -> tuple[dict[str, Any], Any | N
 
     The one place the chat client and the Language client get credentials.
     Under `api_key` the config comes from the key file and there is no
-    separate signer. Raises ConfigError for a mode it cannot use.
+    separate signer. Under `instance_principal` the config is only the region
+    and the signer is the instance's own; OCI_COMPARTMENT_ID must be set.
+    Raises ConfigError for a mode it cannot use or a missing compartment.
     """
     mode = (settings.oci_auth or OCI_AUTH_API_KEY).strip().lower()
     if mode == OCI_AUTH_API_KEY:
@@ -51,7 +53,18 @@ def build_signer_and_config(settings: Settings) -> tuple[dict[str, Any], Any | N
         oci.config.validate_config(config)
         return config, None
     if mode == OCI_AUTH_INSTANCE_PRINCIPAL:
-        raise ConfigError("instance principals not yet wired")
+        # No config file on the VM, so no tenancy to fall back on: the
+        # compartment must be named. Checked before the signer is built,
+        # because building it asks the instance metadata service.
+        if not (settings.compartment_id or "").strip():
+            raise ConfigError(
+                "OCI_AUTH=instance_principal needs OCI_COMPARTMENT_ID: there is no "
+                "config file to read a tenancy from."
+            )
+        import oci
+
+        signer = oci.auth.signers.InstancePrincipalsSecurityTokenSigner()
+        return {"region": settings.region}, signer
     raise ConfigError(
         f"OCI_AUTH={settings.oci_auth!r} is not one of {', '.join(OCI_AUTH_MODES)}."
     )
@@ -80,6 +93,8 @@ class GenAiClient:
                 timeout=self._settings.timeout,
                 **extra,
             )
+        except ConfigError as exc:
+            raise GenAiError(f"OCI is not configured: {exc}") from exc
         except Exception as exc:  # noqa: BLE001 - surfaced to the user as one message
             raise GenAiError(
                 "Could not reach OCI Generative AI. Check ~/.oci/config and that "
