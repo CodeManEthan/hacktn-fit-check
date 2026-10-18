@@ -1,0 +1,1132 @@
+DeVilbiss® Compressor/Nebulizer Instruction Guide
+Pulmo-Aide® Models 5650D, 5650I, 5650H, 5650P & 5650C
+PulmoMate® Models 4650D, 46502, 4650I, 4650AP, 4650L, 4650LD & 4650C
+Pulmo-Aide® LT Models 3650D, 3650I, 3650P & 3650T
+CAUTION– Federal (U.S.A.) law restricts this device to sale by, or on the order of a physician.
+Made in U.S.A.
+Models 3650D, 4650D, 46502, 5650D, 5650H, 4650AP, 4650L, 4650LD & 3650T U.L. Listed
+Models 4650C & 5650C CSA Listed
+
+
+DeVilbiss® Compresor/Nebulizador Guía de Instrucciones
+Pulmo-Aide® Modelos 5650D, 5650I, 5650H, 5650P y 5650C
+PulmoMate® Modelos 4650D, 46502, 4650I, 4650AP, 4650L, 4650LD y 4650C
+Pulmo-Aide® LT Modelos 3650D, 3650I, 3650P y 3650T
+PRECAUCION– La ley federal (EE.UU.) restringe la venta de este aparato para ser realizada
+Hecho en EE.UU. por, o bajo prescripción de, un médico.
+Modelos 3650D, 4650D, 46502, 5650D, 5650H, 4650AP, 4650L, 4650LD y 3650T Calificado U.L.
+Modelos 4650C y 5650C Calificado CSA
+
+
+Guide d’Instructions du Compresseur/Nébuliseur DeVilbiss®
+Pulmo-Aide® Modèles 5650D, 5650I, 5650H, 5650P et 5650C
+PulmoMate® Modèles 4650D, 46502, 4650I, 4650AP, 4650L, 4650LD et 4650C
+Pulmo-Aide® LT Modèles 3650D, 3650I, 3650P et 3650T
+ATTENTION– La loi fédérale (États-Unis) limite la vente de ce dispositif par ou sur ordon-
+           nance d’un médecin.
+Fabriqué aux États-Unis.
+Modèles 3650D, 4650D, 46502, 5650D, 5650H, 4650AP, 4650L,
+        4650LD et 3650T Homologué U.L.
+Modèles 4650C et 5650C Homologué CSA
+Ta b l e     of     Contents                                                                                  3
+
+
+
+ENGLISH
+     Important Safeguards ...................................................................... 4
+     Model 5650H & 4650D Grounding Instructions .................................... 5
+     Introduction .................................................................................. 6
+     Important Parts of Your DeVilbiss Compressor ..................................... 7
+     Important Parts of Your Disposable Nebulizer...................................... 8
+     Important Parts of Your Reusable Nebulizer ........................................ 8
+     How to Operate Your Compressor....................................................... 8
+     Nebulizer Cleaning .......................................................................... 10
+     Compressor Cleaning ....................................................................... 12
+     Filter Change ................................................................................. 12
+     Maintenance .................................................................................. 12
+     Specifications ................................................................................ 13
+     Warranty........................................................................................ 14
+
+
+ESPAÑOL
+     Precauciones Importantes ................................................................ 16
+     Instrucciones de Puesta a Tierra Para Los Modelos 5650H Y 4650D......... 17
+     Introducción .................................................................................. 18
+     Partes Importantes de Su Compresor DeVilbiss .................................... 19
+     Partes Importantes de Su Nebulizador Desechable ............................... 20
+     Partes Importantes de Su Nebulizador Reutilizable............................... 20
+     Cómo Operar Su Compresor............................................................... 20
+     Limpieza del Nebulizador ................................................................. 22
+     Limpieza del Compresor ................................................................... 23
+     Cambio de Filtro ............................................................................. 24
+     Mantenimiento ............................................................................... 24
+     Especificaciones ............................................................................. 25
+     Garantía ........................................................................................ 26
+
+
+FRANÇAIS
+     Mises en Garde Importantes ............................................................. 28
+     Instructions de mise à la terre pour les modèles 5650H et 4650D .......... 29
+     Introduction .................................................................................. 30
+     Parties importantes de votre compresseur DeVilbiss ............................. 31
+     Pièces importantes de votre nébuliseur jetable ................................... 32
+     Pièces importantes de votre nébuliseur réutilisable ............................. 32
+     Comment faire fonctionner le nébuliseur ............................................ 32
+     Nettoyage du nébuliseur .................................................................. 34
+     Nettoyage du compresseur ............................................................... 35
+     Changement du filtre....................................................................... 36
+     Spécifications ................................................................................ 37
+     Garantie ........................................................................................ 38
+
+
+
+
+                                                                                                            A-650
+4                                                 Important             Safeguards             Important              Safeguards                                                               5
+
+
+
+
+    IMPORTANT SAFEGUARDS                                                                          10. Do not use in an oxygen enriched environment.
+                                                                                                  11. Connect this product (for grounded models) to a properly-grounded outlet only.
+    When using electrical products, especially when children are present, basic safety pre-           See Grounding Instructions.
+    cautions should always be followed. Read all instructions before using. Important          NOTE– This unit employs a thermal limiter that will shut off the entire product should
+    information is highlighted by these terms:                                                       the motor overheat.
+                                                                                                     5650–The unit will restart when the motor cools to an acceptable level.
+    DANGER– Urgent safety information for hazards that will cause serious injury or
+                                                                                                     4650/3650–Contact your qualified Sunrise provider for a replacement.
+             death.
+    WARNING–Important safety information for hazards that might cause serious injury.          If repair or replacement of the cord or plug is necessary, contact your qualified
+    CAUTION– Information for preventing damage to the product.                                 Sunrise provider.
+    NOTE–    Information to which you should pay special attention.
+                                                                                               This appliance has a polarized plug (one blade is wider than the other). As a safety
+                                                                                               feature, this plug will fit in a polarized outlet only one way. If the plug does not fit
+    READ ALL INSTRUCTIONS BEFORE USING.                                                        fully in the outlet, reverse the plug. If it still does not fit, contact a qualified electri-
+                                           DANGER                                              cian. Do not attempt to defeat this safety feature.
+         To reduce the risk of electrocution:
+        1. Always unplug this product immediately after using.                                 MODEL 5650H & 4650D GROUNDING INSTRUCTIONS
+        2. Do not use while bathing.                                                           This product should be grounded. In the event of an electrical short circuit, grounding
+        3. Do not place or store product where it can fall or be pulled into a tub or sink.    reduces the risk of electric shock by providing an escape wire for the electric current.
+        4. Do not place in or drop into water or other liquid.                                 This product is equipped with a cord having a grounding wire with a grounding plug.
+        5. Do not reach for a product that has fallen into water. Unplug immediately.          The plug must be plugged into an outlet that is properly installed and grounded.
+
+                                                                                                                                        DANGER
+         To reduce the risk of burns, electrocution, fire or injury to persons:                     Improper use of the grounding plug can result in the risk of electric shock.
+        1. A product should never be left unattended when plugged in.
+                                                                                               If repair or replacement of the cord or plug is necessary, contact your qualified Sunrise
+        2. Close supervision is necessary when this product is used by, on, or near children
+                                                                                               provider.
+           or invalids.
+        3. Use this product only for its intended use as described in this guide. Do not use      1. This unit is for use on a nominal 115V circuit and has a grounding plug. A tem-
+           attachments not recommended by the manufacturer.                                          porary adapter, which looks like the adapter illustrated in Figures B and C, may be
+        4. Never operate this product if:                                                            used to connect this plug to a 2-pole receptacle (as shown in Figure B) if a prop-
+           a. It has a damaged power cord or plug.                                                   erly grounded outlet is not available. The temporary adapter should be used only
+           b. It is not working properly.                                                            until a qualified electrician can install a properly grounded outlet (Figure A). The
+           c. It has been dropped or damaged.                                                        green colored rigid ear, lug, and the like extending from the adapter must be
+           d. It has been dropped into water.                                                        connected to a permanent ground such as a properly grounded outlet box cover.
+           Return the product to an authorized Sunrise service center for examination and            Whenever the adapter is used, it must be held in place by the metal screw.
+           repair.
+        5. Keep the power cord away from heated surfaces.
+        6. Never block the air openings of the product or place it on a soft surface, such
+           as a bed or couch, where the air openings may be blocked. Keep the air open-
+           ings free of lint, hair, and the like.
+        7. Never use while drowsy or asleep.
+        8. Never drop or insert any object into any opening or hose.
+        9. Do not use outdoors. This product is for household use only.
+
+
+A-650                                                                                                                                                                                      A-650
+6                                                      Important         Safeguards             Important           Parts       of    Yo u r     Compressor                                     7
+
+
+
+        2. If it is necessary to use an extension cord, use only a 3-wire extension cord        IMPORTANT PARTS OF YOUR DEVILBISS                        Compressor Figures
+           that has a three-blade grounding plug, and a 3-slot receptacle that will accept      COMPRESSOR
+           the plug on the unit. If power cord is damaged do not use unit, and contact a        (FIGURES A, B & C)
+           qualified Sunrise Medical provider.                                                                                                                    2
+                                                                                                   1. Storage compartment                                                             3
+        SAVE THESE INSTRUCTIONS                                                                    2. Storage compartment door with operating
+                                                                                                      instructions                                        8                               4
+                                                                                                   3. Power switch                                        1
+                                 Grounded Outlet Box                                                                                                                                  5
+                Grounded                                                                           4. Filter cap
+                                                       Adapter
+                Outlet                                                                             5. Air-outlet connector                                                       7
+                                                                                                                                                                            6
+                                                                                                   6. Carrying handle
+                                                                                                   7. Power cord storage                                 Figure A– 3650
+
+                                                       Tab for
+                                                                                                   8. Nebulizer holder
+                                                       Grounding Screw                          NOTE– Models 4650D & 5650H are equipped with a
+             Grounding Pin
+                             A                    B              C                                    three-prong plug and must be grounded. All other            2
+                                                                                                                                                                                      8
+                                                                                                      models are equipped with a two-prong plug.
+                                                                                                                                                                                       7
+
+    INTRODUCTION                                                                                                                                              3                           4
+                                                                                                                                                          1
+    Your doctor has prescribed a liquid medication to treat your respiratory condition. To                                                                                            5
+    best utilize this liquid medication, he has prescribed a DeVilbiss brand
+                                                                                                                                                                                  6
+    compressor/nebulizer. Your DeVilbiss compressor/nebulizer works to convert the med-
+    ication to a high-quality mist of fine particles that penetrates deep into the lungs.                                                                Figure B– 4650
+
+    Be sure that you read and understand the information in this instruction guide. By fol-
+                                                                                                                                                                          6 (on back)
+    lowing these simple instructions and the advice of your physician, your compressor will
+    become an effective addition to your therapeutic routine.                                                                                                 8
+                                                                                                                                                              1
+                                                                                                                                                                                          7
+                                                                                                                                                          2                               5
+    Statement of Intended Use
+                                                                                                                                                                                          3
+    The DeVilbiss compressor/nebulizer is an AC powered air compressor that provides a
+    source of compressed air for home health care use. The product is used in conjunction
+                                                                                                                                                                      4
+    with a jet (pneumatic) nebulizer to convert liquid medication into an aerosol form
+    with particles smaller than 5 microns diameter for inhalation into the patient's respira-                                                            Figure C– 5650
+    tory tract for the treatment of respiratory disorders.
+
+    The target population for this device consists of both adult and pediatric patients suf-
+    fering from, but not limited to asthma, cystic fibrosis, and chronic obstructive pul-
+    monary disease. Further, additional applications for aerosolized medication are con-
+    stantly under investigation and this device may be deemed suitable for such applica-
+    tions as prescribed.
+
+    The intended environment for use of the product is in the patient's home on the order
+    of a physician.
+
+
+A-650                                                                                                                                                                                         A-650
+8                     Important              Parts       of     Yo u r        Nebuliz er   How      to    Operate          Yo u r    Compressor                  9
+
+
+
+    IMPORTANT PARTS OF YOUR DISPOSABLE                                                                            DANGER
+    NEBULIZER                                                                                  DeVilbiss compressor/nebulizer must be operat-
+                                                                      1          2
+        1. Mouthpiece                                                                          ed on the specified power source to avoid risk
+                                                                                       3
+        2. T-piece                                                                             of electric shock and damage to the compressor.
+        3. Cap                                                                                4. Wash hands.
+        4. Medication Cup                                                                     5. Connect one end of the nebulizer tubing to the
+                                                                                       4
+        5. Nebulizer Air-Inlet Connector                                         6               compressor air-outlet connector (Fig. 3).
+        6. Baffle                                                 7                    5
+                                                                                           NOTE– During high-humidity weather conditions, con-
+        7. Tubing                                               Disposable Nebulizer
+                                                                                                 densation (water build up) can occur in the        Figure 3
+    Nebulizer parts are not sold separately. Additional neb-                                     internal hose of the compressor. It is recom-
+    ulizers (part #4650D-620) are available through your                  1
+                                                                                                 mended that the compressor be turned on and
+    Sunrise provider.                                                                            allowed to run for two (2) minutes before the
+    NOTE– Nebulizer received may not be the one shown.
+                                                                          2                      tubing is attached to the air-outlet connector.
+                                                                          3                   6. Assemble clean nebulizer parts by placing baffle
+    IMPORTANT PARTS OF YOUR REUSABLE                                                             down in medication cup. Holding cup station-
+    NEBULIZER                                                             4                      ary, screw on nebulizer cap. Add prescribed
+        1. Mouthpiece                                                                            medication through the opening on cap using a
+                                                                          5
+        2. Cap                                                                                   medicine dropper or pre-measured dose contain-
+        3. Baffle                                                         6                      er (Fig. 4).
+                                                                                                                                                    Figure 4
+        4. Medication Cup                                                                     7. Assemble mouthpiece and t-piece (if applicable)
+                                                                Reusable Nebulizer
+        5. Nebulizer Air-Inlet Connector                                                         and insert into the top of the nebulizer cap
+        6. Interrupter Adapter (if applicable)                                                   (Fig. 5). If using an aerosol mask, insert the
+    Nebulizer parts are not sold separately. Additional neb-                                     bottom part of the mask directly into the top of
+    ulizers (Part #s 800D/800C/800G) are available through                                       the nebulizer cap.
+    your Sunrise provider.                                                                    8. Attach tubing to nebulizer air-inlet connector
+                                                                                                 (Fig. 6).
+    NOTE– Nebulizer received may not be the one shown.
+
+    HOW TO OPERATE YOUR COMPRESSOR
+    NOTE– Before initial operation, your nebulizer should be                                                                                        Figure 5
+          cleaned following cleaning instructions, or as rec-
+          ommended by your physician or Sunrise provider.       Figure 1
+
+        1. Place compressor on a level, sturdy surface so
+           that the controls can be easily reached when
+           seated.
+        2. Open door to storage compartment (Fig. 1).
+        3. Make sure the power switch is in the “Off” posi-
+           tion (Fig. 2). Unwrap power cord and plug
+           power cord into an appropriate wall outlet
+           (refer to Specifications). Plug models 5650H &
+           4650D into a grounded wall outlet (refer to                                                                                              Figure 6
+           Grounding Instructions).                             Figure 2
+
+A-650                                                                                                                                                          A-650
+10                                                                       Cleaning   Cleaning                                                                                   11
+
+
+
+        9. Press the power switch “On” to start the com-                            Disinfect Daily:
+            pressor.                                                                   1. Using a clean container or bowl, soak items in three parts hot water to one
+        10. Begin treatment by placing the mouthpiece                                      part white vinegar for 30 minutes (Fig. 9) OR use a medical bacterial-germici-
+            between teeth. With mouth closed, inhale                                       dal disinfectant available through your provider. For reusable nebulizer only,
+            deeply and slowly through mouth as aerosol                                     clean daily in dishwasher using top shelf. Be sure to follow manufacturer's
+            begins to flow, then exhale slowly through the                                 instructions carefully.
+            mouthpiece (Fig. 7). If treatment needs to be                              2. With clean hands, remove items from disinfectant solution, rinse under hot tap
+            interrupted, simply press power switch “Off”.                                  water, and air dry on a clean paper towel. Store in a zip-lock bag.
+   NOTE– Some physicians recommend a “clearing breath”                              NOTE– Do not towel dry nebulizer parts; this could cause contamination.
+         after every five to seven treatment breaths.         Figure 7
+                                                                                    CAUTION– The DeVilbiss Reusable Nebulizer is dishwasher safe, but do not place any
+         Remove mouthpiece from mouth and hold                                               disposable nebulizer parts in an automatic dishwasher; doing so could
+         breath for at least five seconds (ten is better),                                   cause damage.
+         then exhale slowly.
+        11. If an aerosol mask is used, place the mask over
+                                                                                        To prevent possible risk of infection from contaminated cleaning solutions,
+            mouth and nose (Fig. 8). As aerosol begins to
+                                                                                        always prepare fresh solution for each cleaning cycle and discard solution
+            flow, inhale deeply and slowly through mouth,
+                                                                                        after each use.
+            then exhale slowly.
+                                                                                       3. Keep the outer surface of the tubing dust-free by wiping regularly. Nebulizer
+   NEBULIZER CLEANING                                                                     tubing does not have to be washed because only filtered air passes through it.
+   All parts of the nebulizer, except tubing, should be                             NOTE– The DeVilbiss Disposable Nebulizer will last at least 15 days and possibly longer,
+                                                              Figure 8
+   cleaned according to the following instructions. Your                                  depending on usage. Proper cleaning will also help extend the life of the nebu-
+   physician and/or Sunrise provider may specify a certain                                lizer. Because it is disposable, we recommend that an extra nebulizer be kept on
+   cleaning procedure. If so, follow their recommendations.                               hand at all times. Sunrise also manufactures the DeVilbiss Reusable Nebulizer
+                                                                                          that is dishwasher safe and may be cleaned and reused for up to one year.
+
+         To prevent possible risk of infection from cont-
+         aminated medication, cleaning of the nebulizer
+         is recommended after each aerosol treatment.
+         Disinfecting is recommended once a day.
+   Clean After Every Use:
+      1. With power switch in the “Off” position,             Figure 9
+         unplug power cord from wall outlet.
+      2. Disconnect tubing from the air-inlet connector
+         and set aside.
+      3. Disassemble mouthpiece or mask from cap.
+         Open nebulizer by turning cap counterclockwise
+         and removing baffle.
+      4. Wash all items, except tubing, in a hot
+         water/dishwashing detergent solution. Rinse
+         under hot tap water for 30 seconds to remove
+         detergent residue. Allow to air dry.
+
+
+
+A-650                                                                                                                                                                       A-650
+12                                                                         Cleaning           Specifications                                                                                            13
+
+
+
+   COMPRESSOR CLEANING                                                                        SPECIFICATIONS
+        1. With power switch in the "Off" position, unplug power cord from wall outlet.
+                                                                                              Size 3650 Series................................................................7.7" W x 4.1" H x 13" D
+        2. Wipe outside of the compressor cabinet with a clean damp cloth every few days                                                                                   (19.5 cm x 10 cm x 33 cm)
+           to keep dust-free.                                                                      4650 Series ..................................................................7" W x 3.8" H x 13" D
+   CAUTION– Do not submerge in water; doing so will result in compressor damage.                                                                                              (18 cm x 10 cm x 33 cm)
+                                                                                                   5650 Series ...........................................................10.1" W x 10.5" H x 6.5" D
+   FILTER CHANGE                                                                                                                                                              (26 cm x 27 cm x 17 cm)
+        1. Filter should be changed every 6 months or sooner if filter turns completely       Weight 3650 Series.....................................................................5.4 lbs. (2.45 kg)
+           gray in color.                                                                             4650 Series.....................................................................5.3 lbs. (2.40 kg)
+        2. Remove filter cap by grasping it firmly and pulling out of the unit                        5650 Series ......................................................................7.1 lbs. (3.2 kg)
+                                                                                              Electrical
+           (Figs. A, B or C).
+                                                                                              Requirements 3650D & 3650T ...........................................2.3 amps, 115 VAC 60 Hz
+        3. Remove dirty filter with fingers and discard.
+                                                                                                             3650I ........................................................1.4 amps, 230 VAC 50 Hz
+        4. Replace with a new DeVilbiss filter (part #5650D-602). Additional filters should                  3650P........................................................1.4 amps, 230 VAC 60 Hz
+           be purchased from your Sunrise provider.                                                          4650D, 46502, 4650AP, 4650L, 4650LD & 4650C ....2.5 amps, 115 VAC 60Hz
+        5. Push filter cap with new filter into position.                                                    4650I.............................................................1.4 amps, 230 VAC 50 Hz
+   CAUTION– Reusing filter or substituting any other material such as cotton for a                           5650D, 5650H & 5650C ..................................1.3 amps, 115VAC 60Hz
+            DeVilbiss air-inlet filter will result in compressor damage.                                     5650I ..........................................................0.8 amps, 230VAC 50Hz
+                                                                                                             5650P .....................................................0.8 amps, 230VAC 50/60Hz
+   NOTE– An extra filter is packaged with the 4650 & 5650 series units.                       Sound Level 3650 Series ...........................................................................58 dBA
+                                                                                                           4650 Series............................................................................53 dBA
+   MAINTENANCE                                                                                             5650 Series............................................................................51 dBA
+   All maintenance must be performed by a qualified Sunrise provider or authorized ser-       Power Consumption 3650D & 3650T..........................................140 watts maximum
+   vice center.                                                                                                      3650I & 3650P ..........................................160 watts maximum
+                                          DANGER                                                                     4650D, 46502, 4650AP, 4650L, 4650LD & 4650C .....140 watts max.
+                                                                                                                     4650I.......................................................160 watts maximum
+         Electric shock hazard. Do not remove compressor cabinet. All disassembly and
+                                                                                                                     5650D, 5650H & 5650C ................................90 watts maximum
+         maintenance must be done by a qualified Sunrise provider.                                                   5650I & 5650P ..........................................100 watts maximum
+                                                                                              Max. Compressor
+                                                                                              Pressure 3650 & 4650 series......................................................35 psig or greater*
+                                                                                                        5650 series.................................................................30 psig or greater*
+                                                                                              Compressor Free Air Flow (3650 & 4650)......................................8 lpm or greater*
+                                                                                                                             (5650).................................................9 lpm or greater*
+                                                                                              Nebulizer Operating Pressure all models ................................................11-16 psig
+                                                                                              Nebulizer Liter Flow all models.................................................................5-7 lpm
+                                                                                              Nebulizer Capacity all models .................................................................6 ml (cc)
+                                                                                              Nebulizer Nebulization Rate all models .......................................0.15 ml/min or greater
+                                                                                              MMAD all models.....................................................................Less than 5 microns
+                                                                                              *Conditions may vary based on altitude above sea level, barometric pressure changes.
+
+
+
+
+A-650                                                                                                                                                                                                  A-650
+14                                                                         Wa r r a n t y
+
+
+   FIVE-YEAR LIMITED WARRANTY ON COMPRESSOR PARTS
+   All DeVilbiss Compressor models are warranted to be free from defective workmanship
+   and material for a period of five years from the date of purchase. Any defective part(s)
+   will be repaired or replaced at Sunrise’s option if the unit has not been tampered with
+   or used improperly during that period. Make certain that any malfunction is not due to
+   inadequate cleaning or failure to follow the instructions. If repair is necessary, contact
+   your authorized Sunrise provider or Sunrise Service Department at 800-333-4000 (814-
+   443-4881) (Canada 800-263-3390 or 905-660-2459) for instructions. NOTE— This war-
+   ranty does not cover providing a loaner compressor, compensating for costs incurred in
+   compressor rental while said unit is under repair, or costs for labor incurred in repair-
+   ing or replacing defective part(s).
+
+   THERE IS NO OTHER EXPRESS WARRANTY. IMPLIED WARRANTIES, INCLUDING THOSE OF
+   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE LIMITED TO THE
+   DURATION OF THE EXPRESS LIMITED WARRANTY AND TO THE EXTENT PERMITTED BY LAW
+   ANY AND ALL IMPLIED WARRANTIES ARE EXCLUDED. THIS IS THE EXCLUSIVE REMEDY
+   AND LIABILITY FOR CONSEQUENTIAL AND INCIDENTAL DAMAGES UNDER ANY AND ALL
+   WARRANTIES ARE EXCLUDED TO THE EXTENT EXCLUSION IS PERMITTED BY LAW. SOME
+   STATES DO NOT ALLOW LIMITATIONS ON HOW LONG AN IMPLIED WARRANTY LASTS, OR
+   THE LIMITATION OR EXCLUSION OF CONSEQUENTIAL OR INCIDENTAL DAMAGES, SO THE
+   ABOVE LIMITATION OR EXCLUSION MAY NOT APPLY TO YOU.
+
+   This warranty gives you specific legal rights, and you may also have other rights which
+   vary from state to state.
+
+   MANUFACTURER'S NOTE
+   Thank you for choosing a DeVilbiss compressor/nebulizer. We want you to be a satis-
+   fied customer. If you have any questions or comments, please send them to our
+   address on the back of this manual.
+
+
+
+     FOR SERVICE CALL YOUR AUTHORIZED SUNRISE PROVIDER:
+
+      ____________________________________________________
+      ____________________________________________________
+      ____________________________________________________
+     Phone ___________________________________________________
+     Purchase Date _____________________________________________
+     Serial # __________________________________________________
+
+
+
+
+A-650
+16                                      Precauciones               Importantes              Precauciones               Importantes                                                     17
+
+
+
+                                                                                               7. Nunca lo use cuando esté somnoliento o adormecido.
+   PRECAUCIONES IMPORTANTES                                                                    8. Nunca deje caer ni introduzca un objeto en ninguna abertura o manguera del
+   Cuando use productos eléctricos, especialmente cuando hay niños presentes, siempre              producto.
+   deben tomarse las precauciones básicas de seguridad. Lea todas las instrucciones antes      9. No lo use en exteriores. Este producto es para usarse solamente en el hogar.
+   de usar el aparato. Se enfatiza la información importante por medio de estos términos:      10. No lo use en un ambiente enriquecido de oxígeno.
+                                                                                               11. Conecte este producto (para los modelos a tierra) a una toma de corriente pues-
+   PELIGRO–     Información de seguridad urgente que involucra riesgos que puedan                  ta a tierra apropiadamente. Vea las Instrucciones de Puesta a Tierra.
+                causar lesiones serias o incluso la muerte.
+                                                                                            NOTA– La unidad emplea un limitador térmico que interrumpirá la corriente a toda la
+   ADVERTENCIA– Información de seguridad importante para riesgos que pudieran causar
+                                                                                                  unidad en caso de sobrecalentarse el motor.
+                lesiones serias.
+                                                                                                  5650– La unidad se pondrá en funcionamiento nuevamente cuando el motor se
+   PRECAUCION– Información para evitar daño al producto.
+                                                                                                  enfríe a un nivel aceptable.
+   NOTA–        Información a la que debe prestar atención especial.
+                                                                                                  4650/3650– Póngase en contacto con el proveedor calificado de Sunrise para
+   LEA TODAS LAS INSTRUCCIONES ANTES DE USARLO.                                                   reemplazar alguna pieza.
+
+                                         PELIGRO                                            Si es necesario reparar o reemplazar el cable o el enchufe, póngase en contacto con su
+         Para reducir el riesgo de electrocutación:                                         proveedor de Sunrise autorizado.
+        1. Siempre desconecte este producto inmediatamente después de usarlo.               Este aparato lleva un enchufe polarizado (una clavija es más ancha que la otra). Como
+        2. No lo use cuando se bañe.                                                        medida de seguridad, este enchufe podrá entrar en un tomacorriente polarizado en una
+        3. No coloque ni guarde el producto donde se pueda caer a la                        sola posición. Si no logra introducir el enchufe completamente en el tomacorriente,
+           bañera o al lavabo.                                                              déle la vuelta. Si continúa sin entrar, póngase en contacto con un electricista cualifi-
+        4. No lo ponga ni lo deje caer en agua o en otro líquido.                           cado. No intente alterar esta medida de seguridad.
+        5. No toque el producto que cayó en el agua. Desconéctelo
+           inmediatamente.                                                                  INSTRUCCIONES DE PUESTA A TIERRA PARA LOS MODELOS 5650H Y 4650D
+                                                                                            Este producto deberá estar a tierra. En caso de un cortocircuito eléctrico, la puesta a
+                                         ADVERTENCIA                                        tierra reduce el riesgo de choque eléctrico al proveer un alambre de escape para la cor-
+         Para reducir el riesgo de quemaduras, electrocutación, incendio,                   riente eléctrica. Este producto está equipado con un cordón eléctrico que tiene un
+         o lesiones a personas:                                                             alambre a tierra con una clavija para puesta a tierra. La clavija deberá estar conectada
+        1. Nunca se debe dejar desatendido un producto cuando                               a una toma de corriente que esté instalada y puesta a tierra apropiadamente.
+            esté conectado.
+        2. Es necesario mantener una supervisión cercana cuando se use este producto con
+                                                                                                                                  PELIGRO
+                                                                                                El uso inapropiado del enchufe a tierra puede traer como resultado el riesgo
+           o cerca de niños o inválidos.
+                                                                                                de choque eléctrico.
+        3. Utilice este producto exclusivamente para lo que fue hecho, tal como se
+           describe en la guía. No use aditamentos que no recomiende el fabricante.         Si es necesaria la reparación o reemplazo del cordón eléctrico, haga contacto con su
+        4. Nunca opere este producto si:                                                    proveedor calificado de Sunrise.
+           a) Tiene el cordón o el enchufe deteriorado.                                         1. Esta unidad es para uso en un circuito nominal de 115V y tiene un enchufe a
+           b) No funciona apropiadamente.                                                          tierra. Se puede utilizar un adaptador temporal, similar al que se muestra en las
+           c) Se ha caído o descompuesto.                                                          Figuras B y C, para conectar este enchufe en un tomacorriente bipolar (como se
+           d) Se ha caído en el agua.                                                              muestra en la Figura B) si no se encuentra disponible un tomacorriente puesto
+           Regrese el producto a un centro de servicio autorizado de Sunrise para ser              a tierra debidamente. El adaptador temporal debe usarse solamente hasta que
+           examinado y reparado.                                                                   un electricista calificado pueda instalar un tomacorriente puesto a tierra
+        5. Mantenga el cordón lejos de superficies calientes.                                      debidamente (Figura A). La aleta, el borde rígido de color verde y similares que
+        6. Nunca bloquee las aberturas de aire del producto ni lo ponga en una superficie          provienen del adaptador deben conectarse a una puesta a tierra permanente tal
+           blanda, como una cama o sofá, donde se puedan bloquear las entradas de aire.            como una cubierta de tomacorriente debidamente puesta a tierra. Cuando se use
+           Mantenga las entradas de aire sin pelusa, pelo y otros objetos similares.               el adaprador debe mantenerse en su lugar con un tornillo metálico.
+A-650                                                                                                                                                                              A-650
+18                                                 Precauciones                   Importantes   Partes       Importantes                                                                    19
+
+
+
+        2. Si es necesario utilizar una extensión, use solamente una extensión con tres         PARTES IMPORTANTES DE SU COMPRESOR                    Figuras de Compresor
+           conductores que tiene un enchufe a tierra de tres puntas y un tomacorriente de       DEVILBISS
+           tres ranuras en el que podrá enchufarse la unidad. Si el cable de energía se         (Figuras A, B y C)
+           encuentra dañado no use la unidad, póngase en contacto con el proveedor cali-                                                                       2
+                                                                                                   1. Compartimiento para guardar
+           ficado de Sunrise.                                                                                                                                                      3
+                                                                                                   2. Puerta del compartimiento para guardar con
+                                                                                                      instrucciones de operación
+   GUARDE ESTAS INSTRUCCIONES                                                                      3. Interruptor de corriente
+                                                                                                                                                       8
+                                                                                                                                                       1
+                                                                                                                                                                                       4
+
+                                                                                                   4. Tapa del filtro                                                              5
+                   Receptáculo de la Toma Eléctrica Conectada a Tierra
+              Toma eléctrica                                                                       5. Conector de salida de aire                                               7
+                                                              Adaptor
+              conectada a
+                                                                                                   6. Mango de transporte                                                  6
+              tierra
+                                                                                                   7. Depósito para cordón eléctrico                  Figura A– 3650
+                                                                                                   8. Soporte del nebulizador
+                                                              Aleta para el
+                                                                                                NOTA– Los modelos 4650D y 5650H están equipados
+            Varilla a tierra
+                                                              tornillo a tierra                       con un enchufe de tres clavijas y deben ser              2
+                                                                         C                                                                                                         8
+                               A                    B                                                 puestos a tierra. Todos otros están equipados
+                                                                                                                                                                                    7
+                                                                                                      con un enchufe de dos clavijas.
+                                                                                                                                                           3                           4
+                                                                                                                                                       1
+   INTRODUCCIÓN                                                                                                                                                                    5
+   Su médico le ha prescrito un medicamento líquido para el tratamiento de su estado
+                                                                                                                                                                               6
+   respiratorio. Para utilizar de la mejor manera el medicamento líquido, ha prescrito un
+   compresor/ nebulizador DeVilbiss. El compresor/nebulizador DeVilbiss funciona para                                                                 Figura B– 4650
+   convertir el medicamento en una neblina de alta calidad de finas partículas que pene-
+   tran dentro de los pulmones.                                                                                                                                        6
+
+   Asegúrese de leer y entender la información en esta guía de instrucciones. Al seguir                                                                    8
+                                                                                                                                                           1
+   estas sencillas instrucciones y el consejo de su médico, su compresor se convertirá en                                                                                              7
+                                                                                                                                                       2                               5
+   un auxiliar efectivo de su rutina terapéutica.
+   Enunciado de uso idóneo                                                                                                                                                             3
+   El compresor/nebulizador DeVilbiss es un compresor de aire eléctrico de CA que propor-
+   ciona una fuente de aire comprimido para el cuidado de la salud en el hogar. Este pro-                                                                          4
+   ducto se usa en conjunto con un nebulizador (neumático) de chorro para convertir el
+                                                                                                                                                      Figura C– 5650
+   medicamento líquido en un aerosol de partículas menores de 5 micras de diámetro para
+   la inhalación dentro del tracto respiratorio del paciente para el tratamiento de padec-
+   imientos respiratorios.
+
+   El sector destinado de gente para este aparato consiste de pacientes adultos y
+   pediátricos que sufren de, aunque no limitado a asma, fibrosis cística y padecimiento
+   crónico de obstrucción pulmonar. Adicionalmente, se están investigando constante-
+   mente aplicaciones de medicamento en aerosol y este aparato puede considerarse ade-
+   cuado para dichas aplicaciones cuando así se prescribe.
+
+   El ambiente idóneo para el uso del producto es en el hogar del paciente cuando así lo
+   prescribe el médico.
+A-650                                                                                                                                                                                      A-650
+20                                                      Partes          Importantes          Cómo       Operar          su     Compresor                           21
+
+
+
+   PARTES IMPORTANTES DE SU NEBULIZADOR                                                         3. Asegúrese que el interruptor de corriente esté
+   DESECHABLE                                                                                      en la posición de apagado (“Off”) (Fig. 2).
+                                                                    1          2                   Desenrolle el cordón y conecte el cordón eléc-
+        1. Pieza bucal
+                                                                                         3         trico en la toma eléctrica de pared apropiada
+        2. Pieza-T
+                                                                                                   (vea las Especificaciones). Enchufe los modelos
+        3. Tapa
+                                                                                                   5650H y 4650D en un tomacorriente puesto a
+        4. Copa del medicamento
+                                                                                         4         tierra (vea las Instrucciones Para la Puesta a
+        5. Conector de entrada del aire                                        6
+                                                                                         5         Tierra al reverso).
+        6. Deflector                                            7
+        7. Conducto                                           Nebulizador Desechable                                 PELIGRO
+                                                                                                 El compresor/nebulizador DeVilbiss debe oper-         Figura 3
+   Las partes del nebulizador se venden por separado. Se
+   cuenta con nebulizadores adicionales (parte No.                      1                        arse en la fuente de poder específica para evi-
+   4650D-620) que puede conseguir a través de su dis-                                            tar una descarga eléctrica y dañar el compresor.
+   tribuidor Sunrise.                                                   2                       4. Lávese las manos.
+                                                                                                5. Conecte un extremo del conducto del nebu-
+   NOTA– El nebulizador que reciba pudiera no ser el                    3
+                                                                                                   lizador al conector de salida del aire (Fig. 3).
+         mismo que se muestra.
+                                                                                             NOTA– En condiciones climáticas muy húmedas, puede
+                                                                        4
+   PARTES IMPORTANTES DE SU NEBULIZADOR                                                            ocurrir condensación (acumulación de agua) en
+                                                                        5                          la manguera interna del compresor. Se
+   REUTILIZABLE
+        1. Pieza bucal                                                                             recomienda encender el compresor y dejarlo
+                                                                        6
+                                                                                                   funcionar por dos (2) minutos antes de fijar el     Figura 4
+        2. Tapa
+                                                              Nebulizador Reutilizable             conducto al conector de salida de aire.
+        3. Deflector
+        4. Copa del Medicamento                                                                 6. Ensamble las partes limpias del nebulizador
+        5. Conector de entrada del aire                                                            colocando el deflector hacia abajo en la copa
+        6. Adaptor de interruptor (en caso de usarlo)                                              del medicamento. Manteniendo la copa fija,
+   Las partes del nebulizador se venden por separado. Se                                           desenrosque la tapa del nebulizador. Añada el
+   cuenta con nebulizadores adicionales (parte no.                                                 medicamento prescrito por la apertura en la
+   800D/800C/800G) que puede conseguir a través de su                                              tapa usando el gotero del medicamento o con
+   distribuidor Sunrise.                                                                           un recipiente con la dosis medida previamente
+                                                                                                   (Fig. 4).
+   NOTA– El nebulizador que reciba pudiera no ser el                                            7. Ensamble la pieza bucal y la pieza-T (en caso de    Figura 5
+         mismo que se muestra.                                                                     usarlo) e inserte en la parte superior de la tapa
+                                                              Figura 1                             del nebulizador (Fig. 5). Si se usa una mascaril-
+   CÓMO OPERAR SU COMPRESOR                                                                        la para aerosol, inserte la parte inferior de la
+   NOTA– Antes de la operación inicial, se debe limpiar el                                         mascarilla directamente en la parte superior de
+         nebulizador siguiendo las instrucciones, o como                                           la tapa del nebulizador.
+         lo recomiende su médico o el distribuidor Sunrise.                                     8. Fije el conducto del conector de la entrada de
+        1. Coloque el compresor en una superficie nivela-                                          aire del nebulizador (Fig. 6).
+           da, sólida de tal forma que se puedan alcanzar
+           los controles con facilidad cuando esté sentado.
+        2. Levante la puerta y muévala para abrir el com-
+           partimiento para guardar (Fig. 1).                                                                                                          Figura 6
+                                                              Figura 2
+
+A-650                                                                                                                                                             A-650
+22                                                                        Limpieza   Limpieza                                                                                      23
+
+
+
+        9. Oprima el interruptor de corriente en “On” para                              4. Lave todas las piezas, excepto el conducto, con una solución de agua caliente y
+            encender el compresor.                                                         detergente para platos. Enjuague con agua caliente del grifo por 30 segundos
+        10. Comience el tratamiento colocando la pieza                                     para quitar el residuo del detergente.
+            bucal entre los dientes. Con la boca cerrada,                            Diariamente:
+            inhale profunda y lentamente por la boca y el                               1. Usando una olla o recipiente limpio, sumerja las piezas en una solución de tres
+            aerosol comenzará a fluir, luego exhale lenta-                                 partes de agua caliente y una parte de vinagre blanco por 30 minutos (Fig. 9),
+            mente por la pieza bucal (Fig. 7). Si es nece-                                 O use un desinfectante germicida bacteriano que se puede conseguir a través de
+            sario interrumpir el tratamiento, simplemente                                  su distribuidor. O sólo para nebulizador reusable, lave diariamente en el
+            oprima el interruptor de corriente en “Off.”                                   lavaplatos utilizando la rejilla superior. Asegúrese de seguir al pie de la letra las
+   NOTA– Algunos médicos recomiendan una “respiración          Figura 7                    instrucciones del fabricante.
+         de aclaramiento” después de cinco a siete res-                                 2. Con las manos limpias, retire las piezas de la solución desinfectante, enjuágue-
+         piraciones de tratamiento. Retire de la boca la                                   las con agua caliente del grifo y déjelas secar al aire sobre un papel toalla
+         pieza bucal y retenga la respiración por al                                       limpio. Guárdelas en una bolsa hermética.
+         menos cinco segundos (diez sería mejor), y                                  NOTA– No seque las partes del nebulizador con una toalla; esto podría contaminarlas.
+         luego exhale lentamente.                                                    PRECAUCION– El Nebulizador Reutilizable DeVilbiss se puede lavar en máquina
+        11. Si se usa una mascarilla de aerosol, coloque la                                      lavaplatos, pero no lave las partes del nebulizador desechable en
+            mascarilla sobre boca y nariz (Fig. 8). Conforme                                     lavadora automática de platos; podría dañarlas de hacerlo así.
+            el aerosol comienza a fluir, inhale profunda y
+            lentamente por la boca, luego exhale lentamente.                                                                 ADVERTENCIA
+                                                                                          Para evitar un posible riesgo de infección por las soluciones de limpieza contami-
+   LIMPIEZA DEL NEBULIZADOR                                    Figura 8
+                                                                                          nadas, siempre prepare una solución nueva para cada limpieza y deséchela
+   Todas las partes del nebulizador, excepto el conducto,                                 después de usarla
+   deben limpiarse después de cada uso de acuerdo con                                   3. Mantenga la superficie exterior del conducto sin la presencia de polvo pasán-
+   las instrucciones siguientes. Su médico y/o distribuidor                                dole un paño regularmente. El conducto del nebulizador no necesita lavarse ya
+   Sunrise puede especificar un cierto procedimiento de                                    que únicamente pasa aire filtrado por él.
+   limpieza. De ser así, siga sus recomendaciones.                                   NOTA– Los Nebulizador Desechable DeVilbiss duran por lo menos 15 días y probable-
+                                                                                           mente más, dependiendo del uso. Una limpieza apropiada también ayudará a
+                            ADVERTENCIA                                                    extender la vida del nebulizador. Debido a que es desechable, recomendamos
+         Para evitar un posible riesgo de infección
+                                                                                           que siempre tenga a la mano un nebulizador extra. Sunrise también fabrica
+         debido a un medicamento contaminado, se
+                                                                                           Nebulizador Reutilizable DeVilbiss que se puede lavar en máquina lavaplatos y
+         recomienda limpiar el nebulizador después de          Figura 9                    puede limpiarse y volverse a usar hasta por un año.
+         cada ratamiento de aerosol.
+        1. Con el interruptor en la posición de apagado                              LIMPIEZA DEL COMPRESOR
+           (“Off”), desenchufe el cordón de corriente del                               1. Con el interruptor de corriente en la posición "Off," desenchufe el cordón de
+           tomacorriente de pared.                                                         corriente del tomacorriente de pared.
+        2. Desconecte el conducto del conector de la                                    2. Pase un paño limpio y húmedo por el exterior del gabinete del compresor a
+           entrada de aire y póngalo aparte.                                               intervalos de pocos días para mantenerlo sin polvo.
+        3. Desarme la pieza bucal o la mascarilla de la                              PRECAUCION– No lo sumerja en agua, ya que dañaría el compresor.
+           tapa. Abra la nebulizador girando la tapa en el
+           sentido contrario a las manecillas del reloj y
+           retire el deflector.
+
+
+
+A-650                                                                                                                                                                         A-650
+24                                                                       Limpieza           Especificaciones                                                                                            25
+
+
+
+   CAMBIO DE FILTRO                                                                         ESPECIFICACIONES
+        1. Se debe cambiar el filtro cada 6 meses o con menor frecuencia si el mismo se     Tamaño 3650 Serie ..........................................................19.5 cm x 10 cm x 33 cm
+           torna completamente gris.                                                                                                                                          (7,7" W x 4,1" H x 13" D)
+        2. Retire la tapa del filtro tomándola con firmeza y jalándola de la unidad,                 4650 Serie .............................................................18 cm x 10 cm x 33 cm
+                                                                                                                                                                                (7" W x 3,8" H x 13" D)
+           (Figs. A, B o C).
+                                                                                                     5650 Serie .............................................................26 cm x 27 cm x 17 cm
+        3. Retire el filtro sucio con los dedos y deséchelo.
+                                                                                                                                                                         (10,1" W x 10,5" H x 6,5" D)
+        4. Reemplácelo con uno nuevo filtro DeVilbiss (parte No. 5650D-602). Los filtros    Peso 3650 Serie .........................................................................2,45 kg (5,4 lbs.)
+           adicionales se deben comprar a través del distribuidor Sunrise.                        4650 Serie .........................................................................2,40 kg (5,3 lbs.)
+        5. Presione la tapa del filtro con el nuevo filtro en su lugar.                           5650 Serie ...........................................................................3,2 kg (7,1 lbs.)
+   PRECAUCION– El volver a usar el filtro o el sustituir un filtro de entrada de aire       Requerimientos
+               Sunrise por cualquier otro material como algodón traerá por resultado el     Eléctricos 3650D y 3650T .................................................2.3 amps, 115 VCA 60 Hz
+                                                                                                       3650I ..............................................................1.4 amps, 230 VCA 50 Hz
+               daño del compresor.
+                                                                                                       3650P..............................................................1.4 amps, 230 VCA 60 Hz
+   NOTA– Se incluye un filtro extra con las unidades de Serie 4650 y 5650.                             4650D, 46502, 4650AP, 4650L, 4650LD y 4650C.........2.5 amps, 115 VCA 60Hz
+                                                                                                       4650I...................................................................1.4 amps, 230 VCA 50 Hz
+   MANTENIMIENTO                                                                                       5650D, 5650H y 5650C.........................................1.3 amps, 115VCA 60Hz
+   Todo el mantenimiento deberá ser realizado por un distribuidor calificado Sunrise o en              5650I ...............................................................0.8 amps, 230VCA 50 Hz
+   un centro autorizado de servicio.                                                                   5650P..........................................................0.8 amps, 230VCA 50/60 Hz
+                                                                                            Nivel de sonido 3650 Serie........................................................................58 dBA
+                                                                                                              4650 Serie........................................................................53 dBA
+                                          PELIGRO                                                             5650 Serie........................................................................51 dBA
+         Riesgo de descarga eléctrica. No quite el gabinete del compresor. Todo el          Consumo de Potencia 3650D y 3650T ..........................................140 watts maximo
+         desarmado y mantenimiento debe ser realizado por un distribuidor calificado                                  3650I y 3650P...........................................160 watts maximo
+         Sunrise.                                                                                                     4650D, 46502, 4650AP, 4650L,
+                                                                                                                      4650LD y 4650C.........................................140 watts maximo
+                                                                                                                      4650I.......................................................160 watts maximo
+                                                                                                                      5650D, 5650H y 5650C .................................90 watts maximo
+                                                                                                                      5650I y 5650P...........................................100 watts maximo
+                                                                                            Presión del
+                                                                                            compresor máxima 3650 y 4650 serie ...........................................35 psig o mayor*
+                                                                                                                  5650 serie......................................................30 psig o mayor*
+                                                                                            Flujo de aire libre del compresor (3650 y 4650 serie) ......................8 lpm o mayor*
+                                                                                                                                       (5650 serie).................................9 lpm o mayor*
+                                                                                            Presión de operación del nebulizador todos modelos ..................................11-16 psig
+                                                                                            Flujo en litros del nebulizador todos modelos.............................................5-7 lpm
+                                                                                            Capacidad del nebulizador todos modelos.................................................6 ml (cc)
+                                                                                            Velocidad de nebulización
+                                                                                            del nebulizador todos modelos................................................0.15 ml/min o mayor
+                                                                                            MMAD todos modelos .................................................................menos de 5 micras
+
+                                                                                            *Las condiciones pueden variar con la altitud por encima del nivel del mar y cambios
+                                                                                            en la presión barométrica.
+
+
+
+
+A-650                                                                                                                                                                                                  A-650
+26                                                                         Garantía
+
+
+   GARANTÍA LIMITADA DE 5 AÑOS EN LAS PARTES DEL COMPRESOR
+   Todos compresores DeVilbiss están garantizados contra cualquier defecto de mano de
+   obra o de material por un período de cinco años a partir de la fecha de compra.
+   Cualquier parte(s) será(n) reparada(s) o sustituida(s) a criterio de Sunrise si la unidad
+   no ha sido alterada o manipulada indebidamente en ese período de tiempo. Cerciórese
+   que cualquier malfuncionamiento no se deba a una limpieza inadecuada o a una defi-
+   ciencia en el seguimiento de las instrucciones. Si la reparación es necesaria, póngase
+   en contacto con su distribuidor autorizado Sunrise o con el departamento de servicio
+   de Sunrise al 800-333-4000 (814-443-4881) (Canadá 800-263-3390 o 905-660-2459)
+   para recibir instrucciones. NOTA– Esta garantía no cubre el préstamo de un compresor,
+   la compensación por los costos de renta incurridos mientras la unidad esté en
+   reparación ni los costos de mano de obra en los que se incurra para reparar o sustituir
+   la(s) parte(s) defectuosa(s).
+
+   NO HAY OTRA GARANTIA EXPRESA. LAS GARANTIAS IMPLICITAS, INCLUYENDO AQUELLAS
+   DE COMERCIABILIDAD Y AJUSTE PARA UN PROPOSITO PARTICULAR ESTAN LIMITADAS A
+   LA DURACION DE LA GARANTIA LIMITADA EXPRESA Y EN LA MEDIDA QUE LA LEY LO
+   PERMITA SE EXCLUYEN CUALQUIERA Y TODAS LAS GARANTIAS IMPLICITAS. ESTA ES LA
+   SOLUCION Y RESPONSABILIDAD EXCLUSIVAS PARA DAÑOS CONSECUENTES O INCIDEN-
+   TALES BAJO CUALQUIERA Y TODAS LAS GARANTIAS QUE SE EXCLUYEN EN LA MEDIDA
+   QUE LA EXCLUSION SEA PERMITIDA POR LA LEY. ALGUNOS ESTADOS NO PERMITEN LIM-
+   ITACIONES EN LA DURACION DE LA GARANTIA IMPLICITA O EN LA LIMITACION O EXCLU-
+   SION DE DAÑOS CONSECUENTES O INCIDENTALES, DE TAL FORMA QUE LA LIMITACION O
+   EXCLUSION ARRIBA MENCIONADA PUEDE NO APLICARSE A UD.
+
+   Esta garantía le proporciona derechos legales específicos, y puede tener otros que
+   varían de estado a estado.
+
+
+
+   NOTA DEL FABRICANTE
+   Le agradecemos su preferencia por el compresor/nebulizador DeVilbiss. Deseamos que
+   sea un consumidor satisfecho. En caso de tener preguntas o comentarios, sírvase
+   enviarlos a nuestra dirección escrita a continuación.
+
+
+     LLAME A SU PROVEEDOR DE SUNRISE AUTORIZADO PARA
+     OBTENER SERVICIO:
+
+     _____________________________________________________
+     _____________________________________________________
+     _____________________________________________________
+     Teléfono _________________________________________________
+     Fecha de compra ___________________________________________
+     No. de Serie ______________________________________________
+
+
+A-650
+28                                   Mises        en     Garde        Importantes                Mises       en     Garde         Importantes                                                29
+
+
+
+                                                                                                    7. Ne jamais utiliser le produit en état de somnolence ou endormi.
+   MISES EN GARDE IMPORTANTES                                                                       8. Ne jamais laisser tomber ou insérer des objets dans une ouverture ou dans un tuyau.
+   Lors de l’utilisation d’appareils électriques, il faut toujours respecter les mesures de         9. Ne pas l’utiliser au dehors. Ce produit n’est conçu que pour l’usage domestique.
+   sécurité de base, surtout en présence des enfants. Lire toutes les instructions avant            10. Ne pas l’utiliser dans un environnement riche en oxygène.
+   l’utilisation. Les informations importantes sont mises en relief par les termes suivants :       11. Ne brancher ce produit (pour les modèles mis à la terre) qu’à une prise bien
+                                                                                                        mise à la masse. Voir les Instructions de mise à la terre.
+   DANGER–        Informations de sécurité d’urgence sur les dangers qui pourraient
+                                                                                                 REMARQUE– Cet appareil utilise un limiteur thermique qui peut arrêter le produit
+                  provoquer des blessures graves ou la mort.
+                                                                                                           entier en cas de surchauffe du moteur.
+   AVERTISSEMENT– Informations de sécurité importantes sur les dangers qui pourraient
+                                                                                                           5650 – L’appareil recommence à fonctionner une fois que le moteur est
+                  provoquer des blessures graves.
+                                                                                                           refroidi à un niveau acceptable.
+   ATTENTION–     Informations pour éviter l’endommagement du produit.
+                                                                                                           4650/3650 – Contacter le fournisseur Sunrise qualifié en vue du rem-
+   REMARQUE–      Informations auxquelles vous devriez prêter une attention particulière.
+                                                                                                           placement.
+   LIRE TOUTES LES INSTRUCTIONS AVANT L’UTILISATION.                                                       S’il faut réparer ou remplacer le cordon ou la fiche, contacter le four-
+                                                                                                           nisseur Sunrise qualifié.
+                                           DANGER                                                Cet appareil ménager est muni d’une fiche polarisée (l’une des lames est plus large que
+         Pour réduire les risques d’électrocution :
+                                                                                                 l’autre). Ce genre de fiche n’entre que d’une façon dans une prise polarisée, par mesure
+        1. Débrancher toujours ce produit tout de suite après l’utilisation.                     de sécurité. Lorsqu’on ne peut pas insérer la fiche à fond dans la prise, il faut tenter
+        2. Ne pas l’utiliser en se baignant.                                                     de le faire après l’avoir tournée de l’autre côté. Si elle n’entre toujours pas dans la
+        3. Ne pas placer ni stocker le produit dans un endroit d’où il pourrait tomber ou        prise, il faut contacter un électricien qualifié. Ne pas essayer de contourner cette
+           être tiré dans une baignoire ou dans un lavabo.                                       mesure de sécurité.
+        4. Ne pas le mettre ni ne le faire tomber dans de l’eau ou dans un autre liquide.
+        5. Ne pas toucher un produit qui est tombé dans de l’eau. Le débrancher tout de suite.   INSTRUCTIONS DE MISE À LA TERRE POUR LES MODÈLES 5650H ET 4650D
+                                                                                                 Ce produit doit être mise à la terre. En cas de court-circuit électrique, la mise à la
+                                           AVERTISSEMENT                                         terre réduit le risque de choc électrique en fournissant un fil de décharge pour le
+         Pour réduire les risques de brûlure, d’électrocution, d’incendie ou de lésions
+                                                                                                 courant électrique. Ce produit est équipé d’un cordon avec fil de mise à la terre et
+         corporelles :
+                                                                                                 d’une fiche munie d’un fil de terre. La fiche doit être branchée dans une prise bien
+        1. Il ne faut jamais laisser le produit sans surveillance quand il est branché.          installée et munie d’un fil de terre.
+        2. Une surveillance attentive est requise lorsque le produit est utilisé par, sur ou                                             DANGER
+           près des enfants ou des invalides.                                                         Une mauvaise utilisation de la fiche munie d’un fil de terre peut créer des
+        3. N’utiliser ce produit que dans le but pour lequel il a été prévu, tel que décrit           risques de choc électrique.
+           dans ce guide. Ne pas utiliser d’accessoires qui ne sont pas recommandés par le
+                                                                                                 S’il faut réparer ou remplacer le cordon ou la fiche, contacter le fournisseur Sunrise
+           fabricant.
+                                                                                                 qualifié.
+        4. Ne jamais faire fonctionner ce produit si :
+                                                                                                      1. L’appareil doit être utilisé sur un circuit nominal de 115 V et il comporte une
+           a. Le cordon d’alimentation ou la fiche est endommagé.
+                                                                                                         fiche munie d’un fil de terre. Un adaptateur temporaire, qui ressemble à celui
+           b. S’il ne fonctionne pas de façon appropriée.
+                                                                                                         illustré sur les figures B et C, peut être utilisé pour connecter cette fiche à une
+           c. S’il est tombé ou a été endommagé.
+                                                                                                         prise de courant bipolaire (tel que montré sur la figure B), si une prise appro-
+           d.S’il est tombé dans de l’eau.
+                                                                                                         priée munie d’un fil de terre n’est pas disponible. L’adaptateur temporaire ne
+           Renvoyer le produit à un distributeur Sunrise qualifié pour qu’il soit contrôlé et
+                                                                                                         devra être utilisé que jusqu’à ce qu’un électricien qualifié installe une prise
+           réparé.
+                                                                                                         appropriée munie d’un fil de terre (figure A). L’œillet rigide vert, la languette de
+        5. Tenir le cordon d’alimentation loin des surfaces chaudes.
+                                                                                                         contact ou autre chose de similaire qui sort de l’adaptateur doit être branché à
+        6. Ne jamais bloquer les orifices à air du produit ni ne le placer sur une surface
+                                                                                                         une terre permanente, tel un couvercle de sorties groupées munies d’un fil de
+           molle, tel un lit ou un canapé, où les orifices à air pourraient être bloqués.
+                                                                                                         terre. En cas d’utilisation de l’adaptateur, celui-ci doit être maintenu en place
+           Garder tous les orifices à air exempts de peluches, de cheveux et d’autres objets
+                                                                                                         par une vis en métal.
+           similaires.
+A-650                                                                                                                                                                                      A-650
+30                                                  Mises             en        Garde     Importantes   Pièces       Importantes                                                                      31
+
+
+
+        2. S’il faut utiliser une rallonge, n’utiliser que des cordons à 3 conducteurs munis            PIÉCES IMPORTANTES DE VOTRE                             Figures du Compresseur
+           d’une fiche à trois lames et d’une prise de courant à trois fentes dans laquelle             COMPRESSEUR DEVILBISS
+           peut être branché l’appareil. Si le cordon d’alimentation est endommagé, ne pas              (Figures A, B, et C)
+           utiliser l’appareil et contacter un fournisseur qualifié de Sunrise Medical.                                                                                  2
+                                                                                                           1. Compartiment de rangement
+                                                                                                                                                                                             3
+                                                                                                           2. Porte du compartiment de rangement avec les
+   GARDER CES INSTRUCTIONS.                                                                                    instructions de fonctionnement                    8                               4
+                               Sorties groupées munies d’un fil de terre
+                                                                                                           3. Interrupteur principal                             1
+                 Prise munie                                                                               4. Bouchon du filtre                                                              5
+                                                                      Adaptateur
+                 d’un fil de                                                                                                                                                             7
+                 terre                                                                                     5. Connecteur de sortie d’air
+                                                                                                                                                                                     6
+                                                                                                           6. Poignée de transport
+                                                                                                           7. Logement du cordon d'alimentation                 Figure A– 3650
+                                                                                                           8. Support du nébuliseur
+                                                                      Patte pour vis de
+                                                                      mise à la terre
+     Broche de mise à la terre
+                                     A                      B                   C
+                                                                                                        REMARQUE– Les modèles 4650D et 5650H sont                        2
+                                                                                                                                                                                             8
+                                                                                                                  équipés d’une fiche bipolaire avec terre et
+   INTRODUCTION                                                                                                   ils doivent être mis à la terre. Tous les
+                                                                                                                                                                                              7
+                                                                                                                                                                     3                           4
+   Votre médecin vous a prescrit un médicament liquide pour traiter votre état respira-                           autres modèles sont équipés d’une fiche
+                                                                                                                                                                 1
+   toire. Pour mieux utiliser ce médicament liquide, il vous a prescrit un compresseur /                          bipolaire.
+                                                                                                                                                                                             5
+   nébuliseur de la marque DeVilbiss. Votre compresseur / nébuliseur DeVilbiss convertit
+   le médicament en une brume de particules fines de haute qualité qui pénètre profondé-                                                                                                 6
+   ment dans les poumons.                                                                                                                                       Figure B– 4650
+
+   Veillez à bien lire et comprendre les informations de ce guide d’instructions. En suivant
+   ces simples instructions et le conseil de votre médecin, votre compresseur deviendra                                                                                          6
+   un ajout efficace à votre routine thérapeutique.                                                                                                                  8
+                                                                                                                                                                     1
+   Déclaration d’utilisation envisagée                                                                                                                                                           7
+                                                                                                                                                                 2                               5
+   Le compresseur /nébuliseur DeVilbiss est un compresseur d’air à courant continu qui
+   fournit une source d’air comprimé en vue des soins médicaux à domicile. Ce produit est                                                                                                        3
+   utilisé conjointement avec un nébuliseur (pneumatique) à jet, pour convertir un
+   médicament liquide en aérosol, dont les particules ont un diamètre de moins de 5
+                                                                                                                                                                             4
+   microns, en vue de l’inhalation dans les voies respiratoires du patient, pour le traite-
+   ment des affections respiratoires.                                                                                                                           Figure C– 5650
+
+   La population visée pour ce dispositif comprend aussi bien des patients adultes que
+   des enfants qui souffrent, sans s’y limiter, d’asthme, de mucoviscidose et de bronchop-
+   neumopathie chronique obstructive. D’autres applications aux médicaments sous forme
+   d’aérosols sont continuellement en cours d’investigation et il est possible que ce dis-
+   positif soit aussi approprié pour ce genre d’applications, tel que décrit.
+   L’environnement visé pour l’utilisation de ce produit est chez le patient, sur prescrip-
+   tion d’un médecin.
+
+
+
+
+A-650                                                                                                                                                                                                A-650
+32                                                      Pièces           Importantes         Comment Faire Fonctionner le Compresseur                               33
+
+
+
+   PIÈCES IMPORTANTES DE VOTRE                                                                  3. S’assurer que l’interrupteur principal est dans la
+   NÉBULISEUR JETABLE                                                                              position d’arrêt (Off ) Figure 2. Déballer le cor-
+                                                                     1              2              don d'alimentation et le brancher dans une prise
+        1. Embout buccal
+                                                                                         3         de courant murale appropriée (se reporter aux
+        2. Pièce en T
+                                                                                                   Spécifications). Brancher les modèles 5650H et
+        3. Couvercle
+                                                                                                   4650D dans une prise munie de fil de terre (se
+        4. Chambre de médication
+                                                                                         4         reporter aux Instructions de mise à la terre, au
+        5. Connecteur d’admission d’air                                             6
+                                                                                         5         verso).
+        6. Déflecteur                                            7
+        7. Tube                                                Nébuliseur Jetable                                   DANGER
+                                                                                                 Pour éviter les risques de choc électrique et          Figure3
+   Les pièces du nébuliseur ne sont pas vendues séparé-
+   ment. Des nébuliseurs supplémentaires (pièce nº 4650D-                1                       l’endommagement du compresseur, le com-
+   620) sont disponibles chez le fournisseur de Sunrise.                                         presseur/nébuliseur DeVilbiss doit être utilisé
+                                                                                                 à la source de courant spécifiée.
+                                                                         2
+   REMARQUE– Il est possible que le nébuliseur reçu ne                                          4. Se laver les mains.
+             soit pas celui montré.                                      3
+                                                                                                5. Brancher l’une des extrémités du tube du nébu-
+   PIÈCES IMPORTANTES DE VOTRE                                                                     liseur dans le connecteur d’admission d’air
+                                                                         4
+   NÉBULISEUR RÉUTILISABLE                                                                         Figure 3.
+                                                                         5                   REMARQUE– Dans des conditions d’humidité élevée, de
+        1. Embout buccal
+        2. Couvercle                                                     6                             la condensation (accumulation d’eau)
+                                                                                                       peut se produire dans le tube interne du         Figure 4
+        3. Déflecteur
+                                                               Nébuliseur Réutilisable                 compresseur. Nous vous conseillons de
+        4. Chambre de médication
+        5. Connecteur d’admission d’air                                                                mettre le compresseur en marche et de le
+        6. Adaptateur d’interrupteur (si applicable)                                                   laisser fonctionner pendant deux (2) min-
+                                                                                                       utes avant d’attacher le tuyau au con-
+   Les pièces du nébuliseur ne sont pas vendues séparé-
+                                                                                                       necteur d’admission d’air.
+   ment. Des nébuliseurs supplémentaires (pièce n°
+   800D/800C/800G) sont disponibles chez le fournisseur                                         6. Assembler les pièces nettoyées du nébuliseur en
+   de Sunrise.                                                                                     mettant le piège dans la chambre de médication.
+   REMARQUE– Il est possible que le nébuliseur reçu ne                                             Visser le couvercle du nébuliseur, tout en main-
+                soit pas celui montré.                                                             tenant la chambre fixe. Ajouter le médicament
+                                                                                                   prescrit à travers l’ouverture dans le couvercle,    Figure 5
+   COMMENT FAIRE FONCTIONNER                                                                       en utilisant un flacon compte-gouttes ou un
+   LE COMPRESSEUR                                              Figure 1                            récipient de dose pré-mesurée Figure 4.
+   REMARQUE– Avant la mise en service initiale, il faut                                         7. Monter l’embout buccal et la pièce en T (si
+             nettoyer le nébuliseur selon les instruc-                                             applicable) et les insérer dans la partie
+             tions de nettoyage ci-dessous, ou tel que                                             supérieure du couvercle du nébuliseur Figure 5.
+             recommandé par le médecin ou le four-                                                 En cas d’utilisation d’un masque à aérosols,
+             nisseur de Sunrise.                                                                   insérer la partie inférieure du masque directe-
+                                                                                                   ment dans la partie supérieure du couvercle du
+        1. Placer le compresseur sur une surface solide et
+                                                                                                   nébuliseur.
+           de niveau, en sorte qu’il soit facile d’atteindre
+                                                                                                8. Attacher le tube au connecteur d’admission d’air
+           les commandes lorsque assis.
+                                                                                                   du nébuliseur Figure 6.                              Figure 6
+        2. Ouvrir la porte du compartiment de rangement
+                                                               Figure 2
+           Figure 1.
+A-650                                                                                                                                                              A-650
+34                                                                         Nettoyage   Nettoyage                                                                                  35
+
+
+
+        9. Mettre l’interrupteur principal sur la position de                             3. Démonter l’embout buccal ou le masque du couvercle. Ouvrir la nébuliseur en
+            marche (On) pour démarrer le compresseur.                                         tournant le couvercle en sens anti-horaire et enlever le piège.
+        10. Commencer le traitement en plaçant l’embout                                   4. Laver toutes les pièces, sauf le tube, dans une solution d’eau chaude et de
+            buccal entre les dents. À mesure que l’aérosol                                    détergent à vaisselle. Rincer sous un jet d’eau chaude du robinet pendant 30
+            commence à s’écouler, inspirer profondément et                                    secondes pour enlever tout résidu de détergent. Laisser sécher à l’air.
+            lentement par la bouche, avec la bouche fermée,                            Tous les jours :
+            et expirer ensuite lentement par la pièce buc-                                1. Laisser tremper les pièces pendant 30 minutes dans une solution de trois parts
+            cale Figure 7. S’il faut interrompre le traite-                                   d’eau chaude et une part de vinaigre blanc, dans un récipient ou bol propre
+            ment, mettre simplement l’interrupteur sur la                                     (Figure 9) Ou utiliser un désinfectant bactérien germicide médical, disponible
+            position d’arrêt (Off).                             Figure 7                      chez le fournisseur. En ce qui concerne le nébuliseur réutilisable, le nettoyer
+   REMARQUE– Certains médecins recommandent de                                                tous les jours dans le panier supérieur du lave-vaisselle. Suivre à la lettre les
+             respirer librement après cinq à sept                                             instructions du fabricant.
+             inhalations de traitement. Enlever l’em-                                     2. Avec les mains propres, enlever les pièces de la solution désinfectante, les rin-
+             bout buccal de la bouche et se retenir de                                        cer à l’eau chaude du robinet et les laisser sécher à l’air sur une serviette propre
+             respirer pendant au moins cinq secondes                                          en papier. Les ranger dans un sac à fermeture par pression et glissière.
+             (dix c’est mieux), ensuite expirer lente-                                 REMARQUE– Ne pas éponger les pièces du nébuliseur, car ceci pourrait les contaminer.
+             ment.                                                                     ATTENTION– Le nébuliseur réutilisable DeVilbiss est garanti au lave-vaisselle, mais ne
+        11. En cas d’utilisation d’un masque à aérosols,                                          mettre aucune pièce jetable du nébuliseur dans un lave-vaisselle automa-
+            mettre le masque par-dessus la bouche et le nez                                       tique, car ceci pourrait les endommager.
+            Figure 8. À mesure que l’aérosol commence à         Figure 8
+            s’écouler, inspirer profondément et lentement                                                                     AVERTISSEMENT
+            par la bouche et expirer ensuite lentement.                                   3. Garder la surface externe du tube exempte de poussière en l’époussetant
+                                                                                             régulièrement. Il n’est pas nécessaire de laver le tube du nébuliseur jetable, car
+   NETTOYAGE DU NÉBULISEUR
+                                                                                             seulement de l’air filtré y passe.
+   Toutes les pièces du nébuliseur, à part le tube, doivent                            REMARQUE– Le nébuliseur jetable DeVilbiss peut durer pendant au moins 15 jours, et
+   être nettoyées selon les instructions ci-dessous. Le                                          peut-être plus, en fonction de son usage. Un bon nettoyage aidera à pro-
+   médecin et/ou le représentant de Sunrise peuvent pré-                                         longer la durée de vie du nébuliseur. Comme il est jetable, il est recom-
+   ciser une certaine procédure de nettoyage. Dans ce cas,                                       mandé de garder un autre nébuliseur à portée de main à tout moment.
+   suivre leurs recommandations.                                                                 Sunrise fabrique aussi le Nébuliseur Réutilisable DeVilbiss qui est garanti
+                                                                                                 au lave-vaisselle et qui peut être nettoyé et réutilisé pendant un an.
+                            AVERTISSEMENT                       Figure 9
+         Afin d’éviter les risques possibles d’infection à                             NETTOYAGE DU COMPRESSEUR
+         cause d’un médicament contaminé, il est con-                                     1. Avec l’interrupteur principal sur la position d’arrêt (Off), débrancher le cordon
+         seillé de nettoyer le nébuliseur après chaque                                       d’alimentation de la prise murale.
+         traitement aux aérosols.                                                         2. Essuyer l’extérieur du coffret du compresseur à l’aide d’un chiffon mouillé propre
+   Après chaque utilisation :                                                                tous les deux ou trois jours, pour le garder exempt de poussière.
+      1. Avec l’interrupteur principal sur la position d’ar-                           ATTENTION– Ne pas immerger le compresseur dans de l’eau, car ceci pourrait l’endom-
+         rêt (Off), débrancher le cordon d’alimentation                                           mager.
+         de la prise murale.
+      2. Déconnecter le tube du connecteur d’admission
+         d’air et le mettre de côté.
+
+
+
+A-650                                                                                                                                                                           A-650
+36                                                                         Nettoyage           Spécifications                                                                                                37
+
+
+
+   CHANGEMENT DU FILTRE                                                                        SPÉCIFICATIONS
+        1. Le filtre doit être changé tous les 6 mois ou plus tôt s’il change de couleur et
+                                                                                               Dimensions– Série 3650............Largeur 19,5 cm x Hauteur 10 cm x Profondeur 33 cm
+           devient entièrement gris.                                                                                                                         (7,7 po x 4,1 po x 13 po)
+        2. Enlever le couvercle du filtre en le saisissant fermement et en le tirant pour le               Série 4650 ..............Largeur 18 cm x Hauteur 10 cm x Profondeur 33 cm
+           sortir de l’appareil (Figure A, B ou C).                                                                                                            (7 po x 3,8 po x 13 po)
+        3. Enlever le filtre sale avec les doigts et le jeter.                                             Série 5650 ..............Largeur 26 cm x Hauteur 27 cm x Profondeur 17 cm
+        4. Le remplacer par un nouveau filtre de DeVilbiss (pièce nº 5650D-602). Des fil-                                                                (10,1 po x 10,5 po x 6,5 po)
+           tres supplémentaires peuvent être achetés chez le fournisseur Sunrise.              Poids– Série 3650 .......................................................................2,45 kg (5,4 lbs)
+        5. Pousser le couvercle du filtre avec le nouveau filtre en position.                         Série 4650 .......................................................................2,40 kg (5,3 lbs)
+   ATTENTION– La réutilisation du filtre ou le remplacement du filtre d’air d’admission de            Série 5650 .........................................................................3,2 kg (7,1 lbs)
+              DeVilbiss par une autre matière, tel que du coton, peut endommager le            Exigences d’électricité– 3650D et 3650T ..............................2,3 A, 115 V c.a. 60 Hz
+              compresseur.                                                                                              3650I ............................................1,4 A, 230 V c.a. 50 Hz
+   REMARQUE– Un filtre supplémentaire est emballé avec les appareils des séries 4650 et                                 3650P............................................1,4 A, 230 V c.a. 60 Hz
+                                                                                                                        4650D, 46502, 4650AP,
+             5650.
+                                                                                                                        4650L, 4650LD, 4650C .....................2,5 A, 115 V c.a. 60 Hz
+   ENTRETIEN                                                                                                            4650I ............................................1,4 A, 230 V c.a. 50 Hz
+                                                                                                                        5650D, 5650H et 5650C ...................1,3 A, 115 V c.a. 60 Hz
+   Tout entretien devra être effectué par un fournisseur de Sunrise qualifié ou un centre                               5650I ............................................0,8 A, 230 V c.a. 50 Hz
+   de réparations autorisé.                                                                                             5650P.......................................0,8 A, 230 V c.a. 50/60 Hz
+                                                                                               Niveau sonore– Série 3650 ........................................................................58 dBA
+                                           DANGER                                                             Série 4650 ........................................................................53 dBA
+         Danger de choc électrique. Tout démontage et entretien devra être effectué                           Série 5650 ........................................................................51 dBA
+         par un fournisseur de Sunrise qualifié.
+                                                                                               Puissance absorbée– 3650D et 3650T...................................................max. 140 W
+                                                                                                                   3650I et 3650P ...................................................max. 160 W
+                                                                                                                   4650D, 46502, 4650AP, 4650L, 4650LD, 4650C ........max. 140 W
+                                                                                                                   4650I.................................................................max. 160 W
+                                                                                                                   5650D, 5650H et 5650C .........................................max. 90 W
+                                                                                                                   5650I et 5650P ...................................................max. 100 W
+                                                                                               Pression max. du compresseur– Séries 3650 et 4650.......................35 psig ou plus*
+                                                                                                                             Série 5650....................................30 psig ou plus*
+                                                                                               Flux d’air libre du compresseur– Séries 3650 et 4650 .....................8 l/min ou plus*
+                                                                                                                                Série 5650 ..................................9 l/min ou plus*
+                                                                                               Pression de fonctionnement du nébuliseur (tous les modèles) ..............11 à 16 psig
+                                                                                               Flux du nébuliseur en litres (tous les modèles) .....................................5 à 7 l/min
+                                                                                               Capacité du nébuliseur (tous les modèles) ...............................................6 ml (cc)
+                                                                                               Taux de nébulisation du nébuliseur (tous les modèles) ..............0,15 ml/min ou plus
+                                                                                               MMAD (tous les modèles) ..........................................................Moins de 5 microns
+
+
+                                                                                               *Les conditions peuvent varier en fonction de l’altitude au-dessus du niveau de la mer
+                                                                                                et des changements de pression barométrique.
+
+A-650                                                                                                                                                                                                   A-650
+38                                                                          Garantie
+
+
+   GARANTIE LIMITÉE DE CINQ ANS POUR LES PIÈCES DU COMPRESSEUR
+   Tous compresseurs DeVilbiss sont garantis exempts de tout défaut de matériau et de
+   fabrication pendant cinq ans à compter de la date d’achat. Toute pièce défectueuse sera
+   réparée ou remplacée, au choix de Sunrise, si l’appareil n’a pas été réparé sans autorisa-
+   tion ou utilisé de façon inappropriée pendant cette période. S’assurer que le mauvais
+   fonctionnement n’est pas dû au nettoyage inapproprié ou au fait de ne pas avoir suivi
+   les directives. S’il faut le réparer, contacter le fournisseur Sunrise ou le Service tech-
+   nique de Sunrise au 800-333-4000 (814-443-4881) (Canada 800-263-3390 ou 905-660-
+   2459) pour instructions. REMARQUE – Cette garantie ne couvre pas la fourniture d’un
+   compresseur de remplacement, la compensation pour le coût de louage d’un autre com-
+   presseur pendant que l’appareil est réparé, ou le coût de main-d’œuvre pour la répara-
+   tion ou le remplacement de la (des) pièce(s) défectueuse(s).
+
+   IL N’EXISTE AUCUNE AUTRE GARANTIE EXPRESSE. TOUTES GARANTIES IMPLICITES,
+   INCLUANT CELLES DE COMMERCIABILITÉ ET D’ADAPTATION À UN USAGE PARTICULIER,
+   SONT LIMITÉES À LA DURÉE DE LA GARANTIE LIMITÉE EXPRESSE ET SELON L’ÉTENDUE
+   PRÉVUE PAR LA LOI. TOUTES GARANTIES IMPLICITES SONT EXCLUSES. CETTE GARANTIE
+   CONSTITUE LE SEUL RECOURS ET LA SEULE RESPONSABILITÉ POUR TOUS DOMMAGES
+   INDIRECTS ET CONSÉCUTIFS EN VERTU DE L’UNE OU L’AUTRE GARANTIE, ET TOUTES
+   AUTRES GARANTIES SONT EXCLUSES DANS LES LIMITES D’EXCLUSION PERMISES PAR LA
+   LOI. CERRTAINES PROVINCES NE PERMETTENT AUCUNE LIMITE QUANT À LA DURÉE DE LA
+   GARANTIE IMPLICITE, NI DE LIMITE D’EXCLUSION POUR DES DOMMAGES INDIRECTS OU
+   CONSÉCUTIFS. IL EST DONC POSSIBLE QUE LA LIMITE OU L’EXCLUSION DÉCRITE
+   CIDESSUS NE S’APPLIQUE PAS.
+
+   Cette garantie vous offre des droits légaux spécifiques, et il est possible que vous ayez
+   aussi d’autres droits qui varient d’une province à l’autre.
+
+   NOTE DU FABRICANT
+   Nous vous remercions d’avoir choisi un compresseur/nébuliseur DeVilbiss. Nous
+   souhaitons que vous soyez un client satisfait. Si vous avez des questions ou des com-
+   mentaires, veuillez les envoyer à l’adresse ci-dessous.
+     POUR DES RÉPARATIONS, APPELER LE FOURNISSEUR SUNRISE
+     AUTORISÉ :
+
+     _____________________________________________________
+     _____________________________________________________
+     _____________________________________________________
+     Téléphone _______________________________________________
+     Date d’achat ______________________________________________
+     N°. de série _______________________________________________
+
+
+
+
+A-650
+Sunrise Medical                     Sunrise Medical Canada, Inc.    Sunrise Medical Ltd.
+Respiratory Products Division       237 Romina Drive, Unit 3        Sunrise Business Park
+100 DeVilbiss Drive                 Concord, Ontario L4K 4V3        High Street
+Somerset, Pennsylvania 15501-2125   CANADA                          Wollaston, West Midlands DY8 4PS
+USA                                 905-660-2459                    ENGLAND
+814-443-4881                                                        44-138-444-6688
+
+
+Sunrise Medical Pty. Limited        Sunrise Medical                 Sunrise Medical
+15 Carrington Road, Unit 7          Division Respiratoire           DeVilbiss Produkte
+Castle Hill NSW 2154                Zone Industrielle               Industriegebiet
+AUSTRALIA                           Route de Meslay                 69254 Malsch/Heidelberg
+61-2-9899-3144                      37210 Parcay-Meslay             GERMANY
+                                    FRANCE                          49-7253-980-460
+                                    33-2-47-88-58-36
+
+
+                                      ©2001, Sunrise Medical 5.01
+                                               A-650 Rev. D
+

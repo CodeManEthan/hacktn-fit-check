@@ -1,0 +1,140 @@
+ 1 Accumulator Tank- 525D-610                             32 Fuse (PC Board)- N/A
+ 2 Auxiliary Oxygen Port- 525DD-635                       33 1/8" ID Hose (Blue 4' Long)- 444-554
+ 3 Base- 525DD-603                                        34 1/2" ID Hose PVC Braided (4' Long)- 444-549
+ 4 Bib- N/A                                               35 1/2" ID Hose Silicone Braided (2' long)- 505DZ-634
+ 5 Communication Port Door- N/A                           36 1/4" ID Plastic Hose Clamp- N/A
+ 6 Compressor Box- 525DD-625                              37 Ladder Clamp- 444-566
+ 7 Filter Door- 525DD-639                                 38 Hour Meter- N/A
+ 8 Front Cover- 525DD-611                                 39 Intake Canister 525DS- N/A
+ 9 Rear Cover- 525DD-612                                      Intake Canister 525DS-Q- 525DD-614
+ 10 Cabinet Screw (Machine)- 525DD-628                    40 Front Label- 525DD-627
+ 11 Cabinet Screw (Self Threading)- 525DD-636             41A Purge Manifold (Black)- 525DD-617
+ 12 Cable Tie (Sieve Bed)- 505DZ-617                      41B Purge Manifold (Black & White)- 525DD-618
+ 13 Motor Capacitor- 525D-616                             42 Motor Mounts (4 ea)- 505IZ-609
+ 14 Non-locking Caster (4 ea)- 501DZ-603                  43 Oxygen Outlet Port- 525DD-606
+ 15 Bed Check Valve- N/A                                  44A PC Board- 525DD-632
+ 16 Final Check Valve- N/A                                44B PC Board (Low pressure units)- 525DD-638
+ 17 Circuit Breaker- 525D613 [2]                          45 Power Cord w/Strain Relief- PV5LD-618
+ 18 Cooling Fan- 525DD-634 [2]                            46 Power Cord Strap- [1]
+ 19 Cooling Fan Guard- N/A                                47 Power Cord Strain Relief- 505DZ-645
+ 20 Compressor (GSE/Thomas)- 525D-625                     48 Power Switch- 505DZ-508
+ 21A Compressor Rebuild Kit (GSE)- 525D-643               49 Pressure Regulator- MC29D-612
+ 21B Compressor Rebuild Kit (Thomas)- 525D-653            50 Pressure Relief Valve (GSE Comp.)- 515ADZ-614
+ 22 Exhaust Muffler- 515A-705                             51 Rotary Valve- 515ADZ-702
+ 23 Cabinet Air Filter- 303DZ-605                         51A Valve Cover Foam- 525DD-642
+ 24 Intake Bacteria Filter- MC44D-605                     52 Sieve Bed- 525D-619
+ 25 Compressor Filter (Plastic)- N/A                      53 Communication Harness/Port- N/A
+ 26 Compressor Filter (Bronze)- 525DD-626                 54 Main Harness- 525DD-623
+ 27 Final Bacteria Filter- PV5LD-651                      55 Rotary Valve Harness- 525D-621
+ 28 Accumulator Tank "T"- N/A                             56 Top Label- 525DD-631
+ 29 Standard Flow Meter- 505DZ-607                        57 Auxiliary O2 Port Tubing w/Orifice- 525DD-645
+ 30 Low Output Meter- 515LF-607                           58 Rating Label 525DS- 525DD-633
+ 31 Foam Kit- N/A                                            Rating Label 525DS-Q- 525DQ-633
+
+
+[1] The part is no longer available.
+[2] When stock is gone the part is no longer available.
+
+                                                                                        03/20/2026
+                                                            525DS           525DS           525DS-Q
+                                                           F Serial #      J Serial #      J Serial #
+          1   Accumulator Tank                          525D-610        525D-610        525D-610
+          2   Auxiliary Oxygen Port                     N/A             N/A             N/A
+          3   Base                                      [2]             525D-603        525D-603
+          4   Bib                                       [2]             N/A             N/A
+          5   Communication Port Door                   525D-640        525DD-640       525DD-640
+          6   Compressor Box                            [2]             [2]             [2]
+          7   Filter Door                               [2]             525DD-639       525DD-639
+          8   Front Cover                               [2]             525DD-601       525DD-601
+          9   Rear Cover                                [2]             525DD-602       525DD-602
+         10   Cabinet Screw (Original)                  525DD-628       525DD-628       525DD-628
+         11   Cabinet Screw (Plastic)                   N/A             N/A             N/A
+         12   Cable Tie (Sieve Bed)                     505DZ-617       505DZ-617       505DZ-617
+         13   Motor Capacitor                           525D-616        525D-616        525D-616
+         14   Non-locking Caster (4 ea)                 501DZ-603       501DZ-603       501DZ-603
+         15   Bed Check Valve (2 ea)                    PVO2D-607       PVO2D-607       PVO2D-607
+         16   Final Check Valve (2 ea)                  PVO2D-607       PVO2D-607       PVO2D-607
+         17   Circuit Breaker                           525D-613 [1]    525D-613 [1]    525D-613 [1]
+         18   Cooling Fan                               525DD-634       525DD-634       525DD-634
+         19   Cooling Fan Guard                         N/A             N/A             N/A
+         20   Compressor                                525D-625        525D-625        525D-625
+         21   Compressor Rebuild Kit                    525D-643        525D-643        525D-643
+         22   Exhaust Muffler                           515A-705        515A-705        515A-705
+                                                            525DS           525DS           525DS-Q
+                                                           F Serial #      J Serial #      J Serial #
+         23   Cabinet Air Filter                        303DZ-605       303DZ-605       303DZ-605
+         24   Intake Bacteria Filter                    MC44D-605       MC44D-605       MC44D-605
+         25   Compressor Filter (Plastic)               [2]             [2]             [2]
+         26   Compressor Filter (Bronze)                N/A             N/A             N/A
+         27   Final Bacteria Filter                     PV5LD-651       PV5LD-651       PV5LD-651
+         28   Accumulator Tank "T"                      444-582         444-582         444-582
+         29   Standard Flow Meter                       505DZ-607       505DZ-607       505DZ-607
+         30   Low Output Meter                          515LF-607       515LF-607       515LF-607
+         31   Foam Kit                                  525D-600        N/A             N/A
+         32   Fuse (PC Board)                           [2]             [2]             [2]
+         33   1/8" ID Hose (Blue 4’ Long)               444-554         444-554         444-554
+         34   1/2" ID Hose PVC Braided (4" Long)        444-549         444-549         444-549
+         35   1/2" ID Hose Silicone Braided (2’ long)   505DZ-634       505DZ-634       505DZ-634
+         36   1/4" ID Plastic Hose Clamp                N/A             N/A             N/A
+         37   ID Ladder Clamp                           444-566         444-566         444-566
+         38   Hour Meter                                PV5LD-617       PV5LD-617       PV5LD-617
+         39   Intake Canister                           525D-614        525D-614        525DD-614
+         40   Light Panel w/Ribbon Cable                525D-615        525D-615        525D-615
+         41   Purge Manifold Assembly                   N/A             525DD-617       525DD-617
+         42   Motor Mounts                              505IZ-609       505IZ-609       505IZ-609
+                                                            525DS           525DS           525DS-Q
+                                                           F Serial #      J Serial #      J Serial #
+         43   Oxygen Outlet Port                        525DD-606       525DD-606       525DD-606
+         44   PC Board                                  525DS-622 [1]   525DS-622 [1]   525DS-622 [1]
+         45   Power Cord w/Strain Relief                PV5LD-618       PV5LD-618       PV5LD-618
+         46   Power Cord Strap                          [2]             [2]             [2]
+         47   Power Cord Strain Relief                  505DZ-645       505DZ-645       505DZ-645
+         48   Power Switch                              505DZ-508       505DZ-508       505DZ-508
+         49   Pressure Regulator                        MC29D-612       MC29D-612       MC29D-612
+         50   Pressure Relief Valve                     515ADZ-614      515ADZ-614      515ADZ-614
+         51   Rotary Valve                              515ADZ-702      515ADZ-702      515ADZ-702
+         52   Sieve Bed                                 525D-619        525D-619        525D-619
+         53   Communication Harness/Port                [2]             [2]             [2]
+         54   Main Harness                              515DZ-623       515DZ-623       515DZ-623
+         55   Rotary Valve Harness                      525D-621        525D-621        525D-621
+
+
+[1] When stock is gone the part is no longer available.
+[2] The part is no longer available.
+
+
+
+                                                                                           03/26/2026
+ 1 Accumulator Tank- 525D-610                             29 Flow Meter- 505DZ-607
+ 2 Auxiliary O2 Port- N/A                                 30 Low Output Flow Meter- 515LF-607
+ 3 Base Assembly- 525DD-603                               31 Foam Kit- N/A
+ 4 Bib- N/A                                               32 Fuse- [1]
+ 5 Communication Port Door- N/A                           33 1/8" ID Hose (Blue 4’ Long)- 444-554
+ 6 Compressor Box- 525DD-615                              34 1/2" ID PVC (4" Long)- 444-549
+ 7 Filter Door- 525DD-639                                 35 1/2" ID Hose Silicone (2’ long)- 505DZ-634
+ 8 Front Cover- 525DD-611                                 36 1/4" Plastic Clamp- N/A
+ 9 Rear Cover- 525DD-612                                  37 Ladder Clamp- 444-566
+ 10 Cabinet Screws (Original)- N/A                        38 Hour Meter- PV5LD-617
+ 11 Cabinet Screws (Plastic)- N/A                         39 Intake Canister 525DS-Q R sn only- 525DD-614
+ 12 Cable Tie (Sieve Bed)- 505DZ-617                      40 Light Panel w/Ribbon- 525D-615
+ 13 Motor Capacitor - 525D-616                            41 Purge Manifold Assembly- 525DD-617
+ 14 Non-locking Caster (4 ea) - 501DZ-603                 42 Motor Mounts (4 ea)- 505IZ-609
+ 15 Bed Check Valve- N/A                                  43 Oxygen Outlet Port- 525DD-606
+ 16 Final Check Valve- N/A                                44 PC Board- 525DD-622
+ 17 Circuit Breaker- 525d-613 [2]                         45 Power Cord w/Strain Relief- PV5LD-618
+ 18 Cooling Fan- 525dd-634 [2]                            46 Power Cord Strap- [1]
+ 19 Colling Fan Guard- N/A                                47 Power Cord Strain Relief- 505DZ-645
+ 20 Compressor- 525D-625                                  48 Power Switch- 505DZ-508
+ 21 Compressor Rebuild Kit- 525D-643                      49 Pressure Regulator- MC29D-612
+ 22 Exhaust Muffler- 515A-705                             50 Pressure Relief Valve- 515ADZ-614
+ 23 Cabinet Air Filter- 303DZ-605                         51 Rotary Valve- 515ADZ-702
+ 24 Intake Bacteria Filter- MC44D-605                     52 Sieve Bed- 525D-619
+ 25 Compressor Filter Plastic- [1]                        53 Communication Harness- N/A
+ 26 Compressor Filter Bronze- 525DD-626                   54 Main Harness- 525DD-623
+ 27 Final Bacteria Filter- PV5LD-651                      55 Rotary Valve Harness- 525D-621
+ 28 Accumulator Tank "T"- N/A
+[1] The part is no longer available.
+[2] When stock is gone the part is no longer available.
+
+                                                                                      03/20/2026
+

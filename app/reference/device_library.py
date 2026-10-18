@@ -175,11 +175,36 @@ def best_match(manufacturer: str | None, model: str | None) -> LibraryEntry | No
     return leaders[0]
 
 
-def _document_title(e: LibraryEntry, file: str) -> str:
+def _document_title(e: LibraryEntry, file: str, url: str = "") -> str:
+    """The title of the document a fact cites, by its stored file or its URL."""
+    bare_url = (url or "").split("#", 1)[0]
     for doc in e.documents:
-        if doc.get("file") == file:
+        if file and doc.get("file") == file:
             return str(doc.get("title") or file)
+    for doc in e.documents:
+        if bare_url and str(doc.get("url") or "").split("#", 1)[0] == bare_url:
+            return str(doc.get("title") or bare_url)
     return file
+
+
+def citation(e: LibraryEntry, name: str) -> dict[str, Any]:
+    """Where one fact of the entry was read: title, link, page and quote.
+
+    The link carries the PDF page anchor when the library stored one. An
+    absent fact gives empty strings, never an error.
+    """
+    payload = e.facts.get(name)
+    if not isinstance(payload, dict):
+        return {"title": "", "url": "", "page": None, "quote": "", "note": ""}
+    file = str(payload.get("document") or "")
+    url = str(payload.get("url") or "")
+    return {
+        "title": _document_title(e, file, url) if (file or url) else "",
+        "url": url,
+        "page": payload.get("page"),
+        "quote": str(payload.get("quote") or ""),
+        "note": str(payload.get("note") or ""),
+    }
 
 
 def _source(label: str) -> Provenance:
@@ -199,11 +224,13 @@ def _fact_from_entry(e: LibraryEntry, name: str, payload: Any) -> Fact | None:
         value = normalise_languages(value)
         if not value:
             return None
-    file = str(payload.get("document") or "")
-    note = _document_title(e, file) if file else ""
-    page = payload.get("page")
-    if note and page not in (None, ""):
-        note = f"{note}, p.{page}"
+    cited = citation(e, name)
+    note = cited["title"]
+    if note and cited["page"] not in (None, ""):
+        note = f"{note}, p.{cited['page']}"
+    if cited["note"]:
+        # What the quote does and does not entail travels with the value.
+        note = f"{note}; {cited['note']}" if note else cited["note"]
     return fact(value, _source(str(payload.get("source") or "")), note)
 
 

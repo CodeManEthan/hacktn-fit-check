@@ -1,0 +1,567 @@
+X 510OK SUBMISSION                                                     SOZaR
+                                                   510k Submission    SO
+                                                   Ultrasonic Fetal And Vascular
+                                                   Pocket       Doppler    Edan
+                                                   Instruments,Inc.
+
+
+                                SUMMARY                                      MIAR 12008
+
+
+
+  This summary of 510Ok safety and effectiveness information is being submitted
+                                                                                in
+  Accordance with 21 CFD part 807.92
+
+          1 Submitters name, address, phone number, contact person and preparation
+            date:
+
+             Name:    Edan lnstruments,lnc
+                      3/F-B Nanshan Medical
+                      Equipments Park,
+                      NanhaliRoad #1019
+                      Shekou, Nanshen, Shenzhen
+                      518067 P.R. China
+                      Tel: 86 755 2689 9197
+                      Fax:86 755 2668 2223
+                      Responsible person: Liu Yongying
+
+            Official Correspondent:
+
+                       William Stern
+                       Multigon Industries, Inc.
+
+                       I Odell Plaza
+                       Yonkers, N.Y. 10701
+                       Phone: 914 376 5200 x27
+                       Fax: 914376 6111
+            Date of Preparation:         1/9/08
+
+     2.     Device:
+                Proprietary Name:      Sontotrax Ultrasonic Fetal and Vascular Pocket
+                                       Doppler Models: Sonotrax Lite, Sonotrax Basic,
+                                       St6hblrax Basic A, Sonotrax Pro, Sonotrax ii,
+                                       ~Qonotraxjl Pro,
+
+                                       Sonotrax Vascular
+          SONOTRAX 510K SUBMISSION
+                                                                               K}        qL
+          Common Name:           Handheld Fetal and Peripheral Vascular Doppler
+
+          Classification name: Fetal Ultrasonic Monitor and Accessories
+                               Ultrasonic Bloodflow Monitor
+                               Diagnostic ultrasonic transducer
+          Product Code:          KNG
+                                 HEP
+
+
+
+          Manufactured By:       Edan Instruments, Inc., China
+
+3.     Predicate Devices:
+
+        K040480 Sonotrax Ultrasonic Pocket Doppler, manufactured by Edan
+Instruments, Inc.
+
+       K024197 LifeDop Doppler Ultrasound System, manufactured by Summit
+Doppler Systems,
+
+       5350 Vivian St., Suite A, Arvada, CO 80002
+
+
+
+4.     Classification Names:
+
+            Class II as per 21CFR 884-2660, Fetal Ultrasonic
+            Monitor and accessories.(KNG)
+                                                                                                  4
+            Class II as per 21CFR 884-2660, Ultrasonic                     ,
+            Bloodflow Monitor (HEP)
+
+
+5.     Description:
+
+       The Sonotrax fetal Dopplers enumerated in their varios'oels              Q/   /
+       in 2. above use the tried and true principle of DoppleE/1 o'~                     .   \-       '
+       u aso       signal to detect the fetal heartbeat using 2 2mHz/0d
+                                                                      .
+         '3AmHz robes and for blood flow detection in veins       e'ries
+          'ng.4 mHz and 8 mHz probes.
+
+
+
+       The Sonotrax Fetal Dopplers uses a split D piezoelectric
+       jtrus-diige.A high frequency oscillator supplies a continuous
+       high frequency voltage to one half of the split D transmitter
+       transducer. The high frequency voltage is converted to an
+       ultrasound acoustic wave by the transducer and is transmitted to
+       biophysical objects thru an applied coupling water based medium
+       and moves thru biophysical objects. The acoustic ultrasound is
+        SONOTRAX 510K SUBMISSIONJ                                                        & 4
+        reflected by moving blood cells and moving objects such as the
+        fetal heart. The reflected ultrasound is received by the second split
+        D receiver transducer and is converted via the pezoelectric effect
+        into a high frequency electronic signal. The receive e ectronic
+        signal is amplified and detected. The result is a base band audio
+        Doppler shifted signal which is filtered, and converted to audio
+        via a loud speaker. At the same time the fetal heart rate is applied
+        to and displayed on a liquid crystal counter display.
+
+        The Sonotrax product includes four interchangeable probes (2mHz
+        and 3 mHz Obstetrical probes and 4mHz and 8mHz vascular
+        probes).
+
+        The user interface includes an on/off button, a play /record button
+        (only in the Sonotrax Pro model), a loud speaker, headphone jack,
+        LCD display for heartrate (all models except Sonotrax lite), and a
+        battery.
+
+
+6.      Indications for use:
+
+        The 2 mHz and/ or 3 mHz obstetrical probes are indicated for the
+        detection of fetal life .from early gestation thru delivery and as a
+        general indication of fetal well being. They can also be used to
+        verify fetal heart viability following patient trauma.
+
+        The 4 mHz and/ or 8 mHz vascular probes are indicated for the
+        detection of blood flow in veins and arteries for assisting in the
+        detection of peripheral vascular disease.
+
+        The Sonotrax series of pocket dopplers are to be used by health
+        care professionals including registered nurses, practical nurses,
+        midwives, ultrasound technicians, and physicians assistants, by
+        prescription from licensed physicians in hospitals, clinics and
+        private offices.
+7.      Contraindications: None known at this time.
+
+Comparison to Predicate Device.
+
+The Sonotrax Ultrasonic Fetal and Vascular Pocket Doppler models in 2. above
+    including the Lite, Basic,Pro, II, and Vascular models have the same device
+    characteristics as all the predicate approved devices in item 3 above.All of these
+    above models use the same technology and circuitry as the already approved
+    Sonotrax Doppler cleared under K040480. In this application we have added a
+    3 mHz probe frequency for fetal use, and a 4 mHz and 8 mHz vascular
+    probes for vascular use. These Sonotrax models are also similar and comparable
+    to the Lifedop Doppler cleared under K024197. Hence the Sonotrax Fetal and
+    Vascular Pocket Doppler models in paragraph 2 above are substantially
+    equivalent to the predicate devices cited.
+      SONOTRAX 510K SUBMISSION                                                  Ku &
+
+9.    Test Data:
+
+      The Sonotrax Ultrasonic Fetal and Vascular Doppler devices have been
+      designed under design control procedures in the company's QSR system as
+      enumerated in the Cerctificate of Conformance and subjected to extensive
+      safety, performance testing and validations before release. Final testing of
+      the Sonotrax Ultrasonic Fetal and Vascular Dopplers includes various
+      performance tests designed to ensure that the device meets all of its
+      functional requirements and performance specifications. Safety tests have
+      further been performed to ensure the device complies with applicable
+      industry and safety standards.
+
+      The Sonotrax Ultrasonic Fetal and Vascular Doppler device labeling
+      includes instructions for safe and effective use, warnings cautions and
+      guidance for use.
+
+10.   Literature Review:
+
+      A review of the literature pertaining to the safety of Doppler Blood
+      flowmeters has been conducted and appropriate safeguards have been
+      incorporated in the design of the Sonotrax Ultrasonic Fetal and Vascular
+      Fetal Dopplers.
+
+10.   Conclusions:
+
+      The conclusion drawn from these tests is that the Sonotrax Ultrasonic Fetal
+      and Vascular Dopplers described herein are equivalent in safety and
+      efficacy to the predicate devices.
+   DEPARTMENT OF HEALTH & HUMAN SERVICES                                        Public Health Service
+
+
+                                                                                Food and Drug Administration
+                                                                                9200 Corporate Boulevard
+                                                                                Rockville MD 20850
+                                                    MAR I1 200B
+Edan Instruments, Inc.
+c/o Mr. William Stem
+Official Correspondent
+Multigon Industries, Inc.
+1 Odell Plaza
+YONKERS NY 10701
+
+
+Re: K080087
+    Trade/Device Name: Sonotrax Ultrasonic Fetal and Vascular Pocket Doppler
+    Regulation Number: 21 CFR §884.2660
+    Regulation Name: Fetal ultrasonic monitor and accessories
+    Regulatory Class: 1I
+    Product Code: KNG
+    Dated: January 9, 2008
+    Received: January 23, 2008
+
+Dear Mr. Stem:
+
+We have reviewed your Section 510(k) premarket notification of intent to market the device
+referenced above and we have determined the device is substantially equivalent (for the indications
+for use stated in the enclosure) to legally marketed predicate devices marketed in interstate
+commerce prior to May 28, 1976, the enactment date of the Medical Device Amendments, or to
+devices that have been reclassified in accordance with the provisions of the Federal Food, Drug, and
+Cosmetic Act (Act). You may, therefore, market the device, subject to the general controls
+provisions of the Act. The general controls provisions of the Act include requirements for annual
+registration, listing of devices, good manufacturing practice, labeling, and prohibitions against
+misbranding and adulteration.
+
+This determination of substantial equivalence applies to the following transducers intended for use
+with the Sonotrax Ultrasonic Fetal and Vascular Pocket Doppler, as described in your premarket
+notification:
+
+                               Transducer Model Number
+
+                 8 mHz CW Vascular Probe               4 mHz CW Vascular Probe
+                 3 mHz CW Fetal Probe                  2 mHz CW Fetal Probe
+
+If your device is classified (see above) into either class II (Special Controls) or class III (PMA), it
+may be subject to such additional controls. Existing major regulations affecting your device can be
+found in the Code of Federal Regulations, Title 21, Parts 800 to 898. In addition, FDA may publish
+further announcements concerning your device in the Federal Register.
+Page 2 - Mr. William Stem
+
+
+Please be advised that FDA's issuance of a substantial equivalence determination does not mean that
+FDA has made a determination that your device complies with other requirements of the Act or any
+Federal statutes and regulations administered by other Federal agencies. You must comply with all
+the Act's requirements, including, but not limited to: registration and listing (21 CFR Part 807);
+labeling (21 CFR Part 801); good manufacturing practice requirements as set forth in the quality
+systems (QS) regulation (21 CFR Part 820); and if applicable, the electronic product radiation
+control provisions (Sections 531-542 of the Act); 21 CFR 1000-1050.
+
+This letter will allow you to begin marketing your device as described in your premarket notification.
+The FDA finding of substantial equivalence of your device to a legally marketed predicate device
+results in a classification for your device and thus permits your device to proceed to market.
+
+If you desire specific advice for your device on our labeling regulation (21 CFR Part 801), please
+contact the Office of Compliance at (240) 276-0120. Also, please note the regulation entitled,
+"Misbranding by reference to premarket notification" (21CFR Part 807.97). You may obtain other
+general information on your responsibilities under the Act from the Division of Small
+Manufacturers, International and Consumer Assistance at its toll-free number (800) 638-2041 or
+(240) 276-3150 or at its Internet address http://www.fda.gov/cdrh/industr¥/support/index.html
+
+If you have any questions regarding the content of this letter, please contact Gamal Akabani, Ph.D. at
+(240) 276-3666.
+
+                                             Sincerely yours,
+
+
+
+                                        f~ Iancy C. Brogdon
+                                             Director, Division of Reproductive,
+                                              Abdominal and Radiological Devices
+                                             Office of Device Evaluation
+                                             Center for Devices and
+                                              Radiological Health
+
+Enclosures
+                                Indication for Use
+510(k) Number (if known):
+
+Device Name:                Sonotrax Ultrasonic Fetal and Vascular Pocket Doppler
+
+
+                            Indication for Use:
+
+
+                            The 2 mHz and/ or 3 mHz obstetrical probes are
+                            indicated for the detection of fetal life from early
+                            gestation thru delivery. They can also be used to
+                            verify fetal heart viability.
+
+                            The 4 mHz and/ or 8 mHz vascular probes are
+                            indicated for the detection of blood flow in veins and
+                            arteries for assisting in the detection of peripheral
+                            vascular disease.
+
+                            The Sonotrax series of pocket dopplers are to be used
+                            by health care professionals including registered
+                            nurses, practical nurses, midwives, ultrasound
+                            technicians, and physicians assistants, by
+                            prescription from licensed physicians in hospitals,
+                            clinics and private offices.
+
+
+                            The model includes Sonotrax Lite, Sonotrax Basic, Sonotrax
+                            Pro, Sonotrax Basic A, Sonotrax II, Sonotrax II Pro, Sonotrax
+                            Vascular.
+
+
+
+
+Prescription Use   Yes               And/Or          Over the Counter Use No
+(21 CFR Part 801 Subpart D)                          (21 CFR Part 801 Subpart C)
+
+(PLEASE DO NOT WRITE BELOW THIS LINE; CONTINUE ON ANOTHER PAGE IF NEEDED)
+
+Concurrence of CDRH, Office of In Vitro Diagnostic Device Evaluation and Safety (OIVD)
+
+
+
+                       (DivisionU
+                       Division of Reproductive, Abdominal, and
+
+                       RadNOgicalDevice
+                       510(k) Nu        mb                   r
+                            510K SUBMISSION
+
+                                                                                                      Appendix F
+
+
+                                Diagnostic Ultrasound Indications far Use Farm
+             ,fill ot oe form for each ultrasound system and each transducer.,
+  3 mnfz <CW FETAL PROBE- MODEL: SONOTRAX
+ intended Us: Diiagnostic ultrasound imaging or fluid flow analysis of the human body as follows:
+                                                                    Mode Of Opertion                _____
+
+
+
+~ClinicaI ApPlicaUiOf            A     B     M    PWDI'CWD        Color      Amplitude      Color    Cmie               Other
+                                                                 Doppler      Doppler      Veoiy     (pcf)            (specify)
+          i, ~        ~     ~          -      -     -Imaoingq                                         _____
+
+
+
+
+innoprative Neurologial
+
+
+
+
+Neonatal Cephali
+Adult Cephalic
+Cardiac._                                                                    _   _   _                _       _   _
+
+
+:Tiensesophageai
+Transrectal
+transwiginal
+Trarnsurethral
+Intravascular
+Peripheral Vascular
+Laparcosopic
+Musculo-skeletal
+Conetlonal
+Musculo-skeletal Superfidiatl
+
+
+N= new indication; P= previously cleared by FDA; E= added under Appendix E
+Additional Comments:            The above is              a 3 mHz CW transducer for FETAL
+                                                                                     HEART RATE DETECTION
+                                                                                     MODEL CD3.0-ms3
+
+
+
+
+                                      NOT
+                                 (PtEASEO   RTEIBEOW THIS LUNE-CONTINUE ON ANOTHER PAGE IFNEEDED)
+                                  Concurrence of CDRH, Office of Device Evaluation (ODE)
+
+
+
+
+Prescription Use (Per 21 CFR 801-.1DS)--
+
+
+                                                            F3          Diviino ReprdCtive. Abdominal,
+
+                                                                        and Radiological DevicehliC
+                                                                           510(k) Number______________
+    SONOTRAX                               510K SUBMISSION
+
+                                                                                                                          Appendix F
+
+                                              Diagnostic Ultrasound Indications for Use Form
+                      Fill out one form for each ultrasound system and each transducer,
+         8 mHz CWVASCLR PROBE- MODEL: SONOTRAX
+        Intended Use: Diagnostic ultrasound imaging or fluid flow analysis of the human body
+                                                                                             as follows:
+
+                                                                                         Mode of Oeration
+        Clinical Applicaton        -            A     B      M    PWD CWD              Colo     Amplitude      Color     Combined      Other
+                                                                                      Doppler    Doppler      Velocity   (specify)   (specify)
+
+        Ophthalmic
+        Fetal
+        Abdominal
+        Intfoperadve (sPec.t)
+        Intraoperative Neurological
+        Pediatric
+
+        Small Organ (specify)
+        Neonatal Cephalic
+        AdultCephalic
+        Cardiac
+        Transesophageal
+        Transrectal
+        Transvaginal
+        Transurethral
+        Intravasclar
+        Peripheral Vascular
+        Laparosoapic
+        Musculo-skeletal
+
+                ucu-skeletal Superficial        -     -      -     -       -_______
+                                                                                                                         ___
+
+
+j   ~    ~~Other
+           (specify)
+        N= new indication; P= previously cleared by FDA; E= added under Appendix E
+        Additional Comments: The above is a 8 mHz CW transducer for
+                                               detection of             blood flow in                       veins and arteries
+                                               MODEL CD8.0-MS3
+
+
+
+                                           (PtEASE DO NOT WRITE BELOW'IS UNE -CONTINUE ONANOTHER PAGE IFNEEDED)
+                                                 Concurrence of CDRH, Office of Device Evaluation (ODE)
+
+
+
+
+        Prescription Use (Per 21 CFR 801.109)
+
+
+                                                                           F-3 Dvision of Reproductive, Abdominal,
+                                                                               and Radiological Devi 2
+                                                                                      510(k) Numrber           7"          .    r
+SONOTRAX                     510K SUBMISSION
+
+                                                                                                                    Appendix F
+
+                                Diagnostic Ultrasound Indications for Use Form
+                       Fill out one form for each ultrasound system and each transducer,
+      4 MHz CW VASC<. PROBE- MODEL:.SONOTRAX
+   intended Use: Diagnostic ultrasound imaging or fluid flow analysis of the human body as follows:
+                                             -    --           -   -         ~~~~ModeOf O eration             ___
+
+
+  Clinc Application              A           B        M    PWD CWD          Color     Amplitude       Color   Combined        Other
+                                                                           Doppler     Doppler       Velocity  (specify)    (specify)
+                                                      -    -   -     -        -      __________      l~~~maging
+   Ophthalmic
+   Fetal
+   Abdominal
+   lntraoperflive(specify)
+   Intraqpera Neurological
+   Pediatric
+   Smallorgan (specify)
+   Neonatal Cephalic
+  Adult CephalicI
+  Cardiac
+  ,Tlefsesophacleai
+  -transrectal                   -       -            -        -   -___                              __
+
+  -TrsrnsvaginaI
+  jrtansurmttwl-
+                                                                                      ____
+
+               lay               -a-a-cuar
+
+
+  2t,'Oipheral Vascular…-                                                            ____            ___
+
+  Ablipbscopic
+   Musdulo-skeletal
+         iticoal
+  A'kl-seea Superficial          _
+
+
+
+
+      Aew in~dication:, P= preveniously cleared by FDA; E= added under Appendix E
+      -
+
+
+
+   Additional Comments: The above is a 4 mHz CW transducer for
+                                 DETECTION OF BLOOD FLOW IN VEINS AND ARTERIES
+                                     MODEL CD4.O-MSS
+
+
+lawLAED                                  O       RT       ELW1-SLN        OJIJ O     N~E     AEi     EDD
+
+
+
+                                         Cocrece of CDRH, Office of Device Evaluation (ODE)
+
+
+
+
+               tpton Use (Per 21 CFR 811
+
+
+                                                                     F-      iiin3fRpodcie Abdominal,
+                                                                            andRdooiaDeie
+                                                                            510(k) Number           f- 2 o37
+~OOTRAX                        510K SUBMISSION                                                                                                                                                   -
+                                                                                                                                            Appendix F
+                                                CcVZRvX OOS u            VC. AO     1t(c04i
+                                   Diagnostic Ultrasound Indlications'for Use FormU
+              Fill out one form for each ultrasound system and each transducer.
+  2 mHz CW FETAL PROBE- MODEL: SONOTRAX
+intended use: Diagno;tic ultrasound imaging or fluid flow analysis of the human body as follows:
+
+                                                                            Mode of Operation
+Clinical Application                A              IPWD CWD               Color    Amplitude                        Color               Combined                                  Other
+                                                                         Doppler    Doppler                        velocity              (specify)                              (specify)
+                                                                                                                   Imaciing             ______
+
+
+
+
+Fe~l                                                           f
+Abdominal
+
+ Intraoperative (specify)
+_lnfroperative Neurological
+Pediatric
+SmallOrgan (specify)
+Neonatal Cephalic
+AdultCephalic
+Cardiac
+Transesophaqeal
+Transrectal…
+                                                                                   _       _       _   _   _   _    _   _   _   _   _       _       _       _       _       _    _   _   _   _
+
+Transvagkial
+Transurethral…_
+                                                                                       _       _       _   _   _    _   _   _           _       _       _       _       _
+
+Intravascular
+Peripheral Vascular
+Laparoscopic
+Musculo-skeletal
+Conventional
+Musculo-skeletal Superficial
+
+
+ N=new indication; P= prev~iously clea~red by FDA EadeunrApendix E
+Additional Comments: The above is a 2 MHZ oW transducer for                                                                                                         fetal
+                                  'heart rate detection. MODEL CD2.0-MS53
+
+
+
+
+                               (PLAS 00 NOr WRIT   BELO   ThI UNE -CONTINUE ONANOTHER PAGE IFNEEED~)
+                                    Concurrence of CDRH, Office Of Device Evaluation (ODE)
+
+
+
+
+Prescription Use (Per 21 CFR 801-.10.9)
+
+
+                                                                   F-3        Diviso of Reproductive, Abdominal,
+                                                                              'and RadiologicalDevi 2
+                                                                              510(k) Number____________
+

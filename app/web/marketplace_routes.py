@@ -97,14 +97,28 @@ async def offer_submit(
     nameplate: UploadFile | None = File(default=None),
 ) -> HTMLResponse:
     try:
-        typed = "\n".join(p for p in (model_name.strip(), spec_text.strip()) if p)
-        image_data_url = ""
-        if nameplate is not None and nameplate.filename:
-            image_data_url = image_to_data_url(await nameplate.read(), nameplate.content_type or "")
-        if not typed and not image_data_url:
-            raise FormError("Give a model name, paste spec text, or add a nameplate photo.")
+        device: DeviceFacts | None = None
+        posted = await request.form()
+        library_slug = str(posted.get("library_slug") or "").strip()
+        if library_slug:
+            # [B3] A library pick: the facts are rebuilt from the library, never
+            # read from the form, so a cited value cannot be edited by hand.
+            # The donor adds only what is about this unit: its build year here,
+            # quantity and location below.
+            picked = _library_entry(library_slug)
+            device = _library_device(picked, str(posted.get("year_of_manufacture") or ""))
+            device_type = device_type.strip() or picked.device_type
+            model_name = model_name.strip() or picked.label
 
-        device = extract_device(typed_text=typed, image_data_url=image_data_url)
+        if device is None:
+            typed = "\n".join(p for p in (model_name.strip(), spec_text.strip()) if p)
+            image_data_url = ""
+            if nameplate is not None and nameplate.filename:
+                image_data_url = image_to_data_url(await nameplate.read(), nameplate.content_type or "")
+            if not typed and not image_data_url:
+                raise FormError("Give a model name, paste spec text, or add a nameplate photo.")
+
+            device = extract_device(typed_text=typed, image_data_url=image_data_url)
         # The donor's expiry answer is the last word on the date, whatever
         # built the facts above it.
         device = forms.apply_dated_items(device, expiry_date)
@@ -829,3 +843,129 @@ def packet_page(
             "verdict": verdict,
         },
     )
+
+# ---- [B3] library pick ------------------------------------------------------
+
+from dataclasses import replace as _replace  # noqa: E402
+
+from app.domain.provenance import Provenance, fact  # noqa: E402
+from app.reference import device_library  # noqa: E402
+
+# The offer page lists the library through this, read at render time, so a
+# rebuilt library file shows without a restart.
+TEMPLATES.env.globals["library_entries"] = device_library.load_library
+
+EARLIEST_BUILD_YEAR = 1950
+
+# The rows the prefill shows: (label, DeviceFacts field whose citation the row
+# links to, how to show the value). Every row says where its value was read.
+PREFILL_ROWS = (
+    ("Model", "model"),
+    ("Voltage", "voltage_min_v"),
+    ("Frequency", "frequencies_hz"),
+    ("Power", "power_watts"),
+    ("Operating temp", "temp_min_c"),
+    ("Max humidity", "humidity_max_pct"),
+    ("Needs oxygen", "needs_oxygen"),
+    ("Needs distilled water", "needs_distilled_water"),
+    ("Needs compressed air", "needs_compressed_air"),
+    ("Consumables", "consumables"),
+    ("Manual languages", "manual_languages"),
+    ("Operating complexity", "operating_complexity"),
+)
+
+
+def _library_entry(slug: str) -> device_library.LibraryEntry:
+    picked = device_library.entry(slug)
+    if picked is None:
+        raise FormError(f"No library entry {slug!r}. Clear the pick and paste the spec instead.")
+    return picked
+
+
+def _build_year(raw: str) -> int | None:
+    value = (raw or "").strip()
+    if not value:
+        return None
+    if not value.isdigit():
+        raise FormError(f"Year made must be a year such as 2016. You gave {value!r}.")
+    year = int(value)
+    if not EARLIEST_BUILD_YEAR <= year <= datetime.now().year:
+        raise FormError(f"Year made must be between {EARLIEST_BUILD_YEAR} and {datetime.now().year}.")
+    return year
+
+
+def _library_device(picked: device_library.LibraryEntry, year_text: str) -> DeviceFacts:
+    """The entry's cited facts plus the donor's word on when this unit was built."""
+    device = device_library.to_device_facts(picked)
+    year = _build_year(year_text)
+    if year is not None:
+        device = _replace(device, year_of_manufacture=fact(year, Provenance.DONOR_STATED))
+    return device
+
+
+def _yes_no(value) -> str:
+    return "yes" if value else "no"
+
+
+def _prefill_value(device: DeviceFacts, name: str) -> str:
+    if name == "model":
+        return device.label if device.model.known else ""
+    if name == "voltage_min_v":
+        return _range_text(device.voltage_min_v, device.voltage_max_v, "V")
+    if name == "temp_min_c":
+        return _range_text(device.temp_min_c, device.temp_max_c, "\u00b0C")
+    held = getattr(device, name)
+    if not held.known:
+        return ""
+    if name == "frequencies_hz":
+        return "/".join(str(v) for v in held.value) + " Hz"
+    if name == "power_watts":
+        return f"{held.value} W"
+    if name == "humidity_max_pct":
+        return f"{held.value} %"
+    if name.startswith("needs_"):
+        return _yes_no(held.value)
+    if isinstance(held.value, list):
+        return ", ".join(str(v) for v in held.value)
+    return str(held.value)
+
+
+def _prefill_rows(picked: device_library.LibraryEntry) -> list[dict]:
+    """Inspector rows for a library entry: label, value, source, link and page."""
+    device = device_library.to_device_facts(picked)
+    rows = []
+    for label, name in PREFILL_ROWS:
+        shown = _prefill_value(device, name)
+        cited = device_library.citation(picked, name) if shown else {}
+        rows.append({
+            "label": label,
+            "value": shown,
+            "source": getattr(device, name).source.value if shown else "unverified",
+            "source_url": cited.get("url", ""),
+            "page": cited.get("page"),
+            "document": cited.get("title", ""),
+            "known": bool(shown),
+        })
+    return rows
+
+
+@router.post("/offer/prefill")
+async def offer_prefill(request: Request) -> JSONResponse:
+    """The inspector rows for one library entry, each with its document link.
+
+    Never raises at the client: an unknown slug comes back as a message with
+    no rows, the way /offer/extract reports a reader that did not answer.
+    """
+    form = await request.form()
+    slug = str(form.get("slug") or form.get("library_slug") or "").strip()
+    picked = device_library.entry(slug) if slug else None
+    if picked is None:
+        return JSONResponse({"rows": [], "device_type": "", "label": "",
+                             "message": "Pick a device from the library." if not slug
+                             else f"No library entry {slug!r}."})
+    return JSONResponse({
+        "rows": _prefill_rows(picked),
+        "device_type": picked.device_type,
+        "label": picked.label,
+        "message": "Facts from the maker's documents. Clear the pick to paste a spec instead.",
+    })

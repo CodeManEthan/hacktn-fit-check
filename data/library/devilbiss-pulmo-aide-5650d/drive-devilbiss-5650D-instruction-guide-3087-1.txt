@@ -1,0 +1,1057 @@
+          	DeVilbiss® Pulmo-Aide® Compressor/Nebulizer Instruction Guide
+EN
+            Models 5650C, 5650D, 5650F, 5650I, 5650K & 5650P
+CAUTION– Federal (U.S.A.) law restricts this device to sale by, or on the order of a physician.
+Assembled in the USA
+LATEX
+        Not made with natural rubber latex.
+Model 5650F IEC 60601-1 & 60601-1-2 Compliant
+
+           D
+            eVilbiss® Pulmo-Aide® Compresor/Nebulizador Guía de
+ ES
+           Instrucciones
+            Modelos 5650C, 5650D, 5650F, 5650I, 5650K y 5650P
+PRECAUCION–La ley federal (EE.UU.) restringe la venta de este aparato para ser realizada por, o bajo pre-
+scripción de, un médico.
+Ensamblado en EE. UU.
+LATEX
+        No está hecha de látex de caucho natural.
+Conformidad del Modelo 5650F con IEC 60601-1 y 60601-1-2
+
+           C
+            ompresseur/Nébuliseur DeVilbiss® Pulmo-Aide® Guide
+ FR
+           d'Instructions
+            Modèles 5650C, 5650D, 5650F, 5650I, 5650K et 5650P
+ATTENTION– La loi fédérale (États-Unis) limite la vente de ce dispositif par ou sur ordonnance d’un
+médecin.
+Assemblé aux États-Unis
+                                                                                                  ETL CLASSIFIED
+LATEX
+        Fabriqué sans latex.
+Modèle 5650F Conformité à CEI 60601-1 et 60601-1-2
+
+
+                                                                                                   3072612
+ENGLISH..........................................................................................................                                                              EN-2
+ESPAÑOL..........................................................................................................                                                              ES-8
+FRANÇAIS........................................................................................................                                                              FR-14
+
+
+TABLE OF CONTENTS
+IEC Symbols.............................................................................................................................................................       EN - 2
+Important Safeguards. .............................................................................................................................................            EN - 2
+Introduction. .............................................................................................................................................................    EN - 3
+Important Parts
+     DeVilbiss 5650 Compressor..............................................................................................................................                   EN - 4
+     Disposable Nebulizer. .......................................................................................................................................             EN - 4
+How to Operate Your Compressor...........................................................................................................................                      EN - 4
+Cleaning and Maintenance
+     Nebulizer Cleaning............................................................................................................................................            EN - 5
+     Compressor Cleaning........................................................................................................................................               EN - 5
+     Filter Change.....................................................................................................................................................        EN - 5
+     Maintenance......................................................................................................................................................         EN - 6
+Specifications/5650F Classifications........................................................................................................................                   EN - 6
+Warranty...................................................................................................................................................................    EN - 7
+
+
+IEC SYMBOLS
+
+                     Consult Instruction for Use                                                    Double Insulated
+
+                     Electric Shock Hazard
+                                                                                                    Catalog/Model Number
+                     Do Not Open
+
+                     Alternating Current                                                            Serial Number
+
+                     Type BF Applied Part                                                           Date of Manufacture
+
+                     On                                                                             Fuse Rating
+                                                                                                    This device contains electrical and/or electronic equipment
+     O               Off                                                                             that must be recycled per EU Directive 2012/19/EU -
+                                                                                                     Waste Electrical and Electronic Equipment (WEEE)
+
+
+IMPORTANT SAFEGUARDS
+When using electrical products, especially when children are present, basic safety precautions should always be followed.
+Read all instructions before using. Important information is highlighted by these terms:
+DANGER – U
+          rgent safety information for hazards that will cause serious injury or death.
+WARNING – Important safety information for hazards that might cause serious injury.
+CAUTION – Information for preventing damage to the product.
+NOTE –               Information to which you should pay special attention.
+
+READ ALL INSTRUCTIONS BEFORE USING.
+DANGER
+To reduce the risk of electrocution:
+1.	Always unplug this product immediately after using.
+2. Do not use while bathing.
+3.	Do not place or store product where it can fall or be pulled into a tub or sink.
+4. Do not place in or drop into water or other liquid.
+EN - 2                                                                                                                                                                        A-5650
+5.	Do not reach for a product that has fallen into water. Unplug immediately.
+WARNING
+To reduce the risk of burns, electrocution, fire or injury to persons:
+1.	The product should never be left unattended when plugged in.
+2.	Close supervision is necessary when this product is used by, on, or near children or physically incapacitated
+     individuals.
+3.	Use this product only for its intended use as described in this guide. Do not use attachments not recommended by
+     the manufacturer.
+4. Never operate this product if:
+     a.		 It has a damaged power cord or plug.
+     b.		 It is not working properly.
+     c.		 It has been dropped or damaged.
+     d.		 It has been dropped into water.
+	Return the product to an authorized DeVilbiss service center for examination and repair.
+5.	Keep the power cord away from heated surfaces.
+6.	Never block the air openings of the product or place it on a soft surface, such as a bed or couch, where the air
+     openings may be blocked. Keep the air openings free of lint, hair, and the like.
+7. Never use while drowsy or asleep.
+8.	Never drop or insert any object into any opening or hose.
+9.	Do not use outdoors. This product is for household use only.
+10.	Do not use in an oxygen enriched environment.
+11.	Connect this product to an appropriate outlet only.
+12. Do not use this product with a DC to AC converter, or with any AC voltage and/or frequency other than specified.
+13. Do not operate unit in a backpack or carrying bag.
+14.	Care should be taken when this product is used in the vicinity of other electronic equipment concerning possible
+     electromagnetic or other interference between them. They may need to be moved apart. 5650F complies with EMC
+     requirements of IEC 60601-1-2.
+NOTE– This unit employs a temperature and/or current limiting device that will shut off the entire product should a
+malfunction occur or in the event of product misuse, abuse, or abnormal operation. The 5650 will restart when the motor
+cools to an acceptable level.
+Model 5650D has a polarized plug (one blade is wider than the other). As a safety feature, this plug will fit in a polarized
+outlet only one way. If the plug does not fit fully in the outlet, reverse the plug. If it still does not fit, contact a qualified
+electrician. Do not attempt to defeat this safety feature. If repair or replacement of the cord or plug is necessary, contact
+your qualified DeVilbiss provider.
+NOTE–The exterior surfaces of the unit and the air outlet connector may become slightly warm to the touch during use.
+Warm air can also be felt exiting the vents on the sides of the case of the unit. This is normal.
+
+SAVE THESE INSTRUCTIONS
+INTRODUCTION
+Your doctor has prescribed a liquid medication to treat your respiratory condition. To best utilize this liquid medication, he
+has prescribed a DeVilbiss brand compressor/nebulizer. Your DeVilbiss compressor/nebulizer works to convert the
+medication to a high-quality mist of fine particles that penetrates deep into the lungs.
+Be sure that you read and understand the information in this instruction guide. By following these simple instructions and
+the advice of your physician, your compressor will become an effective addition to your therapeutic routine.
+
+Statement of Intended Use
+The DeVilbiss compressor/nebulizer includes an AC powered air compressor that provides a source of compressed air for
+home health care use. The compressor is used in conjunction with a jet (pneumatic) nebulizer to convert certain inhalable
+drugs into an aerosol form for inhalation by a patient. The device can be used with adult or pediatric patients.
+NOTE–If using a nebulizer other than one distributed by DeVilbiss, verify that the pressure and/or flow characteristics of
+the nebulizer (while driven by the DeVilbiss compressor) meet the nebulizer manufacturer’s recommendation.
+
+
+
+A-5650                                                                                                                      EN - 3
+IMPORTANT PARTS
+DeVilbiss 5650 Compressor                                                                                           6 (on back)
+1. Storage compartment
+2.	Storage compartment door with operating instructions                                     8
+3. Power switch                                                                              1
+                                                                                                                                  7
+4. Filter cap                                                                            2
+                                                                                                                                  5
+5. Air-outlet connector
+6. Carrying handle
+                                                                                                                                  3
+7. Power cord storage
+8. Nebulizer holder
+Disposable Nebulizer                                                                                     4
+1. Mouthpiece
+2. T-piece                                                                                           1          2           3
+3. Corrugated Tubing
+4. Cap
+5. Baffle
+6. Medication Cup                                                                                               4
+7. Nebulizer Air-Inlet Connector                                                                                                  8
+8. Tubing                                                                                        5
+Nebulizer parts are not sold separately. Additional nebulizers (part #3655D-621)
+are available through your DeVilbiss provider.                                               6
+
+NOTE–Your neb may look different than pictured.                                                                     7
+DeVilbiss also offers reusable nebulizers that can be cleaned and reused for an
+extended period of time.
+
+HOW TO OPERATE YOUR COMPRESSOR
+NOTE–Before initial operation, your nebulizer should be cleaned following cleaning
+instructions, or as recommended by your physician or DeVilbiss provider.
+1.	Place compressor on a level, sturdy surface so that the controls can be easily
+    reached when seated. Never block the air openings of the product or place it on a
+    soft surface, such as a patient’s lap or a bed or couch where the air openings may
+    be blocked.
+2.	Open door to storage compartment.
+3.	Make sure the power switch is in the “Off” position (Fig. 1). Unwrap power cord and
+    plug power cord into an appropriate wall outlet (refer to Specifications).                       Figure 1
+DANGER
+DeVilbiss compressor/nebulizer must be operated on the specified power source to
+avoid risk of electric shock and damage to the compressor.
+4. Wash hands.
+5.	Connect one end of the nebulizer tubing to the compressor air-outlet connector.
+NOTE–During high-humidity weather conditions, condensation (water build up) can occur
+in the nebulizer tubing.
+6.	Assemble clean nebulizer and add prescribed medication (Fig. 2).
+7.	Assemble mouthpiece, t-piece, and corrugated tubing (if applicable) and insert into             Figure 2
+     the top of the nebulizer cap. If using an aerosol mask, insert the bottom part of the
+     mask directly into the top of the nebulizer cap.
+8.	Attach tubing to nebulizer air-inlet connector (Fig. 3).
+9.	Press the power switch “On” (Fig. 1) to start the compressor.
+10.	Begin treatment by placing the mouthpiece between teeth. With mouth closed,
+     inhale deeply and slowly through mouth as aerosol begins to flow, then exhale
+     slowly through the mouthpiece (Fig. 4). If treatment needs to be interrupted, simply
+     press power switch “Off.”
+NOTE–Your physician may recommend a specific breathing pattern during treatment. If
+so, follow his/her recommendations.
+                                                                                                     Figure 3
+EN - 4                                                                                                                     A-5650
+11.	If an aerosol mask is used, place the mask over mouth and nose (Fig. 5). As aerosol
+     begins to flow, inhale deeply and slowly through mouth, then exhale slowly.
+12.	When treatment is complete, turn unit off by pressing the power switch to the “Off”
+     position. Unplug the unit from the wall power outlet.
+CLEANING AND MAINTENANCE
+Nebulizer Cleaning
+All parts of the nebulizer, except tubing, should be cleaned according to the following
+instructions. Your physician and/or DeVilbiss provider may specify a certain cleaning
+procedure. If so, follow their recommendations.                                                   Figure 4
+
+WARNING
+To prevent possible risk of infection from contaminated medication, cleaning of the
+nebulizer is recommended after each aerosol treatment. Disinfecting is
+recommended once a day.
+Clean After Every Use:
+1.	With power switch in the “Off” position, unplug power cord from wall outlet.
+2.	Disconnect tubing from the air-inlet connector and set aside.
+3.	Disassemble mouthpiece or mask from cap. Open nebulizer by turning cap
+      counterclockwise and removing baffle.
+                                                                                                  Figure 5
+4.	Wash all items, except tubing, in a warm water/dishwashing detergent solution.
+      Rinse under warm tap water for 30 seconds to remove detergent residue. Allow to
+      air dry.
+Disinfect Daily:
+1.	Using a clean container or bowl, soak items in three parts warm water
+      (131˚F-149ºF/55˚C-65˚C) to one part white vinegar (>=5% acetic acid concentration)
+      for 30 minutes (Fig. 6) OR use a medical bacterial-germicidal disinfectant available
+      through your provider. Be sure to follow manufacturer’s instructions carefully.
+2.	With clean hands, remove items from disinfectant solution, rinse under warm tap
+      water, and air dry on a clean paper towel. Store in a zip-lock bag.
+NOTE– D
+       o not towel dry nebulizer parts; this could cause contamination.                          Figure 6
+
+WARNING
+To prevent possible risk of infection from contaminated cleaning solutions, always prepare fresh solution for each
+cleaning cycle and discard solution after each use.
+3.	Keep the outer surface of the tubing dust-free by wiping regularly. Nebulizer tubing does not have to be washed
+      because only filtered air passes through it.
+NOTE– The disposable nebulizer supplied with the unit will last at least 15 days and possibly longer, depending on usage.
+Proper cleaning will also help extend the life of the nebulizer. Because it is disposable, we recommend that an extra
+nebulizer be kept on hand at all times.
+Compressor Cleaning
+1.	With power switch in the “Off” position, unplug power cord from wall outlet.
+2.	Wipe outside of the compressor cabinet with a clean damp cloth every few days to keep dust-free.
+DANGER
+Do not submerge in water; doing so will result in compressor damage.
+Filter Change
+1. Filter should be changed every 6 months or sooner if filter turns completely gray in color.
+2. Remove filter cap by grasping it firmly and pulling out of the unit.
+3. Remove dirty filter with fingers and discard.
+4. Replace with a new DeVilbiss filter (part #5650D-602). Additional filters should be purchased from your DeVilbiss
+     provider.
+5. Push filter cap with new filter into position.
+CAUTION– Do not reuse or wash filter or substitute any other material such as cotton for a DeVilbiss air-inlet filter. It will
+result in compressor damage.
+NOTE– An extra filter is packaged with the 5650 series units.
+
+A-5650                                                                                                                  EN - 5
+Maintenance
+All maintenance must be performed by a qualified DeVilbiss provider or authorized service center.
+
+DANGER
+Electric shock hazard. Do not remove compressor cabinet. All disassembly and maintenance must be done by a
+qualified DeVilbiss provider.
+
+SPECIFICATIONS/CLASSIFICATIONS
+Size. ......................................................................................................... 10.1” D x 10.5” H x 6.5” W (26 cm x 27 cm x 17 cm)
+Weight.................................................................................................................................................................7.1 lbs. (3.2 kg)
+Electrical Requirements:
+     5 650D & 5650C...............................................................................................................................1.3 amps, 115VAC 60Hz
+     5650I............................................................................................................................................... 0.8 amps, 230VAC 50Hz
+     5650K & 5650P. ........................................................................................................................ 0.8 amps, 230VAC 50/60Hz
+     5650F. ............................................................................................................................................ 0.8 amps, 230VAC 50Hz
+Sound Level:
+   All Models except 5650F. ...................................................................................................................................... 51-55 dBA
+     5650F..................................................................................................................................................................... 49-53 dBA
+Power Consumption:
+     5 650D & 5650C........................................................................................................................................90 watts maximum
+     5650I, 5650K & 5650P. ..........................................................................................................................100 watts maximum
+      5650F. ....................................................................................................................................................105 watts maximum
+Maximum Compressor Pressure. .................................................................................................................. 30 psig (206 kPa)*
+Compressor Free Air Flow 5650......................................................................................................................................12 lpm*
+Operating Temperature Range:
+    All Models except 5650C........................................................................................................+40° to +104°F (+5 to +40°C)
+     5650C. .................................................................................................................................+40° to +101°F (+5 to +38.5°C)
+Operating Humidity. ..........................................................................................................................up to 95% non-condensing
+Storage/Transport Temperature Range. ....................................................................................-40° to +140°F (-40° to +60°C)
+Storage/Transport Humidity .............................................................................................................up to 95% non-condensing
+Storage/Transport Pressure...................................................................................................... 7.3 to 15.4 psia (50 to 106 kPa)
+Supplied Nebulizer Capacity........................................................................................................................................10 ml (cc)
+Supplied Nebulizer Nebulization Rate. ................................................................................................... 0.15 ml/min or greater*
+Supplied Nebulizer MMAD.............................................................................................................................5 microns or less**
+*Conditions may vary based on altitude above sea level, barometric pressure, and temperature.
+**Value determined with minimum flow rate through the nebulizer (20°C, sea level).
+
+
+5650F Classifications
+With respect to protection against electric shock . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . Class II
+Degree of protection against electrical shock . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . Type BF Applied Parts
+Degree of protection against ingress of liquids . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  IPXO
+Mode of Operation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . Continuous
+
+
+
+
+EN - 6                                                                                                                                                                   A-5650
+FIVE-YEAR LIMITED WARRANTY ON COMPRESSOR PARTS
+All DeVilbiss Compressor models are warranted to be free from defective workmanship and material for a period of five
+years from the date of purchase. Any defective part(s) will be repaired or replaced at DeVilbiss’s option if the unit has not
+been tampered with or used improperly during that period. Make certain that any malfunction is not due to inadequate
+cleaning or failure to follow the instructions. If repair is necessary, contact your DeVilbiss Healthcare Provider or DeVilbiss
+Service Department for instructions: U.S.A. 800-338-1988 or 814-443-4881, Europe +49-621-178-98-230.
+NOTE—This warranty does not cover providing a loaner compressor, compensating for costs incurred in compressor rental
+while said unit is under repair, or costs for labor incurred in repairing or replacing defective part(s).
+THERE IS NO OTHER EXPRESS WARRANTY. IMPLIED WARRANTIES, INCLUDING THOSE OF MERCHANTABILITY
+AND FITNESS FOR A PARTICULAR PURPOSE, ARE LIMITED TO THE DURATION OF THE EXPRESS LIMITED
+WARRANTY AND TO THE EXTENT PERMITTED BY LAW ANY AND ALL IMPLIED WARRANTIES ARE EXCLUDED.
+THIS IS THE EXCLUSIVE REMEDY AND LIABILITY FOR CONSEQUENTIAL AND INCIDENTAL DAMAGES UNDER ANY
+AND ALL WARRANTIES ARE EXCLUDED TO THE EXTENT EXCLUSION IS PERMITTED BY LAW. SOME STATES DO
+NOT ALLOW LIMITATIONS ON HOW LONG AN IMPLIED WARRANTY LASTS, OR THE LIMITATION OR EXCLUSION
+OF CONSEQUENTIAL OR INCIDENTAL DAMAGES, SO THE ABOVE LIMITATION OR EXCLUSION MAY NOT APPLY
+TO YOU.
+This warranty gives you specific legal rights, and you may also have other rights which vary from state to state.
+
+MANUFACTURER’S NOTE
+Thank you for choosing a DeVilbiss compressor/nebulizer. We want you to be a satisfied customer. If you have any
+questions or comments, please send them to our address on the back of this manual.
+
+
+
+
+ For Service Call Your Authorized DeVilbiss Provider:
+ _______________________________________________________________________________________________
+ _______________________________________________________________________________________________
+ _______________________________________________________________________________________________
+ Phone__________________________________________________________________________________________________
+ Purchase Date_ __________________________________________________________________________________________
+ Serial # / Date of Manufacturer _______________________________________________________________________________
+
+
+
+A-5650                                                                                                                EN - 7
+ÍNDICE
+Simbolos IEC. ..........................................................................................................................................................         ES - 8
+Precauciones Importantes. ......................................................................................................................................                 ES - 8
+Introducción. ............................................................................................................................................................       ES - 9
+Partes Importantes
+     Compresor DeVilbiss Modelos 5650.................................................................................................................                          ES - 10
+     Nebulizador Desechable. ..................................................................................................................................                 ES - 10
+Cómo Operar Su Compresor...................................................................................................................................                     ES - 10
+Limpieza y Mantenimiento
+     Limpieza del Nebulizador..................................................................................................................................                 ES - 11
+     Limpieza del Compresor. ..................................................................................................................................                 ES - 11
+     Cambio de Filtro................................................................................................................................................           ES - 12
+     Mantenimiento...................................................................................................................................................           ES - 12
+Especificaciones / Clasificaciones del Modelo 5650F.............................................................................................                                ES - 12
+Garantía. ..................................................................................................................................................................    ES - 13
+
+SIMBOLOS IEC
+
+                   Consulte las instrucciones de uso                                             Doble aislamiento
+
+                   Peligro de Elecroshock.
+                                                                                                 Número de catálogo/modelo
+                   No lo abra.
+                   Corriente alterna                                                             Número de serie
+
+                   Parte aplicada Tipo BF                                                        Fecha de fabricación
+
+                   Encindido                                                                     Especificaciones del fusible
+                                                                                                 Este aparato contiene equipo eléctrico y/o electrónico que
+    O              Apagado                                                                       debe ser reciclado de acuerdo a la Norma EU 2012/19/EU
+                                                                                                 – Equipo Eléctrico y Electrónico Residual (WEEE)
+
+
+PRECAUCIONES IMPORTANTES
+Cuando use productos eléctricos, especialmente cuando hay niños presentes, siempre deben tomarse las precauciones
+básicas de seguridad. Lea todas las instrucciones antes de usar el aparato. Se enfatiza la información importante por
+medio de estos términos:
+PELIGRO–                       Información de seguridad urgente que involucra riesgos que puedan causar lesiones serias o
+                                incluso la muerte.
+ADVERTENCIA– 	 Información de seguridad importante para riesgos que pudieran causar lesiones serias.
+PRECAUCION–	Información para evitar daño al producto.
+NOTA–                         Información a la que debe prestar atención especial.
+
+LEA TODAS LAS INSTRUCCIONES ANTES DE USARLO.
+PELIGRO
+Para reducir el riesgo de electrocutación:
+1.	Siempre desconecte este producto inmediatamente después de usarlo.
+2. No lo use cuando se bañe.
+3.	No coloque ni guarde el producto donde se pueda caer a la bañera o al lavabo.
+4. No lo ponga ni lo deje caer en agua o en otro líquido.
+5.	No toque el producto que cayó en el agua. Desconéctelo inmediatamente.
+ADVERTENCIA
+Para reducir el riesgo de quemaduras, electrocutación, incendio, o lesiones a personas:
+1.	Nunca se debe dejar desatendido un producto cuando esté conectado.
+
+
+ES - 8                                                                                                                                                                         A-5650
+2.	Es necesaria una supervisión cercana cuando se use este producto con o cerca de niños o personas con
+     discapacidades físicas.
+3.	Utilice este producto exclusivamente para lo que fue hecho, tal como se describe en la guía. No use aditamentos
+     que no recomiende el fabricante.
+4. Nunca opere este producto si:
+     a)     Tiene el cordón o el enchufe deteriorado.
+     b)     No funciona apropiadamente.
+     c)     Se ha caído o descompuesto.
+     d)     Se ha caído en el agua.
+	Regrese el producto a un centro de servicio autorizado de DeVilbiss para ser examinado y reparado.
+5. Mantenga el cordón lejos de superficies calientes.
+6. Nunca bloquee las aberturas de aire del producto ni lo ponga en una superficie blanda, como una cama o sofá,
+     donde se puedan bloquear las entradas de aire. Mantenga las entradas de aire sin pelusa, pelo y otros objetos
+     similares.
+7.	Nunca lo use cuando esté somnoliento o adormecido.
+8.	Nunca deje caer ni introduzca un objeto en ninguna abertura o manguera del producto.
+9.	No lo use en exteriores. Este producto es para usarse solamente en el hogar.
+10.	No lo use en un ambiente enriquecido de oxígeno.
+11.	Conecte este producto sólo en un tomacorriente apropiado.
+12.	No utilice este producto con un transformador de CC a CA ni con un voltaje de CA y/ o frecuencia diferente de la
+     que se especifica.
+13. No utilice la unidad dentro de una mochila o una bolsa.
+14.	Debe tenerse cuidado cuando este producto se usa cerca de otro equipo electrónico debido a posible interferencia
+     electromagnética o a otro tipo de interferencia entre ambos aparatos. Es probable que necesite apartar uno del otro.
+     El Modelo 5650F cumple con los requisitos de compatibilidad electromagnética (EMC) de la norma IEC 60601-1-2.
+NOTA–La unidad emplea un limitador térmico y/o de corriente que apagará la unidad en caso de mal funcionamiento o en
+caso de mal uso, abuso o funcionamiento anormal de la unidad. La 5650 se pondrá en funcionamiento nuevamente
+cuando el motor se enfríe a un nivel aceptable.
+Modelo 5650D lleva un enchufe polarizado (una clavija es más ancha que la otra). Como medida de seguridad, este
+enchufe podrá entrar en un tomacorriente polarizado en una sola posición. Si no logra introducir el enchufe
+completamente en el tomacorriente, déle la vuelta. Si continúa sin entrar, póngase en contacto con un electricista
+cualificado. No intente alterar esta medida de seguridad. Si es necesario reemplazar el cable o el enchufe, póngase en
+contacto con su proveedor de DeVilbiss autorizado.
+NOTA–Las superficies exteriores del equipo y el conector de salida pueden estar ligeramente calientes al tacto durante el
+uso. También se puede sentir aire caliente saliendo de los orificios de ventilación en los laterales de la caja de la unidad.
+Esto es normal.
+
+GUARDE ESTAS INSTRUCCIONES
+INTRODUCCIÓN
+Su médico le ha prescrito un medicamento líquido para el tratamiento de su estado respiratorio. Para utilizar de la mejor
+manera el medicamento líquido, ha prescrito un compresor/ nebulizador DeVilbiss. El compresor/nebulizador DeVilbiss
+funciona para convertir el medicamento en una neblina de alta calidad de finas partículas que penetran dentro de los
+pulmones.
+Asegúrese de leer y entender la información en esta guía de instrucciones. Al seguir estas sencillas instrucciones y el
+consejo de su médico, su compresor se convertirá en un auxiliar efectivo de su rutina terapéutica.
+
+Enunciado de uso idóneo
+El compresor/nebulizador DeVilbiss incluye un compresor de aire de CA que proporciona una fuente de aire comprimido
+para el cuidado médico en el hogar. El compresor se usa, junto con un nebulizador a chorro (neumático) en la conversión
+de ciertas medicinas respirables en aerosoles para que sean inhaladas por el paciente. El dispositivo puede utilizarse con
+pacientes adultos o pediátricos.
+NOTA—Si utiliza un nebulizador que no haya sido distribuido por DeVilbiss, verifique que las características de presión y/
+o flujo del nebulizador (mientras funcione con el compresor DeVilbiss) se ajustan a las recomendaciones del fabricante del
+nebulizador.
+
+
+A-5650                                                                                                               ES - 9
+PARTES IMPORTANTES
+Compresor DeVilbiss Modelo 5650                                                                                     6 (on back)
+1. Compartimiento para guardar
+2.	Puerta del compartimiento para guardar con instrucciones de operación                     8
+3. Interruptor de corriente                                                                   1
+4. Tapa del filtro                                                                                                                7
+                                                                                         2
+5. Conector de salida de aire                                                                                                     5
+6. Mango de transporte
+7.	Depósito para cordón eléctrico                                                                                                3
+8. Soporte del nebulizador
+Nebulizador Desechable
+1. Pieza bucal                                                                                           4
+2. Pieza-T
+3. Tubo corrugado                                                                                    1          2           3
+4. Tapa
+5. Deflector
+6. Copa del medicamento
+7.	Conector de entrada del aire                                                                                4
+8. Conducto                                                                                                                       8
+Las partes del nebulizador se venden por separado. Se cuenta con nebulizadores                   5
+adicionales (parte No. 3655D-621) que puede conseguir a través de su distribuidor
+DeVilbiss.                                                                                   6
+NOTA–Su nebulizador pudiera tener un aspecto diferente al mostrado.
+                                                                                                                    7
+DeVilbiss también ofrece nebulizadores reutilizables que se pueden limpiar y volver
+a usar durante un largo período de tiempo.
+
+CÓMO OPERAR SU COMPRESOR
+NOTA– Antes de la operación inicial, se debe limpiar el nebulizador siguiendo las
+instrucciones, o como lo recomiende su médico o el distribuidor DeVilbiss.
+1.  Coloque el compresor en una superficie nivelada, sólida de tal forma que se puedan
+    alcanzar los controles con facilidad cuando esté sentado. Nunca bloquee las
+    aberturas de aire del producto ni lo ponga en una superficie blanda, como el regazo
+    del paciente una cama o sofá, donde se puedan bloquear las entradas de aire.
+2.	Levante la puerta y muévala para abrir el compartimiento para guardar.
+3.	Asegúrese que el interruptor de corriente esté en la posición de apagado (“Off”) (Fig.
+    1). Desenrolle el cordón y conecte el cordón eléctrico en la toma eléctrica de pared
+                                                                                           Figura 1
+    apropiada (vea las Especificaciones).
+PELIGRO
+El compresor/nebulizador DeVilbiss debe operarse en la fuente de poder específica
+para evitar una descarga eléctrica y dañar el compresor.
+4. Lávese las manos.
+5.	Conecte un extremo del conducto del nebulizador al conector de salida del aire.
+NOTA–En condiciones climáticas muy húmedas, puede ocurrir condensación
+(acumulación de agua) en los tubos del nebulizador.
+6. Ensamble las nebulizador y ponga el medicamento prescrito (Fig. 2).
+7.	Ensamble la pieza bucal, la pieza T y el tubo corrugado (si corresponde) e insértelo             Figura 2
+      en la parte superior de la tapa del nebulizador. Si se usa una mascarilla para
+      aerosol, inserte la parte inferior de la mascarilla directamente en la parte superior
+      de la tapa del nebulizador.
+8.	Fije el conducto del conector de la entrada de aire del nebulizador (Fig. 3).
+9.	Oprima el interruptor de corriente en “On” (Fig. 1) para encender el compresor.
+10.	Comience el tratamiento colocando la pieza bucal entre los dientes. Con la boca
+      cerrada, inhale profunda y lentamente por la boca y el aerosol comenzará a fluir,
+      luego exhale lentamente por la pieza bucal (Fig. 4). Si es necesario interrumpir el
+      tratamiento, simplemente oprima el interruptor de corriente en “Off.”
+                                                                                                     Figura 3
+
+ES - 10                                                                                                                    A-5650
+NOTA– Su médico podría recomendarle un patrón específico de respiración durante el
+tratamiento. De ser así, siga sus recomendaciones.
+11.	Si se usa una mascarilla de aerosol, coloque la mascarilla sobre boca y nariz (Fig.
+     5). Conforme el aerosol comienza a fluir, inhale profunda y lentamente por la boca,
+     luego exhale lentamente.
+12.	Cuando haya terminado el tratamiento, apague la unidad posicionando el interruptor
+     de encendido en “Off.” Desenchufe la unidad de la toma de corriente.
+LIMPIEZA Y MANTENIMIENTO
+Limpieza del nebulizador                                                                     Figura 4
+Todas las partes del nebulizador, excepto el conducto, deben limpiarse después de cada
+uso de acuerdo con las instrucciones siguientes. Su médico y/o distribuidor DeVilbiss
+puede especificar un cierto procedimiento de limpieza. De ser así, siga sus
+recomendaciones.
+
+ADVERTENCIA
+Para evitar un posible riesgo de infección debido a un medicamento contaminado,
+se recomienda limpiar el nebulizador después de cada tratamiento de aerosol se
+recomienda las desinfección una vez al día.
+Limpie Después de Cada Uso:
+                                                                                             Figura 5
+1.	Con el interruptor en la posición de apagado (“Off”), desenchufe el cordón de
+      corriente del tomacorriente de pared.
+2.	Desconecte el conducto del conector de la entrada de aire y póngalo aparte.
+3.	Desarme la pieza bucal o la mascarilla de la tapa. Abra la nebulizador girando la
+      tapa en el sentido contrario a las manecillas del reloj y retire el deflector.
+4.	Lave todas las piezas, excepto el conducto, con una solución de agua caliente y
+      detergente para platos. Enjuague con agua caliente del grifo por 30 segundos para
+      quitar el residuo del detergente. Déjelas secar al aire.
+Diariamente:
+1.	Usando una olla o recipiente limpio, sumerja las piezas en una solución de tres
+                                                                                             Figura 6
+      partes de agua (55 °C-65 °C) caliente y una parte de vinagre (concentración de
+      ácido acético >=5%) blanco por 30 minutos (Fig. 6), O use un desinfectante
+      germicida bacteriano que se puede conseguir a través de su distribuidor. Asegúrese
+      de seguir al pie de la letra las instrucciones del fabricante.
+2.	Con las manos limpias, retire las piezas de la solución desinfectante, enjuáguelas
+      con agua caliente del grifo y déjelas secar al aire sobre un papel toalla limpio.
+      Guárdelas en una bolsa hermética.
+NOTA– N
+       o seque las partes del nebulizador con una toalla; esto podría contaminarlas.
+
+ADVERTENCIA
+Para evitar un posible riesgo de infección por las soluciones de limpieza
+contaminadas, siempre prepare una solución nueva para cada limpieza y deséchela
+después de usarla.
+3.    Mantenga la superficie exterior del conducto sin la presencia de polvo pasándole un paño regularmente. El conducto
+      del nebulizador no necesita lavarse ya que únicamente pasa aire filtrado por él.
+NOTA– El nebulizador desechable proporcionado con la unidad tiene una duración de al menos 15 días o más, en función
+del uso. Una limpieza apropiada también ayudará a alargar la vida útil del nebulizador. Puesto que este nebulizador es
+desechable, recomendamos que siempre tenga otro a mano.
+
+Limpieza del compresor
+1.	Con el interruptor de corriente en la posición “Off,” desenchufe el cordón de corriente del tomacorriente de pared.
+2.	Pase un paño limpio y húmedo por el exterior del gabinete del compresor a intervalos de pocos días para
+    mantenerlo sin polvo.
+
+PELIGRO
+No lo sumerja en agua, ya que dañaría el compresor.
+
+
+A-5650                                                                                                          ES - 11
+Cambio de filtro
+1. Se debe cambiar el filtro cada 6 meses o con menor frecuencia si el mismo se torna completamente gris.
+2. Retire la tapa del filtro tomándola con firmeza y jalándola de la unidad.
+3. Retire el filtro sucio con los dedos y deséchelo.
+4. Reemplácelo con uno nuevo filtro DeVilbiss (parte No. 5650D-602). Los filtros adicionales se deben comprar a
+    través del distribuidor DeVilbiss.
+5. Presione la tapa del filtro con el nuevo filtro en su lugar.
+PRECAUCION– No lave ni vuelva a usar el filtro, ni sustituya un filtro de entrada de aire DeVilbiss por cualquier otro
+material como algodón. Ello producirá daños al compresor.
+NOTA– Se incluye un filtro extra con las unidades de Serie 5650.
+
+Mantenimiento
+Todo el mantenimiento deberá ser realizado por un distribuidor calificado DeVilbiss o en un centro autorizado de servicio.
+PELIGRO
+Riesgo de descarga eléctrica. No quite el gabinete del compresor. Todo el desarmado y mantenimiento debe ser
+realizado por un distribuidor calificado DeVilbiss.
+
+ESPECIFICACIONES/CLASIFICACIONES
+Tamaño . .................................................................................................. 26 cm x 27 cm x 17 cm (10,1” D x 10,5” H x 6,5” W)
+Peso ...................................................................................................................................................................3,2 kg (7,1 lbs.)
+Requerimientos Eléctricos:
+      5 650D y 5650C. ............................................................................................................................. 1.3 amps, 115VCA 60Hz
+      5650I.............................................................................................................................................. 0.8 amps, 230VCA 50 Hz
+      5650K y 5650P......................................................................................................................... 0.8 amps, 230VCA 50/60 Hz
+      5650F. ........................................................................................................................................... 0.8 amps, 230VCA 50 Hz
+Nivel de sonido:
+     Todos los modelos excepto 5650F........................................................................................................................ 51-55 dBA
+     5650F. ................................................................................................................................................................... 49-53 dBA
+Consumo de Potencia:
+      5 650D y 5650C. ..........................................................................................................................................90 watts maximo
+      5650I, 5650K y 5650P...............................................................................................................................100 watts maximo
+      5650F. .......................................................................................................................................................105 watts maximo
+Presión del compresor máxima. .................................................................................................................... 30 psig (206 kPa)*
+Flujo de aire libre del compresor . ...................................................................................................................................12 lpm*
+Variación de temperatura de funcionamiento:
+    Todos los modelos excepto 5650C. .......................................................................................+40° to +104°F (+5 to +40°C)
+     5650C..................................................................................................................................+40° to +101°F (+5 to +38.5°C)
+Humedad de funcionamiento ...........................................................................................................up to 95% non-condensing
+Variación de temperatura para el almacenaje/ transporte. ..........................................................-40° to +140°F (-40° to +60°C)
+Humedad de almacenaje/ transporte . .............................................................................................up to 95% non-condensing
+Presión en almacenamiento/transporte. ....................................................................................... 7.3 a 15.4 psi (50 a 106 kPa)
+Capacidad que se suministra con el nebulizador........................................................................................................10 ml (cc)
+Velocidad de nebulización que se suministra con el nebulizador. ............................................................0.15 ml/min o mayor*
+MMAD que se suministra con el nebulizador ........................................................................................... menos de 5 micras**
+*Las condiciones pueden variar dependiendo de la altitud sobre el nivel del mar, presión barométrica y temperatura.
+**Valor determinado con una velocidad mínima de flujo a través del nebulizador (20ºC, nivel del mar).
+
+
+Clasificaciones del Modelo 5650F
+Con respecto a la protección contra descargas eléctricas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . Clase II
+Grado de protección contra descargas eléctricas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . Pieza aplicada de tipo BF
+Grado de protección contra la entrada de líquidos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  IPXO
+Modo de funcionamiento . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . Continuo
+
+
+
+
+ES - 12                                                                                                                                                                  A-5650
+GARANTÍA LIMITADA DE 5 AÑOS EN LAS PARTES DEL COMPRESOR
+Todos compresores DeVilbiss están garantizados contra cualquier defecto de mano de obra o de material por un período
+de cinco años a partir de la fecha de compra. Cualquier parte(s) será(n) reparada(s) o sustituida(s) a criterio de DeVilbiss
+si la unidad no ha sido alterada o manipulada indebidamente en ese período de tiempo. Cerciórese que cualquier
+malfuncionamiento no se deba a una limpieza inadecuada o a una deficiencia en el seguimiento de las instrucciones. Si
+necesita reparar el dispositivo, póngase en contacto con el proveedor de asistencia sanitaria de DeVilbiss o con el
+departamento de atención al cliente de DeVilbiss y solicite instrucciones: EE. UU. 1-800-338-1988 o +1-814-443-4881,
+Europa +49-621-178-98-230.
+NOTA– Esta garantía no cubre el préstamo de un compresor, la compensación por los costos de renta incurridos mientras
+la unidad esté en reparación ni los costos de mano de obra en los que se incurra para reparar o sustituir la(s) parte(s)
+defectuosa(s).
+NO HAY OTRA GARANTIA EXPRESA. LAS GARANTIAS IMPLICITAS, INCLUYENDO AQUELLAS DE
+COMERCIABILIDAD Y AJUSTE PARA UN PROPOSITO PARTICULAR ESTAN LIMITADAS A LA DURACION DE LA
+GARANTIA LIMITADA EXPRESA Y EN LA MEDIDA QUE LA LEY LO PERMITA SE EXCLUYEN CUALQUIERA Y TODAS
+LAS GARANTIAS IMPLICITAS. ESTA ES LA SOLUCION Y RESPONSABILIDAD EXCLUSIVAS PARA DAÑOS
+CONSECUENTES O INCIDENTALES BAJO CUALQUIERA Y TODAS LAS GARANTIAS QUE SE EXCLUYEN EN LA
+MEDIDA QUE LA EXCLUSION SEA PERMITIDA POR LA LEY. ALGUNOS ESTADOS NO PERMITEN LIMITACIONES EN
+LA DURACION DE LA GARANTIA IMPLICITA O EN LA LIMITACION O EXCLUSION DE DAÑOS CONSECUENTES O
+INCIDENTALES, DE TAL FORMA QUE LA LIMITACION O EXCLUSION ARRIBA MENCIONADA PUEDE NO APLICARSE
+A UD.
+Esta garantía le proporciona derechos legales específicos, y puede tener otros que varían de estado a estado.
+NOTA DEL FABRICANTE
+Le agradecemos su preferencia por el compresor/nebulizador DeVilbiss. Deseamos que sea un consumidor satisfecho. En
+caso de tener preguntas o comentarios, sírvase enviarlos a nuestra dirección escrita a continuación.
+
+
+
+
+ Llame a su proveedor de DeVilbiss autorizado para obtener servicio:
+ _______________________________________________________________________________________________
+ _______________________________________________________________________________________________
+ _______________________________________________________________________________________________
+ Teléfono_ _______________________________________________________________________________________________
+ Fecha de compra _________________________________________________________________________________________
+ No. de Serie/Fecha de fabricación _________________________________________________________________________
+
+
+
+A-5650                                                                                                             ES - 13
+TABLE DES MATIÈRES
+ Symboles CEI. .........................................................................................................................................................        FR - 14
+ Mises en Garde Importantes. ..................................................................................................................................                 FR - 14
+ Introduction. .............................................................................................................................................................    FR - 15
+ P
+ arties importantes
+      Compresseur DeVilbiss modèles 5650. ............................................................................................................                          FR - 16
+      Nébuliseur jetable..............................................................................................................................................          FR - 16
+Comment faire fonctionner le nébuliseur.................................................................................................................                        FR - 16
+Nettoyage et Entretien
+      Nettoyage du nébuliseur. ..................................................................................................................................               FR - 17
+      Nettoyage du compresseur. ..............................................................................................................................                  FR - 18
+      Changement du filtre.........................................................................................................................................             FR - 18
+      Entretien. ...........................................................................................................................................................    FR - 18
+Spécifications/classement du 5650F. ......................................................................................................................                      FR - 18
+Garantie. ..................................................................................................................................................................    FR - 19
+
+SYMBOLES CEI
+
+                   Consultez les instructions                                                 Double Isolation
+                   d’utilisation
+                   Risque de décharge électrique.
+                                                                                              Catalogue/Numéro de modèle
+                   Ne pas ouvrir
+                   Courant alternatif                                                         Numéro de sérier
+
+                   Pièce appliquée de Type BF                                                 Date de fabrication
+
+                   Marche                                                                     Capacité du fusible
+                                                                                              Cet appareil contient des équipements électriques et/ou
+
+    O              Arrêt
+                                                                                              électroniques qui doivent être recyclés conformément à la
+                                                                                              Directive 2012/19/EU – Déchets d’équipements électriques et
+                                                                                              électroniques (DEEE).
+
+
+MISES EN GARDE IMPORTANTES
+Lors de l’utilisation d’appareils électriques, il faut toujours respecter les mesures de sécurité de base, surtout en présence
+des enfants. Lire toutes les instructions avant l’utilisation. Les informations importantes sont mises en relief par les termes
+suivants :
+DANGER–	Informations de sécurité d’urgence sur les dangers qui pourraient provoquer des blessures
+         graves ou la mort.
+AVERTISSEMENT– Informations de sécurité importantes sur les dangers qui pourraient provoquer des blessures
+                graves.
+ATTENTION–	Informations pour éviter l’endommagement du produit.
+REMARQUE–	Informations auxquelles vous devriez prêter une attention particulière.
+
+LIRE TOUTES LES INSTRUCTIONS AVANT L’UTILISATION.
+DANGER
+Pour réduire les risques d’électrocution :
+1. Débrancher toujours ce produit tout de suite après l’utilisation.
+2. Ne pas l’utiliser en se baignant.
+3.	Ne pas placer ni stocker le produit dans un endroit d’où il pourrait tomber ou être tiré dans une baignoire ou dans un
+     lavabo.
+4. Ne pas le mettre ni ne le faire tomber dans de l’eau ou dans un autre liquide.
+5. Ne pas toucher un produit qui est tombé dans de l’eau. Le débrancher tout de suite.
+
+
+FR - 14                                                                                                                                                                        A-5650
+AVERTISSEMENT
+Pour réduire les risques de brûlure, d’électrocution, d’incendie ou de lésions corporelles :
+1. Il ne faut jamais laisser le produit sans surveillance quand il est branché.
+2.	Une surveillance attentive est nécessaire lorsque ce produit est utilisé par, sur ou près d’enfants ou de personnes
+     handicapées.
+3.	N’utiliser ce produit que dans le but pour lequel il a été prévu, tel que décrit dans ce guide. Ne pas utiliser
+     d’accessoires qui ne sont pas recommandés par le fabricant.
+4. Ne jamais faire fonctionner ce produit si :
+     a.     Le cordon d’alimentation ou la fiche est endommagé.
+     b.		 S’il ne fonctionne pas de façon appropriée.
+     c.		 S’il est tombé ou a été endommagé.
+     d.		 S’il est tombé dans de l’eau.
+     Renvoyer le produit  à un distributeur DeVilbiss qualifié pour qu’il soit contrôlé et réparé.
+5. Tenir le cordon d’alimentation loin des surfaces chaudes.
+6. Ne jamais bloquer les orifices à air du produit ni ne le placer sur une surface molle, tel un lit ou un canapé, où les
+     orifices à air pourraient être bloqués. Garder tous les orifices à air exempts de peluches, de cheveux et d’autres
+     objets similaires.
+7. Ne jamais utiliser le produit en état de somnolence ou endormi.
+8. Ne jamais laisser tomber ou insérer des objets dans une ouverture ou dans un tuyau.
+9. Ne pas l’utiliser au dehors. Ce produit n’est conçu que pour l’usage domestique.
+10. Ne pas l’utiliser dans un environnement riche en oxygène.
+11. Ne branchez ce produit qu’à une prise de caractéristiques électriques correctes.
+12.	Ne pas utiliser ce produit avec un convertisseur de courant continu (DC) en courant alternatif (AC) ou avec toute
+     autre tension et (ou) fréquence de courant alternatif autre que celles indiquées.
+13. Ne pas faire fonctionner l’appareil dans un sac à dos ou un sac
+14.	Des précautions doivent être prises pour éviter toute interférence électromagnétique ou autre éventuelle lorsque ce
+     produit est utilisé à proximité d’autres appareils électroniques. Il peut s’avérer nécessaire d’éloigner les appareils les
+     uns des autres. Le 5650F est conforme aux spécifications CEM de la norme CEI 60601-1-2.
+REMARQUE–Cet appareil utilise un limiteur thermique et/ou de tension qui peut arrêter le produit entier en cas
+d’anomalie, de mauvaise utilisation, d’abus ou de mauvais fonctionnement. L’appareil recommence à fonctionner une fois
+que le moteur est refroidi à un niveau acceptable.
+Modèle 5650D ménager est muni d’une fiche polarisée (l’une des lames est plus large que l’autre). Ce genre de fiche
+n’entre que d’une façon dans une prise polarisée, par mesure de sécurité. Lorsqu’on ne peut pas insérer la fiche à fond
+dans la prise, il faut tenter de le faire après l’avoir tournée de l’autre côté. Si elle n’entre toujours pas dans la prise, il faut
+contacter un électricien qualifié. Ne pas essayer de contourner cette mesure de sécurité. S’il faut remplacer le cordon ou la
+fiche, contacter le fournisseur DeVilbiss qualifié.
+REMARQUE–Les surfaces externes de l’appareil et le connecteur de sortie peuvent devenir légèrement chauds au
+toucher durant l’utilisation. Il se peut que de l’air chaud sorte des orifices de ventilation situés sur les côtés du boîtier de
+l’appareil. C’est tout à fait normal.
+
+GARDER CES INSTRUCTIONS.
+INTRODUCTION
+Votre médecin vous a prescrit un médicament liquide pour traiter votre état respiratoire. Pour mieux utiliser ce médicament
+liquide, il vous a prescrit un compresseur / nébuliseur de la marque DeVilbiss. Votre compresseur / nébuliseur DeVilbiss
+convertit le médicament en une brume de particules fines de haute qualité qui pénètre profondément dans les poumons.
+Veillez à bien lire et comprendre les informations de ce guide d’instructions. En suivant ces simples instructions et le
+conseil de votre médecin, votre compresseur deviendra un ajout  efficace à votre routine thérapeutique.
+
+Déclaration d’utilisation envisagée
+Le compresseur/nébuliseur DeVilbiss est muni d’un compresseur d’air à courant alternatif qui fournit une source d’air
+comprimé en vue des soins médicaux à domicile. Le compresseur est utilisé avec un nébuliseur (pneumatique) à jet pour
+transformer certains médicaments à inhaler en aérosol à l’usage du patient. L’appareil peut être utilisé avec des patients
+adultes ou des enfants.
+REMARQUE—Dans le cas de l’utilisation d’un nébuliseur autre que celui distribué par DeVilbiss, vérifier que les
+caractéristiques de pression et (ou) de débit du nébuliseur (fonctionnant avec le compresseur DeVilbiss) répondent aux
+recommandations du fabricant.
+
+A-5650                                                                                                                   FR - 15
+PIÉCES IMPORTANTES
+Compresseur DeVilbiss Modèle 5650
+1. Compartiment de rangement                                                                                       6 (on back)
+2.	Porte du compartiment de rangement avec les instructions de fonctionnement
+3. Interrupteur principal                                                                   8
+4. Bouchon du filtre                                                                        1
+5. Connecteur de sortie d’air                                                                                                    7
+6. Poignée de transport                                                                 2
+                                                                                                                                 5
+7. Logement du cordon d’alimentation
+8. Support du nébuliseur                                                                                                         3
+Nébuliseur Jetable
+1. Embout buccal
+2. Pièce en T                                                                                           4
+3. Tube cannelé
+4. Couvercle                                                                                        1          2           3
+5. Déflecteur
+6. Chambre de médication
+7. Connecteur d’admission d’air
+8. Tube                                                                                                        4
+Les pièces du nébuliseur ne sont pas vendues séparément. Des nébuliseurs                                                         8
+supplémentaires (pièce nº 3655D-621) sont disponibles chez le fournisseur de                    5
+DeVilbiss.
+REMARQUE–Votre nébuliseur peut sembler différent du nébuliseur illustré.                   6
+DeVilbiss propose également des nébuliseurs réutilisables qui peuvent être
+                                                                                                                   7
+nettoyés et réutilisés pendant une période prolongée.
+
+COMMENT FAIRE FONCTIONNER LE COMPRESSEUR
+REMARQUE– Avant la mise en service initiale, il faut nettoyer le nébuliseur selon les
+instructions de nettoyage ci-dessous, ou tel que recommandé par le médecin ou le
+fournisseur de DeVilbiss.
+1.	Placer le compresseur sur une surface solide et de niveau, en sorte qu’il soit facile
+    d’atteindre les commandes lorsque assis. Ne jamais bloquer les orifices à air du
+    produit ou le placer sur une surface molle, comme sur les genoux du patient, un lit
+    ou un canapé, où les orifices à air pourraient être obstrués.
+2.	Ouvrir la porte du compartiment de rangement.
+3.	S’assurer que l’interrupteur principal est dans la position d’arrêt (Off ) Figure 1.
+                                                                                                    Figure 1
+    Déballer le cordon d’alimentation et le brancher dans une prise de courant murale
+    appropriée (se reporter aux Spécifications).
+DANGER
+Pour éviter les risques de choc électrique et l’endommagement du compresseur, le
+compresseur/ nébuliseur DeVilbiss doit être utilisé à la source de courant spécifiée.
+4. Se laver les mains.
+5.	Brancher l’une des extrémités du tube du nébuliseur dans le connecteur d’admission
+      d’air.
+REMARQUE– Dans des conditions d’humidité élevée, de la condensation (accumulation
+d’eau) peut se produire dans le tube du nébuliseur.                                                 Figure 2
+
+6.	Assembler les nebuliseur et ajouter les medicaments prescrits (Figure 2).
+7.	Assemblez l’embout buccal, la pièce en T et le tube cannelé (si besoin est), puis
+     insérez le tout dans la partie supérieure du couvercle du nébuliseur. En cas
+     d’utilisation d’un masque à aérosols, insérer la partie inférieure du masque
+     directement dans la partie supérieure du couvercle du nébuliseur.
+8.	Attacher le tube au connecteur d’admission d’air du nébuliseur (Figure 3).
+9.	Mettre l’interrupteur principal sur la position de marche (On) (Figure 1) pour démarrer
+     le compresseur.
+10.	Commencer le traitement en plaçant l’embout buccal entre les dents. À mesure que
+                                                                                                    Figure 3
+
+FR - 16                                                                                                                   A-5650
+     l’aérosol commence à s’écouler, inspirer profondément et lentement par la bouche,
+     avec la bouche fermée, et expirer ensuite lentement par la pièce buccale (Figure 4).
+     S’il faut interrompre le traitement, mettre simplement l’interrupteur sur la position
+     d’arrêt (Off).
+REMARQUE–Votre médecin peut vous recommander un mode de respiration particulier
+pendant le traitement. Dans ce cas, suivre ses recommandations.
+11.	En cas d’utilisation d’un masque à aérosols, mettre le masque par-dessus la bouche
+     et le nez (Figure 5). À mesure que l’aérosol commence à s’écouler, inspirer
+     profondément et lentement par la bouche et expirer ensuite lentement.
+12.	Lorsque le traitement est terminé, arrêtez l’appareil en mettant l’interrupteur sur        Figure 4
+     (Off). Débranchez l’appareil de la prise d’alimentation électrique murale.
+NETTOYAGE ET ENTRETIEN
+Nettoyage du nébuliseur
+Toutes les pièces du nébuliseur, à part le tube, doivent être nettoyées selon les
+instructions ci-dessous. Le médecin et/ou le représentant de DeVilbiss peuvent préciser
+une certaine procédure de nettoyage. Dans ce cas, suivre leurs recommandations.
+
+AVERTISSEMENT
+Afin d’éviter les risques possibles d’infection à cause d’un médicament contaminé,
+                                                                                                Figure 5
+il est conseillé de nettoyer le nébuliseur après chaque traitement aux aérosols.
+Désinfection recommandée une fois par jour.
+Après chaque utilisation :
+ 1.	Avec l’interrupteur principal sur la position d’arrêt (Off), débrancher le cordon
+       d’alimentation de la prise murale.
+ 2. Déconnecter le tube du connecteur d’admission d’air et le mettre de côté.
+ 3.	Démonter l’embout buccal ou le masque du couvercle. Ouvrir la nébuliseur en
+       tournant le couvercle en sens anti-horaire et enlever le piège.
+ 4.	Laver toutes les pièces, sauf le tube, dans une solution d’eau chaude et de
+       détergent à vaisselle. Rincer sous un jet d’eau chaude du robinet pendant 30
+       secondes pour enlever tout résidu de détergent. Laisser sécher à l’air.                 Figure 6
+Désinfecter chaque jours :
+ 1.	Laisser tremper les pièces pendant 30 minutes dans une solution de trois parts d’eau chaude (entre 55 et 65 °C) et
+       une part de vinaigre (concentration en acide acétique supérieure ou égale à 5 %) blanc, dans un récipient ou bol
+       propre (Figure 6) Ou utiliser un désinfectant bactérien germicide médical, disponible chez le fournisseur. Suivre à la
+       lettre les instructions du fabricant.
+ 2.	Avec les mains propres, enlever les pièces de la solution désinfectante, les rincer à l’eau chaude du robinet et les
+       laisser sécher à l’air sur une serviette propre en papier. Les ranger dans un sac à fermeture par pression et glissière.
+REMARQUE– Ne pas éponger les pièces du nébuliseur, car ceci pourrait les contaminer.
+
+AVERTISSEMENT
+Pour éviter tout risque possible d’infection due aux solutions de nettoyage contaminées, préparer toujours une
+solution fraîche pour chaque cycle de nettoyage et jeter la solution après chaque utilisation.
+3.	Garder la surface externe du tube exempte de poussière en l’époussetant régulièrement. Il n’est pas nécessaire de
+      laver le tube du nébuliseur jetable, car seulement de l’air filtré y passe.
+REMARQUE–Le nébuliseur jetable fourni avec l’appareil peut durer pendant au moins 15 jours, et peut-être plus, en
+fonction de son usage. Un nettoyage adéquat permet également de prolonger la durée de vie du nébuliseur. Comme il est
+jetable, il est recommandé de garder un autre nébuliseur à portée de main à tout moment.
+
+Nettoyage du compresseur
+1.	Avec l’interrupteur principal sur la position d’arrêt (Off), débrancher le cordon d’alimentation de la prise murale.
+2.	Essuyer l’extérieur du coffret du compresseur à l’aide d’un chiffon mouillé propre tous les deux ou trois jours, pour le
+    garder exempt de poussière.
+DANGER
+Ne pas immerger le compresseur dans de l’eau, car ceci pourrait l’endommager.
+
+
+
+A-5650                                                                                                              FR - 17
+Changement du filtre
+1. Le filtre doit être changé tous les 6 mois ou plus tôt s’il change de couleur et devient entièrement gris.
+2. Enlever le couvercle du filtre en le saisissant fermement et en le tirant pour le sortir de l’appareil.
+3. Enlever le filtre sale avec les doigts et le jeter.
+4. Le remplacer par un nouveau filtre de DeVilbiss (pièce nº 5650D-602). Des filtres supplémentaires peuvent être
+   achetés chez le fournisseur DeVilbiss.
+5. Pousser le couvercle du filtre avec le nouveau filtre en position.
+ATTENTION– Ne pas réutiliser ou laver le filtre d’air d’admission DeVilbiss ou remplacer celui-ci par tout autre matériau,
+tel que du coton. Cela aurait pour conséquences d’endommager le compresseur.
+REMARQUE– Un filtre supplémentaire est emballé avec les appareils des séries 5650.
+
+Entretien
+Tout entretien devra être effectué par un fournisseur de DeVilbiss qualifié ou un centre de réparations autorisé.
+DANGER
+Danger de choc électrique. Tout démontage et entretien devra être effectué par un fournisseur de DeVilbiss
+qualifié.
+
+SPÉCIFICATIONS/CLASSEMENT
+Dimensions. ............................................... Largeur 26 cm x Hauteur 27 cm x Profondeur 17 cm (10,1 po x 10,5 po x 6,5 po)
+Poids ...................................................................................................................................................................3,2 kg (7,1 lbs)
+Exigences d’électricité– 
+   5 650D et 5650C..................................................................................................................................................... 1,3 A, 115 V c.a. 60 Hz
+   5650I.......................................................................................................................................................................0,8 A, 230 V c.a. 50 Hz
+   5650K et 5650P. ...............................................................................................................................................0,8 A, 230 V c.a. 50/60 Hz
+   5650F............................................................................................................................................. 0,8 amps, 230VCA 50 Hz
+Niveau sonore–
+     Tous modèles, excepté 5650F . ............................................................................................................................ 51-55 dBA
+     5650F. ................................................................................................................................................................... 49-53 dBA
+Puissance absorbée–
+      5 650D et 5650C. ...................................................................................................................................................max. 90 W
+      5650I, 5650K et 5650P........................................................................................................................................max. 100 W
+      5650F. .................................................................................................................................................................max. 105 W
+Pression max. du compresseur . ................................................................................................................... 30 psig (206 kPa)*
+Flux d’air libre du compresseur . ...................................................................................................................................12 l/min*
+Amplitude de températures de service –
+    Tous modèles, excepté le 5650C...........................................................................................+40° to +104°F (+5 to +40°C)
+    5650C..................................................................................................................................+40° to +101°F (+5 to +38.5°C)
+Humidité de service. .........................................................................................................................up to 95% non-condensing
+Température de stockage et de transport..................................................................................-40° to +140°F (-40° to +60°C)
+Humidité de stockage et de transport...............................................................................................up to 95% non-condensing
+Pression d’entreposage/transport entre...........................................................................50 et 106 kPa (entre 7,3 et 15,4 psia)
+Capacité du nébuliseur fourni .....................................................................................................................................10 ml (cc)
+Taux de nébulisation du nébuliseur fourni. ................................................................................................. 0,15 ml/min ou plus*
+DAMM du nébuliseur fourni . .....................................................................................................................Moins de 5 microns**
+*Les conditions peuvent varier en fonction de l’altitude au-dessus du niveau de la mer, de la pression barométrique, et de
+  la température.
+**Valeur déterminée avec un débit minimum par le nébuliseur (20°C, au niveau de la mer).
+
+Classement du 5650F
+Niveau de protection contre les électrocutions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . Class II
+Degré de protection contre les décharges électriques . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . Pièce appliquée de type BF
+Degré de protection contre la pénétration de liquides  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  IPXO
+Mode de fonctionnement . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . Continu
+
+
+
+FR - 18                                                                                                                                                                              A-5650
+GARANTIE LIMITÉE DE CINQ ANS POUR LES PIÈCES DU COMPRESSEUR
+Tous compresseurs DeVilbiss sont garantis exempts de tout défaut de matériau et de fabrication pendant cinq ans à
+compter de la date d’achat. Toute pièce défectueuse sera réparée ou remplacée, au choix de DeVilbiss, si l’appareil n’a
+pas été réparé sans autorisation ou utilisé de façon inappropriée pendant cette période. S’assurer que le mauvais
+fonctionnement n’est pas dû au nettoyage inapproprié ou au fait de ne pas avoir suivi les directives. Si une réparation est
+nécessaire, contactez votre prestataire DeVilbiss Healthcare ou le service à la clientèle de DeVilbiss : États-Unis 1-800-
+338-1988, +1-814-443-4881 Europe +49-621-178-98-230.
+REMARQUE–Cette garantie ne couvre pas la fourniture d’un compresseur de remplacement, la compensation pour le coût
+de louage d’un autre compresseur pendant que l’appareil est réparé, ou le coût de main-d’œuvre pour la réparation ou le
+remplacement de la (des) pièce(s) défectueuse(s).
+IL N’EXISTE AUCUNE AUTRE GARANTIE EXPRESSE. TOUTES GARANTIES IMPLICITES, INCLUANT CELLES DE
+COMMERCIABILITÉ ET D’ADAPTATION À UN USAGE PARTICULIER, SONT LIMITÉES À LA DURÉE DE LA GARANTIE
+LIMITÉE EXPRESSE ET SELON L’ÉTENDUE PRÉVUE PAR LA LOI. TOUTES GARANTIES IMPLICITES SONT
+EXCLUSES. CETTE GARANTIE CONSTITUE LE SEUL RECOURS ET LA SEULE RESPONSABILITÉ POUR TOUS
+DOMMAGES INDIRECTS ET CONSÉCUTIFS EN VERTU DE L’UNE OU L’AUTRE GARANTIE, ET TOUTES AUTRES
+GARANTIES SONT EXCLUSES DANS LES LIMITES D’EXCLUSION PERMISES PAR LA LOI. CERRTAINES
+PROVINCES NE PERMETTENT AUCUNE LIMITE QUANT À LA DURÉE DE LA GARANTIE IMPLICITE, NI DE LIMITE
+D’EXCLUSION POUR DES DOMMAGES INDIRECTS OU CONSÉCUTIFS. IL EST DONC POSSIBLE QUE LA LIMITE
+OU L’EXCLUSION DÉCRITE CIDESSUS NE S’APPLIQUE PAS.
+Cette garantie vous offre des droits légaux spécifiques, et il est possible que vous ayez aussi d’autres droits qui varient
+d’une province à l’autre.
+
+NOTE DU FABRICANT
+Nous vous remercions d’avoir choisi un compresseur/nébuliseur DeVilbiss. Nous souhaitons que vous soyez un client
+satisfait. Si vous avez des questions ou des commentaires, veuillez les envoyer à l’adresse ci-dessous.
+
+
+
+
+ Pour des réparations, appeler le fournisseur DeVilbiss autorisé :
+ _______________________________________________________________________________________________
+ _______________________________________________________________________________________________
+ _______________________________________________________________________________________________
+ Téléphone______________________________________________________________________________________________
+ Date d’achat ____________________________________________________________________________________________
+ N°. de série/Date de fabrication _ __________________________________________________________________________
+
+
+A-5650                                                                                                           FR - 19
+                                        DeVilbiss Healthcare LLC
+                                            100 DeVilbiss Drive
+                                         Somerset, PA 15501-2125
+                                                   USA
+                                       800-338-1988 • 814-443-4881
+
+
+
+      DeVilbiss Healthcare Ltd                                DeVilbiss Healthcare Pty. Limited
+      Unit 3, Bloomfield Park                                 15 Carrington Road, Unit 8
+      Bloomfield Road                                         Castle Hill NSW 2154
+      Tipton, West Midlands, DY4 9AP                          AUSTRALIA
+      UNITED KINGDOM                                          +61-2-9899-3144
+      +44 (0) 121 521 3140
+
+
+
+                                                              EC REP            0044
+
+      DeVilbiss Healthcare SAS                                DeVilbiss Healthcare GmbH
+      13/17, Rue Joseph Priestley                             Kamenzer Straße 3
+      37100 Tours                                             68309 Mannheim
+      FRANCE                                                  GERMANY
+      +33 (0) 2 47 42 99 42                                   +49 (0) 621-178-98-0
+
+
+
+
+                                                  A-5650 Rev E
+
+
+
+         DeVilbiss Healthcare LLC • 100 DeVilbiss Drive • Somerset, PA 15501 • USA
+         8 0 0- 3 38 - 19 88 • 8 1 4 - 4 4 3 - 4 8 8 1 • w w w. D e Vi l b i s s Heal thc are.c om
+
+
+DeVilbiss® and Pulmo-Aide® are registered trademarks of DeVilbiss Healthcare.
+© 2016 DeVilbiss Healthcare LLC. 05.16 All Rights Reserved.                                  A-5650 Rev. E
+

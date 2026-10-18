@@ -1,0 +1,192 @@
+      DeVilbiss
+     Polino-Aide®
+Coinpressor /Nebulizer
+   Service Manual
+    Models 56500 & 5650C
+
+
+
+
+              Putmo,4/de
+
+
+
+
+                           Printed in the U.S.A.
+
+                           @1996 DHC, Inc.
+                           LT-1469 Rev. B
+Purpose
+To provide a portable means of supplying                        compressor displaces clean, otl-free air at 12
+compressed air to devices which do not                          1pm. It can be operated at 2 0 psi
+require a large volume of air, such as                          continuously or at 3 0 psi intermittently at a
+nebulizers, atomizers, and syringes. The                        minimum of 110 VAC.
+
+
+Installation
+Lower access door to expose the air outlet                      tubing to the unit by sliding the tubing over
+connector. The compressor is set up for use                     the connector.
+with slip-on hose connectors.Attach the
+
+
+Maintenance
+The air filter (14) should be changed                           CAUTION-Do not use cotton or any other
+whenever it turns completely gray in color.                     material as a filter, nor attempt to wash or
+Remove the filter cap (15) by pulling                           clean filter. It may cause damage to the
+outward. To remove the filter from the                          compressor.
+holder, pull out with fingers. Push the new
+filter in place and push the cap back into the                  DANGER-Electric shock hazard.Always
+front of the Pulmo-Aide.                                        disconnect the unit from the power source
+                                                                before servicing.
+
+Service
+To replace head, valve plate, and/or
+                                                                    in between the head and motor to loosen
+diaphragm:
+                                                                    the head from the diaphragm.
+ 1. Remove the six T2 0 torx screws from the                     5. Lift the head (6) from the motor.
+    rear cabinet.                                               6. Remove diaphragm screw (5) from the
+2. Lay unit face down and lift the rear                             connecting rod retainer plate for
+    cabinet off of the unit.                                        diaphragm replacement.
+3 . Only disconnect the tubing (10) from the                    7. Remove the valve plate retainer screw (5)
+    compressor fittings if you are going to                         from the head for valve plate
+    replace the head assembly.                                      replacement.
+ 4. Remove the four TS torx screws from the                     8. Reverse the procedure to re-assemble the
+    head. Using a flat-bladed screwdriver, pry                      unit.
+
+
+Specifications
+Size .................................................. 10.1" W x 10.5" H x 6.5" D
+                                                             (26 cm x 27 cm x 17 cm)
+Weight ................................................ 7.0 lbs (3.2 kg)
+Sound Level ............................................ 51 dBA
+Electrical Requirements ................................... 1.3 amps, 115 VAC 6 0 Hz
+Power Consumption ...................................... 9 0 watts maximum
+Maximum Compressor Pressure ............................. 30-4 5 psig*
+Maximum Compressor Liter Flow ............................ 9.4 - 16 lpm*
+Nebulizer Operating Pressure ............................... 12-18 psig
+Nebulizer Liter Flow ...................................... 5-7 1pm
+Nebulizer Capacity ....................................... 10 ml (cc)
+Nebulizer Nebulization Rate ................................ 0.15 ml/minute or greater
+MMAD ............................................... Less than 5 microns
+Warranty .............................................. 5-year limited warranty on
+                                                             compressor parts
+*Conditions may vary based on altirude above sea level, barometric pressure changes.
+Important Parts of the Pulmo-Aide
+
+
+
+                                                               0                              0
+
+
+             @               @
+                                                          18
+
+                             _,
+                                  2                                               "'='
+
+                                                                                  =           0
+
+                                                                                                   9
+
+
+         8
+                                                                                              0
+                                      5
+
+ 7
+                                                                                         10
+                                                               �
+     6
+                 I   I   I
+
+
+
+
+REPLACEMENT PARTS
+1. 5650D-606             Compressor/Motor Assembly
+2. 5610D-609             Connecting Rod Kit
+3. 5610D-614             Diaphragm & Valve Plate Assembly
+                         Kit (diaphragm) (3 kits)
+4.       5610D-617       Connecting Rod Plate
+5.       5610D-614       Diaphragm & Valve Plate Assembly
+                         Kit (screw) (6/pkg)
+6. 5650D-613             Head Assembly Kit
+7. 5610D-614             Dia phragm & Valve Plate Assembly
+                         Kit (gasket) (3/pkg)
+8. 5610D-614             Diaphragm & Valve Plate Assembly
+                         Kit (valve plate) (3/pkg)
+9. 5650D-604*            Rear Cover Assembly
+                         7" Vinyl Tubing (6/pkg)                    15
+10. 5650D-615
+11. 5650D-610            Line Cord Assembly (2-prong cord)
+    5650H-610            Line Cord Assembly (3-prong cord)
+12. 5650D-614            Power Switch
+13. 5650D-609            Push-In Feet (4/pkg)
+14. 5650D-602            Long-Life Air Inlet Filter (5/pkg)
+    5650D-601            Long-Life Air Inlet Filter (25/pkg)
+15. 5650D-612            Filter Cap                                * MODEL 5650C
+16. 5650D-603*           Front Cover Assembly
+17. 5650D-605*           Storage Compartment Door                  5650C-604  Rear Cover Assembly
+                         Assembly                                  5650C-603  Front Cover Assembly
+18. 5650D-611            Tubing Connector w/Pal Nut (6/pkg)        5650C-605  Storage Compartment Door
+                                                                              Assembly
+Troubleshooting
+
+        SYMPTOMS                         POSSIBLE CAUSES                         REMEDIES
+  A. Reduced air output.              1. Dirty air inlet filter.        1. Replace filter.
+                                      2. Worn diaphragm or              2. Replace diaphragm or
+                                         valve plate.                      valve plate.
+                                      3. Air leak.                      3. Tighten hose connections
+                                                                           and tighten head screws.
+
+  B. Compressor labors when           1. Occluded nebulizer or          1. Install some means of
+     air device is not being             tubing.                           venting excess air when
+     used.                                                                 device is not in use or
+                                                                           use PIN 656 pressure
+                                                                           regulator.
+
+
+
+Pulmo-Aide Five-Year Limited Warranty on Compessor Parts
+
+DeVilbiss Model 56500 & 5650C compressors are warranted to be free from defective workman­
+ship and material for a period of five years from date of purchase. Any defective part(s) will be
+repaired or replaced at DeVilbiss' option if the unit has not been tampered with or used improper­
+ly during that period. Make certain that any malfunction is not due to inadequate cleaning or
+failure to follow instructions. If repair is necessary, contact your DeVilbiss provider or DeVilbiss
+Service Department for instructions: U.S.A. 814-443-4881, Canada 905-660-2459. NOTE-This
+warranty does not cover providing a loaner compressor, compensating for cost incurred in rental
+while said unit is under repair, or cost for labor incurred in repairing or replacing defective
+part(s).
+
+THERE IS NO OTHER EXPRESS WARRANTY. IMPLIED WARRANTIES, INCLUDING THOSE OF
+MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, ARE LIMITED TO THE
+DURATION OF THE EXPRESS LIMITED WARRANTY AND TO THE EXTENT PERMITTED BY LAW
+ANY AND ALL IMPLIED WARRANTIES ARE EXCLUDED. THIS IS THE EXCLUSIVE REMEDY AND
+LIABILITY FOR CONSEQUENTIAL AND INCIDENTAL DAMAGES UNDER ANY AND ALL
+WARRANTIES ARE EXCLUDED TO THE EXTENT EXCLUSION IS PERMITTED BY LAW. SOME
+STATES DO NOT ALLOW LIMITATIONS ON HOW LONG AN IMPLIED WARRANTY LASTS, OR
+THE LIMITATION OR EXCLUSION OF CONSEQUENTIAL OR INCIDENTAL DAMAGES, SO THE
+ABOVE LIMITATION OR EXCLUSION MAY NOT APPLY TO YOU.
+
+This warranty gives you specific legal rights, and you may also have other rights which vary from
+state to state.
+
+
+� g�)IILBIS�                                                 Authorized DeVilbiss Provider:
+
+F7 SUNRISE MEDICI\L
+        DeVilbiss Health Care, Inc.
+        P.O. Box 635
+        Somerset, Pennsylvania
+        15501-0635 U.S.A.
+        (814) 443-4881
+
+
+        Sunrise Medical Canada
+        237 Romina Drive, Unit 3
+        Concord, Ontario
+        L4K 4V3 CANADA
+        (905) 660-2459
+

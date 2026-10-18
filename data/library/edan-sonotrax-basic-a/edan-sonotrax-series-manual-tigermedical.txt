@@ -1,0 +1,1754 @@
+About this Manual
+P/N: 01.54.455405-11
+Release Date: July 2012
+© Copyright EDAN INSTRUMENTS, INC. 2012. All rights reserved.
+
+Statement
+This manual will help you understand the operation and maintenance of the product better. It
+is reminded that the product shall be used strictly complying with this manual. User’s
+operation failing to comply with this manual may result in malfunction or accident for which
+Edan Instruments, Inc. (hereinafter called EDAN) can not be held liable.
+EDAN owns the copyrights of this manual. Without prior written consent of EDAN, any
+materials contained in this manual shall not be photocopied, reproduced or translated into
+other languages.
+Materials protected by the copyright law, including but not limited to confidential information
+such as technical information and patent information are contained in this manual, the user
+shall not disclose such information to any irrelevant third party.
+The user shall understand that nothing in this manual grants him, expressly or implicitly, any
+right or license to use any of the intellectual properties of EDAN.
+EDAN holds the rights to modify, update, and ultimately explain this manual.
+
+Responsibility of the Manufacturer
+EDAN only considers itself responsible for any effect on safety, reliability and performance
+of the equipment if:
+Assembly operations, extensions, re-adjustments, modifications or repairs are carried out by
+persons authorized by EDAN, and
+The electrical installation of the relevant room complies with national standards, and
+The instrument is used in accordance with the instructions for use.
+Upon request, EDAN may provide, with compensation, necessary circuit diagrams, and other
+information to help qualified technician to maintain and repair some parts, which EDAN may
+define as user serviceable.
+
+Product Information
+Product Name: Ultrasonic Pocket Doppler
+Model: SONOTRAX Lite, SONOTRAX Basic, SONOTRAX Basic A, SONOTRAX Pro,
+       SONOTRAX II, SONOTRAX II Pro, SONOTRAX Vascular
+
+
+
+
+                                               I
+Terms Used in this Manual
+This guide is designed to give key concepts on safety precautions.
+WARNING
+A WARNING label advises against certain actions or situations that could result in personal
+injury or death.
+CAUTION
+A CAUTION label advises against actions or situations that could damage equipment,
+produce inaccurate data, or invalidate a procedure.
+NOTE
+A NOTE provides useful information regarding a function or a procedure.
+
+
+
+
+                                              II
+                                              Table of Contents
+Chapter 1 Safety Guide............................................................................................................ 1
+   1.1 Intended Use.................................................................................................................. 1
+   1.2 Safety Precautions ......................................................................................................... 1
+   1.3 Symbols......................................................................................................................... 4
+Chapter 2 Doppler and Accessories........................................................................................ 5
+   2.1 Features ......................................................................................................................... 5
+   2.2 Main Unit ...................................................................................................................... 6
+        2.2.1 Appearance.......................................................................................................... 6
+        2.2.2 Display Panel....................................................................................................... 7
+        2.2.3 Buttons ................................................................................................................ 8
+        2.2.4 Socket .................................................................................................................. 8
+        2.2.5 Probe Socket........................................................................................................ 9
+        2.2.6 Batteries............................................................................................................. 10
+   2.3 Probes .......................................................................................................................... 10
+        2.3.1 Waterproof Obstetrical Probes .......................................................................... 10
+        2.3.2 Waterproof Vascular Probes ............................................................................. 11
+Chapter 3 Basic Operation .................................................................................................... 12
+   3.1 Opening the Package and Checking............................................................................ 12
+   3.2 Installing/Replacing Battery........................................................................................ 12
+   3.3 Probe Operation........................................................................................................... 14
+   3.4 Switching on................................................................................................................ 16
+   3.5 Selecting Work Mode.................................................................................................. 16
+   3.6 Enabling or Disabling Backlight ................................................................................. 16
+   3.7 Switching Off .............................................................................................................. 17
+   3.8 Replacing/Charging the Battery .................................................................................. 17
+        3.8.1 Battery Energy Indication ................................................................................. 17
+        3.8.2 Replacing Alkaline Batteries............................................................................. 17
+        3.8.3 Charging the NI-MH Batteries.......................................................................... 18
+        3.8.4 Charging NI-MH Battery Pack ......................................................................... 19
+Chapter 4 Examining ............................................................................................................. 20
+   4.1 FH Examining ............................................................................................................. 20
+   4.2 FH Sound Recording and Playing............................................................................... 21
+   4.3 FH Sound Recording by PC ........................................................................................ 22
+        4.3.1 Recording Sounds ............................................................................................. 22
+        4.3.2 Playing Sound Files........................................................................................... 24
+        4.3.3 Burning CD or Sending in Email ...................................................................... 24
+        4.3.4 Record Troubleshooting.................................................................................... 24
+   4.4 Vascular Examining (Optional) .................................................................................. 26
+   4.5 Completing Examining ............................................................................................... 28
+
+                                                                   III
+Chapter 5 Product Specifications ......................................................................................... 29
+Chapter 6 Maintenance ......................................................................................................... 33
+   6.1 Maintenance ................................................................................................................ 33
+   6.2 Cleaning ...................................................................................................................... 33
+   6.3 Disinfection of the Probe............................................................................................. 33
+Chapter 7 Warranty and Service.......................................................................................... 35
+   7.1 Warranty...................................................................................................................... 35
+   7.2 Contact information..................................................................................................... 35
+Appendix 1 Ordering Information ....................................................................................... 36
+Appendix 2 EMC Information-Guidance and Manufacture’s Declaration ..................... 37
+   A2.1 Electromagnetic Emissions - for all Equipment and Systems.................................. 37
+   A2.2 Electromagnetic Immunity - for all Equipment and Systems .................................. 37
+   A2.3 Electromagnetic Immunity - for all Equipment and Systems that are not
+   Life-supporting.................................................................................................................. 38
+   A2.4 Recommended Separation Distances ....................................................................... 39
+Appendix 3 Overall Sensitivity.............................................................................................. 40
+
+
+
+
+                                                                  IV
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                 Safety Guide
+
+
+Chapter 1 Safety Guide
+NOTE:
+This user manual is written to cover the maximum configuration. Therefore, your model
+may or may not have some of the parameters and functions described, depending on
+what you have ordered.
+
+1.1 Intended Use
+The SONOTRAX Series Ultrasonic Pocket Dopplers (hereinafter called “the Doppler”) are
+intended to be used by health care professionals including registered nurses, practical nurses,
+midwives, ultrasound technicians, and physician assistants, by prescription from licensed
+physicians in hospitals, clinics and private offices.
+The 2 MHz and/or 3 MHz waterproof probes are indicated for the detection of fetal heart rate
+from early gestation thru delivery and as a general indication of fetal well being. They can also be
+used to verify fetal heart viability following patient trauma.
+The 4 MHz, 5 MHz and/or 8 MHz waterproof vascular probes are indicated for the detection of
+blood flow in veins and arteries for assisting in the detection of peripheral vascular disease.
+
+
+1.2 Safety Precautions
+
+       This unit is internally powered equipment, and it is an IEC/EN 60601-1 Type B applied
+       part. Type B protection means that the connection between the equipment and personnel
+       complies with permitted leakage currents and dielectric strength of IEC/EN 60601-1.
+WARNING and CAUTION messages must be observed. To avoid the possibility of injury,
+observe the following precautions during the operation of the device.
+
+                                           WARNING
+1   The Doppler is a tool to aid the healthcare professional and should not be used in
+    place of normal fetal monitoring. It is not intended for treatment.
+2   This device is not explosion-proof and can not be used in the presence of flammable
+    anaesthetics.
+3   Do not touch the signal input/output connector and the patient simultaneously.
+4   We recommend that exposure to ultrasound should be kept as low as reasonably
+    achievable. This is considered to be good practice and should be observed at all
+    time.
+5   Only use the probes provided by the manufacturer.
+6   Do not throw batteries in fire as this may cause explosion.
+
+
+                                                -1-
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                            Safety Guide
+
+                                         WARNING
+7   Do not attempt to charge normal alkaline batteries. They may leak, catch fire or even
+    explode.
+8   Remove the batteries and store it at a cool and dry environment if the monitor is not
+    used for a long time.
+9   If the rechargeable batteries are stored alone and not used for a long time, we
+    recommend that the batteries should be charged at least once every 6 months to
+    prevent overdischarge.
+10 The rechargeable NI-MH batteries and battery pack should be charged by using the
+   dedicated adapters supplied by the manufacturer.
+11 SHOCK HAZARD - Do not attempt to connect or disconnect a power cord with wet
+   hands. Make certain that your hands are clean and dry before touching a power
+   cord.
+12 Do not connect any equipment or accessories that are not approved by the
+   manufacturer or that are not IEC 60601-1 approved to the device. The operation or
+   use of non-approved equipment or accessories with the device is not tested or
+   supported, and device operation and safety are not guaranteed.
+13 Accessory equipment connected to the analog and digital interfaces must be
+   certified according to the respective IEC/EN standards (e.g. IEC/EN 60950 for data
+   processing equipment and IEC/EN 60601-1 for medical equipment). Furthermore all
+   configurations shall comply with the valid version of the system standard IEC/EN
+   60601-1-1. Anybody who connects additional equipment to the signal input
+   connector or signal output connector to configure a medical system must ensure that
+   the system complies with the requirements of the valid version of the system
+   standard IEC/EN 60601-1-1. If in doubt, consult our technical service department or
+   your local distributor.
+14 Replacement or charging of the battery shall be done at least 1.5 meters away from
+   patients.
+
+
+                                         CAUTION
+1   Federal (U.S.) law restricts this device to sale by or on the order of a physician.
+2   Refer servicing to qualified personnel.
+3   The main unit is designed for continuous operation and is ‘ordinary’. Do not immerse
+    it in any liquid (i.e. not drip or splash-proof).
+4   Keep the device in a clean environment and avoid vibration during storage.
+5   Do not disinfect or sterilize the Doppler.
+6   Electromagnetic Interference - Ensure that the environment in which the device is
+    operated is not subject to any source of strong electromagnetic interference, such as
+    radio transmitters, mobile telephones, etc.
+
+                                              -2-
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                           Safety Guide
+
+                                          CAUTION
+7   Prior to examination using the Doppler, check for visible damages of the main unit
+    and the probe that may endanger the patient/operator or machine performance. If
+    the damage is found, replace them with good ones at once.
+8   The following safety checks should be performed once every two years or as
+    specified in the institution’s test and inspection protocol by a qualified person who
+    has adequate training, knowledge, and practical experience to perform these tests.
+       Inspect the equipment for mechanical and functional damage.
+       Inspect the safety relevant labels for legibility.
+       Verify that the device functions properly as described in the instructions for use.
+       Test the the pregnant woman’s leakage current according to IEC 60601-1: Limit:
+        d.c 10 µA, a.c 100 µA.
+    The leakage current should never exceed the limit. The data should be recorded in
+    an equipment log. If the device is not functioning properly or fails any of the above
+    tests, the device has to be repaired.
+9   When the battery is charged, used or stored, keep it away from objects or materials
+    with static electric charges.
+10 If rechargeable batteries are used, charge them fully before initial use by using the
+   method introduced in this manual.
+11 Do not short-circuit the batteries or install the batteries reversely.
+12 Store the batteries in a cool and dry environment.
+13 Do not mix the batteries with metal objects to avoid short-circuit.
+14 The device shall only be used when the battery cover is closed.
+15 Batteries have life cycles. The alkaline batteries are intended to be used once. If the
+   time that the Doppler using NI-MH battery becomes much shorter than usual, the
+   battery life is at an end. Replace them with a new same one provided or
+   recommended by the manufacturer.
+16 The device and accessories are to be disposed of according to local regulations after
+   their useful lives. Alternatively, they can be returned to the dealer or the
+   manufacturer for recycling or proper disposal. Batteries are hazardous waste. Do
+   NOT dispose them together with house-hold garbage. At the end of their life hand
+   the batteries over to the applicable collection points for the recycling of waste
+   batteries. For more detailed information about recycling of this product or battery,
+   please contact your local Civic Office, or the shop where you purchased the product.
+
+
+
+
+                                              -3-
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                    Safety Guide
+
+1.3 Symbols
+
+                  The symbol indicates that the device complies with the European Council
+                  Directive 93/42/EEC concerning medical devices.
+
+                  The symbol indicates that the device should be sent to the special agencies
+                  according to local regulation for separate collection after its useful life.
+
+                  Consult Instructions for Use
+
+                  Attention.
+
+                  Direct current
+
+                  Type B applied part.
+
+
+                  Part Number
+
+
+                  Serial Number
+
+
+                  Date Of Manufacture
+
+
+                  Manufacturer
+
+
+                  Authorized Representative in the European Community
+
+
+                  General symbol for recovery / recyclable
+
+
+ Rx only (U.S.)   Federal (U.S.) Law restricts this device to sale by or on the order of a physician
+
+
+
+
+                                                 -4-
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                  Doppler and Accessories
+
+
+Chapter 2 Doppler and Accessories
+
+2.1 Features
+There are seven different models available: SONOTRAX Lite, SONOTRAX Basic,
+SONOTRAX Basic A, SONOTRAX Pro, SONOTRAX II, SONOTRAX II Pro and
+SONOTRAX Vascular.
+SONOTRAX Lite and SONOTRAX Vascular are for simple auscultation (intermittent
+listening). SONOTRAX Basic, SONOTRAX Basic A, SONOTRAX Pro, SONOTRAX II, and
+SONOTRAX II Pro not only detect fetal heart sound; they also display the fetal heart rate on a
+LCD screen.
+The features of the Dopplers are listed in the following chart:
+              Model     SONOTRAX    SONOTRAX   SONOTRAX    SONOTRAX   SONOTRAX   SONOTRAX        SONOTRAX
+Function                 Vascular      Lite      Basic      Basic A      Pro        II             II Pro
+
+LCD Display                 -          -          √               √      √            √             √
+
+LCD Backlight               -          -           -              √      √            √             √
+
+Mini USB        Probe
+                            √          √          √               √      √            √             √
+Socket
+
+Probe Detecting             √          √          √               √      √            √             √
+
+Probe Identifying           -          -          √               √      √            √             √
+
+Audio Play                  √          √          √               √      √            √             √
+
+Attached Earphone           √          √          √               √      √            √             √
+
+Volume Adjustable           √          √          √               √      √            √             √
+
+Modes Switching             -          -          √               √      √            √             √
+
+Audio     Recording
+                            -          -           -              -      √            -             √
+and Playing
+
+Powered by Alkaline
+                            √          √          √               √      √            -             -
+Batteries
+Powered          by
+Rechargeable                *          *          *               *      *            -             -
+NI-MH Batteries
+Powered by NI-MH
+                            -          -           -              -      -            √             √
+Battery Pack
+Low           Battery
+Detecting          &        √          √          √               √      √            √             √
+indicating
+
+Auto Shutdown               -          -          √               √      √            √             √
+
+Vascular Examining          √          *          *               *      *            *             *
+
+
+                                                -5-
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                            Doppler and Accessories
+
+      √ = configured         - = not available       * = available
+
+
+
+2.2 Main Unit
+NOTE:
+The pictures and interfaces in this manual are for reference only.
+
+2.2.1 Appearance
+
+Take 2.0MHz obstetrical probe for example.
+
+
+
+       1
+
+                                                                5
+       2
+
+
+
+       3
+
+
+                                                                6
+
+
+       4
+
+
+                   Figure 2-1 Front Panel                            Figure 2-2 Rear Panel
+
+
+
+
+               7        8      9                           10               11
+
+                    Figure 2-3 Top Panel                               Figure 2-4 Left Panel
+
+  1        Display Panel                2        POWER Button         3     Speaker
+  4        Probe Socket                 5        Probe Holder         6     Battery Compartment
+  7        Charge Indicator/            8        Earphone Socket      9     Charge Socket
+           Power Indicator
+ 10        Volume Control              11        Buttons
+
+                                                      -6-
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                  Doppler and Accessories
+
+2.2.2 Display Panel
+
+SONOTRAX Lite and SONOTRAX Vascular have a LED in the bottom left corner of its
+display panel area. When powered on, the LED turns green. If the LED flashes in green, it
+indicates that the probe is disconnected or poorly connected. If the LED flashes in orange, it
+indicates that the battery is too low to support working. Change for a new battery or charge the
+rechargeable battery in time.
+For SONOTRAX Basic, SONOTRAX Basic A, SONOTRAX Pro, SONOTRAX II and
+SONOTRAX II Pro, the LCD is shown as follows:
+                      1          2              3               4
+
+
+
+
+           5                         6                          7
+
+                                         Figure 2-5 LCD
+
+ Item   Screen Element                      Description
+
+ 1                                          FHR Refresh Frequency
+
+
+ 2                                          Working Mode
+
+
+ 3                                          Playing Indicator
+
+ 4                                          Recording Indicator
+
+
+
+ 5                                          Battery Indicator
+
+
+
+
+                                              -7-
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                     Doppler and Accessories
+
+
+
+ 6                                            Numeric FHR
+
+
+
+ 7                                            Probe Type
+
+
+
+2.2.3 Buttons
+
+At most there are three push buttons (MODE, START/STOP and REC/PLAY) and a volume
+control button on the main unit of the Doppler. Their primary functions are as follows:
+
+
+(1) MODE Button
+  (Only for SONOTRAX Basic / SONOTRAX Basic A / SONOTRAX Pro / SONOTRAX II /
+   SONOTRAX II Pro)
+
+     Function: Select the working mode.
+
+
+(2) START/STOP Button
+     (Only for SONOTRAX Basic / SONOTRAX Basic A / SONOTRAX Pro / SONOTRAX II /
+      SONOTRAX II Pro)
+
+      Function: Start/ stop examining (Mode 3)/ setting (Mode 4 and Mode 5).
+
+
+(3) REC/PLAY
+   (Only for SONOTRAX Pro/ SONOTRAX II Pro)
+
+     Function: Start/ stop recording or playing fetal heart sound.
+
+(4) Volume Control Indicator
+     Function: Adjust volume. Rotate the volume gear toward “+” to turn up the volume, while
+              rotate it toward “-” to turn down the volume.
+
+2.2.4 Socket
+
+The two sockets are located on the top panel of the Doppler.
+
+
+(1) Earphone socket        : for outputting audio signals, the earphone or line-in cable connects to
+    the Doppler via this socket.
+
+
+
+                                                 -8-
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                  Doppler and Accessories
+
+
+
+
+(2) Charge socket         : for charging the NI-MH battery pack, the dedicated charger connects
+    to the Doppler via this socket. (For SONOTRAX II and SONOTRAX II Pro only)
+NOTE:
+Accessory equipment connected to the analog and digital interfaces must be certified
+according to the respective IEC/EN standards (e.g. IEC/EN 60950 for data processing
+equipment and IEC/EN 60601-1 for medical equipment). Furthermore all configurations
+shall comply with the valid version of the system standard IEC/EN 60601-1-1. Anybody
+who connects additional equipment to the signal input connector or signal output
+connector to configure a medical system must ensure that the system complies with the
+requirements of the valid version of the system standard IEC/EN 60601-1-1. If in doubt,
+consult our technical service department or your local distributor.
+
+2.2.5 Probe Socket
+
+The probe socket is as shown in figure 2-6.
+
+
+
+                                              Jack                 Definition
+                                              1                    Power Supply
+                                              2                    Signal
+                                              3                    Probe Coding 1
+                                              4                    Probe Coding 2
+                                              5                    GND
+                                              6                    (Shell) GND
+
+
+
+
+Figure 2-6 Probe socket
+
+
+Connect the 2.0MHz/3.0MHz obstetrical probes or 4.0MHz/5.0MHz/8.0MHz vascular probes
+supplied by the manufacturer to the Doppler through the probe socket.
+
+                                              CAUTION
+1 Do not try to connect any other plug to the probe socket except the plug of the probes
+  mentioned above.
+2 Do not stretch the probe cable for more than two meters long.
+
+
+
+
+                                                -9-
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                  Doppler and Accessories
+
+2.2.6 Batteries
+
+SONOTRAX Lite, SONOTRAX Basic, SONOTRAX Basic A, SONOTRAX Pro and
+SONOTRAX Vascular are powered either by two alkaline batteries or two rechargeable NI-MH
+batteries.
+SONOTRAX II and SONOTRAX II Pro are powered by a NI-MH battery pack supplied by the
+manufacturer.
+
+
+
+
+    Alkaline Battery         Rechargeable NI-MH Battery                 NI-MH Battery Pack
+                                      Figure 2-7 Batteries
+NOTE:
+The alkaline battery and rechargeable NI-MH battery can be replaced by those of
+identical specifications purchased locally.
+    Alkaline battery: LR6, AA, 1.5V.
+    Rechargeable NI-MH battery: Ni-MH, AA, 1.2V.
+
+2.3 Probes
+
+2.3.1 Waterproof Obstetrical Probes
+2.0MHz/3.0MHz waterproof obstetrical probes can be connected to the main unit for fetal heart
+examining.
+The 2MHz obstetrical probe features in deep penetration and is designed for use during the third
+trimester pregnancy. The 3MHz obstetrical probe features in high sensitivity and is designed for
+use during the entire pregnancy.
+
+
+
+
+                                             - 10 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                     Doppler and Accessories
+
+
+
+
+                            Figure 2-8    2.0/3.0MHz obstetrical probe
+
+
+The main information on the probe is as follows:
+2.0MHz/3.0MHz:means central frequency is 2.0MHz/3.0MHz.
+Waterproof: The probe is waterproof.
+IPX8: Water Ingress Protection Code. It indicates that this probe does not get soaked under water
+within 1 meter deep for five hours.
+
+2.3.2 Waterproof Vascular Probes
+The 4.0MHz/5.0MHz/8.0MHz waterproof vascular probes can be connected to the main unit for
+artery and vein blood flow examining.
+
+
+
+
+                          Figure 2-9     4.0/5.0/8.0MHz Vascular Probes
+
+The main information on the probe is as follows:
+4.0MHz/5.0MHz/8.0 MHz: means the central frequency is 4.0/5.0/8.0 MHz.
+Waterproof: The probe is waterproof.
+IPX8: Water Ingress Protection Code. It indicates that this probe does not get soaked under water
+within 1 meter deep for five hours.
+
+
+
+
+                                               - 11 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                               Examining
+
+
+Chapter 3 Basic Operation
+NOTE:
+To ensure that the Doppler works properly, please read this chapter and Chapter 1
+Safety Guide before operation; follow the steps when connecting all the components.
+
+
+3.1 Opening the Package and Checking
+
+Open the package; take out the Doppler and accessories carefully. Keep the package for possible
+future transportation or storage. Check the components according to the packing list.
+ Check for any mechanical damage.
+ Check all the cables and accessories.
+If there is any problem, contact us or your local distributor immediately.
+
+3.2 Installing/Replacing Battery
+NOTE:
+The battery pack of SONOTRAX II and SONOTRAX II Pro is fixed in the battery
+compartment cover. Start from step 3 when installing it.
+
+1) Open the battery compartment.
+Turn the Doppler upside down. Hold the main unit with one hand; press the thumb of the other
+hand on the cover notch and push it upward and forward. The compartment cover is open.
+
+
+
+
+                              Figure 3-1 Opening battery compartment
+
+                                               - 12 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                               Examining
+
+2) Install the battery.
+Put the alkaline batteries or NI-MH batteries into the battery compartment cover.
+
+                                           CAUTION
+The direction of the batteries should comply with the polar mark on the cover. Reversed
+connection is forbidden.
+
+
+
+
+                      Figure 3-2 Putting batteries into the compartment cover
+
+3) Close the compartment.
+Put the batter compartment cover back into the compartment, push it forward and downward until
+it clicks closed.
+
+
+
+
+                            Figure 3-3 Close the battery compartment
+
+
+
+                                               - 13 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                 Examining
+
+                                          CAUTION
+1 If the Doppler is not used for an extended period, take the alkaline/NI-MH batteries
+  out and store them in a cool and dry environment.
+2 Do not remove the NI-MH battery pack frequently after initial installation.
+3 If the Doppler is not used for an extended period, charge the NI-MH batteries or the
+  NI-MH battery pack at least every three months.
+
+
+
+3.3 Probe Operation
+
+(1) Taking out the probe
+Hold the main unit with one hand. Pinch the probe and pull it outwards using mild force.
+
+
+
+
+                                 Figure 3-4 Taking out the probe
+(2) Placing the probe
+Hold the main unit with one hand. Pinch the probe and align it with the probe holder. Push the
+probe inwards using mild force until it clicks in position.
+
+
+
+
+                                              - 14 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                             Examining
+
+
+
+
+                                 Figure 3-5 Placing the probe
+
+                                         CAUTION
+Do not take out or place the probe when the Doppler is on. Remember to take out the
+probe before switching on the Doppler, and place the probe after switching off the
+Doppler.
+
+(3) Replacing the Probe
+Remove the old probe:
+Switch off the Doppler; hold the main unit with one hand and pinch the jacket of the mini USB
+socket. Lift the jacket up slightly and pull it out with mild force; take out the probe.
+
+                                         CAUTION
+Do not pull the probe cable directly.
+
+
+
+
+                                Figure 3-6 Removing the probe
+
+                                            - 15 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                 Examining
+
+Replace it with a new probe:
+Put the USB socket of new probe into the probe interface of the Doppler.
+NOTE:
+Place the temporarily unused probe carefully and avoid falling off, splash or stress, etc.
+When the Doppler is not used for a long time, it’s recommended to connect the probe to
+the Doppler and keep them safely in the package.
+
+
+3.4 Switching on
+Press the POWER button on the front panel to switch on the Doppler.
+If the probe is not connected or poorly connected, the LCD display a flashing “--- MHz” sign.
+You should reconnect the probe properly.
+When the probe is well connected, the LCD stops flashing and shows the probe
+frequency in the bottom right corner.
+
+
+3.5 Selecting Work Mode
+The Doppler has four work modes. They are:
+    Mode 1: Real-time FHR Display Mode
+    Mode 2: Averaged FHR Display Mode
+    Mode 3: Manual Counting Mode
+    Mode 4: Backlight Brightness Setting Mode
+
+
+Press the      button on the left panel, the doppler work mode switches
+among these modes, and the work mode is shown in the top left corner of LCD.
+When the doppler is swiched on, it enters mode 1 automatically.
+
+
+3.6 Enabling or Disabling Backlight
+SONOTRAX Basic A, SONOTRAX Pro, SONOTRAX II and SONOTRAX II Pro have
+backlight. You can enable or disable it.
+
+
+Keep pressing the         button until the working mode on LCD displays 4. Press the
+button. The backlight is enabled when the LCD reads “ON”, and it is disabled when the LCD
+reads “OFF”.
+The setting in this mode is saved automatically after the mode is changed or normal power-off.
+
+
+                                              - 16 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                 Examining
+
+3.7 Switching Off
+Press the POWER button on the front panel to switch off the Doppler.
+For SONOTRAX Basic, SONOTRAX Basic A, SONOTRAX Pro, SONOTRAX II and
+SONOTRAX II Pro, it switches off automatically if there is no input signal or no operation is
+performed for 60 seconds.
+
+
+3.8 Replacing/Charging the Battery
+
+3.8.1 Battery Energy Indication
+After switched on, the Doppler gives indication of battery energy.
+For SONOTRAX Lite and SONOTRAX Vascular, the LED in the bottom left corner of the
+display panel lights up in green. When it flashes in orange, the battery power is low.
+For SONOTRA Basic, SONOTRAX Basic A, SONOTRAX Pro, SONOTRAX II and
+SONOTRAX II Pro, there is a battery symbol in the bottom left corner of LCD. The panes in it
+indicate the battery electric energy.
+
+
+
+
+                         SONOTRA Basic                    Other Models
+
+The panes disappear gradually with the energy consumption. When the energy is low, the empty
+battery symbol flashes and the Doppler gives sharp alarm sounds (NOTE: SONOTRAX Basic
+does not give alarm sound). Approximately five minutes later, the Doppler shuts down
+automatically.
+You should replace the batteries or charge the rechargeable batteries.
+
+3.8.2 Replacing Alkaline Batteries
+
+                                           CAUTION
+Make sure the Doppler is shut down before charging the battery or opening the battery
+compartment.
+
+When the alkaline batteries are low in energy, they should be removed from the main unit, by
+using the procedures described in section 3.2 Installing/Replacing Battery. Dispose of them
+according to local regulations.
+New alkaline batteries with identical specifications are required. Install them to the Doppler as
+introduced in section 3.2.
+
+                                               - 17 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                              Examining
+
+                                         WARNING
+DO NOT CHARGE THE ALKALINE BATTERY.
+
+
+3.8.3 Charging the NI-MH Batteries
+When the rechargeable NI-MH batteries are low in energy,
+    1) Take the NI-MH batteries out from the main unit by using the procedures described in
+       section 3.2 Installing/Replacing Battery.
+    2) Replace them with new batteries with identical specifications, or charge them with the
+       provided charger.
+To charge the rechargeable NI-MH batteries,
+    1) Fit the NI-MH batteries in the charger slot properly. Make sure the direction of the
+       batteries complies with the polar marks in the slot.
+    2) Plug the charger into an AC power supply socket. During charging, the indicators in the
+       charger slot lights up in red.
+    3) When the charging indicators go off, the batteries are fully charged (approximately 10
+       hours are needed). Take the batteries out from the charger and reinstall them to the
+       Doppler.
+
+                                         WARNING
+1. Make sure the batteries are not connected reversely before plugging the charger into
+   the power socket.
+2. The battery charger meets the requirements of Standard IEC60950, and it should be
+   placed outside the patient environment when it's working (1.5m away from the
+   patient).
+
+
+
+
+                               Figure 3-7 Charging NI-MH battery
+
+                                              - 18 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                  Examining
+
+3.8.4 Charging NI-MH Battery Pack
+When the NI-MH battery pack is low in energy, charge the battery pack with the provided
+charger.
+   1) Put the plug of the charger into the charge socket of the Doppler (on the top panel).
+   2) Connect the charger to a power supply socket (100V-240V~, 50Hz/60Hz). During
+      charging, a battery sign appears on the LCD with continuous changing energy sign, and
+      the charging indicator on the Doppler lights up.
+   3) When the charging indicator goes off, the battery pack is fully charged (approximately 3
+      ~ 4 hours are needed). Remove the charger plug and the Doppler is ready for examining
+      again.
+
+
+
+
+                            Figure 3-8 Charging NI-MH Battery Pack
+
+
+
+                                          WARNING
+The AC-DC power adapter meets the requirements of Standard IEC60950, and it should
+be placed outside the patient environment when it's working (1.5m away from the
+patient). The Doppler is not available for examining during charging.
+
+
+
+
+                                             - 19 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                   Examining
+
+Chapter 4 Examining
+
+4.1 FH Examining
+Before applying the Doppler for fetal heart (FH) examining, a proper probe should be chosen.
+The 2.0 MHz obstetrical probe is optimized for deep penetration and late pregnancy. The 3.0
+MHz obstetrical probe has higher sensitivity and is optimized for early pregnancy (after 10 weeks
+gestation).
+
+NOTE:
+In some cases, fetal heart beats at 10 weeks gestation can not be detected due to the
+maternal physical difference and the operator’s technique.
+
+Perform fetal heart examining using the following procedures:
+1) Confirm the fetus’s position by hand.
+2) Determine the probable probe location for optimal FHR examining.
+3) Take out the probe and switch on the Doppler.
+4) Apply a certain amount of coupling gel to the probe faceplate and place the probe against the
+   abdomen at the predetermined location. Move the probe around or tilt it until clear and
+   rhythmic heart sound is heard from the headphone or speaker. At the same time, a numeric
+   FHR is displayed on the LCD (except SONOTRAX Lite).
+
+
+
+
+If the Doppler works in mode 1, the numeric is the real-time heart rate, it changes continuously.
+If the Doppler works in mode 2, the numeric is the average of every 8 heart beats, it changes
+slowly.
+
+
+If the Doppler works in mode 3, press the          button once and start counting immediately,
+viz. count one at the moment when the button is pressed. The LCD shows a flashing heart shape
+
+
+symbol and “---”. Press the        button again on the 10th count (after nine beat intervals). The
+Doppler calculates and displays the average FHR over the 10 beats. This rate value will not
+disappear until another measurement starts or the mode is changed.
+
+
+
+
+                                               - 20 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                    Examining
+
+NOTE:
+
+1   The best quality records will only be obtained if the probe is placed in the optimum
+    position.
+2   Positions with strong placental sounds or umbilical blood flow sound should be
+    avoided.
+3   If the fetus is in the cephalic position and the mother is supine, the clearest heart
+    sound will normally be found on the midline below the umbilicus. During examining,
+    the pregnant woman’s prolonged lying in the supine position should be avoided
+    owing to the possibility of supine hypotension. Sitting up or lateral positions are
+    preferable and may be more comfortable.
+4   It is impossible to examine FHR unless a fetal heart sound is present. The fetal pulse
+    can be distinguished from the maternal pulse by feeling the mother’s pulse during
+    the examination.
+
+4.2 FH Sound Recording and Playing
+This function is only available with SONOTRAX Pro and SONOTRAX II Pro.
+
+Recording:
+
+
+In mode 1, 2 or 3, press and hold the         button for three seconds, the machine starts recording,
+and the LCD reads                         .
+
+
+The longest record time is 240 seconds. When the time is up or the          button is pressed again,
+the Doppler stops recording and returns to the real-time status.
+NOTE:
+Only the last set of recorded fetal heart sounds is saved in the Doppler. It is cleared
+when new sounds are recorded.
+
+Playing:
+
+
+When the machine is not recording in mode 1, 2 or 3, press the            button once, the machine
+plays the recorded sound, and the LCD reads                     .
+
+
+When the recorded sound comes to the end or the               button is pressed again, the Doppler
+stops playing and returns to the real-time status.
+
+
+
+                                                - 21 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                      Examining
+
+NOTE:
+Observe the LCD, pay attention not to mistake the recorded fetal heart sound for the
+real-time sound.
+
+
+4.3 FH Sound Recording by PC
+The signal of fetal heart sound can be transferred to a personal computer (PC) and recorded by
+the sound recorder. You can play the recorded sound files, burn them into CDs or e-mail them to
+whomever you want.
+
+
+4.3.1 Recording Sounds
+Insert one plug of the special line-in cable supplied by the manufacturer to the audio input socket
+
+(the socket with the symbol “      ”) of the PC, refer to figure 4-1. If the PC has no audio input
+
+socket, insert the plug into the microphone socket (the socket with the symbol “     ”).
+
+
+
+
+              Audio Input Socket
+
+
+
+                             Figure 4-1 Audio Input Socket on the PC
+
+
+Turn on PC and run the sound recorder (Click on Start > Programs > Accessories >
+Entertainment > Sound Recorder). Refer to figure 4-2.
+
+
+
+
+                                               - 22 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                     Examining
+
+
+
+
+                                 Figure 4-2 Run the sound recorder
+
+Perform FHR examination with the method described in section 4.1. When the ideal signal is
+detected, unplug the earphone (if it’s connected) and insert the other plug of the audio cable into
+the earphone socket on the Doppler.
+
+
+
+
+          Figure 4-3 Sound Recorder                           Figure 4-4 Recording
+
+Click on the start key          to start recording, refer to figure 4-3.
+You can record 60 seconds each time. When the time is up, click on the start key again to keep on
+recording.
+Click on the stop key          to stop recording, refer to figure 4-4.
+Click on File > Save, input the file name, select a folder and click on Save to save the signals in a
+“.wav” file.
+To start a new recording, click on File > New.
+
+
+
+
+                                                 - 23 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                    Examining
+
+4.3.2 Playing Sound Files
+The recorded sounds are saved as waveform (.wav) files in your computer.
+You can play the waveform file with the sound recorder. Run the sound recorder, click on File >
+Open, search for the folder and select the file, click on Open to load the file, and then click on
+the play key         .
+If you have any other program that supports waveform (.wav) files installed on your PC,
+double-click on the file to play it.
+
+
+4.3.3 Burning CD or Sending in Email
+The waveform files saved in your PC are normal audio data files. You can burn them into CDs or
+e-mail to whomever you want.
+
+
+4.3.4 Record Troubleshooting
+If there is audio output from the speaker or earphone, but the PC recorder does not have any input.
+(The green line recording area has no waveform.) The reason could be:
+1. Poor connection of the audio cable between the Doppler and the PC.
+  - Check the plugs of the cable and re-connect it if any poor connection is detected.
+2. The audio cable has been plugged to the wrong socket of the PC, instead of the audio input
+   socket or the microphone socket.
+  - Insert the plug to the right socket.
+3. The Line in or microphone is muted on PC.
+  - Change the setting of the PC in these steps:
+  a) Double-click on the volume symbol in the bottom right corner of your desktop;
+
+
+
+
+b) The volume control menu pops up:
+
+
+
+
+                                               - 24 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                             Examining
+
+
+
+
+                               Figure 4-5 Volume control menu
+
+  c) If the line in or/and microphone volume control is/are not shown in the Volume Control
+     menu, click on Options > Properties, tick Line In and Microphone as shown in figure 4-6,
+     click on OK:
+
+
+
+
+                                     Figure 4-6 Properties
+
+    d) Make sure Line In and Microphone is not mute, click on      to exit.
+
+                                            - 25 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                   Examining
+
+
+
+
+                                      Figure 4-7 Volume Control
+
+   e) Start a new recording.
+
+
+
+4.4 Vascular Examining (Optional)
+
+                                           WARNING
+The Doppler is not intended for ophthalmic use. Do not use it for examining ophthalmic
+vessels, or any other procedures which may cause the ultrasound beam to pass through
+the eye.
+
+4MHz, 5MHz or 8MHz vascular probes are to be connected to the Doppler to perform vascular
+examination.
+Choose the appropriate probe as required. The probe with how frequency has a deeper
+penetration depth, while the probe with high frequency has better resolution and wider detecting
+range. The 4MHz vascular probe is optimized for examining blood vessels; the 5MHz vascular
+probe is optimized for examining deeper vessels, and the 8MHz vascular probe is optimized for
+examining surface vessels.
+Apply a liberal amount of gel on the site to be examined. Place the probe at a 45º angle on the skin
+over the vessel to be examined. Adjust the position of the probe to obtain the loudest blood flow
+sound. Refer to figure 4-8 for the probe sites:
+
+
+
+
+                                               - 26 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                     Examining
+
+
+
+
+        Vertebral Artery (4.0MHz)
+
+     Carotid Artery (4.0/8.0MHz)                                   Carotid Artery (4.0/8.0MHz)
+             Jugular Vein (4.0MHz)
+                                                                         Subclavian Artery (4.0MHz)
+                                                                         Subclavian Vein (4.0MHz)
+
+
+
+
+                                                                                   Brachial Artery (8.0MHz)
+
+                                                                                   Ulner Artery (8.0MHz)
+
+                                                                               Radial Artery (8.0MHz)
+
+
+
+
+Femoral Artery (4.0MHz)
+
+
+
+      Femoral Vein (4.0MHz)
+
+
+
+          Popliteal Artery (4.0MHz)
+
+
+
+
+Great Saphenous Vein (4.0/8.0MHz)
+
+   Small Saphenous Vein (8.0MHz)                                       Posterior Tibial Artery (8.0MHz)
+
+
+    Dorsalis Pedis Artery (8.0MHz)
+
+
+Posterior Tibial Vein (8.0MHz)
+
+
+
+                                       Figure 4-8 Probe sites
+For best results, keep the probe as still as possible once the optimum position is found. Adjust the
+volume as required. High pitched pulsatile sounds are emitted from arteries while veins emit a
+non-pulsatile sound similar to a rushing wind.
+
+Vascular examination only provides audio signals of arteries and veins. The figure displayed on
+the LCD screen is null.
+
+
+                                               - 27 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                   Examining
+
+4.5 Completing Examining
+After examining,
+1) Switch off the Doppler.
+2) Wipe the remaining gel off the patient and the probe with a clean soft cloth or tissue.
+3) Place the probe back to the holder.
+
+
+
+
+                                               - 28 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                    Product Specifications
+
+
+Chapter 5 Product Specifications
+
+Product Name: Ultrasonic Pocket Doppler
+Model:
+           SONOTRAX Lite, SONOTRAX Basic, SONOTRAX Basic A, SONOTRAX Pro,
+           SONOTRAX II, SONOTRAX II Pro, SONOTRAX Vascular
+
+Safety:
+           Complies with:      IEC/EN 60601-1, IEC/EN 60601-1-2, IEC/EN 61266
+Classification:
+           Anti-electric Shock Type:      Internally powered equipment
+
+
+           Anti-electric Shock Degree:    Type B equipment
+           Degree of Protection against Harmful Ingress of Water:
+                            Main Unit:    Not-protected
+                            Probes:       IPX8 Water Ingress Protection Code, indicating this
+                                          probe does not get soaked under water within 1 meter
+                                          deep for five hours.
+           Degree of Safety in Presence   Equipment not suitable for use in presence of
+           of Flammable Gases:            flammable gases
+           Working System:                Continuous running equipment
+           EMC:                           Group 1 Class B
+Physical Characteristic:
+
+          Main Unit
+          Size: 34 mm × 89 mm × 141 mm (Depth×Width×Height, ±1mm)
+          Weight: <300 g (including the battery)
+          Probe
+          Weight: 100g
+          Cable Length: 2.5m
+          Size: 88mm (diameter)×35mm (thickness)
+Environment:
+     Working:
+                  Temperature:             +5°C ~ +40°C ( +41 ºF ~ +104 ºF)
+                  Humidity:                25% ~ 80% (non-condensing)
+                  Atmospheric Pressure:    860hPa ~ 1060hPa
+
+
+
+                                              - 29 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                    Product Specifications
+
+
+     Transport and Storage:
+
+                  Temperature:              -20°C ~ +55°C (-4ºF ~ +131 ºF)
+                  Humidity:                 25% ~ 93% (non-condensing)
+                  Atmospheric Pressure:     700hPa ~1060hPa
+
+Display:
+    45mm*25mm LCD display
+
+FHR Performance:
+    Sensitivity:         10 weeks gestation (3MHz)
+    FHR Measuring Range: 50bpm ~ 210bpm
+    Resolution:          1bpm
+    Accuracy:            ±3bpm
+
+Audio Output Power:      0.5W
+
+Recording and Playing:
+    Audio Sampling Frequency: 4KHz
+    Recording Length: 240s
+
+White Backlight:
+    Two Brightness Adjustable: OFF, ON
+
+Auto Shut down:
+    1 minute after no signal or operation, auto shut down
+
+Recommended Alkaline Battery Type:
+    Alkaline battery (IEC 60086, LR61/AA)
+
+Ultrasonic Gel:
+    Weight: 60g
+    Acoustic Impedance: 1.533 106Pa . s/m
+
+Stand-by Time (hour):
+
+                                                       Rechargeable          NI-MH    Battery
+      Model                      Alkaline Batteries
+                                                       NI-MH Batteries       Pack
+      SONOTRAX Vascular 9 hr                           8 hr
+      SONOTRAX Lite              9 hr                  8 hr                  /
+
+      SONOTRAX Basic             9 hr                  8 hr                  /
+
+
+                                              - 30 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual            Product Specifications
+
+      SONOTRAX Basic A          9 hr                   8 hr       /
+
+      SONOTRAX II               /                      /          8 hr
+      SONOTRAX Pro              9 hr                   8 hr       /
+      SONOTRAX II Pro           /                      /          8 hr
+
+
+Rechargeable NI-MH Battery
+
+      Nominal Capacity:             1800m Ah
+
+      Nominal Voltage:              2.4 VDC
+
+      Continual Working Time:       8 hr
+
+      Necessary Charge Time:        4 hr
+
+Ultrasound
+
+                                    2.0MHz Obstetrical Probe    2.0MHz
+      Nominal Frequency
+                                    3.0MHz Obstetrical Probe    3.0MHz
+                                    4.0MHz Vascular Probe       4.0MHz
+                                    5.0MHz Vascular Probe       5.0MHz
+                                    8.0MHz Vascular Probe       8.0MHz
+                                    2.0MHz Obstetrical Probe    (2.0±10%) MHz
+      Working Frequency
+                                    3.0MHz Obstetrical Probe    (3.0±10%) MHz
+                                    4.0MHz Vascular Probe       (4.0±10%) MHz
+                                    5.0MHz Vascular Probe       (5.0±10%) MHz
+                                    8.0MHz Vascular Probe       (8.0±10%) MHz
+      p- < 1MPa
+      Iob < 10 mW/cm2
+      Ispta < 100mW/cm2
+      Working Mode                  Continuous wave Doppler
+                               2.0MHz Obstetrical Probe        (245±15%) mm2
+      Effective Radiating Area
+      of Transducer            3.0MHz Obstetrical Probe        (245±15%) mm2
+                                    4.0MHz Vascular Probe      (32±15%) mm2
+                                    5.0MHz Vascular Probe      (32±15%) mm2
+                                    8.0MHz Vascular Probe      (14±15%) mm2
+
+                                              - 31 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                   Product Specifications
+
+Low Output Summary Table
+ (for systems with no transducers having global maximum index values exceeding 1.0)
+System: SONOTRAX series Ultrasonic Pocket Doppler
+   Transducer Model        Ispta.3                                               Isppa.3
+                                       TI Type       TI Value      MI
+        (MHz)            (mW/cm2)                                               (W/cm2)
+                                         TIS           0.20
+         CW 2.0            47.227                                0.03498          N/A
+                                         TIB           0.19
+                                         TIS          0.014
+         CW 3.0            1.423                                 0.0038         0.001423
+                                         TIB           0.17
+                                         TIS           0.01
+         CW 4.0            17.297                                0.0116         0.017297
+                                         TIB           0.13
+                                         TIS         0.3031
+         CW 5.0            44.25                                0.008475        0.04425
+                                         TIB         0.2876
+                                         TIS           0.08
+         CW 8.0            45.44                                 0.0133         0.04544
+                                         TIB           0.33
+
+
+
+
+                                            - 32 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                  Maintenance
+
+
+Chapter 6 Maintenance
+
+6.1 Maintenance
+You must check that the equipment does not have visible evidence of damage that may affect the
+patient and the operator’s safety or the Doppler’s capability before each use. Pay special attention
+to the cracks on the probe and the cable before immersing them into conductive fluid. If the
+damage is evident, replacement is recommended.
+The probe is frangible and must be handled with care.
+Wipe the remaining gel after use to prolong the probe life.
+The overall check of the Doppler, including safety check and function check, should be
+performed by qualified personnel every 12 months, and each time after service. Besides the above
+requirements, comply with local regulations on maintenance and measurement.
+
+6.2 Cleaning
+Before cleaning, switch off the Doppler.
+Keep the exterior surface of the device clean and free of dust and dirt.
+Clean the exterior surface (display screen included) of the main unit with a dry, soft cloth. If
+necessary, clean it with a soft cloth soaked in soap water and then wipe it dry with a dry cloth
+immediately.
+Wipe the remaining coupling gel off the probe. Clean it with a soft cloth dampened in solution
+(soap water, 70% ethanol or isopropranol alcohol) and then air-dry it or wipe the moisture with a
+soft dry cloth.
+
+                                            CAUTION
+1   Clean the main unit with soap and water only. Avoid strong solvent, such as acetone.
+2   Never use an abrasive such as steel wool or metal polish.
+3   The main unit is not waterproof. Do not immerse any part of it into liquid.
+4   Avoid pouring liquids on the main unit while cleaning.
+5   Do not remain any solution on the surface after cleaning.
+6   Only the body and cable of the probe are waterproof. Do not immerse the probe
+    socket into any liquid.
+
+
+6.3 Disinfection of the Probe
+Clean the probes as above. Immerse them into the solutions of Benzalkonium Bromide, 0.5%
+Chlorhexidine, 2% Glutaraldehyde or 75% ethanol, and then wipe them with a clean, dry cloth to
+remove the remaining moisture.
+
+                                                - 33 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                     Maintenance
+
+                                         CAUTION
+1   Pay attention not to immerse the probe socket into the disinfector.
+2   The main unit is not waterproof, do not disinfection it.
+3   Never try to sterilize the probe or the main unit.
+
+
+
+
+                                            - 34 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual               Warranty and After-Sales Service
+
+Chapter 7 Warranty and Service
+7.1 Warranty
+EDAN warrants that EDAN’s products meet the labeled specifications of the products and will be
+free from defects in materials and workmanship that occur within warranty period.
+The warranty is void in cases of:
+   a) damage caused by mishandling during shipping.
+   b) subsequent damage caused by improper use or maintenance.
+   c) damage caused by alteration or repair by anyone not authorized by EDAN.
+   d) damage caused by accidents.
+   e) replacement or removal of serial number label and manufacture label.
+If a product covered by this warranty is determined to be defective because of defective materials,
+components, or workmanship, and the warranty claim is made within the warranty period, EDAN
+will, at its discretion, repair or replace the defective part(s) free of charge. EDAN will not provide
+a substitute product for use when the defective product is being repaired.
+
+7.2 Contact information
+If you have any question about maintenance, technical specifications or malfunctions of devices,
+contact your local distributor.
+Alternatively, you can send an email to EDAN service department at: support@edan.com.cn.
+
+
+
+
+                                                - 35 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                  Ordering Information
+
+
+Appendix 1 Ordering Information
+
+                                          CAUTION
+Only the parts supplied by the manufacturer should be used with the Doppler.
+
+
+
+                               Parts                        Part Number
+            Probe
+               2.0MHz Obstetrical Probe                 02.01.210326
+
+               3.0MHz Obstetrical Probe                 02.01.210327
+
+               4.0MHz Vascular Probe                    12.01.14346
+
+               5.0MHz Vascular Probe                    02.01.104822
+
+               8.0MHz Vascular Probe                    12.01.14347
+
+            Accessory
+
+               Alkaline Batteries                       01.21.064086
+
+               Rechargeable NI-MH Batteries             21.21.064180
+               NI-MH Battery Charger
+                                                        01.21.064113
+               (American Standard)
+               NI-MH Battery Charger
+                                                        01.21.064112
+               (European Standard)
+               NI-MH Battery Pack                       01.21.064182
+               NI-MH Battery Pack Charger
+                                                        21.21.064158
+               (American Standard)
+               NI-MH Battery Pack Charger
+                                                        01.21.064161
+               (European Standard)
+               NI-MH Battery Pack Charger
+                                                        21.21.064184
+               (Brazil)
+               Line-in Cable                            11.13.36032
+
+               Earphone                                 01.14.104751
+
+               Normal Carry case (DPVC)                 01.56.104581
+
+               Blue Carry Case (EVA)                    01.56.14268
+
+            Consumable
+
+               Coupling Gel                             11.57.14019
+
+
+
+                                            - 36 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                      EMC Information
+
+
+Appendix                 2          EMC   Information-Guidance                                       and
+                                    Manufacture’s Declaration
+A2.1 Electromagnetic Emissions - for all Equipment and
+     Systems
+
+             Guidance and manufacture’s declaration–electromagnetic emission
+
+ The SONOTRAX Series Ultrasonic Pocket Doppler is intended for use in the electromagnetic
+ environment specified below. The customer or the user of the device should assure that it is used in such
+ an environment.
+
+
+  Emission test       Compliance                 Electromagnetic environment–guidance
+
+
+                                        The SONOTRAX Series Ultrasonic Pocket Doppler uses RF
+   RF emissions                         energy only for its internal function. Therefore, its RF emissions
+                          Group 1
+    CISPR 11                            are very low and are not likely to cause any interference in nearby
+                                        electronic equipment.
+
+
+                                        The SONOTRAX Series Ultrasonic Pocket Doppler is suitable for
+    RF emission                         use in all establishments, including domestic establishments and
+                          Class B
+     CISPR 11                           those directly connected to the public low-voltage power supply
+                                        network that supplies buildings used for domestic purposes.
+
+
+
+
+A2.2 Electromagnetic Immunity - for all Equipment and Systems
+
+
+            Guidance and manufacture’s declaration–electromagnetic immunity
+
+
+ The SONOTRAX Series Ultrasonic Pocket Doppler is intended for use in the electromagnetic
+ environment specified below. The customer or the user of the device should assure that it is used in such
+ an environment.
+
+
+                             IEC 60601 test                                     Electromagnetic
+   Immunity test                                   Compliance level
+                                 level                                       environment-guidance
+
+                                                                           Floors should be wood,
+                                                                           concrete or ceramic tile. If
+     Electrostatic
+                              ±6 kV contact            ±6 kV contact       floor are covered with
+   discharge (ESD)
+                                ±8 kV air                ±8 kV air         synthetic material, the relative
+    IEC 61000-4-2
+                                                                           humidity should be at least
+                                                                           30%.
+
+
+                                                    - 37 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                        EMC Information
+
+                                                                             Power frequency magnetic
+   Power frequency                                                           fields should be at levels
+     (50Hz/60Hz)                                                             characteristic of a typical
+                                 3 A/m                        3 A/m
+    magnetic field                                                           location     in    a  typical
+    IEC61000-4-8                                                             commercial      or   hospital
+                                                                             environment.
+
+
+A2.3 Electromagnetic Immunity - for all Equipment and Systems
+    that are not Life-supporting
+                 Guidance and manufacture’s declaration – electromagnetic immunity
+ The SONOTRAX Series Ultrasonic Pocket Doppler is intended for use in the electromagnetic environment
+ specified below. The customer or the user of the device should assure that it is used in such an
+ environment.
+                                             Compliance
+ Immunity test       IEC 60601 test level                         Electromagnetic environment-guidance
+                                               level
+                                                                  Portable and mobile RF communications
+                                                                  equipment should be used no closer to any
+                                                                  part of the SONOTRAX Series Ultrasonic
+                                                                  Pocket Doppler, including cables, than the
+                                                                  recommended        separation     distance
+                                                                  calculated from the equation applicable to
+                                                                  the frequency of the transmitter.
+ Conducted RF      3 Vrms                   3 Vrms                Recommended separation distance
+ IEC 61000-4-6     150 kHz to 80 MHz                                 ⎡ 3 .5 ⎤
+                                                                  d =⎢ ⎥ P            80 MHz to 800 MHz
+                                                                     ⎣ E1 ⎦
+ Radiated RF       3 V/m                    3 V/m
+                                                                     ⎡7⎤
+ IEC 61000-4-3     80 MHz to 2.5 GHz                              d =⎢ ⎥ P            800 MHz to 2.5 GHz
+                                                                     ⎣ E1 ⎦
+                                                                  Where P is the maximum output power
+                                                                  rating of the transmitter in watts (W)
+                                                                  according to the transmitter manufacturer
+                                                                  and d is the recommended separation
+                                                                  distance in metres (m).
+                                                                  Field strengths from fixed RF transmitters,
+                                                                  as determined by an electromagnetic site
+                                                                  survey,a should be less than the
+                                                                  compliance level in each frequency
+                                                                  range.b
+                                                                  Interference may occur in the vicinity of
+                                                                  equipment marked with the following
+                                                                  symbol:
+
+
+
+
+ NOTE 1 At 80 MHz and 800 MHz, the higher frequency range applies.
+ NOTE 2 These guidelines may not apply in all situations. Electromagnetic propagation is affected by
+ absorption and reflection from structures, objects and people.
+
+
+
+
+                                                     - 38 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                         EMC Information
+
+ a
+        Field strengths from fixed transmitters, such as base stations for radio (cellular/cordless) telephones
+        and land mobile radios, amateur radio, AM and FM radio broadcast and TV broadcast cannot be
+        predicted theoretically with accuracy. To assess the electromagnetic environment due to fixed RF
+        transmitters, an electromagnetic site survey should be considered. If the measured field strength in
+        the location in which the SONOTRAX Series Ultrasonic Pocket Doppler is used exceeds the
+        applicable RF compliance level above, the SONOTRAX Series Ultrasonic Pocket Doppler should be
+        observed to verify normal operation. If abnormal performance is observed, additional measures may
+        be necessary, such as reorienting or relocating the SONOTRAX Series Ultrasonic Pocket Doppler.
+ b
+        Over the frequency range 150 kHz to 80 MHz, field strengths should be less than 3 V/m.
+
+
+A2.4 Recommended Separation Distances
+     Recommended separation distances between portable and mobile RF communications equipment
+                       and the SONOTRAX Series Ultrasonic Pocket Doppler
+
+ The SONOTRAX Series Ultrasonic Pocket Doppler is intended for use in an electromagnetic environment
+ in which radiated RF disturbances are controlled. The customer or the user of the device can help prevent
+ electromagnetic interference by maintaining a minimum distance between portable and mobile RF
+ communications equipment (transmitters) and the SONOTRAX Series Ultrasonic Pocket Doppler as
+ recommended below, according to the maximum output power of the communications equipment.
+
+                                     Separation distance according to frequency of transmitter
+     Rated maximum                                             (m)
+     output power of
+       transmitter              80 MHz to 800 MHz                          800 MHz to 2.5 GHz
+           (W)                        ⎡ 3 .5 ⎤                                    ⎡7⎤
+                                   d =⎢ ⎥ P                                    d =⎢ ⎥ P
+                                      ⎣ E1 ⎦                                      ⎣ E1 ⎦
+          0.01                         0.1167                                      0.2334
+           0.1                         0.3689                                      0.7378
+            1                          1.1667                                      2.3334
+           10                          3.6893                                      7.3786
+           100                         11.6667                                    23.3334
+
+ For transmitters rated at a maximum output power not listed above, the recommended separation distances
+ in metres (m) can be estimated using the equation applicable to the frequency of the transmitter, where P
+ is the maximum output power rating of the transmitter in watts (W) according to the transmitter
+ manufacturer.
+
+ NOTE 1 At 80 MHz and 800 MHz, the separation distance for the higher frequency range applies.
+ NOTE 2 These guidelines may not apply in all situations. Electromagnetic propagation is affected by
+ absorption and reflection from structures, objects and people.
+
+
+
+
+                                                      - 39 -
+SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                                                                                             Overall Sensitivity
+
+
+Appendix 3 Overall Sensitivity
+ Overall Sensitivity (2MHz Probe)
+                              Reflection Loss A(d)              Two-way Attenuation
+Diameter of Target Distance                                        B=∑Ba+Bw                                                                         ⎛ V (r .m.s.) ⎞     Overall Sensitivity
+                                                                                                      Vs (r.m.s.)        Vn (r.m.s)   C = 20 log10 ⎜⎜ s            ⎟⎟
+    Reflector        (d)                                        ∑Ba                    Bw     B          mV                 mV                      ⎝ Vn (r .m.s.) ⎠     (S=A(d)+B+C)
+     (mm)           (mm)                                                              (dB)   (dB)                                                  dB                           dB
+                                                           (T:mm Ba:dB)
+
+                                                     T    20   4.8   4.0     -
+                     50              45.7                                              0     57.6        186                    94                5.93                        109.2
+                                                     Ba   40   9.6   8.0     -
+
+                                                     T    20   4.8   3.4     -
+                     75              45.7                                              0     56.4        175                    90                5.78                        107.8
+     1.58                                            Ba   40   9.6   6.8     -
+  A=45.7dB@
+    2MHz                                             T    20   4.8   3.4     -
+                     100             45.7                                              0     56.4        174                    89                5.82                        107.9
+                                                     Ba   40   9.6   6.8     -
+
+                                                     T    20   4.8    -      -
+                     200             45.7                                              0     49.6        173                    90                5.68                        100.9
+                                                     Ba   40   9.6    -      -
+
+                                                     T    20   4.8   3.4    2.2
+                     50              43.2                                              0     60.8        178                    89                6.02                        110.0
+                                                     Ba   40   9.6   6.8    4.4
+                                                     T    20   4.8   3.4     1
+                     75              43.2                                              0     58.4        170                    90                5.52                        107.1
+     2.38                                            Ba   40   9.6   6.8     2
+  A=43.2dB@
+    2MHz                                             T    20   4.8   3.4     -
+                     100             43.2                                              0     56.4        165                    85                5.76                        105.3
+                                                     Ba   40   9.6   6.8     -
+                                                     T    20   4.8    1      -
+                     200             43.2                                              0     51.6        160                    85                5.49                        100.2
+                                                     Ba   40   9.6    2      -
+
+Doppler Frequency (Hz)        333                                                                   Velocity of Target (cm/s)          12.5
+
+
+
+                                                                                  - 40 -
+ SONOTRAX Series Ultrasonic Pocket Doppler User Manual                                                                                                       Overall Sensitivity
+
+
+
+ Overall Sensitivity (3.0 MHz Probe)
+                                                                  Two-way Attenuation
+                                                                                                                                                                      Overall
+   Diameter of
+                   Distance         Reflection                        B=∑Ba+Bw                                                                 ⎛ V (r.m.s.) ⎞
+                                                                                                    Vs (r.m.s.)     Vn (r.m.s)   C = 20 log10 ⎜⎜ s            ⎟⎟     Sensitivity
+                                                                                                                                               ⎝ Vn (r .m.s.) ⎠
+     Target
+                     (d)            Loss A(d)                                                          mV              mV                                          (S=A(d)+B+C)
+    Reflector
+                    (mm)              (dB)                 ∑Ba                      Bw        B                                               dB
+      (mm)                                                                                                                                                              dB
+                                                      (T:mm Ba:dB)                 (dB)     (dB)
+
+ 1.58                                            T    10      4       -     -
+ A=44.5dB@               50                                                             0   61.5       179              90                   5.97                      111.9
+ 3MHz                                            Ba   43.6   17.9     -     -
+                                                 T    10      3       -     -
+                         75                                                             0   57.2       186              94                   5.93                     107.63
+                                                 Ba   43.6   13.5     -     -
+                                                 T    10      3       -     -
+                     100                                                                0   57.2       173              88                   5.87                      107.5
+                                                 Ba   43.6   13.5     -     -
+                                                 T    10      1       -     -
+                     200                                                                0   50.2       171              89                   5.67                      100.3
+                                                 Ba   43.6   6.5      -     -
+ 2.38                                            T    10      4       -     -
+ A=42.0dB@               50                                                             0   61.5       194              88                   6.73                      110.2
+ 3MHz                                            Ba   43.6   17.9     -     -
+
+                                                 T    10      3       -     -
+                         75                                                             0   57.2       172              87                   5.92                      105.1
+                                                 Ba   43.6   13.5     -     -
+                                                 T    10      2       -     -
+                     100                                                                0   53.2       165              85                   5.76                      100.9
+                                                 Ba   43.6   9.6      -     -
+
+                                                 T    10      1       -     -
+                     200                                                                0   50.2       160              84                   5.59                      97.8
+                                                 Ba   43.6   6.5      -     -
+
+Doppler Frequency (Hz)        500                                                                  Velocity of Target (cm/s)      12.5
+
+
+
+
+                                                                                  - 41 -
+

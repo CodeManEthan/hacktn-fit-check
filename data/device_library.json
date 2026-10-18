@@ -1,0 +1,2118 @@
+[
+  {
+    "slug": "drive-devilbiss-525ds",
+    "manufacturer": "DeVilbiss Healthcare",
+    "model": "525DS",
+    "aliases": [
+      "525",
+      "DeVilbiss 525",
+      "DeVilbiss 525DS",
+      "Drive DeVilbiss 525DS",
+      "525DS-Q",
+      "DeVilbiss 5 Liter Compact Concentrator"
+    ],
+    "device_type": "oxygen concentrator",
+    "facts": {
+      "manufacturer": {
+        "value": "DeVilbiss Healthcare",
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=44",
+        "page": 44,
+        "quote": "DeVilbiss Healthcare LLC • 100 DeVilbiss Drive • Somerset, PA 15501 • USA"
+      },
+      "model": {
+        "value": "525DS",
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=11",
+        "page": 11,
+        "quote": "Catalog Number 525DS, 525DS-Q"
+      },
+      "voltage_min_v": {
+        "value": 97,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=11",
+        "page": 11,
+        "quote": "Operating Voltage Range 97-127 V~, 60 Hz"
+      },
+      "voltage_max_v": {
+        "value": 127,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=11",
+        "page": 11,
+        "quote": "Operating Voltage Range 97-127 V~, 60 Hz"
+      },
+      "frequencies_hz": {
+        "value": [
+          60
+        ],
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=11",
+        "page": 11,
+        "quote": "Electrical Rating 115 V, 60 Hz, 3.3 Amp",
+        "note": "no document gives a frequency tolerance"
+      },
+      "power_watts": {
+        "value": 310,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=11",
+        "page": 11,
+        "quote": "310 Watts Average ... 275 Watts @ 1.2 LPM & below"
+      },
+      "temp_min_c": {
+        "value": 5,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=11",
+        "page": 11,
+        "quote": "Operating Temperature Range 41˚F (5˚C) to 95˚F (35˚C)"
+      },
+      "temp_max_c": {
+        "value": 35,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=11",
+        "page": 11,
+        "quote": "Operating Temperature Range 41˚F (5˚C) to 95˚F (35˚C)"
+      },
+      "humidity_max_pct": {
+        "value": 93,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=11",
+        "page": 11,
+        "quote": "Operating Relative Humidity Range 15% to 93%, non-condensing"
+      },
+      "needs_oxygen": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=6",
+        "page": 6,
+        "quote": "The oxygen concentrator is electrically operated. The unit separates oxygen from room air which allows high-purity supplemental oxygen to be delivered to you through the oxygen outlet.",
+        "note": "the concentrator makes its oxygen from room air with its own compressor; the manual does not say in so many words that no piped oxygen is needed"
+      },
+      "needs_compressed_air": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=6",
+        "page": 6,
+        "quote": "The oxygen concentrator is electrically operated. The unit separates oxygen from room air which allows high-purity supplemental oxygen to be delivered to you through the oxygen outlet.",
+        "note": "the concentrator makes its oxygen from room air with its own compressor; the manual does not say in so many words that no piped compressed air is needed"
+      },
+      "needs_distilled_water": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=8",
+        "page": 8,
+        "quote": "If your physician has prescribed an oxygen humidifier as part of your therapy, follow these steps",
+        "note": "no water requirement in the owner's manual; the bubble humidifier is an optional accessory"
+      },
+      "operating_complexity": {
+        "value": "low",
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=6",
+        "page": 6,
+        "quote": "The DeVilbiss Oxygen Concentrator is intended for use as an oxygen concentrator to provide supplemental low flow oxygen therapy in the home, nursing homes, patient care facilities, etc.",
+        "note": "lead's reading of the intended use: supplemental low flow oxygen therapy in the home, nursing homes, patient care facilities; the manual does not grade operator skill"
+      },
+      "consumables": {
+        "value": [
+          "MC44D-605 intake bacteria filter",
+          "303DZ-605 cabinet air filter",
+          "PV5LD-651 final bacteria filter",
+          "525DD-626 compressor filter"
+        ],
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_parts_diagram.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w2NTk4NDF8YXBwbGljYXRpb24vcGRmfGFHWXpMMmhsT1M4eE1qUTVNelUxT1RVeU9UVXdNaTh6TURZeExURXwyNGZiYjZlYzcwNzc0NGRiMTZhNWU1Y2VkMTM1MzY2MTNmZDNkYzNkZDBlN2E0ZjJjNjQ0ZjM0MGE2Nzk3MTE3#page=1",
+        "page": 1,
+        "quote": "23 Cabinet Air Filter- 303DZ-605 ... 24 Intake Bacteria Filter- MC44D-605 ... 26 Compressor Filter (Bronze)- 525DD-626 ... 27 Final Bacteria Filter- PV5LD-651",
+        "note": "the four filters of the 525 series; sieve bed 525D-619 and compressor rebuild kit 525D-643 are spare parts, not consumables (see notes)"
+      },
+      "manual_languages": {
+        "value": [
+          "English",
+          "Spanish",
+          "French"
+        ],
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=2",
+        "page": 2,
+        "quote": "ENGLISH ... ESPAÑOL ... FRANÇAIS",
+        "note": "one combined guide: en-2, es-15, fr-29"
+      }
+    },
+    "documents": [
+      {
+        "file": "drive-devilbiss-525ds/525ds_owners_manual.txt",
+        "title": "DeVilbiss 525DS Instruction Guide A-525DS Rev A (2022)",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw",
+        "kind": "manual",
+        "languages": [
+          "English",
+          "Spanish",
+          "French"
+        ]
+      },
+      {
+        "file": "drive-devilbiss-525ds/525ds_sell_sheet.txt",
+        "title": "DeVilbiss 525DS sell sheet LT-2007 Rev O (2020)",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w2MTQ4MTh8YXBwbGljYXRpb24vcGRmfGFEZzRMMmhsT1M4eE1qUTVNelUxT1RVMk1qSTNNQzh6TURZeExURXw5YTQ2MzVmNmJmZGY0N2YzNTllMzIxYWUxMTY0MWI0MmJlNmNiYjFjOTQwOTI4MzM1NmQ1MTFjNTJmYTk2ZmQz",
+        "kind": "spec sheet",
+        "languages": [
+          "English"
+        ]
+      },
+      {
+        "file": "drive-devilbiss-525ds/525ds_parts_diagram.txt",
+        "title": "DeVilbiss 525DS parts diagram (03/2026)",
+        "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w2NTk4NDF8YXBwbGljYXRpb24vcGRmfGFHWXpMMmhsT1M4eE1qUTVNelUxT1RVeU9UVXdNaTh6TURZeExURXwyNGZiYjZlYzcwNzc0NGRiMTZhNWU1Y2VkMTM1MzY2MTNmZDNkYzNkZDBlN2E0ZjJjNjQ0ZjM0MGE2Nzk3MTE3",
+        "kind": "service manual",
+        "languages": [
+          "English"
+        ]
+      },
+      {
+        "file": "drive-devilbiss-525ds/525ds_catalog_page.txt",
+        "title": "Drive DeVilbiss 525DS catalog page",
+        "url": "https://shop.drivemedical.com/ca/en/products/respiratory/oxygen-therapy/oxygen-concentrators/stationary-concentrators/devilbiss-5-liter-oxygen-concentrator/p/525DS/downloadPdf",
+        "kind": "product page",
+        "languages": [
+          "English"
+        ]
+      },
+      {
+        "file": "",
+        "title": "Drive Medical US product page, 525DS",
+        "url": "https://shop.drivemedical.com/us/en/p/525DS",
+        "kind": "product page",
+        "languages": [
+          "English"
+        ]
+      },
+      {
+        "file": "",
+        "title": "FDA GUDID records, model 525DS",
+        "url": "https://api.fda.gov/device/udi.json?search=version_or_model_number:525DS&limit=10",
+        "kind": "registry",
+        "languages": []
+      }
+    ],
+    "notes": "Year introduced: 2007, inferred from FDA 510(k) K071397 (DeVilbiss 5 Liter Compact Oxygen Concentrator, Model 525 Series, decision 2007-10-01); no document states an introduction year. It is the model's market date, not this unit's build year.\nService life: \"The expected service life of the 525 series oxygen concentrator, which includes the performance of any required service or maintenance, is 5 years.\" (A-525DS p.6)\nSpare parts (service centre only): sieve bed 525D-619, compressor rebuild kit 525D-643; replaced \"when indicated by device performance\" (A-525DS p.14; parts diagram).\nOxygen purity check every 3 years or between patients (A-525DS p.14).\nGUDID: In Commercial Distribution, DI 00885304000846 (record version 2024-07-18).\nCurrent product on Drive's US and Canada sites, UPC 885304000846."
+  },
+  {
+    "slug": "drive-devilbiss-525ks",
+    "manufacturer": "DeVilbiss Healthcare",
+    "model": "525KS",
+    "aliases": [
+      "525",
+      "DeVilbiss 525",
+      "DeVilbiss 525KS",
+      "Compact 525",
+      "Oxygen Concentrator 525",
+      "525KS-LT",
+      "525KS-UK"
+    ],
+    "device_type": "oxygen concentrator",
+    "facts": {
+      "manufacturer": {
+        "value": "DeVilbiss Healthcare",
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_DoC.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/DoC/525KS_PS%20Oxygen%20Concentrators-accessi%20DoC%2012-873_rev%2012.pdf#page=1",
+        "page": 1,
+        "quote": "Manufacturer: DeVilbiss Healthcare LLC"
+      },
+      "model": {
+        "value": "525KS",
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_ifu.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-1%20Rev_D.pdf#page=11",
+        "page": 11,
+        "quote": "Catalog Number 525KS, 525KS-LT"
+      },
+      "voltage_min_v": {
+        "value": 187,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_ifu.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-1%20Rev_D.pdf#page=11",
+        "page": 11,
+        "quote": "Operating Voltage Range 187-253 V~, 50 Hz"
+      },
+      "voltage_max_v": {
+        "value": 253,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_ifu.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-1%20Rev_D.pdf#page=11",
+        "page": 11,
+        "quote": "Operating Voltage Range 187-253 V~, 50 Hz"
+      },
+      "frequencies_hz": {
+        "value": [
+          50
+        ],
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_ifu.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-1%20Rev_D.pdf#page=11",
+        "page": 11,
+        "quote": "Electrical Rating 220-230 V~, 50 Hz, 1.55 Amp",
+        "note": "SE-525KS-2 Rev A (2022) also lists a 230 V / 60 Hz 525KS build; the 2025 editions list 50 Hz only. Check the unit's rating label"
+      },
+      "power_watts": {
+        "value": 312,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_ifu.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-1%20Rev_D.pdf#page=11",
+        "page": 11,
+        "quote": "230V / 50 Hz - 312 Watts Average"
+      },
+      "temp_min_c": {
+        "value": 5,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_ifu.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-1%20Rev_D.pdf#page=11",
+        "page": 11,
+        "quote": "Operating Temperature Range 41˚F (5˚C) to 95˚F (35˚C)"
+      },
+      "temp_max_c": {
+        "value": 35,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_ifu.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-1%20Rev_D.pdf#page=11",
+        "page": 11,
+        "quote": "Operating Temperature Range 41˚F (5˚C) to 95˚F (35˚C)"
+      },
+      "humidity_max_pct": {
+        "value": 93,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_ifu.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-1%20Rev_D.pdf#page=11",
+        "page": 11,
+        "quote": "Operating Relative Humidity Range 15% to 93%, non-condensing"
+      },
+      "needs_oxygen": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_SE-525KS-2_RevA.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-2-Rev-A.pdf#page=6",
+        "page": 6,
+        "quote": "The oxygen concentrator is electrically operated. The unit separates oxygen from room air which allows high-purity supplemental oxygen to be delivered to you through the oxygen outlet.",
+        "note": "the concentrator makes its oxygen from room air with its own compressor; the manual does not say in so many words that no piped oxygen is needed"
+      },
+      "needs_compressed_air": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_SE-525KS-2_RevA.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-2-Rev-A.pdf#page=6",
+        "page": 6,
+        "quote": "The oxygen concentrator is electrically operated. The unit separates oxygen from room air which allows high-purity supplemental oxygen to be delivered to you through the oxygen outlet.",
+        "note": "the concentrator makes its oxygen from room air with its own compressor; the manual does not say in so many words that no piped compressed air is needed"
+      },
+      "needs_distilled_water": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_SE-525KS-2_RevA.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-2-Rev-A.pdf#page=8",
+        "page": 8,
+        "quote": "If your physician has prescribed an oxygen humidifier as part of your therapy, follow these steps",
+        "note": "no water requirement in the owner's manual; the bubble humidifier is an optional accessory"
+      },
+      "operating_complexity": {
+        "value": "low",
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_SE-525KS-2_RevA.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-2-Rev-A.pdf#page=6",
+        "page": 6,
+        "quote": "The DeVilbiss Oxygen Concentrator is intended for use as an oxygen concentrator to provide supplemental low flow oxygen therapy in the home, nursing homes, patient care facilities, etc.",
+        "note": "lead's reading of the intended use: supplemental low flow oxygen therapy in the home, nursing homes, patient care facilities; the manual does not grade operator skill"
+      },
+      "consumables": {
+        "value": [
+          "MC44D-605 intake bacteria filter",
+          "303DZ-605 cabinet air filter",
+          "PV5LD-651 final bacteria filter",
+          "525DD-626 compressor filter"
+        ],
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_DoC.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/DoC/525KS_PS%20Oxygen%20Concentrators-accessi%20DoC%2012-873_rev%2012.pdf#page=1",
+        "page": 1,
+        "quote": "EXT Life Intake Bacteria Filter-DFT MC44D-605 ... Compressor Filter (Sintered Bronze) 525DD-626 ... Cabinet Air Filter 303DZ-605 ... Final Bacteria Filter PV5LD-651",
+        "note": "the four filters of the 525 series; sieve bed 525D-619 and compressor rebuild kit 525D-643 are spare parts, not consumables (see notes)"
+      },
+      "manual_languages": {
+        "value": [
+          "English",
+          "Spanish",
+          "French",
+          "German",
+          "Italian",
+          "Dutch",
+          "Turkish",
+          "Portuguese",
+          "Polish",
+          "Arabic",
+          "Greek",
+          "Danish",
+          "Swedish",
+          "Finnish",
+          "Norwegian",
+          "Czech",
+          "Slovak",
+          "Chinese (Simplified)",
+          "Slovenian",
+          "Romanian",
+          "Malay"
+        ],
+        "source": "spec sheet",
+        "document": "drive-devilbiss-525ks/525ks_ifu.txt",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-1%20Rev_D.pdf#page=2",
+        "page": 2,
+        "quote": "ENGLISH ... DEUTSCH",
+        "note": "21 languages across three editions: SE-525KS-1 (en es fr de it nl tr pt pl ar), SE-525KS-2 (en el da sv fi no cs sk zh), SE-525KS-3 (en sl ro ms)"
+      }
+    },
+    "documents": [
+      {
+        "file": "drive-devilbiss-525ks/525ks_ifu.txt",
+        "title": "DeVilbiss 525KS Instruction Guide SE-525KS-1 Rev D (2025)",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-1%20Rev_D.pdf",
+        "kind": "manual",
+        "languages": [
+          "English",
+          "Spanish",
+          "French",
+          "German",
+          "Italian",
+          "Dutch",
+          "Turkish",
+          "Portuguese",
+          "Polish",
+          "Arabic"
+        ]
+      },
+      {
+        "file": "drive-devilbiss-525ks/525ks_SE-525KS-2_RevA.txt",
+        "title": "DeVilbiss 525KS Instruction Guide SE-525KS-2 Rev A (2022)",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-2-Rev-A.pdf",
+        "kind": "manual",
+        "languages": [
+          "English",
+          "Greek",
+          "Danish",
+          "Swedish",
+          "Finnish",
+          "Norwegian",
+          "Czech",
+          "Slovak",
+          "Chinese (Simplified)"
+        ]
+      },
+      {
+        "file": "drive-devilbiss-525ks/525ks_SE-525KS-3_RevB.txt",
+        "title": "DeVilbiss 525KS Instruction Guide SE-525KS-3 Rev B (2025)",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-3%20Rev%20B_FINAL.pdf",
+        "kind": "manual",
+        "languages": [
+          "English",
+          "Slovenian",
+          "Romanian",
+          "Malay"
+        ]
+      },
+      {
+        "file": "drive-devilbiss-525ks/525ks_DoC.txt",
+        "title": "EC Declaration of Conformity 525KS/525KS-LT/525KS-UK/525PS (2024)",
+        "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/DoC/525KS_PS%20Oxygen%20Concentrators-accessi%20DoC%2012-873_rev%2012.pdf",
+        "kind": "spec sheet",
+        "languages": [
+          "English"
+        ]
+      },
+      {
+        "file": "",
+        "title": "Drive Medical DE product page, Oxygen Concentrator 525 (525KS)",
+        "url": "https://www.drivemedical.de/drivemedical/en/respiratory/oxygen-concentrator/oxygen-concentrator-compact-525.html",
+        "kind": "product page",
+        "languages": [
+          "English"
+        ]
+      },
+      {
+        "file": "",
+        "title": "FDA GUDID record, model 525KS",
+        "url": "https://api.fda.gov/device/udi.json?search=version_or_model_number:525KS&limit=10",
+        "kind": "registry",
+        "languages": []
+      }
+    ],
+    "notes": "Year introduced: 2007, inferred from the EC Declaration of Conformity, \"Start of EC Marking: 2007-10-01\". It is the model's market date, not this unit's build year.\nService life: 5 years for the 525 series (SE-525KS-1 p.6).\nSpare parts listed on the DoC: sieve bed 525D-619, compressor 525K-625, outlet connector CN100.\nGUDID: Not in Commercial Distribution (US), end date 2024-07-09, DI 00885304000976 \"(international model)\". The 525KS is sold outside the US; a GUDID silence is not a denial of support.\nCurrent product: Drive Medical DE lists item 525KS with manuals.\nCurrent draw: the IFU says 1.55 A; the 2019 spec sheet says 3.2 A. The IFU value is used."
+  },
+  {
+    "slug": "omron-hem-907xl",
+    "manufacturer": "Omron Healthcare",
+    "model": "HEM-907XL",
+    "aliases": [
+      "HEM-907-Z2",
+      "IntelliSense HEM-907XL",
+      "Omron HEM-907XL",
+      "HEM-907"
+    ],
+    "device_type": "blood pressure monitor",
+    "facts": {
+      "manufacturer": {
+        "value": "Omron Healthcare",
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf",
+        "page": null,
+        "quote": ""
+      },
+      "model": {
+        "value": "HEM-907XL",
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
+        "page": 32,
+        "quote": "PDF p.32: \"Name: OMRON Digital Automatic Blood Pressure Monitor  Model: HEM-907XL (HEM-907-Z2)\""
+      },
+      "voltage_min_v": {
+        "value": 120,
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
+        "page": 32,
+        "quote": "PDF p.32: \"Power supply: AC adapter (AC 120V, 50/60Hz, 0.2A) Battery pack (DC 4.8V, 6W)\"; PDF p.18: \"Be sure to use the AC adapter from the power supply of 110 VAC.\"; PDF p.17: \"For connection to a power supply not in the U.S.A., use an attachment plug adapter of the proper configuration for the power outlet.\""
+      },
+      "voltage_max_v": {
+        "value": 120,
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
+        "page": 32,
+        "quote": "PDF p.32: \"Power supply: AC adapter (AC 120V, 50/60Hz, 0.2A) Battery pack (DC 4.8V, 6W)\"; PDF p.18: \"Be sure to use the AC adapter from the power supply of 110 VAC.\"; PDF p.17: \"For connection to a power supply not in the U.S.A., use an attachment plug adapter of the proper configuration for the power outlet.\""
+      },
+      "frequencies_hz": {
+        "value": [
+          50,
+          60
+        ],
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
+        "page": 32,
+        "quote": "PDF p.32: \"AC adapter (AC 120V, 50/60Hz, 0.2A)\""
+      },
+      "power_watts": {
+        "value": 24,
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
+        "page": 32,
+        "quote": "DERIVED 120 V x 0.2 A = 24 VA from PDF p.32: \"AC adapter (AC 120V, 50/60Hz, 0.2A)\"; battery pack \"DC 4.8V, 6W\"",
+        "note": "derived from the adapter rating, not stated as watts"
+      },
+      "temp_min_c": {
+        "value": 10,
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
+        "page": 32,
+        "quote": "PDF p.32: \"Operating Temperature / Humidity: 50°F to 104°F (10 to 40°C) / 30 to 85% RH (IPX 0 Rating)\""
+      },
+      "temp_max_c": {
+        "value": 40,
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
+        "page": 32,
+        "quote": "PDF p.32: \"Operating Temperature / Humidity: 50°F to 104°F (10 to 40°C) / 30 to 85% RH (IPX 0 Rating)\""
+      },
+      "humidity_max_pct": {
+        "value": 85,
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
+        "page": 32,
+        "quote": "PDF p.32: \"Operating Temperature / Humidity: 50°F to 104°F (10 to 40°C) / 30 to 85% RH (IPX 0 Rating)\""
+      },
+      "needs_oxygen": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
+        "page": 32,
+        "quote": "PDF p.32: \"Inflation: Automatic inflation with pumping\" (self-contained pump; only AC adapter or battery listed as supply)",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_distilled_water": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
+        "page": 32,
+        "quote": "PDF p.32: \"Inflation: Automatic inflation with pumping\" (self-contained pump; only AC adapter or battery listed as supply)",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_compressed_air": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
+        "page": 32,
+        "quote": "PDF p.32: \"Inflation: Automatic inflation with pumping\" (self-contained pump; only AC adapter or battery listed as supply)",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "consumables": {
+        "value": [
+          "BP cuff/bladder sets S (17-22 cm), M (22-32 cm), L (32-42 cm), XL (42-50 cm)",
+          "rechargeable battery pack HEM-907-PBAT (approx. 2-year life)",
+          "air tube 1.3 m (HEM-TUBE-130XL)",
+          "AC adapter HEM-ADPT907 (120 V)"
+        ],
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
+        "page": 32,
+        "quote": "PDF p.32: \"Accessories: Cuff / bladder set Extra Large, Cuff / bladder set Large, Cuff / bladder set Medium, Cuff / bladder set Small, AC adapter, Battery pack, air tube 1.3 m\"; product page: \"Small Cuff for HEM-907XL 17-22 cm ... Medium Cuff for HEM-907XL 22-32 cm ... Large Cuff for HEM-907XL 32-42 cm ... Extra Large Cuff for HEM-907XL 42-50 cm\""
+      },
+      "manual_languages": {
+        "value": [
+          "English"
+        ],
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=1",
+        "page": 1,
+        "quote": "PDF p.1 cover: \"ENGLISH\" (US manual 1628519-0K)"
+      },
+      "operating_complexity": {
+        "value": "low",
+        "source": "spec sheet",
+        "document": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf",
+        "page": null,
+        "quote": "",
+        "note": "verifier's reading: One-button oscillometric cuff measurement; the only judgment is cuff size."
+      }
+    },
+    "documents": [
+      {
+        "file": "omron-hem-907xl/hem-907xl-im-en_1628519-0k.txt",
+        "title": "Omron HEM-907XL IntelliSense instruction manual 1628519-0K",
+        "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf",
+        "kind": "manual",
+        "languages": [
+          "English"
+        ]
+      },
+      {
+        "file": "",
+        "title": "Omron Healthcare product page, HEM-907XL",
+        "url": "https://omronhealthcare.com/products/intellisense-professional-digital-blood-pressure-monitor-hem-907xl",
+        "kind": "product page",
+        "languages": [
+          "English"
+        ]
+      }
+    ],
+    "notes": "Library model string: Omron Healthcare, HEM-907XL (HEM-907-Z2) IntelliSense Professional.\nYear introduced: 2000 (openFDA 510(k): \"K001848 ... decision_date 2000-07-03 ... OMRON INTELLISENSE BLOOD PRESSURE MONITOR, MODEL HEM-907\").\nSupport status: listed: still on omronhealthcare.com with cuffs, battery, adapter sold as accessories (fetched 2026-10-18); no end-of-support notice found (omronhealthcare.com product page: \"Professional Intellisense® Blood Pressure Monitor HEM-907XL ... Related accessories AC Adapter for HEM-907XL ... Rechargeable Battery Pack for HEM-907XL\").\nHas battery: True (PDF p.19: \"You can use the unit for approximately three hundred measurements with one charge.\" / \"Approximate life of battery is two years.\").\nBattery runtime: approx. 300 measurements per charge; battery pack life approx. 2 years.\nThe year introduced is the model's market date, not this unit's build year."
+  },
+  {
+    "slug": "laerdal-lsu",
+    "manufacturer": "Laerdal Medical",
+    "model": "LSU",
+    "aliases": [
+      "Laerdal Suction Unit",
+      "LSU Serres",
+      "78 00 30",
+      "78 00 00"
+    ],
+    "device_type": "suction pump",
+    "facts": {
+      "manufacturer": {
+        "value": "Laerdal Medical",
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=172",
+        "page": 172,
+        "quote": "2023 guide last page: \"© 2023 Laerdal Medical AS ... 20-16505 Rev C ... 4002 Stavanger, Norway\""
+      },
+      "model": {
+        "value": "LSU",
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_",
+        "page": null,
+        "quote": ""
+      },
+      "voltage_min_v": {
+        "value": 100,
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=23",
+        "page": 23,
+        "quote": "2023 guide PDF p.23: \"Operating/charging AC ** 100-240 VAC, 50-60 Hz  Operating/charging DC ** 12-28 VDC\""
+      },
+      "voltage_max_v": {
+        "value": 240,
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=23",
+        "page": 23,
+        "quote": "2023 guide PDF p.23: \"Operating/charging AC ** 100-240 VAC, 50-60 Hz  Operating/charging DC ** 12-28 VDC\""
+      },
+      "frequencies_hz": {
+        "value": [
+          50,
+          60
+        ],
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=23",
+        "page": 23,
+        "quote": "2023 guide PDF p.23: \"100-240 VAC, 50-60 Hz\""
+      },
+      "temp_min_c": {
+        "value": 0,
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=23",
+        "page": 23,
+        "quote": "2023 guide PDF p.23: \"Operating/Charging Temperature 0 °C to 40 °C (32 °F to 104 °F)\""
+      },
+      "temp_max_c": {
+        "value": 40,
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=23",
+        "page": 23,
+        "quote": "2023 guide PDF p.23: \"Operating/Charging Temperature 0 °C to 40 °C (32 °F to 104 °F)\""
+      },
+      "humidity_max_pct": {
+        "value": 95,
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=23",
+        "page": 23,
+        "quote": "2023 guide PDF p.23: \"Humidity (Operating & Storage) 5 - 95% RH non-condensing\""
+      },
+      "needs_oxygen": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=23",
+        "page": 23,
+        "quote": "2023 guide PDF p.23: \"Electrically powered medical suction equipment for field and transport use, according to ISO10079-1.\" (vacuum is generated internally; only AC/DC/battery power listed)",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_distilled_water": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=23",
+        "page": 23,
+        "quote": "2023 guide PDF p.23: \"Electrically powered medical suction equipment for field and transport use, according to ISO10079-1.\" (vacuum is generated internally; only AC/DC/battery power listed)",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_compressed_air": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=23",
+        "page": 23,
+        "quote": "2023 guide PDF p.23: \"Electrically powered medical suction equipment for field and transport use, according to ISO10079-1.\" (vacuum is generated internally; only AC/DC/battery power listed)",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "consumables": {
+        "value": [
+          "Serres suction bag 1000 ml (57 151)",
+          "Serres canister 1000 ml (57 300)",
+          "Serres suction tube CH25 180 cm (58 33 181) / disposable patient tubing 180 cm (78 04 12)",
+          "Serres vacuum connector (78 12 06)",
+          "Serres High Efficiency Filtration Kit (78 12 03)",
+          "aerosol filter for reusable canister (78 12 00)",
+          "float balls, vacuum seals, gaskets (packs of 10)",
+          "LSU NiMH battery 12 V 2 Ah (78 08 00), replace after 3 years",
+          "AC power cord US/EU/UK, DC power cord 12-28 V"
+        ],
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=29",
+        "page": 29,
+        "quote": "2023 guide PDF p.29: \"57 151 Serres Suction Bag (1000 ml, Blue) / 58 33 181 Serres Suction Tube (non-sterile CH25) 180 cm / 78 12 06 Serres Vacuum Connector / 78 04 12 Disposable patient tubing 180cm / 57 300 Serres Canister (1000ml, Transparent) ... 78 08 00 LSU Battery - NiMH\"; 2017 guide PDF p.35: \"78 12 00 Aerosol Filter for LSU Reusable Canister ... 78 10 02 Float Ball, pkg. 10 / 78 40 07 Vacuum Seal, pkg. 10 / 78 40 08 Gasket, pkg. 10\""
+      },
+      "manual_languages": {
+        "value": [
+          "English",
+          "Spanish",
+          "Italian",
+          "French",
+          "Dutch",
+          "German"
+        ],
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=1",
+        "page": 1,
+        "quote": "2023 international guide PDF p.1 cover: \"EN ES Laerdal Suction Unit IT Serres FR User Guide NL DE\" (172-page multilingual PDF)"
+      },
+      "operating_complexity": {
+        "value": "low",
+        "source": "spec sheet",
+        "document": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_",
+        "page": null,
+        "quote": "",
+        "note": "verifier's reading: One dial sets vacuum; daily work is bag/canister changes and a built-in device test."
+      }
+    },
+    "documents": [
+      {
+        "file": "laerdal-lsu/user_guide_lsu_w_serres_international.txt",
+        "title": "Laerdal Suction Unit with Serres user guide 20-16505 Rev C (2023)",
+        "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_",
+        "kind": "manual",
+        "languages": [
+          "English",
+          "Spanish",
+          "Italian",
+          "French",
+          "Dutch",
+          "German"
+        ]
+      },
+      {
+        "file": "laerdal-lsu/laerdal_suction_unit_ie.txt",
+        "title": "Laerdal Suction Unit user guide 8179 Rev Q (2017)",
+        "url": "https://cdn.laerdal.com/downloads/f2538/laerdal_suction_unit___ie_",
+        "kind": "manual",
+        "languages": [
+          "English"
+        ]
+      },
+      {
+        "file": "",
+        "title": "Laerdal product listing, item 78003003",
+        "url": "https://www.laerdal.com/distributors/item/78003003/",
+        "kind": "product page",
+        "languages": [
+          "English"
+        ]
+      }
+    ],
+    "notes": "Library model string: Laerdal Medical AS, Laerdal Suction Unit (LSU), Serres cat. 78 00 30 / Reusable cat. 78 00 00.\npower_watts: Not stated as watts. 2023 guide PDF p.24: \"The external AC power source must be able to deliver a current of min. 1A and the external DC power source min. 5A, if not the LSU may switch to battery operation.\"\nYear introduced: 1999 (openFDA 510(k): \"K993668 ... 1999-12-20 ... Laerdal Medical A/S | LAERDAL SUCTION UNIT,(4000) MODEL 78 00 20\" (earlier catalogue variant; no 510(k) found naming 78 00 30)).\nSupport status: listed: laerdal.com item 78003003 shows the LSU with Serres bag, 5-year limited warranty (fetched 2026-10-18); 2023 guide gives 10-year expected service life (laerdal.com item page: \"Laerdal's portable suction unit (LSU) is widely known for its excellent performance ... 5-year limited warranty (excluding canisters, tubing systems, and battery)\"; 2023 guide PDF p.24: \"Expected Service Life 10 years contingent on following service guidelines.\").\nHas battery: True (2023 guide PDF p.24: \"Battery 12 VDC 2 Ah, NiMH, rechargeable\"; \"Approx. battery operation time (free air flow) ... mmHg 80 120 200 350 500+ / min 3h20 2h20 1h30 1h 45\"; 2017 guide PDF p.26: \"Replace the battery when it does not pass the Battery Quality Check or after 3 years, whichever comes first.\").\nBattery runtime: 45 min at 500+ mmHg to 3 h 20 min at 80 mmHg (free flow); replace battery after 3 years.\nThe year introduced is the model's market date, not this unit's build year."
+  },
+  {
+    "slug": "nellcor-n-560",
+    "manufacturer": "Nellcor",
+    "model": "N-560",
+    "aliases": [
+      "OxiMax N-560",
+      "Nellcor OxiMax N-560",
+      "Covidien N-560"
+    ],
+    "device_type": "pulse oximeter",
+    "facts": {
+      "manufacturer": {
+        "value": "Nellcor",
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=1",
+        "page": 1,
+        "quote": "PDF p.1: \"Home Use Guide Nellcor™ OxiMax N-560 Pulse Oximeter ... ©2011 Covidien.\""
+      },
+      "model": {
+        "value": "N-560",
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf",
+        "page": null,
+        "quote": ""
+      },
+      "voltage_min_v": {
+        "value": 100,
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=79",
+        "page": 79,
+        "quote": "PDF p.79 (printed 69): \"Power Requirements 100 to 240 volts AC, 25 to 39 volt/amps to be compliant with IEC 60601-1 sub-clause 10.2.2\""
+      },
+      "voltage_max_v": {
+        "value": 240,
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=79",
+        "page": 79,
+        "quote": "PDF p.79 (printed 69): \"Power Requirements 100 to 240 volts AC, 25 to 39 volt/amps to be compliant with IEC 60601-1 sub-clause 10.2.2\""
+      },
+      "power_watts": {
+        "value": 39,
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=79",
+        "page": 79,
+        "quote": "PDF p.79 (printed 69): \"25 to 39 volt/amps\" (upper bound used, VA)"
+      },
+      "temp_min_c": {
+        "value": 10,
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=80",
+        "page": 80,
+        "quote": "PDF p.80 (printed 70): \"Operation Temperature 50 ºF to 113 ºF (10 ºC to 45 ºC)\""
+      },
+      "temp_max_c": {
+        "value": 45,
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=80",
+        "page": 80,
+        "quote": "PDF p.80 (printed 70): \"Operation Temperature 50 ºF to 113 ºF (10 ºC to 45 ºC)\""
+      },
+      "humidity_max_pct": {
+        "value": 95,
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=80",
+        "page": 80,
+        "quote": "PDF p.80 (printed 70): \"Relative Humidity 15% to 95% non-condensing\""
+      },
+      "needs_oxygen": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=35",
+        "page": 35,
+        "quote": "PDF p.35 (printed 25): \"Plug the other end of the power cord into a properly grounded AC outlet.\" (AC mains or internal battery are the only supplies described)",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_distilled_water": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=35",
+        "page": 35,
+        "quote": "PDF p.35 (printed 25): \"Plug the other end of the power cord into a properly grounded AC outlet.\" (AC mains or internal battery are the only supplies described)",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_compressed_air": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=35",
+        "page": 35,
+        "quote": "PDF p.35 (printed 25): \"Plug the other end of the power cord into a properly grounded AC outlet.\" (AC mains or internal battery are the only supplies described)",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "consumables": {
+        "value": [
+          "Nellcor OXIMAX sensors only (single-patient adhesive MAX-A, MAX-AL, MAX-N, MAX-P, MAX-I, MAX-R, MAX-FAST; OxiCliq A/N/P/I; Softcare SC-PR/SC-NEO/SC-A)",
+          "reusable OXIMAX sensors (Durasensor DS-100A finger clip, Oxiband OXI-A/N, OXI-P/I)",
+          "DOC-10 pulse oximetry cable",
+          "internal NiMH battery 9.6 V 3.8 Ah",
+          "fuses 2 A 250 V slow-blow 5x20 mm (qty 2)"
+        ],
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=37",
+        "page": 37,
+        "quote": "PDF p.37 (printed 27): \"WARNING: Use only Nellcor-approved OXIMAX sensors and pulse oximetry cable with this N-560.\"; PDF p.39-40 Table 2 lists MAX-FAST, SC-PR, SC-NEO, SC-A, MAX-A, MAX-AL, MAX-N, MAX-P, MAX-I, MAX-R, OxiCliq A/N/P/I, \"OXIMAX Durasensor® finger-clip DS-100A ... reusable, adult\", Oxiband OXI-A/N, OXI-P/I; PDF p.38: \"replace the sensor, the pulse oximetry cable (DOC-10), or both\"; PDF p.79: \"Fuses qty 2, 2 A, 250 volts, slow-blow, IEC (5 x 20 mm)\""
+      },
+      "manual_languages": {
+        "value": [
+          "English"
+        ],
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=45",
+        "page": 45,
+        "quote": "PDF p.45 (Table 3 defaults): \"Language English English\"; document id N560_HomeUseGuide_EN_10075132A00"
+      },
+      "operating_complexity": {
+        "value": "low",
+        "source": "spec sheet",
+        "document": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf",
+        "page": null,
+        "quote": "",
+        "note": "verifier's reading: Clip on a sensor and read SpO2/pulse; the only trap is it needs Nellcor OXIMAX sensors, not generic ones."
+      }
+    },
+    "documents": [
+      {
+        "file": "nellcor-n-560/rhn_N560_HomeUseGuide_EN_10075132A00.txt",
+        "title": "Nellcor OxiMax N-560 Home Use Guide 10075132A00 (2011)",
+        "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf",
+        "kind": "manual",
+        "languages": [
+          "English"
+        ]
+      }
+    ],
+    "notes": "Library model string: Nellcor (Covidien, now Medtronic), OxiMax N-560.\nfrequencies_hz: Not stated in the fetched Home Use Guide (power spec gives voltage and VA only). Operator's manual (bioclinicalservices.com.au) is behind a Cloudflare challenge and was not fetched.\nSupport status: unknown: no Medtronic product listing or end-of-support notice found; FDA recall Z-2268-2015 (display segments) terminated 2017-11-03, 105,831 units in worldwide distribution (FDA recall record: \"Class 2 Device Recall OxiMax N560 Pulse Oximeter ... Recall Status Terminated on November 03, 2017 ... 510(K)Number K123581 ... Quantity in Commerce 105,831 units ... Worldwide Distribution\").\nHas battery: True (PDF p.79 (printed 69): \"The battery provides at least eight hours of battery life when new and fully charged with no alarms, no serial data ... Type Nickel metal hydride  Voltage 9.6 Volts DC, 3.8 AH  Recharge 6 hours\").\nBattery runtime: at least 8 hours when new and fully charged (no alarms, no serial output); 6 h recharge."
+  },
+  {
+    "slug": "philips-suresigns-vm6",
+    "manufacturer": "Philips Medical Systems",
+    "model": "SureSigns VM6",
+    "aliases": [
+      "VM6",
+      "Philips VM6",
+      "863064",
+      "863065"
+    ],
+    "device_type": "patient monitor",
+    "facts": {
+      "manufacturer": {
+        "value": "Philips Medical Systems",
+        "source": "product page",
+        "document": "",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "page": null,
+        "quote": ""
+      },
+      "model": {
+        "value": "SureSigns VM6",
+        "source": "product page",
+        "document": "",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "page": null,
+        "quote": ""
+      },
+      "voltage_min_v": {
+        "value": 100,
+        "source": "product page",
+        "document": "",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "page": null,
+        "quote": "Product page: \"Internal power supply 100 to 240 VAC Power consumption 72 W Frequency 50/60 Hz\"; service guide PDF p.7 (label symbols): \"Power supply 100-240V - 50/60Hz 120VA T 1.6A 250V\""
+      },
+      "voltage_max_v": {
+        "value": 240,
+        "source": "product page",
+        "document": "",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "page": null,
+        "quote": "Product page: \"Internal power supply 100 to 240 VAC Power consumption 72 W Frequency 50/60 Hz\"; service guide PDF p.7 (label symbols): \"Power supply 100-240V - 50/60Hz 120VA T 1.6A 250V\""
+      },
+      "frequencies_hz": {
+        "value": [
+          50,
+          60
+        ],
+        "source": "product page",
+        "document": "",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "page": null,
+        "quote": "Product page: \"Frequency 50/60 Hz\"; service guide PDF p.30 (5-4): \"AC Power Specifies the monitor's AC cycles per second. The options are 50 and 60 Hz.\" (must be set to local mains)"
+      },
+      "power_watts": {
+        "value": 72,
+        "source": "product page",
+        "document": "",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "page": null,
+        "quote": "Product page: \"Power consumption 72 W\""
+      },
+      "temp_min_c": {
+        "value": 10,
+        "source": "product page",
+        "document": "",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "page": null,
+        "quote": "Product page: \"Operating temperature 10 to 40 °C (50 to 104 °F)\""
+      },
+      "temp_max_c": {
+        "value": 40,
+        "source": "product page",
+        "document": "",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "page": null,
+        "quote": "Product page: \"Operating temperature 10 to 40 °C (50 to 104 °F)\""
+      },
+      "humidity_max_pct": {
+        "value": 80,
+        "source": "product page",
+        "document": "",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "page": null,
+        "quote": "Product page: \"Operating humidity Up to 80% RH, non-condensing\""
+      },
+      "needs_oxygen": {
+        "value": false,
+        "source": "product page",
+        "document": "",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "page": null,
+        "quote": "Product page electrical spec lists only \"Internal power supply 100 to 240 VAC\" and internal battery; NBP is \"Oscillometric using stepwise deflation pressure\" with internal \"NBP pump/valve assembly with filter\" (service guide PDF p.152)",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_distilled_water": {
+        "value": false,
+        "source": "product page",
+        "document": "",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "page": null,
+        "quote": "Product page electrical spec lists only \"Internal power supply 100 to 240 VAC\" and internal battery; NBP is \"Oscillometric using stepwise deflation pressure\" with internal \"NBP pump/valve assembly with filter\" (service guide PDF p.152)",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_compressed_air": {
+        "value": false,
+        "source": "product page",
+        "document": "",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "page": null,
+        "quote": "Product page electrical spec lists only \"Internal power supply 100 to 240 VAC\" and internal battery; NBP is \"Oscillometric using stepwise deflation pressure\" with internal \"NBP pump/valve assembly with filter\" (service guide PDF p.152)",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "consumables": {
+        "value": [
+          "NBP cuffs and tubing",
+          "SpO2 sensors",
+          "ECG lead sets (3- and 5-lead)",
+          "temperature probe",
+          "thermal recorder paper 58 mm (optional recorder)",
+          "Li-ion smart battery 11.1 V 7200 mAh (989803144631), replace every 3 years / 300 cycles",
+          "NBP filter (4535 640 41171)",
+          "fuses T1.6A 250V"
+        ],
+        "source": "spec sheet",
+        "document": "philips-suresigns-vm6/usme_Philips_SureSigns_VM_Series_Service_Manual.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/06/Philips_SureSigns_VM_Series_Service_Manual.pdf#page=23",
+        "page": 23,
+        "quote": "Service guide PDF p.23 (3-3): \"It is not necessary to return sensors, the temperature probe, NBP tubing and cuff, or power cord.\"; PDF p.17: ECG \"3- and 5-lead\" for VM6; product page: \"Recorder type Thermal Paper width 58 mm\"; PDF p.152 (9-2): \"989803144631 SureSigns VM monitor Lithium Ion battery\", \"4535 640 41171 NBP filter replacement\""
+      },
+      "manual_languages": {
+        "value": [
+          "English"
+        ],
+        "source": "spec sheet",
+        "document": "philips-suresigns-vm6/usme_Philips_SureSigns_VM_Series_Service_Manual.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/06/Philips_SureSigns_VM_Series_Service_Manual.pdf#page=1",
+        "page": 1,
+        "quote": "Service guide PDF p.1: \"Service Guide SureSigns VM Series Patient Monitors Release A English\" (operator IFU not fetched)"
+      },
+      "operating_complexity": {
+        "value": "medium",
+        "source": "product page",
+        "document": "",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "page": null,
+        "quote": "",
+        "note": "verifier's reading: Multi-parameter alarms, ECG lead placement and admin settings (including setting AC mains to 50 or 60 Hz) need trained nursing staff."
+      }
+    },
+    "documents": [
+      {
+        "file": "",
+        "title": "Philips product page, SureSigns VM6 (HC863065)",
+        "url": "https://www.philips.com.au/healthcare/product/HC863065",
+        "kind": "product page",
+        "languages": [
+          "English"
+        ]
+      },
+      {
+        "file": "philips-suresigns-vm6/usme_Philips_SureSigns_VM_Series_Service_Manual.txt",
+        "title": "Philips SureSigns VM Series Service Guide, Release A (2006)",
+        "url": "https://usme.com/wp-content/uploads/2022/06/Philips_SureSigns_VM_Series_Service_Manual.pdf",
+        "kind": "service manual",
+        "languages": [
+          "English"
+        ]
+      }
+    ],
+    "notes": "Library model string: Philips Medical Systems, SureSigns VM6 (863064 / 863065).\nYear introduced: 2006 (Service guide PDF p.1-2: \"Printed in USA 06/06 Second Edition\", \"Copyright © 2006 Koninklijke Philips Electronics N.V.\" (earliest documented date; earliest openFDA 510(k) naming VM6 is K080495, 2008-03-24)).\nSupport status: listed: philips.com.au still shows SureSigns VM6 product page with specs (fetched 2026-10-18); FDA recall Z-2895-2018 (aged Li-ion batteries overheating) shown Open; no end-of-support notice found (Product page: \"SureSigns VM6 Patient Monitor ... © Koninklijke Philips N.V., 2004 - 2026\"; FDA recall: \"Recall Status Open, Classified Recall Number Z-2895-2018 ... monitors with lithium ion batteries that had exceeded their battery life expectancy have overheated or ignited\").\nHas battery: True (Product page: \"Internal battery Lithium ion, Smart battery 10.9 V to 11.1 V, 7200 mAhr Battery operating time (new, fully charged) 4 hour(s) Battery charge time <4 hour(s)\"; service guide PDF p.23 (3-3): \"Battery power lasts a minimum of four hours of continuous monitoring (with no printing), and one NBP measurement every 15 minutes.\"; FDA recall: \"These batteries should be replaced every 3 years or upon reaching 300 charge-discharge cycles.\").\nBattery runtime: minimum 4 hours continuous monitoring (no printing, NBP every 15 min); <4 h recharge; replace Li-ion battery every 3 years or 300 cycles.\nUi languages: English, Spanish, Simplified Chinese, German, French, Italian, Dutch, Norwegian, Portuguese, Russian, Traditional Chinese, Finnish, Swedish, Czech, Polish (Service guide PDF p.32 (5-6): \"The available options are: English, Spanish, Simplified Chinese, German, French, Italian, Dutch, Norwegian, Portuguese, Russian, Traditional Chinese, Finnish, Swedish, Czech, Polish\").\nThe year introduced is the model's market date, not this unit's build year."
+  },
+  {
+    "slug": "sonosite-m-turbo",
+    "manufacturer": "FUJIFILM SonoSite",
+    "model": "M-Turbo",
+    "aliases": [
+      "SonoSite M-Turbo",
+      "Sonosite MTurbo"
+    ],
+    "device_type": "ultrasound scanner",
+    "facts": {
+      "manufacturer": {
+        "value": "FUJIFILM SonoSite",
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=1",
+        "page": 1,
+        "quote": "PDF p.1: \"SonoSite M-Turbo Ultrasound System User Guide  Manufacturer FUJIFILM SonoSite, Inc. 21919 30th Drive SE Bothell, WA 98021 USA\"; PDF p.2: \"Part number: P07662-09 Publication date: March 2021\""
+      },
+      "model": {
+        "value": "M-Turbo",
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf",
+        "page": null,
+        "quote": ""
+      },
+      "voltage_min_v": {
+        "value": 100,
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=247",
+        "page": 247,
+        "quote": "PDF p.247 (10-3): \"Electrical Power Supply Input: 100-240 VAC, 50–60 Hz, 2.0 A Max @ 100 VAC\""
+      },
+      "voltage_max_v": {
+        "value": 240,
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=247",
+        "page": 247,
+        "quote": "PDF p.247 (10-3): \"Electrical Power Supply Input: 100-240 VAC, 50–60 Hz, 2.0 A Max @ 100 VAC\""
+      },
+      "frequencies_hz": {
+        "value": [
+          50,
+          60
+        ],
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=247",
+        "page": 247,
+        "quote": "PDF p.247 (10-3): \"100-240 VAC, 50–60 Hz\""
+      },
+      "power_watts": {
+        "value": 75,
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=247",
+        "page": 247,
+        "quote": "PDF p.247-248 (10-3/10-4): \"Power Supply Output #1: 15 VDC, 5.0 A Max\" / \"Power Supply Output #2: 12 VDC, 2.3 A Max  Combined output not exceeding 75 watts.\""
+      },
+      "temp_min_c": {
+        "value": 10,
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=247",
+        "page": 247,
+        "quote": "PDF p.247 (10-3): \"Operating System, battery, and transducer 10–40°C (50–104°F), 15–95% R.H. 700 to 1060hPa\""
+      },
+      "temp_max_c": {
+        "value": 40,
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=247",
+        "page": 247,
+        "quote": "PDF p.247 (10-3): \"Operating System, battery, and transducer 10–40°C (50–104°F), 15–95% R.H. 700 to 1060hPa\""
+      },
+      "humidity_max_pct": {
+        "value": 95,
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=247",
+        "page": 247,
+        "quote": "PDF p.247 (10-3): \"10–40°C (50–104°F), 15–95% R.H.\""
+      },
+      "needs_oxygen": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=247",
+        "page": 247,
+        "quote": "PDF p.247 (10-3): only \"Power Supply Input: 100-240 VAC\" and battery are listed as supplies",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_distilled_water": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=247",
+        "page": 247,
+        "quote": "PDF p.247 (10-3): only \"Power Supply Input: 100-240 VAC\" and battery are listed as supplies",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_compressed_air": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=247",
+        "page": 247,
+        "quote": "PDF p.247 (10-3): only \"Power Supply Input: 100-240 VAC\" and battery are listed as supplies",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "consumables": {
+        "value": [
+          "acoustic coupling gel (Aquasonic recommended; other gels can damage transducers)",
+          "sterile transducer sheaths and sterile gel for invasive/surgical use",
+          "printer paper (Sony, for optional B/W or color printer)",
+          "Li-ion battery (six cells)",
+          "external power supply 15 V / 12 V DC",
+          "transducers (C60x, C60xi, HFL38x, L38x, P21x etc.)"
+        ],
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=26",
+        "page": 26,
+        "quote": "PDF p.26 (2-16): \"Acoustic coupling gel must be used during exams. ... FUJIFILM SonoSite recommends Aquasonic® gel\"; \"the use of sterile transducer sheaths and sterile coupling gel is recommended for clinical applications of an invasive or surgical nature\"; PDF p.247 (10-3): \"Recommended sources for printer paper: Contact Sony\"; PDF p.246 (10-2): \"Accessories ... Battery ... Power supply ... System AC power cord\""
+      },
+      "manual_languages": {
+        "value": [
+          "English",
+          "German"
+        ],
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf",
+        "page": null,
+        "quote": "English user guide (P07662-09, this PDF); sonosite.com/de document library: \"M-Turbo_1.8_UG_GER_P08154-06A_e.pdf ... Description M-Turbo user guide, German\""
+      },
+      "operating_complexity": {
+        "value": "high",
+        "source": "spec sheet",
+        "document": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf",
+        "page": null,
+        "quote": "",
+        "note": "verifier's reading: Image capture and reading are operator-dependent and need clinical ultrasound training; also choosing transducers and presets."
+      }
+    },
+    "documents": [
+      {
+        "file": "sonosite-m-turbo/M-Turbo_UG_ENG_P07662-09C_e.txt",
+        "title": "SonoSite M-Turbo User Guide P07662-09 (2021)",
+        "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf",
+        "kind": "manual",
+        "languages": [
+          "English"
+        ]
+      },
+      {
+        "file": "sonosite-m-turbo/MKT03562_Rev_E_End_of_Sale_Notice_Sonosite_M-Turbo_Customer_Communication.txt",
+        "title": "SonoSite M-Turbo end-of-sale notice MKT03562 Rev E (2021)",
+        "url": "https://www.sonosite.com/sites/default/files/MKT03562_Rev_E_End_of_Sale_Notice_Sonosite_M-Turbo_Customer_Communication.pdf",
+        "kind": "notice",
+        "languages": [
+          "English"
+        ]
+      },
+      {
+        "file": "sonosite-m-turbo/M03625_Rev_B_Sonosite_M-Turbo_End_of_Life_Customer_Communication.txt",
+        "title": "SonoSite M-Turbo end-of-life notice M03625 Rev B",
+        "url": "https://www.sonosite.com/sites/default/files/M03625_Rev_B_Sonosite_M-Turbo_End_of_Life_Customer_Communication.pdf",
+        "kind": "notice",
+        "languages": [
+          "English"
+        ]
+      }
+    ],
+    "notes": "Library model string: FUJIFILM SonoSite, Inc., SonoSite M-Turbo.\nYear introduced: 2008 (MKT03562 Rev E, May 2021: \"After 13 years of outstanding performance in the hospital, office and field environments, we wish to inform you of the retirement of all configurations of the Sonosite M-Turbo\" (2021 - 13 = 2008, derived)).\nSupport status: end of life: new systems no longer sold (US/CA/AU/NZ after 2021-10-31; BE/FR/DE/ES/UK after 2022-10-31); service support for systems and transducers ends 2028-04-30 (US/CA/AU/NZ) or 2029-04-30 (BE/FR/DE/ES/UK); accessories support ended 2025-04-30 / 2026-04-30 (MKT03562 Rev E (USA, Canada, Australia, NZ): \"New Systems October 31, 2021 ... Service support for this system and associated transducers will continue to be provided until the dates listed below: Sonosite M-Turbo Systems April 30, 2028  Sonosite M-Turbo Transducers April 30, 2028  Sonosite M-Turbo Accessories April 30, 2025\"; M03625 Rev B (Belgium, France, Germany, Spain, UK): \"Sonosite M-Turbo Systems April 30, 2029 ... Accessories April 30, 2026\").\nHas battery: True (PDF p.248 (10-4): \"The battery comprises six lithium-ion cells plus electronics, a temperature sensor, and battery contacts. Run time is up to two hours, depending on imaging mode and display brightness.\").\nBattery runtime: up to 2 hours depending on imaging mode and display brightness.\nThe year introduced is the model's market date, not this unit's build year."
+  },
+  {
+    "slug": "edan-sonotrax-basic-a",
+    "manufacturer": "Edan Instruments",
+    "model": "SONOTRAX Basic A",
+    "aliases": [
+      "Sonotrax",
+      "Edan Sonotrax Basic A",
+      "STBA.02"
+    ],
+    "device_type": "fetal doppler",
+    "facts": {
+      "manufacturer": {
+        "value": "Edan Instruments",
+        "source": "spec sheet",
+        "document": "edan-sonotrax-basic-a/edan-sonotrax-series-manual-tigermedical.txt",
+        "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf#page=2",
+        "page": 2,
+        "quote": "Product Name: Ultrasonic Pocket Doppler Model: SONOTRAX Lite, SONOTRAX Basic, SONOTRAX Basic A, SONOTRAX Pro, SONOTRAX II, SONOTRAX II Pro, SONOTRAX Vascular"
+      },
+      "model": {
+        "value": "SONOTRAX Basic A",
+        "source": "spec sheet",
+        "document": "edan-sonotrax-basic-a/edan-sonotrax-series-manual-tigermedical.txt",
+        "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf#page=2",
+        "page": 2,
+        "quote": ""
+      },
+      "temp_min_c": {
+        "value": 5,
+        "source": "spec sheet",
+        "document": "edan-sonotrax-basic-a/edan-sonotrax-series-manual-tigermedical.txt",
+        "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf#page=34",
+        "page": 34,
+        "quote": "Working: Temperature: +5°C ~ +40°C ( +41 ºF ~ +104 ºF)"
+      },
+      "temp_max_c": {
+        "value": 40,
+        "source": "spec sheet",
+        "document": "edan-sonotrax-basic-a/edan-sonotrax-series-manual-tigermedical.txt",
+        "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf#page=34",
+        "page": 34,
+        "quote": "Working: Temperature: +5°C ~ +40°C ( +41 ºF ~ +104 ºF)"
+      },
+      "humidity_max_pct": {
+        "value": 80,
+        "source": "spec sheet",
+        "document": "edan-sonotrax-basic-a/edan-sonotrax-series-manual-tigermedical.txt",
+        "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf#page=34",
+        "page": 34,
+        "quote": "Humidity: 25% ~ 80% (non-condensing)"
+      },
+      "needs_oxygen": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "edan-sonotrax-basic-a/edan-sonotrax-series-manual-tigermedical.txt",
+        "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf#page=34",
+        "page": 34,
+        "quote": "",
+        "note": "Inferred false: complete spec chapter lists only batteries and coupling gel; no gas or water supply mentioned."
+      },
+      "needs_distilled_water": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "edan-sonotrax-basic-a/edan-sonotrax-series-manual-tigermedical.txt",
+        "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf#page=34",
+        "page": 34,
+        "quote": "",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_compressed_air": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "edan-sonotrax-basic-a/edan-sonotrax-series-manual-tigermedical.txt",
+        "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf#page=34",
+        "page": 34,
+        "quote": "",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "consumables": {
+        "value": [
+          "coupling gel (Edan P/N 11.57.14019)",
+          "2 x AA batteries (alkaline LR6 1.5 V or NiMH 1.2 V, can be bought locally)"
+        ],
+        "source": "spec sheet",
+        "document": "edan-sonotrax-basic-a/edan-sonotrax-series-manual-tigermedical.txt",
+        "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf#page=41",
+        "page": 41,
+        "quote": "Consumable Coupling Gel 11.57.14019; The alkaline battery and rechargeable NI-MH battery can be replaced by those of identical specifications purchased locally. Alkaline battery: LR6, AA, 1.5V."
+      },
+      "manual_languages": {
+        "value": [
+          "English",
+          "Italian"
+        ],
+        "source": "spec sheet",
+        "document": "edan-sonotrax-basic-a/doctorpoint-docp-pdf3968.txt",
+        "url": "https://www.doctorpoint.it/images/deplian/docp-pdf3968.pdf#page=1",
+        "page": 1,
+        "quote": "Doppler Ultrasonico Portatile ... Versione Manuale : 1.2 Data di emissione: Gennaio 2008"
+      },
+      "operating_complexity": {
+        "value": "low",
+        "source": "spec sheet",
+        "document": "edan-sonotrax-basic-a/edan-sonotrax-series-manual-tigermedical.txt",
+        "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf#page=6",
+        "page": 6,
+        "quote": "intended to be used by health care professionals including registered nurses, practical nurses, midwives, ultrasound technicians, and physician assistants, by prescription from licensed",
+        "note": "Low: one button, battery handheld; but meant for trained clinicians (fetal vs maternal signal confusion)."
+      }
+    },
+    "documents": [
+      {
+        "file": "edan-sonotrax-basic-a/edan-sonotrax-series-manual-tigermedical.txt",
+        "title": "Edan SONOTRAX Series User Manual 01.54.455405-11 (2012)",
+        "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf",
+        "kind": "manual",
+        "languages": [
+          "English"
+        ]
+      },
+      {
+        "file": "edan-sonotrax-basic-a/doctorpoint-docp-pdf3968.txt",
+        "title": "Edan Doppler Ultrasonico Portatile manual v1.2 (2008)",
+        "url": "https://www.doctorpoint.it/images/deplian/docp-pdf3968.pdf",
+        "kind": "manual",
+        "languages": [
+          "Italian"
+        ]
+      },
+      {
+        "file": "edan-sonotrax-basic-a/fda-K080087.txt",
+        "title": "FDA 510(k) summary K080087",
+        "url": "https://www.accessdata.fda.gov/cdrh_docs/pdf8/K080087.pdf",
+        "kind": "registry",
+        "languages": []
+      },
+      {
+        "file": "edan-sonotrax-basic-a/edanusa-sonotrax-basic-a-page.txt",
+        "title": "Edan USA product page, SONOTRAX Basic A",
+        "url": "https://edanusa.com/product/sonotrax-basic-a-fetal-doppler-baby-heart-monitor/",
+        "kind": "product page",
+        "languages": [
+          "English"
+        ]
+      }
+    ],
+    "notes": "Library model string: Edan Instruments, Inc., SONOTRAX Basic A.\nYear introduced: 2008 (Doppler Models: Sonotrax Lite, Sonotrax Basic, St6hblrax Basic A, Sonotrax Pro, Sonotrax ii, (OCR of K080087 510(k) summary; FDA letter 'MAR I1 200B' = Mar 11 2008)).\nSupport status: listed: Edan USA product page still sells Sonotrax Basic A (SKU STBA.02) with 2-year main-unit warranty (fetched 2026-10-18) (Sonotrax Basic A Doppler ... SKU: STBA.02 ... 2 Year warranty on the Sonotrax Basic A Fetal Doppler main unit).\nHas battery: True (SONOTRAX Lite, SONOTRAX Basic, SONOTRAX Basic A, SONOTRAX Pro and SONOTRAX Vascular are powered either by two alkaline batteries or two rechargeable NI-MH batteries.).\nvoltage_min_v: No mains connection: battery-only device, so voltage/frequency/power are not applicable (frequencies_hz empty list means none required). The 100V-240V~ 50Hz/60Hz charger in the manual (p24) is for the NiMH battery pack of SONOTRAX II / II Pro only.\nyear_introduced: 2008 = first FDA 510(k) naming Basic A (K080087, March 2008). SONOTRAX family first cleared K040480, decision 05/25/2004.\nThe year introduced is the model's market date, not this unit's build year."
+  },
+  {
+    "slug": "tuttnauer-2540m",
+    "manufacturer": "Tuttnauer",
+    "model": "2540M",
+    "aliases": [
+      "Tuttnauer 2540M",
+      "2540 M autoclave"
+    ],
+    "device_type": "autoclave",
+    "facts": {
+      "manufacturer": {
+        "value": "Tuttnauer",
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=1",
+        "page": 1,
+        "quote": "OPERATION & MAINTENANCE MANUAL Tabletop Autoclaves Models 1730, 2340, 2540, 3140, 3850, 3870 M & MK ... Cat. No. MAN205-0007000EN Rev. Q"
+      },
+      "model": {
+        "value": "2540M",
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=1",
+        "page": 1,
+        "quote": ""
+      },
+      "voltage_min_v": {
+        "value": 114,
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=22",
+        "page": 22,
+        "quote": "The voltage supplied to the device must comply with the label ± 5%.",
+        "note": "114-126 V = 120 V label ±5% (installation rule, p22). Operating-conditions section (p8) separately allows 'Mains supply voltage fluctuations up to ±10% of nominal voltage'. 230 V model: 218.5-241.5 V at ±5%. 2540MK (fast heat, 2200 W) is 230 V only in the electrical table."
+      },
+      "voltage_max_v": {
+        "value": 126,
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=22",
+        "page": 22,
+        "quote": "The voltage supplied to the device must comply with the label ± 5%."
+      },
+      "frequencies_hz": {
+        "value": [
+          50,
+          60
+        ],
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=9",
+        "page": 9,
+        "quote": "[table cells] Power supply (as appropriate) | V-A | 1ph, 120V – 16A,50/60 Hz | 1ph, 230V – 16A,50/60 Hz"
+      },
+      "power_watts": {
+        "value": 1400,
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=15",
+        "page": 15,
+        "quote": "[table cells, 2.14 Electrical Data; columns 1730 M, MK, 2340 M, MK, 2540 M, MK, 3140, 3850, 3870] Total power | model 120V | 8.8A 11.2A 11.7A - 11.7A - 20.0A | Heaters W 1050 1350 1400 2200 1400 2200 2400 2400 3000"
+      },
+      "temp_min_c": {
+        "value": 5,
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=8",
+        "page": 8,
+        "quote": "Minimum room temperature 41ºF (5ºC)."
+      },
+      "humidity_max_pct": {
+        "value": 80,
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=8",
+        "page": 8,
+        "quote": "Maximum relative humidity 80% for temperature up to 31ºC decreasing linearly to 50% relative humidity at 40ºC."
+      },
+      "needs_oxygen": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=7",
+        "page": 7,
+        "quote": "This autoclave is an electrically heated sterilizer using steam as the sterilizing agent.",
+        "note": "Inferred false: Utilities table (p9) lists only electrical power; steam is generated internally from reservoir water."
+      },
+      "needs_distilled_water": {
+        "value": true,
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=30",
+        "page": 30,
+        "quote": "USE DISTILLED WATER ONLY. Use water-having characteristics as per table in sec 5. The impurities in tap water will create the need for more frequent cleaning and maintenance, in addition, they will accumulate and block the hole of the Air Jet.",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_compressed_air": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=9",
+        "page": 9,
+        "quote": "",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "consumables": {
+        "value": [
+          "distilled / mineral-free water (EN 13060 quality, conductivity <=3 uS/cm)",
+          "door gasket (replace every 12 months)",
+          "Chamber Brite descaler (weekly; CB0010)",
+          "sterilization indicator strips",
+          "biological spore tests (weekly)",
+          "silicon drain tube (02620016)"
+        ],
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=34",
+        "page": 34,
+        "quote": "Replace the door gasket every 12 months, or as needed ... Once per week, clean and descale the chamber, copper tubes and the reservoir using Chamber Brite"
+      },
+      "manual_languages": {
+        "value": [
+          "English"
+        ],
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=1",
+        "page": 1,
+        "quote": "",
+        "note": "Only the English US manual was found; other languages unknown."
+      },
+      "operating_complexity": {
+        "value": "medium",
+        "source": "spec sheet",
+        "document": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=7",
+        "page": 7,
+        "quote": "It is a manually operated device, with a control system based upon steam pressure.",
+        "note": "Medium: manual cycle and temperature selection, chamber-pitch setup, distilled water, daily/weekly maintenance, spore testing."
+      }
+    },
+    "documents": [
+      {
+        "file": "tuttnauer-2540m/tuttnauer-M-MK-operators-manual-rev-Q.txt",
+        "title": "Tuttnauer M & MK tabletop autoclaves operation and maintenance manual MAN205-0007000EN Rev Q",
+        "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf",
+        "kind": "manual",
+        "languages": [
+          "English"
+        ]
+      },
+      {
+        "file": "tuttnauer-2540m/tuttnauer-us-2540m-page.txt",
+        "title": "Tuttnauer US product page, 2540M",
+        "url": "https://tuttnauer.com/us/medical-clinics/tabletop-sterilizers/manual/2540m",
+        "kind": "product page",
+        "languages": [
+          "English"
+        ]
+      }
+    ],
+    "notes": "Library model string: Tuttnauer, 2540M (120 V model; 230 V model also documented).\nSupport status: listed: Tuttnauer US site still lists 2540M with specs (120V, 50-60Hz, 1400W/12A, 1 year parts and labor warranty) (fetched 2026-10-18) (2540M ... Voltage & Frequency 120V 50-60Hz Power & Current 1400W 12A ... Warranty 1 year parts and labor).\nHas battery: False.\ntemp_max_c: No explicit maximum room temperature; humidity derating line ends at 40ºC.\nyear_introduced: Unknown. FDA K021504 (2002) is for the EHS series model 2540, not the M series; the M/MK manual only says 'FDA Cleared'."
+  },
+  {
+    "slug": "roche-accu-chek-performa",
+    "manufacturer": "Roche Diabetes Care",
+    "model": "Accu-Chek Performa",
+    "aliases": [
+      "Accu-Chek",
+      "Performa",
+      "Roche Accu-Chek Performa"
+    ],
+    "device_type": "glucose meter",
+    "facts": {
+      "manufacturer": {
+        "value": "Roche Diabetes Care",
+        "source": "spec sheet",
+        "document": "roche-accu-chek-performa/accu-chek-performa-test-strip-insert-uk.txt",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-test-strip-insert-0/download?inline#page=1",
+        "page": 1,
+        "quote": "Roche Diabetes Care GmbH ... © 2022 Roche Diabetes Care"
+      },
+      "model": {
+        "value": "Accu-Chek Performa",
+        "source": "spec sheet",
+        "document": "roche-accu-chek-performa/accu-chek-performa-user-manual-uk.txt",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-blood-glucose-meter-user-manual/download?inline#page=39",
+        "page": 39,
+        "quote": ""
+      },
+      "temp_min_c": {
+        "value": 8,
+        "source": "spec sheet",
+        "document": "roche-accu-chek-performa/accu-chek-performa-test-strip-insert-uk.txt",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-test-strip-insert-0/download?inline#page=1",
+        "page": 1,
+        "quote": "Use the test strips at temperatures between 8 and 44 °C.",
+        "note": "Operating range comes from the test strip insert (the meter manual defers: 'Refer to the test strip package insert for test strip storage and system operating conditions'). Meter storage: -25-70 °C (manual p39). Strip storage: 2-30 °C."
+      },
+      "temp_max_c": {
+        "value": 44,
+        "source": "spec sheet",
+        "document": "roche-accu-chek-performa/accu-chek-performa-test-strip-insert-uk.txt",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-test-strip-insert-0/download?inline#page=1",
+        "page": 1,
+        "quote": "Use the test strips at temperatures between 8 and 44 °C."
+      },
+      "humidity_max_pct": {
+        "value": 90,
+        "source": "spec sheet",
+        "document": "roche-accu-chek-performa/accu-chek-performa-test-strip-insert-uk.txt",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-test-strip-insert-0/download?inline#page=1",
+        "page": 1,
+        "quote": "Use the test strips between 10 and 90 % humidity."
+      },
+      "needs_oxygen": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "roche-accu-chek-performa/accu-chek-performa-user-manual-uk.txt",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-blood-glucose-meter-user-manual/download?inline#page=39",
+        "page": 39,
+        "quote": "",
+        "note": "Inferred false: spec table lists only a CR2032 battery."
+      },
+      "needs_distilled_water": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "roche-accu-chek-performa/accu-chek-performa-user-manual-uk.txt",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-blood-glucose-meter-user-manual/download?inline#page=39",
+        "page": 39,
+        "quote": "",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_compressed_air": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "roche-accu-chek-performa/accu-chek-performa-user-manual-uk.txt",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-blood-glucose-meter-user-manual/download?inline#page=39",
+        "page": 39,
+        "quote": "",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "consumables": {
+        "value": [
+          "Accu-Chek Performa test strips (store 2-30 °C, use by printed date, opened or unopened)",
+          "Accu-Chek Performa control solution (discard 3 months after opening)",
+          "lancets for lancing device",
+          "CR2032 3 V lithium coin cell"
+        ],
+        "source": "spec sheet",
+        "document": "roche-accu-chek-performa/accu-chek-performa-test-strip-insert-uk.txt",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-test-strip-insert-0/download?inline",
+        "page": null,
+        "quote": "Store the test strips at temperatures between 2 and 30 °C. Do not freeze the test strips. ... The test strips can be used until the printed use by date when they are stored and used correctly. This applies for test strips from a new, unopened test strip container and for test strips from a test strip container already opened by the user."
+      },
+      "manual_languages": {
+        "value": [
+          "English",
+          "French",
+          "Portuguese",
+          "Arabic"
+        ],
+        "source": "spec sheet",
+        "document": "roche-accu-chek-performa/accu-chek-performa-user-manual-uk.txt",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-blood-glucose-meter-user-manual/download?inline#page=1",
+        "page": 1,
+        "quote": "[cover] User’s Manual | Blood Glucose Meter | Manuel d’utilisation | Lecteur de glycémie | Manual de utilização | Aparelho de medição da glicemia (PDF title metadata: Manual Accu-Chek Performa (ar,en,fr,pt); 47 pages contain Arabic text)"
+      },
+      "operating_complexity": {
+        "value": "low",
+        "source": "spec sheet",
+        "document": "roche-accu-chek-performa/accu-chek-performa-test-strip-insert-uk.txt",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-test-strip-insert-0/download?inline",
+        "page": null,
+        "quote": "They are intended for self-testing by people with diabetes and for near-patient testing by healthcare professionals."
+      }
+    },
+    "documents": [
+      {
+        "file": "roche-accu-chek-performa/accu-chek-performa-user-manual-uk.txt",
+        "title": "Accu-Chek Performa user's manual (UK edition, EN/FR/PT/AR)",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-blood-glucose-meter-user-manual/download?inline",
+        "kind": "manual",
+        "languages": [
+          "English",
+          "French",
+          "Portuguese",
+          "Arabic"
+        ]
+      },
+      {
+        "file": "roche-accu-chek-performa/accu-chek-performa-test-strip-insert-uk.txt",
+        "title": "Accu-Chek Performa test strip package insert (2022-01)",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-test-strip-insert-0/download?inline",
+        "kind": "manual",
+        "languages": []
+      },
+      {
+        "file": "roche-accu-chek-performa/accu-chek-uk-performa-support-page.txt",
+        "title": "Accu-Chek UK support page, Performa",
+        "url": "https://www.accu-chek.co.uk/support/performa",
+        "kind": "product page",
+        "languages": [
+          "English"
+        ]
+      }
+    ],
+    "notes": "Library model string: Roche Diabetes Care, Accu-Chek Performa.\nYear introduced: 2007 (510(k) Number K070585 Device Name ACCU-CHEK PERFORMA SYSTEM ... Decision Date 05/25/2007).\nSupport status: discontinued (UK/IE): Roche says the meter is no longer available in the UK and Republic of Ireland; test strips remain available (fetched 2026-10-18) (The Accu-Chek Performa meter is no longer available in the United Kingdom and Republic of Ireland. But don't worry: the test strips continue to be to be available).\nHas battery: True (Power supply One 3-volt lithium battery (coin cell type CR2032)).\nvoltage_min_v: Coin-cell powered; no mains. frequencies_hz empty = none required.\nyear_introduced: US 510(k) K070585 decision 2007-05-25.\nsupport_status: Discontinued status is documented for UK/IE only; other markets unknown. Strips needed for every test: check local strip supply before accepting a donated meter.\nThe year introduced is the model's market date, not this unit's build year."
+  },
+  {
+    "slug": "devilbiss-pulmo-aide-5650d",
+    "manufacturer": "DeVilbiss Healthcare",
+    "model": "5650D",
+    "aliases": [
+      "Pulmo-Aide 5650D",
+      "Pulmo-Aide",
+      "DeVilbiss Pulmo-Aide",
+      "DeVilbiss 5650D"
+    ],
+    "device_type": "nebuliser",
+    "facts": {
+      "manufacturer": {
+        "value": "DeVilbiss Healthcare",
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=20",
+        "page": 20,
+        "quote": "DeVilbiss Healthcare LLC • 100 DeVilbiss Drive • Somerset, PA 15501 • USA ... © 2016 DeVilbiss Healthcare LLC. 05.16 ... A-5650 Rev. E"
+      },
+      "model": {
+        "value": "5650D",
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=1",
+        "page": 1,
+        "quote": "DeVilbiss® Pulmo-Aide® Compressor/Nebulizer Instruction Guide | 5650C, 5650D, 5650F, 5650I, 5650K & 5650P"
+      },
+      "voltage_min_v": {
+        "value": 115,
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=6",
+        "page": 6,
+        "quote": "[table cells] Electrical Requirements: | 650D & 5650C | 1.3 amps, 115VAC 60Hz | 5650I | 0.8 amps, 230VAC 50Hz | 5650K & 5650P | 0.8 amps, 230VAC 50/60Hz | 5650F | 0.8 amps, 230VAC 50Hz",
+        "note": "Document gives nominal 115 VAC with no tolerance; min=max=115 nominal."
+      },
+      "voltage_max_v": {
+        "value": 115,
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=6",
+        "page": 6,
+        "quote": "[table cells] Electrical Requirements: | 650D & 5650C | 1.3 amps, 115VAC 60Hz | 5650I | 0.8 amps, 230VAC 50Hz | 5650K & 5650P | 0.8 amps, 230VAC 50/60Hz | 5650F | 0.8 amps, 230VAC 50Hz"
+      },
+      "frequencies_hz": {
+        "value": [
+          60
+        ],
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=3",
+        "page": 3,
+        "quote": "Do not use this product with a DC to AC converter, or with any AC voltage and/or frequency other than specified.",
+        "note": "5650D is 115 VAC 60 Hz ONLY. A US-donated 5650D on a 230 V/50 Hz grid needs a step-down transformer AND will run off-frequency; the guide forbids other voltage/frequency. 230 V variants exist: 5650I/5650F 50 Hz, 5650K/5650P 50/60 Hz."
+      },
+      "power_watts": {
+        "value": 90,
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=6",
+        "page": 6,
+        "quote": "[table cells] Power Consumption: | 650D & 5650C | 90 watts maximum"
+      },
+      "temp_min_c": {
+        "value": 5,
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=6",
+        "page": 6,
+        "quote": "[table cells] Operating Temperature Range: | All Models except 5650C | +40° to +104°F (+5 to +40°C)"
+      },
+      "temp_max_c": {
+        "value": 40,
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=6",
+        "page": 6,
+        "quote": "[table cells] Operating Temperature Range: | All Models except 5650C | +40° to +104°F (+5 to +40°C)"
+      },
+      "humidity_max_pct": {
+        "value": 95,
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=6",
+        "page": 6,
+        "quote": "Operating Humidity ... up to 95% non-condensing"
+      },
+      "needs_oxygen": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=3",
+        "page": 3,
+        "quote": "Do not use in an oxygen enriched environment.",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "needs_distilled_water": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=3",
+        "page": 3,
+        "quote": "includes an AC powered air compressor that provides a source of compressed air",
+        "note": "Inferred false: spec table lists no water supply; cleaning uses hot water and vinegar."
+      },
+      "needs_compressed_air": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=3",
+        "page": 3,
+        "quote": "includes an AC powered air compressor that provides a source of compressed air",
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+      },
+      "consumables": {
+        "value": [
+          "air-inlet filter 5650D-602 (every 6 months)",
+          "disposable nebulizer kit 3655D-621 (lasts at least 15 days)",
+          "tubing / mouthpiece / mask"
+        ],
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=5",
+        "page": 5,
+        "quote": "Filter should be changed every 6 months or sooner if filter turns completely gray in color. ... Replace with a new DeVilbiss filter (part #5650D-602). ... The disposable nebulizer supplied with the unit will last at least 15 days and possibly longer"
+      },
+      "manual_languages": {
+        "value": [
+          "English",
+          "Spanish",
+          "French"
+        ],
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=1",
+        "page": 1,
+        "quote": "[cover] EN | ES | Compresor/Nebulizador Guía de | FR | ompresseur/Nébuliseur DeVilbiss® Pulmo-Aide® Guide"
+      },
+      "operating_complexity": {
+        "value": "low",
+        "source": "spec sheet",
+        "document": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=3",
+        "page": 3,
+        "quote": "provides a source of compressed air for home health care use",
+        "note": "Low: home-use patient device; switch on, attach nebulizer, filter change every 6 months."
+      }
+    },
+    "documents": [
+      {
+        "file": "devilbiss-pulmo-aide-5650d/drive-devilbiss-5650D-instruction-guide-3087-1.txt",
+        "title": "DeVilbiss Pulmo-Aide compressor/nebulizer instruction guide A-5650 Rev E (2016)",
+        "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw",
+        "kind": "manual",
+        "languages": [
+          "English",
+          "Spanish",
+          "French"
+        ]
+      },
+      {
+        "file": "devilbiss-pulmo-aide-5650d/devilbiss-pulmo-aide-5650-instructions-apria.txt",
+        "title": "DeVilbiss Pulmo-Aide instructions (Sunrise Medical, 2001)",
+        "url": "https://www.apria.com/hubfs/User%20Manual/DeVilbiss_Pulmo-Aide_Pulmo-Aide-LT_PulmoMate_Instructions_05-01.pdf",
+        "kind": "manual",
+        "languages": []
+      },
+      {
+        "file": "devilbiss-pulmo-aide-5650d/devilbiss-5650-service-manual.txt",
+        "title": "DeVilbiss 5650 service manual (1996)",
+        "url": "https://cdn.shopify.com/s/files/1/0615/2069/files/5650-service-manual.pdf",
+        "kind": "service manual",
+        "languages": []
+      },
+      {
+        "file": "devilbiss-pulmo-aide-5650d/drivemedical-5650D-page.txt",
+        "title": "Drive Medical US product page, 5650D",
+        "url": "https://shop.drivemedical.com/us/en/Products/Respiratory/c/p/5650D",
+        "kind": "product page",
+        "languages": [
+          "English"
+        ]
+      }
+    ],
+    "notes": "Library model string: DeVilbiss Healthcare (Drive DeVilbiss), Pulmo-Aide 5650D.\nYear introduced: 1996 (Service Manual Models 56500 & 5650C ... @1996 DHC, Inc. (OCR; '56500' = 5650D)).\nSupport status: listed: Drive Medical US shop lists item 5650D Pulmo-Aide, limited 5-year warranty, 'average product life of 10 years' (fetched 2026-10-18) (Item #: 5650D ... One of the longest lasting compressors on the market with an average product life of 10 years ... Warranty Limited 5 Year).\nHas battery: False (The DeVilbiss compressor/nebulizer includes an AC powered air compressor that provides a source of compressed air for home health care use.).\nhas_battery: AC-powered only; no battery described.\nyear_introduced: Proxy: 1996 is the earliest dated document (service manual) covering the 5650D; launch year not stated.\nThe year introduced is the model's market date, not this unit's build year."
+  },
+  {
+    "slug": "draeger-isolette-c2000",
+    "manufacturer": "Draeger Medical Systems",
+    "model": "Isolette C2000",
+    "aliases": [
+      "C2000",
+      "Isolette",
+      "Air-Shields Isolette C2000",
+      "Drager Isolette C2000"
+    ],
+    "device_type": "infant incubator",
+    "facts": {
+      "manufacturer": {
+        "value": "Draeger Medical Systems",
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf#page=3",
+        "page": 3,
+        "quote": "© 2006 by Draeger Medical Systems, Inc. ALL RIGHTS RESERVED. ... Air-Shields® is a registered trademark of Draeger Medical Systems"
+      },
+      "model": {
+        "value": "Isolette C2000",
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf#page=1",
+        "page": 1,
+        "quote": "Technical Service Manual Isolette® Infant Incubator C2000 Revision J"
+      },
+      "voltage_min_v": {
+        "value": 108,
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf#page=30",
+        "page": 30,
+        "quote": "[table cells] Power requirements of an incubator | with a fixed height pedestal stand | 100V/120V ± 10%, 50/60 Hz, | 630 W maximum",
+        "note": "108-132 V = 120 V model ±10%. 100 V model 90-110 V; 220/240 V models ±10%. Power 630 W is the fixed-height stand; VHA stand 1900 W; 220/240 V 2376 W."
+      },
+      "voltage_max_v": {
+        "value": 132,
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf#page=30",
+        "page": 30,
+        "quote": "[table cells] Power requirements of an incubator | with a fixed height pedestal stand | 100V/120V ± 10%, 50/60 Hz, | 630 W maximum"
+      },
+      "frequencies_hz": {
+        "value": [
+          50,
+          60
+        ],
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf#page=30",
+        "page": 30,
+        "quote": ""
+      },
+      "power_watts": {
+        "value": 630,
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf#page=30",
+        "page": 30,
+        "quote": "[table cells] Power requirements of an incubator with a fixed height pedestal stand | 630 W maximum | with a variable height adjustable (VHA) | 1900 W maximum | 220V or 240V ± 10% | 50/60 Hz, 2376 W maximum"
+      },
+      "temp_min_c": {
+        "value": 20,
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf#page=28",
+        "page": 28,
+        "quote": "[table cells] Environmental temperature operating | range | 68 °F (20 °C) to 86 °F | (30 °C)",
+        "note": "Narrow ambient window: 20-30 °C. A clinic room above 30 °C is outside spec."
+      },
+      "temp_max_c": {
+        "value": 30,
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf#page=28",
+        "page": 28,
+        "quote": "[table cells] Environmental temperature operating | range | 68 °F (20 °C) to 86 °F | (30 °C)"
+      },
+      "needs_oxygen": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf#page=27",
+        "page": 27,
+        "quote": "Oxygen Control System (Optional) The oxygen control system monitors and controls the oxygen concentration level within the incubator hood environment.",
+        "note": "False for basic operation: oxygen control is an option. Oxygen supply is only needed if the clinic wants O2 therapy in the hood."
+      },
+      "needs_distilled_water": {
+        "value": true,
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf#page=40",
+        "page": 40,
+        "quote": "To avoid equipment damage, use only distilled or sterile distilled water. Sterile water alone is not an acceptable substitute for distilled water.",
+        "note": "True only if the optional humidity system is fitted and used."
+      },
+      "needs_compressed_air": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf",
+        "page": null,
+        "quote": "",
+        "note": "Inferred false: electrical specs list only mains power; oxygen inlet is optional."
+      },
+      "consumables": {
+        "value": [
+          "distilled water for humidity reservoir (if humidity option fitted)",
+          "air intake microfilter (change at least every 3 months)",
+          "skin temperature probes, disposable (83 102 18 / 83 102 21)",
+          "probe covers (Critter Covers)",
+          "disposable access door / iris port cuffs",
+          "oxygen sensor cells (if oxygen option fitted; replace both together)"
+        ],
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf#page=35",
+        "page": 35,
+        "quote": "A dirty air intake microfilter may affect oxygen concentrations and/or cause carbon dioxide build-up. Check the filter routinely, and change it at least every 3 months or when it is visibly dirty."
+      },
+      "manual_languages": {
+        "value": [
+          "English"
+        ],
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf#page=1",
+        "page": 1,
+        "quote": "",
+        "note": "Only the English service manual was fetched; IFU languages unknown."
+      },
+      "operating_complexity": {
+        "value": "high",
+        "source": "spec sheet",
+        "document": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf#page=35",
+        "page": 35,
+        "quote": "Only facility-authorized personnel should troubleshoot the Model C2000 Isolette® Infant Incubator.",
+        "note": "High: servo air/skin modes, skin probes, optional O2 and humidity control, alarm handling, scale; neonatal-trained staff and a biomed tech needed."
+      }
+    },
+    "documents": [
+      {
+        "file": "draeger-isolette-c2000/drager-isolette-c2000-technical-service-manual-usme.txt",
+        "title": "Draeger Isolette C2000 Technical Service Manual, Revision J (2006)",
+        "url": "https://usme.com/wp-content/uploads/2022/09/Drager-C200-Infant-Incubator.pdf",
+        "kind": "service manual",
+        "languages": [
+          "English"
+        ]
+      }
+    ],
+    "notes": "Library model string: Draeger Medical Systems (formerly Hill-Rom Air-Shields), Isolette C2000 (100/120 V fixed-height pedestal).\nhumidity_max_pct left unknown: ambiguous: the 5-99 % RH range sits in the humidity-system table and may describe the hood, not the room.\nYear introduced: 1998 (Revisions ... Original Issue March, 1998).\nhas_battery: Unknown: the service manual mentions only an RTC battery and battery-backed memory; no mains-backup battery for heating is described (a UPS option is mentioned in IFU tables of contents seen in search results, not verified).\nyear_introduced: Proxy: service manual original issue March 1998.\nsupport_status: Unknown: Draeger pages return 403 to scripted fetch. A search snippet claimed the Draeger RU page marks the C2000 discontinued with Isolette 8000 plus as successor; not verified by a fetched document.\nThe year introduced is the model's market date, not this unit's build year."
+  }
+]
