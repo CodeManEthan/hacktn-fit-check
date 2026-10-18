@@ -8,9 +8,11 @@ from app.matching.distance import EARTH_RADIUS_KM, facility_point, haversine_km
 from app.matching.pipeline import (
     Candidate,
     IntelLookup,
+    Screening,
     empty_intel,
     propose_match,
     rank_candidates,
+    screen_offers,
 )
 from app.matching.verification import (
     LEGAL_TRANSITIONS,
@@ -41,6 +43,8 @@ __all__ = [
     "mark_shipped",
     "propose_match",
     "rank_candidates",
+    "Screening",
+    "screen_offers",
     "request_confirmation",
     "sweep_timeouts",
     "transition",

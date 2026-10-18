@@ -5,8 +5,14 @@ Keeps formatting decisions out of Jinja, where they are hard to test.
 
 from __future__ import annotations
 
+from dataclasses import dataclass, field
+from typing import TYPE_CHECKING
+
 from app.domain.device import DeviceFacts
 from app.domain.result import CheckStatus, Outcome
+
+if TYPE_CHECKING:  # pragma: no cover - the pipeline imports nothing from here
+    from app.matching.pipeline import Candidate
 
 TONE_BY_STATUS = {
     CheckStatus.PASS: "good",
@@ -73,6 +79,30 @@ def device_kind(device: DeviceFacts) -> str:
         start = line.lower().index(label.lower())
         line = (line[:start] + line[start + len(label):]).strip(" ,.-\u2013")
     return line[:90]
+
+
+@dataclass(frozen=True)
+class Advisory:
+    """What buying locally would cost instead, shown under a rejected offer.
+
+    It reads the verdict and never writes one. `rows` are the price rows, each
+    a dict with the figures and the source URL; `as_of` is the date the prices
+    were read; `sold_locally_text` is the sold-locally fact in words; and
+    `supply_url` is where the nonprofit records an answer.
+    """
+
+    rows: list[dict] = field(default_factory=list)
+    as_of: str = ""
+    sold_locally_text: str = ""
+    supply_url: str = ""
+
+
+def advisory_for(candidate: "Candidate") -> Advisory | None:
+    """The buy-locally advisory for one rejected candidate, or None.
+
+    None until the price table and its rule are wired in.
+    """
+    return None
 
 
 def rule_count() -> int:

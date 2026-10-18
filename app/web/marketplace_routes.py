@@ -244,7 +244,7 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
             LineCoverage(line=line, candidates=candidates, screened=len(offers))
         )
         for c in candidates:
-            bundles[c.offer.id] = build_bundle(c.verdict, repo.offers_for_support)
+            bundles[c.offer.id] = build_bundle(c.verdict, facility, repo.offers_for_support)
 
     return TEMPLATES.TemplateResponse(
         request=request, name="matches.html",

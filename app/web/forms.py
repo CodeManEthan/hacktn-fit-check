@@ -6,7 +6,11 @@ failure rather than a silent default.
 
 from __future__ import annotations
 
+from dataclasses import replace
 from datetime import date
+
+from app.domain.device import DeviceFacts
+from app.domain.provenance import UNKNOWN, Provenance, fact
 
 MAX_QUANTITY = 1000
 
@@ -74,3 +78,25 @@ def slugify(name: str) -> str:
     if not slug:
         raise FormError("That name cannot be turned into an address.")
     return slug[:60]
+
+
+def apply_dated_items(device: DeviceFacts, expiry_text: str) -> DeviceFacts:
+    """Write the donor's answer to "does anything here expire?" onto the device.
+
+    The offer form says "Blank if nothing dated", so a blank field is an
+    answer: nothing dated. A date means something is dated, and that date is
+    the expiry. A blank also clears any expiry an earlier step wrote, so the
+    two facts never disagree. Every route that builds an offer calls this last, so the
+    donor's answer is the last word on the date. A malformed date is a
+    FormError, never a silent blank.
+    """
+    expiry = iso_date(expiry_text, "Expiry date")
+    if expiry is None:
+        return replace(
+            device, dated_items=fact(False, Provenance.DONOR_STATED), expiry_date=UNKNOWN
+        )
+    return replace(
+        device,
+        dated_items=fact(True, Provenance.DONOR_STATED),
+        expiry_date=fact(expiry, Provenance.DONOR_STATED),
+    )
