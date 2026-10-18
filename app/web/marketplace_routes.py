@@ -671,3 +671,161 @@ def supply_save(
         return RedirectResponse(url=values["back"], status_code=303)
     query = urlencode({"device_type": answer.device_type, "model": answer.model, "saved": 1})
     return RedirectResponse(url=f"/supply/{quote(answer.country)}?{query}", status_code=303)
+
+# ---- handover packet (design §5.3; [B5]) -----------------------------------
+
+from app.ai.client import CLIENT as _PACKET_CHAT  # noqa: E402 - the [B5] block stands alone
+from app.ai.packet import Card, build_card, card_from_dict, gate, split_pages  # noqa: E402
+from app.ai.translate import ENGINE_CHAT, Target, pick_target, translate_card  # noqa: E402
+from app.checks import check_fit  # noqa: E402
+from app.domain.result import Verdict  # noqa: E402
+from app.matching.pipeline import empty_intel  # noqa: E402
+from app.reference.device_library import document_text  # noqa: E402
+from app.reference.import_rules import documents_required  # noqa: E402
+
+MANUAL_KIND = "manual"
+MANUAL_TITLE_WORDS = ("manual", "instruction", "guide", "ifu")
+
+
+def _packet_chat():
+    """The chat client the card is built with; tests replace it."""
+    return _PACKET_CHAT
+
+
+def _packet_language():
+    """The OCI Language client; None builds one from the settings. Tests replace it."""
+    return None
+
+
+def _packet_documents(device: DeviceFacts) -> list[dict]:
+    documents = device.documents
+    if not documents.known or not isinstance(documents.value, (list, tuple)):
+        return []
+    return [d for d in documents.value if isinstance(d, dict)]
+
+
+def _packet_manual(documents: list[dict]) -> dict | None:
+    """The first document of kind manual, else the first titled like one, else the first."""
+    if not documents:
+        return None
+    by_kind = next((d for d in documents if str(d.get("kind", "")).lower() == MANUAL_KIND), None)
+    by_title = next((d for d in documents
+                     if any(w in str(d.get("title", "")).lower() for w in MANUAL_TITLE_WORDS)),
+                    None)
+    return by_kind or by_title or documents[0]
+
+
+def _packet_verdict(offer: Offer, clinic: FacilityProfile) -> Verdict:
+    """The verdict stored on a match of this offer for this clinic, else a fresh one."""
+    for row in repo.list_open_requests():
+        if row.facility_slug != clinic.slug or row.id is None:
+            continue
+        stored = [m for m in repo.matches_for_request(row.id) if m.offer_id == offer.id]
+        if stored:
+            return stored[-1].verdict
+    return check_fit(offer.device, clinic, empty_intel(offer.device, offer.device_type,
+                                                       clinic.country))
+
+
+def _packet_translation(card: Card, target: Target) -> dict | None:
+    """The stored form of the translated card, or None when none was made."""
+    if not target.language or card.empty:
+        return None
+    translated, result = translate_card(card, target.language, _packet_language(),
+                                        chat=_packet_chat())
+    if translated is None:
+        return {"language": result.language, "engine": result.engine, "flag": result.flag}
+    return {
+        "language": result.language, "engine": result.engine, "flag": result.flag,
+        "provenance": result.provenance.value if result.provenance else "",
+        "card": translated.to_dict(),
+    }
+
+
+def _packet_header(target: Target, translated: dict | None) -> tuple[str, bool]:
+    """The header line per [F10], and whether it is a warning."""
+    if not target.language:
+        return target.note, target.note != "English, as requested"
+    if not translated or not translated.get("card"):
+        flag = (translated or {}).get("flag") or f"No {target.language} card; English supplied"
+        return flag, True
+    line = f"{target.language} beside English, {translated.get('flag')}"
+    if translated.get("engine") == ENGINE_CHAT:
+        line += " (translated by the chat model: model knowledge, not OCI Language)"
+    if target.note:
+        line = f"{target.note}. {line}"
+    return line, False
+
+
+@router.get("/packet/{offer_id}", response_class=HTMLResponse)
+def packet_page(
+    request: Request, offer_id: int, facility: str = "", rebuild: int = 0
+) -> HTMLResponse:
+    """The handover packet for one offer at one clinic (design §5.3)."""
+    offer = repo.load_offer(offer_id)
+    if offer is None:
+        return _error(request, f"No offer with id {offer_id}.")
+    clinic = repo.load_facility(facility) if facility else None
+    if clinic is None:
+        return _error(request, "Name the clinic: /packet/<offer id>?facility=<clinic slug>.")
+
+    staff = normalise_languages(clinic.staff_languages)
+    target = pick_target(staff)
+    documents = _packet_documents(offer.device)
+    manual = _packet_manual(documents)
+    problem = ""
+    card: Card | None = None
+    translated: dict | None = None
+
+    try:
+        if rebuild:
+            repo.clear_packet(offer_id, clinic.slug)
+        stored = repo.load_packet(offer_id, clinic.slug)
+        built = False
+        if stored is not None:
+            card, translated = card_from_dict(stored.card), stored.translated
+        elif manual is not None:
+            text = document_text(str(manual.get("slug", "")), str(manual.get("file", "")))
+            if not text:
+                problem = "The manual's text is not in the library, so no card could be built."
+            else:
+                pages = split_pages(text)
+                card = gate(build_card(text, pages, offer.device.label, _packet_chat()),
+                            text, pages)
+                built = True
+        stale = card is not None and target.language is not None and not (
+            translated and translated.get("card")
+            and translated.get("language") == target.language)
+        if stale:
+            translated = _packet_translation(card, target)
+        # A failed translation is shown but not cached, so the next visit retries it.
+        keep = translated if translated and translated.get("card") else None
+        if card is not None and (built or (stale and keep is not None)):
+            repo.save_packet(offer_id, clinic.slug, target.language or "English",
+                             card.to_dict(), keep)
+    except GenAiError as exc:
+        problem = f"The card could not be built: {exc}"
+    except RepositoryError as exc:
+        problem = str(exc)
+
+    header, header_warns = _packet_header(target, translated)
+    verdict = _packet_verdict(offer, clinic)
+    editions = [d for d in documents
+                if set(normalise_languages(d.get("languages") or ())) & set(staff)]
+    return TEMPLATES.TemplateResponse(
+        request=request, name="packet.html",
+        context={
+            "offer": offer, "facility": clinic, "staff": staff,
+            "header": header, "header_warns": header_warns,
+            "editions": editions, "documents": documents, "manual": manual,
+            "card": card, "problem": problem,
+            "translated": card_from_dict(translated["card"])
+            if translated and translated.get("card") else None,
+            "translation": translated or {},
+            "paperwork": documents_required(clinic.country),
+            # The conditional results, not verdict.needs: a stored verdict
+            # keeps each result's fix but not its structured requirement.
+            "send_with": [(r.label, r.fix or r.detail) for r in verdict.conditional],
+            "verdict": verdict,
+        },
+    )

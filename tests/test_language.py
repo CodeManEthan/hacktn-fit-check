@@ -128,5 +128,6 @@ def test_the_manual_check_names_languages_not_codes_when_none_is_shared():
 
     result = check_manual_language(coded, facility(staff_languages=("ne",)), intel())
 
-    assert result.status is CheckStatus.MITIGABLE
+    # No document on file, so the check asks for the manual; the names still read as names.
+    assert result.status is CheckStatus.NEEDS_INFO
     assert "English" in result.detail and "Nepali" in result.detail

@@ -1,0 +1,417 @@
+[
+  {
+    "model": "openai.gpt-oss-120b",
+    "test": "A_planted",
+    "run": 1,
+    "seconds": 18.4,
+    "raw": "{\n  \"constraints\": [\n    {\n      \"name\": \"power_frequency\",\n      \"status\": \"needs_addon\",\n      \"reason\": \"Device operates only at 60 Hz, but clinic power is 50 Hz; a frequency converter is required.\",\n      \"addon\": \"60 Hz frequency converter, 1 unit\",\n      \"question\": null\n    },\n    {\n      \"name\": \"voltage_and_plug\",\n      \"status\": \"needs_addon\",\n      \"reason\": \"Device requires 120 V with a US‑style plug, while clinic supply is 240 V Type G; a step‑down transformer and plug adapter are needed.\",\n      \"addon\": \"240 V→120 V step‑down transformer with Type G to US plug adapter, 1 set\",\n      \"question\": null\n    },\n    {\n      \"name\": \"climate\",\n      \"status\": \"unknown\",\n      \"reason\": \"Operating temperature range is 10–30 °C; clinic ambient can reach 35 °C with high humidity. Unclear if device can tolerate this.\",\n      \"addon\": null,\n      \"question\": \"Can the VX-200 operate safely at ambient temperatures up to 35 °C and high humidity?\"\n    },\n    {\n      \"name\": \"utilities\",\n      \"status\": \"needs_addon\",\n      \"reason\": \"Ventilator requires a 50 psi oxygen supply; clinic cylinders lack a regulator to provide this pressure.\",\n      \"addon\": \"Oxygen pressure regulator delivering 50 psi, 1 unit\",\n      \"question\": null\n    },\n    {\n      \"name\": \"consumables\",\n      \"status\": \"needs_addon\",\n      \"reason\": \"Device uses single‑use flow‑sensor cartridges that are only sold by the US distributor; no local supply.\",\n      \"addon\": \"Single‑use flow‑sensor cartridges, 10 units\",\n      \"question\": null\n    },\n    {\n      \"name\": \"spare_parts\",\n      \"status\": \"unknown\",\n      \"reason\": \"No in‑country distributor; it is unclear which spare parts or service kit are needed for field maintenance.\",\n      \"addon\": null,\n      \"question\": \"What spare parts or service kit is recommended for the VX-200 for field use in low‑resource settings?\"\n    },\n    {\n      \"name\": \"training_and_repair\",\n      \"status\": \"unknown\",\n      \"reason\": \"Only one biomedical technician serves the district and staff read English, but specific training materials or on‑site training availability is unknown.\",\n      \"addon\": null,\n      \"question\": \"Is training material (e.g., videos, manuals) or on‑site training available for the VX-200, and can it be provided in a format suitable for the clinic staff?\"\n    },\n    {\n      \"name\": \"grid_reliability\",\n      \"status\": \"needs_addon\",\n      \"reason\": \"Frequent power outages (1–4 h) with only a small generator and no UPS; a backup power solution is required.\",\n      \"addon\": \"UPS battery pack for 2 h runtime, 1 unit\",\n      \"question\": null\n    },\n    {\n      \"name\": \"manuals\",\n      \"status\": \"ok\",\n      \"reason\": \"Manual is in English and staff are able to read English.\",\n      \"addon\": null,\n      \"question\": null\n    }\n  ],\n  \"verdict\": \"works_if_you_send\",\n  \"send_list\": [\n    \"60 Hz frequency converter, 1 unit\",\n    \"240 V→120 V step‑down transformer with Type G to US plug adapter, 1 set\",\n    \"Oxygen pressure regulator delivering 50 psi, 1 unit\",\n    \"Single‑use flow‑sensor cartridges, 10 units\",\n    \"UPS battery pack for 2 h runtime, 1 unit\"\n  ],\n  \"questions_for_donor\": [\n    \"Can the VX-200 operate safely at ambient temperatures up to 35 °C and high humidity?\",\n    \"What spare parts or service kit is recommended for the VX-200 for field use in low‑resource settings?\",\n    \"Is training material (e.g., videos, manuals) or on‑site training available for the VX-200, and can it be provided in a format suitable for the clinic staff?\"\n  ]\n}",
+    "json_strict": true,
+    "json_ok": true,
+    "parsed": {
+      "constraints": [
+        {
+          "name": "power_frequency",
+          "status": "needs_addon",
+          "reason": "Device operates only at 60 Hz, but clinic power is 50 Hz; a frequency converter is required.",
+          "addon": "60 Hz frequency converter, 1 unit",
+          "question": null
+        },
+        {
+          "name": "voltage_and_plug",
+          "status": "needs_addon",
+          "reason": "Device requires 120 V with a US‑style plug, while clinic supply is 240 V Type G; a step‑down transformer and plug adapter are needed.",
+          "addon": "240 V→120 V step‑down transformer with Type G to US plug adapter, 1 set",
+          "question": null
+        },
+        {
+          "name": "climate",
+          "status": "unknown",
+          "reason": "Operating temperature range is 10–30 °C; clinic ambient can reach 35 °C with high humidity. Unclear if device can tolerate this.",
+          "addon": null,
+          "question": "Can the VX-200 operate safely at ambient temperatures up to 35 °C and high humidity?"
+        },
+        {
+          "name": "utilities",
+          "status": "needs_addon",
+          "reason": "Ventilator requires a 50 psi oxygen supply; clinic cylinders lack a regulator to provide this pressure.",
+          "addon": "Oxygen pressure regulator delivering 50 psi, 1 unit",
+          "question": null
+        },
+        {
+          "name": "consumables",
+          "status": "needs_addon",
+          "reason": "Device uses single‑use flow‑sensor cartridges that are only sold by the US distributor; no local supply.",
+          "addon": "Single‑use flow‑sensor cartridges, 10 units",
+          "question": null
+        },
+        {
+          "name": "spare_parts",
+          "status": "unknown",
+          "reason": "No in‑country distributor; it is unclear which spare parts or service kit are needed for field maintenance.",
+          "addon": null,
+          "question": "What spare parts or service kit is recommended for the VX-200 for field use in low‑resource settings?"
+        },
+        {
+          "name": "training_and_repair",
+          "status": "unknown",
+          "reason": "Only one biomedical technician serves the district and staff read English, but specific training materials or on‑site training availability is unknown.",
+          "addon": null,
+          "question": "Is training material (e.g., videos, manuals) or on‑site training available for the VX-200, and can it be provided in a format suitable for the clinic staff?"
+        },
+        {
+          "name": "grid_reliability",
+          "status": "needs_addon",
+          "reason": "Frequent power outages (1–4 h) with only a small generator and no UPS; a backup power solution is required.",
+          "addon": "UPS battery pack for 2 h runtime, 1 unit",
+          "question": null
+        },
+        {
+          "name": "manuals",
+          "status": "ok",
+          "reason": "Manual is in English and staff are able to read English.",
+          "addon": null,
+          "question": null
+        }
+      ],
+      "verdict": "works_if_you_send",
+      "send_list": [
+        "60 Hz frequency converter, 1 unit",
+        "240 V→120 V step‑down transformer with Type G to US plug adapter, 1 set",
+        "Oxygen pressure regulator delivering 50 psi, 1 unit",
+        "Single‑use flow‑sensor cartridges, 10 units",
+        "UPS battery pack for 2 h runtime, 1 unit"
+      ],
+      "questions_for_donor": [
+        "Can the VX-200 operate safely at ambient temperatures up to 35 °C and high humidity?",
+        "What spare parts or service kit is recommended for the VX-200 for field use in low‑resource settings?",
+        "Is training material (e.g., videos, manuals) or on‑site training available for the VX-200, and can it be provided in a format suitable for the clinic staff?"
+      ]
+    },
+    "score": {
+      "all_9": true,
+      "verdict": "works_if_you_send",
+      "freq_trap": true,
+      "verdict_ok": false,
+      "voltage": "needs_addon"
+    }
+  },
+  {
+    "model": "openai.gpt-oss-120b",
+    "test": "C_vague",
+    "run": 1,
+    "seconds": 14.7,
+    "raw": "{\n  \"constraints\": [\n    {\n      \"name\": \"power_frequency\",\n      \"status\": \"unknown\",\n      \"reason\": \"Frequency rating of the ultrasound machine is not provided.\",\n      \"addon\": null,\n      \"question\": \"What is the rated operating frequency (Hz) of the ultrasound machine?\"\n    },\n    {\n      \"name\": \"voltage_and_plug\",\n      \"status\": \"unknown\",\n      \"reason\": \"Voltage rating and plug type are not specified.\",\n      \"addon\": null,\n      \"question\": \"What is the input voltage range and plug type of the ultrasound machine?\"\n    },\n    {\n      \"name\": \"climate\",\n      \"status\": \"unknown\",\n      \"reason\": \"Operating temperature and humidity limits are not known.\",\n      \"addon\": null,\n      \"question\": \"What are the approved operating temperature and humidity ranges for the ultrasound machine?\"\n    },\n    {\n      \"name\": \"utilities\",\n      \"status\": \"unknown\",\n      \"reason\": \"It is unclear whether the device requires any special utilities (e.g., distilled water, specific gas).\",\n      \"addon\": null,\n      \"question\": \"Does the ultrasound machine require any special utilities such as distilled water, specific gases, or other supplies?\"\n    },\n    {\n      \"name\": \"consumables\",\n      \"status\": \"unknown\",\n      \"reason\": \"Required consumables (e.g., coupling gel, probe covers) are not listed.\",\n      \"addon\": null,\n      \"question\": \"What consumables (e.g., coupling gel, probe covers) are needed for routine operation of the ultrasound machine?\"\n    },\n    {\n      \"name\": \"spare_parts\",\n      \"status\": \"unknown\",\n      \"reason\": \"Availability of spare parts for the specific model is not known.\",\n      \"addon\": null,\n      \"question\": \"Are spare parts (e.g., probes, cables, power cords) for this ultrasound model available locally or can they be supplied by the donor?\"\n    },\n    {\n      \"name\": \"training_and_repair\",\n      \"status\": \"unknown\",\n      \"reason\": \"Training requirements and local repair capability for this model are not specified.\",\n      \"addon\": null,\n      \"question\": \"Is on‑site training or a service contract needed for staff to operate and maintain this ultrasound machine?\"\n    },\n    {\n      \"name\": \"grid_reliability\",\n      \"status\": \"unknown\",\n      \"reason\": \"Power consumption of the device is unknown, making it impossible to size a UPS or generator backup.\",\n      \"addon\": null,\n      \"question\": \"What is the power consumption (W or VA) of the ultrasound machine?\"\n    },\n    {\n      \"name\": \"manuals\",\n      \"status\": \"unknown\",\n      \"reason\": \"It is not clear whether user and service manuals in English are available.\",\n      \"addon\": null,\n      \"question\": \"Are English language user and service manuals available for this ultrasound model?\"\n    }\n  ],\n  \"verdict\": \"works\",\n  \"send_list\": [],\n  \"questions_for_donor\": [\n    \"What is the rated operating frequency (Hz) of the ultrasound machine?\",\n    \"What is the input voltage range and plug type of the ultrasound machine?\",\n    \"What are the approved operating temperature and humidity ranges for the ultrasound machine?\",\n    \"Does the ultrasound machine require any special utilities such as distilled water, specific gases, or other supplies?\",\n    \"What consumables (e.g., coupling gel, probe covers) are needed for routine operation of the ultrasound machine?\",\n    \"Are spare parts (e.g., probes, cables, power cords) for this ultrasound model available locally or can they be supplied by the donor?\",\n    \"Is on‑site training or a service contract needed for staff to operate and maintain this ultrasound machine?\",\n    \"What is the power consumption (W or VA) of the ultrasound machine?\",\n    \"Are English language user and service manuals available for this ultrasound model?\"\n  ]\n}",
+    "json_strict": true,
+    "json_ok": true,
+    "parsed": {
+      "constraints": [
+        {
+          "name": "power_frequency",
+          "status": "unknown",
+          "reason": "Frequency rating of the ultrasound machine is not provided.",
+          "addon": null,
+          "question": "What is the rated operating frequency (Hz) of the ultrasound machine?"
+        },
+        {
+          "name": "voltage_and_plug",
+          "status": "unknown",
+          "reason": "Voltage rating and plug type are not specified.",
+          "addon": null,
+          "question": "What is the input voltage range and plug type of the ultrasound machine?"
+        },
+        {
+          "name": "climate",
+          "status": "unknown",
+          "reason": "Operating temperature and humidity limits are not known.",
+          "addon": null,
+          "question": "What are the approved operating temperature and humidity ranges for the ultrasound machine?"
+        },
+        {
+          "name": "utilities",
+          "status": "unknown",
+          "reason": "It is unclear whether the device requires any special utilities (e.g., distilled water, specific gas).",
+          "addon": null,
+          "question": "Does the ultrasound machine require any special utilities such as distilled water, specific gases, or other supplies?"
+        },
+        {
+          "name": "consumables",
+          "status": "unknown",
+          "reason": "Required consumables (e.g., coupling gel, probe covers) are not listed.",
+          "addon": null,
+          "question": "What consumables (e.g., coupling gel, probe covers) are needed for routine operation of the ultrasound machine?"
+        },
+        {
+          "name": "spare_parts",
+          "status": "unknown",
+          "reason": "Availability of spare parts for the specific model is not known.",
+          "addon": null,
+          "question": "Are spare parts (e.g., probes, cables, power cords) for this ultrasound model available locally or can they be supplied by the donor?"
+        },
+        {
+          "name": "training_and_repair",
+          "status": "unknown",
+          "reason": "Training requirements and local repair capability for this model are not specified.",
+          "addon": null,
+          "question": "Is on‑site training or a service contract needed for staff to operate and maintain this ultrasound machine?"
+        },
+        {
+          "name": "grid_reliability",
+          "status": "unknown",
+          "reason": "Power consumption of the device is unknown, making it impossible to size a UPS or generator backup.",
+          "addon": null,
+          "question": "What is the power consumption (W or VA) of the ultrasound machine?"
+        },
+        {
+          "name": "manuals",
+          "status": "unknown",
+          "reason": "It is not clear whether user and service manuals in English are available.",
+          "addon": null,
+          "question": "Are English language user and service manuals available for this ultrasound model?"
+        }
+      ],
+      "verdict": "works",
+      "send_list": [],
+      "questions_for_donor": [
+        "What is the rated operating frequency (Hz) of the ultrasound machine?",
+        "What is the input voltage range and plug type of the ultrasound machine?",
+        "What are the approved operating temperature and humidity ranges for the ultrasound machine?",
+        "Does the ultrasound machine require any special utilities such as distilled water, specific gases, or other supplies?",
+        "What consumables (e.g., coupling gel, probe covers) are needed for routine operation of the ultrasound machine?",
+        "Are spare parts (e.g., probes, cables, power cords) for this ultrasound model available locally or can they be supplied by the donor?",
+        "Is on‑site training or a service contract needed for staff to operate and maintain this ultrasound machine?",
+        "What is the power consumption (W or VA) of the ultrasound machine?",
+        "Are English language user and service manuals available for this ultrasound model?"
+      ]
+    },
+    "score": {
+      "all_9": true,
+      "verdict": "works",
+      "unknowns": 9,
+      "asked": false
+    }
+  },
+  {
+    "model": "cohere.command-a-reasoning",
+    "test": "A_planted",
+    "run": 1,
+    "error": "404 404: Entity with key cohere.command-a-reasoning not found",
+    "seconds": 0.2
+  },
+  {
+    "model": "cohere.command-a-reasoning",
+    "test": "C_vague",
+    "run": 1,
+    "error": "404 404: Entity with key cohere.command-a-reasoning not found",
+    "seconds": 0.1
+  },
+  {
+    "model": "cohere.command-a-03-2025",
+    "test": "A_planted",
+    "run": 1,
+    "seconds": 28.2,
+    "raw": "```json\n{\n  \"constraints\": [\n    {\n      \"name\": \"power_frequency\",\n      \"status\": \"fail\",\n      \"reason\": \"Device requires 60 Hz, clinic provides 50 Hz. A transformer cannot fix frequency mismatch.\",\n      \"addon\": null,\n      \"question\": null\n    },\n    {\n      \"name\": \"voltage_and_plug\",\n      \"status\": \"needs_addon\",\n      \"reason\": \"Device requires 120 V, clinic provides 240 V. Needs a step-down transformer.\",\n      \"addon\": \"step-down transformer (240 V to 120 V)\",\n      \"question\": null\n    },\n    {\n      \"name\": \"climate\",\n      \"status\": \"fail\",\n      \"reason\": \"Device operates at 10–30°C, clinic temperatures range 28–35°C.\",\n      \"addon\": null,\n      \"question\": null\n    },\n    {\n      \"name\": \"utilities\",\n      \"status\": \"needs_addon\",\n      \"reason\": \"Device needs 50 psi oxygen supply, clinic uses cylinders. Needs a regulator.\",\n      \"addon\": \"oxygen pressure regulator (50 psi)\",\n      \"question\": null\n    },\n    {\n      \"name\": \"consumables\",\n      \"status\": \"needs_addon\",\n      \"reason\": \"Device uses single-use flow-sensor cartridges only sold in the US. Needs a 2-year supply.\",\n      \"addon\": \"2 years of flow-sensor cartridges, ~730 units (assuming daily use)\",\n      \"question\": null\n    },\n    {\n      \"name\": \"spare_parts\",\n      \"status\": \"unknown\",\n      \"reason\": \"No information on required spare parts.\",\n      \"addon\": null,\n      \"question\": \"What spare parts are essential for the VX-200 ventilator?\"\n    },\n    {\n      \"name\": \"training_and_repair\",\n      \"status\": \"unknown\",\n      \"reason\": \"No information on training needs or repair complexity.\",\n      \"addon\": null,\n      \"question\": \"Does the VX-200 require specialized training or tools for repair?\"\n    },\n    {\n      \"name\": \"grid_reliability\",\n      \"status\": \"fail\",\n      \"reason\": \"Device cannot handle daily 1–4 hour outages without a UPS, which the clinic lacks.\",\n      \"addon\": null,\n      \"question\": null\n    },\n    {\n      \"name\": \"manuals\",\n      \"status\": \"ok\",\n      \"reason\": \"Manual is in English, which staff can read.\",\n      \"addon\": null,\n      \"question\": null\n    }\n  ],\n  \"verdict\": \"wont_work\",\n  \"send_list\": [],\n  \"questions_for_donor\": [\n    \"What spare parts are essential for the VX-200 ventilator?\",\n    \"Does the VX-200 require specialized training or tools for repair?\"\n  ]\n}\n```",
+    "json_strict": false,
+    "json_ok": true,
+    "parsed": {
+      "constraints": [
+        {
+          "name": "power_frequency",
+          "status": "fail",
+          "reason": "Device requires 60 Hz, clinic provides 50 Hz. A transformer cannot fix frequency mismatch.",
+          "addon": null,
+          "question": null
+        },
+        {
+          "name": "voltage_and_plug",
+          "status": "needs_addon",
+          "reason": "Device requires 120 V, clinic provides 240 V. Needs a step-down transformer.",
+          "addon": "step-down transformer (240 V to 120 V)",
+          "question": null
+        },
+        {
+          "name": "climate",
+          "status": "fail",
+          "reason": "Device operates at 10–30°C, clinic temperatures range 28–35°C.",
+          "addon": null,
+          "question": null
+        },
+        {
+          "name": "utilities",
+          "status": "needs_addon",
+          "reason": "Device needs 50 psi oxygen supply, clinic uses cylinders. Needs a regulator.",
+          "addon": "oxygen pressure regulator (50 psi)",
+          "question": null
+        },
+        {
+          "name": "consumables",
+          "status": "needs_addon",
+          "reason": "Device uses single-use flow-sensor cartridges only sold in the US. Needs a 2-year supply.",
+          "addon": "2 years of flow-sensor cartridges, ~730 units (assuming daily use)",
+          "question": null
+        },
+        {
+          "name": "spare_parts",
+          "status": "unknown",
+          "reason": "No information on required spare parts.",
+          "addon": null,
+          "question": "What spare parts are essential for the VX-200 ventilator?"
+        },
+        {
+          "name": "training_and_repair",
+          "status": "unknown",
+          "reason": "No information on training needs or repair complexity.",
+          "addon": null,
+          "question": "Does the VX-200 require specialized training or tools for repair?"
+        },
+        {
+          "name": "grid_reliability",
+          "status": "fail",
+          "reason": "Device cannot handle daily 1–4 hour outages without a UPS, which the clinic lacks.",
+          "addon": null,
+          "question": null
+        },
+        {
+          "name": "manuals",
+          "status": "ok",
+          "reason": "Manual is in English, which staff can read.",
+          "addon": null,
+          "question": null
+        }
+      ],
+      "verdict": "wont_work",
+      "send_list": [],
+      "questions_for_donor": [
+        "What spare parts are essential for the VX-200 ventilator?",
+        "Does the VX-200 require specialized training or tools for repair?"
+      ]
+    },
+    "score": {
+      "all_9": true,
+      "verdict": "wont_work",
+      "freq_trap": true,
+      "verdict_ok": true,
+      "voltage": "needs_addon"
+    }
+  },
+  {
+    "model": "cohere.command-a-03-2025",
+    "test": "C_vague",
+    "run": 1,
+    "seconds": 28.6,
+    "raw": "```json\n{\n  \"constraints\": [\n    {\n      \"name\": \"power_frequency\",\n      \"status\": \"unknown\",\n      \"reason\": \"Device's power frequency compatibility is not specified.\",\n      \"addon\": null,\n      \"question\": \"Does the ultrasound machine operate at 50 Hz?\"\n    },\n    {\n      \"name\": \"voltage_and_plug\",\n      \"status\": \"ok\",\n      \"reason\": \"Clinic's mains voltage (240 V) and plug type (Type G) match typical standards for such devices.\",\n      \"addon\": null,\n      \"question\": null\n    },\n    {\n      \"name\": \"climate\",\n      \"status\": \"unknown\",\n      \"reason\": \"Operating temperature range of the device is not specified.\",\n      \"addon\": null,\n      \"question\": \"What is the operating temperature range of the ultrasound machine?\"\n    },\n    {\n      \"name\": \"utilities\",\n      \"status\": \"needs_addon\",\n      \"reason\": \"Frequent power outages and no UPS could damage the device.\",\n      \"addon\": \"Uninterruptible Power Supply (UPS) suitable for the device's power requirements.\",\n      \"question\": null\n    },\n    {\n      \"name\": \"consumables\",\n      \"status\": \"unknown\",\n      \"reason\": \"Consumables required for the device are not specified.\",\n      \"addon\": null,\n      \"question\": \"What consumables does the ultrasound machine require?\"\n    },\n    {\n      \"name\": \"spare_parts\",\n      \"status\": \"needs_addon\",\n      \"reason\": \"No in-country distributor and limited access to a biomedical technician.\",\n      \"addon\": \"Common spare parts kit for the specific model of the ultrasound machine.\",\n      \"question\": null\n    },\n    {\n      \"name\": \"training_and_repair\",\n      \"status\": \"needs_addon\",\n      \"reason\": \"Limited access to a biomedical technician and no in-country distributor.\",\n      \"addon\": \"Training materials and repair guides specific to the device model.\",\n      \"question\": null\n    },\n    {\n      \"name\": \"grid_reliability\",\n      \"status\": \"needs_addon\",\n      \"reason\": \"Frequent power outages.\",\n      \"addon\": \"Uninterruptible Power Supply (UPS) suitable for the device's power requirements.\",\n      \"question\": null\n    },\n    {\n      \"name\": \"manuals\",\n      \"status\": \"ok\",\n      \"reason\": \"Staff read English, and manuals are typically in English for such devices.\",\n      \"addon\": null,\n      \"question\": null\n    }\n  ],\n  \"verdict\": \"works_if_you_send\",\n  \"send_list\": [\n    \"Uninterruptible Power Supply (UPS) suitable for the device's power requirements.\",\n    \"Common spare parts kit for the specific model of the ultrasound machine.\",\n    \"Training materials and repair guides specific to the device model.\"\n  ],\n  \"questions_for_donor\": [\n    \"Does the ultrasound machine operate at 50 Hz?\",\n    \"What is the operating temperature range of the ultrasound machine?\",\n    \"What consumables does the ultrasound machine require?\"\n  ]\n}\n```",
+    "json_strict": false,
+    "json_ok": true,
+    "parsed": {
+      "constraints": [
+        {
+          "name": "power_frequency",
+          "status": "unknown",
+          "reason": "Device's power frequency compatibility is not specified.",
+          "addon": null,
+          "question": "Does the ultrasound machine operate at 50 Hz?"
+        },
+        {
+          "name": "voltage_and_plug",
+          "status": "ok",
+          "reason": "Clinic's mains voltage (240 V) and plug type (Type G) match typical standards for such devices.",
+          "addon": null,
+          "question": null
+        },
+        {
+          "name": "climate",
+          "status": "unknown",
+          "reason": "Operating temperature range of the device is not specified.",
+          "addon": null,
+          "question": "What is the operating temperature range of the ultrasound machine?"
+        },
+        {
+          "name": "utilities",
+          "status": "needs_addon",
+          "reason": "Frequent power outages and no UPS could damage the device.",
+          "addon": "Uninterruptible Power Supply (UPS) suitable for the device's power requirements.",
+          "question": null
+        },
+        {
+          "name": "consumables",
+          "status": "unknown",
+          "reason": "Consumables required for the device are not specified.",
+          "addon": null,
+          "question": "What consumables does the ultrasound machine require?"
+        },
+        {
+          "name": "spare_parts",
+          "status": "needs_addon",
+          "reason": "No in-country distributor and limited access to a biomedical technician.",
+          "addon": "Common spare parts kit for the specific model of the ultrasound machine.",
+          "question": null
+        },
+        {
+          "name": "training_and_repair",
+          "status": "needs_addon",
+          "reason": "Limited access to a biomedical technician and no in-country distributor.",
+          "addon": "Training materials and repair guides specific to the device model.",
+          "question": null
+        },
+        {
+          "name": "grid_reliability",
+          "status": "needs_addon",
+          "reason": "Frequent power outages.",
+          "addon": "Uninterruptible Power Supply (UPS) suitable for the device's power requirements.",
+          "question": null
+        },
+        {
+          "name": "manuals",
+          "status": "ok",
+          "reason": "Staff read English, and manuals are typically in English for such devices.",
+          "addon": null,
+          "question": null
+        }
+      ],
+      "verdict": "works_if_you_send",
+      "send_list": [
+        "Uninterruptible Power Supply (UPS) suitable for the device's power requirements.",
+        "Common spare parts kit for the specific model of the ultrasound machine.",
+        "Training materials and repair guides specific to the device model."
+      ],
+      "questions_for_donor": [
+        "Does the ultrasound machine operate at 50 Hz?",
+        "What is the operating temperature range of the ultrasound machine?",
+        "What consumables does the ultrasound machine require?"
+      ]
+    },
+    "score": {
+      "all_9": true,
+      "verdict": "works_if_you_send",
+      "unknowns": 3,
+      "asked": false
+    }
+  },
+  {
+    "model": "meta.llama-3.3-70b-instruct",
+    "test": "A_planted",
+    "run": 1,
+    "error": "400 400: Invalid 'maxTokens': Value is greater than maximum: 4096",
+    "seconds": 0.1
+  },
+  {
+    "model": "meta.llama-3.3-70b-instruct",
+    "test": "C_vague",
+    "run": 1,
+    "error": "400 400: Invalid 'maxTokens': Value is greater than maximum: 4096",
+    "seconds": 0.0
+  },
+  {
+    "model": "meta.llama-4-maverick-17b-128e-instruct-fp8",
+    "test": "A_planted",
+    "run": 1,
+    "error": "400 400: Invalid 'maxTokens': Value is greater than maximum: 4096",
+    "seconds": 0.0
+  },
+  {
+    "model": "meta.llama-4-maverick-17b-128e-instruct-fp8",
+    "test": "C_vague",
+    "run": 1,
+    "error": "400 400: Invalid 'maxTokens': Value is greater than maximum: 4096",
+    "seconds": 0.0
+  }
+]

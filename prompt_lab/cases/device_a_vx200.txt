@@ -1,0 +1,4 @@
+Portable ventilator, model "VX-200", manufactured 2011. Power: 120 V, 60 Hz only.
+Operating range 10–30°C. Uses single-use flow-sensor cartridges, sold only by the US distributor.
+Needs a 50 psi oxygen supply. Manual in English only.
+The manufacturer declared the VX-200 end-of-life in 2019 and no longer services it or updates its software.
