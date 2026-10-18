@@ -23,6 +23,7 @@ fetch pass their own `fetch`.
 from __future__ import annotations
 
 import json
+from datetime import datetime, timedelta
 import logging
 import os
 import re
@@ -121,6 +122,13 @@ def _http_get(url: str, params: dict[str, Any], timeout: float) -> tuple[int, An
     return response.status_code, response.json()
 
 
+#: A failed lookup (timeout, connection error, 5xx, bad JSON) is remembered for
+#: this long so a cold matches page does not wait on the FDA for every offer on
+#: every load. It is short: a transient failure tonight should not hide a record
+#: for a week.
+FAILED_CACHE_MINUTES = 10
+
+
 def live_enabled() -> bool:
     """GUDID_LOOKUP=off turns the live call off; under pytest it is off unless =on."""
     setting = os.getenv("GUDID_LOOKUP", "").strip().lower()
@@ -130,6 +138,7 @@ def live_enabled() -> bool:
 
 
 def _cached(model: str) -> Any | None:
+    """The cached GUDID payload, or FAILED_MARKER for a recent failure, or None."""
     try:
         stored = repo.cached_registry_lookup(model, CACHE_DAYS)
     except repo.RepositoryError as exc:
@@ -137,10 +146,18 @@ def _cached(model: str) -> Any | None:
         return None
     if stored is None:
         return None
+    if stored.status == FAILED:
+        fetched = stored.fetched_at or datetime.now()
+        if datetime.now() - fetched <= timedelta(minutes=FAILED_CACHE_MINUTES):
+            return FAILED_MARKER
+        return None
     try:
         return json.loads(stored.raw_json or "{}")
     except ValueError:
         return None
+
+
+FAILED_MARKER = object()
 
 
 def _store(model: str, result: RegistryResult) -> None:
@@ -164,6 +181,8 @@ def lookup_support(
         return RegistryResult(status=NO_MODEL)
 
     payload = _cached(model)
+    if payload is FAILED_MARKER:
+        return RegistryResult(status=FAILED)
     if payload is not None:
         return read_payload(manufacturer, model, payload)
 
@@ -179,14 +198,18 @@ def lookup_support(
         code, payload = fetch(API_URL, params, timeout)
     except (httpx.HTTPError, ValueError, OSError) as exc:
         LOG.warning("GUDID lookup for %r failed: %s", model, exc)
-        return RegistryResult(status=FAILED)
+        failed = RegistryResult(status=FAILED)
+        _store(model, failed)
+        return failed
 
     if code == 404:
         # openFDA answers "No matches found!" with a 404; that is an answer.
         payload = {"results": []}
     elif code != 200 or not isinstance(payload, dict):
         LOG.warning("GUDID lookup for %r answered HTTP %s", model, code)
-        return RegistryResult(status=FAILED)
+        failed = RegistryResult(status=FAILED)
+        _store(model, failed)
+        return failed
 
     result = read_payload(manufacturer, model, payload)
     _store(model, result)

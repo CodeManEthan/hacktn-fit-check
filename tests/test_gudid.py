@@ -138,21 +138,40 @@ def test_a_cache_older_than_a_week_is_fetched_again(store):
     httpx.ConnectError("no route"),
     ValueError("not JSON"),
 ])
-def test_a_failed_call_is_unknown_and_not_cached(store, failure):
+def test_a_failed_call_is_unknown_and_remembered_briefly(store, failure):
+    calls = []
+
     def fetch(url, params, timeout):
+        calls.append(1)
         raise failure
+
+    first = gudid.lookup_support("DeVilbiss", "525DS", fetch=fetch)
+    second = gudid.lookup_support("DeVilbiss", "525DS", fetch=fetch)
+
+    assert first.supported is None and first.status == gudid.FAILED
+    assert second.status == gudid.FAILED
+    # The failure is cached, so the second call does not wait on the FDA again.
+    assert len(calls) == 1
+    assert repo.cached_registry_lookup("525DS").status == gudid.FAILED
+
+
+def test_a_server_error_is_unknown_and_remembered_briefly(store):
+    fetch = answering({"x": 1}, code=500)
+    gudid.lookup_support("DeVilbiss", "525DS", fetch=fetch)
+    gudid.lookup_support("DeVilbiss", "525DS", fetch=fetch)
+
+    assert len(fetch.calls) == 1
+    assert repo.cached_registry_lookup("525DS").status == gudid.FAILED
+
+
+def test_a_remembered_failure_expires_after_ten_minutes(store):
+    stale = datetime.now() - timedelta(minutes=gudid.FAILED_CACHE_MINUTES + 1)
+    repo.store_registry_lookup("525DS", gudid.FAILED, "", "{}", now=stale)
+    fetch = answering(json.loads((FIXTURES / "openfda_udi_525DS.json").read_text()))
 
     result = gudid.lookup_support("DeVilbiss", "525DS", fetch=fetch)
 
-    assert result.supported is None and result.status == gudid.FAILED
-    assert repo.cached_registry_lookup("525DS") is None
-
-
-def test_a_server_error_is_unknown_and_not_cached(store):
-    result = gudid.lookup_support("DeVilbiss", "525DS", fetch=answering({"x": 1}, code=500))
-
-    assert result.status == gudid.FAILED and result.supported is None
-    assert repo.cached_registry_lookup("525DS") is None
+    assert len(fetch.calls) == 1 and result.supported is True
 
 
 def test_no_model_means_no_call(store):
