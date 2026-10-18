@@ -17,11 +17,20 @@ these:
 | Compute instance `fitcheckfitcheck-web`, Oracle Linux, python3.12 | 147.224.201.81 public |
 | MySQL HeatWave, schema `fitcheck`, user `admin` | 10.0.1.229:3306, private subnet |
 | VCN, public and private subnets | ingress 22, 80 and 443 only |
+| Caddy 2.11.7 on the instance, unit `caddy`, user `caddy` | ports 80 and 443; `https://fitcheck.care`, and plain HTTP on 147.224.201.81 |
+| The app on the instance, unit `fitcheck`, user `opc` | 127.0.0.1:8000 |
 
-The app listens on port 80 as user `opc` (the unit carries
-`AmbientCapabilities=CAP_NET_BIND_SERVICE`). Port 8001, where a new head is
-staged, is bound to 127.0.0.1 and checked over ssh; the VCN does not open it.
-On the VM:
+The app listens on 127.0.0.1:8000 as user `opc`, behind Caddy. It binds no
+public port, so the unit carries no capability line, and it runs with
+`--proxy-headers --forwarded-allow-ips 127.0.0.1` (insurance: the app builds no
+absolute URL). Caddy owns ports 80 and 443: it serves https://fitcheck.care with
+a Let's Encrypt certificate it fetches and renews itself, redirects plain HTTP
+for that name with a 308, and proxies to 127.0.0.1:8000. Its config is
+`deploy/Caddyfile`, the one file that names the public host. The bare IP still
+answers on plain HTTP, with no redirect, as the compatibility door for old links
+and for the deploy checks; no doc or slide gives it out. Port 8001, where a new
+head is staged, is bound to 127.0.0.1 and checked over ssh; the VCN does not
+open it. On the VM:
 
 | Path | What |
 |---|---|
@@ -29,6 +38,8 @@ On the VM:
 | `/opt/fitcheck/.env` | the environment, mode 600, written by hand |
 | `/opt/fitcheck-next` | a staged head (only while one is staged) |
 | `/opt/fitcheck-prev` | the checkout the last cutover replaced, for rollback |
+| `/etc/caddy/Caddyfile` | Caddy's config, from `deploy/Caddyfile` |
+| `/etc/caddy/Caddyfile.prev` | the file the last cutover replaced, only if it changed it |
 
 ## The environment file
 
@@ -80,8 +91,12 @@ reuses them, and prints names only. A new policy can take a minute to apply.
 2. Create the schema once from the instance:
    `mysql -h 10.0.1.229 -u admin -p -e "CREATE DATABASE IF NOT EXISTS fitcheck;"`
 3. Run the bootstrap on the instance. It installs git and python3.12, clones
-   the fork into `/opt/fitcheck`, builds the venv, writes the unit for port 80,
-   starts it and runs the demo seed:
+   the fork into `/opt/fitcheck`, builds the venv, opens http and https in
+   firewalld, writes the unit for 127.0.0.1:8000 and starts it, installs Caddy
+   (the project's release binary, checked against its sha512 file, to
+   `/usr/local/bin/caddy`, with a `caddy` system user and the project's reference
+   unit), installs `deploy/Caddyfile` to `/etc/caddy/Caddyfile`, validates and
+   starts Caddy, and runs the demo seed:
    ```
    curl -fsSL https://raw.githubusercontent.com/CodeManEthan/hacktn-fit-check/main/deploy/bootstrap.sh | bash
    ```
@@ -116,13 +131,25 @@ It refuses, and exits 1, in two cases:
 - `!! something already listens on port 8001`: a process other than
   `fitcheck-stage` holds the port (it prints which). Stop it, then rerun.
 
-`cutover` copies the `.env` again, stops the stage, moves `/opt/fitcheck` to
-`/opt/fitcheck-prev` and the staged checkout into `/opt/fitcheck`, restarts the
-unit, runs `scripts/seed_demo.py` once (it upserts, so a rerun leaves one of
-each), and checks from your machine: `/`, `/offer`, `/impact` answer 200, and the
-Kayunga request's matches page shows the 525KS shipping, the 525DS under "Won't
-work" and the older unit needing info (`deploy/check_live.py`). A failed check
-rolls back by itself.
+`cutover` copies the `.env` again, stops the stage, installs `deploy/Caddyfile`
+if it differs from `/etc/caddy/Caddyfile` (`caddy validate` first, the old file
+kept at `Caddyfile.prev`, then `systemctl reload-or-restart caddy`, all before the
+app is stopped; when it is unchanged, any stale `.prev` is removed and Caddy is
+left alone), moves `/opt/fitcheck` to `/opt/fitcheck-prev` and the staged
+checkout into `/opt/fitcheck`, restarts the unit, runs `scripts/seed_demo.py`
+once (it upserts, so a rerun leaves one of each), and runs the public checks
+from your machine: `/`, `/offer`, `/impact` answer 200, and the Kayunga request's
+matches page shows the 525KS shipping, the 525DS under "Won't work" and the
+older unit needing info (`deploy/check_live.py`). A failed check rolls back by
+itself.
+
+The public checks always run against the bare IP over plain HTTP, so they need
+no DNS. They run against https://fitcheck.care as well only when
+`getent hosts fitcheck.care` on your machine gives the VM's address; otherwise one
+`-- hostname check skipped` line says so. On the name, a bad status or page rolls
+back; a refused connection, a timeout or a TLS failure (no certificate yet) prints
+a warning and does not. `FITCHECK_PUBLIC_URL`, if set, is checked in the name's
+place with the same rules.
 
 If the live checkout is already at `<head>` (a rerun of `stage` and `cutover` on
 the head that is live), `cutover` does not swap: it stops the stage, removes
@@ -130,7 +157,8 @@ the head that is live), `cutover` does not swap: it stops the stage, removes
 the checkout from before that head.
 
 `deploy/redeploy.sh all <head>` does both; `rollback` puts `/opt/fitcheck-prev`
-back; `check` reruns the port-80 checks without seeding. A path that does not
+back, and `/etc/caddy/Caddyfile.prev` too when the last cutover left one;
+`check` reruns the public checks without seeding. A path that does not
 answer at all (refused or timed out) prints `-> 000` and the run goes on to the
 next path, in `check` and in `stage`.
 
@@ -141,6 +169,10 @@ key back in `/home/opc/.oci/`, because that code reads only the key file.
 ## When something is wrong
 
 - `sudo journalctl -u fitcheck -n 50` on the VM shows the app's log.
+- `sudo journalctl -u caddy -n 50` shows Caddy's log and the access log,
+  certificate attempts included. Without an A record for fitcheck.care it logs
+  `NXDOMAIN` and "will retry" on its own back-off; do not restart it to hurry it
+  (Let's Encrypt limits failed validations per hour).
 - A model call that answers "OCI is not configured" names the missing key.
   "NotAuthorizedOrNotFound" means the dynamic group or policy is missing or
   still applying.

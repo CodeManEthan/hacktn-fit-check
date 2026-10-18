@@ -2,7 +2,9 @@
 
 What this answers: the four screens and the closing page on the live host, what to type or click on each, what to say, and what to do if one breaks.
 
-Live host: http://147.224.201.81/
+Live host: https://fitcheck.care/
+
+Caddy on the VM serves that name with a Let's Encrypt certificate and redirects plain HTTP to it. The bare IP, 147.224.201.81, still answers on plain HTTP as the compatibility door for anyone holding the old link; it is not a link to give out or show on a slide.
 
 The ids below are the live MySQL's, read from the pages on 2026-10-18 after the 385bc8f redeploy. The B6 report's table uses a fresh local database, where the same offers are 1, 2 and 3; on the live host they are 8, 9 and 10. The seed upserts, so a reseed keeps these ids.
 
@@ -19,15 +21,15 @@ The Kayunga request is request 1.
 Check each page answers 200:
 
 ```
-curl -s -o /dev/null -w '%{http_code}\n' http://147.224.201.81/offer
-curl -s -o /dev/null -w '%{http_code}\n' http://147.224.201.81/request/1/matches
-curl -s -o /dev/null -w '%{http_code}\n' http://147.224.201.81/request/1/offer/9
-curl -s -o /dev/null -w '%{http_code}\n' "http://147.224.201.81/packet/9?facility=uganda-district"
-curl -s -o /dev/null -w '%{http_code}\n' http://147.224.201.81/impact
-curl -s -o /dev/null -w '%{http_code}\n' http://147.224.201.81/offer/csv
+curl -s -o /dev/null -w '%{http_code}\n' https://fitcheck.care/offer
+curl -s -o /dev/null -w '%{http_code}\n' https://fitcheck.care/request/1/matches
+curl -s -o /dev/null -w '%{http_code}\n' https://fitcheck.care/request/1/offer/9
+curl -s -o /dev/null -w '%{http_code}\n' "https://fitcheck.care/packet/9?facility=uganda-district"
+curl -s -o /dev/null -w '%{http_code}\n' https://fitcheck.care/impact
+curl -s -o /dev/null -w '%{http_code}\n' https://fitcheck.care/offer/csv
 ```
 
-Open http://147.224.201.81/packet/9?facility=uganda-district once in the browser. The first build of a packet makes one gpt-oss call (about 13 s in B5's run); after that it comes from the cache. On 2026-10-18 it answered in 0.04 s, so it was already built. A redeploy keeps the cache (it lives in MySQL), so open it once anyway; it costs nothing when cached.
+Open https://fitcheck.care/packet/9?facility=uganda-district once in the browser. The first build of a packet makes one gpt-oss call (about 13 s in B5's run); after that it comes from the cache. On 2026-10-18 it answered in 0.04 s, so it was already built. A redeploy keeps the cache (it lives in MySQL), so open it once anyway; it costs nothing when cached.
 
 Copy the paste for screen 1 to the clipboard (on the laptop, from the repository checkout):
 
@@ -44,7 +46,7 @@ Three things not to do on the live host, in rehearsal or on stage:
 
 ## Screen 1: the donor names the device
 
-URL: http://147.224.201.81/offer (role toggle: Donor)
+URL: https://fitcheck.care/offer (role toggle: Donor)
 
 Fast path: in "Pick from the library", choose **DeVilbiss Healthcare 525DS (oxygen concentrator)** (slug `drive-devilbiss-525ds`). The inspector fills with 14 rows. Twelve are known, each tagged "spec sheet" with a p.N link into Drive's manual (`#page=11` for voltage, frequency, power, temperature and humidity). Year made and Needs stable power stay unknown. The pick makes no model call. Since B6 fix 9ca4edd a pick fills the inspector in the browser.
 
@@ -115,7 +117,7 @@ If it breaks: if the pick does not fill the table, use the paste. If "Read these
 
 ## Screen 2: the clinic sees three verdicts
 
-URL: http://147.224.201.81/request/1/matches (role toggle: Clinic)
+URL: https://fitcheck.care/request/1/matches (role toggle: Clinic)
 
 The page reads "Of 3 offers of this kind, 1 is known to work at Kayunga District Hospital, 1 won't, and 1 needs answers first." In page order:
 
@@ -137,14 +139,14 @@ If it breaks: the page calls the FDA GUDID registry live for manufacturer suppor
 
 ## Screen 3: the 525KS verdict
 
-URL: http://147.224.201.81/request/1/offer/9
+URL: https://fitcheck.care/request/1/offer/9
 
 It shows "Ship with", "2 things it cannot arrive without", 2 conditional and 13 clear: all 15 checks. Each row has its source tag and a link to the cited page (SE-525KS-1 Rev D p.11 for the electrical facts, SE-525KS-2 Rev A p.6 for the room-air and intended-use facts, the MoH Uganda guideline p.29-30 for the import row). Under "Must go with it": the Sollatek AVS30 "covers", the Houston surplus AVR "won't work here itself" and "does not count", and the filters with "no donor has one yet". The consumables and spare-parts rows say "recorded by the nonprofit" (Fit-Check field team).
 
 The 525KS has no open questions: its year is stated and the nonprofit's recorded answer covers consumables and spare parts. [F4]'s "open question" is on the other two pages:
 
-- http://147.224.201.81/request/1/offer/8 (525DS): "Do not ship", the advisory, and 2 open questions (a supplier for the four filters in Uganda; spare parts), each linking to `/supply`. Its support row carries the FDA GUDID record link.
-- http://147.224.201.81/request/1/offer/10 (Houston): "Needs info", "11 questions before a verdict". Only spare parts links to `/supply`; the other ten say "(for the donor)".
+- https://fitcheck.care/request/1/offer/8 (525DS): "Do not ship", the advisory, and 2 open questions (a supplier for the four filters in Uganda; spare parts), each linking to `/supply`. Its support row carries the FDA GUDID record link.
+- https://fitcheck.care/request/1/offer/10 (Houston): "Needs info", "11 questions before a verdict". Only spare parts links to `/supply`; the other ten say "(for the donor)".
 
 What to say: "Fifteen checks, each decided by code, each pointing at its source. The add-ons are checked too: a stabiliser counts only if its own plate runs on this clinic's mains."
 
@@ -152,7 +154,7 @@ If it breaks: the page is screened again on every load. If it shows an error say
 
 ## Screen 4: the handover packet
 
-Click "Generate handover packet" on offer 9's page, or open http://147.224.201.81/packet/9?facility=uganda-district
+Click "Generate handover packet" on offer 9's page, or open https://fitcheck.care/packet/9?facility=uganda-district
 
 It shows, top to bottom:
 
@@ -176,7 +178,7 @@ If it breaks: the card is cached after the first build, so a model outage on sta
 
 ## Close: the impact page
 
-URL: http://147.224.201.81/impact
+URL: https://fitcheck.care/impact
 
 The counters read: 20 devices screened, 11 stopped before shipping, 0 need extras sent with them, 0 cleared as they are, 9 need answers first. The seeded history has no works or works-if verdict, so those two counters read 0.
 
@@ -194,9 +196,9 @@ If it breaks: if the model fails or the gate refuses the reply, the page shows a
 
 ## Optional: the inventory CSV
 
-URL: http://147.224.201.81/offer/csv
+URL: https://fitcheck.care/offer/csv
 
-Upload `data/sample_inventory.csv` (also at http://147.224.201.81/offer/csv/sample). Kayunga is preselected. Press "Screen every row". The page reads "6 rows screened against Kayunga District Hospital": 0 works, 1 works if you also send, 3 needs info, 2 won't work. Checked live on 2026-10-18.
+Upload `data/sample_inventory.csv` (also at https://fitcheck.care/offer/csv/sample). Kayunga is preselected. Press "Screen every row". The page reads "6 rows screened against Kayunga District Hospital": 0 works, 1 works if you also send, 3 needs info, 2 won't work. Checked live on 2026-10-18.
 
 | Line | Device | Verdict |
 |---|---|---|
