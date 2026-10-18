@@ -56,7 +56,18 @@ class Held:
     filename: str = ""
     donor_name: str = ""
     donor_email: str = ""
+    # Saved offer ids, in the order of `screening.screened`: posted[i] is row i.
+    # A post that stopped partway leaves the rows saved so far here, and the
+    # next press saves only the rest (check 1 L5).
     posted: list[int] = field(default_factory=list)
+
+    @property
+    def remaining(self) -> int:
+        return max(len(self.screening.screened) - len(self.posted), 0)
+
+    @property
+    def complete(self) -> bool:
+        return bool(self.posted) and self.remaining == 0
 
 
 _HELD: dict[str, Held] = {}
@@ -130,6 +141,7 @@ def _result_page(request: Request, token: str, item: Held) -> HTMLResponse:
         request=request, name="csv_result.html",
         context={"token": token, "s": screening, "held": item, "counts": counts,
                  "tone": TONE, "postable": len(screening.screened),
+                 "remaining": item.remaining,
                  "hours": CACHE_SECONDS // 3600},
     )
 
@@ -207,13 +219,15 @@ def csv_post(
     """Save every screened row as an open Offer. The one write in this module.
 
     Error and blank rows are not posted. A screening is posted once; a second
-    press shows what the first one saved instead of saving it again.
+    press shows what the first one saved instead of saving it again. If saving
+    stops partway, the rows already saved stay recorded and the next press
+    saves only the rows after them, so none is saved twice.
     """
     item = held(token)
     if item is None:
         return _gone(request)
     back = f"/offer/csv/{token}"
-    if item.posted:
+    if item.complete:
         return _result_page(request, token, item)
     try:
         name = forms.text(donor_name, "Your name", required=True, limit=200)
@@ -225,14 +239,20 @@ def csv_post(
         return _error(request, "No row of this file was screened, so there is nothing to post.",
                       back=back)
     with _LOCK:
-        if item.posted:
+        if item.complete:
             return _result_page(request, token, item)
         try:
-            for row in rows:
+            for row in rows[len(item.posted):]:
                 offer = replace(row.offer, donor_name=name, donor_email=email)
                 item.posted.append(repo.save_offer(offer))
         except RepositoryError as exc:
-            return _error(request, f"Saving stopped after {len(item.posted)} offers: {exc}",
-                          back=back)
-        item.donor_name, item.donor_email = name, email
+            return _error(
+                request,
+                f"Saving stopped after {len(item.posted)} of {len(rows)} offers: {exc}. "
+                f"The {len(item.posted)} saved are kept; go back and press post again to "
+                f"save the other {item.remaining}, which saves none twice.",
+                back=back)
+        finally:
+            if item.posted:
+                item.donor_name, item.donor_email = name, email
     return _result_page(request, token, item)

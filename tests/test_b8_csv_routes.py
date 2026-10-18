@@ -18,6 +18,7 @@ from fastapi.testclient import TestClient
 
 from app.config import SETTINGS
 from app.data import db, repository
+from app.data.repository import RepositoryError
 from app.data import marketplace_repo as repo
 from app.main import app
 from app.web import csv_routes
@@ -192,3 +193,60 @@ def test_an_oversize_upload_says_over_the_limit_whatever_its_size(client, size):
     assert "stock.csv: The file is over 1,000,000 bytes" in body
     assert "1,000,001" not in body
     assert offers_saved() == 0
+
+
+# ---- check 1 L5: a post that stops partway resumes, saving none twice --------
+
+FOUR_ROWS = "\n".join([
+    "device_type,manufacturer,model,quantity,country",
+    "suction pump,Acme,P1,1,Uganda",
+    "suction pump,Acme,P2,1,Uganda",
+    "suction pump,Acme,P3,1,Uganda",
+    "suction pump,Acme,P4,1,Uganda",
+])
+
+
+class FailsOnThirdRow:
+    """repo.save_offer that raises on its third call only, then saves again."""
+
+    def __init__(self, real):
+        self.real = real
+        self.calls: list[str] = []
+
+    def __call__(self, offer):
+        self.calls.append(offer.device.model.value)
+        if len(self.calls) == 3:
+            raise RepositoryError("the database is locked")
+        return self.real(offer)
+
+
+def test_a_post_that_stops_partway_saves_only_the_rest_on_the_next_press(client, monkeypatch):
+    fake = FailsOnThirdRow(repo.save_offer)
+    monkeypatch.setattr(csv_routes.repo, "save_offer", fake)
+    token = token_of(upload(client, FOUR_ROWS).text)
+    donor = {"donor_name": "Mercy Regional", "donor_email": "biomed@example.org"}
+
+    stopped = client.post(f"/offer/csv/{token}/post", data=donor)
+    assert stopped.status_code == 400
+    body = html.unescape(stopped.text)
+    assert "Saving stopped after 2 of 4 offers: the database is locked" in body
+    assert "save the other 2" in body
+    assert offers_saved() == 2
+
+    # The result page shows what was saved and offers the rest, not "Posted".
+    page = html.unescape(client.get(f"/offer/csv/{token}").text)
+    assert "Partly posted" in page and "<h2>Posted</h2>" not in page
+    assert "Post the remaining 2 offers" in page
+
+    resumed = client.post(f"/offer/csv/{token}/post", data=donor)
+    assert resumed.status_code == 200
+    assert "4 offers saved for Mercy Regional" in resumed.text
+    assert fake.calls == ["P1", "P2", "P3", "P3", "P4"]
+    assert offers_saved() == 4
+    models = sorted(o.device.model.value for o in repo.open_offers_for_type("suction pump"))
+    assert models == ["P1", "P2", "P3", "P4"]
+
+    # Complete now: a further press saves nothing.
+    again = client.post(f"/offer/csv/{token}/post", data=donor)
+    assert "4 offers saved" in again.text and len(fake.calls) == 5
+    assert offers_saved() == 4
