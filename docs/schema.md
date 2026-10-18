@@ -80,7 +80,7 @@ One row per proposal to a donor: `id` (12 characters), `request_id`, `offer_id`,
 - Written by `POST /match`. The route screens the offer again first and refuses a `won't work` or a `needs info` verdict, so no row is ever written for an offer with open questions.
 - The row is stored in state `awaiting donor`. `POST /confirm/<token>` moves it to `confirmed` or `withdrawn` and sets `responded_at`. `shipped` exists in the state machine (`app/matching/verification.py`) but no route reaches it.
 - `token` is the only thing in the donor's confirm link. It is unique and indexed.
-- `verdict_json` and `intel_json` freeze the verdict and supply facts the proposal was made on. The packet page reads the newest match's verdict for its send-with list. When no match exists it screens again with empty supply facts.
+- `verdict_json` and `intel_json` freeze the verdict and supply facts the proposal was made on. The packet page reads the newest match's verdict for its send-with list. When no match exists it screens the offer again with the same supply facts as the candidate page, so the two list the same conditions.
 - After a fresh seed: 0 rows.
 
 ### `supply_answers` (new this round)

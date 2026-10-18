@@ -166,7 +166,9 @@ The rejected 525DS has no packet link (B6 Decision 1). `/packet/8` still answers
 
 What to say: "The card is the manual's own words, cut to a page. A line whose numbers aren't in the manual is dropped before anyone sees it. For a clinic that reads French, OCI Language puts the translation beside the English, marked 'machine-translated, verify'."
 
-Known gap: "Send with it" on this packet lists only "Grid reliability. A voltage stabiliser", not the 2 years of filters the candidate page lists. The packet takes its list from a stored match for this offer and clinic, and with no match it runs `check_fit` with empty supply intel (`_packet_verdict` in `app/web/marketplace_routes.py`). Without the recorded answer, consumables read "needs info", not a condition, so the filters drop off. If a judge asks, the candidate page's list is the full one.
+"Send with it" lists the voltage stabiliser and the 2 years of filters, the same two conditions as the candidate page. With no stored match for this offer and clinic, `_packet_verdict` (`app/web/marketplace_routes.py`) screens the offer with the same supply intel the candidate page uses, so the recorded answer about filters carries over. A stored match still wins.
+
+This went live with the lead's redeploy after these docs were written (build b10-packet-intel). If the packet still lists only the stabiliser, a rebuild should not be needed, since the send-with list is computed on each request, not cached with the card; if it is, add `&rebuild=1` to the packet URL.
 
 Other clinics, if asked: `/packet/9?facility=haiti-community` (French beside English) and `/packet/9?facility=nepal-phc` (Nepali flag, English card). Neither is pre-built: the first open makes one card call, and Haiti also one OCI Language call.
 
