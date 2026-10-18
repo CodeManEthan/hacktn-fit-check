@@ -1,0 +1,117 @@
+{% extends "base.html" %}
+{% block title %}Inventory screened &middot; Fit-Check{% endblock %}
+{% block content %}
+<style>
+  .csv-table td { font-size: 13px; }
+  .csv-table .csv-dev { min-width: 16ch; }
+  .csv-table .csv-dev b { display: block; font-size: 14px; color: var(--ink); }
+  .csv-table .csv-list { margin: 0; padding-left: var(--s3); min-width: 22ch; max-width: 44ch; }
+  .csv-table .csv-list li { margin: 0 0 var(--s1); }
+  .csv-table .num { font-family: var(--mono); }
+  .csv-table tr.is-error td { color: var(--block); }
+  .csv-table tr.is-blank td { color: var(--etch); }
+  .csv-acts { display: flex; flex-wrap: wrap; gap: var(--s3); align-items: center; margin-top: var(--s4); }
+  .csv-acts a.go { text-decoration: none; }
+  .csv-post { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--s3); align-items: end; margin-top: var(--s4); }
+  .csv-posted { margin: var(--s2) 0 0; padding-left: var(--s4); }
+</style>
+<section class="masthead">
+  <p class="eyebrow"><a class="link" href="/offer/csv?facility={{ s.facility_slug }}">&larr; Screen another file</a></p>
+  <h1>{{ s.rows | length }} row{{ '' if s.rows | length == 1 else 's' }} screened against {{ s.facility_name }}</h1>
+  <p class="sub">{{ held.filename }}. Each row is an offer that has not been posted: nothing
+     here is saved yet. The results are held for {{ hours }} hour{{ '' if hours == 1 else 's' }}.</p>
+</section>
+
+<section class="plate">
+  <div class="counters">
+    {% for label, n, t in counts %}
+    <div class="counter {{ t }}"><b>{{ n }}</b><span>{{ label }}</span></div>
+    {% endfor %}
+    {% if s.errors %}<div class="counter bad"><b>{{ s.errors | length }}</b><span>rows not read</span></div>{% endif %}
+  </div>
+  {% if s.ignored_columns %}
+  <p class="note">Columns not read: {{ s.ignored_columns | join(", ") }}.</p>
+  {% endif %}
+  <div class="csv-acts">
+    <a class="go" href="/offer/csv/{{ token }}.csv" download>Download CSV</a>
+    <span class="note">The input columns plus verdict, blockers, send_with and questions.</span>
+  </div>
+</section>
+
+<section class="plate plate-tight">
+  <h2>Results</h2>
+  <div class="audit-scroll">
+  <table class="audit csv-table">
+    <thead>
+      <tr>
+        <th scope="col">Line</th>
+        <th scope="col">Device</th>
+        <th scope="col">Qty</th>
+        <th scope="col">Verdict</th>
+        <th scope="col">Blockers</th>
+        <th scope="col">Send with</th>
+        <th scope="col">Questions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in s.rows %}
+      {% if r.status == "error" %}
+      <tr class="is-error" data-line="{{ r.line }}" data-verdict="error">
+        <td class="num">{{ r.line }}</td>
+        <td class="csv-dev"><b>{{ r.name }}</b>{{ r.values.device_type }}</td>
+        <td class="num">{{ r.values.quantity or '&mdash;' | safe }}</td>
+        <td><span class="pill bad">not read</span></td>
+        <td colspan="3">{{ r.error }}</td>
+      </tr>
+      {% elif r.status == "blank" %}
+      <tr class="is-blank" data-line="{{ r.line }}" data-verdict="blank row">
+        <td class="num">{{ r.line }}</td>
+        <td colspan="6">Blank row, skipped.</td>
+      </tr>
+      {% else %}
+      <tr data-line="{{ r.line }}" data-verdict="{{ r.outcome }}">
+        <td class="num">{{ r.line }}</td>
+        <td class="csv-dev"><b>{{ r.name }}</b>{{ r.offer.device_type }}
+          {% if r.library_slug %}<br><span class="tag is-trusted" title="Facts from the maker's documents">library</span>{% endif %}
+          {% for n in r.notes %}<span class="note" style="display:block">{{ n }}</span>{% endfor %}</td>
+        <td class="num">{{ r.offer.quantity_offered }}</td>
+        <td><span class="pill {{ tone.get(r.outcome, '') }}">{{ r.stamp }}</span></td>
+        <td>{% if r.blockers %}<ul class="csv-list">{% for b in r.blockers %}<li>{{ b }}</li>{% endfor %}</ul>{% else %}&mdash;{% endif %}</td>
+        <td>{% if r.send_with %}<ul class="csv-list">{% for b in r.send_with %}<li>{{ b }}</li>{% endfor %}</ul>{% else %}&mdash;{% endif %}</td>
+        <td>{% if r.questions %}<ul class="csv-list">{% for b in r.questions %}<li>{{ b }}</li>{% endfor %}</ul>{% else %}&mdash;{% endif %}</td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section class="plate">
+  {% if held.posted %}
+  <h2>Posted</h2>
+  <p>{{ held.posted | length }} offer{{ '' if held.posted | length == 1 else 's' }} saved for {{ held.donor_name }}. Each is now open to every clinic's request.</p>
+  <ul class="csv-posted">
+    {% for id in held.posted %}<li><a class="link" href="/offer/{{ id }}">Offer {{ id }}</a></li>{% endfor %}
+  </ul>
+  {% elif postable %}
+  <h2>Post these offers</h2>
+  <p class="note">Saves the {{ postable }} screened row{{ '' if postable == 1 else 's' }} as open offers,
+     so any clinic's request can find them, including rows that will not work at
+     {{ s.facility_name }}. Rows that were not read are not posted.</p>
+  <form method="post" action="/offer/csv/{{ token }}/post" class="csv-post">
+    <div class="field">
+      <label class="name" for="p-donor-name">Your name</label>
+      <input type="text" id="p-donor-name" name="donor_name" value="{{ held.donor_name }}" required>
+    </div>
+    <div class="field">
+      <label class="name" for="p-donor-email">Email</label>
+      <input type="text" id="p-donor-email" name="donor_email" value="{{ held.donor_email }}" inputmode="email" required>
+    </div>
+    <button class="go" type="submit">Post these {{ postable }} offers</button>
+  </form>
+  {% else %}
+  <p class="empty">No row was screened, so there is nothing to post.</p>
+  {% endif %}
+</section>
+{% endblock %}
