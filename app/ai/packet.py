@@ -71,6 +71,8 @@ class CardLine:
     page: int | None = None
     interval: str = ""
     part_number: str = ""
+    # Set on a translated line that shows the English instead (design §5.4).
+    note: str = ""
 
 
 @dataclass(frozen=True)
@@ -94,20 +96,24 @@ class Card:
 
     def to_dict(self) -> dict[str, Any]:
         """The §5.2 JSON shape, plus the label and the dropped count."""
+        def row(line: CardLine, **fields: Any) -> dict[str, Any]:
+            out = {**fields, "page": line.page}
+            if line.note:
+                out["note"] = line.note
+            return out
+
         return {
             "label": self.label,
             "dropped": self.dropped,
-            "quick_start": [{"text": l.text, "page": l.page} for l in self.quick_start],
+            "quick_start": [row(l, text=l.text) for l in self.quick_start],
             "care_schedule": [
-                {"text": l.text, "interval": l.interval, "page": l.page}
-                for l in self.care_schedule
+                row(l, text=l.text, interval=l.interval) for l in self.care_schedule
             ],
             "consumables": [
-                {"item": l.text, "part_number": l.part_number, "interval": l.interval,
-                 "page": l.page}
+                row(l, item=l.text, part_number=l.part_number, interval=l.interval)
                 for l in self.consumables
             ],
-            "warnings": [{"text": l.text, "page": l.page} for l in self.warnings],
+            "warnings": [row(l, text=l.text) for l in self.warnings],
         }
 
 
@@ -125,6 +131,7 @@ def card_from_dict(payload: Mapping[str, Any], label: str = "") -> Card:
                 text=text, page=_page(raw.get("page")),
                 interval=_clean(raw.get("interval")),
                 part_number=_clean(raw.get("part_number")),
+                note=_clean(raw.get("note")),
             ))
         return tuple(found)
 
@@ -298,18 +305,18 @@ def build_card(
 
 
 @dataclass(frozen=True)
-class _Evidence:
+class Evidence:
     numbers: frozenset[str]
     codes: frozenset[str]
 
 
-def _evidence(text: str) -> _Evidence:
+def evidence(text: str) -> Evidence:
     numbers: set[str] = set()
     codes: set[str] = set()
     for token in TOKEN.findall(text or ""):
         kind, values = _classify(token)
         (codes if kind == "code" else numbers).update(values)
-    return _Evidence(frozenset(numbers), frozenset(codes))
+    return Evidence(frozenset(numbers), frozenset(codes))
 
 
 def _classify(token: str) -> tuple[str, tuple[str, ...]]:
@@ -337,12 +344,12 @@ def _number(text: str) -> str:
     return f"{whole}.{fraction}" if fraction else whole
 
 
-def line_evidence(line: CardLine) -> _Evidence:
+def line_evidence(line: CardLine) -> Evidence:
     """The numbers and part codes a card line states, in every field."""
-    return _evidence(" ".join((line.text, line.interval, line.part_number)))
+    return evidence(" ".join((line.text, line.interval, line.part_number)))
 
 
-def _survives(line: CardLine, document: _Evidence, pages: Mapping[int, _Evidence]) -> bool:
+def _survives(line: CardLine, document: Evidence, pages: Mapping[int, Evidence]) -> bool:
     stated = line_evidence(line)
     if not stated.numbers <= document.numbers or not stated.codes <= document.codes:
         return False
@@ -364,8 +371,8 @@ def gate(card: Card, text: str, pages: Mapping[int, str] | None = None) -> Card:
     or at least one of its numbers must occur on that page.
     """
     pages = pages if pages is not None else split_pages(text)
-    document = _evidence(text)
-    per_page = {n: _evidence(t) for n, t in pages.items()}
+    document = evidence(text)
+    per_page = {n: evidence(t) for n, t in pages.items()}
     kept: dict[str, tuple[CardLine, ...]] = {}
     dropped = 0
     for name in SECTIONS:
