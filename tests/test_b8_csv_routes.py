@@ -82,7 +82,7 @@ def test_the_upload_renders_the_table_and_saves_nothing(client):
     assert offers_saved() == 0
 
 
-def test_the_download_is_the_input_columns_plus_four(client):
+def test_the_download_is_the_input_columns_plus_four_and_notes(client):
     token = token_of(upload(client).text)
     response = client.get(f"/offer/csv/{token}.csv")
     assert response.status_code == 200
@@ -91,8 +91,10 @@ def test_the_download_is_the_input_columns_plus_four(client):
     assert "stock-screened-test-clinic.csv" in response.headers["content-disposition"]
     rows = list(csv.DictReader(io.StringIO(response.text)))
     assert len(rows) == 5
-    assert list(rows[0])[-4:] == ["verdict", "blockers", "send_with", "questions"]
+    assert list(rows[0])[-5:] == ["verdict", "blockers", "send_with", "questions", "notes"]
     assert rows[0]["model"] == "525KS" and rows[0]["verdict"] == "needs info"
+    assert rows[0]["notes"].startswith("library: DeVilbiss Healthcare 525KS")
+    assert rows[1]["notes"] == ""
     assert rows[1]["verdict"] == "won't work"
     assert offers_saved() == 0
 

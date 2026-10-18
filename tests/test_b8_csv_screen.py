@@ -156,11 +156,14 @@ def test_the_default_lookup_is_supply_lookup():
     assert default is supply_lookup
 
 
-def test_the_download_has_the_input_columns_then_the_four_results(screened):
+def test_the_download_has_the_input_columns_then_the_four_results_and_notes(screened):
     text = csv_screen.to_csv(screened[0])
     rows = list(csv.DictReader(io.StringIO(text)))
     assert list(rows[0].keys()) == [*csv_screen.COLUMNS, "verdict", "blockers",
-                                    "send_with", "questions"]
+                                    "send_with", "questions", "notes"]
+    assert rows[0]["notes"] == "library: DeVilbiss Healthcare 525KS"
+    assert rows[1]["notes"] == ""  # a donor-stated row
+    assert rows[2]["notes"] == "" and rows[3]["notes"] == ""
     assert len(rows) == 5
     assert rows[1]["frequencies_hz"] == "60"
     assert rows[1]["verdict"] == "won't work"
@@ -315,3 +318,22 @@ def test_the_right_maker_and_device_or_blanks_still_take_the_library(line):
     assert row.library_slug, row
     assert not any(n.startswith("resembles") for n in row.notes)
     assert row.offer.device.voltage_min_v.source is Provenance.SPEC_SHEET
+
+
+# ---- check 1 L2: the download says when the library's facts were used -------
+
+def test_the_download_names_the_library_entry_and_the_cells_it_overrode():
+    text = (L1_HEADER
+            + "oxygen concentrator,DeVilbiss,525KS,2,2019,100,120,60,United Kingdom\n"
+            + "suction pump,Acme,S60,1,2020,110,120,60,United States\n"
+            + "suction pump,Medela,C2000,1,2020,220,240,50,Uganda\n")
+    result = csv_screen.screen_csv(text, CLINIC, intel_for=lambda d, t, c: intel(country=c))
+    rows = list(csv.DictReader(io.StringIO(csv_screen.to_csv(result))))
+    library, donor, resembles = rows
+    # The typed plate cells are echoed as typed; the notes say they were not used.
+    assert library["voltage_min_v"] == "100" and library["frequencies_hz"] == "60"
+    assert library["notes"] == ("library: DeVilbiss Healthcare 525KS | the library's documented "
+                                "voltage_min_v, voltage_max_v, frequencies_hz used, not the row's")
+    assert donor["notes"] == ""
+    assert resembles["notes"] == ("resembles library model Draeger Medical Systems Isolette "
+                                  "C2000; row facts used")

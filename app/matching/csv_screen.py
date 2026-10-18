@@ -43,7 +43,9 @@ COLUMNS = (
     "temp_min_c", "temp_max_c", "humidity_max_pct", "manual_languages",
     "expiry_date", "city", "country",
 )
-RESULT_COLUMNS = ("verdict", "blockers", "send_with", "questions")
+# The four §8 result names, then `notes`: whether the verdict was made on a
+# library entry's facts rather than the typed plate cells, and why (check 1 L2).
+RESULT_COLUMNS = ("verdict", "blockers", "send_with", "questions", "notes")
 
 # The plate and climate columns. On a library row these are the library's,
 # never the row's: a cited value is not edited by hand (§4.2).
@@ -468,21 +470,30 @@ def _joined(items: Iterable[str]) -> str:
     return " | ".join(items)
 
 
+def row_notes(row: RowResult) -> list[str]:
+    """ "library: <label>" when the row took a library entry, then the row's notes."""
+    taken = [f"library: {row.library_label}"] if row.library_label else []
+    return [*taken, *row.notes]
+
+
 def result_cells(row: RowResult) -> dict[str, str]:
     if row.status == STATUS_ERROR:
-        return {"verdict": "error", "blockers": row.error, "send_with": "", "questions": ""}
+        return {"verdict": "error", "blockers": row.error, "send_with": "", "questions": "",
+                "notes": ""}
     if row.status == STATUS_BLANK:
-        return {"verdict": "blank row", "blockers": "", "send_with": "", "questions": ""}
+        return {"verdict": "blank row", "blockers": "", "send_with": "", "questions": "",
+                "notes": ""}
     return {
         "verdict": row.outcome,
         "blockers": _joined(row.blockers),
         "send_with": _joined(row.send_with),
         "questions": _joined(row.questions),
+        "notes": _joined(row_notes(row)),
     }
 
 
 def to_csv(screening: CsvScreening) -> str:
-    """The input columns plus verdict, blockers, send_with, questions (§8)."""
+    """The input columns plus verdict, blockers, send_with, questions (§8), notes."""
     out = io.StringIO()
     writer = csv.DictWriter(out, fieldnames=[*COLUMNS, *RESULT_COLUMNS], lineterminator="\r\n")
     writer.writeheader()
