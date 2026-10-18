@@ -4,7 +4,7 @@ What this answers: the four screens and the closing page on the live host, what 
 
 Live host: https://fitcheck.care/
 
-Caddy on the VM serves that name with a Let's Encrypt certificate and redirects plain HTTP to it. The bare IP, 147.224.201.81, still answers on plain HTTP as the compatibility door for anyone holding the old link; it is not a link to give out or show on a slide.
+Caddy on the VM serves that name with a Let's Encrypt certificate and redirects plain HTTP to it. The header bar links About us, Contact and Get help; the role toggle is on its right, and the nonprofit role adds the desk links and Impact. The bare IP, 147.224.201.81, still answers on plain HTTP as the compatibility door for anyone holding the old link; it is not a link to give out or show on a slide.
 
 The ids below are the live MySQL's, read from the pages on 2026-10-18 after the 385bc8f redeploy. The B6 report's table uses a fresh local database, where the same offers are 1, 2 and 3; on the live host they are 8, 9 and 10. The seed upserts, so a reseed keeps these ids.
 
@@ -125,7 +125,7 @@ The page reads "Of 3 offers of this kind, 1 is known to work at Kayunga District
 - **Under "Won't work at Kayunga District Hospital": 525DS, Nashville: Do not ship.** Supply frequency: "Rated 60 Hz, but the grid is 50 Hz." Under it, "Buy locally instead?": a new 5 LPM concentrator for local power, about $290 (UNICEF); a frequency converter, $1,319 to $2,273 (ATO); a 1 kVA 230 V stabiliser, $205 (UNICEF S0002632). "Sold in Uganda: don't know, ask the nonprofit." No packet link and no "Ask this donor".
 - **Unnamed oxygen concentrator, Houston: Needs info.** "Answer 11 questions first." Its spare-parts question links to `/supply`.
 
-The seeded request is there so this is one click. The landing page's Kayunga chip opens the request form instead. Posting that form makes a new request with a new id and the same three verdicts, so it is safe live, but the links then use the new id.
+The seeded request is there so this is one click. The landing page (rebuilt 2026-10-18 from the teammate's design: a hero, a donor card to `/offer` and a clinic card to `/clinic`, with the nonprofit's operator strip under them) no longer has the seeded-clinic chips, so open this URL directly. Each unit on the matches page shows its distance in km and miles.
 
 Why each verdict:
 
