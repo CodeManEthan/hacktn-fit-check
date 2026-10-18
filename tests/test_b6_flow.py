@@ -136,18 +136,24 @@ def test_matches_links_each_candidate_and_its_packet(demo):
 
 # ---- §7.1 role toggle and landing ------------------------------------------------
 
-def test_the_role_cookie_is_set_and_sends_you_back(demo):
-    client = TestClient(app)
-    response = client.post("/role", data={"role": "donor", "back": "/offer"},
-                           follow_redirects=False)
-    assert response.status_code == 303 and response.headers["location"] == "/offer"
-    assert "role=donor" in response.headers["set-cookie"]
-
-
-def test_the_role_only_returns_to_this_site(demo):
-    response = TestClient(app).post("/role", data={"role": "clinic", "back": "//evil.example"},
+@pytest.mark.parametrize("role, home", [
+    ("donor", "/offer"), ("clinic", "/request"), ("nonprofit", "/review"),
+])
+def test_each_role_button_sets_the_cookie_and_opens_that_partys_home(demo, role, home):
+    # Pressed from the impact page: the button is a destination, not a tint
+    # of the page it was pressed on.
+    response = TestClient(app).post("/role", data={"role": role, "back": "/impact"},
                                     follow_redirects=False)
+    assert response.status_code == 303 and response.headers["location"] == home
+    assert f"role={role}" in response.headers["set-cookie"]
+
+
+def test_an_unknown_role_clears_the_cookie_and_only_returns_to_this_site(demo):
+    client = TestClient(app, cookies={"role": "donor"})
+    response = client.post("/role", data={"role": "", "back": "//evil.example"},
+                           follow_redirects=False)
     assert response.headers["location"] == "/"
+    assert 'role=""' in response.headers["set-cookie"] or "Max-Age=0" in response.headers["set-cookie"]
 
 
 def test_each_role_recolours_the_bar_and_hides_nothing(demo):

@@ -117,7 +117,7 @@ If it breaks: if the pick does not fill the table, use the paste. If "Read these
 
 ## Screen 2: the clinic sees three verdicts
 
-URL: https://fitcheck.care/request/1/matches (role toggle: Clinic)
+URL: https://fitcheck.care/request/1/matches (role toggle: Clinic, pressed first; it opens the request form, so then open this URL)
 
 The page reads "Of 3 offers of this kind, 1 is known to work at Kayunga District Hospital, 1 won't, and 1 needs answers first." In page order:
 
