@@ -1,0 +1,1317 @@
+EDAN INSTRUMENTS, INC.
+    Doppler Ultrasonico Portatile
+
+
+
+
+Versione Manuale : 1.2
+Data di emissione: Gennaio 2008
+Numero Parte: MS1R-14501-V1.2
+                      Dichiarazione di Conformita` EC
+
+Costruttore: EDAN Instruments, Inc.
+Indirizzo: 3/F-B, Nanshan Medical Equipments Park, Nanhai Rd 1019#, Shekou, Nanshan
+Shenzhen, 518067 P.R. CHINA
+Rappresentativa Europea :Shanghai International Holding Corp. GmbH (Europa)
+Indirizzo: Eiffestrasse 80 D-20537 Hamburg Germania
+Prodotto: Doppler Ultrasonico Portatile
+Modello: SONOTRAX Basic, SONOTRAX Basic A, SONOTRAX Pro
+Classificazione (MDD, Annex IX): IIa
+
+
+Con la presente dichiariamo che il/i prodotto/i sopra menzionati sono in accordo alle leggi
+nazionali, alle regolazioni del Concilio Direttivo 93/42/EEC del 14 Giugno 1993 a riguardo delle
+apparecchiature mediche-come indicato dalla Direttiva 98/79/EC per gli apparecchi
+diagnostici/medici e/o in vitro.
+
+
+Tutta la documentazione allegata viene considerata premessa del costruttore.
+
+
+                                          DIRETTIVE
+Direttive Generali:
+Direttive per apparecchiature mediche: CONCILIO DIRETTIVA 93/42/EEC del 14 Giugno 1993
+circa apparecchiature mediche (MDD 93/42/EEC).
+
+
+Standard applicati: EN 60601-1:1990+A1:1993+A2:1995, IEC 60601-1-2:2001, IEC61157:1994,
+EN61266:1995.
+
+
+Organismo notificato: TÜV SÜD Product Service GmbH, Ridlerstr 65, D-80339 MONACO,
+Germania.
+
+Numero d`identificazione
+
+
+
+
+                                               I
+Diritti Privati
+© Copyright Edan Instruments, Inc. 2008. Tutti i diritti riservati.
+
+Attenzione
+La Edan Instruments, Inc. (da cui in poi definita EDAN) non implementa alcun tipo di garanzia
+circa questo materiale, incluso, ma no limitato alle garanzie implicate nella vendita e fitness per
+scopi particolari. La EDAN non si assume alcuna responsabilita` per errori che potrebbero
+verificarsi in questo documento, oppure per incidenti o danni relativi all`equipaggiamento,
+prestazione oppure uso di questo materiale.
+Nessuna parte di questo documento puo` essere fotocopiata, riprodotta oppure tradotta in alcun
+altra lingua senza previa approvazione da parte della EDAN stessa.
+Le informazioni contenute nel documento sono soggette a modifica senza previa notifica.
+
+Responsabilita` del Produttore
+La EDAN si ritiene solamente responsabile per qualsiasi problema concernente la sicurezza,
+l`affidabilita` e la prestazione dell`equipaggiamento stesso se:
+L`operazione di assemblaggio o riparazione sono eseguite dal personale autorizzato EDAN e se
+l`apparecchio e` usato in accordo alle istruzioni per l`uso.
+
+   ATTENZIONE         :
+
+Questo apparecchio non e` stato concepito per alcun trattamento. Lo scopo di
+progettazione e` solamente clinico. Se il risultato FHR non e` chiaro, prego usare altri
+metodi come per esempio la metodologia stetoscopica per la verifica immediata.
+
+Usare la guida allegata
+Questa guida e` stata concepita per fornire concetti chiave sulle norme di sicurezza.
+
+   ATTENZIONE
+L`etichetta di AVVISO avvisa l`utente sul fatto che alcune azioni oppure situazioni potrebbero
+risultare in danni personali oppure decesso.
+
+   ATTENZIONE
+L`etichetta di ATTENZIONE avvisa l`utente sul fatto che alcune azioni o situazioni potrebbero
+danneggiare l`unita`, produrre un`analisi non corretta oppure invalidarne la procedura.
+
+NotA: L`indicazione di NOTE fornisce informazioni utili circa la funzione o la procedura
+dell`unita`.
+
+
+
+
+                                                 II
+                                                   Tavola dei contenuti
+Capitolo 1 Guida alla sicurezza ....................................................................................................1
+   1.1 Precauzioni di sicurezza......................................................................................................1
+   1.2 Simboli ................................................................................................................................3
+Capitolo 2 Introduzione.................................................................................................................5
+   2.1 Sguardo Generale ................................................................................................................5
+   2.2 Informazioni d`ordine .........................................................................................................5
+Capitolo 3 Configurazione.............................................................................................................7
+   3.1 Pannello frontale .................................................................................................................8
+        3.1.1 Modello .....................................................................................................................8
+        3.1.2 Display ......................................................................................................................8
+        3.1.3 Sonde.........................................................................................................................9
+        3.1.4 Presa sonda..............................................................................................................10
+   3.2 Premere pulsanti................................................................................................................11
+   3.3 Pannello superiore .............................................................................................................12
+Capitolo 4 General Operation.....................................................................................................14
+   4.1 Modalita` Display FHR in tempo reale (Modalita` 1) ......................................................14
+   4.2 Modalita` Display Media FHR (Modalita` 2) ...................................................................15
+   4.3 Modalita` manuale (Modalita` 3) ......................................................................................15
+   4.4 Modalita` d`Impostazione Luminosita` Controluce (Modalita` 4) ...................................15
+   4.5 Modalita` d`Impostazione Frequenza di Registrazione (Modalita` 5) ..............................15
+   4.6 Registrazione e riproduzione.............................................................................................16
+   4.7 Operazione di analisi con sonda........................................................................................16
+   4.8 Sostituzione delle batterie .................................................................................................17
+Capitolo 5 Specifiche dei prodotti...............................................................................................19
+Capitolo 6 Manutezione...............................................................................................................21
+   6.1 Manutenzione....................................................................................................................21
+   6.2 Pulizia................................................................................................................................21
+   6.3 Disinfezione ......................................................................................................................22
+Capitolo 7 Garanzia e Servizi......................................................................................................23
+Appendice 1 EMC Informazioni-Guida e Dichiarazione del Costruttore ..............................24
+   A1.1 Emissioni elettromagnetiche – per tutti gli equipaggiamenti e sistemi..........................24
+   A1.2 Immunita` Elettromagnetica – per tutti gli equipaggiamenti e sistemi ..........................24
+   A1.3 Immunita` Elettromagnetica – per tutti gli equipaggiamenti e sistemi non di supporto
+   vitale........................................................................................................................................25
+   A1.4 Distanza di separazione raccomandata...........................................................................26
+Appendice 2 Sensibilita` generale ...............................................................................................27
+
+
+
+
+                                                                       III
+                  Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+
+Capitolo 1 Guida alla sicurezza
+Questa unita` e` un apparecchio internamente alimentato, il grado di protezione contro scossa
+elettrica e` del tipo B.
+
+
+Gli apparecchi di tipo B possiedono un qualche tipo di protezione contro la scossa elettrica. La
+protezione di tipo B significa che la connessione per I pazienti devono essere in accordo alle
+regolamentazioni circa I picchi di correnti e l`intensita` dielettrica di IEC 60601-1
+
+1.1 Precauzioni di sicurezza
+Le indicazioni di AVVISO e ATTENZIONE devono sempre essere osservate. Per evitare la
+possibilita` di danni, osservare le seguenti precauzioni durante l`operativita` dell`apparecchio.
+
+   AVVISO      : L`unita` non e` stata dotata di sistema anti-esplosione, non puo` quindi
+                essere usata in presenza di anestetici infiammabili.
+
+
+   AVVISO      : Non gettare le batterie nelle fiamme in quanto potrebbero esplodere.
+
+
+   AVVISO      : Non tentare di ricaricare le normali batterie in quanto potrebbero perdere
+                 e/o potrebbero causare incendio ed esplodere.
+
+
+   AVVISO      : Non toccare il connettore d`entrata/d`uscita del segnale ed il paziente
+                nello stesso momento.
+
+   AVVISO      : L`apparecchiatura principale e gli accessori connessi alle interfacce
+                analogiche e digitali devono essere certificati in accordo agli standard
+                IEC (per esempio IEC 950 per gli apparecchi di elaborazione dati ed IEC
+                60601-1 per l`apparecchiatura medica). Inoltre, tutte le configurazioni
+                devono essere in accordo alla versione del sistema standard IEC
+                60601-1-1. Chiunque connetta apparecchi addizionali al connettore
+                d`entrata/d`uscita del segnale implementa la configurazione di un
+                sistema medico e di conseguenza e` responsabile del fatto che il sistema
+                sia in accordo ai requisiti della versione valide del sistema standard IEC
+                60601-1-1. In presenza di dubbi, consultare il dipartimento tecnico della
+                nostra compagnia oppure il vostro distributore locale.
+
+   AVVISO       : La serie Doppler Ultrasonica Portatile SONOTRAX rappresenta uno
+                 strumento di supporto professionale e non deve essere usato in
+                 sostituzione di monitoraggio fetale.
+
+   AVVISO      : L`esposizione agli ultrasuoni deve essere tenuta ai livelli piu` bassi
+
+
+                                              -1-
+           Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+          possibili. Cio` rappresenta una buona pratica e deve sempre essere
+          osservata.
+
+AVVISO   : La sostituzione delle batterie deve essere implementata lontano dal
+          paziente (1.5 m di distanza).
+
+AVVISO   : Prego usare solamente le sonde fornite dalla EDAN.
+
+AVVISO   : L`allungamento del cavo della sonda deve essere inferiore ai 2m al fine
+           di evitare che la sonda si distacchi dal cavo.
+
+
+ATTENZIONE     : Le leggi federali impongono che questo apparecchio sia usato
+             sotto stretta supervisione di un medico.
+
+
+ATTENZIONE     : Fare riferimento a personale qualificato.
+
+
+ATTENZIONE      : L`unita` principale della Serie SONOTRAX e` stata progettata per
+             operazioni continue e rappresenta un`unita` “ordinaria”. Non
+             immergere l`unita` in alcun liquido (non spruzzare oppure versare
+             alcun liquido si di essa).
+
+ATTENZIONE     : Tenere l`unita` pulita. Evitare vibrazioni.
+
+ATTENZIONE      : Non usare procedure di sterilizzazione termica e non usare
+              radiazioni E o gamma.
+
+ATTENZIONE      : Interferenza Elettromagnetica- Assicurarsi che l`ambiente in cui
+             l`apparecchio e` usato non sia soggetto ad alcuna fonte di radiazioni
+             elettromagnetiche, come per esempio trasmettitori radio, telefoni
+             cellulari, ecc... Tenere tali apparecchi lontani dall`unita`.
+
+
+ATTENZIONE      : L`utente deve controllare che l`apparecchio non presenti danni tali
+              da poter essere pericoloso per la sicurezza del paziente e
+              monitorarne la capacita` prima dell`uso. La frequenza d`ispezione
+              raccomandata e` una volta al mese oppure anche piu`
+              frequentemente. Se il danno e` evidente, si raccomanda la
+              sostituzione prima dell`uso.
+
+ATTENZIONE     : I seguenti controlli di sicurezza devono essere implementati una
+             volta ogni due anni oppure da un tecnico specializzato in possesso
+             dell`adeguata preparazione, conoscenza ed esperienza pratica.
+
+                                       -2-
+                 Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+
+
+                   Z Ispezionare l`apparecchiatura per possibili danni meccanici e
+                     funzionali.
+                   Z Ispezionare le etichette di sicurezza ed accertarsi che siano
+                     leggibili.
+                   Z Verificare che l`unita` funzioni propriamente come descritto nelle
+                     istruzioni d`uso.
+                   Z    In accordo a IEC 60601-1/1988： ristretto a: 100 uA (B) per
+                       testare la perdita di corrente
+                   La perdita di corrente non deve superare il limite indicato. I dati
+                   devono essere registrati nel sistema di registrazione dell`apparecchio.
+                   Se l`apparecchio non funziona correttamente oppure il test non ha
+                   successo, l`unita` deve essere riparata.
+
+
+   ATTENZIONE          :    Se vengono usate batterie ricaricabili, prego caricarla
+                    completamente prima dell`uso al fine di preservarne la prestazione e
+                    la durata. In condizioni di normale temperatura, la batteria deve
+                    essere caricata per 14 ore senza pausa.
+
+  ATTENZIONE         : La batteria deve essere estratta dall`apposito compartimento se
+                   non viene usata per lungo tempo.
+
+  ATTENZIONE          : L`unita` deve solamente essere usata quando il coperchio del
+                      compartimento batterie e` stato chiuso.
+
+  ATTENZIONE          : La batteria deve essere propriamente disposta in accordo alle
+                   locali regolamentazioni una volta che il suo uso e` terminato.
+
+   ATTENZIONE      : L`apparecchio puo` essere spedito al costruttore per
+             implementarne il reciclaggio oppure la corretta disposizione al termine
+             della durata operativa.
+
+
+1.2 Simboli
+
+
+Questo apparecchio e` in accordo con la Direttiva relativa alla Strumentazione Medica
+93/42/EEC del 14 Giugno 1993, ossia una direttiva della Comunita` Economica Europea.
+
+
+   : Attenzione. Fare riferimento ai documenti di riferimento.
+
+
+
+
+                                               -3-
+                  Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+
+
+
+       Questo simbolo consiste di due parti, vedere quanto segue.
+
+
+
+Questo simbolo indica che l`apparecchiatura deve essere inviata alle speciali agenzie in accordo
+alle regolamentazioni locali per implementare la raccolta differenzia al termine della sua durata
+d`uso.
+
+
+Questo simbolo indica che l`unita` verra` messa fuori mercato a partire dal 13 Agosto 2005.
+
+
+
+
+                                              -4-
+                  Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+
+Capitolo 2 Introduzione
+
+2.1 Sguardo Generale
+La Serie SONOTRAX Doppler Ultrasonico Portatile rappresenta un`unita` avanzata in campo
+ostetrico in grado di supportare i requisiti d`esame dell`ostetrica.
+Sono disponibili tre differenti modelli: SONOTRAX Basic, SONOTRAX Basic A e
+SONOTRAX Pro.
+La Serie SONOTRAX Doppler Ultrasonico Portatile individua il battito cardiaco fetale (FHR)
+grazie ad una sonda la quale visualizza il valore FHR sullo schermo LCE e ne rende udibile il
+suono direttamente dall`altoparlante.
+La sonda e` appicabile, intercambiabile ed e` dotata di tre opzioni:sonda di monitoraggio
+impermeabile 2.0MHz, sonda impermeabile 2.0MHz e sonda impermeabile 3.0 MHz. La sonda
+viene connessa all`unita` principale tramite una mini-presa USB mentre l`unita` e` in grado
+d`individuare se la sonda e` stata correttamente connessa ed identificare il tipo di sonda usato.
+Gli altoparlanti incorporato emettono il suono con volume regolabile. L`utente e` in grado di
+connettere l`unita` ad un microfono oppure registrarne il suono.
+La fornitura elettrica viene fornita tramite una batteria alcalina standard da 9V (per esempio
+6LR61) oppure una batteria ricaricabile 7.4V. Sullo schermo LCD verra` mostrata l`icona della
+batteria. Quando la batteria e` scarica, l`icona di SONOTRAX Basic lampeggiera` sullo schermo.
+L`icona della batteria per SONOTRAX Basic A e SONOTRAX Pro emettono luce verde durante
+la carica. Quando la batteria e` scarica, l`icona lampeggia.
+L`unita` si spegnera` automaticamente quando la batteria e` scarica oppure quando        nessuna
+operazione viene implementata nell`arco di 1 minuto.
+La modalita` SONOTRAX Basic possiede tutte le funzioni appena menzionate.
+La modalita` SONOTRAX Basic A possiede tutte le funzioni appena menzionate ed inoltre
+possiede la funzione d`impostazione luminosita` controluce per lo schermo LCD.
+La modalita` SONOTRAX Pro possiede tutte le funzioni appena menzionate, inoltre possiede la
+funzione d`impostazione luminosita` controluce per lo schermo LCD con funzione di
+registrazione e riproduzione delle informazioni audio FHR per la durata di 240/480 secondi.
+
+
+
+2.2 Informazioni d`ordine
+
+Gli accessori per l`uso normale forniti oppure approvati dalla EDAN possono essere usati con la
+Serie SONOTRAX Doppler Ultrasonico Portatile.
+
+
+
+
+                                              -5-
+                  Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+
+Accessori                                  Costruttore e numero componente
+
+Gel      di    analisi   (bottiglia   da
+                                           Parker Aquasonic 100 o equivalente, MS2-14019
+0.06litri/0.25litri)
+Sonda impermeabile di monitoraggio
+                                   EDAN, MS3-14214
+2.0MHz
+
+Sonda impermeabile 2.0MHz                  EDAN, MS3-14320
+
+Sonda impermeabile 3.0MHz                  EDAN, MS3-14321
+
+Batteria Alcalina Standard (9V)            NANFU, M21-64048
+
+Batteria ricaricabile                      HENGYU ENERGY, M21-64015
+
+Caricabatterie                             HENGYU ENERGY, M21-64014
+
+
+
+
+                                              -6-
+                 Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+
+
+Capitolo 3 Configurazione
+Modello d`esempio: sonda impermeabile 2.0MHz.
+
+
+    Figura 3-1 Pannello frontale                     Figura 3-2 Pannello posteriore
+
+
+
+
+    Figura 3-3 Pannello superiore                       Figura 3-4 Pannello di sinistra
+
+
+
+
+                                            -7-
+                        Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+  Tavola 1 Modello e relativa configurazione (√ significa configurazione standard)
+
+                Modello
+                                 SONOTRAX Basic / Basic A          SONOTRAX Pro
+  Configurazione
+  Pannello LCD                                  √                             √
+
+  Modello                                       √                             √
+
+  Sonda                                         √                             √
+
+  Altoparlante                                  √                             √
+
+  Pulsante Power                                √                             √
+
+  Clip tascabile allegata                       √                             √
+
+  Compartimento batteria                        √                             √
+
+  Presa auricolari                              √                             √
+
+  Controllo volume                              √                             √
+
+  Pulsante MODE                                 √                             √
+
+  Pulsante START/ STOP                          √                             √
+
+  Pulsante REC/ PLAY                                                          √
+
+  Presa sonda                                   √                             √
+
+
+
+  3.1 Pannello frontale
+
+  3.1.1 Modello
+
+
+
+  3.1.2 Display
+  Durante il test, lo schermo LCD mostra come segue:
+
+  Figura 3-5 LCD display durante il test automatico
+
+      Riproduzione (SONOTRAX Pro)                                  RS232 Porta, Riservata
+
+
+Modalita` di funzione
+                                                                          Registrazione (SONOTRAX Pro)
+
+                                                                          FHR Display
+
+Indicatore batteria
+                                                                         Ripo di sonda
+
+
+
+
+                                                    -8-
+                  Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+3.1.3 Sonde
+(1) Sonda impermeabile per monitoraggio 2.0MHz
+La sonda impermeabile per monitoraggio 2.0MHz puo` essere connessa con l`unita` principale
+della serie SONOTRAX. La sonda multi-cristallo a banda larga puo` essere usata per monitorare
+il battito cardiaco fetale (FHR). La sonda usa una frequenza di 2.0MHz. Puo` essere posizionata
+sull`addome materno trasmettendo onde ultrasoniche a bassa frequenza fino a cuore del feto,
+ricevendo quindi un segnale eco. Vedere sezione 4.1 per i dettagli sulle operazioni.
+
+Figura 3-6 Sonda impermeabile di monitoraggio2.0MHz
+
+
+
+
+                               Cartellino
+
+
+
+                                SN: UXXXX, numero seriale,
+                                composto da ‘U’ e quattro
+                                numeri
+
+Le informazioni principali presenti sull`etichetta sono:
+CM 2.0: C=onda continua, M=multi-componente, 2.0=frequenza centrale di 2.0 MHz.
+MS3-14214: parte numerica della sonda di monitoraggio.
+V1.0: versione numerica della sonda di monitoraggio.
+(2) Sonda impermeabile 2.0MHz
+La sonda impermeabile 2.0MHz puo` essere connessa con l`unita` principale della Serie
+SONOTRAX.
+
+Figura 3-7 Sonda impermeabile 2.0MHz
+
+
+
+
+Le informazioni principali sulla sonda sono qui di seguito fornite.
+CD2.0: CD= onda continua; Doppler, 2.0= la frequenza centrale e` 2.0 MHz.
+MS3-14320: Parte numerica della sonda impermeabile 2.0MHz.
+A: versione numerica per la sonda impermeabile 2.0MHz.
+SNXXXXX: serie numerica per la sonda impermeabile 2.0MHz.
+Waterproof: la sonda e` di tipologia impermeabile.
+IPX8: Codice di Protezione Ingresso Idrico il quale indica che questa sonda puo` funzionare
+
+                                                -9-
+                  Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+senza interruzione per 5 ore quando immersa in acqua alla profondita` di 1 metro.
+(3) Sonda impermeabile 3.0MHz
+
+Figura 3-8 3.0MHz La sonda impermeabile 3.0 MHz puo` essere connessa all`unita` principale della
+Serie SONOTRAX.
+
+
+
+
+Qui di seguito sono descritte le caratteristiche principali della sonda.
+CD 3.0: CD= onda continua; Doppler 3.0= frequenza centrale e` 3.0 MHz.
+MS3-14321: parte numerica per la sonda impermeabile 3.0MHz .
+A: versione numerica per la sonda impermeabile 3.0MHz.
+SNXXXXX: serie numerica per la sonda impermeabile 3.0MHz.
+Waterproof: la sonda e` di tipo impermeabile.
+IPX8: Codice di Protezione Ingresso Idrico il quale indica che questa sonda puo` funzionare senza
+interruzione per 5 ore quando immersa in acqua alla profondita` di 1 metro.
+
+3.1.4 Presa sonda
+Figura 3-9 Presa sonda
+
+
+
+
+La presa della sonda e` mostrata nella Figura 3-9. Le prese sono definite come segue:
+
+
+ Presa                           Definizione
+ 1                               Alimentazione elettrica
+
+
+                                              - 10 -
+                  Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+ 2                                 Segnale
+ 3                                 Codice sonda 1
+ 4                                 Codice sonda 2
+ 5                                 Codice sonda 3
+ 6                                 (Schermatura) GND
+
+
+La sonda impermeabile di monitorizzazione 2.0MHz, quella impermeabile 2.0 MHz e quella
+impermeabile 3.0 MHz sono state sviluppate dalla EDAN e possono essere connesse alla Serie
+SONOTRAX in accordo ai relativi requisiti. Inserire la spina della sonda dell`apposita presa per
+la connessione.
+
+     AVVISO    : Non tentare di connettere alcun altra sonda alla presa eccetto quella
+                impermeabile 2.0MHz e quella 3.0MHz prodotte dalla EDAN.
+
+     AVVISO    : Il tubo di connessione della sonda non puo` essere allungato piu` di 2
+                metri, altrimento la connessione potrebbe venir meno dall`interfaccia
+                della sonda stessa.
+
+
+
+3.2 Premere pulsanti
+Vi sono tre pulsanti (Power, MODE e START/STOP) ed il pulsante di controllo volume della
+Serie SONOTRAX Doppler Ultrasonico Tascabile. Le loro funzioni primarie sono descritte qui di
+seguito:
+
+① Pulsante Power
+
+
+
+Pulsante d`ACCENSIONE/SPEGNIMENTO
+② Pulsante MODE
+
+
+Pulsante selezione di modalita`.
+Premere il pulsante MODE per selezionare la modalita`, premere una volta per passare alla
+prossima modalita` di funzione.
+
+Accendere l`unita` premendo il pulsante Power. L`unita` entra nell`ultima modalita` selezionata
+prima dello spegnimento se la modalita` usata prima dello spegnimento e`
+Modalita`1/Modalita`2/Modalita`3; l`unita` entrera` in Modalita`1 dopo aver implementato il test
+automatico se l`ultima modalita` usata prima dello spegnimento e` Modalita`4/Modalita`5.
+Premere una volta il pulsante MODE, l`unita` passera` alla prossima modalita` di funzione,
+premere il pulsante MODE tre volte (SONOTRAX Basic / SONOTRAX Basic A ) oppure cinque
+
+                                             - 11 -
+                   Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+volte (SONOTRAX Pro ), l`unita` ritornera` alla modalita`di accensione.
+
+③ Pulsante START/STOP
+
+
+
+Premere il pulsante operativo Start/Stop (Modalita`3)/pulsante d`impostazione (Modalita`4/5).
+Si tratta di una modalita` di selezione manuale usata solamente per impostare la modalita` di
+luminosita` controluce e registrazione di frequenza.
+
+④ REC/PLAY (SONOTRAX Pro)
+
+
+
+
+Pulsante di registrazione e riproduzione.
+E` disponibile solamente per modalita` di display FHR in tempo reale, modalita` mefia FHR e
+modalita` manuale.
+In una qualsiasi delle modalita` appena menzionate, tenere premuto il pulsante REC/PLAY tre
+secondi per iniziare la registrazione. La registrazione viene arrestata quando il pulsante
+REC/PLAY viene nuovamente premuto. In una qualsiasi delle modalita` qui di sopra menzionate,
+se e` stata implementata la registrazione, premere il pulsante REC/PLAY per iniziare la
+riproduzione in modalita` di non-registrazione. La riproduzione verra` arrestata quando viene
+nuovamente premuto il pulsante REC/PLAY.
+
+⑤ Indicatore Controllo Volume
+
+
+
+
+Indicatore del livello di volume.
+Dalla sinistra alla destra significa che il livello sonoro viene diminuito.
+
+
+
+3.3 Pannello superiore
+Presa auricolari: presa per audio in uscita, puo` essere connessa con gli auricolari oppure con il
+registratore.
+
+      : Auricolari. La presa, il terminale oppure il pulsante possono essere connessi con gli
+        auricolari.
+
+
+     : Attenzione. Fare riferimento alla letteratura che accompagna l`unita`.
+L`apparecchiatura principale e gli accessori connessi alle interfacce analogiche e digitali devono
+essere certificati in accordo agli standard IEC (per esempio IEC 950 per gli apparecchi di
+elaborazione dati ed IEC 60601-1 per l`apparecchiatura medica). Inoltre, tutte le configurazioni
+devono essere in accordo alla versione del sistema standard IEC 60601-1-1. Chiunque connetta
+
+                                                 - 12 -
+                    Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+apparecchi addizionali al connettore d`entrata/d`uscita del segnale implementa la configurazione
+di un sistema medico e di conseguenza e` responsabile del fatto che il sistema sia in accordo ai
+requisiti della versione valide del sistema standard IEC 60601-1-1. In presenza di dubbi,
+consultare il dipartimento tecnico della nostra compagnia oppure il vostro distributore locale.
+
+
+Interferenza di segnale
+
+Presa auricolari per audio in uscita
+
+        1
+    4
+            2
+                3
+    5
+
+
+Pin
+1                             GND
+2                             Segnale
+3                             Segnale
+4                             Segnale
+5                             Segnale
+
+
+
+
+                                              - 13 -
+                  Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+
+
+Capitolo 4 General Operation
+Per la serie SONOTRAX, accendere l`unita` premendo il pulsante Power, dopo il test automatico,
+l`LCD viene visualizzato come in figura 3-5.
+Se si tratta della sonda impermeabile 2.0 MHz oppure 3.0 MHz, percepire la posizione del feto
+manualmente per trovare la migliore direzione verso il cuore fetale. Applicare la corretta quantita`
+di gel sulla parte sommitale della sonda, posizionare la parte sommitale della sonda sulla
+posizione piu` corretta per l`individuazione del cuore del feto. Regolare la sonda per ottenere un
+buon segnale audio. Regolare il volume in accordo ai requisiti.
+Se si tratta della sonda impermeabile di monitoraggio 2.0 MHz, collegare la fibbia della sonda
+alla cintura. Quindi percepire la posizione del feto manualmente per trovare la migliore direzione
+verso il cuore fetale. Applicare la corretta quantita` di gel sulla parte sommitale della sonda.
+Posizionare la sonda sull`addome e spostarla lentamente fino a quando viene udito il
+caratteristico battito cardiaco del feto. Regolare il controllo del volume se necessario (vedere le
+informazioni seguenti). L`elasticita` della cintura addominale puo` essere regolata in modo tale
+da rendere piu` confortevole la posizione del paziente.
+Dopo aver implementato il test, tenere premuto il pulsante Power per 3 secondi in modo tale da
+disattivare l`unita`.
+
+Note:
+① La migliore qualita` di registrazione viene ottenuta se la sonda e` posizionata nella
+  posizione ottimale.
+② Posizioni con marcato suono placentale (sibilo) oppure con pulsante cordone fetale
+  (pulsazione indistinta del feto) devono essere evitate.
+③ Se il feto e` in posizione cefalica e la madre e` supina, il normale suono cardiaco
+  verra` trovato sulla linea mediana al di sotto dell`ombelico. Durante il monitoraggio,
+  e` necessario evitare una posizione prolungata supina la quale causerebbe
+  ipotensione. Le posizioni di stazionamento sul lettino oppure laterali sono preferibili e
+  possono essere piu` confortevoli per la madre.
+
+④ Non e` possibile implementare il test FHR a meno che il battito cardiaco e` presente.
+  Il battito fetale puo` essere distinto dal battito materno individuando quest`ultimo
+  durante la visita.
+
+4.1 Modalita` Display FHR in tempo reale (Modalita` 1)
+Al momento dell`individuazione del Segnale FHR, lo schermo LCD visualizza il simbolo
+lampeggiante del cuore e simultaneamente il display FHR.
+
+
+
+
+                                               - 14 -
+                  Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+4.2 Modalita` Display Media FHR (Modalita` 2)
+Viene usata per ottenere una lettura piu` stabile della frequenza cardiaca fetale. In questa
+modalita`, l`HFR e` di circa 8 battiti. Il video LCD visualizza l`icona di un cuore pulsante in
+modalita` FHR.
+
+4.3 Modalita` manuale (Modalita` 3)
+Premere una volta il pulsante START/STOP e contare i battiti cardici, iniziare il conto partendo
+dal momento in cui il pulsante e` premuto. Il display LCD visualizza l`icona di un cuore pulsante
+mentre la lettura FHR mostra tre trattini. Premere il pulsante START/ STOP quando viene
+ultimato il conto di 10 (dopo nove intervalli di pulsazione). L`unita` automaticamente calcola il
+FHR derivato medio di un periodo superiore a 10 battiti e visualizza il risultato. Questo valore
+viene memorizzato fino alla prossima misurazione oppure fino a quando la modalita` viene
+modificata.
+
+
+4.4     Modalita` d`Impostazione                        Luminosita`            Controluce
+        (Modalita` 4)
+Questa modalita` e` valida solamente per   SONOTRAX Basic A/ SONOTRAX Pro.
+Premere il pulsante START/STOP per impostare il valore di luminosita` bianco/nero. “OFF”
+viene visualizzato sullo schermo LCD per indicare che la luminosita` banco/nero e` stata
+disattivata, mentre “ON” significa che e` stata attivata.
+
+
+Nota: L`impostazione in questa modalita` puo` essere memorizzata automaticamente quando si
+cambia modalita` oppure quando l`unita` viene spenta.
+
+
+4.5 Modalita` d`Impostazione Frequenza di Registrazione
+    (Modalita` 5)
+Questa modalita` e` valida solamente per SONOTRAX Pro.
+Premere il pulsante START/STOP per impostare la frequenza di registrazione, il display “4”
+significa che la frequenza e` 4KHz, mentre “8” significa che la frequenza e` 8KHz.
+
+Nota: ① L`impostazione in questa modalita` puo` essere memorizzata automaticamente
+         quando si cambia modalita` oppure l`unita` viene disattivata.
+
+       ② Dopo che la frequenza e` stata modificata, le registrazioni relative alla
+         frequenza originale verranno automaticamente annullate.
+
+
+
+
+                                              - 15 -
+                  Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+4.6 Registrazione e riproduzione
+Questa funzione e` valida solamente per    SONOTRAX Pro.
+Registrazione: tenere premuto il pulsante REC/PLAY per 3 secondi in modalita` 1, 2 o 3,
+l`unita` inizia la registrazione, “RECORDING” apparira` sullo schermo LCD. La durata di
+registrazione dipende dalla frequenza di registrazione impostata in modalita` 5. L`unita` registra
+480 sec a frequenza 4 KHz e 240 sec con frequenza 8 KHz.
+L`unita` arrestera la registrazione e ritornera` alla condizione di monitoraggio quando il tempo
+limite e` terminato oppure quando l`utente preme nuovamente il pulsante REC/PLAY.
+Riproduzione: Premere il pulsante REC/PLAY in modalita` 1,2 oppure 3 quando l`unita` non ta
+registrando, sullo schermo LCD apparira` “PLAYING” e l`unita` iniziera` la riproduzione del
+segnale. Quando la riproduzione e` terminata oppure quando l`utente premere il pulsante
+REC/PLAY, l`unita` ritorna alla modalita` di monitoraggio.
+
+4.7 Operazione di analisi con sonda
+(1) Connessione sonda
+Durante il confezionamento da parte del costruttore, una sonda e` stata connessa all`unita`
+SONOTRAX (Figura 4-1). Se l`utente necessita di sostituirla con un`altra, estrarre la prima sonda
+e connettere la seconda (presente nella confezione). Estrarre la sonda dalla confezione e
+connegarla all`apposita presa. La sonda e` ora pronta all`uso.
+Figura 4-1 Connessione della sonda
+
+
+
+
+                                               Giuntura di connessione
+
+
+Nota: Posizionare attentamente la sonda non usata su una superficie stabile evitando
+      che cada, che sbusca spruzzi oppure che venga urtata, ecc... Quando la Sonda
+      della serie SONOTRAX non viene usata per lungo tempo, si consiglia di
+      connettere la spina di una sonda all`apposita presa e posare la seconda sonda.
+      Quindi riposizionare le altre sonde nella confezione.
+
+(2) Estrarre e posizionare la sonda
+Usare come esempio la sonda impermeabile 2.0MHz.
+
+① Estrarre la sonda
+
+
+                                               - 16 -
+                  Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+Reggere saldamente l`unita` principale con una mano mentre reggere con l`altra mano la sonda
+(Figura 4-2). Estrarre la parte sommitale della sonda (Figura 4-3). Estrarre l`intera sonda dalla sua
+posizione di stazionamento (Figura 4-4).
+
+② Posizionamento sonda
+Procedura contraria all`estrazione della sonda.
+Reggere saldamente l`unita` principale con una mano mentre reggere con l`altra mano la sonda
+(Figura 4-2). Posizionare la sonda impugnando la parte mediale dell`unita` (a destra) ed
+inserendola nel supporto apposito (Figura 4-3), quindi premere la parte sommitale della sonda
+(Figura 4-2).
+    Figura 4-2                        Figura 4-3                       Figura 4-4
+
+
+
+
+4.8 Sostituzione delle batterie
+
+Usare come esempio la sonda impermeabile 2.0MHz.
+① Estrazione delle batterie
+Il pannello posteriore deve essere ruotato verso l`alto (Figura 4-5). Aprire il compartimento delle
+batterie facendo riferimento alla direzione delle frecce d`indicazione (Figura 4-6), quindi estrarre
+le batterie dal compartimento batterie, dopo di che scollegare le batterie dal connettore (Figura
+4-7).
+② Sostituzione delle batterie
+Estrarre le nuove batterie dalla confezione, quindi collegarle al connettore apposito, inserirle nel
+compartimento apposito (la direzione delle batterie e` rivolta verso l`interno), chiudere il
+compartimento batterie lungo le direzioni indicate dalle frecce.
+
+
+
+
+                                                  - 17 -
+             Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+Figura 4-5                    Figura 4-6                    Figura 4-7
+
+
+
+
+ATTENZIONE      : Estrarre le batterie dall`apposito compartimento se l`apparecchio
+                  non verra` usato per lungo tempo.
+
+
+
+
+                                           - 18 -
+                   Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+
+
+Capitolo 5 Specifiche dei prodotti
+
+Nome del prodotto: Doppler Ultrasonico Portatile
+Modello numero.: SONOTRAX Basic, SONOTRAX Basic A, SONOTRAX Pro
+Sicurezza
+    In accordo a: EN 60601-1/1990
+Classificazione:
+    Tipologia anti-scossa elettrica: Apparecchiatura internamente elettrificata
+
+
+    Grado di protezione contro le scosse elettriche: Tipologia B
+    Grado di protezione contro potenzialmente pericolose immersioni in acqua:
+    Unita principale: Non -protetta
+    Sonda impermeabile 2.0MHz, Sonda impermeabile 3.0MHz: IPX8C codice di protezione
+    contro immersioni in acqua, cio` indica che la sonda puo` funzionare di continuo per 5 ore
+    quando immersa in acqua ad una profondita` di 1 metro.
+    Grado di protezione in Presenza di Gas Infiammabili: Apparecchiatura non adatta per l`uso in
+                                                     presenza di gas infiammabili
+    Sistema di funzionamento: Apparecchiatura per uso continuo
+    EMC: Gruppo 1 Classe B
+Caratteristiche fisiche
+    Dimensione: 32 (Profondita`) x 85 (Spessore) x 138 (Altezza) mm
+    peso: 290±5g (batteria inclusa)
+Ambiente
+    Operativo:                     Temperatura: +5℃ ∼ +40℃
+                                   Umidita`: ≤80%
+                                   Pressione atmosferica: 860hPa ∼ 1060hPa
+
+     Trasporto e conservazione:     Temperatura di trasporto: -20℃ ∼ + 55℃
+                                   Temperatura di conservazione: -10℃ ∼ + 55℃
+                                   Umidita`: 25%～93%
+                                      Pressione atmosferica: 860hPa ∼1060hPa
+Display: 45*25mm display LCD
+Prestazione FHR
+    Raggio di Misurazione FHR: 50BPM~210BPM
+    Risoluzione: 1BPM
+
+
+                                               - 19 -
+                  Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+    Accuratezza: ±3BPM
+Registrazione e Riproduzione
+   Frequenza audio di campione: 4KHz /8KHz
+   Durata di registrazione: 480s/240s
+   La registrazione puo` essere riprodotta
+Controluce bianca
+     Due luminosita` regolabili: OFF, ON
+Alimentazione Audio d`entrata: 0.5W
+Spegnimento automatico: dopo 1 minuto di assenza segnale, l`unita` si spegne automaticamente
+Tipo di batterie raccomandato: batteria alcaline 9 volt DC.
+                            IEC tipologia N. 6LR61/6LF22 o equivalenti.
+                            Durata delle batterie (6LR61) oltre 250 esami (si tratta di un
+                            valore medio basato su una durata di 1 minuto per test – tale
+                            numero puo` variare a seconda dell`uso).
+Batterie ricaricabili
+    Normale temperatura di ricarica: 0℃ ∼ 45℃
+
+    Temperatura di conservazione: -20℃ ∼ 35℃
+
+    Carica normale: ≥14-16h, 15mA
+
+    Durata operativa≥500 volte
+
+Ultrasuoni
+    Frequenza nominale (Sonda di monitoraggio Impermeabile 2.0MHz / Sonda Impermeabile
+    2.0MHz / Sonda Impermeabile 3.0MHz): 2.0MHz/ 2.0MHz/ 3.0MHz
+    Frequenza operativa (Sonda di monitoraggio Impermeabile 2.0MHz / Sonda Impermeabile
+    2.0MHz / Sonda Impermeabile 3.0MHz): 2.0MHz±10%/ 2.0MHz±10%/ 3.0MHz±10%
+    P-: <1MPa
+    Iob<10 mW/cm2
+    Ispta: <100mW/cm2
+    Modalita` di funzionamento: onde Doppler continue
+   Area effettiva del trasduttore (Sonda di monitoraggio Impermeabile 2.0MHz / Sonda di
+   monitoraggio Impermeabile 2.0MHz / Sonda di monitoraggio Impermeabile 3.0MHz): 113
+   mm2±15%/ 245mm2±15%/ 245mm2±15%
+
+
+
+
+                                            - 20 -
+                   Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+
+Capitolo 6 Manutezione
+
+6.1 Manutenzione
+La superficie della sonda acustica e` fragile e deve essere maneggiata con cura.
+Il gel deve essere eliminato dalla sonda dopo l`uso. Questo tipo di precauzioni aumentano la
+durata operativa dell`unita`.
+L`utente deve controllare prima dell`uso che l`unita` non sia affetto da visibile danno di tale
+magnitudine tale da costituire un pericolo per la sicurezza del paziente oppure per l`accuratezza
+della Serie SONOTRAX. L`intervallo d`ispezione raccomandato e` una volta al mese o anche
+piu` frequentemente. Se il danno e` evidente, la sostituzione e` vivamente raccomandata prima
+dell`uso.
+The equipment should undergo periodic safety testing to insure proper patient isolation from
+leakage currents. This should include leakage current measurement. The recommended testing
+interval is once every two years or as specified in the institution’s test and inspection protocol.
+The accuracy of FHR is controlled by the equipment and can not be adjusted by user. If the FHR
+result is distrustful, please use other method such as stethoscope to verify immediately or contact
+local distributor or manufacturer to get help.
+
+6.2 Pulizia
+Prima della pulizia, spegnere l`unita` ed estrarre le batterie.
+Preservare la superficie esterna dell`apparecchio pulita e libera da polvere e sporcizia, pulirla con
+un panno morbido se necessario (schermo incluso) ed usare una soluzione di acqua e sapone,
+asciugarla immediatamente dopo.
+Pulire la sonda con un panno asciutto per rimuovere qualsiasi gel rimasto. Ripulire la sonda con
+sapone ed acqua solamente.
+
+   ATTENZIONE          : Non usare solventi aggressivi come acetone.
+
+   ATTENZIONE           : Non usare sostanze abrasive come per esempio spazzole in
+                          acciaio oppure lubrificanti per metalli.
+
+   ATTENZIONE          : Non permettere che alcun liquido entri all`internoo dell`unita`, non
+                         immergere alcuna sua componente in liquidi.
+
+     ATTENZIONE             :   Evitare    di   versare     alcun   liquido   sull`unita`   durante
+                         l`implementazione della pulizia.
+
+   ATTENZIONE          : Non lasciare alcuna sporcizia sull`unita`.
+
+
+
+                                                 - 21 -
+                 Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+Note:
+
+Ripulire la superficie della sonda con una soluzione a base di etanolo al 70% oppure
+alcool isopropanolo, lasciare la soluzione asciugarsi all`aria oppure ripulire con un panno
+pulito ed asciutto.
+
+6.3 Disinfezione
+
+Ripulire la superficie esterna dell`unita`, della sonda, ecc... come sopra descritto. Per la
+disinfezione della sonda di monitoraggio impermeabile 2.0 MHz/ sonda impermeabile/ sonda
+impermeabile 3.0 MHz, immergere la sonda nella soluzione di Benzalconio Bromide, 0.5%
+Clorexidina, 2% Glutaraldeide oppure 75% di etalono per la disinfezione. Pulire la sonda con un
+panno pulito ed asciutto per rimuovere qualsiasi umidita` presente.
+
+Nota: prego prestare attenzione alla sommita` sonda quando quest`ultima viene
+      immersa al fine di evitare che il liquido si sterilizzazione entri all`interno della
+      presa della sonda.
+
+
+   ATTENZIONE        : Non sterilizzare la sonda oppure l`intera unita` con vapore a bassa
+                        temperatura oppure altri metodi.
+
+
+
+
+                                             - 22 -
+                  Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+
+Capitolo 7 Garanzia e Servizi
+Garanzia
+L`unita` non puo` essere riparata dall`utente. Tutti i servizi devono essere effettuati da ingegneri
+approvati dalla EDAN. L`unita` viene garantita per un periodo di 12 mesi, valida dalla data di
+acquisto. La EDAN garantisce che ogni prodotto e` privo di difetti di funzionamento ed i
+materiali sono conformi alle specificazioni standard definite in questa documentazione. Se il
+prodotto non funziona come garantito durante il periodo di garanzia, la nostra compagnia lo
+riparera` oppure sostituira` senza alcun costo aggiuntivo. Il deterioramento, l`improprio uso
+possono annullare questo servizio.
+Su richiesta, la EDAN puo` fornire la documentazione tecnica oppure i diagrammi agli ingegneri
+qualificati ed approvati dalla EDAN stessa. Se richiesto, prego contattateci.
+
+
+Servizio d`Assistenza
+Per usufruire dei servizio d`assistenza e per qualsiasi chiarimento circa l`unita`, prego contattare
+il costruttore oppure il nostro distributore locale.
+Costruttore: Edan Instruments, Inc.
+Indirizzo: 3/F-B, Nanshan Medical Equipments Park, Nanhai Rd 1019#, Shekou, Nanshan
+Shenzhen, 518067 P.R. CHINA
+TEL: +86-755-26882220
+FAX: +86-755-26882223
+E-Mail: support@edan.com.cn
+
+
+
+
+                                               - 23 -
+                   Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+
+
+ Appendice 1 EMC Informazioni-Guida e Dichiarazione
+             del Costruttore
+
+A1.1 Emissioni elettromagnetiche – per tutti gli equipaggiamenti
+      e sistemi
+
+          Guida e dichiarazione del costruttore–emissioni elettromagnetiche
+
+  La serie SONOTRAX Doppler Ultrasonico Portatile e` stata designata per l`uso in ambienti
+  elettromagnetici qui di seguito specificati. Il cliente oppure l`utente dell`apparecchio devono
+  assicurarsi di usare l`unita` in tali ambienti.
+
+       Test
+                     Conformita`               Ambiente elettromagnetico–guida
+     emissivo
+
+                                      La serie SONOTRAX Doppler Ultrasonico Portatile usa
+                                      energia RF solamente per le sue funzioni interne. Di
+    Emissioni RF
+                         Gruppo 1     cosenguenza, la sue emissioni RF sono molto basse e non
+     CISPR 11
+                                      possono causare alcun tipo d`interferenza circa gli
+                                      apparecchi elettronici situati nelle vicinanze.
+
+
+                                      La serie SONOTRAX Doppler Ultrasonico Portatile e` adatta
+    RF emission                       all`uso in qualsiasi tipo di installazione, incluse abitazioni
+                         Classe B
+     CISPR 11                         domestiche e strutture direttamente connesse alla rete di
+                                      voltaggio pubblico.
+
+
+
+ A1.2 Immunita` Elettromagnetica – per tutti gli equipaggiamenti
+     e sistemi
+
+          Guida e dichiarazione del costruttore–immunita` elettromagnetica
+  La serie SONOTRAX Doppler Ultrasonico Portatile e` stata designata per l`uso in ambienti
+  elettromagnetici qui di seguito specificati. Il cliente oppure l`utente dell`apparecchio devono
+  assicurarsi di usare l`unita` in tali ambienti.
+
+
+        Test              IEC 60601livello         Livello di              Guida ambiente
+    d`immunita`                 test              conformita`             elettromagnetico
+                                                                     La pavimentazione dovrebbe
+                                                                     essere in legno, cemento
+         Scarica                                                     oppure in piastrelle di
+                            ±6 kV contatto        ±6 kV contatto
+  elettrostatica (ESD)                                               ceramica. Se il pavimento e`
+     IEC 61000-4-2            ±8 kV aria            ±8 kV aria       coperto      da      materiale
+                                                                     sintetico, l`umidita` relativa
+                                                                     deve essere almeno di 30%.
+
+
+                                                - 24 -
+                 Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+
+A1.3 Immunita` Elettromagnetica – per tutti gli equipaggiamenti
+    e sistemi non di supporto vitale
+
+       Guida e dichiarazione del costruttore–immunita` elettromagnetica
+La serie SONOTRAX Doppler Ultrasonico Portatile e` stata designata per l`uso in ambienti
+elettromagnetici qui di seguito specificati. Il cliente oppure l`utente dell`apparecchio devono
+assicurarsi di usare l`unita` in tali ambienti.
+     Test          IEC 60601 livello      Livello di
+                                                          Guida ambiente elettromagnetico
+ d`immunita`             test            conformita`
+                                                         Nessuna apparecchiatura portatile e
+                                                         per comunicazioni RF deve essere
+                                                         usata non in stretta vicinanza alle
+                                                         unita` della serie SONOTRAX Doppler
+                                                         Ultrasonico Portatile, inclusi cavi ed ad
+                                                         una distanza inferiore a quella
+                                                         raccomandata           e         calcolata
+                                                         direttamente               dall`equazione
+                                                         applicabile    alla     frequenza      del
+RF irradiato     3 V/m                                   trasmettitore.
+IEC 61000-4-3    Da 80 MHz a 2.5        3 V/m            Recommended separation distance
+                 GHz                                         3.5 
+                                                         d =  P           80 MHz to 800 MHz
+                                                             E1 
+                                                            7
+                                                         d =  P           800 MHz to 2.5 GHz
+                                                             E1 
+                                                         dove P rappresenta il tasso di corrente
+                                                         massima in uscita dal trasmettitore in
+                                                         watt (W) ed in accordo alle indicazioni
+                                                         fornite dal costruttore, d rappresenta
+                                                         la distanza di separazione in metri
+                                                         (m).
+                                                         I campi di forza provenienti dai
+                                                         trasmettitori fissi RF, come determinati
+                                                         da una ricerca effettuata direttamente
+                                                         su campo elettromagnetico, devono
+                                                         essere inferiori al livello di conformita`
+                                                         in ogni raggio di frequenza.
+                                                         Interferenza potrebbe verificarsi in
+                                                         prossimita`         dell`equipaggiamento
+                                                         segnato con il seguente simbolo:
+
+
+
+
+NOTA 1 A 80 MHz ed a 800 MHz,viene applicato il raggio di frequenza superiore.
+NOTA 2 Queste linee guida possono non venir applicate in ogni situazione. La propagazione
+elettromagnetica viene affetta dall`assorbimento e riflessione di strutture, oggetti e persone.
+
+
+
+
+                                              - 25 -
+                   Manuale d`uso Doppler Ultrasonico Portatile Serie SONOTRAX
+ a
+      I campi di forza provenienti da trasmettitori fissi, come per esempio stazioni radio
+ (cellulari/cordless), telefoni, radio mobili, radio amatoriali, trasmissioni radio AM ed FM e
+ trasmissioni TV non possono essere teoricamente predetti con accuratezza. Al fine di valutare
+ l`ambiente elettromagnetico derivante da trasmettitori RF fissi, deve necessariamente venir
+ implementata una ricerca sul sito d`interesse. Se la forza del campo magnetico misurata nella
+ localita` in cui viene usata la serie SONOTRAX Doppler Ultrasonico Portatile supera il livello di
+ conformita` indicato, l`unita` deve essere testata per verificarne la corretta affidabilita`. Se viene
+ notata una prestazione anormale, e` necessario assumere le necessarie misure per correggere
+ tale difetto, come per esempio re-orientamento oppure re-posizionamento della serie
+ SONOTRAX Doppler Ultrasonico Portatile. Oltre il raggio di frequenza di 150 KHz fino a 80 MHz,
+ i campi di forza devono essere inferiori a 3V/m.
+
+A1.4 Distanza di separazione raccomandata
+     Distanza di separazione raccomandata tra le apparecchiature portatili/mobili RF di
+            comunicazioni e la Serie SONOTRAX Doppler Ultrasonica Portatile
+
+La Serie SONOTRAX Doppler Ultrasonico Portatile e` designata per l`uso in ambiente
+elettromagnetico in cui le interferenze RF sono controllate. Il cliente oppure l`utente dell`unita`
+puo` prevenire l`interferenza elettromagnetica mantenendo una distanza minima tra le
+apparecchiature portatili/mobili RF (trasmettitori) e la Serie SONOTRAX Doppler Ultrasonico
+Portatile come di seguito raccomandato, in accordo alla massima potenza in uscita da parte
+dell`equipaggiamento di comunicazioni.
+
+                         Distanza di separazione in accordo alla frequenza del trasmettitore
+Potenza massima                                         (m)
+stimata in uscita
+dal trasmettitore          Da 80 MHz a 800 MHz                      Da 800 MHz a 2.5 GHz
+       (W)                          3.5                                   7
+                                d =  P                                 d =  P
+                                    E1                                     E1 
+        0.01                        0.1167                                  0.2334
+         0.1                        0.3689                                  0.7378
+          1                         1.1667                                  2.3334
+         10                         3.6893                                  7.3786
+        100                        11.6667                                  23.3334
+
+
+Per i trasmettitori valutati alla massima potenza in uscita non listati precedentemente, la distanza
+di separazione raccomandata in metri (m) puo` venir stimata usando l`equazione applicabile alla
+frequenza del trasmettitore, dove P rappresenta il tasso di corrente massima in uscita dal
+trasmettitore in watt (W) ed in accordo alle indicazioni fornite dal costruttore.
+NOTA 1 A 80 MHz ed a 800 MHz,viene applicato il raggio di frequenza superiore.
+NOTA 2 Queste linee guida possono non venir applicate in ogni situazione. La propagazione
+elettromagnetica viene affetta dall`assorbimento e riflessione di strutture, oggetti e persone.
+
+
+
+
+                                                  - 26 -
+                                                          SONOTRAX Series Ultrasonic Pocket Doppler User Manual
+
+
+
+Appendice 2 Sensibilita` generale
+ Sensibilita` Generale (sonda 2MHz)
+                            Perdita di riflessione               Attenuazione doppia
+ Diametro del                       A(d)                              B=∑Ba+Bw                                                                        V (r.m.s.) 
+                                                                                                                                                                          Sensibilita`
+                 Distanza                                                                                                              C = 20 log10  s
+   reflettori                                                                                           Vs (r.m.s.)       Vn (r.m.s)                                     generale
+                    (d)                                         ∑Ba                   Bw         B                                                    Vn (r.m.s.) 
+  bersaglio                                                                                                 mV               mV                                         (S=A(d)+B+C)
+                  (mm)                                     (T:mm    Ba:dB)           (dB)      (dB)                                                dB
+     (mm)                                                                                                                                                                    dB
+
+
+                                                     T    20    4.8    4.0    -
+                    50              45.7                                              0        57.6        186               94                  5.93                       109.2
+                                                     Ba   40    9.6    8.0    -
+
+                                                     T    20    4.8    3.4    -
+                    75              45.7                                              0        56.4        175               90                  5.78                       107.8
+     1.58                                            Ba   40    9.6    6.8    -
+  A=45.7dB@
+    2MHz                                             T    20    4.8    3.4    -
+                   100              45.7                                              0        56.4        174               89                  5.82                       107.9
+                                                     Ba   40    9.6    6.8    -
+
+                                                     T    20    4.8     -     -
+                   200              45.7                                              0        49.6        173               90                  5.68                       100.9
+                                                     Ba   40    9.6     -     -
+
+                                                     T    20    4.8    3.4   2.2
+                    50              43.2                                              0        60.8        178               89                  6.02                       110.0
+                                                     Ba   40    9.6    6.8   4.4
+                                                     T    20    4.8    3.4    1
+                    75              43.2                                              0        58.4        170               90                  5.52                       107.1
+     2.38                                            Ba   40    9.6    6.8    2
+  A=43.2dB@
+    2MHz                                             T    20    4.8    3.4    -
+                   100              43.2                                              0        56.4        165               85                  5.76                       105.3
+                                                     Ba   40    9.6    6.8    -
+                                                     T    20    4.8    1      -
+                   200              43.2                                              0        51.6        160               85                  5.49                       100.2
+                                                     Ba   40    9.6    2      -
+
+Frequenza doppler (Hz)       333                                                                      Velocita` bersaglio (cm/s)        12.5
+
+
+
+
+                                                                                      - 27 -
+                                                          SONOTRAX Series Ultrasonic Pocket Doppler User Manual
+
+
+
+ Sensibilita` generale (Sonda 3.0 MHz)
+
+                            Perdita di riflessione                   Attenuazione doppia
+ Diametro del                       A(d)                                  B=∑Ba+Bw                                                                     V (r.m.s.) 
+                 Distanza                                                                                                               C = 20 log10  s              Sensibilita` generale
+   reflettori                                                                                               Vs (r.m.s.)    Vn (r.m.s)
+                    (d)                                                                                                                                Vn (r.m.s.)       (S=A(d)+B+C)
+  bersaglio                                                                                                     mV            mV
+                  (mm)                                         ∑Ba                     Bw             B                                             dB                             dB
+     (mm)
+                                                          (T:mm   Ba:dB)              (dB)          (dB)
+
+ 1.58                                                T    10     4        -    -
+ A=44.5dB@          50                                                                 0            61.5       179            90                  5.97                          111.9
+ 3MHz                                                     43.
+                                                     Ba         17.9      -    -
+                                                           6
+                                                     T    10     3        -    -
+                    75                                    43.                          0            57.2       186            94                  5.93                         107.63
+                                                     Ba         13.5      -    -
+                                                           6
+                                                     T    10     3        -    -
+                   100                                    43.                          0            57.2       173            88                  5.87                          107.5
+                                                     Ba         13.5      -    -
+                                                           6
+                                                     T    10     1        -    -
+                   200                                    43.                          0            50.2       171            89                  5.67                          100.3
+                                                     Ba         6.5       -    -
+                                                           6
+ 2.38                                                T    10     4        -    -
+ A=42.0dB@          50                                                                 0            61.5       194            88                  6.73                          110.2
+ 3MHz                                                     43.
+                                                     Ba         17.9      -    -
+                                                           6
+                                                     T    10     3        -    -
+                    75                                    43.                          0            57.2       172            87                  5.92                          105.1
+                                                     Ba         13.5      -    -
+                                                           6
+                                                     T    10     2        -    -
+                   100                                    43.                          0            53.2       165            85                  5.76                          100.9
+                                                     Ba         9.6       -    -
+                                                           6
+                                                     T    10     1        -    -
+                   200                                                                 0            50.2       160            84                  5.59                           97.8
+                                                          43.
+                                                     Ba         6.5
+                                                           6
+
+Frequenza Doppler (Hz)      500                                                                            Velocita` bersaglio (cm/s)   12.5
+
+
+
+
+                                                                                           - 28 -
+                  EDAN INSTRUMENTS, INC.
+3/F-B, Nanshan Medical Equipments Park, Nanhai Rd 1019#, Shekou,
+             Nanshan Shenzhen, 518067 P.R. CHINA
+        TEL: ＋86-755-26882220 FAX: ＋86-755-26882223
+                    RAPPRESENTANZA EC
+      Shanghai International Holding Corp. GmbH (Europa)
+          Eiffestrasse 80, D-20537 Amburgo Germania
+          TEL: +49-40-2513175 FAX: +49-40-255726
+                 E-mail: antonjin@yahoo.com.cn
+

@@ -1,0 +1,1715 @@
+       INSTRUCTION MANUAL
+IntelliSense® Blood Pressure Monitor
+
+   Model HEM-907XL
+
+
+                                                             SYS
+                                                                                                           ®
+
+
+
+
+                                                                    mmH
+                                                                              g
+                                                       DIA
+
+
+
+
+                                                                   mmH
+                                                  PULS
+                                                         E               g
+
+
+                                                                                                  ON/O
+                                                                   BPM                                FF
+                                                                             AC
+
+
+
+                                                                         HID
+                                                                              E
+                                                                                             STA
+                                           P-S
+                                                                                                   RT
+                                               ET
+                                         140
+                                   100           180
+                                                                     MO
+                                                                             DE
+                                                       220    AVG SINGL
+                                                                 .      E
+                                                                              MA
+                                 AUT                                               NU.
+                                    O              260                            CHE
+                                               280                                    CK
+
+
+
+                                                                                           STO
+                                                                                              P
+                X
+               A
+               M
+
+                    EX
+                   IND
+
+
+
+
+                                                                                                                            ENGLISH
+                            T.
+                          AR
+
+
+
+
+                                                                                                               1628519-0K
+                    INTRODUCTION
+Thank you for purchasing the OMRON IntelliSense® Blood Pressure Monitor.
+
+
+     Please thoroughly read this Instruction Manual before using this monitor to
+     ensure safe and accurate use.
+     Please keep this manual near the monitor all the time for future reference.
+
+
+
+
+                                       2
+                         TABLE OF CONTENTS
+  Intended Use..............................................................................................................................................................4
+
+
+
+Be Sure to Read This Section
+  Exemptions. ...............................................................................................................................................................4
+  Notes on Safety. ........................................................................................................................................................5
+
+
+
+Know Your Unit
+  Features of the Product.............................................................................................................................................9
+  Components of the Product.....................................................................................................................................10
+  Features and Functions........................................................................................................................................... 11
+    Names of the Parts.............................................................................................................................................11
+    Functions and setting while the unit is in use.....................................................................................................13
+
+
+
+Preparations before Measurement
+  How to Apply the Cuff..............................................................................................................................................15
+  How to Use the Power Source. ...............................................................................................................................17
+    How to Use the AC Adapter. ..............................................................................................................................18
+    Installation and Replacement of Battery Pack....................................................................................................19
+
+
+
+How to Measure Blood Pressure
+  List of Measurement Modes. ...................................................................................................................................20
+      SINGLE Mode.....................................................................................................................................................21
+      AVG Mode. .........................................................................................................................................................23
+      MANU Mode. ......................................................................................................................................................25
+      How to Check Pressure Accuracy......................................................................................................................27
+  How to Clean the Unit after Use..............................................................................................................................28
+  List of Error Codes...................................................................................................................................................29
+  Troubleshooting. ......................................................................................................................................................30
+
+
+
+Specifications
+  Caution.....................................................................................................................................................................31
+  Five Year Limited Warranty......................................................................................................................................31
+  Specifications...........................................................................................................................................................32
+  FCC/ISED Statement...............................................................................................................................................33
+
+
+
+
+                                                                                         3
+                                                                 Be Sure to Read This Section
+
+
+
+                         INTENDED USE
+The device is a digital monitor intended for use in measuring blood pressure and pulse rate in
+adult patient population with arm circumference ranging from 7 inches to 20 inches (17 cm to
+50 cm).
+
+
+
+
+                            EXEMPTIONS
+   OMRON does not accept liability and warranty becomes void under the following
+   circumstances:
+   1. When persons, not authorized by OMRON, perform repairs or modifications of this
+      product.
+   2. When use and/or operation of this device is adversely effected by a device not
+      manufactured by OMRON.
+   3. When use and/or operation of this device is adversely effected by use of parts, not
+      authorized by OMRON, to repair or modify this product.
+   4. When Notes on Safety or Instructions for Use contained in this manual are not followed.
+   5. When use and/or operation of this device is effected by an act of nature, such as fire,
+      earthquake, flood or other natural disasters.
+
+
+
+
+   1. The product and contents of this Instruction Manual may be changed without prior notice.
+   2. We have prepared the contents of this Instruction Manual thoroughly. However, if an
+      inadequate description or error is found, please let us know.
+   3. Reproducing or copying any or all of this Instruction Manual without OMRON’s written
+      consent is prohibited.
+
+
+
+
+                                              4
+                      NOTES ON SAFETY
+• The warning signs and the sample icons shown here are listed to insure safe and accurate use.
+• The icons and meanings are as follows.
+  Warning sign                                                   Contents
+
+                   Indicates matters in which death or severe bodily damage may arise as a result
+                   of incorrect handling.
+                   Indicates matters in which bodily harm or material damage* may arise as a
+                   result of incorrect handling.
+      * Material damage refers to a wide range of damage involving your house, household goods, domestic animals, and pets.
+                                                    Examples of signs
+
+                                The     icon indicates caution (including warning and danger).
+                                Matters involving actual caution are indicated by text or pictures in or near              .
+                                The pictured icon refers to “caution for flammability”.
+
+                                The     icon indicates prohibitions (what you cannot do).
+                                Matters involving actual prohibitions are indicated by text or pictures in or near                 .
+                                The pictured icon refers to “prohibition to disassemble”.
+
+                                The      icon indicates something that is compulsory (always follow).
+                                Matters involving actual compulsory actions are indicated by text or pictures in or near       .
+                                The pictured icon refers to “unplugging the power source plug”.
+
+
+
+
+ Self diagnosis of measured results or treatment is dangerous. Please follow
+ the instruction of the doctor or healthcare provider.
+ Do not adjust medication based on measurement results from this blood
+ pressure monitor. Take medication as prescribed by your physician. Only a
+ physician is qualified to diagnose and treat High Blood Pressure.
+ If cuff inflation does not stop, remove the cuff or pull out the air tube from the
+ main unit.
+
+ If battery fluid gets into your eye or comes in contact with skin, wash the effected
+ area with water repeatedly. Immediately consult a doctor for treatment.
+
+ Do not wrap the cuff over an arm to which intravenous injection or transfusion
+ is being conducted, or when otherwise contraindicated.
+
+ Do not connect the air tube or the cuff to other equipment which is connected
+ to an intracorporeal organ. Air embolisms may result.
+
+ Do not use this unit in the presence of flammable gas or anesthetics or in a
+ high pressure oxygen room or oxygen tent.
+ Do not use the battery pack for devices other than for this unit.
+ Do not disassemble the battery pack.
+
+ Do not touch the AC adapter with wet hands.
+
+
+                                                               5
+                  NOTES ON SAFETY
+
+Unplug the AC adapter from the electric outlet if this unit is unused for an
+extended period of time.
+
+Unplug the AC adapter from the electric outlet when installing, removing, or
+cleaning the unit.
+
+
+
+Confirm readings with a stethoscope when an irregular pulse wave is
+displayed or when the measured value is questionable or erratic.
+
+Use an AC adapter indicated for use with a power supply of 110 VAC.
+
+Do not share an electric outlet with other unit or electric appliance.
+
+After cleaning this unit, dry it well before plugging the AC adapter in the
+electric outlet.
+
+If this unit fails to perform as indicated, discontinue use, turn off the unit,
+unplug the AC adapter from the electric outlet, and contact OMRON’s repair
+department.
+
+
+Do not disassemble or modify this unit.
+
+
+Do not use any cuff other than the models exclusive for this unit.
+
+Do not use this unit on infants.
+
+Do not use this unit on patients using a pump oxygenator.
+Do not use an AC adapter or battery pack not specified for this unit.
+
+
+
+
+                                               6
+                  NOTES ON SAFETY
+
+Do not use a cellular phone near this unit.
+Do not use this unit in a vehicle.
+Do not install the parts and/or instruments not specified for this unit.
+Do not use a broken power cord or AC adapter.
+
+
+Do not install or store this unit where it may come in contact with water or
+liquid medication.
+This is a Class II device with double insulation.
+
+                                        General advice
+Do not place or put anything on this unit.
+Do not drop this unit.
+Turn off power to the unit and unplug the AC adapter from the electric outlet before moving
+the unit.
+Read the instruction manual of the other devices to be used at the same time with this unit, to
+understand and be aware of the interaction between the devices.
+When using the unit
+• Do not inflate the cuff without being wrapped over the arm.
+• Do not use a damaged cuff.
+• Be sure that patients do not touch the Buttons of this unit.
+After using the unit
+•D o not disinfect this unit by autoclave or gas sterilization (EtO, gluteraldehyde, or high
+  concentration ozone).
+Do not install or store this unit in the following places.
+• Under the direct sunlight,
+• Dusty or salty environment,
+• Places having slope, vibration, and/or shock,
+• Storage of chemicals or where combustable gas may be generated,
+• Under high temperature and high humidity.
+
+
+
+
+                                                  7
+                    NOTES ON SAFETY
+­­­­Maintenance and inspection
+1. Check the unit operation on regular basis.
+2. If this unit has not been used for more than three months, be sure to check that this unit
+   operates normally and safely before use.
+
+
+
+Troubleshooting
+If device error 9 (Er9) occurs, take the following procedure promptly:
+(1) Remove the cuff from the patient’s arm.
+(2) Turn off the power of the unit and unplug the AC adapter from the electric outlet.
+(3) Display “Out of use” on this unit so that it cannot be used.
+(4) Contact Omron Healthcare’s Customer Service at 1-877-216-1336.
+
+
+
+
+                                                8
+                                                                    Know Your Unit
+
+
+   FEATURES OF THE PRODUCT
+OMRON IntelliSense® Blood Pressure unit, Model HEM-907XL is developed to measure blood
+pressure and pulse rate accurately and simply in a doctor’s office, examination room,
+or patient bedside.
+• One-button operation
+Simply wrap the cuff and push the START Button. Blood pressure and pulse rate are automatically
+measured by the oscillometric method.
+
+• Automatic pressure setting
+When the P-SET (Pressure Setting) Knob is set to “AUTO”, the unit will automatically inflate the
+cuff to the optimal pressure according to each patient’s blood pressure. Pre-setting inflation level
+is not necessary.
+
+• Noiseless operation
+This unit operates so quietly that it can be used in the patient room at night.
+
+• Average Mode (AVG Mode)
+In the AVG Mode, this unit will automatically measure for two or three times. The average of
+systolic and diastolic blood pressures and pulse rate are displayed. Each measurement can also
+be shown individually. The number of measurements, waiting time before first measurement, and
+the interval can be changed.
+
+• Auscultation Mode (MANU Mode)
+You can measure auscultatory blood pressure by using a stethoscope, with automatic cuff inflation
+and deflation by this unit. Because the cuff pressures during deflation are displayed digitally and
+synchronized with the heart beat, they can be read with accuracy. After taking systolic reading
+you can accelerate cuff deflation to shorten measurement time.
+
+• Large and easy to read display
+Large and easy to read figures are displayed on the LCD display.
+
+
+
+
+The IntelliSense® Monitor inflates the cuff to the ideal level with each use. No adjustments are
+required by the user to select an inflation level. This is especially convenient for hypertensive
+users and for people with certain arrhythmia or heart disorders, because their blood pressure is
+likely to fluctuate. The advantage is Personalized Inflation for maximum comfort.
+
+
+
+
+                                                    9
+COMPONENTS OF THE PRODUCT
+    Main unit
+
+IntelliSense® Blood Pressure
+Monitor, Model HEM-907XL                                                    ®
+
+
+
+                                                                                ®
+
+
+
+
+  Accessories             (Included and also available separately)
+                                                                                                     Cuff / bladder set Large
+                                                                                                     (with built-in bladder) *
+                                                                                                     Model: HEM-907-CL19
+                                                                                                     Applicable arm circumference:
+                                                                                                     13" to 17" ( 32 to 42 cm)
+
+
+                                                                                                     Cuff / bladder set Medium
+Cuff / bladder set Extra Large                                                                       (with built-in bladder) *
+(with built-in bladder) *                                                                            Model: HEM-907-CR19
+Model: HEM-907-CX19                                                                                  Applicable arm circumference:
+For use with the HEM-907XL                                                                           9" to 13" (22 to 32 cm)
+unit only.
+Applicable arm circumference:
+17" to 20" ( 42 to 50 cm)                                                                            Cuff / bladder set Small
+                                                                                                     (with built-in bladder) *
+                                                                                                     Model: HEM-907-CS19
+                                                                                                     Applicable arm circumference:
+                                                                                                     7" to 9" (17 to 22 cm)
+
+
+
+
+AC adapter                       Air tube 1.3m (51 3/16") *            Battery pack (48H907N)          Instruction Manual
+Model: HEM-ADPT907               Model: HEM-TUBE-130XL                 Model: HEM-907-PBAT
+
+                                                                                                                  INSTRUCTION MANUAL
+                                                                                                           IntelliSense® Blood Pressure Monitor
+
+                                                                                                               ModelHEM-907XL
+
+
+                                                                                                                                                                      S YS
+                                                                                                                                                                                                                 ®
+
+
+
+
+                                                                                                                                                                               mm Hg
+                                                                                                                                                                DIA
+
+
+
+
+                                                                                                                                                                            mm
+                                                                                                                                                           PU LS                 Hg
+                                                                                                                                                                      E
+
+
+
+                                                                                                                                                                                                        ON/OFF
+                                                                                                                                                                             BPM
+                                                                                                                                                                                        AC
+
+
+
+                                                                                                                                                                                   HIDE
+                                                                                                                                                                                                   STAR
+                                                                                                                                                      P-SET                                                T
+                                                                                                                                                    140
+                                                                                                                                              100         180
+                                                                                                                                                                                MODE
+                                                                                                                                                                220       AVG. SINGLE
+
+                                                                                                                                                                                        MANU.
+                                                                                                                                            AUTO
+                                                                                                                                                             260                         CHECK
+                                                                                                                                                          280
+
+
+
+                                                                                                                                                                                                 STOP
+
+
+
+
+                                 The air tube is available for the
+                                                                                                                                       T.
+                                                                                                                                     AR
+
+
+
+
+                                 large, medium or small cuff size.
+                                 It is NOT for use with the
+                                 extra-large cuff size.
+
+                     Items identified with an asterisk (*) are consumables and not covered by the guarantee.
+
+                                                            10
+     FEATURES AND FUNCTIONS
+Names of the Parts
+   Main unit
+
+           1. Display
+(See Page 12 for detail)
+
+                                                           SYS
+                                                                                                                       6. ON/OFF (power)
+  2. HIDE (non-display) Button                                                                                  ®
+
+                                                                                                                          Button
+                                                                  mmH
+                                                                           g
+                                                     DIA
+
+
+
+
+                                                                 mmH
+                                                                                                                       7. START Button
+                                                 PULS
+                                                       E               g
+
+
+                                                                                                       ON/O
+                      DC                                         BPM                                       FF
+
+                         8V
+                                                                           AC                                          8. DEFLATION
+                                                                                                                          (deflation control)
+                                                                       HID
+                                                                           E
+                                                                                                                          /Measurement
+                                                                                                  STA
+                                                                                                        RT
+                                                                                                                          Result Display
+3. DC jack
+                                           P-S
+                                         140
+                                               ET                                                                         Switch Button
+                                   100         180
+                                                                   MO
+                                                                        DE
+
+                                                                                                                       9. Air Connector
+                                                     220    AVG SINGL
+                                                               .      E
+                                                                           MA
+                                 AUT                                            NU.
+                                    O            260                           CHE
+  4. P-SET (pressure                          280                                 C   K
+
+
+     setting) Knob                                                                              STO
+                                                                                                   P
+
+
+
+
+                                                                                                                    10. STOP Button
+                           5. MODE Selector
+
+ 1. Display: Displays blood pressure and, pulse rate readings, and oscillation pulse level.
+ 2. HIDE Button: Switches display and non-display of measured results.
+ 3. DC jack: Connects the AC adapter.
+ 4. P-SET (pressure setting) Knob: In the AUTO position, inflation level is automatically set.
+       Otherwise, inflation level can optionally be set manually between 100 and 280 mmHg.
+ 5. MODE Selector: Selects the operation mode.
+       •O
+         ne-time Measurement Mode (SINGLE Mode): Measurement with automatic inflation.
+       •A
+         verage Mode (AVG Mode): Automatically measures two (or three) times consecutively.
+       •A
+         uscultation Mode (MANU Mode): Automatic inflation, automatic deflation, and pressure display for auscultation (does
+        not measure blood pressure).
+       •C
+         heck Mode (CHECK Mode): Checks the accuracy of pressure display. Displays only pressure.
+ 6. ON/OFF (power) Button: Turns on or off the unit.
+ 7. START Button: Starts the measurement.
+ 8. DEFLATION (deflation control) /Measurement Result Display Switch Button:
+       • In the MANU Mode, d  eflates the cuff by approximately 5 to 10 mmHg with each push during deflation.
+       • In the AVG Mode, switches the display of average values and the measurement results with each push.
+ 9. Air Connector: Connects the air tube.
+10. STOP Button: Stops the measurement and deflates air rapidly.
+                                                                                           11
+      FEATURES AND FUNCTIONS
+    Display
+
+
+
+
+                                  Systolic blood pressure
+
+
+                                                            Ready to Measure /
+                                                            Pulse synchronization
+
+Diastolic blood pressure
+                                                            Pulse level /
+                                                            Number of irregular pulses
+                                                            Number of irregular pulse waves: The pulse
+                                                            wave having a difference of more than 25%
+                        SYS                                 from the average interval of pulse waves is
+                                                            determined irregular. Number of irregular
+                                                            pulse waves is displayed up to three times.
+
+
+                                   mmHg
+                                                                Example of display
+                        DIA
+                                                                              No. of irregular pulses
+                                                                          1               2             3
+
+
+
+                                   mmHg
+                        PULSE
+
+
+
+                                     BPM     AC                  Battery level
+
+                                                                 Displays              for the operable level.
+                                             HIDE
+                                                                 Blinks                     for a low charged
+                                                                                            level.
+
+                                                                 Displays              for the inoperable
+Contents when the AVG Mode                                       level.
+is selected                     Pulse rate
+ AVG. : Mean value
+ 1st : First reading
+ 2nd : Second reading
+                                                                Charging
+ 3rd : Third reading                                            Displays          when the battery pack
+                                                                is being charged.
+
+
+                                                                External power source
+                                                                Displays AC when the unit is connected
+                                                                to the external power source via the AC
+                                                                adapter.
+
+
+
+
+                                                  12
+Functions and setting while the unit is in use
+
+
+      FEATURES AND FUNCTIONS
+Functions setting
+(1) Inflation level setting              P-SET
+
+AUTO (Automatic setting): Can be used when the SINGLE, AVG, or MANU Mode is selected.
+The unit estimates the systolic blood pressure during inflation and inflates to a proper cuff pressure
+(approximately 30-40 mmHg above the patient’s systolic pressure).
+Manual level setting: Inflation level can be set manually between 100 and 280 mmHg. Set the
+level to 30 to 40 mmHg higher than the expected systolic pressure.
+• To set the P-SET to “AUTO”, turn the P-SET Knob counterclockwise as far as it goes until you can hear a click.
+• In the “AUTO” setting, inflation level may not be set automatically when the systolic blood pressure is more than
+   220 mmHg. Use the unit in the manual setting.
+• If the cuff has not been inflated to the necessary level, it may be re-inflated automatically.
+
+
+
+
+                                         HIDE
+(2) Non-display function
+Use to prohibit the display of measurement results. However,                                                                                         ON/OFF
+
+
+
+
+the cuff pressure during measurement is displayed.
+This function can be used in the SINGLE and AVG Modes.                                                                     HIDE
+                                                                                                                                                     START
+
+
+                                                                                                                                                     DEF
+                                                                                                                                                           L AT I O N
+
+                                                                                                    P-SET                       MODE
+                      HIDE
+By pushing the           Button, display or non-display of status
+                                                                                                   140     180                  SINGLE
+                                                                                                                         AVG.            MANU.
+                                                                                            100                   220                      CHECK
+
+
+
+is switched alternatingly.
+                                                                                                                                                       STOP
+                                                                                                                  260
+                                                                                            AUTO             280
+
+
+
+
+                    SYS
+
+
+
+                             mmHg
+        Display     DIA                   Non-display
+
+                             mmHg
+                    PULSE
+
+
+
+                              BPM   AC                                  AC
+
+
+                                                                        HIDE
+
+
+
+
+(3) Manual deflation control
+Accelerate deflation by pushing the DEFLATION (deflation                                                                                              ON/OFF
+
+
+
+control) / Measurement Result Display Switch Button during
+deflation in the measurement by the MANU Mode.                                                                                  HIDE
+                                                                                                                                                       START
+
+
+
+                                                                                                                                                      DEF            N
+                                                                                                                                                    AV G L A T I O r d
+                                                                                                                                                        ./1st / 2n d / 3
+                                                                                                         P-SET                   MODE
+                                                                                                                                 SINGLE
+
+
+
+With each push of the                    Button, cuff is deflated rapidly
+                                                                                                     140    180
+                                                                                                                          AVG.            MANU.
+                                                                                              100                  220                      CHECK
+
+                                                                                                                                                        STOP
+
+in increments of 5 to 10 mmHg.
+                                                                                                                   260
+                                                                                             AUTO                280
+
+
+
+
+                                                           13
+     FEATURES AND FUNCTIONS
+                        List of Functions for each Mode
+                              Measurement
+                                     Mode Single (SINGLE)     Average     Auscultation      Check
+                        Function               Mode         (AVG) Mode   (MANU) Mode     (CHECK) Mode
+
+                        Inflation level set-
+                                ting
+
+                        Non-display func-
+                              tion
+
+                         Manual deflation
+                            control
+
+
+
+(4) AVG Function setting
+You can set the number of measurements, the waiting time until the 1st measurement, and the
+measurement interval for the AVG Mode.
+
+Function #		 Items to set                                           Set value
+  F1         Number of measurements                             2 times or 3 times
+  F2         Waiting time until the start of 1st measurement 0 sec, 3 min, 5 min, or 10 min.
+  F3         Measurement interval                               5 sec, 30 sec, 1 min, or 2 min.
+		                                           Note: The bold letters represent the factory-set values.
+
+
+
+Procedure to change the set values
+                                                                                                                                                                        ®
+
+
+
+
+1) When the power is OFF, push the ON/OFF (power) Button for
+   more than three seconds while holding the START Button;                                                                                                    ON/OFF
+
+
+
+   F1 is displayed.                                                                                                                   AC
+
+                                                                                                                                                              START
+                                                                                                                                      HIDE
+
+
+
+
+                                                                                                           P-SET                          MODE
+                                                                                                          140    180                      SINGLE
+                                                                                                                                   AVG.            MANU.
+                                                                                                   100                   220                         CHECK
+
+                                                                                                                                                               STOP
+                                                                                                                         260
+                                                                                                   AUTO                280
+
+
+
+
+2) Push the START Button and select the function to set from
+   F1 to F3. Each time you push the START Button, the func-                                                                                                                 ®
+
+
+
+
+   tions change in the order of             .
+
+                                                                                                                                                               ON/OFF
+
+
+
+
+                                                                                                                                          AC
+
+                                                                                                                                                               START
+                                                                                                                                          HIDE
+
+
+
+
+                                                                                                            P-SET                          MODE
+                                                                                                           140    180                      SINGLE
+                                                                                                                                    AVG.            MANU.
+                                                                                                    100                      220                      CHECK
+
+
+
+
+3) Push the DEFLATION (deflation control)/Measurement Result
+                                                                                                                                                               STOP
+                                                                                                                             260
+                                                                                                   AUTO                 280
+
+
+
+
+   Display Switch Button and change the set values.
+
+                                                                                                                                                                        ®
+
+
+
+
+                                                                                         min                                                                  ON/OFF
+
+
+
+
+                                                                                         sec
+4) When the setting is finished, push the ON/OFF (power)
+                                                                                                                                      AC
+
+                                                                                                                                                              START
+
+
+   Button to turn off the power. The setting is changed.
+                                                                                                                                      HIDE
+
+
+
+
+                                                                                                           P-SET                          MODE
+                                                                                                          140    180                      SINGLE
+                                                                                                                                   AVG.            MANU.
+                                                                                                   100                  220                          CHECK
+
+                                                                                                                                                              STOP
+                                                                                                                         260
+                                                                                                  AUTO                 280
+
+
+
+
+                                                            14
+                                                                      Preparations before Measurement
+
+
+          HOW TO APPLY THE CUFF
+The cuff of OMRON IntelliSense® Blood Pressure Monitor HEM-907XL plays an important role of
+collecting the information on blood vessels. Please wrap the cuff according to the procedure, below.
+
+
+ Do not wrap the cuff over an arm to which
+ intravenous injection or transfusion is being
+ conducted, or when otherwise contraindicated.
+
+ Do not connect the air tube or the cuff to other
+ equipment which is connected to intracorporeal
+ organ. Air embolisms may result.
+
+                    General advice
+
+ •D o not inflate the cuff without being wrapped over
+   the arm.
+ • Do not use a damaged cuff.
+
+
+1. Select the cuff according to the arm size
+      Arm circumference Name of the cuff
+      (7" - 9") 17-22 cm HEM-907-CS19 (Small)
+      (9" - 13") 22-32 cm HEM-907-CR19 (Medium)
+      (13" - 17") 32-42 cm HEM-907-CL19 (Large)
+      (17" - 20") 42-50 cm HEM-907-CX19 (Extra Large)
+                                                                               Cuff
+     •C
+       heck the following before applying the cuff:
+
+    1) The bladder is correctly installed in the cuff.
+    2) The bladder is not twisted inside the cuff.
+    3) The bladder tube is protruding from the cuff as shown in
+       the Figure on the right.                                                               Extract the air tube from      .
+
+                                                                                           Air tube
+                                                                      Enlarged figure of
+                                                                       the circled part
+                                                                                                             Air connector
+                                                                                                                  Air plug
+2. Connect the air tube securely.
+       To use the cuff in small, medium or large size
+     •C
+       onnect the air tube to the main unit by securing
+      the air plug to the base of the air connector.
+     •S
+       ecurely connect the air tube and the cuff/bladder
+      set by rotating the luer connection as shown in
+      the Figure on the right.
+
+           To use the cuff in extra-large size only
+
+      The extra-large cuff comes with an air tube with
+      an integrated air plug. Connect the air plug of the
+                                                                   Cuff side          Air tube side
+      cuff to the air connector securely when
+      connecting to the main unit.
+                                                            15
+        HOW TO APPLY THE CUFF
+3. Place the right or left hand of the patient
+   with the palm of hand facing upward.
+
+
+
+
+4. Align the Artery Position Mark
+   with the brachial artery.
+
+
+
+
+5. Wrap the cuff snugly using both hands
+   and securely fasten it with the Velcro™
+   tape. At this time, the lower edge of
+   the cuff must be placed 1/2" to 1"
+   above the inner side of elbow joint.
+    • If the INDEX is positioned outside the RANGE, select the cuff suitable for the
+      patient’s arm circumference and wrap it again.
+    • Wrap the cuff so that you can insert only one finger between the cuff and arm.
+
+
+
+
+                                     1/2"-1"
+
+
+
+
+6. Keep the level of the cuff at the
+   same level as the heart during the
+   measurement.
+
+
+
+                                         16
+HOW TO USE THE POWER SOURCE
+                           - DANGER -
+                     TO REDUCE THE RISK OF
+                    FIRE OR ELECTRIC SHOCK,
+              CAREFULLY FOLLOW THESE INSTRUCTIONS.
+    For connection to a power supply not in the U.S.A., use an attachment plug adapter of the
+    proper configuration for the power outlet.
+   The power unit (AC Adapter) is intended to be correctly oriented in a vertical or floor
+    mount position.
+
+
+
+NOTE: Use only the authorized AC Adapter that came with this monitor.
+
+  C AUTION
+   Use only authorized parts and accessories. Parts and accessories not approved for use with
+   the device may damage the unit.
+
+
+
+
+      SAVE THESE INSTRUCTIONS
+                                                  17
+  How to Use the AC Adapter
+
+
+
+HOW TO USE THE POWER SOURCE
+How to use the AC adapter
+
+
+Do not use this unit in the presence of              Be sure to use the AC adapter from the
+flammable gas, or anesthetics, or in a high          power supply of 110 VAC.
+pressure oxygen room or oxygen tent.
+
+                                                     Do not install or store this unit where it may
+                                                     come in contact with water or liquid medication.
+Do not touch the AC adapter with wet hands.
+                                                     This is a Class II device with double isolation.
+                                                     Earth pin is not for protective purposes.
+
+
+                                                                         General advice
+
+                                                     •R
+                                                       ead the instruction manual of the other devices
+                                                      to be used at the same time with this unit to
+                                                      understand and be aware of the interaction between
+                                                      the devices.
+
+
+
+
+Connect the AC adapter to the DC jack of the main unit [1] and the electric outlet [2].
+NOTE: When the AC adapter is connected and the unit is turned off, the AC adapter 			
+      charges the installed rechargeable battery.
+
+                                                                                   ®
+
+
+
+
+                              [2]
+
+
+
+                                                   [1]
+
+
+
+
+                                              18
+HOW TO USE THE POWER SOURCE
+Installation and Replacement of Battery Pack
+
+If battery fluid gets into your eye or comes in
+contact with skin, wash the affected area with
+water repeatedly. Immediately consult a doctor
+for treatment.
+
+
+Do not use the battery pack for devices other
+than for this unit.
+
+Do not disassemble the battery pack.
+
+
+
+
+1. Remove both screws on the upper portion of
+   the battery cover of this unit, and remove
+   the cover.
+2. Disconnect the old battery pack from the
+   connector and replace with a new one.
+3. Install the battery cover and fasten it with both
+   screws. Be careful not to pinch the lead wire.
+4. Connect the main unit to the AC adapter to
+   charge the new battery. The battery is not
+   charged when you purchase the monitor. When you use the battery for the first
+   time, charge it for more than twelve hours before use.
+
+Battery life
+• You can use the unit for approximately three hundred measurements with one charge.
+•A pproximate life of battery is two years. However the battery life from each charging may be
+  shortened depending on the state of using. If the interval between charging becomes short and
+  the       icon appears frequently, replace it.
+Charging time
+•A t approximately five seconds after connecting the AC adapter, the unit will start battery charging
+  automatically.
+• While the battery is being charged, the        icon turns on.
+• The battery can be completely charged in approximately twelve hours.
+Battery low
+• When the                  icon starts to blink, twenty to thirty measurements remain on the battery.
+                             However if the Battery Low Mark starts to blink, charge it soon.
+• If the        icon is displayed, the battery is low and the unit cannot operate. Please charge
+  the battery.
+Automatic Power Off
+• When using the unit with the battery, the unit will turn off automatically after five minutes
+  of inactivity.
+• While the AC adapter is connected, the Auto Power Off function does not work.
+
+                                                     19
+                                                                 How to Measure Blood Pressure
+
+
+HOW TO MEASURE BLOOD PRESSURE
+
+
+If cuff inflation does not stop, remove the cuff           Confirm readings with the stethoscope when
+or pull out the air tube from the main unit.               an irregular pulse wave is displayed or when
+                                                           the measured value is questionable or erratic.
+
+
+                    General advice
+                                                           Do not use a cellular phone near this unit.
+ • Patients should not touch the unit.
+                                                           Do not use this unit in a vehicle.
+
+
+
+List of Measurement Modes
+
+
+                                                                                        Refer to Page
+  To measure                                   SINGLE Mode
+   only once
+                                                                                                21.
+  To measure two                                                                        Refer to Page
+times (or three times)
+                                                   AVG Mode
+ automatically and
+   consecutively                                                                                23.
+To measure by                                                                           Refer to Page
+using a stetho-                                    MANU Mode
+    scope                                                                                       25.
+
+
+
+
+                                                      20
+                                               SINGLE Mode
+
+
+       HOW TO MEASURE
+  BLOOD PRESSURE (IN SINGLE MODE)
+1. Push the ON/OFF (power) Button to
+   turn on the power.
+
+
+
+
+2. Set the MODE Selector to “SINGLE”.
+
+
+
+
+3. Set the P-SET (inflation level) Knob
+   to “AUTO” or to the target pressure
+   value.
+
+
+
+
+4. Measure the patient’s arm size, and
+   wrap appropriate cuff over the
+   patient’s arm. (Refer to Pages 15
+   and 16.)
+
+
+
+
+                                          21
+        HOW TO MEASURE
+   BLOOD PRESSURE (IN SINGLE MODE)
+5. Push the START Button to start the
+   measurement.
+   •D
+     o not push the
+    START Button without
+    wrapping the cuff.
+   • If you want to stop
+     measurement, push
+     the STOP Button. The
+     cuff will rapidly
+     deflate.
+
+
+6. The measurement results are
+   displayed.
+   •W
+     hile the battery pack is in use, the
+    monitor will turn off automatically after
+    five minutes of inactivity and the display
+    (measurement results) will disappear.
+    (Automatic Power Off)
+
+
+
+
+7. Push the ON/OFF (power) Button to
+   turn off the power.
+
+
+
+
+                If the monitor determines that the pressure value is not correct,
+                an error display appears (Er1 to 9). In this case, refer to Page
+                29 and start the measurement again.
+
+
+
+                                                 22
+                                                       AVG Mode
+
+
+      HOW TO MEASURE
+ BLOOD PRESSURE (IN AVERAGE MODE)
+1. Push the ON/OFF (power) Button to
+   turn on the power.
+
+
+
+
+2. Set the MODE Selector to “AVG”.
+   The factory-set values are set as follows:
+   • Number of measurements: 2
+   •W aiting time until the 1st measurement: 0 sec.
+   • Interval: 1 min.
+   To change these factory-set values, refer to
+   Page 14.
+
+
+
+
+3. Set the P-SET (inflation level setting)
+   Knob to “AUTO” or the target
+   pressure value.
+
+
+
+
+4. Measure the patient’s arm size and
+   wrap appropriate cuff over the
+   patient’s arm. (Refer to Pages 15
+   and 16.)
+
+
+
+
+                                                  23
+      HOW TO MEASURE
+ BLOOD PRESSURE (IN AVERAGE MODE)
+5. Push the START Button to start the
+   measurement.
+   After the pre-select waiting time, the unit
+   takes the 1st measurement.
+   After displaying the results of 1st
+   measurement, subsequent measures occur
+   automatically at the specified intervals.
+
+   • For setting the number of measurements,
+      the waiting time until the 1st measurement,
+      and the interval, refer to Page 14.
+   • If you want to stop measurement, push the
+      STOP Button. The unit will rapidly deflate.
+   • If an error occurs during measurement, the
+      monitor will automatically start measurement
+      again. If a second error occurs, measure-
+      ment will automatically stop.
+   •D o not push the START Button without
+     wrapping the cuff.
+
+
+
+6. The measurement results are displayed.
+   After all the measurements are finished,
+   average values will be displayed.
+   Each time the DEFLATION (deflation
+   control) / Measurement Result Display Switch
+   Button is pushed, the measurement results for
+   each reading and the average value will be dis-
+   played.
+
+
+   •W
+     hile the battery is in use, the monitor will
+    turn off after five minutes of inactivity and
+    the display (measurement results) will
+    disappear. (Automatic Power Off)
+
+
+
+7. Push the ON/OFF (power) Button to
+   turn off the power.
+
+
+
+  If the monitor determines that the pressure
+  value is not correct, an error display appears
+  (Er1 to 9). In this case, refer to Page 29 and
+  start the measurement again.
+
+
+                                               24
+                                                  MANU Mode
+
+
+       HOW TO MEASURE
+  BLOOD PRESSURE (IN MANUAL MODE)
+1. Push the ON/OFF (power) Button to
+   turn on the power.
+
+
+
+
+2. Set the MODE Selector to “MANU”.
+
+
+
+
+3. Set the P-SET (inflation level setting)
+   Knob to “AUTO” or the target
+   pressure value.
+
+
+
+
+4. Measure the patient’s arm size and
+   wrap appropriate cuff over the
+   patient’s arm. (Refer to Pages 15
+   and 16.)
+
+
+
+
+                                             25
+       HOW TO MEASURE
+  BLOOD PRESSURE (IN MANUAL MODE)
+5. Place the stethoscope on the
+   patient’s arm.
+
+
+6. Push the START Button to start the
+   measurement.
+   • Do not push the START Button without
+     wrapping the cuff.
+   • Do not squeeze or press the cuff during
+     the measurement.
+   • If you want to inflate again after the start
+      of deflation, push the START Button.
+   • If you want to accelerate deflation after the
+      start of deflation, push the DEFLATION
+      (deflation control) / Measurement Results
+      Display Switch Button. Each time the
+      Button is pushed, cuff is deflated rapidly in
+      increments of 5 to 10 mmHg.
+
+
+7. Take the readings.
+
+
+8. Push the STOP Button to remove air
+   inside the cuff.
+   •T
+     he unit does not automatically deflate in
+    the MANU Mode.
+
+
+
+
+9. Push the ON/OFF (power) Button to
+   turn off the power.
+
+
+
+
+If the monitor determines that the pressure
+value is not correct, an error display appears
+(Er1 to 9). In this case, refer to Page 29 and
+start the measurement again.
+
+
+
+
+                                                  26
+How to Check Pressure Accuracy
+
+
+
+       HOW TO CHECK
+PRESSURE ACCURACY (IN CHECK MODE)
+Accuracy of pressure display can be checked in the CHECK Mode.
+What you need to prepare
+(1) Calibrated mercury manometer (including inflation bulb), (2) T-tube, (3) two air tubes, and (4)
+a sturdy cylindrical shaped object on which the cuff is wrapped.
+
+
+
+
+How to check
+                                                       ®
+
+
+
+
+1. Connect the manometer,
+   inflation bulb, cuff, and the
+   monitor with the T-tube as
+   shown in the figure on
+   the right.
+2. Tightly wrap the cuff over a
+   sturdy cylinder.
+3. Release the valve of inflation
+   bulb to remove the air inside
+   the cuff completely.
+4. Push the ON/OFF (power) Button to turn on the monitor.
+5. Set the MODE Selector to “CHECK”.
+6. Close the valve of inflation bulb and inflate the cuff to the
+   pressure to be checked, based on the manometer read.
+7. Compare the pressure values displayed on the monitor to
+   the one on the manometer.
+
+Check result
+Accuracy of the monitor is validated to be ±
+                                           ­ 3 mmHg or 2% of standard manometer reading. If your
+result shows a difference exceeding the tolerance, contact Omron Healthcare’s Cusomer Service
+at 1-877-216-1336.
+
+
+
+
+                                                  27
+HOW TO CLEAN THE UNIT AFTER USE
+                                                                              General advice
+
+When cleaning this unit, unplug the AC                 •D
+                                                         o not clean this unit with gasoline, paint thinner, or
+adapter from the electric outlet.                       high concentration alcohol.
+                                                       •D
+                                                         o not disinfect this unit by autoclave or gas steril-
+After cleaning this unit, dry it well, before           ization (EtO, gluteraldehyde, or high concentration
+plugging the AC adapter in the electric outlet.         ozone.)
+
+
+
+
+1. Wipe the monitor with a soft, damp cloth diluted with disinfectant alcohol, or
+   diluted detergent.
+2. Complete cleaning by wiping the monitor with a soft, dry cloth.
+
+
+
+
+                                                  28
+         LIST OF ERROR CODES
+Error code                   Explanation                                         How to correct
+             Inflation error                                     •C
+                                                                   onfirm that the air tube connecting the cuff and
+              •W  hen the pressure does not exceed               the main unit is connected securely.
+                 12 mmHg within the set time after the start
+                 of inflation                                    •C
+                                                                   onfirm that the air flow in the air tube
+              • When the inflation does not reach the set        connecting the cuff and the main unit isn’t
+                 cuff pressure within the specified time after    being restricted.
+                 the start of inflation
+                                                                 •C
+                                                                   onfirm that the cuff is wrapped correctly (refer
+             Deflation error                                      to Pages 15 and 16).
+             •W
+               hen the deflation speed is too fast during
+              the measurement                                    •C
+                                                                   heck bladder for leaks and, if necessary,
+             •W
+               hen the deflation speed is too slow               replace the bladder with new one (option).
+              during the measurement
+             •W
+               hen the measurement does not finish
+              within the specified time after starting the
+              measurement
+
+             Overpressure error                                  •C
+                                                                   onfirm that air flow in the air tube connecting
+             • The cuff pressure exceeded 299 mmHg.              the cuff and the main unit isn’t being restricted.
+
+             Insufficient inflation error                        • If the measurement is made by setting the P-SET
+              •B
+                lood pressure could not be measured                to “AUTO”, ask the patient not to move during the
+               due to insufficient inflation level.                 inflation.
+                                                                 • Confirm that the P-SET is securely set to “AUTO”.
+                                                                    Turn the Knob counterclockwise as far as it goes
+                                                                    until you can hear a click sound.
+                                                                 • If the measurement is made by manual inflation
+                                                                    level setting, set the value to 30 to 40 mmHg
+                                                                    higher.
+
+
+
+             Indeterminable blood pressure error
+              •B
+                lood pressure could not be measured             • Confirm that the cuff is wrapped correctly (refer
+               even when the cuff pressure reached the             to Pages 15 and 16).
+               specified pressure.
+
+             Low pulse level error
+              • Pulse wave was too small.                        • Confirm that the cuff is wrapped correctly (refer
+                                                                   to Pages 15 and 16).
+
+
+
+
+             Blood pressure error
+             •R elationship between systolic and diastol-       • Ask the patient not to move during the measure-
+               ic pressures was abnormal.                           ment.
+
+             Pulse rate error                                    • Check the patient for arrhythmia.
+             •P ulse rate did not stay within the range of
+               30 to 199 beats/min.
+
+             Device error                                        •C
+                                                                   ontact Omron Healthcare’s Cusomer Service
+             •M
+               ain unit malfunction.                             toll-free at 1-877-216-1336.
+
+
+
+
+                                                         29
+                 TROUBLESHOOTING
+If the unit malfunctions during use, please check the following:
+       Trouble                    What to inspect                         How to correct
+                                                                 Wrap the cuff correctly, and
+                         Is the cuff wrapped correctly?          measure again.
+                                                                      (Refer to Pages 15 and 16.)
+
+                                                                 Ask the patient not to move
+                         Is the patient moving during
+The unit inflates to                                             during measurement, and
+                         inflation?
+abnormally high (low)                                            measure again.
+pressure.
+
+                                                            Set the P-SET to 30 to 40 mmHg
+                                                            higher than estimated systolic
+                         Does this patient have arrhythmia?
+                                                            pressure of the patient, then
+                                                            measure.
+
+                                                                 After checking the patient with
+                                                                 the stethoscope refer to the “List
+                         Check the patient’s condition.
+                                                                 of Error Codes”.
+                                                                               (Refer to Page 29.)
+
+                                                                 Ask the patient not to move
+                         Is the patient moving during the
+                                                                 during measurement, and
+                         measurement?
+                                                                 measure again.
+
+The monitor cannot                                               Set the P-SET to 30 to 40 mmHg
+measure blood            Does the patient have an                higher than estimated systolic
+pressure.                arrhythmia?                             pressure of the patient, then
+                                                                 measure.
+Measured values are
+abnormally high (low).                                           Select the cuff according to the
+                         Is the size of the cuff correct and     patient’s arm circumference, wrap
+                         is it wrapped correctly?                it correctly, then measure again.
+                                                                        (Refer to Pages 15 and 16.)
+
+                                                                 Keep the level of the brachium to
+                         Is the level of the brachium to
+                                                                 which the cuff is wrapped at the
+                         which the cuff is wrapped at the
+                                                                 same level as the heart, then
+                         same level as the heart?
+                                                                 measure again.
+
+
+
+                         Are the patient’s clothes restricting   Remove the clothing and
+                         normal blood flow to the arm?           measure again.
+
+
+
+                                             30
+                                                                             Specifications
+
+
+                                               CAUTION
+                                               CAUTION:
+Changes or modifications not expressly approved by Omron Healthcare, Inc. could void the user’s authority to
+operate this product.
+
+
+     NOTE:
+     POTENTIAL FOR RADIO/TELEVISION INTERFERENCE (for U.S.A. only)
+     This product has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of the
+     FCC rules.
+     These limits are designed to provide reasonable protection against harmful interference in a residential installation. The
+     product generates, uses, and can radiate radio frequency energy and, if not installed and used in accordance with the
+     instructions, may cause harmful interference to radio communications. However, there is no guarantee that interference
+     will not occur in a particular installation. If the product does cause harmful interference to radio or television reception,
+     which can be determined by turning the product on and off, the user is encouraged to try to correct the interference by
+     one or more of the following measures:
+           • Reorient or relocate the receiving antenna.
+           • Increase the separation between the product and receiver.
+           • Connect the product into an outlet on a circuit different from that to which the receiver is connected.
+           • Consult the dealer or an experienced radio/TV technician for help.
+
+     POTENTIAL FOR RADIO/TELEVISION INTERFERENCE (for Canada only)
+     This digital apparatus does not exceed the Class B limits for radio noise emissions from digital apparatus as set out in
+     the interference-causing equipment standard entitled “Digital Apparatus”, ICES-003 of the Canadian Department of
+     Communications.
+
+     Cet appareil numérique respecte les limites de bruits radioeléctriques applicables aux appareils numériques de Classe
+     B prescrites dans la norme sur le matériel brouilleur: “Appareils Numériques”, NMB-003 èdictée par le ministre des
+     communications.
+
+
+
+
+    FIVE YEAR LIMITED WARRANTY
+Your HEM-907XL IntelliSense® Automatic Blood Pressure Monitor is warranted to be free from manufacturing defects for a period
+of five years under normal use. The five year warranty excludes the monitor cuff. The cuff is warranted for a one year period.
+This warranty extends only to the original retail purchaser.
+To obtain warranty service contact Omron Healthcare’s Customer Service by calling 1-877-216-1336 for the address of the
+repair location and the return shipping and handling fee. Information for warranty service is avalable on our website
+at www.omronhealthcare.com
+We will either repair or replace (at our option) free of charge any parts necessary to correct defects in the materials or workmanship.
+The above warranty is complete and exclusive. The warrantor expressly disclaims liability for incidental, special, or consequential
+damages of any nature. (Some states do not allow the exclusion or limitation of incidental or consequential damages, so the above
+warranty may not apply to you.)
+Any implied warranties arising by the operation of law shall be limited in duration to the term of this warranty. (Some states do not
+allow limitations on how long an implied warranty lasts, so the above limitation may not apply to you.)
+This warranty gives you specific legal rights, and you may have other rights which vary from state to state.
+
+
+                                  FOR CUSTOMER SERVICE CALL TOLL FREE: 1-877-216-1336
+
+
+                                                                   31
+                          SPECIFICATIONS
+Name:                                   OMRON Digital Automatic Blood Pressure Monitor
+Model:                                  HEM-907XL (HEM-907-Z2)
+Display:                                Digital display
+Measurement:                            Oscillometric method
+Measurement Range:                      Pressure; 0 to 299 mmHg
+                                        Pulse rate; 30 to 199 beats/min
+Accuracy:                               Pressure; Within ±3 mmHg or 2% of reading
+                                        Pulse rate; Within ±5% of reading
+Inflation:                              Automatic inflation with pumping
+Deflation:                              Automatic deflation by electromagnetic control valve
+Air Release:                            Automatic rapid air release by electromagnetic control valve
+Power supply:                           AC adapter (AC 120V, 50/60Hz, 0.2A)
+                                        Battery pack (DC 4.8V, 6W)
+Protection Class:                       Class II
+                                        Internally powered equipment
+Degree of Protection:                   Type BF
+Operating Temperature / Humidity:       50°F to 104°F (10 to 40°C) / 30 to 85% RH (IPX 0 Rating)
+Storage Temperature / Humidity /
+                     Air pressure:
+               -4°F to 140°F (-20 to 60°C) / 10 to 95% RH / 700 - 1060 hPa
+Weight of Main Unit:
+               Approx. 32 oz (910 g)
+External Dimensions:
+               Approx.5 1/2" (W) x 8"(H) x 5 1/6"(D)
+               139 (W) x 203 (H) x 131 (D) mm
+Accessories: 	Cuff / bladder set Extra Large, Cuff / bladder set Large, Cuff / bladder set
+               Medium, Cuff / bladder set Small, AC adapter, Battery pack, air tube 1.3 m
+               (51 3/16"), Instruction Manual
+Options:       Air tube 1.3 m (51 3/16"), Stand exclusive for this unit (Item: HEM-907-
+               STAND), Wall-hanging kit (Item: HEM-907-WKIT), Pole-mounting kit (Item:
+               HEM-907-PKIT)
+
+Complies with:
+    IEC 60601-1:1988+A1:1991+A2:1995 General requirements for safety
+    IEC 60601-1-2:2007			Electromagnetic compatibility -
+						Requirements and tests
+    ANSI/AAMI SP10:1992			           Manual, Electronic or Automated
+							Sphygmomanometers
+
+                           Please note that specifications may be changed without prior notice.
+
+
+
+
+                                 Medical Equipment with respect to electric shock, fire and
+                                 mechanical hazards only in accordance with UL 60601-1 and
+                                 CAN/CSA C22.2 No. 601.1
+
+
+
+                                                        32
+                  FCC/ISED STATEMENT
+                                           FCC CAUTION
+Changes or modifications not expressly approved by the party responsible for compliance could
+void the user’s authority to operate the equipment.
+This device complies with part 15 of FCC Rules and Innovation, Science and Economic
+Development Canada’s licence-exempt RSS(s). Operation is subject to the following two
+conditions: (1) this device may not cause harmful interference, and (2) this device must accept
+any interference received, including interference that may cause undesired operation.
+
+    Note:
+    This equipment has been tested and found to comply with the limits for a Class B digital device, pursuant to part 15 of
+    the FCC Rules. These limits are designed to provide reasonable protection against harmful interference in a residential
+    installation. This equipment generates, uses and can radiate radio frequency energy and, if not installed and used in
+    accordance with the instructions, may cause harmful interference to radio communications. However, there is no
+    guarantee that interference will not occur in a particular installation. If this equipment does cause harmful interference
+    to radio or television reception, which can be determined by turning the equipment off and on, the user is encouraged
+    to try to correct the interference by one or more of the following measures:
+         • Reorient or relocate the receiving antenna.
+         • Increase the separation between the equipment and receiver.
+         • Connect the equipment into an outlet on a circuit different from that to which the receiver is connected.
+         • Consult the dealer or an experienced radio/TV technician for help.
+
+
+
+
+                                                                 33
+                                For Customer Service
+                                    Call Toll Free
+                                1-877-216-1336
+
+
+
+
+Manufactured by:
+OMRON HEALTHCARE Co., Ltd.
+53, Kunotsubo, Terado-cho,
+Muko, Kyoto, 617-0002 JAPAN
+
+Distributed by:
+OMRON HEALTHCARE, INC.
+2895 Greenspoint Pkwy.
+Hoffman Estates, IL 60169 USA
+www.omronhealthcare.com
+
+© 2021 OMRON HEALTHCARE, INC.
+
+Made in Japan
+

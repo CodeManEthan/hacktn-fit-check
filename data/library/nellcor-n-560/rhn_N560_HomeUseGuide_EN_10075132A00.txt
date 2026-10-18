@@ -1,0 +1,2512 @@
+Home Use Guide
+
+
+
+Nellcor™
+
+OxiMax N-560
+Pulse Oximeter
+
+
+
+
+Important: Read this manual before using the monitor
+If you need help, call the 24-hour hotline of the medical equipment dealer listed below:
+COVIDIEN, COVIDIEN with logo, the Covidien logo and positive results for life are
+U.S. and internationally registered trademarks of Covidien AG. Other brands are
+trademarks of a Covidien company. ©2011 Covidien.
+U.S. Patents 5,485,847; 5,676,141; 5,743,263; 6,035,223; 6,226,539; 6,411,833;
+6,463,310; 6,591,123; 6,708,049; 7,016,715; 7,039,538; 7,120,479; 7,120,480;
+7,142,142; 7,162,288; 7,190,985; 7,194,293; 7,209,774; 7,212,847; 7,400,919.
+To obtain information about a warranty, if any, contact Covidien Technical Services
+at 1.800.635.5267 or your local representative.
+Purchase of this instrument confers no express or implied license under any Covidien
+patent to use the instrument with any pulse oximeter that is not manufactured or
+licensed by Covidien.
+Contents
+Contents . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . i
+Figures . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . v
+Tables . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . vii
+Important Information . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+Introduction ...........................................................................................................1
+Definitions .............................................................................................................1
+    Clinician ............................................................................................................1
+    Normal Monitoring Mode ..................................................................................1
+    Oxygen Saturation ............................................................................................2
+    Pulse Amplitude ...............................................................................................2
+    Pulse Oximeter .................................................................................................2
+    Pulse Rate ........................................................................................................2
+    Sensor ..............................................................................................................2
+    Site or Sensor Site ...........................................................................................3
+If You Need Help ..................................................................................................3
+Safety Information . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+Warnings ...............................................................................................................5
+Cautions ................................................................................................................7
+Notes ....................................................................................................................7
+Purpose of the N-560 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+Purpose of the N-560 ............................................................................................9
+Role of the Clinician ..............................................................................................9
+Buttons, Indicators, and Alarms . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+Front Panel Control Buttons ...............................................................................11
+Function of Front Panel Control Buttons .............................................................12
+
+N-560 Home Use Guide                                                                                                      i
+Contents
+Display Information ............................................................................................. 13
+Description of Display Information ...................................................................... 14
+Front Panel Status Indicators and Components ................................................. 15
+Description of Status Indicators .......................................................................... 16
+Front Panel Symbol ............................................................................................ 18
+Rear Panel Components .................................................................................... 19
+Rear Panel Symbols ........................................................................................... 20
+Description of Audible Tones and Alarms .......................................................... 21
+Setting Up the N-560 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+Connecting the N-560 to AC Power ................................................................... 25
+Oximetry Sensors . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+Selecting an Oximetry Sensor ............................................................................ 27
+Using the N-560 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+Introduction ......................................................................................................... 33
+Factory Default Settings ..................................................................................... 33
+Turning On the N-560 ......................................................................................... 35
+Connecting a Sensor to the N-560 ..................................................................... 38
+No Sensor Attached ........................................................................................... 40
+Sensor Message ................................................................................................ 41
+Setting the Pulse Beep Volume .......................................................................... 42
+Setting the Alarm Volume ................................................................................... 42
+Verify Patient Settings ........................................................................................ 43
+Setting Alarm Limits ........................................................................................... 44
+Setting SatSeconds Duration ............................................................................. 47
+Alarm Limit Changed Indicator ........................................................................... 47
+Patient Trend Data ............................................................................................. 48
+Performance Considerations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+Sensor Performance Considerations ................................................................. 49
+
+
+ii
+                                                                                                             Contents
+Battery Operation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 53
+Operating on Battery Power ...............................................................................53
+Automatic Shutdown to Conserve Battery ..........................................................53
+Recharging the Battery .......................................................................................54
+Low Battery Indicator ..........................................................................................54
+Troubleshooting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+Error Codes ........................................................................................................57
+Solving Problems ................................................................................................58
+EMI (Electromagnetic Interference) ....................................................................61
+Maintenance . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 63
+Service ................................................................................................................63
+Periodic Safety Checks .......................................................................................63
+Cleaning ..............................................................................................................64
+Specifications . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 65
+Performance .......................................................................................................65
+Electrical .............................................................................................................69
+Environmental Conditions ...................................................................................70
+Physical Characteristics ......................................................................................72
+Compliance .........................................................................................................72
+Index . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 73
+
+
+
+
+N-560 Home Use Guide                                                                                                    iii
+Contents
+
+
+
+
+iv
+Figures
+Figure 1:   N-560 Speaker ....................................................................................6
+Figure 2:   Front Panel Control Buttons ..............................................................11
+Figure 3:   Display Information............................................................................13
+Figure 4:   Front Panel Status Indicators and Components................................15
+Figure 5:   Rear Panel Components ...................................................................19
+Figure 6:   Rear Panel Symbols..........................................................................20
+Figure 7:   AC Power Connection.......................................................................25
+Figure 8:   Connecting Sensor and DOC-10 Cable ............................................39
+
+
+
+
+N-560 Home Use Guide                                                                                         v
+List of Figures
+
+
+
+
+vi
+Ta b l e s
+Table 1:   Audible Tones and Alarms.................................................................21
+Table 2:   Nellcor Oximetry Sensor Models and Patient Weights ......................29
+Table 3:   Parameter Factory Defaults and Ranges...........................................34
+Table 4:   Error Codes........................................................................................58
+Table 5:   Tone Definition...................................................................................66
+
+
+
+
+N-560 Home Use Guide                                                                                         vii
+List of Tables
+
+
+
+
+viii
+Important Information
+
+Introduction
+
+
+                  This manual is for the home caregiver — the person who provides
+                  care for a patient monitored by the N-560™ pulse oximeter in the
+                  home. As the home caregiver, it is important that you read this
+                  entire manual before you use the N-560.
+                  This manual contains important safety information and N-560
+                  instructions. If you do not understand any part of this information,
+                  ask the clinician who will be monitoring and tracking the patient’s
+                  results to explain it to you.
+
+
+Definitions
+
+
+
+
+Clinician
+                  In this manual, the term “clinician” means the trained healthcare
+                  professional who assists you with monitoring the patient and using
+                  the N-560 in your home. This person can be the doctor or nurse
+                  who is treating the patient, or some other trained healthcare
+                  professional.
+
+Normal Monitoring Mode
+                  Normal monitoring mode means that:
+                  • the N-560 is turned on
+                  • a sensor is connected to the N-560
+                  • the sensor is applied to the patient
+
+N-560 Home Use Guide                                                                     1
+Important Information
+                        • the patient’s %SpO2 (oxygen saturation percentage) and pulse
+                          rate readings (BPM) are being reported on the monitor
+                        • no error conditions exist
+
+Oxygen Saturation
+                        A measurement of the percentage of oxygen circulating in the
+                        patient’s blood. Oxygen saturation is also identified as %SpO2.
+
+Pulse Amplitude
+                        The relative strength of the patient’s pulse. A higher pulse
+                        amplitude indicates a stronger pulse. A lower pulse amplitude
+                        indicates a weaker pulse.
+
+Pulse Oximeter
+                        A medical device that measures a patient’s pulse rate and percent of
+                        oxygen saturation in the blood. The N-560 is a pulse oximeter.
+
+Pulse Rate
+                        A measurement of the number of times the patient’s heart beats per
+                        minute. Pulse rate is also called beats per minute or BPM.
+
+Sensor
+                        A sensor is an accessory used to collect and send patient
+                        information to the N-560. One end of the sensor is attached to the
+                        patient’s finger, toe, ear lobe, or forehead and the other end of the
+                        sensor connects to the monitor cable. The sensor provides
+
+
+2
+                                                                    Important Information
+
+                      measurement signals from which the pulse rate and percentage of
+                      oxygen in the blood are determined.
+
+Site or Sensor Site
+                      The place on the patient where the sensor is attached.
+
+
+If You Need Help
+
+
+                      Contact the clinician if you have any questions or concerns about
+                      using the N-560. If you believe the N-560 is not functioning
+                      properly, always notify the clinician, who may be able to correct
+                      the problem.
+                      If you require assistance in operating the equipment, and are unable
+                      to contact the clinician, call the 24-hour hotline of your medical
+                      equipment dealer. Keep the dealer’s business card with this manual.
+                      That card identifies the hotline number.
+
+
+
+
+N-560 Home Use Guide                                                                      3
+Important Information
+
+
+
+
+4
+                                                                   Safety Information
+
+Safety Information
+
+Warnings
+
+                  Warnings in this manual are identified by the WARNING symbol
+                  shown above.
+                  Warnings alert you to potential serious outcomes (death, injury, or
+                  adverse events) to you or the patient. Contact the clinician if you
+                  have any questions regarding the warnings in this manual.
+
+                  WARNING: Explosion hazard. Do not use the N-560 pulse
+                  oximeter in the presence of flammable anesthetics or gases.
+
+                  WARNING: Pulse oximetry readings and pulse signals can be
+                  affected by certain environmental conditions, oximetry sensor
+                  application errors, and certain patient conditions. Refer to the
+                  appropriate chapters of this manual, including this chapter, for
+                  specific information:
+                        • Oximetry Sensors on page 27
+                        • Sensor Performance Considerations on page 49
+                        • EMI (Electromagnetic Interference) on page 61
+
+                  WARNING: The use of accessories, oximetry sensors, and
+                  cables other than those specified in this manual may result in
+                  inaccurate readings of the N-560.
+
+
+N-560 Home Use Guide                                                                    5
+Safety Information
+
+                     WARNING: Do not lift the N-560 by the oximetry cable or
+                     power cord because the cable or cord could disconnect from the
+                     N-560, causing the N-560 to drop on the patient.
+
+                     WARNING: Make sure that the N-560 speaker is clear of any
+                     obstruction. Failure to do so could result in an inaudible alarm
+                     tone. See Figure 1.
+
+
+
+
+                                              1 — Speaker
+                                         Figure 1:   N-560 Speaker
+
+
+
+
+                     WARNING: Make sure that you can hear an audible alarm
+                     from other rooms in the home, and when you are using noisy
+                     appliances, such as a dishwasher, clothes dryer, television, or
+                     radio. Failure to ensure that the alarm volume is appropriate
+                     for the environment may place the patient in danger. If you
+                     need assistance adjusting the volume, immediately contact the
+                     clinician for help.
+
+
+
+
+6
+                                                                   Safety Information
+
+
+Cautions
+
+
+
+
+                  Cautions are identified by the CAUTION symbol shown above.
+                  Cautions alert you to exercise care necessary for the safe and
+                  effective use of the N-560.
+                  Caution: Federal law (U.S.A.) restricts this device to sale by or
+                  on the order of a physician.
+                  Caution: The oximetry sensor off alarm indicates that the
+                  sensor is either disconnected or the wiring is faulty. Check the
+                  sensor connection and, if necessary, replace the sensor, pulse
+                  oximetry cable, or both. If necessary, contact the clinician for
+                  assistance.
+
+Notes
+
+
+
+
+                  Notes are identified by the Note symbol shown above.
+                  Notes provide additional useful information.
+                  Note: Sensor LED light emissions fall within Class I level,
+                  according to IEC 60825-1:2001. No special safety precautions are
+                  required.
+
+
+
+N-560 Home Use Guide                                                                 7
+Safety Information
+
+
+
+
+8
+                                                                 Purpose of the N-560
+
+Purpose        of      the   N-560
+
+
+
+
+                  WARNING: The N-560 is only a warning device. You must
+                  take action, as directed by the clinician, when an alarm occurs.
+                  The N-560 cannot act for you.
+
+                  WARNING: The N-560 and the oximetry sensor are
+                  prescription devices. Use only on the patient for whom
+                  prescribed and only as directed by the clinician.
+
+
+Purpose of the N-560
+
+
+                  The N-560 can be used for patients of all ages — infants, children,
+                  and adults. The clinician will assist you with the selection and use
+                  of the appropriate OXIMAX oximetry sensor, based on the size of the
+                  patient. (See Oximetry Sensors on page 27.) With active patients,
+                  single-patient-use sensors are a better choice for monitoring than
+                  reusable sensors. (See Patient Activity Level on page 28 for more
+                  information.)
+                  The N-560 continuously measures the patient’s pulse rate and the
+                  percentage of oxygen circulating in the blood. When either the
+                  patient’s pulse rate or the percentage of oxygen goes below or
+                  above a pre-set alarm limit, the N-560 warns you by sounding an
+                  alarm, lighting an indicator, or changing the number display from
+                  green to red.
+
+
+Role of the Clinician
+
+
+                  The clinician is a trained health care professional who will:
+
+N-560 Home Use Guide                                                                  9
+Purpose of the N-560
+                       • order the N-560 for use in your home
+                       • set up the N-560 for you
+                       • assist you with monitoring the patient
+                       • review the monitored results and the patient’s condition
+                       • show you how to use the N-560
+                       • select a sensor for use with the N-560
+                       • show you how to respond to alarms
+                       • show you how to set the alarm limits
+                       • answer your questions about the N-560
+                       • ensure that the N-560 is working correctly
+                       • check with you on a regular basis to make sure the N-560 is
+                         meeting your needs
+
+
+
+
+10
+                                                        Buttons, Indicators, and Alarms
+
+Buttons, Indicators, and Alarms
+
+                  This section introduces you to the control buttons, status indicators,
+                  and symbols on the front and rear panels of your N-560. Audible
+                  tones and alarms are also described. Familiarize yourself with this
+                  section before using the N-560.
+
+
+Front Panel Control Buttons
+
+
+
+
+                         Power On/Off                         Pulse Rate Alarm
+              1
+                         Button
+                                                 5
+                                                              Limit Button
+
+
+
+                         Alarm Silence                        SatSeconds Alarm
+              2
+                         Button
+                                                 6
+                                                              Limit Button
+
+
+
+
+              3          Adjust Up    Button     7
+                                                              SpO2 Alarm Limit
+                                                              Button
+
+
+
+              4
+                         Adjust Down
+                         Button
+
+
+
+                                  Figure 2:   Front Panel Control Buttons
+
+
+
+
+N-560 Home Use Guide                                                                  11
+Buttons, Indicators, and Alarms
+
+Function of Front Panel Control Buttons
+
+
+                     This section identifies and describes the function of each control
+                     button located on the front panel. Refer to Figure 2 on page 11 for
+                     the location of each button.
+                     Note:   Each button press, except the Power On/Off button, should
+                     result in either a valid or an invalid button tone. If the button
+                     pressed fails to emit a tone, contact the clinician or your medical
+                     equipment dealer immediately.
+                     The Power On/off button is used to turn the N-560 on or off. The
+                     Power On/Off button must be pressed and held for approximately
+                     one second in order to turn the N-560 on or off.
+                     The Alarm Silence button is used to silence current audible
+                     alarms for the alarm silence duration period. When an alarm has
+                     been silenced, pressing the button again reactivates, or “unsilences”
+                     the alarm.
+                     The Adjust Up button is used to increase variable settings of the
+                     N-560.
+                     The Adjust Down button is used to decrease variable settings of
+                     the N-560.
+                     The Pulse Rate Alarm Limit button is used to view the pulse rate
+                     alarm limit. The Adjust Up and Adjust Down buttons are used to
+                     increase or decrease the alarm limit setting. The clinician will
+                     determine if these settings need to be changed.
+                     The SatSeconds™ Alarm Limit button is used to view the
+                     SatSeconds alarm limit. SatSeconds is an alarm management
+
+                     system. The clinician will determine if this feature is appropriate
+                     for the patient. The Adjust Up and Adjust Down buttons are used
+                     to change the SatSeconds limit settings.
+
+12
+                                                      Buttons, Indicators, and Alarms
+
+                  The SpO2 Alarm Limit button is used to view the SpO2 alarm
+                  limit. The Adjust Up and Adjust Down buttons are used to
+                  increase or decrease the alarm limit setting. The clinician will
+                  determine if these settings need to be changed.
+
+
+Display Information
+
+
+
+
+                       1    %SpO2 Display (OXYGEN SATURATION
+                            PERCENTAGE)
+                       2    Pulse Amplitude     Indicator(Blip bar)
+                       3    Pulse Rate    Display (Beats Per Minute – BPM)
+
+
+                       4    SatSeconds     Display
+
+
+
+                                     Figure 3: Display Information
+
+
+
+
+N-560 Home Use Guide                                                                 13
+Buttons, Indicators, and Alarms
+
+Description of Display Information
+                     This section describes the display components, shown in Figure 3.
+                     The %SpO2 (OXYGEN SATURATION PERCENTAGE) reports
+                     the percentage of oxygen circulating in the patient’s blood system.
+                     You will see a decimal point after this value if the upper and/or
+                     lower alarm limit has been changed since the N-560 was last
+                     powered on.
+                     The Pulse Amplitude Indicator (BLIP BAR) displays the pulse
+                     beat and the relative strength or amplitude of each beat. As the
+                     detected pulse becomes stronger, more bars light with each pulse.
+
+
+
+
+                     The Pulse Rate Display (BPM) represents the number of times per
+                     minute that the patient’s heart beats. You will see a decimal point
+                     after this value if the upper and/or the lower alarm limit has been
+                     changed since the N-560 was last powered on.
+                     SatSeconds™ is an alarm management system. The clinician will
+                     determine if this feature is appropriate for the patient in the home.
+                     The SatSeconds display only lights if the SatSeconds feature is
+                     turned on.
+
+
+
+
+14
+                                                      Buttons, Indicators, and Alarms
+
+
+Front Panel Status Indicators and Components
+
+
+
+
+                       1                         DOC-10 Cable Connection)
+                                        SpO2 Port (
+
+
+                       2                Low Battery Indicator
+                       3                AC Power Indicator
+                       4                Alarm Silence Indicator
+
+                       5                Sensor Message Indicator
+                       6                Sensor Off Indicator
+                       7                Data In Sensor Indicator
+                       8                Interference Indicator
+                       9                Pulse Search Indicator
+                       10               Speaker (Audible Alarms)
+                       Figure 4: Front Panel Status Indicators and Components
+
+N-560 Home Use Guide                                                              15
+Buttons, Indicators, and Alarms
+
+Description of Status Indicators
+
+
+                     This section identifies and describes the function of the status
+                     indicators located on the front panel. Refer to Figure 4 on page 15
+                     for the location of each indicator.
+                     The AC Power Indicator lights continuously when the N-560 is
+                     connected to AC power. It also indicates that the battery is
+                     charging. The indicator is off when the N-560 is being powered by
+                     the internal battery.
+                     The Low Battery Indicator lights continuously when 15 or fewer
+                     minutes of battery life remains. The indicator flashes when the
+                     battery life reaches critical condition. (See Low Battery Indicator
+                     on page 54.)
+                     The Alarm Silence Indicator lights continuously when an audible
+                     alarm has been silenced by pressing the Alarm Silence button.
+                     The indicator flashes when the alarm silence duration has been set
+                     to Off.
+                     The Pulse Search Indicator lights continuously prior to initial
+                     acquisition of a pulse signal and during Pulse Search. If the
+                     acquired pulse is lost during monitoring, the N-560 enters the Pulse
+                     Search mode. During Pulse Search, the N-560 attempts to detect a
+                     pulse from which to take a measurement. The Pulse Search
+                     Indicator flashes during a loss-of-pulse condition.
+                     The Sensor Message Indicator lights when the N-560 cannot
+                     determine an SpO2 level or a pulse rate. See Sensor Message on
+                     page 41 for more information.
+                     The Sensor Off Indicator lights when the sensor is no longer on
+                     the patient.
+
+
+
+16
+                                                         Buttons, Indicators, and Alarms
+
+                  The Interference Indicator lights whenever the OXIMAX software
+                  detects that the incoming signal quality is degraded due to
+                  interference. Degradation can be caused by ambient light, electrical
+                  noise, electrosurgical interference, patient movement, or other causes.
+
+                  An intermittently lit Interference indicator is common during
+                  patient monitoring, and indicates that the OXIMAX software is
+                  dynamically adjusting the amount of data required for measuring
+                  SpO2 and Pulse Rate. When lit continuously, it indicates the
+                  OXIMAX algorithm has extended the amount of data required for
+                  measuring SpO2 and Pulse Rate, and, consequently, fidelity in
+                  tracking rapid changes in these values may be reduced (see
+                  Description of Display Information on page 14).
+                  The Data In Sensor Indicator blinks for approximately one
+                  minute when a sensor is initially connected to the N-560 to indicate
+                  that the attached OXIMAX sensor contains a patient alarm event
+                  record. The indicator lights continuously to indicate that the
+                  attached sensor memory is full.
+
+
+
+
+N-560 Home Use Guide                                                                        17
+Buttons, Indicators, and Alarms
+
+Front Panel Symbol
+
+                     This symbol means the N-560 is type BF equipment and is not
+                     defibrillator proof.
+
+
+
+
+                                  1 — N-560 not defibrillator proof symbol
+
+
+
+
+18
+                                             Buttons, Indicators, and Alarms
+
+
+Rear Panel Components
+
+
+
+
+                        1    Data Port Connector
+                        2    Visual Alarm Connector
+                        3    AC Power Connector
+                        4    Ground (Equipotential Connector)
+
+                            Figure 5: Rear Panel Components
+
+
+
+
+N-560 Home Use Guide                                                     19
+Buttons, Indicators, and Alarms
+
+Rear Panel Symbols
+                     This section describes the symbols located on the rear panel of the
+                     N-560.
+
+
+
+
+                                  1          Data port symbol
+
+                                  2          Read the N-560 documentation
+                                             before using the N-560.
+                                  3          Ground symbol
+
+                                       Figure 6: Rear Panel Symbols
+
+
+
+
+20
+                                                      Buttons, Indicators, and Alarms
+
+
+Description of Audible Tones and Alarms
+                  Table 1 identifies the audible tones and alarms of the N-560.
+                                  Table 1: Audible Tones and Alarms
+                             Function                         Description
+                   Power-On Self-Test Pass       A one-second tone indicating that
+                                                 the N-560 has been turned on and
+                                                 has successfully completed the
+                                                 power-on self-test.
+                   Valid Button Press            A short, medium-pitched tone
+                                                 indicating that an appropriate
+                                                 button has been pressed.
+                   Invalid Button Press          A short, low-pitched tone
+                                                 indicating that a button has been
+                                                 pressed that is not appropriate for
+                                                 the current state of the N-560.
+                   High Priority Alarm           A high-pitched, fast-pulsing tone
+                                                 indicating loss-of-pulse
+                   Medium Priority Alarm         A medium-pitched,
+                                                 normal-pulsing tone indicating an
+                                                 SpO2 or pulse rate limit violation.
+                   Low Priority Alarm            A low-pitched, slow-pulsing tone
+                                                 indicating a sensor disconnect,
+                                                 low battery, or system failure.
+                   Alarm Silence Reminder        Three beeps that sound
+                                                 approximately every three
+                                                 minutes.
+                   Pulse Beep                    A single beep sounds for each
+                                                 detected pulse. The pulse beep
+                                                 tone changes in pitch with
+                                                 changes in the patient’s oxygen
+                                                 saturation.
+
+
+N-560 Home Use Guide                                                               21
+Buttons, Indicators, and Alarms
+                                   Table 1: Audible Tones and Alarms (Cont.)
+                                  Function                        Description
+                       Volume Setting Tone           A continuous tone that sounds as
+                                                     the alarm volume is adjusted.
+                       Confirmation Tone             Three beeps sound to indicate that
+                                                     default settings have been saved
+                                                     or reset to factory defaults or trend
+                                                     data has been deleted.
+
+
+
+
+22
+                                                                 Setting Up the N-560
+
+Se tting      Up       the   N-560
+
+
+
+                  This section contains important information regarding the setup of
+                  the N-560. Be sure to read and follow all of the warnings and
+                  cautions in this section and elsewhere in this manual.
+                  Warnings inform you of situations and events you must avoid to
+                  prevent serious or fatal injury to either the patient or yourself.
+                  Cautions alert you to exercise care necessary for the safe and
+                  effective use of the N-560.
+
+                  WARNING: Locate the N-560 near the patient in a position
+                  that ensures it cannot accidently fall on the patient. Failure to
+                  do so could result in patient injury.
+
+                  WARNING: Carefully route the oximetry cable between the
+                  patient and the N-560 to reduce the possibility of patient
+                  entanglement or strangulation.
+
+                  WARNING: Ensure that the speaker is clear of any
+                  obstruction. Failure to do so could result in an inaudible alarm
+                  tone.
+
+                  WARNING: Make sure that you can hear an audible alarm
+                  from other rooms in the home, and when you are using noisy
+                  appliances, such as a dishwasher, clothes dryer, television, or
+                  radio. Failure to ensure that the alarm volume is appropriate
+                  for the environment may place the patient in danger. If you
+                  need assistance adjusting the volume, immediately contact the
+                  clinician for help.
+
+N-560 Home Use Guide                                                                   23
+Setting Up the N-560
+
+                       WARNING: Do not connect the N-560 to an electrical outlet
+                       controlled by a wall switch, because the N-560 may be
+                       accidentally turned off.
+
+                       WARNING: To ensure accurate performance and prevent
+                       device failure, do not place the N-560 in extreme moisture
+                       environments, such as direct exposure to rain. Such exposure
+                       may cause inaccurate performance or device failure.
+
+                       WARNING: Inspect the N-560, sensor, cables, and connectors
+                       before each use. Do not use any equipment that appears
+                       damaged.
+
+                       WARNING: Do not lift the N-560 by the oximetry cable or
+                       power cord because the cable or cord could disconnect from the
+                       N-560, causing the N-560 to drop on the patient.
+
+                       WARNING: Use only the Nellcor pulse oximetry cable DOC-10
+                       with the N-560. Use of another pulse oximetry cable will have
+                       an adverse effect on performance. Do not attach any cable that
+                       is intended for computer use to the oximetry sensor port. Do
+                       not connect any device other than a Nellcor-approved sensor to
+                       the DOC-10 cable.
+
+                       WARNING: The N-560 should not be used adjacent to or
+                       stacked with other equipment. If adjacent or stacked use is
+                       necessary, the N-560 should be observed to verify normal
+                       operation.
+
+
+
+24
+                                                                Setting Up the N-560
+
+
+Connecting the N-560 to AC Power
+                  Caution: Use only the hospital-grade power cord provided with
+                  the N-560.
+                  1. Plug the power cord into the N-560 power connector on the rear
+                     of the N-560. See Figure 7, item 1.
+
+
+
+
+                                   Figure 7: AC Power Connection
+
+                  WARNING: Do not plug the N-560 into an electrical outlet
+                  controlled by a wall switch, because the N-560 may be
+                  accidentally turned off.
+
+                  2. Plug the other end of the power cord into a properly grounded
+                     AC outlet.
+                  3. Verify that the N-560’s AC Power indicator is lit.
+                  Note: If the AC Power indicator is not lit, do the following:
+                  • Ensure that the power cord is fully seated in the power connector
+                    on the rear of the N-560
+                  • Ensure that the AC power outlet is functioning
+
+N-560 Home Use Guide                                                               25
+Setting Up the N-560
+                       If the AC Power indicator is still not lit, contact the clinician for
+                       further assistance.
+
+
+
+
+26
+                                                                  Oximetry Sensors
+
+Oximetry Sensors
+
+Selecting an Oximetry Sensor
+                  WARNING: Before use, carefully read the directions for use
+                  that accompany the Nellcor OXIMAX oximetry sensor, including
+                  all warnings, cautions, and instructions.
+
+                  WARNING: Do not use a damaged sensor or pulse oximetry
+                  cable. Do not use a sensor with exposed optical components.
+
+                  WARNING: Use only Nellcor-approved OXIMAX sensors and
+                  pulse oximetry cable with this N-560. Use of other sensors or
+                  pulse oximetry cables may adversely affect N-560 performance.
+
+                  WARNING: Do not attach any cable that is intended for
+                  computer use to the sensor port.
+
+                  WARNING: Tissue damage can be caused by incorrect
+                  application or duration of use of an oximetry sensor. Inspect
+                  the sensor site periodically as directed in the sensor directions
+                  for use.
+
+                  WARNING: Do not immerse the sensor in water or wet the
+                  sensor.
+
+
+N-560 Home Use Guide                                                              27
+Oximetry Sensors
+
+                   WARNING: Do not lift the N-560 by the sensor cable or power
+                   cord because the cable or cord could disconnect from the
+                   N-560, causing the N-560 to drop on the patient.
+
+                   WARNING: Pulse oximetry readings and pulse signals can be
+                   affected by certain environmental conditions, oximetry sensor
+                   application errors, and certain patient conditions. Refer to the
+                   appropriate chapters of this manual, including this chapter, for
+                   specific information:
+                         • Oximetry Sensors on page 27
+                         • Sensor Performance Considerations on page 49
+                         • EMI (Electromagnetic Interference) on page 61
+
+                   Caution: The sensor off alarm indicates that the sensor is either
+                   disconnected or the wiring is faulty. If this error occurs, you
+                   should immediately check the sensor connection and, if
+                   necessary, replace the sensor, the pulse oximetry cable
+                   (DOC-10), or both. If necessary, contact the clinician for
+                   assistance.
+                   Contact your clinician before throwing away a used OXIMAX
+                   adhesive sensor as patient data is recorded in some sensor models.
+                   The clinician will assist in the selection of a Nellcor sensor model
+                   that is appropriate for the patient, based in part on patient weight
+                   and activity level (See Patient Activity Level, below). Table 2 lists
+                   the available sensor models and the patient weight ranges for each
+                   sensor.
+                   Patient Activity Level
+                   With active patients, single-patient-use sensors are a better choice
+                   for monitoring than reusable sensors. Single-patient-use sensors
+                   have a “second-skin” fit that provides more stability, more secure
+                   positioning of the LEDs and improved patient comfort.
+
+28
+                                                                    Oximetry Sensors
+
+                  In general, reusable sensors are less secure on active patients than
+                  single-patient-use sensors and are recommended only for spot
+                  checking. Some models of reusable sensors are held in place with a
+                  wrap; therefore, they may provide a more secure fit on active
+                  patients than reusable sensors with a finger-clip design. However,
+                  the wraps tend to make the sensor more bulky, which effects patient
+                  comfort.
+
+
+                Table 2:   Nellcor Oximetry Sensor Models and Patient Weights
+
+                       OXIMAX
+                                                                     Patient Size
+
+                                 Sensor             Model           >=greater than
+
+                                                                     <=less than
+
+
+
+             OXIMAX MAX FAST adhesive
+                             -                    MAX-FAST >10 kg (>22 lbs)
+             forehead sensor, single-patient-
+             use
+             OXIMAX Softcare nonadhesive          SC-PR         <1.5 kg (<3.3 lbs)
+             sensor, single-patient-use,
+             preterm infant
+             OXIMAX Softcare nonadhesive          SC-NEO        1.5 to 5 kg
+             sensor, single-patient-use,                        (3.3 to 11 lbs)
+             neonate
+             OXIMAX Softcare nonadhesive          SC-A          >40 kg (>88 lbs)
+             sensor, single-patient-use, adult
+             OXIMAX adhesive sensor,              MAX-A         >30 kg (>66 lbs)
+             single-patient-use, adult
+             OXIMAX adhesive sensor,              MAX-AL        >30 kg (>66 lbs)
+             single-patient-use, adult, longer
+             cable 36 inches (91.44 cm)
+             OXIMAX adhesive sensor,              MAX-N         <3 kg or >40 kg
+             single-patient-use, neonatal/adult                 (<6.6 lbs or >88 lbs)
+             OXIMAX adhesive sensor,              MAX-P         10 to 50 kg
+             single-patient-use, pediatric                      (22 to 110 lbs)
+
+
+N-560 Home Use Guide                                                                 29
+Oximetry Sensors
+              Table 2:   Nellcor Oximetry Sensor Models and Patient Weights (Cont.)
+
+                          OXIMAX
+                                                                     Patient Size
+
+                                   Sensor              Model       >=greater than
+
+                                                                     <=less than
+
+
+
+              OXIMAX adhesive sensor,               MAX-I       3 to 20 kg
+              single-patient-use, infant                        (6.6 to 44 lbs)
+              OXIMAX adhesive sensor,               MAX-R       >50 kg (>110 lbs)
+              single-patient-use, adult nasal
+              OXIMAX OxiCliq® nonadhesive           OxiCliq A   >30 kg (>66 lbs)
+              sensor, single-patient-use, adult,
+              reusable cable
+              OXIMAX OxiCliq nonadhesive            OxiCliq N   <3 kg or >40 kg
+              sensor, single-patient-use,                       (<6.6 lbs or >88 lbs)
+              neonatal/adult, reusable cable
+              OXIMAX OxiCliq nonadhesive            OxiCliq P   10 to 50 kg
+              sensor, single-patient-use,                       (22 to 110 lbs)
+              pediatric, reusable cable
+              OXIMAX OxiCliq nonadhesive            OxiCliq I   3 to 20 kg
+              sensor, single-patient-use, infant,               (6.6 to 44 lbs)
+              reusable cable
+              OXIMAX Durasensor® finger-clip        DS-100A     >40 kg (>88 lbs)
+              sensor, reusable, adult
+              OXIMAX Oxiband® sensor,               OXI-A/N     <3 kg or >40 kg
+              reusable, neonatal/adult                          (<6.6 lbs or >88 lbs)
+              OXIMAX Oxiband sensor, reusable,      OXI-P/I     3 kg to 40 kg
+              pediatric/infant                                  (6.6 lbs to 88 lbs)
+
+
+
+
+30
+                                                                  Oximetry Sensors
+
+             Table 2:   Nellcor Oximetry Sensor Models and Patient Weights (Cont.)
+
+                            OXIMAX
+                                                                    Patient Size
+
+                                     Sensor            Model      >=greater than
+
+                                                                    <=less than
+
+
+
+
+             OXIMAX Dura Y® multisite sensor, D YS
+                              -
+                                                   -           >1 kg (>2.2 lbs)
+             reusable
+
+
+             For use with the Dura Y sensor:
+                                        -
+
+
+
+                Ear clip (Reusable, nonsterile)   D YSE
+                                                   -           >30 kg (>66 lbs)
+                Pedi CheckTM pediatric
+                                                  D YSPD       3 kg to 40 kg
+                        -
+
+               spot check clip (Reusable,          -
+
+                                                               (6.6 lbs to 88 lbs)
+                    -
+
+               nonsterile)
+
+
+
+
+N-560 Home Use Guide                                                                 31
+Oximetry Sensors
+
+
+
+
+32
+                                                                      Using the N-560
+
+Using      the    N-560
+
+
+
+
+Introduction
+
+
+                  This chapter contains the instructions for the routine operation of
+                  the N-560 in a home-use environment. If you have any questions,
+                  or are unsure how to proceed, always contact the clinician for
+                  clarification.
+                  Note: Many instructions indicate that the N-560 should be in the
+                  “normal monitoring mode.” Normal monitoring mode means that:
+                  • the N-560 is turned on
+                  • a sensor is connected to the N-560
+                  • the sensor is applied to the patient
+                  • the patient’s %SpO2 (oxygen saturation percentage) and pulse
+                    rate readings (BPM) are being reported
+                  • no error conditions exist
+
+
+Factory Default Settings
+
+
+                  Unless otherwise instructed by the clinician, you will use the preset
+                  factory default settings for the N-560 parameters. If needed, the
+                  clinician can program the N-560 to override the default limits,
+                  using instead the settings appropriate for the patient’s needs. You
+                  can discuss this option with the clinician. Refer to Table 3 on page
+                  34 for the factory default limit settings.
+                  The table below lists each parameter, its range in value or setting,
+                  and the factory default setting. The parameters may be set on an
+                  individual basis, as instructed by the clinician, and these altered
+
+N-560 Home Use Guide                                                                 33
+Using the N-560
+                  settings remain in effect until the N-560 is turned off (see following
+                  Note).
+                  Note: If you turn off your N-560, you must reenter the values
+                  provided by the clinician when the N-560 is turned on again.
+                  Caution: Each time the N-560 is used, check the alarm limits to
+                  ensure that they are appropriate for the patient you are
+                  monitoring.
+
+                            Table 3: Parameter Factory Defaults and Ranges
+                                                                              Factory
+                         Parameter                    Ranges                  Default
+                                                                              Settings
+                   %SpO2 Upper             Lower Alarm Limit setting      100%
+                   Alarm Limit             plus 1 to 100%
+                   %SpO2 Lower             20% to Upper Alarm             85%
+                   Alarm Limit             Limit setting minus 1
+                   Pulse Rate Upper        Lower Alarm Limit setting      170 beats
+                   Alarm Limit             plus 1 to 250 beats per        per minute
+                                           minute (BPM)                   (BPM)
+                   Pulse Rate Lower        30 beats per minute            40 beats per
+                   Alarm Limit             (BPM) to Upper Alarm           minute
+                                           Limit setting minus 1          (BPM)
+                   Alarm Silence           On or Off                      On
+                   Reminder
+                   Alarm Silence           Off, 30, 60, 90, or            60 seconds
+                   Duration                120 seconds
+                   Alarm Silence           Audible reminder               Audible
+                   Restrictions            No audible reminder            reminder
+                                           Do not allow alarms off
+                   Alarm Sound             1, 2, 3                        1
+                   Selector
+
+
+34
+                                                                     Using the N-560
+
+                        Table 3: Parameter Factory Defaults and Ranges (Cont.)
+                                                                          Factory
+                         Parameter                   Ranges               Default
+                                                                          Settings
+                   Alarm Volume           1 to 10                       4
+                   Data Port Baud         2400, 9600, 19200             19200
+                   Rate
+                   Data Port Protocol     1, 2                          1(ASCII)
+                   Display                0, 1                          1 (On)
+                   In-Sensor Trend        0, 1, 2                       0 (Event
+                   Mode                                                 SpO2)
+                   Language               English                       English
+                   Pulse Beep Volume      0 to 10                       4
+                   RS-232 Nurse Call      Normally high,                Normally
+                   Priority               Normally low                  low
+                   SatSeconds             Off, 10, 25, 50, 100          Off
+                   Silence Alarms         0, 1                          1 (Off)
+
+
+Turning On the N-560
+
+
+                  Before using the N-560 to monitor the patient, verify that the N-560
+                  is working properly and is safe to use. Each time the N-560 is
+                  turned on, it conducts a series of internal checks to verify proper
+                  operation, as described in the following section.
+                  Caution: If any indicator or display element does not light
+                  during the power-on self test when the N-560 is turned on, do
+                  not use the N-560. Instead, contact the clinician to report the
+                  problem.
+
+
+N-560 Home Use Guide                                                                 35
+Using the N-560
+                  Caution: If the N-560 speaker does not sound a one-second tone
+                  shortly after the power comes on, do not use the N-560. Instead,
+                  contact the clinician to report the problem.
+                  1. Turn on the N-560 by pressing and holding the Power On/Off
+                     button for more than one second.
+                  2. The N-560 displays/sounds:
+
+                                        Display                  Sound
+                           5 (in pulse rate left window)     beep tone
+                           6 (in pulse rate center window)   beep tone
+                           0 (in pulse rate right window)    beep tone
+                           n (in SpO2 left window)           none
+                           n (in SpO2 center window)         none
+
+
+
+
+                  3. The N-560 automatically starts the Power-On Self Test (POST)
+                     which tests the N-560 circuitry and functions.
+                  4. While performing the Power-On Self Test (POST), the self-test
+                     display appears for approximately 2 to 4 seconds. During this
+                     time:
+                      • All indicators light
+                      • All numeric digits light and change from red to green
+
+
+
+36
+                                                                     Using the N-560
+
+                       • All segments of the Pulse Amplitude Indicator (BLIP
+                         BAR) display light
+                       • All segments of the SatSeconds indicator light
+
+
+
+
+                  5. Once the display test portion of the Power-On Self Test (POST)
+                     is complete, the N-560 software version is displayed for
+                     approximately 2 seconds.
+
+
+
+
+                  Note: The illustration shown is only a sample. The hardware
+                  configuration and software configuration for your N-560 may
+                  display a different code than shown in the illustration.
+                  6. If the N-560 detects a problem during the self test, an alarm
+                     tone sounds and the N-560 displays the letters “EEE” followed
+                     by an error code number, similar to the example shown below.
+                     If an error code is displayed, contact the clinician immediately
+                     to report that the N-560 is malfunctioning.
+
+
+
+
+N-560 Home Use Guide                                                               37
+Using the N-560
+
+
+
+
+                  7. Upon successful completion of the self test, the N-560 sounds a
+                     one-second tone indicating that the N-560 has passed the test.
+                  Caution: If you do not hear the one-second POST pass tone, do
+                  not use the N-560. Instead, contact the clinician to report the
+                  problem.
+                  Caution: Do not place objects in front of the N-560’s speaker.
+                  Doing so could prevent you from hearing an audible alarm
+                  while monitoring the patient.
+                  Following successful completion of the self test, the N-560 will
+                  immediately move into the patient monitoring mode. If there is no
+                  sensor connected to the N-560, or if the connected sensor is not
+                  applied to the patient, the N-560 will not display readings for
+                  %S O (oxygen saturation percentage) or pulse rate (BPM).
+                     P   2
+
+
+
+
+                  If you have a sensor connected to the N-560 and properly applied to
+                  the patient before the completion of the internal check, the N-560
+                  will begin searching for the pulse. Upon successfully detecting a
+                  pulse, the N-560 will begin displaying the %S O (Oxygen
+                                                                 P   2
+
+                  saturation percentage) and pulse rate (BPM).
+
+
+Connecting a Sensor to the N-560
+
+
+                  A Nellcor pulse oximetry cable, model DOC-10, must always be
+                  used to connect a sensor to the N-560. Refer to the directions for
+                  use accompanying the DOC-10 cable for additional information.
+                  Connect the DOC-10 cable to the N-560 and plug the sensor into
+                  the DOC-10 cable, as instructed below.
+38
+                                                                      Using the N-560
+
+
+
+
+                  1. Connect the DOC-10 pulse oximetry cable to the pulse oximetry
+                     cable connection port (item 1 above) located on the front panel
+                     of the N-560.
+                  2. Open the plastic latch at the opposite end of the DOC-10 cable
+                     and, with NELLCOR facing up on the sensor connector, plug
+                     the sensor and the DOC-10 cable together. Snap the plastic latch
+                     down over the connectors.
+
+
+
+
+                            Figure 8:   Connecting Sensor and DOC-10 Cable
+
+
+
+
+                  3. Apply the sensor to the patient, as instructed by the clinician.
+                     Be sure to also read the directions for use accompanying the
+                     sensor.
+                  4. The N-560 searches for a valid pulse, indicated by the lighted
+                     Pulse Search indicator. (See item 1 below.) The N-560
+
+                     displays dashes in the %SpO2 and Pulse Rate displays while
+                     the N-560 is searching for a valid pulse.
+
+
+
+
+N-560 Home Use Guide                                                                    39
+Using the N-560
+
+
+
+
+                  5. When a valid pulse is detected, the N-560 enters the monitoring
+                     mode and displays the patient’s readings (%SPO2 and pulse
+                     rate).
+
+
+
+
+                  6. Look for movement of the Pulse Amplitude Indicator (BLIP
+                     BAR) as an indication that the N-560 is displaying real-time
+                     data. Listen for the pulse beep tone.
+                     If the pulse tone does not sound with each pulse, it is an
+                     indication that the pulse beep volume is set to zero, that the
+                     speaker is malfunctioning, or that the pulse signal is corrupted.
+                     See Setting the Pulse Beep Volume on page 42.
+
+
+No Sensor Attached
+                  When a sensor is not attached, the N-560 will display dashes (---)
+                  and the Pulse Search indicator will not be lit indicating that the
+                  N-560 has failed to detect a sensor.
+
+
+40
+                                                                       Using the N-560
+
+
+
+
+Sensor Message
+                  The Sensor Message indicator is displayed when the sensor
+                  position or site needs to be checked. (The sensor site is the place on
+                  the patient where the sensor is attached.) The Sensor Message
+                  indicator lights when the N-560 cannot determine an %SPO2 or
+                  pulse rate value. If the Sensor Message indicator remains lit,
+
+                  check the following to improve the signal:
+                       • Reposition the sensor
+                       • Check or change the adhesive wrap
+                       • Choose an alternate site
+                       • Warm the site
+                       • Cover the sensor
+                       • Use a forehead (>10 kg), nasal (>50 kg), or ear sensor
+                         (>30 kg)
+                       • Use an OXIMAX adhesive sensor
+                       • Secure the cable
+                       • Secure the sensor with a headband (MAX-FAST)
+                       • Remove any nail polish
+                       • Loosen the sensor (too tight)
+                       • Isolate any external interference (cell phone, high-definition
+                         television, another medical device etc.)
+
+N-560 Home Use Guide                                                                  41
+Using the N-560
+
+
+
+                      • Clean the site (MAX-FAST and MAX-R)
+                  Contact the clinician for assistance if the Sensor Message
+                  indicator continues to light.
+
+
+Setting the Pulse Beep Volume
+                  After the N-560 begins reporting valid %SPO2 and pulse rate
+                  readings, you may adjust the pulse beep volume up or down.
+
+
+                  Press and hold the Adjust Up or Adjust Down button to increase
+                  or to decrease pulse beep volume.
+
+
+Setting the Alarm Volume
+                  If the volume of the audible alarm function is too soft or too loud,
+                  contact the clinician for assistance.
+
+                  WARNING: Make sure that you can hear an audible alarm
+                  from other rooms in the home, and when you are using noisy
+                  appliances, such as a dishwasher, clothes dryer, television, or
+                  radio. Failure to ensure that the alarm volume is appropriate
+                  for the environment may place the patient in danger. If you
+                  need assistance adjusting the volume, immediately contact the
+                  clinician for help.
+
+
+
+
+42
+                                                                 Using the N-560
+
+
+Verify Patient Settings
+                  With the N-560 in normal operating mode:
+                  1. Press the SpO2 Alarm Limit button to view the current %SpO2
+                     upper alarm limit.
+
+
+
+
+                  2. Press the SpO2 Alarm Limit a second time to view the current
+                     %SpO2 lower alarm limit.
+
+
+
+
+                  3. Press the Pulse Rate Alarm Limit button to view the current
+                     Pulse Rate upper alarm limit.
+
+
+
+
+                  4. Press the Pulse Rate Alarm Limit button a second time to
+                     view the current Pulse Rate lower alarm limit.
+
+N-560 Home Use Guide                                                            43
+Using the N-560
+
+
+
+
+                  5. Press the SatSeconds Alarm Limit button to view the current
+                     SatSeconds setting.
+
+
+
+
+                  Note: The SatSeconds (12 o’clock) indicator lights, indicating
+                  that SatSeconds have been engaged or you have arrowed up to 10,
+                  25, 50, or 100. The SatSeconds (12 o’clock) indicator lights for
+                  all SatSeconds settings except off. The factory default setting for
+                  SatSeconds is off.
+
+                  Note: After a few seconds, the display will return to normal
+                  monitoring mode if no buttons are pressed.
+
+
+Setting Alarm Limits
+                  Alarm limits set the upper and lower range of monitoring. These
+                  data points determine when the N-560 will sound an alarm.
+                  The clinician will advise you as to whether or not you should use
+                  alarm limits other than the default values when monitoring the
+                  patient. If needed, the clinician can program the N-560 to override
+                  the default limits, using instead the settings appropriate for the
+
+
+44
+                                                                      Using the N-560
+
+                  patient’s needs. You can discuss this option with the clinician.
+                  Refer to Table 3 on page 34 for the factory default limit settings.
+                  1. Press the SpO2 Alarm Limit button to view the current %SpO2
+                     upper alarm limit.
+
+
+
+
+                  2. Press the Adjust Up button or Adjust Down button to increase
+                     or decrease the alarm limit setting.
+                  Note: When an alarm limit is changed, the N-560 displays a
+                  decimal point (.) after the changed value.
+
+
+
+
+                  3. Press the SpO2 Alarm Limit button a second time to view the
+                     current %SpO2 lower alarm limit.
+
+
+
+
+N-560 Home Use Guide                                                                    45
+Using the N-560
+                  4. Press the Adjust Up button or Adjust Down button to increase
+                     or decrease the alarm limit setting.
+                  5. Press the Pulse Rate Alarm Limit button to view the current
+                     pulse rate upper alarm limit.
+
+
+
+
+                  6. Press the Adjust Up button or Adjust down button to increase
+                     or decrease the alarm limit setting.
+                  7. Press the Pulse Rate Alarm Limit button a second time to
+                     view the current pulse rate lower alarm limit.
+
+
+
+
+                  8. Press the Adjust Up button or Adjust down button to increase
+                     or decrease the alarm limit setting.
+                  The factory default alarm limits are typically appropriate for adult
+                  and pediatric patients. If you are monitoring a neonate or infant,
+                  contact the clinician for assistance in changing the upper and lower
+                  limits.
+                  If you modify the default value(s) of alarm limits, the change will
+                  remain in effect only until the N-560 is turned off. You will need to
+                  reenter your limit changes each time you turn on the N-560.
+
+46
+                                                                       Using the N-560
+
+                  Caution: Each time the N-560 is used, check the alarm limits to
+                  ensure that they are appropriate for the patient you are
+                  monitoring as advised by the clinician.
+
+Setting SatSeconds     Duration
+
+
+                  1. Press the SatSeconds Alarm Limit button to view the current
+                     SatSeconds setting.
+
+
+
+
+                  2. Press the Adjust Up button or Adjust down button to increase
+                     or decrease the alarm limit setting.
+                  The available SatSecond settings are off, 10, 25, 50, and 100
+                  seconds.
+                  Note:  The indicators at 12 o’clock will light when SatSeconds is
+                  turned on (engaged) to 10, 25, 50, 100.
+
+
+Alarm Limit Changed Indicator
+                  Alarm limits that have been changed from the factory default
+                  settings are identified by a decimal point after the displayed reading
+                  (%SpO2 or Pulse Rate).
+
+
+
+
+N-560 Home Use Guide                                                                  47
+Using the N-560
+
+
+
+
+Patient Trend Data
+                  The N-560 stores patient pulse rate and %SpO2 readings in
+                  memory, creating a patient trend data history file that can be
+                  reviewed at any time by the clinician.
+                  Caution: Contact your clinician before throwing away a used
+                  adhesive OXIMAX sensor as patient data is recorded by some
+                  sensor models.
+                  If it is necessary for you to access the patient data stored in the
+                  N-560, the clinician will provide instructions for accessing and
+                  viewing this data.
+
+
+
+
+48
+                                                         Performance Considerations
+
+Performance Considerations
+
+Sensor Performance Considerations
+                  Certain patient conditions and environmental factors can adversely
+                  affect the quality of the patient’s readings, and may result in
+                  loss-of-pulse signal. The clinician will assess the patient for these
+                  conditions.
+
+                  WARNING: Pulse oximetry readings and pulse signals can be
+                  affected by certain environmental conditions, sensor
+                  application errors, and certain patient conditions. Refer to the
+                  appropriate chapters of this manual, including this chapter, for
+                  specific information:
+                        • Oximetry Sensors on page 27
+                        • Sensor Performance Considerations on page 49
+                        • EMI (Electromagnetic Interference) on page 61
+
+                  WARNING: Tissue damage can be caused by incorrect
+                  application or inappropriate duration of use of an oximetry
+                  sensor. Inspect the sensor site as directed in the sensor
+                  directions for use.
+
+                  WARNING: Make sure that you can hear an audible alarm
+                  from other rooms in the home, and when you are using noisy
+                  appliances, such as a dishwasher, clothes dryer, television, or
+                  radio. Failure to ensure that the alarm volume is appropriate
+                  for the environment may place the patient in danger. If you
+                  need assistance adjusting the volume, immediately contact the
+                  clinician for help.
+
+N-560 Home Use Guide                                                                 49
+Performance Considerations
+
+                    WARNING: Ensure that the speaker is clear of any
+                    obstruction. Failure to do so could result in an inaudible alarm
+                    tone.
+
+                    Caution: Use only Nellcor-approved OXIMAX oximetry sensors
+                    and pulse oximetry cables.
+                    The clinician will assist in the selection of a sensor appropriate to
+                    the patient, and the monitoring environment. Apply the sensor to
+                    the patient, as directed, and observe all warnings and cautions
+                    presented in the directions for use accompanying the sensor. Clean
+                    and remove any substances such as nail polish from the application
+                    site. Periodically check to ensure that the sensor remains properly
+                    positioned on the patient.
+                    High ambient light sources such as a bedside lamp, bilirubin lamps,
+                    fluorescent lights, infrared heating lamps, and direct sunlight can
+                    interfere with the performance of an oximetry sensor. To prevent
+                    interference from ambient light, ensure that the sensor is properly
+                    applied, and cover the sensor site with opaque material, such as a
+                    blanket.
+                    One or more of the following environmental factors or patient
+                    conditions can cause inaccurate measurements:
+                    • incorrect application of the sensor
+                    • placement of the sensor on an extremity with a blood pressure
+                      cuff, arterial catheter, or intravascular line
+                    • ambient light, such as a lamp at the patient’s bedside
+                    • excessive patient movement
+                    • intravascular dyes or externally applied coloring, such as nail
+                      polish or pigmented cream
+                    • failure to cover the sensor site with opaque material in high
+                      ambient light conditions
+
+50
+                                                        Performance Considerations
+
+                  One or more of the following environmental factors or patient
+                  conditions can cause loss-of-pulse signal:
+                  • sensor is too tightly wrapped around the patient’s digit or other
+                    extremity
+                  • an inflated blood pressure cuff on the same extremity as the one
+                    with the sensor attached
+                  • an arterial occlusion (blocked artery) proximal to the sensor
+                  • poor peripheral profusion (circulation)
+                  If patient movement presents a problem, under the guidance of the
+                  clinician, you may try one or more of the following remedies to
+                  correct the problem:
+                  • verify that the sensor is properly and securely applied
+                  • move the sensor to a less active site
+                  • use an adhesive OXIMAX sensor that improves patient skin contact
+                  • use a new sensor with fresh adhesive backing
+                  • keep the patient still, if possible
+
+
+
+
+N-560 Home Use Guide                                                               51
+Performance Considerations
+
+
+
+
+52
+                                                                   Battery Operation
+
+Battery       Operation
+
+
+
+
+Operating on Battery Power
+                  The N-560 has an internal battery that may be used to power the
+                  N-560 during transport or when AC power is not available. A fully
+                  charged battery will provide at least 8 hours of monitoring time
+                  under the following conditions:
+                  • no audible alarms sound
+                  • no serial output devices are attached to the N-560
+                  The N-560 cannot operate with a fully discharged battery. Plug the
+                  N-560 into an electrical outlet (AC power) and operate using AC
+                  power, while the battery charges.
+
+
+Automatic Shutdown to Conserve Battery
+                  If you operate the N-560 using the battery, the N-560 will
+                  automatically shut down to conserve the battery when all of the
+                  three following conditions are present for 15 minutes:
+                  • no buttons have been pressed
+                  • no pulse has been detected (for example, no patient is connected
+                    to the sensor or the sensor is disconnected from the N-560)
+                  • no alarms are present (other than low battery or a
+                    non-correctable error)
+                  Caution: Do not use the N-560 with battery power unless
+                  instructed to do so by the clinician. It is recommended that the
+                  N-560 remain plugged into an AC power outlet.
+
+
+N-560 Home Use Guide                                                                53
+Battery Operation
+
+                    WARNING: Do not connect the N-560 to an electrical outlet
+                    controlled by a wall switch, because the N-560 may be
+                    accidentally turned off.
+
+                    Caution: Protect the environment by following local governing
+                    ordinances and recycling instructions regarding disposal or
+                    recycling of the N-560, components, or battery.
+                    Note: Whenever the N-560 is connected to AC power, the battery
+                    is being charged. Therefore, it is recommended that the N-560
+                    remain connected to AC power when not in use. This will ensure a
+                    fully charged battery whenever it is needed.
+
+
+Recharging the Battery
+
+
+                    To charge a low or dead battery, connect the N-560 to an electrical
+                    outlet (AC power). Six hours of charging are required to fully
+                    charge a dead battery.
+                    Note: As the battery is used and recharged over a period of time,
+                    the amount of time between the onset of the low battery alarm and
+                    the N-560 shut-off may become shorter.
+
+
+Low Battery Indicator
+
+
+                    The Low Battery indicator lights and a low priority alarm begins
+                    to sound when approximately 15 minutes of monitoring time
+                    remain on the existing battery charge. This alarm cannot be
+                    silenced when running on battery power. Connecting the N-560 to
+                    AC power will silence the alarm. If the N-560 is not connected to
+                    AC power within approximately 15 minutes, the N-560 will shut
+                    down.
+
+
+
+54
+                                                                 Battery Operation
+
+                  Caution: If the N-560 is to be stored for a period of two months
+                  or longer, contact the clinician for storage instructions.
+                  Recharge the battery when the battery has not been charged
+                  for two or more months.
+
+
+
+
+N-560 Home Use Guide                                                            55
+Battery Operation
+
+
+
+
+56
+                                                                         Troubleshooting
+
+Tr o u b l e s h o o t i n g
+
+                  WARNING: The cover should be removed only by qualified
+                  service personnel. There are no user-serviceable parts inside.
+
+                  Caution: Do not spray, pour, or spill any liquid on the N-560, its
+                  accessories, connectors, switches, or openings in the covers.
+
+Error Codes
+                  When the N-560 detects an error condition, it will display three
+                  letters, “EEE”, followed by an error code.
+
+
+
+
+                  When an error code is displayed, turn the N-560 off, wait 10
+                  seconds, and turn the N-560 on. If the error code is listed in Table 4,
+                  follow the action(s) listed. If the action does not correct the error
+                  condition, notify the clinician. If the error code is not listed in Table
+                  4, notify the clinician.
+                  When the N-560 detects a defective sensor connected to the N-560
+                  the N-560 displays an error code of “Sen Err.” The sensor should be
+                  replaced and the N-560 power should be cycled (turn off and then
+                  turn on again).
+
+
+
+
+N-560 Home Use Guide                                                                    57
+Troubleshooting
+
+
+
+
+                            Table 4: Error Codes
+
+
+
+                    Error               Action
+                    Code
+                    513     1 — Charge battery.
+                            2 — Notify clinician.
+                    514     1 — Restart the N-560.
+                            2 — Notify clinician.
+                    525     1 — Restart the N-560.
+                            2 — Notify clinician.
+                    526     1 — Restart the N-560.
+                            2 — Notify clinician.
+                    528     1 — Restart the N-560.
+                            2 — Notify clinician.
+
+
+Solving Problems
+                  Following is a list of possible problems and suggestions for
+                  correcting them. If you cannot correct a problem, immediately
+                  contact the clinician for further instructions. Do not attempt to
+                  monitor the patient using a N-560 that fails the power-on test or is
+                  otherwise not operating properly.
+                  1. There is no response to the Power On/Off button.
+                     • Verify that the electrical wall outlet you are using to power
+                       the N-560 is functioning.
+
+58
+                                                                         Troubleshooting
+
+                       • If you are operating on battery power, check for a lighted
+                         Low Battery indicator. If the Low Battery indicator is lit,
+
+                         this indicates that the battery is discharged. To recharge the
+                         battery, see Recharging the Battery on page 54.
+                       • A fuse in the N-560 may be blown. Notify the clinician.
+                  2.   One or more display segments or front panel indicators
+                       does not light during the power-on self test.
+                       • Do not use the N-560. Contact the clinician for further
+                         instructions.
+                  3. The Pulse Search indicator is lit for more than 10 seconds
+                     after you begin monitoring the patient. (No readings are
+                     reported.)
+                       • Check the sensor site. The sensor may be applied too tightly
+                         to the patient’s digit. Reapply the sensor, as necessary.
+                       • The sensor may be on an extremity with a blood pressure
+                         cuff, an arterial catheter, or intravascular (I.V.) line. Contact
+                         the clinician for further guidance.
+                       • Excessive ambient light, such as a bedside lamp or direct
+                         sunlight, may interfere with measurements. Cover the site
+                         with an opaque blanket or towel.
+                       • Interference may be preventing the N-560 from tracking the
+                         patient’s pulse. Keep the patient still, if possible. Verify that
+                         the sensor is securely applied, and replace it if necessary.
+                  Note: If interference is an ongoing issue, contact the clinician, who
+                  may be able to suggest the use of an alternate sensor site or a
+                  different sensor model.
+                       • Contact the clinician to ensure you are using a sensor model
+                         appropriate for the patient you are monitoring.
+
+
+
+N-560 Home Use Guide                                                                    59
+Troubleshooting
+                     • Electromagnetic interference may be preventing the N-560
+                       from tracking the pulse. Remove the source of the
+                       interference. See EMI (Electromagnetic Interference) on
+                       page 61 for more information.
+                  4. The Pulse Search indicator lights after some patient
+                     readings have been reported.
+                     • Check the patient. Verify that the patient has a regular pulse
+                       rate. If you suspect any problems, contact the clinician
+                       immediately.
+                     • Check the sensor site. The sensor may be applied too tightly
+                       to the patient’s digit. Reapply the sensor, as necessary.
+                     • The sensor may be on an extremity with a blood pressure
+                       cuff, an arterial catheter, or intravascular (I.V.) line. Contact
+                       the clinician for further guidance.
+                     • Interference may be preventing the N-560 from tracking the
+                       patient’s pulse. Keep the patient still, if possible. Verify that
+                       the sensor is securely applied, and replace it if necessary. See
+                       EMI (Electromagnetic Interference) on page 61 for more
+                       information.
+                  Note: If interference is an ongoing issue, contact the clinician, who
+                  may be able to suggest the use of an alternate sensor site or a
+                  different sensor model.
+                     • Contact the clinician to ensure you are using a sensor
+                       appropriate for the patient you are monitoring.
+                  5. The N-560 displays three letters, “EEE”, followed by a
+                     number.
+                     • This is an error code. Refer to Error Codes on page 57.
+                     • Turn the N-560 off and back on again. If the error code
+                       occurs again, record the number and provide that
+
+
+60
+                                                                       Troubleshooting
+
+                          information to the clinician or your medical equipment
+                          dealer.
+                  6. The Low Battery indicator lights.
+                       • The Low Battery indicator lights when the battery is
+                         discharged to a critically low level. Recharge the battery.
+                         (See Recharging the Battery on page 54.)
+                       • If you have recharged the battery for about ten minutes after
+                         the Low Battery indicator was displayed, turn on the
+                         N-560. If the Low Battery indicator is still present, turn the
+                         N-560 off and allow it continue recharging for another
+                         twenty minutes. Check for the Low Battery indicator again
+                         by turning on the N-560. If the condition persists, notify the
+                         clinician immediately. Do not use the N-560 on the patient.
+
+
+EMI (Electromagnetic Interference)
+                  Caution: This device has been tested and found to comply with
+                  the established limits for medical devices. These limits are
+                  designed to provide reasonable protection against harmful
+                  interference in a typical home-use environment.
+                  Because of the number of radio-frequency transmitting equipment
+                  and other sources of electrical noise in the home-use environment
+                  (for example, cellular phones, mobile two-way radios, electrical
+                  appliances, and high-definition television), it is possible that high
+                  levels of such interference, due to proximity or strength of a source,
+                  may result in disruption of the performance of this device.
+                  Disruption by EMI may be evidenced by erratic readings, cessation
+                  of operation, or other incorrect functioning of your N-560. If this
+                  occurs, the area around the N-560 should be surveyed to determine
+                  the source of this disruption, and the following actions taken to
+                  eliminate the source:
+
+N-560 Home Use Guide                                                                  61
+Troubleshooting
+                  • Turn the equipment off and on in the vicinity of the N-560 to
+                    isolate the offending equipment.
+                  • Reorient or relocate the interfering equipment.
+                  • Increase the separation between the interfering equipment and
+                    the N-560.
+                  The N-560 generates, uses, and can radiate radio frequency energy
+                  and, if not installed and used in accordance with the instructions in
+                  this manual, may cause interference with other devices in the
+                  vicinity.
+                  If assistance is required, contact the clinician.
+
+
+
+
+62
+                                                                          Maintenance
+
+Maintenance
+
+Service
+                  WARNING: Do not remove the cover on the N-560. You may
+                  cause the N-560 to malfunction and/or void any warranty.
+
+                  The N-560 requires no routine service or calibration other than
+                  changing the battery at least every 24 months. (The clinician will
+                  provide assistance if the battery requires replacement.)
+                  If service is necessary, inform the clinician, or contact your medical
+                  equipment dealer.
+
+
+Periodic Safety Checks
+                  It is recommended that the following checks be performed every
+                  24 months.
+                  • Inspect the equipment for mechanical and functional damage.
+                  • Inspect the safety-related labels for legibility.
+
+
+
+
+N-560 Home Use Guide                                                                   63
+Maintenance
+
+Cleaning
+              Caution: Do not spray, pour, or spill any liquid on the N-560, its
+              accessories, connectors, switches, or openings in the chassis.
+              For surface-cleaning and disinfecting the N-560, follow the
+              clinician’s instructions or:
+              • The N-560 may be surface-cleaned by using a soft cloth
+                dampened with either a commercial, nonabrasive cleaner or a
+                solution of 70% alcohol in water, and lightly wiping the surfaces
+                of the N-560.
+              • The N-560 may be disinfected using a soft cloth saturated with a
+                10% chlorine bleach solution, diluted in tap water.
+              Before you clean an oximetry sensor, check the directions for use
+              enclosed with the sensor for applicable cleaning instructions. If no
+              cleaning instructions are present, the sensor is an adhesive sensor
+              and should be replaced rather than cleaned.
+              The pulse oximetry cable may be surface-cleaned. Refer to the
+              directions for use, enclosed with the cable, for applicable cleaning
+              instructions.
+
+
+
+
+64
+                                                                                     Specifications
+
+Specifications
+
+
+Performance
+                                              Measurement Range
+                   SpO2                         1% to 100%
+                   Pulse Rate                   0 and 20 beats per minute (bpm) to 250 bpm
+                   Perfusion Range              0.03% to 20%
+                                      Accuracy and Interference Tolerance
+                   Saturation
+                   Adults1                                 70 to 100% ±2 digits
+                   Neonate                                 70 to 100% ±3 digits
+                   Low Perfusion2                          70 to 100% ±2 digits
+                   Pulse Rate
+
+
+
+                   Adult and Neonate1                      20 to 250 bpm ±3 digits
+
+                   Low Perfusion2                          20 to 250 bpm ±3 digits
+                   1
+                       Adult specifications are shown for OXIMAX MAX A and MAX N
+                                                                         -              -
+
+                       sensors with the N 560. Neonate specifications are shown for
+                       OXIMAX MAX N sensors with the N 560. Saturation accuracy will
+                                         -
+
+                                     -                     -
+
+                       vary by sensor type. Refer to the Sensor Accuracy Grid. The Sensory
+                       Accuracy Grid is available on the Internet at:
+                   http://www.mallinckrodt.com/respiratory/resp/Serv_Supp/ProductManuals.html
+                   2
+                       Specification applies to N-560 performance. Reading accuracy in
+                       the presence of low perfusion (detected IR pulse modulation
+                       amplitude <1.5%) was validated using signals supplied by a
+                       patient simulator. SpO2 and pusle rate values were varied across
+                       the monitoring range including weak signal conditions and
+                       compared to the known true saturation and pulse rate of the input
+                       signals.
+
+
+N-560 Home Use Guide                                                                            65
+Specifications
+
+
+                                          Table 5: Tone Definition
+
+
+
+                   Audible Indicator               Parameter                 Value
+                 Alarm Silence             Volume level                Not changeable
+                 Reminder
+                                           Pitch (±30 Hz)              784 Hz
+                                           Pulse width (±20 msec)      150 msec
+                                           Pulse repetition interval   150 msec
+                                           (±20 msec) (double burst)
+                                           Repetitions                 3
+                 Confirmation of Button    Volume level                Not changeable
+                 Pressed
+                                           Pitch (±30 Hz)              784 Hz
+                                           Pulse width (±20 msec)      150 msec
+                                           Pulse repetition interval   150 msec
+                                           (±20 msec) (double burst)
+                                           Repetitions                 3
+                 High Priority Alarm       Volume level                Adjustable alarm
+                                                                       volume
+                                           Pitch (±30 Hz)              932 Hz
+                                           Pulse width (±20 msec)      Nellcor = 255 msec
+                                                                       IAW IEC 60601-1-
+                                                                       8 = 120 msec
+                                                                       IAW EN 475 = 150
+                                                                       msec
+                                           Pulse repetition interval   Nellcor = 320 msec
+                                           (±20 msec) (double burst)
+                                                                       IAW IEC 60601-1-
+                                                                       8 = 6940 msec
+                                                                       IAW EN 475 =
+                                                                       7500 msec
+                                           Repetitions                 Continually
+
+
+
+66
+                                                                                   Specifications
+
+                                          Table 5: Tone Definition (Cont.)
+
+
+
+                       Audible Indicator               Parameter                    Value
+                   Invalid Button Press        Volume level                  Not changeable
+                                               Pitch (±30 Hz)                180 Hz
+                                               Pulse width (±20 msec)        70 msec
+                                               Pulse repetition interval     N/A
+                                               (±20 msec) (double burst)
+                                               Repetitions                   1
+                   Low Priority Alarm          Volume level                  Adjustable alarm
+                                                                             volume
+                                               Pitch (±30 Hz)                500 Hz
+                                               Pulse width (±20 msec)        200 msec
+                                               Pulse repetition interval     15000 msec
+                                               (±20 msec) (double burst)
+                                               Repetitions                   Continually
+                   Medium Priority Alarm       Volume level                  Adjustable alarm
+                                                                             volume
+                                               Pitch (±30 Hz)                752 Hz
+                                               Pulse width (±20 msec)        Nellcor = N/A
+                                                                             IAW IEC 60601-1-
+                                                                             8 = 160 msec
+                                                                             IAW EN 475 = 200
+                                                                             msec
+                                               Pulse repetition interval     Nellcor = N/A
+                                               (±20 msec) (double burst)
+                                                                             IAW IEC 60601-1-
+                                                                             8 = 7600 msec
+                                                                             IAW EN 475 =
+                                                                             20000 msec
+                                               Repetitions                   Continually
+
+
+
+
+N-560 Home Use Guide                                                                            67
+Specifications
+                                      Table 5: Tone Definition (Cont.)
+
+
+
+                   Audible Indicator               Parameter                    Value
+                 POST Pass                 Volume level                  Not changeable
+                                           Pitch (±30 Hz)                784 Hz
+                                           Pulse width (±20 msec)        1000 msec
+                                           Pulse repetition interval     N/A
+                                           (±20 msec) (double burst)
+                                           Repetitions                   1
+                 Pulse Beep                Volume level                  Adjustable
+                                           Pitch (±30 Hz)                296 Hz to 662 Hz
+                                                                         (varies with
+                                                                         saturation)
+                                           Pulse width (±20 msec)        40 msec
+                                           Pulse repetition interval     N/A
+                                           (msec ±20 msec) (double
+                                           burst)
+                                           Repetitions                   1
+                 Valid Button Press        Volume level                  Not changeable
+                                           Pitch (±30 Hz)                784 Hz
+                                           Pulse width (±20 msec)        30 msec
+                                           Pulse repetition interval     N/A
+                                           (±20 msec) (double burst)
+                                           Repetitions                   1
+                 Volume Setting            Volume level                  Adjustable alarm
+                                                                         volume
+                                           Pitch (±30 Hz)                752 Hz
+                                           Pulse width (±20 msec)        Infinite
+                                           Pulse repetition interval     N/A
+                                           (±20 msec) (double burst)
+                                           Repetitions                   N/A
+
+
+
+68
+                                                                                   Specifications
+
+Electrical
+
+                                                     Instrument
+                   Power Requirements          100 to 240 volts AC, 25 to 39 volt/amps to be
+                                               compliant with IEC 60601-1 sub-clause 10.2.2
+                   Fuses                       qty 2, 2 A, 250 volts, slow-blow, IEC (5 x 20 mm)
+
+                                                       Battery
+
+
+
+                   The battery provides at least eight hours of battery life when new and fully
+                   charged with no alarms, no serial data, while using a pulse simulator set for 60
+                   bpm, high light and low modulation.
+                   Type                Nickel metal hydride
+                   Voltage             9.6 Volts DC, 3.8 AH
+                   Recharge            6 hours
+                   Shelf Life          2 months, new, fully charged battery
+                                       After 2 months storage the N-560 will run for 50% of
+                                       stated battery life
+                   Complies With       91/157/EEC
+
+                                                      Sensors
+
+
+
+                   Electrical/         Nellcor Pulse oximetry sensors contain light emitting
+                   Optical             diodes (LEDs) that emit red (~660 nm) and infrared
+                   Specifications      (~900 nm) light, with a total optical output power of less
+                                       than 15 mW. This information of sensor wavelength
+                                       range can be especially useful to clinicians, for example,
+                                       those performing photodynamic therapy.
+
+
+
+
+N-560 Home Use Guide                                                                              69
+Specifications
+
+Environmental Conditions
+
+                                                         Operation
+
+
+
+                 Temperature             50 ºF to 113 ºF (10 ºC to 45 ºC)
+                 Altitude/Barometric     -390 m to 3,012 m
+                 Pressure                (-1,280 ft. to 9,882 ft.)
+                                         70 kPa to 106 kPa
+                                         (20.6 in. Hg to 31.3 in. Hg)
+                 Relative Humidity       15% to 95% non-condensing to be compliant with IEC
+                                         60601-1, sub-clause 44.5
+
+                               Transport and Storage (not in shipping container)
+
+
+
+                 Temperature                 -   4 ºF to 140 ºF (-20 ºC to 60 ºC)
+                 Altitude/Barometric         - 390 m to 5,574 m
+                 Pressure                    (-1,280 ft. to 18,288 ft.)
+                                             50 kPa to 106 kPa
+                                             (14 in. Hg to 31.3 in. Hg)
+                 Relative Humidity           15% to 95% non-condensing over temperature range
+                                             of -4 ºF to 140 ºF (-20 ºC to 60 ºC )
+
+                                Transport and Storage (in shipping container)
+
+
+
+                 Temperature                 4 ºF to 158 ºF (-20 ºC to 70 ºC)
+                                             -
+
+                 Altitude/Barometric         -390 m to 5,574 m
+                 Pressure                    (-1,280 ft. to 18,288 ft.)
+                                             50 kPa to 106 kPa
+                                             (14 in. Hg to 31.3 in. Hg)
+                 Relative Humidity           15% to 95% non-condensing
+
+
+
+
+70
+                                                                             Specifications
+
+                                           Sensor Power Dissipation
+
+
+
+                                 Sensor                               Dissipation
+
+
+
+                   OXIMAX MAX-N                         52.5 mW
+                   OXIMAX MAX-I                         52.5 mW
+                   OXIMAX MAX-P                         52.5 mW
+                   OXIMAX MAX-A                         52.5 mW
+                   OXIMAX MAX-AL                        52.5 mW
+                   OXIMAX MAX-R                         52.5 mW
+                   OXIMAX Oxiband OXI-A/N               52.5 mW
+                   OXIMAX Oxiband OXI-P/I               52.5 mW
+                   OXIMAX Durasensor DS-100A            52.5 mW
+                   OXIMAX OxiCliq P                     52.5 mW
+                   OXIMAX OxiCliq N                     52.5 mW
+                   OXIMAX OxiCliq I                     52.5 mW
+                   OXIMAX OxiCliq A                     52.5 mW
+                   OXIMAX Dura-Y D-YS                   52.5 mW
+                   OXIMAX MAX-FAST                      52.5 mW
+                   OXIMAX Softcare SC-PR                52.5 mW
+                   OXIMAX Softcare SC-NEO               52.5 mW
+                   OXIMAX Softcare SC-A                 52.5 mW
+
+
+
+
+N-560 Home Use Guide                                                                    71
+Specifications
+
+Physical Characteristics
+
+                 Weight       3.07 lbs. (1.39 kg) without pole mount
+                 Dimensions 2.95 " (H) × 9.06 " (W) × 5.04" (D)
+                            (75 mm (H) × 230 mm (W) × 128 mm (D)
+
+
+Compliance
+
+                 Item                           Compliant With
+                 Equipment classification       Safety Standards: EN 60601-1: 1988
+                                                (A1 + A2), CSA C22.2 No. 601.1,
+                                                UL 60601-1, EN 475, EN 865,
+                                                EN 60601-1-2: 2001
+                 Type of protection             Class I (on AC power) Internally
+                                                powered (on battery power)
+                 Degree of protection           Type BF – Applied part
+                 Mode of operation              Continuous
+                 Safety                         ISO 9919: 2005(E)
+                                                Particular requirements for the basic
+                                                safety and essential performance of
+                                                pulse oximeter equipment for
+                                                medical use.
+
+
+
+
+72
+Index
+
+
+                                                sensor off 28
+Symbols                                         speaker 15
+%SpO2                                           volume 23, 42, 49
+  alarm limits                                     default setting 35
+      default settings 34                   automatic shutdown, battery 53
+  button 11, 13, 43, 45
+  definition 2                              B
+  display 13, 14, 33, 38                    bar
+                                                blip 14, 37, 40
+A                                               pulse amplitude 14, 37, 40
+AC power                                    battery
+    connector 19, 25                            alarm 16, 54, 59, 61
+    indicator 15, 16, 25                        alarm indicator
+adjust down button 11, 12, 42, 45, 46, 47           low battery 21
+adjust up button 11, 12, 42, 45, 46, 47         automatic shutdown 53
+alarm management                                charge 53
+    SatSeconds 14                               conservation 53
+alarm silence                                   indicator 16, 21, 54, 61
+    button 11, 12, 16                           operation 53
+    duration 12, 16, 34                         power 53, 59
+    indicator 15, 16                            recharging 54, 61
+    reminder 21, 34                             replacing 63
+alarms 11                                   beats per minute (see bpm)
+    description 21                          beep tone
+    limit changed indicator 47                  pulse 21, 42
+    limits 34                               blip bar 14, 37, 40
+        default settings 34, 46             bpm
+        ranges 34                               alarm limit
+        SatSeconds 47                               button 11, 12, 43, 46
+        setting 44                                  default setting 34
+    low battery 16, 21, 54, 59, 61                  pulse rate 2, 11, 12, 34, 43, 46
+    priorities 21                               blip bar 14, 37, 40
+    SatSeconds 14                               definition 2
+    self test tone 37                           display 2, 13, 14, 33, 38
+
+
+N-560 Home Use Guide                                                                   73
+Index
+    pulse search indicator 15, 16                   error 37, 57, 60
+buttons                                          components
+    adjust down 11, 12, 42, 45, 46, 47              front panel 15
+    adjust up 11, 12, 42, 45, 46, 47                rear panel 19
+    alarm silence 11, 12, 16                     connector
+    control 11, 12                                  AC power 19, 25
+    front panel 11, 12                              data port 19
+    power on/off 11, 12, 36, 58                     DOC-10 cable 15, 39
+    pulse rate alarm limit 11, 12, 43, 46           ground 19
+    SatSeconds alarm limit 11, 12, 47               power cord 25
+    SpO2 alarm limit 11, 13, 43, 45                 pulse oximetry cable 15, 39
+    tones 21                                        sensor 39
+                                                    visual alarm 19
+C                                                control buttons 11, 12
+cable
+    connector 15, 39                             D
+    DOC-10 cable 24, 28, 38                      data port
+    pulse oximetry 28, 38                            connector 19
+        cleaning 64                              decimal point 14, 45, 47
+        connecting sensor to 39                  default settings 33
+        disinfecting 64                          definitions 1
+    sensor 2, 5, 6, 7, 15, 23, 24, 27, 28, 38,   disinfecting
+            64                                       cables 64
+        cleaning 64                                  monitor 64
+        disinfecting 64                              sensor 64
+cautions 7, 25, 28, 34, 35, 38, 47, 48, 50,      display
+53, 55, 57, 61, 64                                   %SpO2 13, 14, 33, 38
+    definition 7                                     bpm 13, 14, 33, 38
+CH SEN 57                                            decimal point 14, 45, 47
+cleaning                                             information 13, 14
+    cables 64                                        oxygen saturation 13, 14, 33, 38
+    monitor 64                                       pulse rate 13, 14, 33, 38
+    sensor 64                                        SatSeconds 13, 14
+clinician                                        DOC-10 cable 15, 24, 28, 38, 39
+    contacting the 3
+    definition 1, 9                              E
+    role 9
+code                                             EEE error code 37, 57, 60
+
+
+74
+                                                                              Index
+electrical power 19, 25                  Interference indicator 17
+electromagnetic interference (EMI) 41,   interference indicator 15
+60, 61                                   interference, explained 17
+error code 37, 57, 60
+Error codes 57                           L
+                                         limits
+F                                            alarms 34
+front panel                                      default settings 46
+    components 15                                setting 44
+    control buttons 11, 12               low battery indicator 16, 21, 54, 59, 61
+    indicators 15, 16
+    symbol 18                            M
+fuse 59
+                                         message
+                                            EEE 37, 57, 60
+G                                        Monitor
+ground connector 19                         accuracy and interference tolerance
+                                                    65
+H                                           measurement range 65
+                                         monitor
+help, obtaining 3                           AC power and 25
+home caregiver                              alarms (see alarms)
+    definition 1                            battery
+                                                automatic shutdown 53
+I                                               low battery indicator 54
+indicator                                       operation 53
+    AC power 15, 16, 25                         recharging 54
+    alarm limit changed 47                  cleaning 64
+    alarm silence 16                        connecting cable to 39
+    interference 15                         connecting sensor to 38
+    low battery 16, 54, 59                  connecting to AC power 25
+    low battery indicator 61                disinfecting 64
+    pulse search 15, 16                     electrical power 25
+    sensor message 15, 16                   error
+    sensor off 15, 16, 28                       codes 57
+    status 11                               factory default settings 33
+interference 15, 59, 60                     front panel
+interference EMI 41, 60, 61                     components 15
+
+
+N-560 Home Use Guide                                                                75
+Index
+       control buttons 11, 12
+       indicators 15, 16             P
+       symbols 18                    patient
+  normal monitoring mode 1, 33, 44       sensor selection 9, 28, 50
+  pulse beep tone 42                 patient activity level 28
+  rear panel                         patient settings
+       components 19                     verifying 43
+       indicators 20                 power
+       symbols 20                        battery 53, 59
+  safety checks 63                       electrical 19, 25
+  sensors                            power cord
+       connecting to 38                  connector 25
+  service 63                         power indicator 15, 16, 25
+  turning on 35                      power on/off button 11, 12, 36, 58
+  using 33                           power-on self test 21, 36
+monitoring mode                      problem with 59
+  normal 1, 33, 44                   problems
+                                         contact clinician 3, 9
+N                                        error codes 37, 57, 60
+normal monitoring mode 33, 44            solving 58
+   definition 1                      pulse amplitude
+                                         bar 14, 37, 40
+                                         definition 2
+O                                    pulse beep
+operating                                tone 21, 42
+   altitude 70                           volume 42
+   barometric pressure 70                    default 35
+   relative humidity 70              pulse oximeter
+   temperature 70                        definition 2
+oxygen saturation                    pulse oximetry
+   alarm limits                          cable 28, 38
+        default settings 34                  cleaning 64
+   button 11, 13, 43, 45                     disinfecting 64
+   definition 2                          connector 39
+   display 13, 14, 33, 38            pulse rate
+                                         alarm limit
+                                             button 11, 12, 43, 46
+                                             default settings 34
+
+
+76
+                                                                                 Index
+    definition 2                              sensor site 3
+    display 2, 13, 14, 33, 38                 service 63
+pulse search indicator 15, 16                 setting
+                                                  alarm limits 34, 44
+R                                                 alarm volume 42
+                                                  defaults 33
+rear panel                                        SatSeconds 47
+    components 19, 20                         site or sensor site 3
+    indicators 20                             speaker 15
+    symbols 20                                Specifications 65
+                                                  performance 65
+S                                             specifications
+SatSeconds                                        battery 69
+    alarm limit 47                                electrical 69
+        button 11, 12, 47                         electrical, instrument 69
+    alarms 14                                     environmental 70
+    default setting 35                            physical 72
+    display 13, 14                            SpO2 alarm limit button 11, 13, 43, 45
+    duration 47                               status indicators 11
+    setting 47                                storage
+sensor                                            altitude 70
+    adhesive 28, 64                               barometric pressure 70
+    alarm 28                                      relative humidity 70
+    cable 2, 5, 6, 7, 15, 23, 24, 27, 28, 38,     temperature 70
+            39                                symbols
+    cleaning 64                                   front panel 18
+    connecting to monitor 38                      rear panel 20
+    definition 2
+    disinfecting 64                           T
+    disposable 48                             tone
+    inaccurate measurements                       audible 21
+        ambient light 50                          confirmation 22
+        patient movement 51                       pulse beep 21, 42
+    message indicator 15, 16                      volume setting 22
+    off indicator 15, 16, 28                  transport
+    performance considerations 49                 altitude 70
+    selection 9, 28, 29, 50                       barometric pressure 70
+sensor power dissipation 71                       relative humidity 70
+
+N-560 Home Use Guide                                                                   77
+Index
+    temperature 70                      default setting 35
+troubleshooting 58                  pulse beep 42
+turning on, monitor 35                  default 35
+                                    setting 42
+V                                   tones 22
+verifying patient settings 43
+visual alarm connector 19       W
+volume                          warnings 5, 9, 23, 27
+    alarms 23, 42, 49              definition 5
+
+
+
+
+78
+       Part No. 10075132 Rev. A/A7060-2
+
+       COVIDIEN, COVIDIEN with logo and Covidien logo are
+       U.S. and/or internationally registered trademarks of
+       Covidien AG.
+
+       ™* Trademark of its respective owner.
+       Other brands are trademarks of a Covidien company.
+
+       ©2011 Covidien.
+
+         Covidien llc,
+       15 Hampshire Street,
+       Mansfield, MA 02048 USA.
+           Covidien Ireland Limited,
+       IDA Business & Technology Park,Tullamore.
+
+0123   www.covidien.com           [T] 1-800-635-5267
+

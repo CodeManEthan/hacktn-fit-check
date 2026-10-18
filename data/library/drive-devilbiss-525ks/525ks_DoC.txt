@@ -1,0 +1,102 @@
+                                                            EC Declaration of Conformity
+
+Manufacturer:                                               DeVilbiss Healthcare LLC
+                                                            100 DeVilbiss Drive
+                                                            Somerset, PA 15501, USA
+
+EC Authorized Representative:                               Drive Medical GmbH & Co. KG
+                                                            Leutkircher Str. 44
+                                                            DE-88316 Isny im Allgau
+
+
+1.   Oxygen Concentrators (UMDNS 12-873)
+     Catalogue nos.:                                         525KS, 525KS-LT, 525KS-UK, 525PS
+     Description:                                           DeVilbiss® 5-Liter Oxygen Concentrator
+     Classification (MDD Annex IX):                         IIa (Rule 11)
+     Conformity Assessment Procedure:                       MDD 93/42/EEC, Annex II excluding Section 4
+
+
+2.   Accessories:
+     Product Description (Catalogue no.):
+
+                             Caster, 4 pkg.-DFT                                        501DZ-603
+                             Flow Meter Pkg., Low Output                               515LF-607
+                             Sieve Bed SSP                                             525D-619
+                             EXT Life Intake Bacteria Filter-DFT                       MC44D-605
+                             Compressor Filter (Sintered Bronze)                       525DD-626
+                             Compressor SSP                                            525K-625
+                             Compressor SSP                                            525PS-625
+                             Cabinet Air Filter                                        303DZ-605
+                             Final Bacteria Filter                                     PV5LD-651
+                             Oxygen outlet connector (plastic, 1/pack)                 CN100
+                             Transfill Tubing                                          PF1100TUB
+                             Transfill Caddy                                           525DD-650
+
+
+
+
+Applied standards: All applicable harmonized standards as adopted under the EC Directive 93/42/EEC and published
+in the Official Journal of the European Communities         (See attached listing).
+
+
+
+
+This Declaration of Conformity is based on the EC Directive 93/42/EEC, Annex II.3 and supported by the TÜV NORD CERT
+GmbH (0044) certificate, with reference to articles 1 and 3 of the directive 93/42/EEC.
+
+
+Notified Body:                                        TÜV NORD CERT GmbH
+                                                      Langemarckstrasse 20, 45141 Essen, Germany
+Identification No.:                                   0044
+EC Certificate No.:                                   44 232 117803
+Start of EC Marking:                                  2007-10-01
+
+
+
+
+     DVHC-FORM-0050 Rev 02                                                                                   Page 1 of 2
+                                                            EC Declaration of Conformity
+
+
+We, DeVilbiss Healthcare LLC., hereby declare under our sole responsibility that the above-mentioned products comply
+with the essential requirements and provisions of Council Directive 93/42/EEC.
+
+
+
+
+Somerset, PA, ___02 September                     _________________________________________
+2024_______
+Place             Date                            Zita A. Yurko, RAC
+                                                  Sr. Director Regulatory Affairs
+                                                  Name and Position
+
+
+
+
+Applied Standards:
+
+ AAMI / ANSI ES60601-1:2005/(R) 2012 Ed 3.1 and A1:2012, C1:2009/(R) 2012 and A2:2010/(R) 2012 (Consolidated Text)
+ Medical Electrical Equipment ̶ Part 1: General Requirements for Basic Safety and Essential Performance (IEC 60601-1:2005,
+ Mod). (General I (QS/RM))
+ AAMI / ANSI / IEC 60601–1–2:2014, Ed. 4.0, Medical Electrical Equipment—Part 1-2: General Requirements for Basic Safety
+ And Essential Performance – Collateral Standard; Electromagnetic Disturbances - Requirements and Tests (associated with
+ IEC 60601-1 Ed. 3.0)
+ IEC 60601-1-8 Ed. 2.1 b.2012 Medical electrical equipment - Part 1-8: General requirements for basic safety and essential
+ performance - Collateral Standard: General requirements, tests and guidance for alarm systems in medical electrical
+ equipment and medical electrical systems (associated with IEC 60601-1 3rd Edition)
+ IEC 60601-1-11:2015 Medical electrical equipment - Part 1-11: General requirements for basic safety and essential
+ performance - Collateral Standard: Requirements for medical electrical equipment and medical electrical systems used in
+ the home healthcare environment (associated with IEC 60601-1 3rd Edition, referenced by ISO 80601-2-69:2014)
+
+ AAMI / ANSI / IEC 62304:2006, Medical Device Software – Software Life Cycle Process (Software/Informatics)
+ ISO 80601-2-69:2014 Medial electrical equipment – Part 2-69: Particular requirements for basic safety and essential
+ performance of oxygen concentrator equipment
+ ISTA Procedure 3APackaged-Products for Parcel Delivery System Shipments 70kg (150 lb) or Less (standard)
+ AMMI / ANSI / ISO 10993-1:2009, Biological Evaluation Of Medical Devices – Part 1: Evaluation And Testing Within A Risk
+ Management Process (Biocompatibility)
+
+
+
+
+        DVHC-FORM-0050 Rev 02                                                                                   Page 2 of 2
+

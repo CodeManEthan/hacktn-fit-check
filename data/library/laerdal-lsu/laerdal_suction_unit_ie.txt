@@ -1,0 +1,1295 @@
+                                                 EN
+
+
+
+         Laerdal Suction Unit
+          Reusable & Serres
+                          User Guide
+
+
+
+
+                  LSU Reusable Cat.no 78 00 00
+
+
+
+
+                  LSU Serres Cat.no 78 00 30
+
+
+www.laerdal.com
+                                      Contents
+
+Intended Use								4
+Important Information							5
+Overview								7
+LSU Reusable								7
+LSU Serres								8
+User Interface								9
+Assembly								10
+LSU Reusable Canister System						10
+LSU Serres Suction Bag System						      11
+Use 									12
+Emptying LSU Reusable							14
+Emptying LSU Serres   						15
+Cleaning 								16
+Reusable Parts								16
+Serres									18
+LSU Cabinet      							18
+Device Test								19
+Service and Maintenance							24
+Battery 								25
+Troubleshooting								28
+Specifications								29
+Accessories and Parts							35
+Warranty								37
+
+
+
+
+                        3
+Intended Use
+
+The Laerdal Suction Unit (LSU) is a portable, electrically powered, medical suction
+equipment intended for field and transport use. It is intended for intermittent operation
+to remove secretions, blood or vomit from a patient´s airway to allow ventilation.
+
+Higher vacuum levels are generally selected for oropharyngeal suctioning, and lower
+vacuum levels are usually selected for tracheal suctioning and the suctioning of children
+and infants.
+
+
+
+
+                                             4
+                                                   Important Information
+
+This User Guide covers two configurations of the LSU: Reusable and Serres Suction Bag
+System. Unless otherwise specified, the information in this User Guide applies to both
+configurations.
+
+Read this User Guide carefully, and become thoroughly familiar with the operation and
+maintenance of the LSU before using it. Read all Cautions and Warnings before using
+the LSU.
+
+     Warnings and Cautions
+A Warning states a condition, hazard, or unsafe practice that can result in serious personal
+injury or death.
+A Caution states a condition, hazard, or unsafe practice that can result in minor personal
+injury or damage to the product.
+
+   Warnings
+• The LSU is not suitable for use in the presence of flammable liquids or gases; there can be
+  a danger of explosion or fire.
+• Not intended for use in MRI environments.
+• Do not use the LSU under environmental conditions that are outside the ranges specified in
+  Specifications section. This can endanger safety and adversely affect operation of the device.
+• Do not block the Exhaust Outlet during use. This will lead to reduced flow and can also
+  cause damage to the LSU.
+• The LSU Reusable must not be used without the Aerosol Filter or the Float Ball.
+• Disconnect the LSU from external power prior to cleaning. Use a minimum amount of liquid
+  to prevent any electrical shock hazard.
+• Do not immerse the LSU or allow it to stand in water or other liquids. This might damage
+  the device, and cause electrical hazard.
+
+    Cautions
+• Do not pump any cleaning solution or other liquids through the vacuum pump, i.e. through
+  the Vacuum Connector. This can damage the LSU.
+• Use only parts and accessories supplied by Laerdal Medical or one of our authorised
+  distributors to ensure that the LSU operates satisfactorily.
+• Overflow of suctioned material can damage the device. If overflow of liquid from the
+  Canister into the pump is suspected, contact your local Laerdal Medical representative.
+• The LSU should only be used by persons trained in the use of medical suction equipment.
+
+
+
+
+                                               5
+             Important Information
+
+Battery
+    Cautions
+• Only use batteries approved by Laerdal Medical. Other batteries will have problems related
+  to the battery status indicator of the LSU, the battery operation time and safety.
+• The LSU must be charged between each clinical use.
+• To maintain satisfactory operation of the battery, placing the LSU on continuous charge
+  immediately after use and when not in use is recommended.
+• If it is not possible to place the LSU on continuous charge when not in use, make sure the
+  battery is charged for a minimum of 4 hours at least once a month.
+• The LSU must be placed on charge for a minimum of 4 hours to reach full battery capacity.
+  Fast charging gives approximately 80% battery capacity after 3 hours (for a new battery).
+  Repetitive 3 hour charging is not recommended.
+• Fully charging the battery is recommended. Repetitive charging to a lower capacity level will
+  reduce battery life.
+• Always fully charge the battery before storage.
+• Do not store the battery when it is discharged.
+• Do not store the LSU with a discharged battery.
+• Laerdal recommends charging a spare battery every 6 months when stored in room
+  temperature at 25 °C (77 °F).
+
+
+
+
+                                              6
+                                                                      Overview
+     LSU Reusable
+
+
+                    Vacuum Inlet
+
+                                           Aerosol Filter
+
+                                                            Vacuum Seal
+                                                                          Power Inlet
+                                                                          (on the back)
+                                                                               Quick
+                                                                               Reference
+Canister Lid                                                                   Angled
+                                                                               Connector
+                                                                               Suction Catheter
+                                                                               Adapter
+   Gasket
+                                                                                 Patient Inlet
+Float Ball                                                                        Patient
+                                                                                  Suction Tubing
+
+                                                                                   Water
+                                                                                   Bottle
+
+                                                                                Holder for Water
+                                                                                Bottle/Patient
+                                                                                Suction Tubing.
+
+
+
+                                                                          Canister Holder
+
+
+                                                                      Battery Door
+
+
+
+                         Release Arm             Canister
+  User Interface
+
+
+
+
+                                       7
+  Overview
+  LSU Serres
+
+
+                 Vacuum Inlet
+
+
+                                                      Serres Vacuum Connector
+
+
+                                                              Patient Inlet
+
+
+                                                                         Quick
+                                                                         Reference
+
+
+
+
+                                                                   Suction Tube
+
+
+
+
+                                                                       Holder for
+                                                                       Suction Tubing
+
+
+
+
+                                                                Canister Holder
+
+
+                                                             Battery Door
+
+
+                                           Serres Suction
+User Interface    Release Arm              Bag with filter
+                                Canister
+
+
+
+
+                                  8
+                                                                    Overview
+User Interface
+
+
+
+
+                                                            Test Button
+                                                            Run the Device
+Power On Indicator                                          Test program
+•   Continuously lit - LSU is
+    switched on.
+•   Rapid flash (approx.                                   Vacuum Indicator*
+    twice per second) -                                    Actual vacuum level
+    Device Test in progress.                               during operation.
+•   Slow flash (approx.
+    once per second) -                                     Each fully lit segment
+    Automatic power save                                   represents 50 mmHg. If a
+    mode activated; Device                                 segment has a dim light,
+    Test interrupted or                                    this represents 25 mmHg
+    battery discharged.                                    (e.g 125 mmHg is shown
+                                                           by 2 fully lit and 1 dimly
+                                                           lit segments).
+
+External Power Indicator
+AC or DC power                                               Battery Status
+connected                                                    Indicator
+
+       Failure Mode Indicator
+       Possible malfunction
+       detected
+
+
+
+
+               Operating Knob
+               On/Off switch
+               Vacuum selector
+
+
+
+
+*Pressure conversion chart
+ mmHg             80       120    200    350        500
+ kPa              10.6     16.0   26.6   46.6       66.5
+ mBar             107      160    267    467        667
+
+
+
+
+                                                9
+Assembly
+LSU Reusable Canister System
+
+
+     1                              2
+                                                    A
+
+                                                        CLICK
+
+
+
+
+                                                        B
+
+
+
+
+    3                               4
+
+
+
+
+     5                              6
+                                                B        C
+                                                             D
+
+
+
+                                                                 E
+                                        CLICK
+
+
+                                                    A
+
+                               10
+                                                                               Assembly
+LSU Serres Suction Bag System
+
+
+  1                                                2
+
+
+
+
+  3                                               4
+                                                             B            C
+
+
+
+                                                                                          D
+
+                                                             CLICK
+
+
+                                                                     A
+
+    Note
+Turn the operating knob to 500+ mmHg. Block the Patient Inlet with your thumb and
+simultaneously push the lid down. The lid is properly installed when vacuum has reached
+500 mmHg. Release the Patient Inlet and make sure that the bag is fully inflated.
+
+
+
+
+                                             11
+Use
+Before Use Checklist
+• Check that no parts are missing and that all parts are clean.
+• To operate the LSU from an external power source, connect to either external AC or
+  DC power. To operate the LSU from the internal battery, check that the
+  battery is installed.
+• Run Device Test.
+LSU Reusable:
+• Check that the Patient Suction Tubing is securely connected to the Patient Inlet on the
+  Canister Lid; and the Aerosol Filter is securely fastened in the LSU and the lid.
+• Check that a suction catheter is attached to the patient suction tube or suction
+  adapter. Do not use the suction tube or suction adapter without a suction catheter
+  attached.
+LSU Serres:
+• Check that the Serres Vacuum Connector is properly connected to the LSU and to
+  the canister.
+• Check that the lid of the canister is properly sealed: block patient inlet and turn on the
+  LSU. Vacuum will build up when all parts are assembled correctly.
+• Attach appropriate suction catheter if necessary. (Not supplied by Laerdal Medical).
+
+
+Use
+1. Unwind the Suction Tubing. Set the Operating Knob to the required vacuum level.
+The LSU will switch on and start to operate. The Power On Indicator lights up
+during operating.
+2. When suction is complete, set the Operating Knob to “0” to turn off.
+
+
+
+  1                                           2
+
+
+
+
+                                             12
+                                                                                              Use
+   Caution
+Even if the Operating Knob is set to “0”, voltage is present on some of the internal circuitry
+when the LSU is connected to external power. Disconnect from the mains to fully remove
+power.
+
+     Note
+The LSU has an automatic power save mode which switches the pump motor off. While in
+this mode, the Power On Indicator will flash slowly (approx. once per second). Power save
+mode is activated when the Operating Knob is set to 200, 350 or 500+ mmHg and the
+actual vacuum level has been continuously higher than 120 mmHg for more than 2 minutes.
+To exit power save mode and revert to normal operation, set the Operating Knob to any other
+position and then go back to required setting.
+
+After Use Checklist
+• Inspect all parts of the LSU for damage and excessive wear. Replace parts if necessary.
+• Clean the LSU cabinet. Clean and disinfect reusable parts. See Cleaning section.
+• LSU Serres: The Serres Vacuum Connector should be replaced regularly. Place an
+  unopened Serres Suction Tube on the side of the LSU.
+• Perform Device Test. See Device Test section.
+• Place the LSU on charge.
+
+The Aerosol Filter protects the LSU by preventing aerosols from entering the Pump Unit.
+It is not intended for microbiological or for particle filtration. The Aerosol Filter is not
+designed for decontamination. It is recommended that the Aerosol Filter be replaced
+after each use or at least once every shift. If the LSU is used on patients in areas where
+cross contamination is not an issue, the Aerosol Filter should be replaced at least once a
+month. It is recommended always to have extra Aerosol Filters with the LSU in case one
+has to be discarded. If the Aerosol Filter becomes wet, it should be replaced immediately
+or as soon as possible after use.
+
+   Note
+Check the filter after each use. If the filter is broken so liquid penetrates the membrane, the
+pump will be contaminated. Contact Laerdal Service.
+
+    Note
+The Float Ball (in the Canister lid) shuts off the vacuum if the Canister is full or the LSU tips
+over. To restore the vacuum, remove the Angled Connector from the Vacuum Inlet. The Float
+Ball will be released and the Angled Connector can be reattached.
+
+    Note
+The Serres Suction Bag system contains a hydrophilic filter that shuts off the vacuum if the
+canister is full or the LSU tips over. To restore the vacuum, replace the Suction bag.
+
+
+                                                13
+Emptying LSU Reusable
+To prevent damage and keep the LSU in good working order; empty the Canister
+(Reusable) or replace the Suction Bag (Serres) when 3/4 full. Overflow of suctioned
+material can damage the LSU.
+
+Empty the Canister - LSU Reusable
+When liquid reaches the top of the Canister, the LSU will stop suctioning. To continue
+suctioning, empty the Canister and replace the filter.
+
+
+  1                                               2
+
+
+
+
+  3                                                4
+
+
+
+
+                                                 Safely dispose of the contents of the
+                                                 Canister according to local protocols.
+
+
+
+
+                                            14
+                                                       Emptying LSU Serres
+Empty LSU Serres
+When liquid reaches approximately            1
+1000 ml, the LSU will not suction
+any more. If overflow of liquid from
+the bag into the pump is suspected,
+contact Laerdal Service. See Service
+and Maintenance section.
+
+
+
+
+   2                                         3
+                                                     A
+
+
+
+                                                   B
+                                                                        C
+
+
+
+
+  4                                          5
+
+
+
+
+                                            Safely dispose of the Serres Suction bag
+                                            and suction tube according to
+                                            local protocols.
+                                       15
+Cleaning
+Decontaminating and disinfection of Reusable Canister – LSU Reusable
+
+1. Dismantle
+• Dismantle parts to be
+   decontaminated after each use.
+• The Float Ball can be snapped out of
+   the lid.
+
+
+
+
+2. Rinse
+• Rinse all parts under cold running
+   water a total of 3 times.
+• Immerse in warm water.
+
+
+
+                                                    3X
+
+
+
+
+3. Clean
+• Immerse all parts in hot water
+   (60-70 °C) containing a mild
+   detergent.
+• Thoroughly clean all surfaces, use a         Steam 100 °C
+   brush where possible.                       10-20 minutes
+• Rinse in warm water and allow to
+   dry.
+• Inspect all parts to be visibly clean
+   and dry.
+• Note Thorough rinsing and cleaning
+   are very important steps prior to
+   disinfection.
+                                          16
+                                                                      Cleaning
+       4. Disinfection of Reusable Parts
+       Method                                                        Post-
+                                                                     treatment
+Steam 100 °C
+        Glutaraldehyde                                               Rinse all
+10-20 minutes
+        Room temperature / concentration: 2%                         parts warm
+        60°C
+Steam 100  minutes.                                                  water. Allow
+10-20 minutes                                                        to dry.
+
+                                                       Disinfect
+                                                    Glutaraldehyde
+
+
+
+       Sodium Hypochlorite (not cleared for                          Rinse all
+       use in the US) Room temperature /                             parts warm
+       concentration: 0.5%                                           water. Allow
+       20 minutes.                                                   to dry.
+
+Steam 100 °C                                         Disinfect
+10-20 minutes                                         Sodium
+                                                    Hypochlorite
+
+
+       Virkon                                                        Rinse all
+       Room temperature / concentration: 1%                          parts warm
+       10 minutes.                                                   water. Allow
+                                                                     to dry.
+
+                                                      Disinfect
+                                                       Virkon
+
+
+
+       Steam autoclaving                                             Allow parts
+       Autoclave at max. 121 °C 60 minutes.                          to cool.
+
+
+
+                         Steam 100 °C               Steam 121 °C
+                         10-20 minutes               60 minutes
+
+
+
+
+                                               17
+Cleaning
+Cleaning - LSU Serres
+Parts to be cleaned or replaced regularly:
+Serres Canister
+Serres Vacuum Connector
+The disposable parts must be replaced after each use.
+
+Clean the Serres canister if needed according to manufacturer’s instructions for use.
+Clean the Serres Vacuum Connector by wiping with a damp cloth or a sponge. Do not
+autoclave or attempt to disassemble. The Serres Vacuum Connector should be replaced
+regularly.
+
+Clean the LSU Cabinet
+Use a minimum amount of liquid to prevent any electrical shock hazard. Do not immerse
+the LSU or allow it to stand in water or other liquids. This can damage the device, and
+cause electrical shock resulting in injury to persons.
+
+Use a cloth or sponge that is dampened with a mild detergent (hand dishwashing liquid
+or similar) to clean the external surfaces of the LSU.
+Use a detergent that is compatible with the materials listed in the Material Chart, and
+follow the detergent manufacturer´s instructions.
+Use a cloth or sponge dampened with water and wipe the surfaces again.
+Dry the surfaces using a clean cloth or a paper towel.
+
+
+
+
+                                           18
+                                                                                 Device Test
+The Device Test is a user initiated test program to identify whether the LSU operates
+satisfactorily or if it needs service. If the device is not in frequent use (i.e. less than once
+a month), the Device Test should be performed both on a monthly basis and after each
+Cleaning and Assembly process.
+
+The program runs 4 different tests:
+1. Occlusions - Blockages in the Suction System, including canister and tubing.
+2. Vacuum efficacy - How much vacuum builds up in the Pump System within 3 seconds.
+3. Maximum vacuum level - The maximum achievable vacuum level of the
+LSU within 10 seconds.
+4. Leakages - Air leakages in the Pump System, including canister and tubing.
+
+Before Device Test Checklist:
+• Ensure the LSU is correctly assembled and the Patient Suction Tubing is unwound.
+• The Suction Catheter Adapter is removed from its holder (if applicable).
+• Ensure the battery is not being charged (the device is not connected to
+  AC/DC power source).
+
+     Note
+If you need to interrupt the test and revert to normal operation, turn the Operating Knob to
+another position and then select the required setting.
+Device Test Indicators
+                                                                           Test result indication
+
+
+
+
+Running Test 3                                                                     Running Test 4
+Testing the maximum                                                Testing for air leakages in the
+achievable vacuum level                                                             Pump System
+of the LSU
+
+
+                                                                                   Running Test 2
+Running Test 1                                                      Testing the vacuum build-up
+Testing for occlusions in                                           efficacy of the Pump System
+the Suction System
+
+
+                                                19
+Device Test
+Run the Test
+
+   1                                          2
+
+  1                                           2
+
+
+
+
+1. Press and hold the Test Button          2. Hold the Test Button in for 2 seconds.
+while turning the Operating Knob to
+500+3 mmHg.                                  4
+
+  3                                          4
+
+
+
+
+3. The test will start immediately.        4. When LED 2 lights up, block the Patient
+During test mode, the Power On             Suction Tubing with your thumb.
+Indicator will flash rapidly.
+
+
+
+
+                                      20
+                                                                            Device Test
+
+
+                                                  5. Keep the tubing blocked while
+    5                                             LED 2, 3 and 4 light up. Release the
+                                                  tubing when LED 1 lights up again.
+
+
+
+
+  Notes
+• If the tubing is not blocked within
+  2 minutes, the test will be interrupted.
+  During interrupted device test, the
+  Power On Indicator will flash slowly.
+• To restart the test, set the Operating
+  Knob to “0” and start over again.
+• To evaluate test results, do not tun off
+  the LSU after running Device Test.
+
+
+
+
+                                             21
+Device Test
+Evaluation of Device Test Results                                                                        1
+After the test is completed, the Vacuum Indicator
+will display the results. Press the Test Button to scroll
+through the results of each test to display the results.
+
+
+
+
+ Test No.            Test result indication    Action if test failed
+ Test 1 -                                      •    Check possible blockages (e.g. twisted tub-          2
+ Occlusions                                         ing, blocked filter, blocked filter in the liner)
+                                                    and run the Device. Test again.
+                                               •    If the High Efficiency Filtration Kit is installed
+                                                    the pass limit is 150mmHg.
+                         Test Passed
+                         <100 mmHg
+ Test 2 – Vacuum                               •    Check Connectors, Tubes and Canister Lid
+ efficacy                                           for leakage* or damage.
+                         Test Passed           •    Check exhaust outlet for occlusion and run
+                         >300 mmHg                  the Device Test again.
+
+
+                                                                                                         3
+
+ Test 3 – Maxi-          Test Passed           •    Check Connectors, Tubes and Canister Lid
+ mum vacuum              >500 mmHg                  for leakage* or damage.
+                                               •    Check exhaust outlet for occlusion and run
+                                                    the Device Test again.
+
+
+
+
+ Test 4 - Leakages       Test Passed           Check Connectors, Tubes and Canister Lid for
+                         >450 mmHg             leakage* or damage and run the Device Test
+                                               again.
+
+
+
+
+After evaluating the test results turn the Operating Knob to “0” to exit the Device Test.
+
+
+                                               22
+                                                                               Device Test
+Troubleshooting for Leakages
+If the device test has failed, check whether the system is leaking. Run the Device Test at
+each step, until you find the failure.
+
+     Note
+If the LSU does not pass one or more of the steps in this test after suggested actions are
+taken, the device might need to be returned for service (see the Troubleshooting guide).
+
+Run the Test
+                                         1                                   Test the
+                                                                             Pump System
+                                                                             Run the Device
+                                                                             Test whilst blocking
+                                                                             the outlet. If the
+                                                                             device passes the
+                                                                             test, there are no
+                                                                             leakages in the
+                                                                             Pump System.
+
+
+
+                                                                             Test the
+                                          2                                  Vacuum Tube
+                                                                             Run the Device
+                                                                             Test whilst
+                                                                             blocking the
+                                                                             Vacuum Tube. If
+                                                                             the device passes
+                                                                             the test, there are
+                                                                             no leakages in the
+                                                                             Tube.
+
+
+                                                                            Test the Patient
+                                          3                                 Tubing Inlet
+                                                                            Run the Device
+                                                                            Test whilst blocking
+                                                                            the Patient Tubing
+                                                                            inlet on the
+                                                                            Canister. If the
+                                                                            device passes the
+                                                                            test, there are no
+                                                                            leakages in the
+                                                                            Canister.
+
+                                              23
+Service and Maintenance
+Service
+There are no user serviceable parts inside the cabinet. Do not open the LSU Cabinet.
+Wear and tear parts of the pump mechanism should be changed every third year. Refer
+servicing to personnel qualified by Laerdal Medical, or to Laerdal Medical or one of its
+authorised distributors.
+
+Fastening brackets
+The fastening bracket is used to hold the LSU in the optional wall bracket. Inspect the
+fastening brackets for wear and tear regularly. Replace if worn.
+
+
+
+
+                                            24
+                                                                                          Battery
+The LSU can be operated from the internal battery, and can be operated or charged
+from one of the following external power sources:
+AC mains when used with the AC Power Cord: 100-240 VAC (50/60 Hz).
+DC mains when used with the DC Power Cord: 12-28 VDC.
+
+The LSU battery can also be charged in an optional External Battery Charger. A Wall
+Bracket to hold the LSU during operation and (optional) charging is available separately.
+See Accessories and Parts for more information.
+Battery Status Indicator
+This Battery Status Indicator has 3 functions:
+• During operation from internal battery: indicates approximate remaining battery
+       capacity.
+• During charging: indicates approximate achieved battery capacity.
+• During device testing: indicates which device test is in progress.
+If no battery is installed, the battery status indicator will be fully lit for approx. 5 sec. until
+it is turned off.
+    Note
+    During operation from internal battery and during charging, the displayed values must only
+    be used as indications.
+Battery Capacity
+ Capacity                                             Output
+ < 75%                                                The LEDs will be lit sequentially
+ 75 - 80%                                             3rd LEDs lit and 4th flashing
+ > 80%                                                4 LEDs lit
+
+Immediately after turning the LSU on or switching from external power to internal
+battery operation, all 4 LEDs will flash for 5 seconds before the remaining battery
+capacity is displayed. Due to the nature of voltage based battery capacity measurement,
+the battery status indication may differ from unit to unit. Each battery may vary in voltage
+versus remaining capacity, thus allowing for variability in the reading. Other outside
+variables such as temperature may also affect accuracy. The indicator is targeted to show
+battery capacity as indicated below. The graph shows how the accuracy of the indication
+can vary.
+4 LEDs
+3 LEDs
+2 LEDs
+1 LED
+
+                                        time
+     Caution
+If the LSU or the NiMH battery has been stored at low temperatures (< 12 °C / < 54 °F),
+the LSU may indicate lower remaining battery capacity than actual when first switched on.
+This is due to the nature of NiMH batteries. The battery indicator may flash on one
+LED, which normally indicates Battery Low. The LED may continue to flash until the LSU
+temperature is above 12 °C / 54 °F and the LSU is switched off and on again. The low
+battery indication in this instance is not a correct indication of the residual battery capacity.
+
+                                                 25
+Battery
+Charge the Battery
+The internal rechargeable battery can be charged directly from external AC or DC power.
+1.   Ensure the Operating Knob is set to “0”.
+2.   Connect either external AC or DC power to the LSU and charging will start
+     automatically.
+3.   During charging, the Battery Status Indicator will indicate approximate achieved
+     battery capacity. Minimum charging time for full charge is 4 hours.
+
+A completely discharged battery cannot be charged by the LSU and must be replaced.
+If LSU battery is kept on constant charge, perform device test at least once a month to
+exercise battery.
+
+     Cautions
+•    Do not perform the Device Test during battery charging.
+•    The recommended ambient temperature for charging is from 15°C to 25°C.
+•    The battery will not be charged when the LSU is in operation.
+
+Check the Battery Quality
+If poor battery quality is suspected, charge the battery for a minimum of 4 hours and
+then perform the following test. Do not connect to external power.		
+1.   Run the Device Test.
+2.   Let the LSU operate continuously at 500+ mmHg setting and free air flow for
+     20 minutes.
+3.   If the LSU stops before completing the 20 minutes, the battery should be discarded.
+
+    Caution
+Replace the battery when it does not pass the Battery Quality Check or after 3 years,
+whichever comes first.
+
+
+
+
+                                             26
+                                                                                Battery
+Replace the Battery
+
+      1                                            2
+
+
+                                                                    CLICK
+
+
+
+
+      3                                            4
+
+
+
+
+      5                                            6
+
+
+                    CLICK
+
+
+
+
+     Caution
+Use only batteries recommended by Laerdal Medical. When you discard the battery, dispose of
+safely in accordance with local protocols for Nickel Metal Hydride (NiMH) batteries.
+                                            27
+Troubleshooting
+Fault                Condition                     Action
+The LSU does not     External Power Indicator Check power cord connections and the external
+operate with the     is not lit when the      AC or DC power source.
+AC or DC Power       Operating Knob is
+Cord connected.      set to “0”.
+                     External Power Indicator The LSU must be returned for service.
+                     is lit.                  See Service and Maintenance section.
+The LSU cannot       Power ON Indicator is         Check that battery is installed.
+be operated          OFF.
+from the internal    OR
+battery.             All the lights in the front   Place the LSU on charge.
+                     panel flash on and off
+                     repeatedly.                   If still faulty after charging completed, remove
+                                                   and replace the battery.
+The LSU oper-        Vacuum Seal blocked by        Unplug the Vacuum Seal to release the vacuum.
+ates, but little     float ball.
+or no suction
+available.           Canister full.                Remove and replace the Canister.
+
+                     Poor vacuum connec-    Install the Vacuum Connector Tubing correctly.
+                     tion between Pump Unit
+                     and Canister.
+                     Patient Suction Tubing        Replace the filter or liner if the filter is blocked
+                     twisted                       Untwist the Patient Suction.
+                     or blocked.                   Tubing and/or clear blockage or replace the
+                                                   tubing.
+                     (Serres) Lid is not prop-     Seal lid using vacuum, not force.
+                     erly sealed
+Battery Status       Battery is not charged.       Check power cord connections and that battery
+Indicator is not                                   is installed.
+ON.
+Vacuum Indicator     Tube(s) is kinked or          Straighten / untwist the tube(s).
+indicates more       twisted
+than 100 mmHg
+with free air flow
+The LSU does not The external Power                Check power cord connections and the external
+charge with the  indicator                         AC- or DC-power source. The LSU must be
+AC or DC power is not lit.                         returned for service. A flat battery cannot be
+cord connected                                     recharged.
+
+
+
+
+                                                   28
+                                                                                 Specifications
+Classification
+Electrically powered medical suction equipment for field and transport use, according to
+ISO10079-1.
+High vacuum/high flow.
+The LSU is designed for use in road ambulances in accordance with IEC 60601-1-12.
+Not suitable for use in the presence of flammable liquids or gases.
+Internally powered/class ll equipment type BF, according to IEC 60601-1
+The degree of protection provided by the chassis is according to IP34:
+• Protected against solid foreign objects of 2.5 mm Ø and greater.
+• Protected against splashing water.
+• Protected against access with a wire.
+
+General tolerance
+Overall tolerance ±5%
+ Dimensions
+ Size (h x w x d)                     315 mm x 330 mm x 160 mm (12.4 in x 13 in x 6.3 in)
+ Weight                               4 kg. (8.4 lbs) (including battery NiMH)
+ Canister Capacity                    1000 ml
+ Canister graduation accuracy         ±5% of full scale
+ Patient Suction Tubing (non-sterile) Cat.No 770410: 8 mm (0.315 in.)
+ inside diameter x 1.5 m (59 in.) length.
+
+ Temperature and Environment
+ Operating/Charging Temperature                      0 °C (32 °F) to + 40 °C (104 °F)
+ Recommended Charging Temperature                    15 °C (59 °F) to + 25 °C (77 °F)
+ Long term Storage Temperature                       0 °C (32 °F) to + 40 °C (104 °F)
+ Max. 24 hour Storage Temperature                    -30 °C (-22 °F) to + 70 °C (158 °F)
+ The time required for the LSU to warm from the minimum storage temperature between uses
+ until it is ready for intended use is min 90 minutes at room temperature.
+ The time required for the LSU to cool from the maximum storage temperature between uses
+ until it is ready for intended use is min 90 minutes at room temperature.
+ Humidity (Operating & Storage)                      5 - 95% RH non-condensing
+ Altitude                                            0 - 4000 m
+
+ Battery and Charging
+ Operating/charging AC                               ** 100-240 VAC, 50-60 Hz
+ Operating/charging DC                               ** 12-28 VDC
+
+
+
+
+                                                29
+Specifications
+ Battery                   12 VDC 2 Ah, NiMH, rechargeable
+ Charging Time             3 hours for approx. 80% battery capacity, 4 hours for fully charged.
+ Fuses                     The LSU has no fuses to be replaced by the user.
+ Supply Mains              When the unit is connected to SUPPLY MAINS through one of its
+                           power cords, SUPPLY MAINS voltages are present within the unit.
+                           To isolate the unit from SUPPLY MAINS, disconnect the unit from the
+                           power cord, or disconnect the power cord from SUPPLY MAINS.
+                           If placed in a mounting bracket, disconnect the unit from the
+                           mounting bracket.
+ ** The external AC power source must be able to deliver a current of min. 1A and the external
+ DC power source min. 5A, if not the LSU may switch to battery operation.
+
+
+Operation
+Approx. free air flow at different settings:
+ mmHg                 80      120       200       350    500+
+ l/min                12        16       20         23     >25
+
+Approx. battery operation time (free air flow) at different settings (±10%):
+ mmHg                 80      120       200       350    500+
+ min               3h20      2h20      1h30         1h       45
+
+Approx noise levels (free air flow) at different settings:
+ mmHg                 80      120       200       350    500+
+ dBA                  48        48       51         53       56
+
+Vacuum - Max: > 500 mmHg (66.5 kPa).
+Vacuum - Range: 80 - 500+ mmHg (11 - 66.5 kPa).
+Vacuum Indicator accuracy: ±5% of full scale.
+
+Operation with High Efficiency Filtration Kit
+The flow and operation time of the LSU will be reduced when the Vacuum Connector
+Tubing is replaced with a High Efficiency Filtration Kit.
+
+The LSU with High Efficiency Filtration Kit installed is in accordance with ISO 10079-1.
+
+The filter has an efficiency of 99.97% down to a particle size of 0.3 µm.
+
+
+
+
+                                               30
+                                                                             Specifications
+Material Chart
+Cabinet front                                        Poly Cabonate/Acrylonitrile Butadiene
+                                                     Styrene (PC/ABS)
+Protector for front                                  Styrene Ethylene Betyl Styrene (SEBS)
+Cabinet back                                         PC/ABS
+Cabinet base w/Protector                             PC/ABS + SEBS
+Battery door                                         SEBS
+Connector retainer for battery                       Poly Oxy Methylene (POM)
+Operating Knob                                       POM
+Rotor for Operating Knob                             PC/ABS
+Manifold for vacuum                                  POM
+Canister Holder                                      PP
+Handle w/Protector                                   PC/ABS + SEBS
+Manifold for exhaust                                 POM
+Strap for patient suction tubing                     SEBS
+Canister Holder Release Arm                          POM
+User Interface                                       Polyester
+Vacuum Connector                                     Silicone
+Suction Catheter Adapter                             PC
+Suction Catheter Adapter Holder                      PC
+LSU Reusable Canister                                PC - HT
+Lid w/Floater Valve Cylinder, Gasket for Lid,        Silicone
+LSU Reusable Canister
+Full covering Carrying Bag                           PVC coated Polyester
+Side Pouch                                           PVC coated Polyester
+Shoulder Strap                                       POM + Polyester
+Wallbracket                                          Aluminium + Steel + PA with fibers
+Aerosol Filter, LSU Reusable Canister                PVC + ABS Styrene-Butadiene Copolymer
+                                                     (SBC)
+Float Ball, LSU Reusable Canister                    PP
+Vacuum Plug, LSU Reusable Canister                   Silicone
+Serres Canister                                      PC
+Angled Connector                                     TPE
+Serres Canister Holder                               PP
+Serres Suction Bag                                   PE + PP
+                                                     Serres Vacuum Connection PC + PBT
+
+
+                                                31
+      N
+ 3N
+Specifications
+      !
+Symbol Glossary
+            Direct Current
+            Alternating Current
+            Class II Equipment, according to IEC 60601-1
+ 3
+
+            Type BF applied part, according to IEC 60601-1
+            Applied part of the LSU is the catheter (not supplied by Laerdal) which is
+            connected to the catheter adaptor.
+     IP34   The degree of protection provided by the chassis according to IP34
+ 3N
+            This product is in compliance with the essential requirements of MDD 93/42/
+            EEC as amended by Council Directive 2007/47/EC and Council Directive
+            2011/65/EU relating to restriction on the use of certain Hazardous Substance
+            (RoHS 2)
+            Warning: Parts of this product are designed for single patient use only. Do not re-use.
+            Re-use will lead to increased risk of cross contamination, degradation of performance
+            and/or device malfunction. Laerdal Medical is not responsible for any consequences
+            of re-use.
+            Date of production
+
+
+      N     Unique product type identification
+
+            This appliance is marked according to the European directive 2012/19/EC on
+            Waste Electrical and Electronic Equipment (WEEE). The symbol on the product,
+            or on the documents accompanying the product, indicates that this appliance
+            may not be treated as household waste. Instead it shall be handed over to the
+            applicable collection point for the recycling of electrical and electronic equip-
+            ment.
+            The products is eligible to bear the CSA Mark with adjacent indicators ‘C’ and
+            ‘US’ for Canada and US
+
+
+            Consult User Guide
+
+
+
+      N
+
+
+
+
+                                                 32
+                                                                            Specifications
+Electromagnetic Conformity
+Laerdal Suction Unit is intended for use in the following environments: Professional
+Healthcare Facility environment and Emergency Medical Services environment.
+
+Essential performance of the LSU is identified as connection of the patient hose to the
+exhaust outlet. This is prevented by coding of the outlet and identifying the exhaust using
+a label on the device. EMC disturbances cannot affect this behavior.
+
+No particular actions are required to maintain safety and performance with regard to
+electromagnetic disturbances for the expected service life.
+
+
+    Warning
+Use of this equipment adjacent to or stacked with other equipment should be avoided
+because it could result in improper operation. If such use is necessary, this equipment and the
+other equipment should be observed to verify that they are operating normally.
+
+
+    Warning
+Use of accessories, transducers and cables other than those specified or provided by the
+manufacturer of this equipment could result in increased electromagnetic emissions or
+decreased electromagnetic immunity of this equipment and result in improper operation.
+
+     Warning
+Portable RF communications equipment (including peripherals such as antenna cables and
+external antennas) should be used no closer than 30 cm (12 inches) to any part of the LSU,
+including cables specified by the Laerdal Medical. Otherwise, degradation of the performance
+of this equipment could result.
+
+
+
+
+                                               33
+Specifications
+Electromagnetic Emissions Tests
+Emissions Test                 Standard or test method   Compliance
+RF emissions                   CISPR 11                  Group 1 Class B
+Harmonic emissions             IEC 61000-3-2             Class A
+Voltage fluctuations/          IEC 61000-3-3             Complies
+flicker emissions
+
+
+Electromagnetic Immunity Tests
+Immunity Test                  Standard or test method   Compliance Level
+Electrostatic discharge        IEC 61000-4-2             ± 8 kV contact
+                                                         ± 2 kV, ± 4 kV, ± 8 kV, ± 15
+                                                         kV air
+Radiated RF EM fields          IEC 61000-4-3             3 V/m
+                                                         80 MHz – 2.7 GHz
+                                                         80 % AM at 1 kHz
+Proximity fields from RF       IEC 61000-4-3             380-390 MHz: 27 V/m
+wireless communications                                  430-470 MHz: 28 V/m
+equipment                                                704-787 MHz: 9 V/m
+                                                         800-960 MHz: 28 V/m
+                                                         1700-1990 MHz: 28 V/m
+                                                         2400-2470 MHz: 28 V/m
+                                                         5100-5800 MHz: 9 V/m
+Rated power frequency          IEC 61000-4-8             30 A/m
+magnetic fields                                          50 Hz or 60 Hz
+Electrical fast transients /   IEC 61000-4-4             ± 2 kV
+bursts, AC power port                                    100 kHz repetition frequency
+Surges: Line-to-line, AC       IEC 61000-4-5             ± 0.5 kV, ± 1 kV
+power port
+Conducted disturbances         IEC 61000-4-6             3 V; 0.15 MHz – 80 MHz
+induced by RF fields, AC
+power port                                               6 V in ISM bands between
+                                                         0.15 MHz and 80 MHz
+                                                         80 % AM at 1 kHz
+Voltage dips, AC power         IEC 61000-4-11            0 % UT; 0.5 cycle
+port                                                     At 0°, 45°, 90°, 135°, 180°,
+                                                         225°, 270° and 315°
+
+                                                         0 % UT; 1 cycle and 70 % UT;
+                                                         25/30 cycles
+                                                         Single phase: at 0°
+Voltage interruptions, AC      IEC 61000-4-11            0 % UT; 250/300 cycle
+power port
+Electrical transient con-   ISO 7637-2                   Test pulse severity level: III in
+duction along supply lines,                              Table A2 of ISO 7637-2
+DC power port
+
+                                                34
+                                                             Accessories and Parts
+For latest version of Parts and Accessories, visit www.laerdal.com
+
+78 00 00 XX       LSU w/Reusable Canister
+78 00 30 XX       LSU w/ Serres Suction Bag System
+		                (Label on back side of cabinet: REF 78 00 xx)
+
+Reusable
+78 12 00          Aerosol Filter for LSU Reusable Canister
+77 04 10		        Suction Tubing 150 cm w/o tip
+65 01 13		        Suction Catheter adapter, pkg. 10
+78 40 00          LSU Reusable Canister
+78 10 06		        Angled Connectors, pkg. 10
+78 10 02		        Float Ball, pkg. 10
+78 40 07		        Vacuum Seal, pkg. 10
+78 40 08          Gasket, pkg. 10
+78 04 30		        LSU Reusable Canister Holder
+
+Serres
+57 151		          Serres Suction Bag (1000 ml, Blue)
+58 33 181         Serres Suction Tube (non-sterile CH25) 180 cm
+78 12 06          Serres Vacuum Connector
+78 04 12          Disposable patient tubing 180cm
+57 300		          Serres Canister (1000ml, Transparent)
+78 04 51          Serres Canister Holder
+
+Serres pre 2014
+78 12 04        Serres Vacuum Connector Tubing
+78 12 03        Serres High Efficiency Filtration Kit
+78 04 50        Serres Canister Holder
+
+All versions
+78 04 33          Strap for Tubing
+78 04 32          Release Arm
+78 02 00		        DC-Power Cord
+78 02 10		        AC-Power Cord US
+78 02 20		        AC-Power Cord EU
+78 02 30          AC-Power Cord UK
+78 08 00		        LSU Battery - NiMH
+78 04 36		        Fasten bracket left/right
+78 04 35          Holder for water bottle
+79 35 00          Water Container
+78 40 09		        LSU Protection cap, 5 pkg
+
+
+
+
+                                            35
+Accessories and Parts
+Accessories (all versions)
+78 20 00          Carrying Bag (full covering)
+78 26 00          Wall Bracket w/DC-Power Cord
+78 26 10          Wall Bracket w/AC-Power Cord US
+78 26 20          Wall Bracket w/AC-Power Cord EU
+78 26 30          Wall Bracket w/AC-Power Cord UK
+78 26 40		        Wall Bracket wo/ Power Cord
+78 23 00          Shoulder Strap
+78 24 00 01       Side Pouch
+78 04 40		        External Charger kit
+
+
+
+
+                                       36
+                                                                          Warranty
+The LSU comes with a five (5) year limited warranty*. See the enclosed “Laerdal Global
+Warranty” for terms and conditions. The warranty is also available at www.laerdal.com.
+* Excluding the canister, tubing systems and battery
+
+
+
+
+                                          37
+© 2017 Laerdal Medical AS. All rights reserved.
+
+Manufacturer: Laerdal Medical AS
+P.O. Box 377, Tanke Svilandsgate 30,
+                                                  8179 Rev Q
+
+
+
+
+4002 Stavanger, Norway
+T: (+47) 51 51 17 00
+
+Printed in Norway
+
+
+
+
+www.laerdal.com
+
