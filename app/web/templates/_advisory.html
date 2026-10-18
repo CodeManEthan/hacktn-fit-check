@@ -1,0 +1,16 @@
+{# The buy-locally advisory under one rejected offer. Expects `advisory`
+   (offer id -> Advisory or None) and `c` (the rejected candidate) in context.
+   Renders nothing when there is no advisory for this offer. #}
+{% set adv = advisory.get(c.offer.id) if advisory else None %}
+{% if adv %}
+<div class="advisory">
+  <p class="bundle-head"><b>Buying locally instead</b>{% if adv.as_of %} &mdash; prices as of {{ adv.as_of }}{% endif %}</p>
+  {% for row in adv.rows %}
+  <div class="bundle-row">
+    <span class="bundle-what">{{ row.get('item', '') }}</span>
+    <span class="bundle-src">{% if row.get('url') %}<a href="{{ row.url }}">{{ row.get('price', 'source') }}</a>{% else %}{{ row.get('price', '') }}{% endif %}</span>
+  </div>
+  {% endfor %}
+  {% if adv.sold_locally_text %}<p class="note">{{ adv.sold_locally_text }}{% if adv.supply_url %} &mdash; <a href="{{ adv.supply_url }}">record an answer</a>{% endif %}</p>{% endif %}
+</div>
+{% endif %}
