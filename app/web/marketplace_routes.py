@@ -11,7 +11,7 @@ from fastapi.templating import Jinja2Templates
 
 from app.ai.categorise import categorise_support
 from app.ai.client import GenAiError
-from app.ai.extract import extract, extract_device, image_to_data_url
+from app.ai.extract import extract, extract_device, image_to_data_url, library_citations
 from app.data import marketplace_repo as repo
 from app.data.repository import RepositoryError
 from app.domain.device import DeviceFacts
@@ -388,61 +388,6 @@ def confirm_submit(request: Request, token: str, answer: str = Form(...)) -> HTM
 
 # ---- live extraction ----------------------------------------------------
 
-# The five readings a rating plate carries, in the order it prints them.
-INSPECTOR_ROWS = (
-    ("Model", "model"),
-    ("Voltage", "voltage"),
-    ("Frequency", "frequency"),
-    ("Power", "power"),
-    ("Operating temp", "temperature"),
-)
-
-
-def _inspector_rows(device: DeviceFacts) -> list[dict[str, str]]:
-    """The extracted facts as rows, each carrying where it came from.
-
-    An unknown field is still a row. Showing it blank with an `unverified` tag
-    is the whole point: the gap is the finding.
-    """
-    supply = _range_text(device.voltage_min_v, device.voltage_max_v, "V")
-    frequency = (
-        "/".join(str(v) for v in device.frequencies_hz.value) + " Hz"
-        if device.frequencies_hz.known else ""
-    )
-    power = f"{device.power_watts.value} W" if device.power_watts.known else ""
-    temperature = _range_text(device.temp_min_c, device.temp_max_c, "\u00b0C")
-
-    values = {
-        "model": (device.label if device.model.known or device.manufacturer.known else "",
-                  device.model if device.model.known else device.manufacturer),
-        "voltage": (supply, device.voltage_min_v),
-        "frequency": (frequency, device.frequencies_hz),
-        "power": (power, device.power_watts),
-        "temperature": (temperature, device.temp_min_c),
-    }
-
-    rows = []
-    for label, key in INSPECTOR_ROWS:
-        shown, fact_used = values[key]
-        rows.append({
-            "label": label,
-            "value": shown,
-            "source": fact_used.source.value if shown else "unverified",
-            "known": bool(shown),
-        })
-    return rows
-
-
-def _range_text(low, high, unit: str) -> str:
-    if low.known and high.known:
-        return f"{low.value}\u2013{high.value} {unit}"
-    if low.known:
-        return f"from {low.value} {unit}"
-    if high.known:
-        return f"to {high.value} {unit}"
-    return ""
-
-
 @router.post("/offer/extract")
 async def offer_extract(request: Request) -> JSONResponse:
     """Extract facts from what the donor has typed or photographed, without a reload.
@@ -746,6 +691,9 @@ from app.reference.import_rules import documents_required  # noqa: E402
 
 MANUAL_KIND = "manual"
 MANUAL_TITLE_WORDS = ("manual", "instruction", "guide", "ifu")
+# Documents about the device that are not editions of it: a registry record
+# and a shop's product page are never listed as "the manufacturer's own".
+NOT_EDITION_KINDS = frozenset({"registry", "product page"})
 
 
 def _packet_chat():
@@ -872,7 +820,8 @@ def packet_page(
     header, header_warns = _packet_header(target, translated)
     verdict = _packet_verdict(offer, clinic)
     editions = [d for d in documents
-                if set(normalise_languages(d.get("languages") or ())) & set(staff)]
+                if str(d.get("kind", "")).lower() not in NOT_EDITION_KINDS
+                and set(normalise_languages(d.get("languages") or ())) & set(staff)]
     return TEMPLATES.TemplateResponse(
         request=request, name="packet.html",
         context={
@@ -904,24 +853,6 @@ TEMPLATES.env.globals["library_entries"] = device_library.load_library
 
 EARLIEST_BUILD_YEAR = 1950
 
-# The rows the prefill shows: (label, DeviceFacts field whose citation the row
-# links to, how to show the value). Every row says where its value was read.
-PREFILL_ROWS = (
-    ("Model", "model"),
-    ("Voltage", "voltage_min_v"),
-    ("Frequency", "frequencies_hz"),
-    ("Power", "power_watts"),
-    ("Operating temp", "temp_min_c"),
-    ("Max humidity", "humidity_max_pct"),
-    ("Needs oxygen", "needs_oxygen"),
-    ("Needs distilled water", "needs_distilled_water"),
-    ("Needs compressed air", "needs_compressed_air"),
-    ("Consumables", "consumables"),
-    ("Manual languages", "manual_languages"),
-    ("Operating complexity", "operating_complexity"),
-)
-
-
 def _library_entry(slug: str) -> device_library.LibraryEntry:
     picked = device_library.entry(slug)
     if picked is None:
@@ -950,50 +881,15 @@ def _library_device(picked: device_library.LibraryEntry, year_text: str) -> Devi
     return device
 
 
-def _yes_no(value) -> str:
-    return "yes" if value else "no"
-
-
-def _prefill_value(device: DeviceFacts, name: str) -> str:
-    if name == "model":
-        return device.label if device.model.known else ""
-    if name == "voltage_min_v":
-        return _range_text(device.voltage_min_v, device.voltage_max_v, "V")
-    if name == "temp_min_c":
-        return _range_text(device.temp_min_c, device.temp_max_c, "\u00b0C")
-    held = getattr(device, name)
-    if not held.known:
-        return ""
-    if name == "frequencies_hz":
-        return "/".join(str(v) for v in held.value) + " Hz"
-    if name == "power_watts":
-        return f"{held.value} W"
-    if name == "humidity_max_pct":
-        return f"{held.value} %"
-    if name.startswith("needs_"):
-        return _yes_no(held.value)
-    if isinstance(held.value, list):
-        return ", ".join(str(v) for v in held.value)
-    return str(held.value)
-
-
 def _prefill_rows(picked: device_library.LibraryEntry) -> list[dict]:
-    """Inspector rows for a library entry: label, value, source, link and page."""
+    """The inspector's own rows for a library entry, each linked to its page.
+
+    The same row set and columns as /offer/extract (one builder,
+    `inspector.inspector_rows`); the page shows no "wrong" mark on a library
+    pick, because a cited value is corrected by a document, not by hand.
+    """
     device = device_library.to_device_facts(picked)
-    rows = []
-    for label, name in PREFILL_ROWS:
-        shown = _prefill_value(device, name)
-        cited = device_library.citation(picked, name) if shown else {}
-        rows.append({
-            "label": label,
-            "value": shown,
-            "source": getattr(device, name).source.value if shown else "unverified",
-            "source_url": cited.get("url", ""),
-            "page": cited.get("page"),
-            "document": cited.get("title", ""),
-            "known": bool(shown),
-        })
-    return rows
+    return inspector.inspector_rows(device, library_citations(picked))
 
 
 @router.post("/offer/prefill")

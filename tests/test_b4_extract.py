@@ -11,6 +11,7 @@ from pathlib import Path
 
 import pytest
 
+from app.ai import client as client_module
 from app.ai import extract as ex
 from app.ai import fetch
 from app.config import SETTINGS
@@ -77,7 +78,9 @@ def test_name_device_reads_a_photo_with_the_vision_model():
     call = client.calls[0]
     assert call["model"] == SETTINGS.vision_model
     assert call["image_data_url"] == "data:image/png;base64,AAAA"
-    assert call["max_tokens"] == ex.VISION_MAX_TOKENS == 4096
+    # The 4096 ceiling is the client's, per model (client.MODEL_MAX_TOKENS).
+    assert "max_tokens" not in call
+    assert client_module.max_tokens_for(call["model"], client_module.DEFAULT_MAX_TOKENS) == 4096
     assert "transcribe every printed line" in call["prompt"]
 
 

@@ -45,9 +45,8 @@ MAX_IMAGE_BYTES = 6 * 1024 * 1024
 # The most document text the read step is shown, so the prompt stays inside
 # the model's window with room for its reasoning.
 MAX_DOCUMENT_CHARS = 40_000
-# The vision model refuses max_tokens above 4096 (live: "Invalid 'maxTokens':
-# Value is greater than maximum: 4096"), below the client's 6000 default.
-VISION_MAX_TOKENS = 4096
+# The vision model's own ceiling (4096, below the 6000 default) is applied by
+# the client for every call to it; see client.MODEL_MAX_TOKENS.
 
 NOT_FOUND = "model answer not found in the source"
 NOT_USABLE = "model answer not usable"
@@ -243,8 +242,7 @@ def name_device(typed_text: str, image_data_url: str, client: GenAiClient) -> Na
     )
     options: dict[str, Any] = {}
     if image_data_url:
-        options = {"model": SETTINGS.vision_model, "image_data_url": image_data_url,
-                   "max_tokens": VISION_MAX_TOKENS}
+        options = {"model": SETTINGS.vision_model, "image_data_url": image_data_url}
     payload = client.complete_json(prompt, system=NAMING_SYSTEM, **options)
     return Naming(
         manufacturer=_text_or_none(payload.get("manufacturer")),
@@ -393,9 +391,11 @@ def library_citations(entry: LibraryEntry) -> dict[str, Citation]:
         if doc is None:
             continue
         page = payload.get("page")
+        # The fact's own URL already points at its page (#page=N); the
+        # document's URL is the fallback for a fact stored without one.
         citations[name] = Citation(
             title=str(doc.get("title") or doc.get("file") or ""),
-            url=str(doc.get("url") or ""),
+            url=str(payload.get("url") or doc.get("url") or ""),
             page=int(page) if isinstance(page, int) or str(page or "").isdigit() else None,
         )
     return citations

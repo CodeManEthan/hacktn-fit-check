@@ -243,6 +243,7 @@ def _documents_fact(e: LibraryEntry) -> Fact | None:
             "file": str(doc.get("file") or ""),
             "title": str(doc.get("title") or ""),
             "url": str(doc.get("url") or ""),
+            "kind": str(doc.get("kind") or ""),
             "languages": normalise_languages(doc.get("languages") or ()),
         }
         for doc in e.documents
