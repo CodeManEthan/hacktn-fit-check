@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Screen an inventory &middot; Fit-Check{% endblock %}
+{% block content %}
+<style>
+  .csv-cols { font: 500 12px/1.7 var(--mono); color: var(--accent-text); overflow-wrap: anywhere; margin: var(--s2) 0 0; }
+  .csv-form .go { align-self: flex-start; }
+  .csv-form input[type="file"] { font: inherit; font-size: 14px; color: var(--etch); max-width: 100%; }
+  .csv-form input[type="email"] { font: inherit; }
+</style>
+<section class="masthead">
+  <p class="eyebrow">Donor &middot; whole inventory</p>
+  <h1>Screen a spreadsheet of surplus</h1>
+  <p class="sub">One row per device. Every row is screened against the clinic you pick, with
+     the same checks as a single offer. Nothing is posted until you press
+     &ldquo;Post these offers&rdquo; on the results.</p>
+</section>
+
+<form method="post" action="/offer/csv" enctype="multipart/form-data" class="form csv-form">
+  <div class="split">
+    <div class="plate">
+      <h2 class="panel-head">The file</h2>
+      <div class="field">
+        <label class="name" for="f-inventory">Inventory CSV</label>
+        <input type="file" id="f-inventory" name="inventory" accept=".csv,text/csv" required>
+        <p class="note">Header names in any case. Columns it reads:</p>
+        <p class="csv-cols">{{ columns | join(", ") }}</p>
+        <p class="note"><code>frequencies_hz</code> as <code>50/60</code>,
+           <code>manual_languages</code> as <code>en;fr</code>. A blank
+           <code>expiry_date</code> means nothing in that row is dated. A row naming a
+           model in the library takes the maker's documented facts; its own year,
+           quantity and place are added.</p>
+        {% if has_sample %}
+        <p class="note"><a class="link" href="/offer/csv/sample">Download the sample inventory</a>
+           (six library devices) to see the layout.</p>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="plate">
+      <h2 class="panel-head">Screen against</h2>
+      {% if facilities %}
+      <div class="field">
+        <label class="name" for="f-facility">Clinic</label>
+        <select id="f-facility" name="facility" required>
+          {% for f in facilities %}
+          <option value="{{ f.slug }}"{% if f.slug == selected %} selected{% endif %}>{{ f.name }} ({{ f.country }}, {{ f.mains_voltage_v }} V {{ f.mains_frequency_hz }} Hz)</option>
+          {% endfor %}
+        </select>
+      </div>
+      {% else %}
+      <p class="empty">No clinic is registered yet, so there is nothing to screen against.
+         <a class="link" href="/clinic">Register one</a>.</p>
+      {% endif %}
+      <div class="field">
+        <label class="name" for="f-donor-name">Donor (for posting)</label>
+        <input type="text" id="f-donor-name" name="donor_name" value="{{ donor_name }}" placeholder="Mercy Regional, biomedical">
+      </div>
+      <div class="field">
+        <label class="name" for="f-donor-email">Email (for posting)</label>
+        <input type="text" id="f-donor-email" name="donor_email" value="{{ donor_email }}" inputmode="email" placeholder="biomed@example.org">
+        <p class="note">Only needed if you post the offers afterwards.</p>
+      </div>
+    </div>
+  </div>
+  <button class="go" type="submit"{% if not facilities %} disabled{% endif %}>Screen every row</button>
+</form>
+{% endblock %}

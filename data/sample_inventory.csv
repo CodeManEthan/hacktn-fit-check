@@ -1,0 +1,7 @@
+device_type,manufacturer,model,quantity,year,voltage_min_v,voltage_max_v,frequencies_hz,power_watts,temp_min_c,temp_max_c,humidity_max_pct,manual_languages,expiry_date,city,country
+oxygen concentrator,DeVilbiss Healthcare,525KS,2,2019,187,253,50,312,5,35,93,en;es;fr;de;it;nl;tr;pt;pl;ar;el;da;sv;fi;no;cs;sk;zh-CN;sl;ro;ms,,Leeds,United Kingdom
+suction pump,Laerdal Medical,LSU,1,2018,100,240,50/60,,0,40,95,en;es;it;fr;nl;de,,Leeds,United Kingdom
+patient monitor,Philips Medical Systems,SureSigns VM6,1,2016,100,240,50/60,72,10,40,80,en,,Nashville,United States
+pulse oximeter,Nellcor,N-560,3,2014,100,240,,39,10,45,95,en,,Nashville,United States
+ultrasound scanner,FUJIFILM SonoSite,M-Turbo,1,2015,100,240,50/60,75,10,40,95,en;de,,Nashville,United States
+nebuliser,DeVilbiss Healthcare,5650D,2,2020,115,115,60,90,5,40,95,en;es;fr,,Nashville,United States
