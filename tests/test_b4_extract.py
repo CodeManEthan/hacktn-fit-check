@@ -62,7 +62,7 @@ def test_name_device_reads_text_with_the_reasoning_model():
 
     assert named == ex.Naming("Drive DeVilbiss", "525DS", "oxygen concentrator", None)
     call = client.calls[0]
-    assert call["model"] == "" and call["image_data_url"] == ""
+    assert "model" not in call and "image_data_url" not in call and "max_tokens" not in call
     assert "DeVilbiss 525DS concentrator" in call["prompt"]
     assert "there is no image" in call["prompt"]
 
@@ -77,6 +77,7 @@ def test_name_device_reads_a_photo_with_the_vision_model():
     call = client.calls[0]
     assert call["model"] == SETTINGS.vision_model
     assert call["image_data_url"] == "data:image/png;base64,AAAA"
+    assert call["max_tokens"] == ex.VISION_MAX_TOKENS == 4096
     assert "transcribe every printed line" in call["prompt"]
 
 

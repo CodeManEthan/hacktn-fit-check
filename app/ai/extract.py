@@ -45,6 +45,9 @@ MAX_IMAGE_BYTES = 6 * 1024 * 1024
 # The most document text the read step is shown, so the prompt stays inside
 # the model's window with room for its reasoning.
 MAX_DOCUMENT_CHARS = 40_000
+# The vision model refuses max_tokens above 4096 (live: "Invalid 'maxTokens':
+# Value is greater than maximum: 4096"), below the client's 6000 default.
+VISION_MAX_TOKENS = 4096
 
 NOT_FOUND = "model answer not found in the source"
 NOT_USABLE = "model answer not usable"
@@ -238,10 +241,11 @@ def name_device(typed_text: str, image_data_url: str, client: GenAiClient) -> Na
         plate_rule=PLATE_RULE_IMAGE if image_data_url else PLATE_RULE_TEXT,
         source=typed_text.strip() or "(no text supplied - read the image)",
     )
-    model = SETTINGS.vision_model if image_data_url else ""
-    payload = client.complete_json(
-        prompt, system=NAMING_SYSTEM, model=model, image_data_url=image_data_url,
-    )
+    options: dict[str, Any] = {}
+    if image_data_url:
+        options = {"model": SETTINGS.vision_model, "image_data_url": image_data_url,
+                   "max_tokens": VISION_MAX_TOKENS}
+    payload = client.complete_json(prompt, system=NAMING_SYSTEM, **options)
     return Naming(
         manufacturer=_text_or_none(payload.get("manufacturer")),
         model=_text_or_none(payload.get("model")),
