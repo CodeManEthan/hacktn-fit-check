@@ -445,6 +445,8 @@ button.go-quiet:hover { border-color: var(--block); color: var(--block); }
 /* ---- rating plate scanner ------------------------------------------- */
 
 .scan { text-align: center; padding: var(--s6) var(--s5); }
+/* The zone's parts are spans so the whole label is the drop target; they stack as blocks. */
+.scan-reticle, .scan-head, .scan-sub { display: block; }
 .scan-reticle {
   width: 56px;
   height: 56px;
@@ -1044,3 +1046,6 @@ body[data-role] button.go:hover, body[data-role] a.go:hover { background: var(--
 .flow a.go.go-clinic { background: #0F766E; border-color: #0F766E; color: #fff; }
 .flow a.go.go-donor:hover { background: #92400E; color: #fff; }
 .flow a.go.go-clinic:hover { background: #115E59; color: #fff; }
+
+/* A long unbroken token (an error's URL) must wrap rather than widen the page. */
+p, li, td, dd { overflow-wrap: anywhere; }

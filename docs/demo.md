@@ -4,7 +4,7 @@ What this answers: the four screens and the closing page on the live host, what 
 
 Live host: https://fitcheck.care/
 
-Caddy on the VM serves that name with a Let's Encrypt certificate and redirects plain HTTP to it. The header bar links About us, Contact and Get help; the role toggle is on its right, and the nonprofit role adds the desk links and Impact. The bare IP, 147.224.201.81, still answers on plain HTTP as the compatibility door for anyone holding the old link; it is not a link to give out or show on a slide.
+Caddy on the VM serves that name with a Let's Encrypt certificate and redirects plain HTTP to it. The header bar links About us, Contact and Get help; the role toggle is on its right; Impact is in the bar for every role, and the nonprofit role adds the desk links (Supply answers, Recipients, Inventory CSV). The bare IP, 147.224.201.81, still answers on plain HTTP as the compatibility door for anyone holding the old link; it is not a link to give out or show on a slide.
 
 The ids below are the live MySQL's, read from the pages on 2026-10-18 after the 385bc8f redeploy. The B6 report's table uses a fresh local database, where the same offers are 1, 2 and 3; on the live host they are 8, 9 and 10. The seed upserts, so a reseed keeps these ids.
 
