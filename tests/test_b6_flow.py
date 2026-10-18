@@ -160,8 +160,10 @@ def test_each_role_recolours_the_bar_and_hides_nothing(demo):
     for role in ("donor", "clinic", "nonprofit"):
         client = TestClient(app, cookies={"role": role})
         body = client.get("/").text
-        assert f'<body data-role="{role}">' in body
-        assert f'value="{role}" class="role-btn role-btn-{role}"\n                aria-pressed="true"' in body
+        assert re.search(rf'<body class="[^"]*" data-role="{role}">', body)
+        assert re.search(rf'value="{role}" class="role-btn role-btn-{role}"\s+aria-pressed="true"', body)
+        # [B12] exactly one button is pressed, and it is this role's.
+        assert len(re.findall(r'aria-pressed="true"', body)) == 1
         assert 'href="/offer"' in body and 'href="/request"' in body
 
 
@@ -175,19 +177,43 @@ def test_only_the_nonprofit_role_adds_supply_and_review_to_the_bar(demo):
 
 def test_an_unknown_role_cookie_is_ignored(demo):
     body = TestClient(app, cookies={"role": "admin"}).get("/").text
-    assert "<body>" in body and "data-role" not in body.split("<body", 1)[1][:30]
+    assert re.search(r'<body class="[^"]*">', body) and "data-role" not in body.split("<body", 1)[1][:40]
 
 
-def test_the_landing_shows_two_intake_forms_and_the_operator_between_them(demo):
+# [B13]'s landing (design §13): the operator is a one-line strip under the
+# two cards and the seeded-clinic strip is gone. Replacement from B13's report;
+# it passes once b13-ui-landing's landing.html is merged beside this base.
+@pytest.mark.xfail(strict=False, reason="needs [B13]'s landing.html (b13-ui-landing), joined at the merge")
+def test_the_landing_shows_two_intake_forms_and_the_operator_under_them(demo):
     body = demo["client"].get("/").text
-    donor, operator, clinic = (body.index(s) for s in
-                               ("Intake form 1", "The nonprofit", "Intake form 2"))
-    assert donor < operator < clinic
-    assert 'class="middlemen"' in body and "freight forwarder" in body
-    chips = re.findall(r'href="/request\?facility=([a-z-]+)"', body)
-    assert chips[0] == KAYUNGA and len(chips) == 3
+    donor, clinic, operator = (body.index(s) for s in
+                               ("Intake form 1", "Intake form 2", "The nonprofit"))
+    assert donor < clinic < operator
+    assert 'class="lander-operator"' in body and "freight forwarder" in body
+    assert "/request?facility=" not in body
 
 
 def test_the_supply_desk_lists_each_clinic_country(demo):
     body = demo["client"].get("/supply").text
     assert 'href="/supply/Uganda"' in body
+
+
+# ---- [B12] chrome (design §13): their bar, our toggle, no badge ---------------
+
+@pytest.mark.parametrize("role", ["", "donor", "clinic", "nonprofit"])
+def test_the_bar_carries_the_mark_the_three_links_impact_and_no_badge(demo, role):
+    client = TestClient(app, cookies={"role": role} if role else {})
+    body = client.get("/offer").text
+    bar = body[:body.index("</header>")]
+    assert 'class="lander-bar"' in bar and 'class="lander-mark" href="/"' in bar
+    for href in ("/about", "/contact", "/help", "/impact"):
+        assert f'href="{href}"' in bar
+    assert 'class="role-toggle"' in bar
+    assert "deterministic rules active" not in body and "lander-avatar" not in body
+    footer = body[body.index("<footer"):]
+    assert "IEC 60601-1 and WHO Annex 1" in footer and "href=" not in footer
+
+
+def test_the_impact_link_marks_the_page_it_is_on(demo):
+    body = demo["client"].get("/impact").text
+    assert 'href="/impact" aria-current="page"' in body

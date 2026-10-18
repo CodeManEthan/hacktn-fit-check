@@ -7,46 +7,65 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/static/style.css">
+  {% block head %}{% endblock %}
 </head>
-{# The role toggle (§7.1) is a cookie and a colour, and each button opens
-   its party's home page. It hides nothing; the nonprofit role adds its
-   desks to the bar. #}
+{# The bar is the teammate's (upstream de6b0fb, 3bb4e93): white, the house
+   mark, About us / Contact / Get help. On its right sits our role toggle
+   (§7.1): a cookie and a colour, and each button opens its party's home
+   page. It hides nothing; the nonprofit role adds its desks under the bar.
+   Blocks for child templates: title, head (a page's own stylesheet),
+   body_class, chrome, content, footer. #}
 {% set roles = (("donor", "Donor"), ("clinic", "Clinic"), ("nonprofit", "Nonprofit")) %}
 {% set role = request.cookies.get("role", "") if request is defined and request else "" %}
 {% set role = role if role in ("donor", "clinic", "nonprofit") else "" %}
-<body{% if role %} data-role="{{ role }}"{% endif %}>
-  <header class="topbar">
-    <div class="topbar-in">
-      <a class="mark" href="/">Fit-Check</a>
-      {% if role == "nonprofit" %}
-      <nav class="desk-links" aria-label="Nonprofit desks">
-        <a href="/supply">Supply answers</a>
-        <a href="/review">Recipients</a>
-        <a href="/offer/csv">Inventory CSV</a>
-      </nav>
-      {% endif %}
-      <span class="status"><i class="dot"></i>{{ rule_count }} deterministic rules active</span>
-      <form class="role-toggle" method="post" action="/role" aria-label="Viewing as">
-        <input type="hidden" name="back" value="{{ request.url.path if request is defined and request else '/' }}{% if request is defined and request and request.url.query %}?{{ request.url.query }}{% endif %}">
-        {% for value, name in roles %}
-        <button type="submit" name="role" value="{{ value }}" class="role-btn role-btn-{{ value }}"
-                aria-pressed="{{ 'true' if role == value else 'false' }}">{{ name }}</button>
-        {% endfor %}
-      </form>
+{% set here = request.url.path if request is defined and request else "" %}
+<body class="{% block body_class %}{% endblock %}"{% if role %} data-role="{{ role }}"{% endif %}>
+  {% block chrome %}
+  <header class="lander-bar">
+    <div class="lander-bar-in">
+      <a class="lander-mark" href="/">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true">
+          <path d="M12 2.6 2.8 9.4V21h18.4V9.4L12 2.6Z" fill="#2563EB"/>
+          <path d="M12 10.4v6.4M8.8 13.6h6.4" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span><b>Fit</b>Check</span>
+      </a>
+      <div class="bar-right">
+        <nav class="lander-nav" aria-label="Fit-Check">
+          {% for href, name in (("/about", "About us"), ("/contact", "Contact"), ("/help", "Get help"), ("/impact", "Impact")) %}
+          <a href="{{ href }}"{% if here == href %} aria-current="page"{% endif %}>{{ name }}</a>
+          {% endfor %}
+        </nav>
+        <form class="role-toggle" method="post" action="/role" aria-label="Viewing as">
+          <input type="hidden" name="back" value="{{ here or '/' }}{% if request is defined and request and request.url.query %}?{{ request.url.query }}{% endif %}">
+          {% for value, name in roles %}
+          <button type="submit" name="role" value="{{ value }}" class="role-btn role-btn-{{ value }}"
+                  aria-pressed="{{ 'true' if role == value else 'false' }}">{{ name }}</button>
+          {% endfor %}
+        </form>
+      </div>
     </div>
+    {% if role == "nonprofit" %}
+    <div class="desk-bar">
+      <div class="desk-bar-in">
+        <span class="desk-label">Nonprofit desks</span>
+        <nav class="desk-links" aria-label="Nonprofit desks">
+          <a href="/supply">Supply answers</a>
+          <a href="/review">Recipients</a>
+          <a href="/offer/csv">Inventory CSV</a>
+        </nav>
+      </div>
+    </div>
+    {% endif %}
   </header>
+  {% endblock %}
   <main class="deck">
     {% block content %}{% endblock %}
   </main>
-  <footer class="footer">
-    <div class="footer-in">
-      <span>Grounded in IEC 60601-1 and WHO Annex 1 standards</span>
-      <span class="footer-links">
-        <a href="/review">Recipients</a>
-        <a href="/impact">Audit log</a>
-        <span class="footer-mark">HackTN 2026</span>
-      </span>
-    </div>
+  {% block footer %}
+  <footer class="lander-footer">
+    <p>Grounded in IEC 60601-1 and WHO Annex 1 standards</p>
   </footer>
+  {% endblock %}
 </body>
 </html>
