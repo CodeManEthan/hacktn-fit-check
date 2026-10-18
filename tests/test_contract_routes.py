@@ -130,7 +130,7 @@ def test_an_advisory_renders_under_its_rejected_offer(client, monkeypatch):
 
     text = client.get(f"/request/{request_id}/matches").text
 
-    assert "Buying locally instead" in text
+    assert "Buy locally instead?" in text
     assert "about $290" in text and "sold in Testland: yes" in text
 
 

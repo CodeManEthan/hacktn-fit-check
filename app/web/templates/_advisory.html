@@ -1,16 +1,20 @@
 {# The buy-locally advisory under one rejected offer. Expects `advisory`
    (offer id -> Advisory or None) and `c` (the rejected candidate) in context.
-   Renders nothing when there is no advisory for this offer. #}
+   Renders nothing when there is no advisory for this offer. It reads the
+   verdict and never states one, so no verdict word appears here. #}
 {% set adv = advisory.get(c.offer.id) if advisory else None %}
 {% if adv %}
-<div class="advisory">
-  <p class="bundle-head"><b>Buying locally instead</b>{% if adv.as_of %} &mdash; prices as of {{ adv.as_of }}{% endif %}</p>
+<div class="advisory" style="margin-top:var(--s3);padding:var(--s3) var(--s4);background:var(--raise);border:1px solid var(--rule);border-radius:6px;color:var(--etch)">
+  <p class="bundle-head" style="color:var(--ink);margin:0 0 var(--s2)"><b>Buy locally instead?</b></p>
   {% for row in adv.rows %}
-  <div class="bundle-row">
+  <div class="bundle-row" style="border-left:0">
     <span class="bundle-what">{{ row.get('what', '') }}</span>
-    <span class="bundle-src">{{ row.get('price_text', '') }}{% if row.get('url') %} &mdash; <a href="{{ row.url }}">{{ row.get('source', 'source') }}</a>{% elif row.get('source') %} &mdash; {{ row.source }}{% endif %}</span>
+    <span class="bundle-src"><b style="color:var(--ink)">{{ row.get('price_text', '') }}</b>{% if row.get('url') %} &mdash; <a href="{{ row.url }}" rel="noopener">{{ row.get('source') or 'source' }}</a>{% elif row.get('source') %} &mdash; {{ row.source }}{% endif %}</span>
   </div>
   {% endfor %}
-  {% if adv.sold_locally_text %}<p class="note">{{ adv.sold_locally_text }}{% if adv.supply_url %} &mdash; <a href="{{ adv.supply_url }}">record an answer</a>{% endif %}</p>{% endif %}
+  {% if adv.as_of %}<p class="note">USD, prices as read on {{ adv.as_of }}, before freight, duty and VAT.</p>{% endif %}
+  {% if adv.sold_locally_text %}
+  <p class="note">{% if adv.supply_url %}<a href="{{ adv.supply_url }}{% if request is defined and request %}&amp;back={{ request.url.path | urlencode }}{% endif %}">{{ adv.sold_locally_text }}</a>{% else %}{{ adv.sold_locally_text }}{% endif %}</p>
+  {% endif %}
 </div>
 {% endif %}

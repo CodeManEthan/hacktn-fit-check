@@ -112,7 +112,7 @@ def test_advisory_for_returns_none_until_the_price_table_lands():
     rejected = Candidate(offer=an_offer(id=1), verdict=Verdict(outcome=Outcome.WONT_WORK, results=()))
 
     assert advisory_for(rejected) is None
-    assert Advisory().rows == [] and Advisory().supply_url == ""
+    assert Advisory().rows == () and Advisory().supply_url == ""
 
 
 def test_a_blank_expiry_is_the_answer_nothing_is_dated():

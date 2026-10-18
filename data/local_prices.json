@@ -1,0 +1,37 @@
+{
+  "_source": "reports/add-on-fulfillment-research.md (research date 2026-10-17). Prices are USD, freight, duty and VAT excluded. UNICEF figures are snapshots from a search-engine index of the catalogue page.",
+  "oxygen concentrator": {
+    "as_of": "2026-10-17",
+    "rows": [
+      {
+        "role": "instead",
+        "what": "A new 5 LPM oxygen concentrator built for local power",
+        "price_usd": 288,
+        "indicative": true,
+        "source": "UNICEF indicative price",
+        "url": "https://supply.unicef.org/catalogsearch/result/?q=oxygen",
+        "ref": "A12",
+        "quote": "Oxygen concentrator 5 LPM, new, local power (reference) | replacement option | $288 (snapshot) | UNICEF indicative [A12]"
+      },
+      {
+        "role": "add-on",
+        "what": "A frequency converter to run this unit on 50 Hz mains, 500 VA to 2 kVA",
+        "price_usd_min": 1319.19,
+        "price_usd_max": 2272.98,
+        "source": "ATO 1-phase frequency converters",
+        "url": "https://www.ato.com/1-phase-frequency-converter",
+        "ref": "A1",
+        "quote": "Frequency converter, 500 VA | 60 Hz device on 50 Hz mains | $1,319.19 | ATO (GoHz-type), HZ-60-500W [A1]; Frequency converter, 2 kVA | same | $2,272.98 | ATO HZ-50-1102 [A1]"
+      },
+      {
+        "role": "with it",
+        "what": "A 1 kVA 230 V medical voltage stabiliser",
+        "price_usd": 205.41,
+        "source": "UNICEF S0002632",
+        "url": "https://supply.unicef.org/s0002632.html",
+        "ref": "A9",
+        "quote": "Voltage stabilizer 1 kVA 230 V, medical | brownouts and surges | $205.41 (snapshot) | UNICEF S0002632 [A9]"
+      }
+    ]
+  }
+}
