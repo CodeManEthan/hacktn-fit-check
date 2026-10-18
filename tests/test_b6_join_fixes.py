@@ -81,6 +81,24 @@ def test_the_offer_page_renders_both_paths_through_one_renderer(client):
     assert "window.fitInspector.render(rows, false)" in page
 
 
+
+def test_the_library_pick_script_runs_after_the_inspector_exists(client):
+    """(B6 check L1) An inline script that runs before <tbody data-inspector-body>
+    finds no body, returns early and never listens for the pick. Every script
+    that looks the body up must come after it, and the pick after the renderer."""
+    page = client.get("/offer").text
+    body_at = page.index("<tbody data-inspector-body>")
+    pick_at = page.index("select.addEventListener('change'")
+    renderer_at = page.index("window.fitInspector = {")
+    script_starts = [i for i in range(len(page)) if page.startswith("<script>", i)]
+    pick_script = max(i for i in script_starts if i < pick_at)
+    assert body_at < pick_script, "the pick script runs before the inspector body exists"
+    assert renderer_at < pick_at, "the pick script runs before window.fitInspector is set"
+    for start in script_starts:
+        end = page.index("</script>", start)
+        if "[data-inspector-body]" in page[start:end]:
+            assert start > body_at, "a script looks up the inspector body before it exists"
+
 # ---- (B5 check L2) documents carry their kind ---------------------------------------
 
 def test_the_525ks_documents_fact_carries_each_kind():
