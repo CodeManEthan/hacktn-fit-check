@@ -1,0 +1,26 @@
+# Caddy in front of Fit-Check (design 9.1). Installed to /etc/caddy/Caddyfile by
+# deploy/bootstrap.sh, and by `deploy/redeploy.sh cutover` when it differs from the
+# installed file (the file it replaces is kept at /etc/caddy/Caddyfile.prev).
+#
+# The public name is written once, as the first site block's address below. That
+# line is the one place it lives for the server: Caddy reads no environment variable
+# and no .env for it. deploy/redeploy.sh and deploy/check_live.py name it only to
+# check it, and a test keeps them in step with this file.
+#
+# Logs: Caddy's own log and the access log both go to stderr, which systemd puts in
+# the journal: `sudo journalctl -u caddy`.
+
+# Automatic HTTPS: 443 with a Let's Encrypt certificate that Caddy fetches and renews
+# itself (HTTP-01 on port 80), and plain HTTP for this name redirected here with a 308.
+fitcheck.care {
+	log
+	reverse_proxy 127.0.0.1:8000
+}
+
+# The compatibility door: the bare IP keeps answering on plain HTTP, with no redirect,
+# for anyone holding the old URL and for the deploy checks, which must not depend on
+# DNS. No page, doc or slide gives this as a URL to open.
+http://147.224.201.81 {
+	log
+	reverse_proxy 127.0.0.1:8000
+}
