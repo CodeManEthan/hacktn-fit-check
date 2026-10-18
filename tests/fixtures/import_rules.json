@@ -1,0 +1,9 @@
+{
+  "Testland": {
+    "source": {"title": "Testland equipment rules", "url": "https://example.org/rules", "date": "2026-01-01", "pages": "3"},
+    "label_languages": ["en", "French"],
+    "min_remaining_life_years": 2,
+    "documents_required": ["no-objection letter", "packing list with serial numbers"],
+    "quotes": {"label_languages": "labels in English or French"}
+  }
+}

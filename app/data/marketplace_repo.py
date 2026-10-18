@@ -13,16 +13,21 @@ from dataclasses import asdict, fields
 from datetime import date, datetime, timedelta
 from typing import Any
 
-from sqlalchemy import and_, func, insert, or_, select, update
+from sqlalchemy import and_, delete, func, insert, or_, select, update
 
 from app.data.db import get_engine
 from app.data.marketplace_schema import (
+    EXTRACTION_ID_LENGTH,
     MATCH_ID_LENGTH,
+    extractions,
     facilities_v2,
     matches,
     offers,
+    packets,
+    registry_lookups,
     request_lines,
     requests,
+    supply_answers,
 )
 from app.data.serialize import (
     device_from_dict,
@@ -32,6 +37,7 @@ from app.data.serialize import (
     verdict_from_dict,
     verdict_to_dict,
 )
+from app.domain.device import DeviceFacts
 from app.domain.facility import FacilityProfile
 from app.domain.facility_trust import Verification, VerificationStatus
 from app.domain.marketplace import (
@@ -45,6 +51,8 @@ from app.domain.marketplace import (
     RequestLine,
     RequestStatus,
 )
+from app.domain.records import RegistryLookup, StoredExtraction, StoredPacket
+from app.domain.supply_answer import ANY_MODEL, SupplyAnswer
 
 NO_STOCK = 0
 MINIMUM_SWEEP_HOURS = 0
@@ -55,6 +63,9 @@ EMPTY_JSON_OBJECT = "{}"
 # FacilityProfile holds these as tuples; JSON hands them back as lists.
 FACILITY_TUPLE_FIELDS = ("plug_types", "staff_languages")
 FACILITY_FIELD_NAMES = frozenset(f.name for f in fields(FacilityProfile))
+
+REGISTRY_CACHE_DAYS = 7
+EXTRACTION_TTL = timedelta(hours=1)
 
 OPEN_MATCH_STATES = tuple(state.value for state in OPEN_STATES)
 
@@ -525,3 +536,221 @@ def offers_for_support(kind_value: str, terms: tuple[str, ...], today: date | No
         if stored_kind == kind_value.lower() or any(t in haystack for t in terms):
             found.append(_offer_from_row(row))
     return found
+
+
+# --- Recorded supply answers ---------------------------------------------
+
+_ANSWER_FIELDS = (
+    "consumables_available", "spare_parts_available", "sold_locally",
+    "manufacturer_supported",
+)
+
+
+def _answer_from_row(row: Any) -> SupplyAnswer:
+    return SupplyAnswer(
+        id=row["id"],
+        device_type=row["device_type"] or "",
+        model=row["model"] or ANY_MODEL,
+        country=row["country"],
+        recorded_by=row["recorded_by"] or "",
+        note=row["note"] or "",
+        recorded_at=row["recorded_at"],
+        **{name: (None if row[name] is None else bool(row[name])) for name in _ANSWER_FIELDS},
+    )
+
+
+def save_supply_answer(answer: SupplyAnswer) -> int:
+    """Insert the answer, or replace the one stored for its (type, model, country)."""
+    values = {
+        "device_type": answer.device_type.strip(),
+        "model": answer.model.strip(),
+        "country": answer.country.strip(),
+        "recorded_by": answer.recorded_by,
+        "note": answer.note,
+        "recorded_at": answer.recorded_at or datetime.now(),
+        **{name: getattr(answer, name) for name in _ANSWER_FIELDS},
+    }
+    key = and_(
+        supply_answers.c.device_type == values["device_type"],
+        supply_answers.c.model == values["model"],
+        supply_answers.c.country == values["country"],
+    )
+    try:
+        with get_engine().begin() as conn:
+            stored = conn.execute(select(supply_answers.c.id).where(key)).first()
+            if stored:
+                conn.execute(update(supply_answers).where(key).values(**values))
+                return int(stored[0])
+            return int(conn.execute(insert(supply_answers).values(**values)).inserted_primary_key[0])
+    except Exception as exc:  # noqa: BLE001
+        raise RepositoryError(f"Could not save the supply answer: {exc}") from exc
+
+
+def load_supply_answer(device_type: str, model: str, country: str) -> SupplyAnswer | None:
+    """The answer for this exact model in this country, else for its type.
+
+    The model lookup ignores the device type, so a caller that knows only
+    the model still finds a model-specific answer. The type fallback reads
+    only rows recorded for any model (model ''). Matching ignores case.
+    """
+    in_country = func.lower(supply_answers.c.country) == (country or "").strip().lower()
+    newest = supply_answers.c.id.desc()
+    wanted_model = (model or "").strip().lower()
+    if wanted_model:
+        row = _first_row(
+            select(supply_answers)
+            .where(in_country, func.lower(supply_answers.c.model) == wanted_model)
+            .order_by(newest),
+            "Could not load the supply answer",
+        )
+        if row is not None:
+            return _answer_from_row(row)
+    wanted_type = (device_type or "").strip().lower()
+    if not wanted_type:
+        return None
+    row = _first_row(
+        select(supply_answers)
+        .where(
+            in_country,
+            supply_answers.c.model == ANY_MODEL,
+            func.lower(supply_answers.c.device_type) == wanted_type,
+        )
+        .order_by(newest),
+        "Could not load the supply answer",
+    )
+    return None if row is None else _answer_from_row(row)
+
+
+# --- Registry lookups ----------------------------------------------------
+
+
+def _registry_key(model: str) -> str:
+    return (model or "").strip().lower()
+
+
+def cached_registry_lookup(
+    model: str, max_age_days: int = REGISTRY_CACHE_DAYS, *, now: datetime | None = None
+) -> RegistryLookup | None:
+    """The stored lookup for this model, or None when absent or older than the limit."""
+    row = _first_row(
+        select(registry_lookups).where(registry_lookups.c.model == _registry_key(model)),
+        "Could not read the registry cache",
+    )
+    if row is None:
+        return None
+    if row["fetched_at"] < (now or datetime.now()) - timedelta(days=max_age_days):
+        return None
+    return RegistryLookup(
+        model=row["model"], status=row["status"] or "", record_url=row["record_url"] or "",
+        raw_json=row["raw_json"] or EMPTY_JSON_OBJECT, fetched_at=row["fetched_at"],
+    )
+
+
+def store_registry_lookup(
+    model: str, status: str, record_url: str, raw_json: str | dict | list,
+    *, now: datetime | None = None,
+) -> None:
+    """Write (or replace) the cached lookup for this model."""
+    key = _registry_key(model)
+    values = {
+        "fetched_at": now or datetime.now(),
+        "status": status or "",
+        "record_url": record_url or "",
+        "raw_json": raw_json if isinstance(raw_json, str) else json.dumps(raw_json),
+    }
+    match = registry_lookups.c.model == key
+    try:
+        with get_engine().begin() as conn:
+            stored = conn.execute(select(registry_lookups.c.model).where(match)).first()
+            conn.execute(
+                update(registry_lookups).where(match).values(**values)
+                if stored else insert(registry_lookups).values(model=key, **values)
+            )
+    except Exception as exc:  # noqa: BLE001
+        raise RepositoryError(f"Could not cache the registry lookup: {exc}") from exc
+
+
+# --- Handover packets ----------------------------------------------------
+
+
+def _packet_key(offer_id: int, facility_slug: str) -> Any:
+    return and_(packets.c.offer_id == offer_id, packets.c.facility_slug == facility_slug)
+
+
+def load_packet(offer_id: int, facility_slug: str) -> StoredPacket | None:
+    row = _first_row(
+        select(packets).where(_packet_key(offer_id, facility_slug)),
+        "Could not load the packet",
+    )
+    if row is None:
+        return None
+    translated = row["translated_json"]
+    return StoredPacket(
+        offer_id=row["offer_id"], facility_slug=row["facility_slug"],
+        language=row["language"] or "", card=json.loads(row["card_json"] or EMPTY_JSON_OBJECT),
+        translated=None if translated is None else json.loads(translated),
+        built_at=row["built_at"],
+    )
+
+
+def save_packet(
+    offer_id: int, facility_slug: str, language: str, card: dict,
+    translated: dict | None = None, *, now: datetime | None = None,
+) -> None:
+    """Store (or replace) the packet built for this offer at this clinic."""
+    key = _packet_key(offer_id, facility_slug)
+    values = {
+        "language": language or "",
+        "card_json": json.dumps(card),
+        "translated_json": None if translated is None else json.dumps(translated),
+        "built_at": now or datetime.now(),
+    }
+    try:
+        with get_engine().begin() as conn:
+            stored = conn.execute(select(packets.c.offer_id).where(key)).first()
+            conn.execute(
+                update(packets).where(key).values(**values) if stored
+                else insert(packets).values(offer_id=offer_id, facility_slug=facility_slug, **values)
+            )
+    except Exception as exc:  # noqa: BLE001
+        raise RepositoryError(f"Could not save the packet: {exc}") from exc
+
+
+def clear_packet(offer_id: int, facility_slug: str) -> None:
+    _write(delete(packets).where(_packet_key(offer_id, facility_slug)), "Could not clear the packet")
+
+
+# --- Extractions held for the confirm form -------------------------------
+
+
+def save_extraction(
+    facts: DeviceFacts, document: dict | None = None, *, now: datetime | None = None
+) -> str:
+    """Hold an extraction under a new random id and return the id."""
+    extraction_id = uuid.uuid4().hex[:EXTRACTION_ID_LENGTH]
+    _write(
+        insert(extractions).values(
+            id=extraction_id,
+            facts_json=json.dumps(device_to_dict(facts)),
+            document_json=json.dumps(document or {}),
+            created_at=now or datetime.now(),
+        ),
+        "Could not hold the extraction",
+    )
+    return extraction_id
+
+
+def load_extraction(extraction_id: str, *, now: datetime | None = None) -> StoredExtraction | None:
+    """The held extraction, or None when unknown or older than an hour."""
+    row = _first_row(
+        select(extractions).where(extractions.c.id == (extraction_id or "")),
+        "Could not load the extraction",
+    )
+    if row is None or row["created_at"] < (now or datetime.now()) - EXTRACTION_TTL:
+        return None
+    return StoredExtraction(
+        id=row["id"],
+        facts=device_from_dict(json.loads(row["facts_json"])),
+        document=json.loads(row["document_json"] or EMPTY_JSON_OBJECT),
+        created_at=row["created_at"],
+    )
