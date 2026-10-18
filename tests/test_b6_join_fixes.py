@@ -5,6 +5,7 @@ No model is called.
 
 from __future__ import annotations
 
+import re
 from dataclasses import replace
 
 import pytest
@@ -98,6 +99,31 @@ def test_the_library_pick_script_runs_after_the_inspector_exists(client):
         end = page.index("</script>", start)
         if "[data-inspector-body]" in page[start:end]:
             assert start > body_at, "a script looks up the inspector body before it exists"
+
+
+def _note_page(note):
+    found = re.search(r"p\.(\d+)\s*$", note)
+    return int(found.group(1)) if found else None
+
+
+def test_the_525ds_model_row_links_the_page_its_note_cites():
+    """(B6 check L3) The Model row showed the model fact's note (p.11) but linked
+    the manufacturer fact's page (p.44, the address). Both now come from one fact."""
+    entry = device_library.entry(DS)
+    rows = inspector.inspector_rows(device_library.to_device_facts(entry), library_citations(entry))
+    model = next(r for r in rows if r["label"] == "Model")
+    page = _note_page(model["note"])
+    assert page == 11
+    assert model["page"] == page and model["source_url"].endswith(f"#page={page}")
+
+
+def test_every_library_row_links_the_page_its_note_cites():
+    for entry in device_library.load_library():
+        facts = device_library.to_device_facts(entry)
+        for row in inspector.inspector_rows(facts, library_citations(entry)):
+            page = _note_page(row["note"])
+            if row["known"] and page is not None and row["source_url"]:
+                assert row["source_url"].endswith(f"#page={page}"), (entry.slug, row["label"])
 
 # ---- (B5 check L2) documents carry their kind ---------------------------------------
 

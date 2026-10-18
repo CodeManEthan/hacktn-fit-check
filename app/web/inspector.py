@@ -63,8 +63,11 @@ def inspector_rows(
     rows = []
     for label, names in ROWS:
         shown = _value_text(facts, names)
-        used = _fact_shown(facts, names)
-        cited = next((citations[n] for n in names if n in citations and getattr(facts, n).known), None)
+        used_name = _name_shown(facts, names)
+        used = getattr(facts, used_name) if used_name else UNKNOWN
+        # The link cites the same fact as the source and note, so all three agree
+        # (the 525DS Model row once linked p.44, the maker's address, beside "p.11").
+        cited = citations.get(used_name) if used_name else None
         if not shown:
             note = next((getattr(facts, n).note for n in names if getattr(facts, n).note), "")
         else:
@@ -83,10 +86,16 @@ def inspector_rows(
     return rows
 
 
+def _name_shown(facts: DeviceFacts, names: tuple[str, ...]) -> str | None:
+    """The field whose source the row shows: the first known one ("Model" prefers the model)."""
+    ordered = ("model", "manufacturer") if names == ("manufacturer", "model") else names
+    return next((n for n in ordered if getattr(facts, n).known), None)
+
+
 def _fact_shown(facts: DeviceFacts, names: tuple[str, ...]) -> Fact:
     """The fact whose source the row shows: the first known one ("Model" prefers the model)."""
-    ordered = ("model", "manufacturer") if names == ("manufacturer", "model") else names
-    return next((getattr(facts, n) for n in ordered if getattr(facts, n).known), UNKNOWN)
+    name = _name_shown(facts, names)
+    return getattr(facts, name) if name else UNKNOWN
 
 
 def _value_text(facts: DeviceFacts, names: tuple[str, ...]) -> str:
