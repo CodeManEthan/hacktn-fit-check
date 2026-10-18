@@ -401,3 +401,38 @@ def test_l5_cutover_to_a_new_head_still_swaps(tmp_path, vm):
     assert _git(opt / "fitcheck-prev", "rev-parse", "HEAD") == fork.first
     assert (opt / "fitcheck" / ".env").read_text() == "KEY=value\n"
     assert not (opt / "fitcheck-next").exists()
+
+
+def test_l6_every_curl_assignment_survives_set_e():
+    """Under set -e, code=$(curl ...) exits on a refused or timed-out connection."""
+    for script in SHELL_SCRIPTS:
+        for line in script.read_text().splitlines():
+            if re.search(r"=\$\(curl ", line):
+                assert re.search(r"\|\| (true|echo [^)]*)\)", line), f"{script.name}: {line.strip()}"
+
+
+@needs_git_bash
+def test_l6_stage_prints_the_journal_when_the_app_never_answers(tmp_path, vm):
+    fork = Fork(tmp_path)
+    _stubs(tmp_path, **{"systemd-run": 'echo "systemd-run $*" >> "$STUB_LOG"'})  # no app
+    vm["STUB_UNIT_STATE"] = "failed"
+    port = _free_port()
+    result = _run(_remote("stage", tmp_path, port), vm, fork.url, fork.main, "1", "0")
+    assert result.returncode == 1
+    for path in ("/", "/offer", "/impact"):
+        assert f"GET 127.0.0.1:{port}{path} -> 000" in result.stdout
+    assert "!! stage checks failed; the live site is untouched. Journal:" in result.stdout
+    assert "(journal)" in result.stdout
+
+
+@pytest.mark.skipif(shutil.which("bash") is None or shutil.which("curl") is None,
+                    reason="no bash or curl")
+def test_l6_check_reports_every_path_when_the_site_is_unreachable(tmp_path):
+    port = _free_port()
+    env = _stubs(tmp_path, ssh="exit 255")
+    env["FITCHECK_HOST"] = f"opc@127.0.0.1:{port}"
+    result = subprocess.run(["bash", str(DEPLOY / "redeploy.sh"), "check"], env=env,
+                            capture_output=True, text=True, timeout=120)
+    assert result.returncode == 1
+    for path in ("/", "/offer", "/impact"):
+        assert f"GET http://127.0.0.1:{port}{path} -> 000" in result.stdout

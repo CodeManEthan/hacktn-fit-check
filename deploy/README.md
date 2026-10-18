@@ -130,7 +130,9 @@ the head that is live), `cutover` does not swap: it stops the stage, removes
 the checkout from before that head.
 
 `deploy/redeploy.sh all <head>` does both; `rollback` puts `/opt/fitcheck-prev`
-back; `check` reruns the port-80 checks without seeding.
+back; `check` reruns the port-80 checks without seeding. A path that does not
+answer at all (refused or timed out) prints `-> 000` and the run goes on to the
+next path, in `check` and in `stage`.
 
 A rollback to a head older than instance-principal auth (the overnight round's
 B0 merge added it; 9e00968, the head before that round, is older) needs the API

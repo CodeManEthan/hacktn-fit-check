@@ -77,7 +77,7 @@ for _ in $(seq 1 40); do
 done
 fail=0
 for path in / /offer /impact; do
-  code=$(curl -s -m 120 -o /dev/null -w '%{http_code}' "http://127.0.0.1:$PORT$path")
+  code=$(curl -s -m 120 -o /dev/null -w '%{http_code}' "http://127.0.0.1:$PORT$path" || true)
   echo "GET 127.0.0.1:$PORT$path -> $code"
   [ "$code" = 200 ] || fail=1
 done
@@ -111,7 +111,7 @@ REMOTE
 check_live() {
   local seed_out="${1:-}" fail=0 code path
   for path in / /offer /impact; do
-    code=$(curl -s -m 60 -o /dev/null -w '%{http_code}' "$PUBLIC_URL$path")
+    code=$(curl -s -m 60 -o /dev/null -w '%{http_code}' "$PUBLIC_URL$path" || true)
     echo "GET $PUBLIC_URL$path -> $code"
     [ "$code" = 200 ] || fail=1
   done
