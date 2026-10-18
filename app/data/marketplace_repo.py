@@ -305,6 +305,23 @@ def update_offer(offer: Offer) -> None:
     _write(statement, "Could not update the offer")
 
 
+def known_device_types() -> list[str]:
+    """Every device type currently on an open offer, sorted.
+
+    Fed to the free-text intake as a controlled vocabulary, so a clinic writing
+    "concentrator" can be read as the stocked "oxygen concentrator" rather than
+    a line that matches nothing. Copied from upstream 3236e78 without the
+    substitute terms, which this tree does not carry (design §13).
+    """
+    rows = _all_rows(
+        select(offers.c.device_type)
+        .where(offers.c.status == OfferStatus.OPEN.value)
+        .distinct(),
+        "Could not list the stocked device types",
+    )
+    return sorted({str(row["device_type"]).strip() for row in rows if row["device_type"]})
+
+
 def open_offers_for_type(device_type: str, today: date | None = None) -> list[Offer]:
     """Offers that can still be matched against a request for this device type.
 
