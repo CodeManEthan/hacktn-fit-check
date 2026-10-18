@@ -40,6 +40,9 @@ LOCATED_RANK = 0
 UNLOCATED_RANK = 1
 UNLOCATED_DISTANCE_PLACEHOLDER = 0.0
 
+# Presentation only. Distances are computed and compared in kilometres.
+MILES_PER_KM = 0.621371
+
 # A NEEDS_INFO verdict sorts behind every fully known one, whatever it needs.
 INFO_RANK_KNOWN = 0
 INFO_RANK_UNKNOWN = 1
@@ -63,6 +66,17 @@ class Candidate:
     def condition_count(self) -> int:
         """How many things must be shipped alongside for this to work."""
         return len(self.verdict.conditional)
+
+    @property
+    def distance_miles(self) -> float | None:
+        """The same distance in miles, for display only.
+
+        Every calculation in this package stays metric. Conversion happens at
+        the edge so the sort key and the haversine never see two units.
+        """
+        if self.distance_km is None:
+            return None
+        return self.distance_km * MILES_PER_KM
 
 
 @dataclass(frozen=True)
