@@ -104,11 +104,17 @@ deploy/redeploy.sh cutover <head>
 ```
 
 `stage` clones or fetches the fork into `/opt/fitcheck-next`, checks out the
-head (a head that is not on the fork's main is refused with `!! <head> is not on
-the fork's main`, before anything runs), builds its venv, copies the `.env`, runs it as the transient unit
+head, builds its venv, copies the `.env`, runs it as the transient unit
 `fitcheck-stage` on 127.0.0.1:8001, and checks `/`, `/offer`, `/impact` and one
 model call through `/offer/extract` (retried twice a minute apart, for a policy
-still applying). The live site is not touched.
+still applying). It says `stage OK` only if those pass and the unit is still
+active; otherwise it prints the unit's journal. The live site is not touched.
+It refuses, and exits 1, in two cases:
+
+- `!! <head> is not on the fork's main`: the head is on another branch of the
+  fork or not in it at all. Merge it to main first.
+- `!! something already listens on port 8001`: a process other than
+  `fitcheck-stage` holds the port (it prints which). Stop it, then rerun.
 
 `cutover` copies the `.env` again, stops the stage, moves `/opt/fitcheck` to
 `/opt/fitcheck-prev` and the staged checkout into `/opt/fitcheck`, restarts the

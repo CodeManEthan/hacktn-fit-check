@@ -139,13 +139,54 @@ fi''',
 }
 
 
-def _vm(tmp_path: Path, **overrides: str) -> dict[str, str]:
-    """A stand-in VM under tmp_path: /opt/fitcheck holds the .env, commands are stubbed."""
+# Answers like the app on the port: 200 for a GET, one row for /offer/extract.
+FAKE_APP = """
+import http.server, json, sys
+class Handler(http.server.BaseHTTPRequestHandler):
+    def _send(self, body, ctype):
+        self.send_response(200)
+        self.send_header("Content-Type", ctype)
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+    def do_GET(self):
+        self._send(b"ok", "text/plain")
+    def do_POST(self):
+        self.rfile.read(int(self.headers.get("Content-Length") or 0))
+        self._send(json.dumps({"rows": [{"name": "x"}], "message": ""}).encode(), "application/json")
+    def log_message(self, *args):
+        pass
+http.server.HTTPServer(("127.0.0.1", int(sys.argv[1])), Handler).serve_forever()
+"""
+
+
+@pytest.fixture
+def vm(tmp_path):
+    """A stand-in VM under tmp_path: /opt/fitcheck holds the .env, commands are stubbed,
+    and systemd-run starts FAKE_APP on the port it is given."""
     (tmp_path / "opt" / "fitcheck").mkdir(parents=True, exist_ok=True)
     (tmp_path / "opt" / "fitcheck" / ".env").write_text("KEY=value\n")
-    env = _stubs(tmp_path, **{**VM_STUBS, **overrides})
+    app = tmp_path / "fake_app.py"
+    app.write_text(FAKE_APP)
+    pidfile = tmp_path / "app.pid"
+    systemd_run = f'''echo "systemd-run $*" >> "$STUB_LOG"
+port="${{@: -1}}"
+{sys.executable} {app} "$port" >/dev/null 2>&1 </dev/null &
+echo $! > {pidfile}
+for _ in $(seq 1 100); do
+  (exec 3<>"/dev/tcp/127.0.0.1/$port") 2>/dev/null && exit 0
+  command -p sleep 0.05
+done
+exit 1'''
+    env = _stubs(tmp_path, **{**VM_STUBS, "systemd-run": systemd_run})
     env["STUB_LOG"] = str(tmp_path / "stub.log")
-    return env
+    Path(env["STUB_LOG"]).touch()
+    yield env
+    if pidfile.exists():
+        try:
+            os.kill(int(pidfile.read_text()), 15)
+        except (ProcessLookupError, ValueError):
+            pass
 
 
 def _bootstrap_code_step(repo: str, app_dir: Path) -> str:
@@ -260,10 +301,10 @@ def test_l2_shell_scripts_are_executable_in_the_index(script):
 
 @needs_git_bash
 @pytest.mark.parametrize("which", ["side", "unknown"])
-def test_l3_stage_refuses_a_head_that_is_not_on_the_forks_main(tmp_path, which):
+def test_l3_stage_refuses_a_head_that_is_not_on_the_forks_main(tmp_path, vm, which):
     fork = Fork(tmp_path)
     head = fork.side if which == "side" else "0" * 40
-    env = _vm(tmp_path)
+    env = vm
     result = _run(_remote("stage", tmp_path, _free_port()), env, fork.url, head, "1", "0")
     assert result.returncode == 1, result.stdout + result.stderr
     assert f"!! {head} is not on the fork's main" in result.stdout
@@ -272,11 +313,43 @@ def test_l3_stage_refuses_a_head_that_is_not_on_the_forks_main(tmp_path, which):
 
 
 @needs_git_bash
-def test_l3_stage_takes_a_head_on_main(tmp_path):
+def test_l3_stage_takes_a_head_on_main(tmp_path, vm):
     fork = Fork(tmp_path)
     fork.advance("two")
-    env = _vm(tmp_path)
+    env = vm
     result = _run(_remote("stage", tmp_path, _free_port()), env, fork.url, fork.main, "1", "0")
     assert "is not on the fork's main" not in result.stdout
     assert f"checkout: {fork.main[:7]}" in result.stdout
     assert "systemd-run" in Path(env["STUB_LOG"]).read_text()
+
+
+@needs_git_bash
+@pytest.mark.skipif(shutil.which("ss") is None, reason="no ss")
+def test_l4_stage_refuses_when_something_already_listens_on_the_port(tmp_path, vm):
+    fork = Fork(tmp_path)
+    with socket.socket() as foreign:
+        foreign.bind(("127.0.0.1", 0))
+        foreign.listen()
+        port = foreign.getsockname()[1]
+        result = _run(_remote("stage", tmp_path, port), vm, fork.url, fork.main, "1", "0")
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert f"!! something already listens on port {port}" in result.stdout
+    assert "systemd-run" not in Path(vm["STUB_LOG"]).read_text()
+    assert "stage OK" not in result.stdout
+
+
+@needs_git_bash
+@pytest.mark.parametrize("state", ["active", "failed"])
+def test_l4_stage_says_ok_only_when_the_unit_is_active(tmp_path, vm, state):
+    fork = Fork(tmp_path)
+    vm["STUB_UNIT_STATE"] = state
+    result = _run(_remote("stage", tmp_path, _free_port()), vm, fork.url, fork.main, "1", "0")
+    assert f"unit fitcheck-stage: {state}" in result.stdout
+    assert "-> 200" in result.stdout and "rows 1 |" in result.stdout
+    if state == "active":
+        assert result.returncode == 0, result.stdout + result.stderr
+        assert f"stage OK at {fork.main}" in result.stdout
+    else:
+        assert result.returncode == 1
+        assert "stage OK" not in result.stdout
+        assert "(journal)" in result.stdout

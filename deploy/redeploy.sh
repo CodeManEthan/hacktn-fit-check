@@ -61,6 +61,13 @@ echo "checkout: $(git -C "$NEXT" log --oneline -1)"
 "$NEXT/.venv/bin/pip" install --quiet -r "$NEXT/requirements.txt"
 echo "venv: $("$NEXT/.venv/bin/python" --version), oci $("$NEXT/.venv/bin/python" -c 'import oci; print(oci.__version__)')"
 install -m 600 "$LIVE/.env" "$NEXT/.env"
+# Our own leftover unit was stopped above, so anything on the port now is foreign.
+# The new unit could not bind, and the checks would pass against the old process.
+if [ -n "$(ss -Hltn "sport = :$PORT")" ]; then
+  echo "!! something already listens on port $PORT; the live site is untouched. Stop it first:"
+  sudo ss -Hltnp "sport = :$PORT" || true
+  exit 1
+fi
 sudo systemd-run --quiet --unit="$UNIT" -p User="$(id -un)" -p WorkingDirectory="$NEXT" \
   -p EnvironmentFile="$NEXT/.env" \
   "$NEXT/.venv/bin/python" -m uvicorn app.main:app --host 127.0.0.1 --port "$PORT"
@@ -86,6 +93,9 @@ for attempt in $(seq 1 "$RETRIES"); do
   if [ "$attempt" -lt "$RETRIES" ]; then sleep "$WAIT"; fi
 done
 [ "$rows" -gt 0 ] || fail=1
+state=$(systemctl is-active "$UNIT" || true)
+echo "unit $UNIT: $state"
+[ "$state" = active ] || fail=1
 if [ "$fail" != 0 ]; then
   echo "!! stage checks failed; the live site is untouched. Journal:"
   sudo journalctl -u "$UNIT" --no-pager -n 30 || true
