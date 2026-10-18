@@ -329,7 +329,7 @@ def ensure_kayunga_request() -> tuple[int, bool]:
     return repo.save_request(Request(
         facility_slug=KAYUNGA,
         lines=(RequestLine(device_type=HERO_TYPE, quantity=1),),
-        note="For the maternity ward. Our one concentrator shares the generator with theatre.",
+        note="For the maternity ward.",
     )), True
 
 

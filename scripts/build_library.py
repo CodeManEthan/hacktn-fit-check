@@ -242,7 +242,7 @@ HERO: list[dict[str, Any]] = [
         "notes": [
             "Year introduced: 2007, inferred from the EC Declaration of Conformity, \"Start of EC "
             "Marking: 2007-10-01\". It is the model's market date, not this unit's build year.",
-            "Service life: 5 years for the 525 series (SE-525KS-1 p.5).",
+            "Service life: 5 years for the 525 series (SE-525KS-1 p.6).",
             "Spare parts listed on the DoC: sieve bed 525D-619, compressor 525K-625, outlet connector CN100.",
             "GUDID: Not in Commercial Distribution (US), end date 2024-07-09, DI 00885304000976 "
             "\"(international model)\". The 525KS is sold outside the US; a GUDID silence is not a "

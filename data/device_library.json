@@ -456,7 +456,7 @@
         "languages": []
       }
     ],
-    "notes": "Year introduced: 2007, inferred from the EC Declaration of Conformity, \"Start of EC Marking: 2007-10-01\". It is the model's market date, not this unit's build year.\nService life: 5 years for the 525 series (SE-525KS-1 p.5).\nSpare parts listed on the DoC: sieve bed 525D-619, compressor 525K-625, outlet connector CN100.\nGUDID: Not in Commercial Distribution (US), end date 2024-07-09, DI 00885304000976 \"(international model)\". The 525KS is sold outside the US; a GUDID silence is not a denial of support.\nCurrent product: Drive Medical DE lists item 525KS with manuals.\nCurrent draw: the IFU says 1.55 A; the 2019 spec sheet says 3.2 A. The IFU value is used."
+    "notes": "Year introduced: 2007, inferred from the EC Declaration of Conformity, \"Start of EC Marking: 2007-10-01\". It is the model's market date, not this unit's build year.\nService life: 5 years for the 525 series (SE-525KS-1 p.6).\nSpare parts listed on the DoC: sieve bed 525D-619, compressor 525K-625, outlet connector CN100.\nGUDID: Not in Commercial Distribution (US), end date 2024-07-09, DI 00885304000976 \"(international model)\". The 525KS is sold outside the US; a GUDID silence is not a denial of support.\nCurrent product: Drive Medical DE lists item 525KS with manuals.\nCurrent draw: the IFU says 1.55 A; the 2019 spec sheet says 3.2 A. The IFU value is used."
   },
   {
     "slug": "omron-hem-907xl",
