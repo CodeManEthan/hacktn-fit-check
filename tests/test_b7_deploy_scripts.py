@@ -353,3 +353,51 @@ def test_l4_stage_says_ok_only_when_the_unit_is_active(tmp_path, vm, state):
         assert result.returncode == 1
         assert "stage OK" not in result.stdout
         assert "(journal)" in result.stdout
+
+
+def _checkout(path: Path, fork: Fork, commit: str) -> None:
+    """A detached checkout of the fork at path, as stage and cutover leave one."""
+    path.mkdir(parents=True, exist_ok=True)
+    _git(path, "init", "-q")
+    _git(path, "fetch", "-q", fork.url, "+refs/heads/*:refs/remotes/origin/*")
+    _git(path, "checkout", "-q", "--detach", commit)
+
+
+@needs_git_bash
+def test_l5_cutover_to_the_live_head_keeps_the_rollback(tmp_path, vm):
+    fork = Fork(tmp_path)
+    opt = tmp_path / "opt"
+    _checkout(opt / "fitcheck", fork, fork.main)
+    _checkout(opt / "fitcheck-next", fork, fork.main)
+    (opt / "fitcheck-prev").mkdir()
+    (opt / "fitcheck-prev" / "rollback-marker").write_text("the real previous head\n")
+    vm["STUB_UNIT_STATE"] = "active"
+    _stubs(tmp_path, curl="exit 0")  # joins the vm's stubs on its PATH
+    result = _run(_remote("cutover", tmp_path), vm, fork.main)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "restart only" in result.stdout
+    assert not (opt / "fitcheck-next").exists()
+    assert (opt / "fitcheck-prev" / "rollback-marker").exists()
+    assert _git(opt / "fitcheck", "rev-parse", "HEAD") == fork.main
+    calls = Path(vm["STUB_LOG"]).read_text().splitlines()
+    assert "systemctl stop fitcheck-stage" in calls
+    assert "systemctl restart fitcheck" in calls
+    assert "systemctl stop fitcheck" not in calls
+
+
+@needs_git_bash
+def test_l5_cutover_to_a_new_head_still_swaps(tmp_path, vm):
+    fork = Fork(tmp_path)
+    opt = tmp_path / "opt"
+    _checkout(opt / "fitcheck", fork, fork.first)
+    _checkout(opt / "fitcheck-next", fork, fork.main)
+    (opt / "fitcheck-prev").mkdir()
+    (opt / "fitcheck-prev" / "rollback-marker").write_text("older\n")
+    vm["STUB_UNIT_STATE"] = "active"
+    _stubs(tmp_path, curl="exit 0")  # joins the vm's stubs on its PATH
+    result = _run(_remote("cutover", tmp_path), vm, fork.main)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert _git(opt / "fitcheck", "rev-parse", "HEAD") == fork.main
+    assert _git(opt / "fitcheck-prev", "rev-parse", "HEAD") == fork.first
+    assert (opt / "fitcheck" / ".env").read_text() == "KEY=value\n"
+    assert not (opt / "fitcheck-next").exists()

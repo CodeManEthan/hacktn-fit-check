@@ -130,8 +130,14 @@ cutover() {
 set -euo pipefail
 HEAD="$1"; NEXT=/opt/fitcheck-next; LIVE=/opt/fitcheck; PREV=/opt/fitcheck-prev
 want() { git -C "$1" rev-parse --verify --quiet "$HEAD^{commit}" || echo none; }
-if [ ! -d "$NEXT/.git" ] && [ "$(git -C "$LIVE" rev-parse HEAD)" = "$(want "$LIVE")" ]; then
-  echo "live is already at $HEAD and nothing is staged: restart only"
+if [ "$(git -C "$LIVE" rev-parse HEAD)" = "$(want "$LIVE")" ]; then
+  # Swapping a copy of the live head in would push the real rollback out of $PREV.
+  sudo systemctl stop fitcheck-stage >/dev/null 2>&1 || true
+  if [ -e "$NEXT" ]; then
+    sudo rm -rf /opt/fitcheck-next
+    echo "removed the staged copy at $NEXT: it is the head already live"
+  fi
+  echo "live is already at $HEAD: restart only; $PREV keeps the previous checkout"
   sudo systemctl restart fitcheck
 else
   [ -d "$NEXT/.git" ] || { echo "!! nothing staged at $NEXT; run stage first"; exit 1; }

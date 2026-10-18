@@ -124,6 +124,11 @@ Kayunga request's matches page shows the 525KS shipping, the 525DS under "Won't
 work" and the older unit needing info (`deploy/check_live.py`). A failed check
 rolls back by itself.
 
+If the live checkout is already at `<head>` (a rerun of `stage` and `cutover` on
+the head that is live), `cutover` does not swap: it stops the stage, removes
+`/opt/fitcheck-next` and only restarts the unit, so `/opt/fitcheck-prev` keeps
+the checkout from before that head.
+
 `deploy/redeploy.sh all <head>` does both; `rollback` puts `/opt/fitcheck-prev`
 back; `check` reruns the port-80 checks without seeding.
 
