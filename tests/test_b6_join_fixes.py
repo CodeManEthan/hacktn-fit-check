@@ -107,3 +107,4 @@ def test_the_editions_list_leaves_out_registry_records_and_product_pages(fakes):
     assert "Instruction Guide SE-525KS-1 Rev D" in editions
     assert "FDA GUDID record" not in editions
     assert "product page" not in editions
+    assert "Declaration of Conformity" not in editions

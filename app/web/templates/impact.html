@@ -42,6 +42,7 @@
 
   {% if recent %}
   <h2>Recent screenings</h2>
+  <div class="audit-scroll">
   <table class="grid">
     <thead><tr><th>Device</th><th>Clinic</th><th>Result</th><th></th></tr></thead>
     <tbody>
@@ -55,6 +56,7 @@
       {% endfor %}
     </tbody>
   </table>
+  </div>
   {% endif %}
 </section>
 {% endblock %}

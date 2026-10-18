@@ -945,6 +945,11 @@ body[data-role] button.go:hover, body[data-role] a.go:hover { background: var(--
   .role-toggle { width: 100%; justify-content: space-between; }
   .role-btn { flex: 1; }
   h1 { font-size: 30px; }
+  .bundle-src { white-space: normal; overflow-wrap: anywhere; }
+  .bed-chip { flex-wrap: wrap; max-width: 100%; }
+  .chip-name { white-space: normal; }
+  .candidate-act .link, .candidate-act a.link { margin-left: 0; }
+  .candidate-act { flex-wrap: wrap; gap: var(--s3); }
 }
 
 /* ---- [B6] impact paragraph (§7.3) ---------------------------------------- */
@@ -954,3 +959,14 @@ body[data-role] button.go:hover, body[data-role] a.go:hover { background: var(--
   background: var(--raise); border-radius: 0 6px 6px 0; max-width: 72ch; }
 .impact-summary p { margin: 0 0 var(--s2); }
 .impact-summary .note { margin: 0; font-size: 12px; }
+
+/* The landing's doors keep their role's colour whoever is looking: amber for
+   the donor's form, teal for the clinic's, slate for the operator. */
+.flow .role-donor .role-rule { background: #F59E0B; }
+.flow .role-donor .role-kicker { color: #FBBF24; }
+.flow .role-clinic .role-rule { background: #14B8A6; }
+.flow .role-clinic .role-kicker { color: #2DD4BF; }
+.flow a.go.go-donor { background: #B45309; border-color: #F59E0B; color: #fff; }
+.flow a.go.go-clinic { background: #0F766E; border-color: #14B8A6; color: #fff; }
+.flow a.go.go-donor:hover { background: #F59E0B; color: #0B0E14; }
+.flow a.go.go-clinic:hover { background: #14B8A6; color: #0B0E14; }

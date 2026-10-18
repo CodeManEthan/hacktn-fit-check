@@ -792,9 +792,11 @@ from app.reference.import_rules import documents_required  # noqa: E402
 
 MANUAL_KIND = "manual"
 MANUAL_TITLE_WORDS = ("manual", "instruction", "guide", "ifu")
-# Documents about the device that are not editions of it: a registry record
-# and a shop's product page are never listed as "the manufacturer's own".
-NOT_EDITION_KINDS = frozenset({"registry", "product page"})
+# The kinds that are editions of the manufacturer's manual. A registry
+# record, a shop's product page, a declaration or a notice is about the
+# device, not an edition of its manual. A document stored before kinds were
+# carried (no kind) is still listed.
+EDITION_KINDS = frozenset({"manual", "service manual"})
 
 
 def _packet_chat():
@@ -921,7 +923,7 @@ def packet_page(
     header, header_warns = _packet_header(target, translated)
     verdict = _packet_verdict(offer, clinic)
     editions = [d for d in documents
-                if str(d.get("kind", "")).lower() not in NOT_EDITION_KINDS
+                if str(d.get("kind") or "").lower() in EDITION_KINDS | {""}
                 and set(normalise_languages(d.get("languages") or ())) & set(staff)]
     return TEMPLATES.TemplateResponse(
         request=request, name="packet.html",
