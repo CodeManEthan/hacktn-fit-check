@@ -200,3 +200,14 @@ def test_l1_bootstrap_rerun_moves_a_detached_checkout_to_main(tmp_path):
     assert result.returncode == 0, result.stdout + result.stderr
     assert _git(app_dir, "rev-parse", "HEAD") == newer
     assert "pull --ff-only" not in (DEPLOY / "bootstrap.sh").read_text()
+
+
+@pytest.mark.skipif(shutil.which("git") is None, reason="no git")
+@pytest.mark.parametrize("script", SHELL_SCRIPTS, ids=lambda p: p.name)
+def test_l2_shell_scripts_are_executable_in_the_index(script):
+    """The README runs them as deploy/redeploy.sh, so git must carry mode 100755."""
+    listed = subprocess.run(["git", "-C", str(DEPLOY.parent), "ls-files", "-s", "--",
+                             f"deploy/{script.name}"], capture_output=True, text=True)
+    if listed.returncode != 0 or not listed.stdout:
+        pytest.skip("not a git checkout")
+    assert listed.stdout.split()[0] == "100755", listed.stdout
