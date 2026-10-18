@@ -93,12 +93,16 @@
   <h2>{{ cover.line.label }}</h2>
   {% set known = cover.proposable %}
   {% set asking = cover.asking %}
+  {% if not cover.screened %}
+  <p class="empty">No open offers of this kind yet.</p>
+  {% else %}
   <p class="sub">Of {{ cover.screened }} offers of this kind, {{ known | length }}
      {{ 'is' if known | length == 1 else 'are' }} known to work at {{ facility.name }},
      {{ cover.rejected | length }} won't, and {{ asking | length }}
      {{ 'needs' if asking | length == 1 else 'need' }} answers first.</p>
+  {% endif %}
 
-  {% if not known %}
+  {% if cover.screened and not known %}
   <p class="empty">No open offer of this kind is known to work at {{ facility.name }} yet.
      {% if cover.rejected %}What blocks each one is listed below.{% endif %}
      {% if asking %}Answering the open questions below may clear one.{% endif %}</p>
