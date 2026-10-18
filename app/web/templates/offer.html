@@ -143,55 +143,49 @@
 
     <div class="plate">
       <h2 class="panel-head">Offer details</h2>
-      <div class="stack">
 
-    </div>
-
-    <div class="row">
-
+      <div class="rowset">
+        <div class="field">
+          <label class="name" for="f-available-until">Available until</label>
+          <input type="text" id="f-available-until" name="available_until" placeholder="2027-03-31">
+          <p class="note">After this date the offer stops being matched.</p>
+        </div>
+        <div class="field">
+          <label class="name" for="f-country">Country</label>
+          <input type="text" id="f-country" name="country" placeholder="United States">
+        </div>
+        <div class="field">
+          <label class="name" for="f-city">City</label>
+          <input type="text" id="f-city" name="city" placeholder="Nashville">
+        </div>
       </div>
 
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="field">
-        <label class="name" for="f-available-until">Available until</label>
-        <input type="text" id="f-available-until" name="available_until" placeholder="2027-03-31">
-        <p class="note">After this date the offer stops being matched.</p>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="field">
-        <label class="name" for="f-country">Country</label>
-        <input type="text" id="f-country" name="country" placeholder="United States">
-      </div>
-      <div class="field">
-        <label class="name" for="f-city">City</label>
-        <input type="text" id="f-city" name="city" placeholder="Nashville">
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="field">
-        <label class="name" for="f-donor-name">Your name</label>
-        <input type="text" id="f-donor-name" name="donor_name" placeholder="Baptist Hospital biomedical dept">
-      </div>
-      <div class="field">
-        <label class="name" for="f-donor-email">Email for confirmation</label>
-        <input type="text" id="f-donor-email" name="donor_email" placeholder="biomed@example.org">
-        <p class="note">Used only to ask whether the stock still exists when a match comes up.</p>
+      <div class="rowset">
+        <div class="field">
+          <label class="name" for="f-donor-name">Your name</label>
+          <input type="text" id="f-donor-name" name="donor_name" placeholder="Baptist Hospital biomedical dept">
+        </div>
+        <div class="field">
+          <label class="name" for="f-donor-email">Email for confirmation</label>
+          <input type="text" id="f-donor-email" name="donor_email" placeholder="biomed@example.org">
+          <p class="note">Used only to ask whether the stock still exists when a match comes up.</p>
+        </div>
       </div>
     </div>
 
     <button class="go" type="submit">Read the plate and post it</button>
-      </div>
-    </div>
   </form>
-</section>
 
 <style>
+  /* [B15] spacing on their light palette: the plate's two lines stack, the
+     library pick's two fields and the button sit apart from their notes. */
+  .scan .scan-head, .scan .scan-sub { display: block; }
+  .scan .scan-sub { margin-top: var(--s2); }
+  .library-pick { display: grid; gap: var(--s4); margin-bottom: var(--s5); }
+  .ingest-meta { margin-top: var(--s4); }
+  #extract-now { margin-top: var(--s4); }
+  .form .rowset + .rowset { margin-top: var(--s4); }
+
   /* [B4] inspector rows: source link, "wrong" mark, a cleared row. */
   #inspector .source-link { font-size: 12px; margin-left: 4px; white-space: nowrap; }
   #inspector .source-why { display: block; font-size: 12px; color: var(--etch); margin-top: 2px; }

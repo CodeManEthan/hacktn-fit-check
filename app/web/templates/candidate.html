@@ -2,6 +2,7 @@
 {% block title %}{{ verdict.stamp }} &middot; {{ offer_name(offer) }}{% endblock %}
 {% macro offer_names(offers) %}{% for o in offers %}{{ offer_name(o) }} ({{ o.donor_name }}){{ ', ' if not loop.last }}{% endfor %}{% endmacro %}
 {% block content %}
+<link rel="stylesheet" href="/static/matches.css">
 <section class="plate">
   <p class="eyebrow"><a class="link" href="{{ back }}">&larr; {{ request_row.summary }} for {{ facility.name }}</a></p>
   <div class="readout">
@@ -9,6 +10,9 @@
       <h1 class="ident-name">{{ offer_name(offer) }}</h1>
       <p class="ident-kind">{{ offer.device_type }} &middot; {{ offer.quantity_available }} available from
          {{ offer.donor_name }}, {{ offer.origin.city }}{% if offer.origin.city %}, {% endif %}{{ offer.origin.country }}</p>
+      {% if c.distance_km is not none %}
+      <p class="ident-far">{{ c.distance_km | round | int }} km &middot; {{ c.distance_miles | round | int }} mi to {{ facility.name }}{% if c.shipment %}, about {{ c.shipment.transit_days }} days to deliver{% endif %}</p>
+      {% endif %}
       <dl class="pairs">
         {% for label, value in pairs %}
         <dt>{{ label }}</dt><dd>{{ value }}</dd>

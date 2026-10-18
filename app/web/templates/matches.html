@@ -1,18 +1,20 @@
 {% extends "base.html" %}
 {% block title %}What fits{% endblock %}
-{% macro head(c) %}
-    <div class="candidate-head">
-      <div>
-        <p class="candidate-name"><a class="candidate-link" href="/request/{{ request_row.id }}/offer/{{ c.offer.id }}">{{ offer_name(c.offer) }}</a></p>
-        <p class="candidate-donor">{{ c.offer.donor_name }} &mdash;
-          {{ c.offer.origin.city }}{% if c.offer.origin.city %}, {% endif %}{{ c.offer.origin.country }}</p>
-      </div>
-      <div class="candidate-meta">
-        {% if c.distance_km %}<span class="chip">{{ c.distance_km | round | int }} km</span>{% endif %}
-        {% if c.shipment %}<span class="chip">about {{ c.shipment.transit_days }} days to deliver</span>{% endif %}
+{% macro head(c, blocked=false) %}
+    <div class="unit-top">
+      <span class="option-body">
+        <span class="option-name">{% if blocked %}<span class="option-lock" aria-hidden="true">&times;</span>{% endif %}<a class="candidate-link" href="/request/{{ request_row.id }}/offer/{{ c.offer.id }}">{{ offer_name(c.offer) }}</a></span>
+        <span class="option-from">{{ c.offer.donor_name }} &mdash;
+          {{ c.offer.origin.city }}{% if c.offer.origin.city %}, {% endif %}{{ c.offer.origin.country }}</span>
+      </span>
+      <span class="option-far">
+        {% if c.distance_km is not none %}<b>{{ c.distance_km | round | int }} km</b><span>{{ c.distance_miles | round | int }} mi</span>{% endif %}
+        {% if c.shipment %}<i>about {{ c.shipment.transit_days }} days to deliver</i>{% endif %}
+      </span>
+      <span class="unit-badges">
         <span class="chip">{{ c.offer.quantity_available }} available</span>
         <span class="pill {{ tone[c.verdict.outcome] }}">{{ c.verdict.stamp }}</span>
-      </div>
+      </span>
     </div>
 {% endmacro %}
 
@@ -58,13 +60,7 @@
 {% endmacro %}
 
 {% block content %}
-<style>
-  .bundle-aside { font-size: 13px; margin: var(--s1, 4px) 0 var(--s2, 8px) var(--s4, 16px); color: var(--etch); }
-  .bundle-aside.is-rejected-addon { color: var(--block); }
-  .rejected { margin-top: var(--s6, 24px); }
-  .candidate.is-rejected { border-left: 3px solid var(--block-line, var(--block)); }
-  .candidate.is-asking { border-left: 3px solid var(--query-line, var(--query)); }
-</style>
+<link rel="stylesheet" href="/static/matches.css">
 <section class="plate">
   <p class="eyebrow">{{ facility.name }}, {{ facility.country }}</p>
   <h1>{{ request_row.summary }}</h1>
@@ -92,7 +88,10 @@
 
 {% for cover in coverages %}
 <section class="plate">
-  <h2>{{ cover.line.label }}</h2>
+  <div class="pick-head">
+    <h2>{{ cover.line.label }}</h2>
+    <span class="pill {{ 'good' if cover.complete else 'hold' }}">{{ cover.headline }}</span>
+  </div>
   {% set known = cover.proposable %}
   {% set asking = cover.asking %}
   {% if not cover.screened %}
@@ -110,8 +109,10 @@
      {% if asking %}Answering the open questions below may clear one.{% endif %}</p>
   {% endif %}
 
+  {% if known %}
+  <div class="options">
   {% for c in known %}
-  <article class="candidate">
+  <article class="option unit tone-{{ tone[c.verdict.outcome] }}">
     {{ head(c) }}
     {{ segments(c) }}
 
@@ -125,15 +126,17 @@
     </form>
   </article>
   {% endfor %}
+  </div>
+  {% endif %}
 
   {% if cover.rejected %}
-  <div class="rejected">
+  <div class="units-group is-blocked-group options options-blocked">
     <h3>Won't work at {{ facility.name }}</h3>
     {% for c in cover.rejected %}
-    <article class="candidate is-rejected">
-      {{ head(c) }}
+    <article class="option unit is-blocked">
+      {{ head(c, blocked=true) }}
       {% for r in c.verdict.failures %}
-      <p class="candidate-needs"><b>{{ r.label }}</b> &mdash; {{ r.detail }}</p>
+      <p class="option-why"><b>{{ r.label }}</b> &mdash; {{ r.detail }}</p>
       {% endfor %}
       {% include "_advisory.html" %}
     </article>
@@ -141,9 +144,12 @@
   </div>
   {% endif %}
 
+  {% if asking %}
+  <div class="units-group is-asking-group options">
+    <h3>Questions first</h3>
   {% for c in asking %}
   {% set asked = c.verdict.questions | length or c.verdict.unknowns | length %}
-  <article class="candidate is-asking">
+  <article class="option unit is-asking">
     {{ head(c) }}
     {{ segments(c) }}
     {{ send_with(c) }}
@@ -156,12 +162,13 @@
     </ul>
     {% endif %}
     <div class="candidate-act">
-      <a class="go" href="/request/{{ request_row.id }}/offer/{{ c.offer.id }}"
-         style="text-decoration:none">Answer {{ asked }} question{{ '' if asked == 1 else 's' }} first</a>
+      <a class="go" href="/request/{{ request_row.id }}/offer/{{ c.offer.id }}">Answer {{ asked }} question{{ '' if asked == 1 else 's' }} first</a>
       <a class="link" href="/packet/{{ c.offer.id }}?facility={{ facility.slug }}">Generate handover packet</a>
     </div>
   </article>
   {% endfor %}
+  </div>
+  {% endif %}
 </section>
 {% endfor %}
 {% endblock %}

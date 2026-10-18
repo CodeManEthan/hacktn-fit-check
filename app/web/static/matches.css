@@ -1,0 +1,66 @@
+/* [B15] The matches and candidate pages (design §13, §2.3, §7.2).
+
+   Linked from matches.html and candidate.html only, so style.css stays
+   [B12]'s. Every colour here is a token from style.css: the light status
+   tokens (#B91C1C fail, #B45309 conditional, #047857 pass, blue for a
+   question), all AA on white. */
+
+/* ---- one ranked unit: the option-row look, with nothing to tick -------- */
+
+/* The upstream selection page's option row (photo, name, distance, stamp)
+   without the radio or the photo: this page proposes one donor at a time
+   through "Ask this donor", so there is nothing to choose and submit. */
+.option.unit {
+  display: block;
+  cursor: default;
+  background: var(--face);
+  border-left-width: 3px;
+  padding: var(--s3) var(--s4);
+}
+.option.unit:hover { border-color: var(--rule); }
+.option.unit.tone-good { border-left-color: var(--clear); }
+.option.unit.tone-hold { border-left-color: var(--hold); }
+
+.unit-top {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: var(--s4);
+}
+.unit-top .option-name { font-size: 17px; }
+.unit-top .option-far span { display: block; font-family: var(--mono); font-size: 12px; }
+.unit-badges { display: flex; gap: var(--s2); align-items: center; flex-wrap: wrap; justify-content: flex-end; }
+.unit .segments { margin-top: var(--s3); }
+.unit .candidate-act { display: flex; align-items: center; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s3); }
+.unit .candidate-act .link { margin-left: var(--s2); }
+.unit .candidate-act a.go { text-decoration: none; }
+
+/* Screened out: still listed with its name, dashed, the blocker in red.
+   No opacity: the text keeps its contrast. */
+.option.unit.is-blocked { border-style: dashed; border-left-style: solid; border-left-color: var(--block); background: var(--plate); }
+.unit.is-blocked .option-lock { margin-right: var(--s2); }
+.unit.is-blocked .option-why { display: block; max-width: 72ch; margin: var(--s2) 0 0; }
+
+/* Needs answers first: a blue edge, the question tone. */
+.option.unit.is-asking { border-left-color: var(--query); }
+
+.units-group { margin-top: var(--s5); }
+.units-group > h3 { font: 600 15px/1.3 var(--text); margin: 0 0 var(--s3); }
+.units-group.is-blocked-group > h3 { color: var(--block); }
+.units-group.is-asking-group > h3 { color: var(--query); }
+
+/* ---- the send-with list under a unit ------------------------------------ */
+
+.bundle-aside { font-size: 13px; margin: var(--s1) 0 var(--s2) var(--s4); color: var(--etch); }
+.bundle-aside.is-rejected-addon { color: var(--block); }
+
+/* ---- candidate page: the distance line ---------------------------------- */
+
+.ident-far { font-family: var(--mono); font-size: 13px; color: var(--etch); margin: var(--s1) 0 0; }
+
+@media (max-width: 760px) {
+  .unit-top { grid-template-columns: 1fr; gap: var(--s2); }
+  .unit-top .option-far { grid-column: auto; text-align: left; white-space: normal; }
+  .unit-badges { justify-content: flex-start; }
+  .unit .candidate-act .link { margin-left: 0; }
+}
