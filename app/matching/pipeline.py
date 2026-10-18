@@ -40,6 +40,10 @@ LOCATED_RANK = 0
 UNLOCATED_RANK = 1
 UNLOCATED_DISTANCE_PLACEHOLDER = 0.0
 
+# A NEEDS_INFO verdict sorts behind every fully known one, whatever it needs.
+INFO_RANK_KNOWN = 0
+INFO_RANK_UNKNOWN = 1
+
 
 @dataclass(frozen=True)
 class Candidate:
@@ -86,19 +90,13 @@ def rank_candidates(
     *,
     today: date | None = None,
 ) -> list[Candidate]:
-    """Compatible offers, nearest-and-cleanest first.
+    """Compatible offers, fully known first, then cleanest, then nearest.
 
     Selecting which offers to consider is the caller's query, one request line
     at a time. This function decides which of the offers handed to it can work
     at `facility`, and in what order.
     """
-    destination = facility_point(facility)
-    matchable = tuple(offer for offer in offers if offer.is_matchable(today))
-    assessed = tuple(
-        _assess(offer, facility, destination, intel_for) for offer in matchable
-    )
-    survivors = tuple(c for c in assessed if c.verdict.outcome is not Outcome.WONT_WORK)
-    return sorted(survivors, key=_sort_key)
+    return screen_offers(facility, offers, intel_for, today=today).ranked
 
 
 def screen_offers(
@@ -108,11 +106,20 @@ def screen_offers(
     *,
     today: date | None = None,
 ) -> Screening:
-    """The survivors in rank order, and the offers the screening rejected."""
-    return Screening(
-        ranked=rank_candidates(facility, offers, intel_for, today=today),
-        rejected=(),
+    """The survivors in rank order, and the offers the screening rejected.
+
+    Each matchable offer is assessed once. A WONT_WORK verdict goes to
+    `rejected` in the order the offers were handed in, carrying the verdict
+    so the page can name what blocks it; everything else is ranked.
+    """
+    destination = facility_point(facility)
+    matchable = tuple(offer for offer in offers if offer.is_matchable(today))
+    assessed = tuple(
+        _assess(offer, facility, destination, intel_for) for offer in matchable
     )
+    rejected = tuple(c for c in assessed if c.verdict.outcome is Outcome.WONT_WORK)
+    survivors = [c for c in assessed if c.verdict.outcome is not Outcome.WONT_WORK]
+    return Screening(ranked=sorted(survivors, key=_sort_key), rejected=rejected)
 
 
 def propose_match(
@@ -172,14 +179,18 @@ def _assess(
     )
 
 
-def _sort_key(candidate: Candidate) -> tuple[int, int, float]:
-    """Fewest conditions first, then nearest. Unlocated offers come last.
+def _sort_key(candidate: Candidate) -> tuple[int, int, int, float]:
+    """Known before unknown, then fewest conditions, then nearest. Unlocated last.
 
-    Both parts are ordinals in one tuple, not terms in a sum: no number of
-    kilometres saved can offset a condition, and nothing here can resurrect a
-    device the checks rejected, because those are already gone.
+    `info_rank` comes first (design §2.3): a fully known offer with three
+    add-ons ranks above an unknown one with none. Every part is an ordinal in
+    one tuple, not a term in a sum: no number of kilometres saved can offset a
+    condition or an open question, and nothing here can resurrect a device
+    the checks rejected, because those are already gone.
     """
+    info_rank = INFO_RANK_UNKNOWN if candidate.verdict.outcome is Outcome.NEEDS_INFO else INFO_RANK_KNOWN
     distance = candidate.distance_km
     if distance is None:
-        return (candidate.condition_count, UNLOCATED_RANK, UNLOCATED_DISTANCE_PLACEHOLDER)
-    return (candidate.condition_count, LOCATED_RANK, distance)
+        return (info_rank, candidate.condition_count, UNLOCATED_RANK,
+                UNLOCATED_DISTANCE_PLACEHOLDER)
+    return (info_rank, candidate.condition_count, LOCATED_RANK, distance)
