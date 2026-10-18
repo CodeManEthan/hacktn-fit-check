@@ -19,6 +19,7 @@ TONE_BY_OUTCOME = {
     Outcome.WORKS: "good",
     Outcome.WORKS_IF: "hold",
     Outcome.WONT_WORK: "bad",
+    Outcome.NEEDS_INFO: "ask",
 }
 
 # The log reads outcomes back as stored strings, not enum members.

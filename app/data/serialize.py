@@ -69,6 +69,7 @@ def intel_to_dict(intel: SupplyIntel) -> dict[str, Any]:
         "consumables_available": fact_to_dict(intel.consumables_available),
         "spare_parts_available": fact_to_dict(intel.spare_parts_available),
         "manufacturer_supported": fact_to_dict(intel.manufacturer_supported),
+        "sold_locally": fact_to_dict(intel.sold_locally),
         "reasoning": intel.reasoning,
     }
 
@@ -79,6 +80,7 @@ def intel_from_dict(payload: dict[str, Any]) -> SupplyIntel:
         consumables_available=fact_from_dict(payload.get("consumables_available")),
         spare_parts_available=fact_from_dict(payload.get("spare_parts_available")),
         manufacturer_supported=fact_from_dict(payload.get("manufacturer_supported")),
+        sold_locally=fact_from_dict(payload.get("sold_locally")),
         reasoning=payload.get("reasoning", ""),
     )
 

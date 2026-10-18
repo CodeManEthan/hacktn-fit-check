@@ -20,6 +20,7 @@ class Outcome(str, Enum):
     WORKS = "works"
     WORKS_IF = "works if you also send"
     WONT_WORK = "won't work"
+    NEEDS_INFO = "needs info"
 
 
 @dataclass(frozen=True)
@@ -73,6 +74,8 @@ class Verdict:
             return "Clear to ship"
         if self.outcome is Outcome.WONT_WORK:
             return "Do not ship"
+        if self.outcome is Outcome.NEEDS_INFO:
+            return "Needs info"
         return "Ship with"
 
     @property
@@ -83,5 +86,8 @@ class Verdict:
             blockers = len(self.failures)
             word = "blocker" if blockers == 1 else "blockers"
             return f"{blockers} {word}, {len(self.conditional)} conditions"
+        if self.outcome is Outcome.NEEDS_INFO:
+            asked = len(self.questions) or len(self.unknowns)
+            return f"{asked} question{'' if asked == 1 else 's'} before a verdict"
         count = len(self.requirements)
         return f"{count} thing{'' if count == 1 else 's'} it cannot arrive without"
