@@ -786,7 +786,6 @@ from app.ai.packet import Card, build_card, card_from_dict, gate, split_pages  #
 from app.ai.translate import ENGINE_CHAT, Target, pick_target, translate_card  # noqa: E402
 from app.checks import check_fit  # noqa: E402
 from app.domain.result import Verdict  # noqa: E402
-from app.matching.pipeline import empty_intel  # noqa: E402
 from app.reference.device_library import document_text  # noqa: E402
 from app.reference.import_rules import documents_required  # noqa: E402
 
@@ -828,15 +827,25 @@ def _packet_manual(documents: list[dict]) -> dict | None:
 
 
 def _packet_verdict(offer: Offer, clinic: FacilityProfile) -> Verdict:
-    """The verdict stored on a match of this offer for this clinic, else a fresh one."""
+    """The verdict stored on a match of this offer for this clinic, else a fresh one.
+
+    The fresh one is screened the way the candidate page screens it (the
+    supply order's intel and the shipment estimate), so the send-with list
+    carries the same conditions. An offer no longer open is not screened;
+    it is checked with the same intel and no shipment.
+    """
     for row in repo.list_open_requests():
         if row.facility_slug != clinic.slug or row.id is None:
             continue
         stored = [m for m in repo.matches_for_request(row.id) if m.offer_id == offer.id]
         if stored:
             return stored[-1].verdict
-    return check_fit(offer.device, clinic, empty_intel(offer.device, offer.device_type,
-                                                       clinic.country))
+    screening = screen_offers(clinic, [offer], intel_for=supply_lookup)
+    found = [*screening.ranked, *screening.rejected]
+    if found:
+        return found[0].verdict
+    return check_fit(offer.device, clinic, supply_lookup(offer.device, offer.device_type,
+                                                         clinic.country))
 
 
 def _packet_translation(card: Card, target: Target) -> dict | None:
