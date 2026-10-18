@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Supply answers{% endblock %}
+{% block content %}
+<section class="masthead">
+  <p class="eyebrow">Nonprofit desk</p>
+  <h1>Supply answers by country</h1>
+  <p class="sub">What a device's documents cannot say: whether its consumables and parts
+     are sold where it is going. Answer once per country and every later screening reads it.
+     A screening that needs one links here with the device already filled in.</p>
+</section>
+<section class="plate">
+  {% if countries %}
+  <ul class="country-list">
+    {% for country in countries %}
+    <li><a class="link" href="/supply/{{ country | urlencode }}">{{ country }}</a></li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="empty">No clinic is registered yet, so there is no country to answer for.</p>
+  {% endif %}
+</section>
+{% endblock %}

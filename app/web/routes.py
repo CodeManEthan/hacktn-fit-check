@@ -8,7 +8,8 @@ from fastapi import APIRouter, File, Form, Request, UploadFile
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from app.ai.client import GenAiError
+from app.ai import impact
+from app.ai.client import CLIENT, GenAiError
 from app.ai.extract import extract_device, image_to_data_url
 from app.checks import check_fit
 from app.data import repository
@@ -145,11 +146,19 @@ def verdict_page(request: Request, verdict_id: str) -> HTMLResponse:
     )
 
 
+def _impact_client():
+    """The chat client the impact paragraph is written with; tests replace it."""
+    return CLIENT
+
+
 @router.get("/impact", response_class=HTMLResponse)
 def impact_page(request: Request) -> HTMLResponse:
     try:
         reasons = repository.failures_by_reason()
+        figures = impact.figures()
         context = {
+            "figures": figures,
+            "summary": impact.summary(figures, _impact_client()),
             "counts": repository.count_by_outcome(),
             "reasons": reasons,
             "peak": max((n for _, n in reasons), default=1),

@@ -11,6 +11,7 @@ from typing import Any
 
 from app.ai.json_io import JsonReplyError, parse_json_object
 from app.config import (
+    DEFAULT_VISION_MODEL,
     OCI_AUTH_API_KEY,
     OCI_AUTH_INSTANCE_PRINCIPAL,
     OCI_AUTH_MODES,
@@ -23,6 +24,16 @@ from app.config import (
 # one-page card plus the reasoning.
 DEFAULT_MAX_TOKENS = 6000
 DEFAULT_TEMPERATURE = 0.0
+
+# The most each model accepts, by model id. The vision model refuses more than
+# 4096 (live: "Invalid 'maxTokens': Value is greater than maximum: 4096").
+MODEL_MAX_TOKENS: dict[str, int] = {DEFAULT_VISION_MODEL: 4096}
+
+
+def max_tokens_for(model_id: str, requested: int) -> int:
+    """The request's token cap, lowered to what this model accepts."""
+    ceiling = MODEL_MAX_TOKENS.get(model_id)
+    return min(requested, ceiling) if ceiling else requested
 
 
 class GenAiError(RuntimeError):
@@ -143,7 +154,7 @@ class GenAiClient:
         request = genai.GenericChatRequest()
         request.api_format = genai.BaseChatRequest.API_FORMAT_GENERIC
         request.messages = messages
-        request.max_tokens = max_tokens
+        request.max_tokens = max_tokens_for(model_id, max_tokens)
         request.temperature = DEFAULT_TEMPERATURE
 
         details = genai.ChatDetails()

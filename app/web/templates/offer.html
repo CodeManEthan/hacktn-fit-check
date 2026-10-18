@@ -33,69 +33,6 @@
           <p class="note">From the unit's own label. The library knows the model, not this unit.</p>
         </div>
       </div>
-      <script>
-        // Fills the inspector from the library on a pick; no model call is made.
-        (function () {
-          var select = document.getElementById('f-library-slug');
-          var body = document.querySelector('[data-inspector-body]');
-          var message = document.querySelector('[data-inspector-msg]');
-          var kind = document.getElementById('f-device-type');
-          if (!select || !body) return;
-
-          function cell(text, cls) {
-            var td = document.createElement('td');
-            if (cls) td.className = cls;
-            td.textContent = text;
-            return td;
-          }
-
-          function render(rows) {
-            body.textContent = '';
-            rows.forEach(function (row) {
-              var tr = document.createElement('tr');
-              tr.appendChild(cell(row.label, 'audit-name'));
-              tr.appendChild(cell(row.known ? row.value : '\u2014',
-                                  row.known ? 'audit-value' : 'audit-value is-empty'));
-              var source = document.createElement('td');
-              var tag = document.createElement('span');
-              tag.className = 'tag';
-              tag.setAttribute('data-source', row.source);
-              tag.textContent = row.source;
-              source.appendChild(tag);
-              if (row.known && row.source_url) {
-                var link = document.createElement('a');
-                link.href = row.source_url;
-                link.target = '_blank';
-                link.rel = 'noopener';
-                link.title = row.document || '';
-                link.textContent = row.page ? ' p.' + row.page : ' document';
-                source.appendChild(link);
-              }
-              tr.appendChild(source);
-              body.appendChild(tr);
-            });
-          }
-
-          select.addEventListener('change', function () {
-            var slug = select.value;
-            if (message) message.textContent = '';
-            if (!slug) { render([]); return; }
-            var option = select.options[select.selectedIndex];
-            if (kind && !kind.value) kind.value = option.getAttribute('data-device-type') || '';
-            var payload = new FormData();
-            payload.append('slug', slug);
-            fetch('/offer/prefill', { method: 'POST', body: payload })
-              .then(function (response) { return response.json(); })
-              .then(function (data) {
-                render(data.rows || []);
-                if (message) message.textContent = data.message || '';
-              })
-              .catch(function () {
-                if (message) message.textContent = 'The library did not answer. The pick still applies on submit.';
-              });
-          });
-        })();
-      </script>
 
       <div class="tabs" role="tablist">
         <button type="button" class="tab" role="tab" id="tab-photo"
@@ -378,6 +315,10 @@
       });
     }
 
+    // The library pick (above) renders through this too: one row set, one
+    // column count.
+    window.fitInspector = { render: render, blank: blankRows };
+
     function say(text) { if (message) message.textContent = text || ''; }
 
     var banner = document.querySelector('[data-telemetry]');
@@ -461,6 +402,44 @@
         if (out) out.textContent = input.files.length ? input.files[0].name : 'No file chosen';
         if (input.files.length) status('working', 'STATUS: ARTIFACT LOADED, NOT YET READ');
       });
+    });
+  })();
+</script>
+<script>
+  // Fills the inspector from the library on a pick; no model call is made.
+  // It sits below the inspector table and the [B4] script on purpose: run any
+  // earlier and [data-inspector-body] does not exist yet, so no listener is set.
+  (function () {
+    var select = document.getElementById('f-library-slug');
+    var body = document.querySelector('[data-inspector-body]');
+    var message = document.querySelector('[data-inspector-msg]');
+    var kind = document.getElementById('f-device-type');
+    if (!select || !body) return;
+
+    // One renderer for both paths (the [B4] inspector's), with no
+    // "wrong" mark: a cited value is corrected by a document, not by hand.
+    function render(rows) {
+      if (window.fitInspector) { window.fitInspector.render(rows, false); return; }
+      body.textContent = '';
+    }
+
+    select.addEventListener('change', function () {
+      var slug = select.value;
+      if (message) message.textContent = '';
+      if (!slug) { render(window.fitInspector ? window.fitInspector.blank() : []); return; }
+      var option = select.options[select.selectedIndex];
+      if (kind && !kind.value) kind.value = option.getAttribute('data-device-type') || '';
+      var payload = new FormData();
+      payload.append('slug', slug);
+      fetch('/offer/prefill', { method: 'POST', body: payload })
+        .then(function (response) { return response.json(); })
+        .then(function (data) {
+          render(data.rows || []);
+          if (message) message.textContent = data.message || '';
+        })
+        .catch(function () {
+          if (message) message.textContent = 'The library did not answer. The pick still applies on submit.';
+        });
     });
   })();
 </script>

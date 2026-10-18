@@ -107,6 +107,7 @@ def test_to_device_facts_fills_documents(library):
     assert documents.value[0] == {
         "slug": "drive-525ks", "file": "drive-525ks/manual.txt",
         "title": "525KS owner's manual", "url": "https://example.org/525ks.pdf",
+        "kind": "manual",  # [B6] §4.4's key list gains kind (B5 check L2)
         "languages": ["English", "Spanish", "French"],
     }
 

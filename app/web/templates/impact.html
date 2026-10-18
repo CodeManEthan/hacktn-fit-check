@@ -16,7 +16,15 @@
     <div class="counter bad"><b>{{ counts.get("won't work", 0) }}</b><span>stopped before shipping</span></div>
     <div class="counter hold"><b>{{ counts.get('works if you also send', 0) }}</b><span>need extras sent with them</span></div>
     <div class="counter good"><b>{{ counts.get('works', 0) }}</b><span>cleared as they are</span></div>
+    <div class="counter ask"><b>{{ counts.get('needs info', 0) }}</b><span>need answers first</span></div>
   </div>
+  {% if summary %}
+  <div class="impact-summary">
+    <p>{{ summary.text }}</p>
+    <p class="note">{{ summary.label }}{% if figures.clinics %}: {{ figures.screened }} screenings,
+       {{ figures.clinics }} clinic{{ '' if figures.clinics == 1 else 's' }} in {{ figures.countries | join(', ') }}{% endif %}.</p>
+  </div>
+  {% endif %}
   {% else %}
   <p class="empty">Nothing screened yet. Put a device through and it lands here.</p>
   {% endif %}
@@ -34,6 +42,7 @@
 
   {% if recent %}
   <h2>Recent screenings</h2>
+  <div class="audit-scroll">
   <table class="grid">
     <thead><tr><th>Device</th><th>Clinic</th><th>Result</th><th></th></tr></thead>
     <tbody>
@@ -47,6 +56,7 @@
       {% endfor %}
     </tbody>
   </table>
+  </div>
   {% endif %}
 </section>
 {% endblock %}

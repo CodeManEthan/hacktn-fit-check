@@ -11,7 +11,7 @@ from fastapi.templating import Jinja2Templates
 
 from app.ai.categorise import categorise_support
 from app.ai.client import GenAiError
-from app.ai.extract import extract, extract_device, image_to_data_url
+from app.ai.extract import extract, extract_device, image_to_data_url, library_citations
 from app.data import marketplace_repo as repo
 from app.data.repository import RepositoryError
 from app.domain.device import DeviceFacts
@@ -33,12 +33,14 @@ from app.matching.supply_order import supply_lookup
 from app.matching.verification import confirm, request_confirmation, withdraw
 from app.reference.country_power import country_centroid, lookup
 from app.reference.facility_registry import corroborates, find_candidates
-from app.web import forms, inspector
+from app.web import forms, inspector, presenters
 from app.web.forms import FormError
 from app.web.presenters import advisory_for, rule_count, TONE_BY_OUTCOME, TONE_BY_STATUS
 
 TEMPLATES = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 TEMPLATES.env.globals["rule_count"] = rule_count()
+TEMPLATES.env.globals["offer_name"] = presenters.offer_name
+TEMPLATES.env.globals["supply_url"] = presenters.supply_url
 router = APIRouter()
 
 
@@ -47,6 +49,9 @@ def _error(request: Request, message: str, back: str = "/") -> HTMLResponse:
         request=request, name="error.html",
         context={"message": message, "back": back}, status_code=400,
     )
+
+
+DEMO_CLINIC = "uganda-district"
 
 
 @router.get("/", response_class=HTMLResponse)
@@ -69,9 +74,33 @@ def landing(request: Request) -> HTMLResponse:
         }
         for f in repo.list_facilities()
     ]
+    # The demo clinic leads the strip (§7.1); the rest keep their order.
+    testbeds.sort(key=lambda bed: bed["slug"] != DEMO_CLINIC)
     return TEMPLATES.TemplateResponse(
         request=request, name="landing.html", context={"testbeds": testbeds}
     )
+
+
+# ---- role toggle (design §7.1) -----------------------------------------
+
+ROLES = ("donor", "clinic", "nonprofit")
+ROLE_COOKIE_DAYS = 30
+
+
+@router.post("/role")
+def set_role(role: str = Form(default=""), back: str = Form(default="/")) -> RedirectResponse:
+    """Remember who is looking, as a cookie, and go back to the same page.
+
+    Purely presentational: the role recolours the bar and the primary
+    buttons and hides nothing (no logins). An unknown role clears it.
+    """
+    target = _local_path(back) or "/"
+    response = RedirectResponse(url=target, status_code=303)
+    if role in ROLES:
+        response.set_cookie("role", role, max_age=ROLE_COOKIE_DAYS * 86400, samesite="lax")
+    else:
+        response.delete_cookie("role")
+    return response
 
 
 # ---- donor side --------------------------------------------------------
@@ -267,6 +296,8 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
     coverages = []
     bundles: dict[int, object] = {}
     advisory: dict[int, object] = {}
+    questions: dict[int, list[dict]] = {}
+    here = request.url.path
     for line in row.lines:
         offers = repo.open_offers_for_type(line.device_type)
         screening = screen_offers(facility, offers, intel_for=supply_lookup)
@@ -278,6 +309,10 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
         )
         for c in screening.ranked:
             bundles[c.offer.id] = build_bundle(c.verdict, facility, repo.offers_for_support)
+            if c.verdict.outcome is Outcome.NEEDS_INFO:
+                questions[c.offer.id] = presenters.open_questions(
+                    c.verdict, c.offer.device, c.intel, c.offer.device_type,
+                    facility.country, back=here)
         advisory.update({c.offer.id: advisory_for(c) for c in screening.rejected})
 
     return TEMPLATES.TemplateResponse(
@@ -285,6 +320,63 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
         context={
             "request_row": row, "facility": facility,
             "coverages": coverages, "bundles": bundles, "advisory": advisory,
+            "questions": questions,
+            "symbol": TONE_BY_STATUS, "tone": TONE_BY_OUTCOME,
+        },
+    )
+
+
+@router.get("/request/{request_id}/offer/{offer_id}", response_class=HTMLResponse)
+def candidate_page(request: Request, request_id: int, offer_id: int) -> HTMLResponse:
+    """One offer's verdict for one request's clinic (design §7.2).
+
+    The offer is screened again here, with the same supply order the matches
+    page uses, so a rejected or a needs-info offer renders as well as a
+    survivor: stamp, every check with the citation of the facts it read, the
+    send-with list and each add-on's own plate check, the open questions
+    (the nonprofit's link to /supply), and the advisory when rejected.
+    """
+    row = repo.load_request(request_id)
+    if row is None:
+        return _error(request, f"No request with id {request_id}.")
+    back = f"/request/{request_id}/matches"
+    offer = repo.load_offer(offer_id)
+    if offer is None:
+        return _error(request, f"No offer with id {offer_id}.", back=back)
+    facility = repo.load_facility(row.facility_slug)
+    if facility is None:
+        return _error(request, f"No facility profile for {row.facility_slug}.")
+
+    screening = screen_offers(facility, [offer], intel_for=supply_lookup)
+    found = [*screening.ranked, *screening.rejected]
+    if not found:
+        return _error(
+            request,
+            f"Offer {offer_id} is no longer open (reserved, withdrawn or past its date), "
+            "so there is nothing to screen.",
+            back=back,
+        )
+    candidate = found[0]
+    verdict = candidate.verdict
+    rejected = verdict.outcome is Outcome.WONT_WORK
+    here = request.url.path
+    return TEMPLATES.TemplateResponse(
+        request=request, name="candidate.html",
+        context={
+            "request_row": row, "facility": facility, "c": candidate,
+            "offer": offer, "verdict": verdict, "rejected": rejected,
+            "rows": presenters.check_rows(verdict, offer.device, candidate.intel,
+                                          facility.country),
+            "questions": presenters.open_questions(
+                verdict, offer.device, candidate.intel, offer.device_type,
+                facility.country, back=here),
+            "addons": presenters.addon_states(
+                build_bundle(verdict, facility, repo.offers_for_support)),
+            "advisory": {offer.id: advisory_for(candidate)} if rejected else {},
+            "pairs": presenters.identity_pairs(offer.device),
+            "proposable": verdict.outcome in (Outcome.WORKS, Outcome.WORKS_IF),
+            "packet_url": f"/packet/{offer.id}?facility={facility.slug}",
+            "back": back,
             "symbol": TONE_BY_STATUS, "tone": TONE_BY_OUTCOME,
         },
     )
@@ -387,61 +479,6 @@ def confirm_submit(request: Request, token: str, answer: str = Form(...)) -> HTM
 
 
 # ---- live extraction ----------------------------------------------------
-
-# The five readings a rating plate carries, in the order it prints them.
-INSPECTOR_ROWS = (
-    ("Model", "model"),
-    ("Voltage", "voltage"),
-    ("Frequency", "frequency"),
-    ("Power", "power"),
-    ("Operating temp", "temperature"),
-)
-
-
-def _inspector_rows(device: DeviceFacts) -> list[dict[str, str]]:
-    """The extracted facts as rows, each carrying where it came from.
-
-    An unknown field is still a row. Showing it blank with an `unverified` tag
-    is the whole point: the gap is the finding.
-    """
-    supply = _range_text(device.voltage_min_v, device.voltage_max_v, "V")
-    frequency = (
-        "/".join(str(v) for v in device.frequencies_hz.value) + " Hz"
-        if device.frequencies_hz.known else ""
-    )
-    power = f"{device.power_watts.value} W" if device.power_watts.known else ""
-    temperature = _range_text(device.temp_min_c, device.temp_max_c, "\u00b0C")
-
-    values = {
-        "model": (device.label if device.model.known or device.manufacturer.known else "",
-                  device.model if device.model.known else device.manufacturer),
-        "voltage": (supply, device.voltage_min_v),
-        "frequency": (frequency, device.frequencies_hz),
-        "power": (power, device.power_watts),
-        "temperature": (temperature, device.temp_min_c),
-    }
-
-    rows = []
-    for label, key in INSPECTOR_ROWS:
-        shown, fact_used = values[key]
-        rows.append({
-            "label": label,
-            "value": shown,
-            "source": fact_used.source.value if shown else "unverified",
-            "known": bool(shown),
-        })
-    return rows
-
-
-def _range_text(low, high, unit: str) -> str:
-    if low.known and high.known:
-        return f"{low.value}\u2013{high.value} {unit}"
-    if low.known:
-        return f"from {low.value} {unit}"
-    if high.known:
-        return f"to {high.value} {unit}"
-    return ""
-
 
 @router.post("/offer/extract")
 async def offer_extract(request: Request) -> JSONResponse:
@@ -665,6 +702,15 @@ def _supply_page(request: Request, country: str, values: dict, *,
     )
 
 
+@router.get("/supply", response_class=HTMLResponse)
+def supply_index(request: Request) -> HTMLResponse:
+    """The nonprofit's supply desk: one form per country a registered clinic is in."""
+    countries = sorted({f.country for f in repo.list_facilities() if f.country})
+    return TEMPLATES.TemplateResponse(
+        request=request, name="supply_index.html", context={"countries": countries},
+    )
+
+
 @router.get("/supply/{country}", response_class=HTMLResponse)
 def supply_form(request: Request, country: str, device_type: str = "", model: str = "",
                 back: str = "", saved: int = 0) -> HTMLResponse:
@@ -746,6 +792,11 @@ from app.reference.import_rules import documents_required  # noqa: E402
 
 MANUAL_KIND = "manual"
 MANUAL_TITLE_WORDS = ("manual", "instruction", "guide", "ifu")
+# The kinds that are editions of the manufacturer's manual. A registry
+# record, a shop's product page, a declaration or a notice is about the
+# device, not an edition of its manual. A document stored before kinds were
+# carried (no kind) is still listed.
+EDITION_KINDS = frozenset({"manual", "service manual"})
 
 
 def _packet_chat():
@@ -872,7 +923,8 @@ def packet_page(
     header, header_warns = _packet_header(target, translated)
     verdict = _packet_verdict(offer, clinic)
     editions = [d for d in documents
-                if set(normalise_languages(d.get("languages") or ())) & set(staff)]
+                if str(d.get("kind") or "").lower() in EDITION_KINDS | {""}
+                and set(normalise_languages(d.get("languages") or ())) & set(staff)]
     return TEMPLATES.TemplateResponse(
         request=request, name="packet.html",
         context={
@@ -904,24 +956,6 @@ TEMPLATES.env.globals["library_entries"] = device_library.load_library
 
 EARLIEST_BUILD_YEAR = 1950
 
-# The rows the prefill shows: (label, DeviceFacts field whose citation the row
-# links to, how to show the value). Every row says where its value was read.
-PREFILL_ROWS = (
-    ("Model", "model"),
-    ("Voltage", "voltage_min_v"),
-    ("Frequency", "frequencies_hz"),
-    ("Power", "power_watts"),
-    ("Operating temp", "temp_min_c"),
-    ("Max humidity", "humidity_max_pct"),
-    ("Needs oxygen", "needs_oxygen"),
-    ("Needs distilled water", "needs_distilled_water"),
-    ("Needs compressed air", "needs_compressed_air"),
-    ("Consumables", "consumables"),
-    ("Manual languages", "manual_languages"),
-    ("Operating complexity", "operating_complexity"),
-)
-
-
 def _library_entry(slug: str) -> device_library.LibraryEntry:
     picked = device_library.entry(slug)
     if picked is None:
@@ -950,50 +984,15 @@ def _library_device(picked: device_library.LibraryEntry, year_text: str) -> Devi
     return device
 
 
-def _yes_no(value) -> str:
-    return "yes" if value else "no"
-
-
-def _prefill_value(device: DeviceFacts, name: str) -> str:
-    if name == "model":
-        return device.label if device.model.known else ""
-    if name == "voltage_min_v":
-        return _range_text(device.voltage_min_v, device.voltage_max_v, "V")
-    if name == "temp_min_c":
-        return _range_text(device.temp_min_c, device.temp_max_c, "\u00b0C")
-    held = getattr(device, name)
-    if not held.known:
-        return ""
-    if name == "frequencies_hz":
-        return "/".join(str(v) for v in held.value) + " Hz"
-    if name == "power_watts":
-        return f"{held.value} W"
-    if name == "humidity_max_pct":
-        return f"{held.value} %"
-    if name.startswith("needs_"):
-        return _yes_no(held.value)
-    if isinstance(held.value, list):
-        return ", ".join(str(v) for v in held.value)
-    return str(held.value)
-
-
 def _prefill_rows(picked: device_library.LibraryEntry) -> list[dict]:
-    """Inspector rows for a library entry: label, value, source, link and page."""
+    """The inspector's own rows for a library entry, each linked to its page.
+
+    The same row set and columns as /offer/extract (one builder,
+    `inspector.inspector_rows`); the page shows no "wrong" mark on a library
+    pick, because a cited value is corrected by a document, not by hand.
+    """
     device = device_library.to_device_facts(picked)
-    rows = []
-    for label, name in PREFILL_ROWS:
-        shown = _prefill_value(device, name)
-        cited = device_library.citation(picked, name) if shown else {}
-        rows.append({
-            "label": label,
-            "value": shown,
-            "source": getattr(device, name).source.value if shown else "unverified",
-            "source_url": cited.get("url", ""),
-            "page": cited.get("page"),
-            "document": cited.get("title", ""),
-            "known": bool(shown),
-        })
-    return rows
+    return inspector.inspector_rows(device, library_citations(picked))
 
 
 @router.post("/offer/prefill")
