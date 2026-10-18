@@ -4,6 +4,7 @@ cached per process. Fake clients only; no model is called.
 
 from __future__ import annotations
 
+import html
 from dataclasses import replace
 from types import SimpleNamespace
 
@@ -183,8 +184,12 @@ def test_the_impact_page_shows_the_gated_paragraph_and_its_label(seeded, monkeyp
     chat = FakeChat("Fit-Check screened 20 devices and found 999 problems.")
     monkeypatch.setattr(routes, "_impact_client", lambda: chat)
     body = TestClient(app).get("/impact").text
-    assert "999" not in body
-    assert impact.WRITTEN_BY_CODE in body
+    # The page's /verdict/<id> links carry random hex ids, so a bare "999"
+    # can turn up in one; read the paragraph itself.
+    paragraph = body.split('<div class="impact-summary">', 1)[1].split("</div>", 1)[0]
+    assert "999" not in paragraph and "found 999 problems" not in body
+    assert html.escape(impact.code_sentence(impact.figures())) in paragraph
+    assert impact.WRITTEN_BY_CODE in paragraph
     assert "need answers first" in body
 
     impact.clear_cache()
