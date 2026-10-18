@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+{% block title %}Handover packet &middot; {{ offer.device.label }}{% endblock %}
+
+{% macro card_body(c, english=True) %}
+  {% if c.quick_start %}
+  <h3>Quick start</h3>
+  <ol class="card-lines">
+    {% for l in c.quick_start %}<li>{{ l.text }}{{ cite(l) }}</li>{% endfor %}
+  </ol>
+  {% endif %}
+  {% if c.care_schedule %}
+  <h3>Care schedule</h3>
+  <ul class="card-lines">
+    {% for l in c.care_schedule %}<li>{% if l.interval %}<b>{{ l.interval }}:</b> {% endif %}{{ l.text }}{{ cite(l) }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+  {% if c.consumables %}
+  <h3>Consumables</h3>
+  <ul class="card-lines">
+    {% for l in c.consumables %}<li>{{ l.text }}{% if l.part_number %} <code>{{ l.part_number }}</code>{% endif %}{% if l.interval %}, {{ l.interval }}{% endif %}{{ cite(l) }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+  {% if c.warnings %}
+  <h3>Warnings</h3>
+  <ul class="card-lines">
+    {% for l in c.warnings %}<li>{{ l.text }}{{ cite(l) }}</li>{% endfor %}
+  </ul>
+  {% endif %}
+{% endmacro %}
+
+{% macro cite(l) -%}
+  {% if l.page is not none %} <span class="cite">p.&nbsp;{{ l.page }}</span>{% endif %}
+  {%- if l.note %} <span class="cite kept">{{ l.note }}</span>{% endif %}
+{%- endmacro %}
+
+{% block content %}
+<style>
+  .card-col h2 { margin: 0 0 var(--s2); font-size: 19px; }
+  .card-col h3 { margin: var(--s4) 0 var(--s2); font-size: 15px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .card-lines { margin: 0; padding-left: var(--s5); }
+  .card-lines li { margin: var(--s2) 0; }
+  .cite { color: var(--etch); font-size: 12px; white-space: nowrap; }
+  .cite.kept { color: var(--hold); white-space: normal; }
+  .checklist { list-style: none; padding: 0; margin: 0; }
+  .checklist li { margin: var(--s2) 0; }
+</style>
+
+<section class="masthead">
+  <p class="eyebrow">Handover packet</p>
+  <h1>{{ offer.device.label }}</h1>
+  <p class="sub">For {{ facility.name }}, {{ facility.country }}.
+     Staff read {{ staff | join(", ") if staff else "no language on file" }}.</p>
+</section>
+
+{% if header_warns %}
+<div class="flag hold"><h2>{{ header }}</h2></div>
+{% else %}
+<p class="note packet-header">{{ header }}</p>
+{% endif %}
+
+<section class="plate">
+  <h2>The manufacturer's own editions</h2>
+  {% if editions %}
+  <ul>
+    {% for d in editions %}
+    <li>{% if d.url %}<a class="link" href="{{ d.url }}">{{ d.title or d.file }}</a>{% else %}{{ d.title or d.file }}{% endif %}
+        <span class="note">({{ d.languages | join(", ") }})</span></li>
+    {% endfor %}
+  </ul>
+  {% elif documents %}
+  <p class="note">No manufacturer edition in {{ staff | join(" or ") }} is on file.</p>
+  {% endif %}
+  {% if not documents %}
+  <p>No manual could be found for this device.</p>
+  {% endif %}
+</section>
+
+{% if documents %}
+<section class="plate">
+  {% if problem %}
+  <div class="flag bad"><h2>{{ problem }}</h2></div>
+  {% elif card is none %}
+  <p>No manual could be found for this device.</p>
+  {% elif card.empty %}
+  <p>The card could not be built from this manual.</p>
+  {% if card.dropped %}<p class="note">{{ card.dropped }} lines dropped: not found in the manual.</p>{% endif %}
+  {% else %}
+  <div class="{{ 'split' if translated else '' }}">
+    <div class="card-col">
+      <h2>English</h2>
+      <p class="note">From {{ manual.title or manual.file }}. Every line cites its page.</p>
+      {{ card_body(card) }}
+      {% if card.dropped %}<p class="note">{{ card.dropped }} lines dropped: not found in the manual.</p>{% endif %}
+    </div>
+    {% if translated %}
+    <div class="card-col" lang="{{ translation.language }}">
+      <h2>{{ translation.language }}</h2>
+      <p class="note"><b>{{ translation.flag }}</b>{% if translation.provenance %} &middot; {{ translation.provenance }}{% endif %}</p>
+      {{ card_body(translated) }}
+    </div>
+    {% endif %}
+  </div>
+  {% endif %}
+</section>
+{% endif %}
+
+<div class="split">
+  <section class="plate">
+    <h2>Paperwork for {{ facility.country }}</h2>
+    {% if paperwork %}
+    <ul class="checklist">
+      {% for item in paperwork %}<li><label><input type="checkbox"> {{ item }}</label></li>{% endfor %}
+    </ul>
+    {% else %}
+    <p class="note">No import rules for {{ facility.country }} are on file. Ask the ministry of health what it needs before shipping.</p>
+    {% endif %}
+  </section>
+
+  <section class="plate">
+    <h2>Send with it</h2>
+    {% if send_with %}
+    <ul>
+      {% for kind, detail in send_with %}<li><b>{{ kind }}.</b> {{ detail }}</li>{% endfor %}
+    </ul>
+    {% else %}
+    <p class="note">Nothing else needs to ship with it.</p>
+    {% endif %}
+  </section>
+</div>
+
+<p class="note"><a class="link" href="/packet/{{ offer.id }}?facility={{ facility.slug }}&amp;rebuild=1">Rebuild this packet</a></p>
+{% endblock %}
