@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Supply in {{ country }}{% endblock %}
+{% block content %}
+<section class="masthead">
+  <p class="eyebrow">{{ country }}</p>
+  <h1>What can a clinic in {{ country }} get?</h1>
+  <p class="sub">Four questions a device's documents cannot answer. Write down what you
+     know once, and every later screening for {{ country }} reads it. "Don't know" stays
+     a question; it never counts as a no.</p>
+</section>
+
+<section class="plate">
+  {% if saved %}<p class="note" role="status">Saved. Screenings for {{ country }} now read this answer.</p>{% endif %}
+  {% if error %}<p class="note" role="alert" style="color:var(--block)">{{ error }}</p>{% endif %}
+  <form method="post" action="/supply/{{ country | urlencode }}" class="form">
+    <input type="hidden" name="back" value="{{ back }}">
+    <div class="field">
+      <label class="name" for="f-device-type">Kind of equipment</label>
+      <input type="text" id="f-device-type" name="device_type" value="{{ device_type }}"
+             placeholder="oxygen concentrator" required>
+    </div>
+    <div class="field">
+      <label class="name" for="f-model">Model</label>
+      <input type="text" id="f-model" name="model" value="{{ model }}" placeholder="525KS">
+      <p class="note">Leave blank to answer for every model of this kind. An answer for
+         one model is read before the answer for its kind.</p>
+    </div>
+
+    {% for name, question in questions %}
+    {% set chosen = answers.get(name) %}
+    <fieldset class="field" style="border:0;padding:0;margin:0">
+      <legend class="name">{{ question }}</legend>
+      <span>
+        <label><input type="radio" name="{{ name }}" value="yes"{{ ' checked' if chosen is sameas true }}> Yes</label>
+        &nbsp;
+        <label><input type="radio" name="{{ name }}" value="no"{{ ' checked' if chosen is sameas false }}> No</label>
+        &nbsp;
+        <label><input type="radio" name="{{ name }}" value="unknown"{{ ' checked' if chosen is none }}> Don't know</label>
+      </span>
+    </fieldset>
+    {% endfor %}
+
+    <div class="field">
+      <label class="name" for="f-recorded-by">Who is answering</label>
+      <input type="text" id="f-recorded-by" name="recorded_by" value="{{ recorded_by }}"
+             placeholder="Asha, country coordinator" required>
+    </div>
+    <div class="field">
+      <label class="name" for="f-note">How you know</label>
+      <textarea id="f-note" name="note" rows="3"
+                placeholder="Called the two medical suppliers on Kampala Road; both stock the filters.">{{ note }}</textarea>
+    </div>
+    <button class="go" type="submit">Record this answer</button>
+  </form>
+</section>
+{% endblock %}
