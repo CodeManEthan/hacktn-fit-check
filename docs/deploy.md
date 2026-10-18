@@ -74,7 +74,7 @@ If a model call answers "NotAuthorizedOrNotFound", the dynamic group or the poli
 
 | Command | What it does |
 |---|---|
-| `bash deploy/redeploy.sh stage <head>` | Fetches the fork into `/opt/fitcheck-next`, checks out `<head>`, builds the venv, copies `.env`, runs it as the transient unit `fitcheck-stage` on 127.0.0.1:8001, and checks `/`, `/offer`, `/impact` and one model call through `/offer/extract`, retried 3 times a minute apart. Says `stage OK` only if all pass and the unit is still active. The live site is not touched. |
+| `bash deploy/redeploy.sh stage <head>` | Fetches the fork into `/opt/fitcheck-next`, checks out `<head>`, builds the venv, copies `.env`, runs it as the transient unit `fitcheck-stage` on 127.0.0.1:8001, and checks `/`, `/offer`, `/impact` and one model call through `/offer/extract`, tried up to 3 times, a minute apart. Says `stage OK` only if all pass and the unit is still active. The live site is not touched. |
 | `bash deploy/redeploy.sh cutover <head>` | Copies `.env` again, stops the stage, moves `/opt/fitcheck` to `/opt/fitcheck-prev` and the staged checkout into `/opt/fitcheck`, restarts `fitcheck`, runs `scripts/seed_demo.py` once, then checks from this machine. A failed seed or check rolls back by itself. |
 | `bash deploy/redeploy.sh all <head>` | `stage`, then `cutover` if the stage passed. |
 | `bash deploy/redeploy.sh check` | Reruns the port-80 checks. Does not seed. |
