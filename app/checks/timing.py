@@ -24,6 +24,7 @@ from app.domain.shipment import Shipment
 MIN_USABLE_DAYS_ON_ARRIVAL = 365
 
 LABEL = "Shelf life on arrival"
+NOTHING_DATED = "Nothing in this consignment carries an expiry date (donor)."
 KEY = "shelf_life"
 
 
@@ -38,6 +39,17 @@ def check_shelf_life(
     """Compare the expiry date with the date the consignment would land."""
     now = today or date.today()
     dated = device.expiry_date
+    answered = device.dated_items
+
+    # The donor's "nothing dated" is an answer, not a gap (design §2.2).
+    if answered.known and answered.value is False:
+        return CheckResult(
+            key=KEY,
+            label=LABEL,
+            status=CheckStatus.PASS,
+            detail=NOTHING_DATED,
+            source=answered.source,
+        )
 
     if not dated.known:
         return CheckResult(
