@@ -9,14 +9,17 @@ without one, and the deployment target is MySQL.
 from __future__ import annotations
 
 from sqlalchemy import (
+    Boolean,
     Column,
     Date,
     DateTime,
     Float,
     Integer,
     String,
+    PrimaryKeyConstraint,
     Table,
     Text,
+    UniqueConstraint,
     func,
 )
 
@@ -35,6 +38,11 @@ SUPPORT_KIND_LENGTH = 40
 STATUS_LENGTH = 40
 MATCH_ID_LENGTH = 12
 TOKEN_LENGTH = 64
+MODEL_LENGTH = 200
+REGISTRY_STATUS_LENGTH = 60
+URL_LENGTH = 1000
+LANGUAGE_LENGTH = 100
+EXTRACTION_ID_LENGTH = 32
 
 DEFAULT_QUANTITY = 1
 NO_QUANTITY = 0
@@ -121,4 +129,60 @@ matches = Table(
     Column("intel_json", Text, nullable=False, default=EMPTY_JSON_OBJECT),
     Column("created_at", DateTime, nullable=False, server_default=func.now()),
     Column("responded_at", DateTime, nullable=True),
+)
+
+
+# The nonprofit's recorded answers about supporting a device in a country.
+# model '' means any model of the device type. Each answer is nullable: NULL
+# is a recorded "don't know".
+supply_answers = Table(
+    "supply_answers",
+    METADATA,
+    Column("id", Integer, primary_key=True, autoincrement=True),
+    Column("device_type", String(DEVICE_TYPE_LENGTH), nullable=False, default=""),
+    Column("model", String(MODEL_LENGTH), nullable=False, default=""),
+    Column("country", String(COUNTRY_LENGTH), nullable=False),
+    Column("consumables_available", Boolean, nullable=True),
+    Column("spare_parts_available", Boolean, nullable=True),
+    Column("sold_locally", Boolean, nullable=True),
+    Column("manufacturer_supported", Boolean, nullable=True),
+    Column("recorded_by", String(NAME_LENGTH), nullable=False, default=""),
+    Column("note", Text, nullable=False, default=""),
+    Column("recorded_at", DateTime, nullable=False, server_default=func.now()),
+    UniqueConstraint("device_type", "model", "country", name="uq_supply_answer"),
+)
+
+# Public registry lookups, cached so the demo never waits on the FDA twice.
+# Keyed on the model as searched, lower case.
+registry_lookups = Table(
+    "registry_lookups",
+    METADATA,
+    Column("model", String(MODEL_LENGTH), primary_key=True),
+    Column("fetched_at", DateTime, nullable=False),
+    Column("status", String(REGISTRY_STATUS_LENGTH), nullable=False, default=""),
+    Column("record_url", String(URL_LENGTH), nullable=False, default=""),
+    Column("raw_json", Text, nullable=False, default=EMPTY_JSON_OBJECT),
+)
+
+# A built handover packet for one offer at one clinic.
+packets = Table(
+    "packets",
+    METADATA,
+    Column("offer_id", Integer, nullable=False),
+    Column("facility_slug", String(SLUG_LENGTH), nullable=False),
+    Column("language", String(LANGUAGE_LENGTH), nullable=False, default=""),
+    Column("card_json", Text, nullable=False, default=EMPTY_JSON_OBJECT),
+    Column("translated_json", Text, nullable=True),
+    Column("built_at", DateTime, nullable=False),
+    PrimaryKeyConstraint("offer_id", "facility_slug", name="pk_packets"),
+)
+
+# An extraction held for the donor's confirm step, for an hour.
+extractions = Table(
+    "extractions",
+    METADATA,
+    Column("id", String(EXTRACTION_ID_LENGTH), primary_key=True),
+    Column("facts_json", Text, nullable=False),
+    Column("document_json", Text, nullable=False, default=EMPTY_JSON_OBJECT),
+    Column("created_at", DateTime, nullable=False),
 )

@@ -1,5 +1,29 @@
 {% extends "base.html" %}
 {% block title %}What fits{% endblock %}
+{% macro head(c) %}
+    <div class="candidate-head">
+      <div>
+        <p class="candidate-name">{{ c.offer.device.label }}</p>
+        <p class="candidate-donor">{{ c.offer.donor_name }} &mdash;
+          {{ c.offer.origin.city }}{% if c.offer.origin.city %}, {% endif %}{{ c.offer.origin.country }}</p>
+      </div>
+      <div class="candidate-meta">
+        {% if c.distance_km %}<span class="chip">{{ c.distance_km | round | int }} km</span>{% endif %}
+        {% if c.shipment %}<span class="chip">about {{ c.shipment.transit_days }} days to deliver</span>{% endif %}
+        <span class="chip">{{ c.offer.quantity_available }} available</span>
+        <span class="pill {{ tone[c.verdict.outcome] }}">{{ c.verdict.stamp }}</span>
+      </div>
+    </div>
+{% endmacro %}
+
+{% macro segments(c) %}
+    <div class="segments">
+      {% for r in c.verdict.results %}
+      <span class="seg {{ symbol[r.status] }}" title="{{ r.label }}: {{ r.detail }}"></span>
+      {% endfor %}
+    </div>
+{% endmacro %}
+
 {% block content %}
 <section class="plate">
   <p class="eyebrow">{{ facility.name }}, {{ facility.country }}</p>
@@ -34,27 +58,13 @@
      {{ facility.name }}. The log shows which constraint keeps blocking them.</p>
   {% endif %}
 
-  {% for c in cover.candidates %}
-  <article class="candidate">
-    <div class="candidate-head">
-      <div>
-        <p class="candidate-name">{{ c.offer.device.label }}</p>
-        <p class="candidate-donor">{{ c.offer.donor_name }} &mdash;
-          {{ c.offer.origin.city }}{% if c.offer.origin.city %}, {% endif %}{{ c.offer.origin.country }}</p>
-      </div>
-      <div class="candidate-meta">
-        {% if c.distance_km %}<span class="chip">{{ c.distance_km | round | int }} km</span>{% endif %}
-        {% if c.shipment %}<span class="chip">about {{ c.shipment.transit_days }} days to deliver</span>{% endif %}
-        <span class="chip">{{ c.offer.quantity_available }} available</span>
-        <span class="pill {{ tone[c.verdict.outcome] }}">{{ c.verdict.stamp }}</span>
-      </div>
-    </div>
+  {% set known = cover.candidates | rejectattr('verdict.outcome', 'equalto', 'needs info') | list %}
+  {% set asking = cover.candidates | selectattr('verdict.outcome', 'equalto', 'needs info') | list %}
 
-    <div class="segments">
-      {% for r in c.verdict.results %}
-      <span class="seg {{ symbol[r.status] }}" title="{{ r.label }}: {{ r.detail }}"></span>
-      {% endfor %}
-    </div>
+  {% for c in known %}
+  <article class="candidate">
+    {{ head(c) }}
+    {{ segments(c) }}
 
     {% set bundle = bundles.get(c.offer.id) %}
     {% if bundle and bundle.items %}
@@ -81,6 +91,33 @@
       <input type="hidden" name="offer_id" value="{{ c.offer.id }}">
       <button class="go" type="submit">Ask this donor</button>
     </form>
+  </article>
+  {% endfor %}
+
+  {% if cover.rejected %}
+  <div class="rejected">
+    <h3>Won't work at {{ facility.name }}</h3>
+    {% for c in cover.rejected %}
+    <article class="candidate is-rejected">
+      {{ head(c) }}
+      {% for r in c.verdict.failures %}
+      <p class="candidate-needs"><b>{{ r.label }}</b> &mdash; {{ r.detail }}</p>
+      {% endfor %}
+      {% include "_advisory.html" %}
+    </article>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% for c in asking %}
+  {% set asked = c.verdict.questions | length or c.verdict.unknowns | length %}
+  <article class="candidate is-asking">
+    {{ head(c) }}
+    {{ segments(c) }}
+    <div class="candidate-act">
+      <a class="go" href="/request/{{ request_row.id }}/offer/{{ c.offer.id }}"
+         style="text-decoration:none">Answer {{ asked }} question{{ '' if asked == 1 else 's' }} first</a>
+    </div>
   </article>
   {% endfor %}
 </section>

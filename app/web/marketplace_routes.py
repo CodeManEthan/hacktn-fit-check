@@ -2,8 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import replace
-from datetime import date, datetime
+from datetime import datetime
 from pathlib import Path
 
 from fastapi import APIRouter, File, Form, Request, UploadFile
@@ -17,6 +16,7 @@ from app.data import marketplace_repo as repo
 from app.data.repository import RepositoryError
 from app.domain.device import DeviceFacts
 from app.domain.facility import FacilityProfile
+from app.domain.language import normalise_languages
 from app.domain.facility_trust import Verification, VerificationStatus
 from app.domain.marketplace import (
     GeoPoint,
@@ -25,16 +25,17 @@ from app.domain.marketplace import (
     Request as DonationRequest,
     RequestLine,
 )
-from app.domain.provenance import Provenance, fact
+from app.domain.result import Outcome
 from app.matching.bundle import build_bundle
 from app.matching.coverage import LineCoverage
-from app.matching.pipeline import propose_match, rank_candidates
+from app.matching.pipeline import propose_match, screen_offers
+from app.matching.supply_order import supply_lookup
 from app.matching.verification import confirm, request_confirmation, withdraw
 from app.reference.country_power import country_centroid, lookup
 from app.reference.facility_registry import corroborates, find_candidates
 from app.web import forms
 from app.web.forms import FormError
-from app.web.presenters import rule_count, TONE_BY_OUTCOME, TONE_BY_STATUS
+from app.web.presenters import advisory_for, rule_count, TONE_BY_OUTCOME, TONE_BY_STATUS
 
 TEMPLATES = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 TEMPLATES.env.globals["rule_count"] = rule_count()
@@ -103,13 +104,14 @@ async def offer_submit(
         if not typed and not image_data_url:
             raise FormError("Give a model name, paste spec text, or add a nameplate photo.")
 
-        dated = forms.iso_date(expiry_date, "Expiry date")
+        device = extract_device(typed_text=typed, image_data_url=image_data_url)
+        # The donor's expiry answer is the last word on the date, whatever
+        # built the facts above it.
+        device = forms.apply_dated_items(device, expiry_date)
         offer = Offer(
             donor_name=forms.text(donor_name, "Your name", required=True),
             donor_email=forms.text(donor_email, "Email", required=True),
-            device=_with_expiry(
-                extract_device(typed_text=typed, image_data_url=image_data_url), dated
-            ),
+            device=device,
             device_type=forms.text(device_type, "Kind of device", required=True, limit=120),
             support_kind=_support_kind(device_type, model_name),
             origin=_point(forms.text(country, "Country", required=True), city),
@@ -172,7 +174,8 @@ async def facility_submit(request: Request) -> HTMLResponse:
             has_compressed_air=forms.flag(form.get("has_compressed_air")),
             has_biomed_technician=forms.flag(form.get("has_biomed_technician")),
             trained_operators=forms.flag(form.get("trained_operators")),
-            staff_languages=forms.comma_list(str(form.get("staff_languages", ""))) or ("English",),
+            staff_languages=tuple(normalise_languages(
+                forms.comma_list(str(form.get("staff_languages", ""))))) or ("English",),
             notes=forms.text(str(form.get("notes", "")), "Notes", limit=600),
             latitude=latitude,
             longitude=longitude,
@@ -235,20 +238,25 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
 
     coverages = []
     bundles: dict[int, object] = {}
+    advisory: dict[int, object] = {}
     for line in row.lines:
         offers = repo.open_offers_for_type(line.device_type)
-        candidates = rank_candidates(facility, offers)
+        screening = screen_offers(facility, offers, intel_for=supply_lookup)
         coverages.append(
-            LineCoverage(line=line, candidates=candidates, screened=len(offers))
+            LineCoverage(
+                line=line, candidates=screening.ranked, screened=len(offers),
+                rejected=screening.rejected,
+            )
         )
-        for c in candidates:
-            bundles[c.offer.id] = build_bundle(c.verdict, repo.offers_for_support)
+        for c in screening.ranked:
+            bundles[c.offer.id] = build_bundle(c.verdict, facility, repo.offers_for_support)
+        advisory.update({c.offer.id: advisory_for(c) for c in screening.rejected})
 
     return TEMPLATES.TemplateResponse(
         request=request, name="matches.html",
         context={
             "request_row": row, "facility": facility,
-            "coverages": coverages, "bundles": bundles,
+            "coverages": coverages, "bundles": bundles, "advisory": advisory,
             "symbol": TONE_BY_STATUS, "tone": TONE_BY_OUTCOME,
         },
     )
@@ -265,10 +273,22 @@ def create_match(
     if row is None or offer is None:
         return _error(request, "That request or offer no longer exists.")
     facility = repo.load_facility(row.facility_slug)
+    if facility is None:
+        return _error(request, f"No facility profile for {row.facility_slug}.")
 
-    candidates = [c for c in rank_candidates(facility, [offer]) if c.offer.id == offer_id]
-    if not candidates:
-        return _error(request, "That device no longer passes the screening for this facility.")
+    screening = screen_offers(facility, [offer], intel_for=supply_lookup)
+    candidates = [c for c in screening.ranked if c.offer.id == offer_id]
+    back = f"/request/{request_id}/matches"
+    if not candidates or candidates[0].verdict.outcome is Outcome.WONT_WORK:
+        return _error(
+            request, "That device no longer passes the screening for this facility.", back=back
+        )
+    if candidates[0].verdict.outcome is Outcome.NEEDS_INFO:
+        return _error(
+            request,
+            "That device has open questions. Answer them before asking the donor.",
+            back=back,
+        )
 
     try:
         wanted = next(
@@ -534,13 +554,6 @@ def _lines_from(types: list[str], quantities: list[str]) -> tuple[RequestLine, .
     if not lines:
         raise FormError("Name at least one kind of equipment you need.")
     return tuple(lines)
-
-
-def _with_expiry(device: DeviceFacts, expiry: date | None) -> DeviceFacts:
-    """Attach the donor's expiry date, leaving it unknown when none was given."""
-    if expiry is None:
-        return device
-    return replace(device, expiry_date=fact(expiry, Provenance.DONOR_STATED))
 
 
 def _device_pairs(offer: Offer) -> list[tuple[str, str]]:

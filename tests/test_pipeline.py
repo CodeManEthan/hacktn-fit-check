@@ -71,7 +71,7 @@ def needs_a_transformer_device():
     )
 
 
-def full_intel(device_facts, country):
+def full_intel(device_facts, device_type, country):
     return intel(country=country)
 
 
@@ -166,7 +166,7 @@ def test_the_default_lookup_needs_no_model_and_still_ranks():
 
 
 def test_the_default_lookup_states_nothing_about_the_country():
-    stated = empty_intel(device(), "Testland")
+    stated = empty_intel(device(), "ventilator", "Testland")
 
     assert stated.country == "Testland"
     assert not stated.consumables_available.known
@@ -176,7 +176,7 @@ def test_the_default_lookup_states_nothing_about_the_country():
 def test_the_intel_lookup_sees_each_offer_device_and_the_facility_country():
     seen = []
 
-    def recording_lookup(device_facts, country):
+    def recording_lookup(device_facts, device_type, country):
         seen.append((device_facts.model.value, country))
         return intel(country=country)
 
@@ -186,7 +186,7 @@ def test_the_intel_lookup_sees_each_offer_device_and_the_facility_country():
 
 
 def test_a_lookup_that_returns_the_wrong_type_is_rejected_loudly():
-    def broken_lookup(device_facts, country):
+    def broken_lookup(device_facts, device_type, country):
         return {"country": country}
 
     with pytest.raises(TypeError, match="SupplyIntel"):

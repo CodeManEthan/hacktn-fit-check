@@ -14,7 +14,7 @@ failed check, and a short distance can never buy a blocker off.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import date
 from typing import Callable, Iterable
 
@@ -26,9 +26,11 @@ from app.domain.result import Outcome, Verdict
 from app.domain.shipment import Shipment, estimate_shipment
 from app.matching.distance import facility_point, haversine_km
 
-#: Looks up what the country can support for one device. Injected so the
-#: pipeline never reaches for a model itself, and tests never need one.
-IntelLookup = Callable[[DeviceFacts, str], SupplyIntel]
+#: Looks up what the country can support for one device, called as
+#: intel_for(device, device_type, country). The device type is the offer's,
+#: so a recorded answer for "any model of this type" can be found. Injected so
+#: the pipeline never reaches for a network itself, and tests never need one.
+IntelLookup = Callable[[DeviceFacts, str, str], SupplyIntel]
 
 MIN_MATCH_QUANTITY = 1
 
@@ -59,7 +61,20 @@ class Candidate:
         return len(self.verdict.conditional)
 
 
-def empty_intel(device: DeviceFacts, country: str) -> SupplyIntel:
+@dataclass(frozen=True)
+class Screening:
+    """Every offer handed in, split by the screening.
+
+    `ranked` is what `rank_candidates` returns: the survivors, in order.
+    `rejected` holds the offers whose verdict is WONT_WORK, in offer order,
+    each with the verdict that rejected it, so the page can say why.
+    """
+
+    ranked: list[Candidate] = field(default_factory=list)
+    rejected: tuple[Candidate, ...] = ()
+
+
+def empty_intel(device: DeviceFacts, device_type: str, country: str) -> SupplyIntel:
     """The default lookup: states nothing, so the pipeline runs with no network."""
     return SupplyIntel(country=country)
 
@@ -84,6 +99,20 @@ def rank_candidates(
     )
     survivors = tuple(c for c in assessed if c.verdict.outcome is not Outcome.WONT_WORK)
     return sorted(survivors, key=_sort_key)
+
+
+def screen_offers(
+    facility: FacilityProfile,
+    offers: Iterable[Offer],
+    intel_for: IntelLookup = empty_intel,
+    *,
+    today: date | None = None,
+) -> Screening:
+    """The survivors in rank order, and the offers the screening rejected."""
+    return Screening(
+        ranked=rank_candidates(facility, offers, intel_for, today=today),
+        rejected=(),
+    )
 
 
 def propose_match(
@@ -125,7 +154,7 @@ def _assess(
     intel_for: IntelLookup,
 ) -> Candidate:
     """Run the compatibility predicate, then measure the distance. In that order."""
-    intel = intel_for(offer.device, facility.country)
+    intel = intel_for(offer.device, offer.device_type, facility.country)
     if not isinstance(intel, SupplyIntel):
         raise TypeError(
             f"The intel lookup must return a SupplyIntel; got {type(intel).__name__}."

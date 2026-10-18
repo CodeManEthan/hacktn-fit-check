@@ -10,6 +10,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Callable, Iterable
 
+from app.domain.facility import FacilityProfile
 from app.domain.marketplace import Offer
 from app.domain.requirement import Requirement
 from app.domain.result import Verdict
@@ -28,6 +29,10 @@ class BundleItem:
 
     requirement: Requirement
     offers: tuple[Offer, ...] = ()
+    # Power add-on offers whose own plate fails at this clinic's mains.
+    rejected_offers: tuple[Offer, ...] = ()
+    # Power add-on offers whose plate cannot be checked here yet.
+    unverified_offers: tuple[Offer, ...] = ()
 
     @property
     def available(self) -> bool:
@@ -77,8 +82,13 @@ class Bundle:
         return f"{len(self.covered)} of {len(self.shippable)} items can be sourced."
 
 
-def build_bundle(verdict: Verdict, find_offers: OfferFinder = no_offers) -> Bundle:
-    """Search the inventory once per requirement this verdict raised."""
+def build_bundle(
+    verdict: Verdict, facility: FacilityProfile, find_offers: OfferFinder = no_offers
+) -> Bundle:
+    """Search the inventory once per requirement this verdict raised.
+
+    `facility` is the clinic the add-ons must run at.
+    """
     items = []
     for requirement in verdict.needs:
         offers = ()

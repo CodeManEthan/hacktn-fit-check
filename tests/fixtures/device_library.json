@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "drive-525ks",
+    "manufacturer": "Drive DeVilbiss",
+    "model": "525KS",
+    "aliases": ["DeVilbiss 525", "525 series"],
+    "device_type": "oxygen concentrator",
+    "facts": {
+      "voltage_min_v": {"value": 230, "source": "spec sheet", "document": "drive-525ks/manual.txt", "page": 32, "quote": "230 VAC"},
+      "frequencies_hz": {"value": [50], "source": "spec sheet", "document": "drive-525ks/manual.txt", "page": 32, "quote": "50 Hz"},
+      "manual_languages": {"value": ["en", "es", "fr"], "source": "spec sheet", "document": "drive-525ks/manual.txt", "page": 1, "quote": "ENGLISH ESPANOL FRANCAIS"},
+      "model": {"value": "525KS", "source": "FDA GUDID", "document": "drive-525ks/gudid.json", "quote": "525KS"},
+      "humidity_max_pct": {"value": 95, "source": "spec sheet", "document": "drive-525ks/manual.txt", "page": 33, "quote": "humidity not stated"},
+      "year_introduced": {"value": 2008, "source": "spec sheet"}
+    },
+    "documents": [
+      {"file": "drive-525ks/manual.txt", "title": "525KS owner's manual", "url": "https://example.org/525ks.pdf", "kind": "manual", "languages": ["en", "es", "fr"]},
+      {"file": "drive-525ks/gudid.json", "title": "GUDID record 525KS", "url": "https://example.org/gudid", "kind": "registry", "languages": ["English"]}
+    ],
+    "notes": "fixture"
+  },
+  {
+    "slug": "drive-525ds",
+    "manufacturer": "Drive DeVilbiss",
+    "model": "525DS",
+    "aliases": ["DeVilbiss 525", "525DS-Q"],
+    "device_type": "oxygen concentrator",
+    "facts": {
+      "frequencies_hz": {"value": [], "source": "spec sheet", "document": "drive-525ds/manual.txt", "quote": ""}
+    },
+    "documents": [],
+    "notes": ""
+  }
+]

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from app.domain.device import DeviceFacts, SupplyIntel
 from app.domain.facility import FacilityProfile
+from app.domain.language import normalise_languages
 from app.domain.requirement import Requirement, RequirementKind
 from app.domain.result import CheckResult, CheckStatus
 
@@ -14,7 +15,7 @@ def check_manual_language(
     device: DeviceFacts, facility: FacilityProfile, intel: SupplyIntel
 ) -> CheckResult:
     languages = device.manual_languages
-    staff = facility.staff_languages
+    staff = normalise_languages(facility.staff_languages)
 
     if not languages.known:
         return CheckResult(
@@ -27,7 +28,8 @@ def check_manual_language(
             source=languages.source,
         )
 
-    shared = set(languages.value) & set(staff)
+    manual = normalise_languages(languages.value)
+    shared = set(manual) & set(staff)
     if shared:
         return CheckResult(
             key="manual",
@@ -42,7 +44,7 @@ def check_manual_language(
         key="manual",
         label="Manual language",
         status=CheckStatus.MITIGABLE,
-        detail=f"The manual is in {', '.join(languages.value)}, but staff read "
+        detail=f"The manual is in {', '.join(manual)}, but staff read "
         f"{', '.join(staff)}.",
         fix=f"A service and user manual translated into {wanted}.",
         source=languages.source,

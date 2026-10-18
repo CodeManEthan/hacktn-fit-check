@@ -38,7 +38,14 @@ class DeviceFacts:
 
     consumables: Fact = UNKNOWN
     expiry_date: Fact = UNKNOWN
+    # The donor's answer to "does anything in this consignment expire?". A
+    # blank expiry field on the offer form is that answer: False.
+    dated_items: Fact = UNKNOWN
     manual_languages: Fact = UNKNOWN
+    # The manufacturer's documents for this model, as a list of dicts
+    # {"slug", "file", "title", "url", "languages"}. The packet reads the
+    # text through these; the manual check reads that one exists.
+    documents: Fact = UNKNOWN
     operating_complexity: Fact = UNKNOWN
 
     raw_input: str = ""
@@ -83,7 +90,7 @@ class DeviceFacts:
 
 @dataclass(frozen=True)
 class SupplyIntel:
-    """What the model found about supporting this device in one country.
+    """What is known about supporting this device in one country.
 
     Separate from DeviceFacts because this is research about a country, not a
     property of the machine.
@@ -93,4 +100,7 @@ class SupplyIntel:
     consumables_available: Fact = UNKNOWN
     spare_parts_available: Fact = UNKNOWN
     manufacturer_supported: Fact = UNKNOWN
+    # Can the clinic buy this kind of device in-country? Read by the
+    # buy-locally advisory, never by a check.
+    sold_locally: Fact = UNKNOWN
     reasoning: str = ""

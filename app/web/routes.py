@@ -10,12 +10,12 @@ from fastapi.templating import Jinja2Templates
 
 from app.ai.client import GenAiError
 from app.ai.extract import extract_device, image_to_data_url
-from app.ai.research import research_supply
 from app.checks import check_fit
 from app.data import repository
 from app.data.repository import RepositoryError
 from app.data.seed import FACILITIES, get_facility
 from app.domain.result import CheckStatus, Outcome
+from app.matching.supply_order import supply_lookup
 from app.web.presenters import (
     TONE_BY_OUTCOME,
     TONE_BY_OUTCOME_VALUE,
@@ -101,7 +101,9 @@ def run_check(
         return _error(request, str(exc), back=f"/clinic?device_id={device_id}")
 
     try:
-        intel = research_supply(stored, facility.country)
+        # No device type is stored on this path, so only a recorded answer
+        # for this exact model can apply.
+        intel = supply_lookup(stored, "", facility.country)
         verdict = check_fit(stored, facility, intel)
         verdict_id = repository.save_verdict(
             device_id=device_id,

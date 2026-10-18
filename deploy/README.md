@@ -28,8 +28,8 @@ option.
    ```
    DATABASE_URL=mysql+pymysql://<admin>:<password>@10.0.1.106:3306/fitcheck
    OCI_REGION=us-chicago-1
-   REASONING_MODEL=meta.llama-3.3-70b-instruct
-   VISION_MODEL=meta.llama-3.2-90b-vision-instruct
+   REASONING_MODEL=openai.gpt-oss-120b
+   VISION_MODEL=meta.llama-4-maverick-17b-128e-instruct-fp8
    ```
 
 4. **Run the bootstrap:**

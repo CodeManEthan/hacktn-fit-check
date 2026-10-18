@@ -19,6 +19,11 @@ class Provenance(str, Enum):
     FACILITY_STATED = "clinic profile"
     MODEL_KNOWLEDGE = "model knowledge"
     STANDARD_DEFAULT = "IEC 60601-1 default"
+    # A public registry record (the FDA's GUDID). It affirms a fact; its
+    # silence never denies one, because it covers one market.
+    REGISTRY = "FDA GUDID"
+    # An answer the nonprofit wrote down for one device type in one country.
+    RECORDED = "recorded by the nonprofit"
     UNKNOWN = "unknown"
 
 
@@ -28,6 +33,8 @@ TRUSTED_SOURCES = frozenset(
         Provenance.SPEC_SHEET,
         Provenance.DONOR_STATED,
         Provenance.FACILITY_STATED,
+        Provenance.REGISTRY,
+        Provenance.RECORDED,
     }
 )
 

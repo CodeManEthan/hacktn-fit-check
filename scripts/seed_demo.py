@@ -13,6 +13,7 @@ from app.data import marketplace_repo as repo
 from app.data import repository
 from app.data.seed import FACILITIES
 from app.domain.device import DeviceFacts
+from app.domain.language import normalise_languages
 from app.domain.marketplace import GeoPoint, Offer
 from app.domain.provenance import Provenance, fact
 
@@ -21,6 +22,8 @@ OFFER_WINDOW_DAYS = 180
 
 
 def _device(**kwargs) -> DeviceFacts:
+    if "manual_languages" in kwargs:
+        kwargs["manual_languages"] = normalise_languages(kwargs["manual_languages"])
     return DeviceFacts(**{k: fact(v, STATED) for k, v in kwargs.items()})
 
 
