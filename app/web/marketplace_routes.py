@@ -11,7 +11,7 @@ from fastapi.templating import Jinja2Templates
 
 from app.ai.categorise import categorise_support
 from app.ai.client import GenAiError
-from app.ai.extract import extract_device, image_to_data_url
+from app.ai.extract import extract, extract_device, image_to_data_url
 from app.data import marketplace_repo as repo
 from app.data.repository import RepositoryError
 from app.domain.device import DeviceFacts
@@ -33,7 +33,7 @@ from app.matching.supply_order import supply_lookup
 from app.matching.verification import confirm, request_confirmation, withdraw
 from app.reference.country_power import country_centroid, lookup
 from app.reference.facility_registry import corroborates, find_candidates
-from app.web import forms
+from app.web import forms, inspector
 from app.web.forms import FormError
 from app.web.presenters import advisory_for, rule_count, TONE_BY_OUTCOME, TONE_BY_STATUS
 
@@ -95,16 +95,34 @@ async def offer_submit(
     donor_name: str = Form(default=""),
     donor_email: str = Form(default=""),
     nameplate: UploadFile | None = File(default=None),
+    extraction_id: str = Form(default=""),
+    cleared_fields: str = Form(default=""),
 ) -> HTMLResponse:
     try:
         typed = "\n".join(p for p in (model_name.strip(), spec_text.strip()) if p)
-        image_data_url = ""
-        if nameplate is not None and nameplate.filename:
-            image_data_url = image_to_data_url(await nameplate.read(), nameplate.content_type or "")
-        if not typed and not image_data_url:
-            raise FormError("Give a model name, paste spec text, or add a nameplate photo.")
+        device: DeviceFacts | None = None
+        # [B3]'s library_slug branch goes here, above the extraction_id branch
+        # (design §11: two disjoint if blocks, B3's first).
 
-        device = extract_device(typed_text=typed, image_data_url=image_data_url)
+        # [B4] Facts the inspector already read and showed, reloaded from the
+        # server's cache; the donor's "wrong" marks clear those fields. The
+        # client posts only the id and field names, never a value.
+        if device is None and extraction_id.strip():
+            held = repo.load_extraction(extraction_id.strip())
+            if held is None:
+                raise FormError(
+                    "The facts read for this offer have expired (they are kept for an "
+                    "hour). Press \"Read these facts now\" again, then post."
+                )
+            device = inspector.clear_fields(held.facts, inspector.parse_cleared(cleared_fields))
+
+        if device is None:
+            image_data_url = ""
+            if nameplate is not None and nameplate.filename:
+                image_data_url = image_to_data_url(await nameplate.read(), nameplate.content_type or "")
+            if not typed and not image_data_url:
+                raise FormError("Give a model name, paste spec text, or add a nameplate photo.")
+            device = extract_device(typed_text=typed, image_data_url=image_data_url)
         # The donor's expiry answer is the last word on the date, whatever
         # built the facts above it.
         device = forms.apply_dated_items(device, expiry_date)
@@ -419,32 +437,65 @@ def _range_text(low, high, unit: str) -> str:
 async def offer_extract(request: Request) -> JSONResponse:
     """Extract facts from what the donor has typed or photographed, without a reload.
 
-    Called by the inspector panel on the offer page. Never raises at the
-    client: a model failure comes back as an error string the panel shows in
-    place of the rows, because a blank panel would look like a device with no
-    facts rather than a service that did not answer.
+    Called by the inspector panel on the offer page. The extraction is held
+    server-side for an hour under `extraction_id`; posting the offer with
+    that id reuses exactly these facts. Each row carries its source and the
+    link to the page it was read from. Never raises at the client: a model
+    failure comes back as an error string the panel shows in place of the
+    rows, because a blank panel would look like a device with no facts rather
+    than a service that did not answer.
     """
     form = await request.form()
     typed = str(form.get("spec_text") or "").strip()
     model_name = str(form.get("model_name") or "").strip()
     combined = "\n".join(p for p in (model_name, typed) if p)
 
-    image_data_url = ""
-    upload = form.get("nameplate")
-    if upload is not None and getattr(upload, "filename", ""):
-        image_data_url = image_to_data_url(
-            await upload.read(), getattr(upload, "content_type", "") or ""
-        )
-
-    if not combined and not image_data_url:
-        return JSONResponse({"rows": [], "message": "Nothing to read yet."})
-
     try:
-        device = extract_device(typed_text=combined, image_data_url=image_data_url)
+        image_data_url = ""
+        upload = form.get("nameplate")
+        if upload is not None and getattr(upload, "filename", ""):
+            image_data_url = image_to_data_url(
+                await upload.read(), getattr(upload, "content_type", "") or ""
+            )
+        if not combined and not image_data_url:
+            return JSONResponse({"rows": [], "extraction_id": "", "message": "Nothing to read yet."})
+        extraction = extract(typed_text=combined, image_data_url=image_data_url)
     except (GenAiError, ValueError) as exc:
-        return JSONResponse({"rows": [], "message": str(exc)}, status_code=200)
+        return JSONResponse({"rows": [], "extraction_id": "", "message": str(exc)}, status_code=200)
 
-    return JSONResponse({"rows": _inspector_rows(device), "message": ""})
+    rows = inspector.inspector_rows(extraction.facts, extraction.citations)
+    message = _extract_message(extraction, rows)
+    try:
+        extraction_id = repo.save_extraction(extraction.facts, extraction.stored_document())
+    except RepositoryError:
+        # The rows are still worth showing; posting re-reads the source.
+        extraction_id = ""
+        message = f"{message} These facts could not be held, so posting reads the source again."
+    return JSONResponse({
+        "rows": rows,
+        "extraction_id": extraction_id,
+        "library_slug": extraction.library_slug,
+        "device_type": extraction.device_type,
+        "message": message,
+    })
+
+
+def _extract_message(extraction, rows: list[dict]) -> str:
+    known = sum(1 for r in rows if r["known"])
+    if extraction.library_hit:
+        return (
+            f"{extraction.facts.label}: facts from the device library's manufacturer "
+            f"documents. Each row links to the page it was read from."
+        )
+    if not known:
+        return (
+            "No library entry for this model, and nothing checkable was printed in "
+            "what you gave. Every fact stays unknown and comes back as a question."
+        )
+    return (
+        "No library entry for this model. These facts were read from what you gave; "
+        "a value not printed there was left unknown."
+    )
 
 
 # ---- recipient verification --------------------------------------------

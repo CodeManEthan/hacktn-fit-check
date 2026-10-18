@@ -91,18 +91,26 @@
       </p>
       <table class="audit inspector-table">
         <thead>
-          <tr><th scope="col">Field</th><th scope="col">Value</th><th scope="col">Provenance</th></tr>
+          <tr><th scope="col">Field</th><th scope="col">Value</th><th scope="col">Provenance</th><th scope="col"><span class="visually-hidden">Confirm</span></th></tr>
         </thead>
         <tbody data-inspector-body>
-          {% for label in ("Model", "Voltage", "Frequency", "Power", "Operating temp") %}
+          {% for label in ("Model", "Voltage", "Frequency", "Power", "Operating temp", "Humidity", "Year made", "Consumables", "Manual languages", "Needs oxygen", "Needs compressed air", "Needs distilled water", "Needs stable power", "Operating complexity") %}
           <tr>
             <td class="audit-name">{{ label }}</td>
             <td class="audit-value is-empty">&mdash;</td>
             <td><span class="tag" data-source="unverified">unverified</span></td>
+            <td></td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
+      {# The confirm controls: the server holds the facts under this id; the
+         donor's "wrong" marks post field names only, never a value. #}
+      <input type="hidden" name="extraction_id" value="" data-extraction-id>
+      <input type="hidden" name="cleared_fields" value="" data-cleared-fields>
+      <p class="note inspector-confirm" data-inspector-confirm hidden>Mark a row
+         <b>wrong</b> and it is posted as unknown, so the clinic is asked instead.
+         To give a different number, paste or photograph the document that prints it.</p>
       <p class="inspector-msg" data-inspector-msg></p>
     </div>
   </div>
@@ -157,6 +165,18 @@
   </form>
 </section>
 
+<style>
+  /* [B4] inspector rows: source link, "wrong" mark, a cleared row. */
+  #inspector .source-link { font-size: 12px; margin-left: 4px; white-space: nowrap; }
+  #inspector .source-why { display: block; font-size: 12px; color: var(--etch); margin-top: 2px; }
+  #inspector .row-wrong { font: inherit; font-size: 12px; padding: 1px 8px; border-radius: 999px;
+    border: 1px solid var(--rule); background: transparent; color: var(--etch); cursor: pointer; }
+  #inspector .row-wrong[aria-pressed="true"] { border-color: currentColor; color: var(--ink); }
+  #inspector tr.is-cleared .audit-value { text-decoration: line-through; opacity: 0.6; }
+  #inspector .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; }
+</style>
+
 <script>
   // The inspector reads the plate without posting the offer, so the donor sees
   // what was understood before committing. Fires on request, never per keystroke:
@@ -168,15 +188,88 @@
     var message = document.querySelector('[data-inspector-msg]');
     if (!form || !button || !body) return;
 
-    var FIELDS = ['Model', 'Voltage', 'Frequency', 'Power', 'Operating temp'];
+    var idInput = form.querySelector('[data-extraction-id]');
+    var clearedInput = form.querySelector('[data-cleared-fields]');
+    var confirmNote = document.querySelector('[data-inspector-confirm]');
+    var FIELDS = Array.prototype.map.call(
+      body.querySelectorAll('.audit-name'), function (td) { return td.textContent; });
+    var cleared = [];
 
     function blankRows() {
       return FIELDS.map(function (label) {
-        return { label: label, value: '', source: 'unverified', known: false };
+        return { label: label, value: '', source: 'unverified', known: false, field: '' };
       });
     }
 
-    function render(rows) {
+    function writeCleared() {
+      if (clearedInput) clearedInput.value = cleared.join(',');
+    }
+
+    // Facts read from an earlier source no longer describe what is in the form.
+    function forget() {
+      if (idInput) idInput.value = '';
+      cleared = [];
+      writeCleared();
+      if (confirmNote) confirmNote.hidden = true;
+    }
+
+    function sourceCell(row) {
+      var cell = document.createElement('td');
+      var tag = document.createElement('span');
+      tag.className = 'tag';
+      tag.setAttribute('data-source', row.source);
+      tag.textContent = row.source;
+      cell.appendChild(tag);
+      if (row.known && row.source_url) {
+        var link = document.createElement('a');
+        link.className = 'source-link';
+        link.href = row.source_url;
+        link.target = '_blank';
+        link.rel = 'noopener';
+        link.textContent = row.page ? 'p.' + row.page : 'source';
+        if (row.document) link.title = row.document + (row.page ? ', page ' + row.page : '');
+        cell.appendChild(document.createTextNode(' '));
+        cell.appendChild(link);
+      } else if (row.known && row.note) {
+        tag.title = row.note;
+      } else if (!row.known && row.note) {
+        var why = document.createElement('span');
+        why.className = 'source-why';
+        why.textContent = row.note;
+        cell.appendChild(document.createTextNode(' '));
+        cell.appendChild(why);
+      }
+      return cell;
+    }
+
+    function wrongCell(row, tr, valueCell, canMark) {
+      var cell = document.createElement('td');
+      if (!canMark || !row.known || !row.field) return cell;
+      var mark = document.createElement('button');
+      mark.type = 'button';
+      mark.className = 'row-wrong';
+      mark.textContent = 'wrong';
+      mark.setAttribute('aria-pressed', 'false');
+      mark.setAttribute('aria-label', 'Mark ' + row.label + ' wrong');
+      mark.addEventListener('click', function () {
+        var names = row.field.split(',');
+        var on = mark.getAttribute('aria-pressed') !== 'true';
+        names.forEach(function (name) {
+          var at = cleared.indexOf(name);
+          if (on && at === -1) cleared.push(name);
+          if (!on && at !== -1) cleared.splice(at, 1);
+        });
+        writeCleared();
+        mark.setAttribute('aria-pressed', String(on));
+        mark.textContent = on ? 'undo' : 'wrong';
+        tr.classList.toggle('is-cleared', on);
+        valueCell.title = on ? 'Will be posted as unknown' : '';
+      });
+      cell.appendChild(mark);
+      return cell;
+    }
+
+    function render(rows, canMark) {
       body.textContent = '';
       rows.forEach(function (row) {
         var tr = document.createElement('tr');
@@ -189,16 +282,10 @@
         value.className = row.known ? 'audit-value' : 'audit-value is-empty';
         value.textContent = row.known ? row.value : '\u2014';
 
-        var source = document.createElement('td');
-        var tag = document.createElement('span');
-        tag.className = 'tag';
-        tag.setAttribute('data-source', row.source);
-        tag.textContent = row.source;
-        source.appendChild(tag);
-
         tr.appendChild(name);
         tr.appendChild(value);
-        tr.appendChild(source);
+        tr.appendChild(sourceCell(row));
+        tr.appendChild(wrongCell(row, tr, value, canMark));
         body.appendChild(tr);
       });
     }
@@ -214,6 +301,18 @@
       bannerText.textContent = text;
     }
 
+    ['model_name', 'spec_text', 'nameplate'].forEach(function (field) {
+      var input = form.elements[field];
+      if (!input || !input.addEventListener) return;
+      input.addEventListener(input.type === 'file' ? 'change' : 'input', function () {
+        if (idInput && idInput.value) {
+          forget();
+          render(blankRows(), false);
+          status('working', 'STATUS: SOURCE CHANGED, READ AGAIN');
+        }
+      });
+    });
+
     button.addEventListener('click', function () {
       var payload = new FormData();
       ['model_name', 'spec_text', 'nameplate'].forEach(function (field) {
@@ -227,13 +326,19 @@
       });
 
       button.disabled = true;
+      forget();
       status('working', 'STATUS: READING ARTIFACT');
       say('');
       fetch('/offer/extract', { method: 'POST', body: payload })
         .then(function (response) { return response.json(); })
         .then(function (data) {
           var rows = data.rows && data.rows.length ? data.rows : blankRows();
-          render(rows);
+          var held = Boolean(data.extraction_id);
+          if (idInput) idInput.value = data.extraction_id || '';
+          if (confirmNote) confirmNote.hidden = !held;
+          render(rows, held);
+          var typeInput = form.elements['device_type'];
+          if (typeInput && !typeInput.value && data.device_type) typeInput.value = data.device_type;
           var known = rows.filter(function (r) { return r.known; }).length;
           status(known ? 'live' : '', known
             ? 'STATUS: ' + known + ' FACT' + (known === 1 ? '' : 'S') + ' EXTRACTED'
@@ -241,7 +346,7 @@
           say(data.message || '');
         })
         .catch(function () {
-          render(blankRows());
+          render(blankRows(), false);
           status('', 'STATUS: READER UNREACHABLE');
           say('The offer can still be posted; the facts are read again on submit.');
         })
