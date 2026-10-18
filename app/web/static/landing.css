@@ -1,0 +1,47 @@
+/* Landing-only rules ([B13], design §13). The shared lander-* classes
+   (hero, cards, CTA) live in style.css from upstream; this file adds only
+   what the upstream stylesheet lacks. Light theme; every colour reads on
+   white. */
+
+/* Our subhead is longer than upstream's one-liner. */
+.lander-hero > p { max-width: 60ch; }
+
+/* Small label above each card title and before the operator line. */
+.lander-kicker {
+  display: block;
+  font: 600 12px/1.4 var(--mono, ui-monospace, monospace);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--etch, #5B6779);
+  margin: 0 0 var(--s2, 8px);
+}
+
+/* The quiet second link on the clinic card. */
+.lander-alt {
+  display: block;
+  margin-top: var(--s3, 12px);
+  font-size: 14px;
+  color: var(--accent-text, #1D4ED8);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.lander-alt:hover { color: var(--accent-deep, #1D4ED8); }
+
+/* One-line operator strip under the cards ([F2]): the nonprofit between
+   donor and clinic, the middlemen in grey. */
+.lander-operator {
+  max-width: 880px;
+  margin: var(--s5, 32px) auto 0;
+  padding: var(--s4, 20px) var(--s5, 32px);
+  background: var(--face, #FFFFFF);
+  border: 1px solid var(--rule, #E5E7EB);
+  border-radius: 12px;
+  text-align: center;
+}
+.lander-operator p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink, #0F172A); }
+.lander-operator .lander-kicker { display: inline; margin: 0 var(--s1, 4px) 0 0; }
+.lander-operator .lander-middlemen { margin-top: var(--s2, 8px); font-size: 13px; color: var(--faint, #667080); }
+
+@media (max-width: 760px) {
+  .lander-operator { padding: var(--s4, 20px); text-align: left; }
+}
