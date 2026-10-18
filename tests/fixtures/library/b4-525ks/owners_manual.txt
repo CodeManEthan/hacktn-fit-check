@@ -1,0 +1,9 @@
+SYMBOL DEFINITIONS
+Operating Temperature
+Range +5 to +35˚C (+41 to +95˚F)
+SPECIFICATIONS
+DEVILBISS 5-LITER SERIES
+Catalog Number 525DS, 525DS-Q | 525KS, 525KS-LT
+Electrical Rating 115 V, 60 Hz, 3.3 Amp | 220-230 V~, 50 Hz, 1.55 Amp
+Operating Voltage Range 97-127 V~, 60 Hz | 187-253 V~, 50 Hz
+Operating Relative Humidity Range 15% to 93%, non-condensing
