@@ -17,6 +17,7 @@ from app.data import marketplace_repo as repo
 from app.data.repository import RepositoryError
 from app.domain.device import DeviceFacts
 from app.domain.facility import FacilityProfile
+from app.domain.language import normalise_languages
 from app.domain.facility_trust import Verification, VerificationStatus
 from app.domain.marketplace import (
     GeoPoint,
@@ -172,7 +173,8 @@ async def facility_submit(request: Request) -> HTMLResponse:
             has_compressed_air=forms.flag(form.get("has_compressed_air")),
             has_biomed_technician=forms.flag(form.get("has_biomed_technician")),
             trained_operators=forms.flag(form.get("trained_operators")),
-            staff_languages=forms.comma_list(str(form.get("staff_languages", ""))) or ("English",),
+            staff_languages=tuple(normalise_languages(
+                forms.comma_list(str(form.get("staff_languages", ""))))) or ("English",),
             notes=forms.text(str(form.get("notes", "")), "Notes", limit=600),
             latitude=latitude,
             longitude=longitude,
