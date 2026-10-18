@@ -1,6 +1,9 @@
 """Check the seeded demo on the live site: the Kayunga matches page shows the three verdicts.
 
-    python3 deploy/check_live.py http://147.224.201.81 < seed-output.txt
+    python3 deploy/check_live.py https://fitcheck.care < seed-output.txt
+
+With no base it checks https://fitcheck.care. deploy/redeploy.sh always passes one:
+the VM's bare IP over plain HTTP, then the hostname when it resolves.
 
 Standard library only, so it runs with any python3. Reads the output of
 scripts/seed_demo.py (or deploy/demo_ids.py) on stdin: the first three offer lines
@@ -19,6 +22,7 @@ import urllib.error
 import urllib.request
 
 KAYUNGA = "uganda-district"
+DEFAULT_BASE = "https://fitcheck.care"
 
 
 def fetch(url: str) -> tuple[int, str]:
@@ -39,7 +43,7 @@ def parse(seed_output: str) -> tuple[int | None, list[tuple[int, str]]]:
 
 
 def main(argv: list[str]) -> int:
-    base = argv[1].rstrip("/") if len(argv) > 1 else "http://147.224.201.81"
+    base = (argv[1] if len(argv) > 1 else DEFAULT_BASE).rstrip("/")
     request_id, hero = parse(sys.stdin.read())
     problems: list[str] = []
     if request_id is None or len(hero) < 3:

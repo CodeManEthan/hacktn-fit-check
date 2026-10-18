@@ -8,6 +8,7 @@ the other VM commands. Nothing here reaches the VM."""
 
 from __future__ import annotations
 
+import base64
 import importlib.util
 import os
 import py_compile
@@ -17,6 +18,7 @@ import socket
 import stat
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 import pytest
@@ -95,7 +97,8 @@ def _stubs(tmp_path: Path, **scripts: str) -> dict[str, str]:
     return env
 
 
-SUDO = 'exec "$@"'
+# `sudo -u caddy cmd` runs cmd as the test's user.
+SUDO = 'if [ "${1:-}" = -u ]; then shift 2; fi; exec "$@"'
 
 
 def _run(script: str, env: dict[str, str], *args: str) -> subprocess.CompletedProcess:
@@ -116,6 +119,7 @@ def _remote(function: str, root: Path, port: int | None = None) -> str:
     body = body[body.index("<<'REMOTE'\n") + len("<<'REMOTE'\n"):]
     body = body[:body.index("\nREMOTE\n") + 1]
     body = body.replace("/opt/fitcheck", str(root / "opt" / "fitcheck"))
+    body = body.replace("/etc/caddy", str(root / "etc" / "caddy"))
     if port is not None:
         assert "PORT=8001;" in body
         body = body.replace("PORT=8001;", f"PORT={port};")
@@ -126,7 +130,10 @@ VM_STUBS = {
     "sudo": SUDO,
     "systemctl": 'echo "systemctl $*" >> "$STUB_LOG"\n'
                  'if [ "$1" = is-active ]; then echo "${STUB_UNIT_STATE:-inactive}";'
-                 ' [ "${STUB_UNIT_STATE:-inactive}" = active ]; exit; fi',
+                 ' [ "${STUB_UNIT_STATE:-inactive}" = active ]; exit; fi\n'
+                 'if [ "$1" = reload-or-restart ] && [ -n "${STUB_RELOAD_FAIL:-}" ]; then exit 1; fi',
+    # caddy validate: fails when STUB_CADDY_INVALID is set.
+    "caddy": 'echo "caddy $*" >> "$STUB_LOG"\n[ -z "${STUB_CADDY_INVALID:-}" ]',
     "systemd-run": 'echo "systemd-run $*" >> "$STUB_LOG"',
     "journalctl": 'echo "(journal)"',
     "sleep": "exit 0",
@@ -214,11 +221,9 @@ def test_python_helpers_compile(script, tmp_path):
     py_compile.compile(str(script), cfile=str(tmp_path / "out.pyc"), doraise=True)
 
 
-def test_bootstrap_points_at_the_fork_on_port_80_with_the_capability():
+def test_bootstrap_points_at_the_fork():
     text = (DEPLOY / "bootstrap.sh").read_text()
     assert 'REPO="https://github.com/CodeManEthan/hacktn-fit-check.git"' in text
-    assert 'PORT="80"' in text
-    assert "AmbientCapabilities=CAP_NET_BIND_SERVICE" in text
 
 
 def test_nothing_under_deploy_carries_an_ocid_or_a_password():
@@ -355,6 +360,17 @@ def test_l4_stage_says_ok_only_when_the_unit_is_active(tmp_path, vm, state):
         assert "(journal)" in result.stdout
 
 
+def _caddy(root: Path, installed: str | None = None, new: str | None = None) -> list[str]:
+    """etc/caddy under root holding `installed` (deploy/Caddyfile by default); returns the
+    cutover remote's Caddyfile argument, base64 of `new` (deploy/Caddyfile by default)."""
+    current = (DEPLOY / "Caddyfile").read_text()
+    caddy_dir = root / "etc" / "caddy"
+    caddy_dir.mkdir(parents=True, exist_ok=True)
+    (caddy_dir / "Caddyfile").write_text(current if installed is None else installed)
+    payload = (current if new is None else new).encode()
+    return [base64.b64encode(payload).decode()]
+
+
 def _checkout(path: Path, fork: Fork, commit: str) -> None:
     """A detached checkout of the fork at path, as stage and cutover leave one."""
     path.mkdir(parents=True, exist_ok=True)
@@ -373,7 +389,7 @@ def test_l5_cutover_to_the_live_head_keeps_the_rollback(tmp_path, vm):
     (opt / "fitcheck-prev" / "rollback-marker").write_text("the real previous head\n")
     vm["STUB_UNIT_STATE"] = "active"
     _stubs(tmp_path, curl="exit 0")  # joins the vm's stubs on its PATH
-    result = _run(_remote("cutover", tmp_path), vm, fork.main)
+    result = _run(_remote("cutover", tmp_path), vm, fork.main, *_caddy(tmp_path))
     assert result.returncode == 0, result.stdout + result.stderr
     assert "restart only" in result.stdout
     assert not (opt / "fitcheck-next").exists()
@@ -395,7 +411,7 @@ def test_l5_cutover_to_a_new_head_still_swaps(tmp_path, vm):
     (opt / "fitcheck-prev" / "rollback-marker").write_text("older\n")
     vm["STUB_UNIT_STATE"] = "active"
     _stubs(tmp_path, curl="exit 0")  # joins the vm's stubs on its PATH
-    result = _run(_remote("cutover", tmp_path), vm, fork.main)
+    result = _run(_remote("cutover", tmp_path), vm, fork.main, *_caddy(tmp_path))
     assert result.returncode == 0, result.stdout + result.stderr
     assert _git(opt / "fitcheck", "rev-parse", "HEAD") == fork.main
     assert _git(opt / "fitcheck-prev", "rev-parse", "HEAD") == fork.first
@@ -404,11 +420,13 @@ def test_l5_cutover_to_a_new_head_still_swaps(tmp_path, vm):
 
 
 def test_l6_every_curl_assignment_survives_set_e():
-    """Under set -e, code=$(curl ...) exits on a refused or timed-out connection."""
+    """Under set -e, code=$(curl ...) exits on a refused or timed-out connection.
+    [B11]: `msg=$(curl ...) || rc=$?` keeps curl's exit code and survives too."""
     for script in SHELL_SCRIPTS:
         for line in script.read_text().splitlines():
             if re.search(r"=\$\(curl ", line):
-                assert re.search(r"\|\| (true|echo [^)]*)\)", line), f"{script.name}: {line.strip()}"
+                assert re.search(r"\|\| (true|echo [^)]*)\)|\) \|\| \w+=\$\?$", line), \
+                    f"{script.name}: {line.strip()}"
 
 
 @needs_git_bash
@@ -436,3 +454,358 @@ def test_l6_check_reports_every_path_when_the_site_is_unreachable(tmp_path):
     assert result.returncode == 1
     for path in ("/", "/offer", "/impact"):
         assert f"GET http://127.0.0.1:{port}{path} -> 000" in result.stdout
+
+
+# --- [B11] HTTPS on fitcheck.care (design 9.1) ---------------------------------------
+
+def _caddyfile_sites() -> dict[str, str]:
+    """deploy/Caddyfile's site blocks, address -> body, comments dropped."""
+    lines = [line for line in (DEPLOY / "Caddyfile").read_text().splitlines()
+             if line.strip() and not line.lstrip().startswith("#")]
+    sites, address, body = {}, None, []
+    for line in lines:
+        if address is None and line.endswith("{"):
+            address, body = line[:-1].strip(), []
+        elif address is not None and line.strip() == "}":
+            sites[address] = "\n".join(body)
+            address = None
+        else:
+            body.append(line.strip())
+    return sites
+
+
+def test_b11_caddyfile_has_the_name_and_the_ip_door_both_proxying_to_the_app():
+    sites = _caddyfile_sites()
+    assert set(sites) == {"fitcheck.care", "http://147.224.201.81"}
+    for body in sites.values():
+        assert "reverse_proxy 127.0.0.1:8000" in body
+        assert "redir" not in body
+    text = (DEPLOY / "Caddyfile").read_text()
+    assert text.count("fitcheck.care") == 1, "the public name is written once"
+    assert "{$" not in text and "{env." not in text, "no environment substitution"
+    assert "the one place" in text
+
+
+def test_b11_the_scripts_check_the_name_the_caddyfile_serves():
+    name = next(a for a in _caddyfile_sites() if not a.startswith("http://"))
+    assert f'PUBLIC_NAME="{name}"' in (DEPLOY / "redeploy.sh").read_text()
+    assert _load("check_live").DEFAULT_BASE == f"https://{name}"
+
+
+@pytest.mark.skipif(shutil.which("caddy") is None, reason="no caddy binary here")
+def test_b11_caddyfile_validates(tmp_path):
+    env = {**os.environ, "HOME": str(tmp_path), "XDG_DATA_HOME": str(tmp_path),
+           "XDG_CONFIG_HOME": str(tmp_path)}
+    result = subprocess.run(["caddy", "validate", "--config", str(DEPLOY / "Caddyfile"),
+                             "--adapter", "caddyfile"], env=env, capture_output=True, text=True)
+    assert result.returncode == 0, result.stderr[-2000:]
+
+
+def _fitcheck_unit(text: str) -> str:
+    start = text.index("/etc/systemd/system/${SERVICE}.service")
+    return text[start:text.index("\nUNIT\n", start)]
+
+
+def test_b11_bootstrap_unit_binds_localhost_with_proxy_headers_and_no_capability():
+    text = (DEPLOY / "bootstrap.sh").read_text()
+    unit = _fitcheck_unit(text)
+    assert 'BIND_HOST="127.0.0.1"' in text and 'PORT="8000"' in text
+    assert ("ExecStart=${APP_DIR}/.venv/bin/python -m uvicorn app.main:app --host ${BIND_HOST}"
+            " --port ${PORT} --proxy-headers --forwarded-allow-ips 127.0.0.1") in unit
+    assert "AmbientCapabilities" not in unit
+    assert "0.0.0.0" not in text
+    assert "--add-service=http " in text and "--add-service=https " in text
+
+
+def test_b11_bootstrap_installs_caddy_and_the_caddyfile():
+    text = (DEPLOY / "bootstrap.sh").read_text()
+    assert re.search(r'CADDY_VERSION="\d+\.\d+\.\d+"', text)
+    assert "sha512sum -c" in text, "the release tarball is checked against its checksum file"
+    assert 'sudo install -m 755 -o root -g root "$CADDY_TMP/caddy" /usr/local/bin/caddy' in text
+    assert 'sudo install -m 644 "$APP_DIR/deploy/Caddyfile" /etc/caddy/Caddyfile' in text
+    assert "caddy validate --config /etc/caddy/Caddyfile" in text
+    assert "User=caddy" in text and "ExecStart=/usr/local/bin/caddy run" in text
+    assert "sudo systemctl enable caddy" in text
+    # Caddy takes 80 only after the app has left it.
+    assert text.index("sudo systemctl restart ${SERVICE}") < text.index("reload-or-restart caddy")
+
+
+def test_b11_redeploy_waits_on_8000_and_says_public_checks():
+    text = (DEPLOY / "redeploy.sh").read_text()
+    assert text.count("curl -fs -o /dev/null http://127.0.0.1:8000/ && break") == 2
+    assert "127.0.0.1:80/" not in text
+    assert "port-80" not in text and "port 80" not in text
+    assert "public checks" in text
+    # check_live.py is always given its base, once per base.
+    assert re.findall(r'check_live\.py" (\S+)', text) == ['"$base"']
+
+
+# Cutover's Caddyfile step, run locally with /opt and /etc/caddy under tmp_path.
+
+def _swap_setup(tmp_path: Path, vm: dict) -> tuple[Fork, Path]:
+    fork = Fork(tmp_path)
+    opt = tmp_path / "opt"
+    _checkout(opt / "fitcheck", fork, fork.first)
+    _checkout(opt / "fitcheck-next", fork, fork.main)
+    vm["STUB_UNIT_STATE"] = "active"
+    _stubs(tmp_path, curl="exit 0")
+    return fork, opt
+
+
+@needs_git_bash
+def test_b11_cutover_installs_a_changed_caddyfile_before_stopping_the_app(tmp_path, vm):
+    fork, opt = _swap_setup(tmp_path, vm)
+    arg = _caddy(tmp_path, installed="old config\n")
+    result = _run(_remote("cutover", tmp_path), vm, fork.main, *arg)
+    assert result.returncode == 0, result.stdout + result.stderr
+    caddy_dir = tmp_path / "etc" / "caddy"
+    assert (caddy_dir / "Caddyfile").read_text() == (DEPLOY / "Caddyfile").read_text()
+    assert (caddy_dir / "Caddyfile.prev").read_text() == "old config\n"
+    assert not (caddy_dir / "Caddyfile.new").exists()
+    calls = Path(vm["STUB_LOG"]).read_text().splitlines()
+    validate = next(i for i, c in enumerate(calls) if c.startswith("caddy validate --config "))
+    reload = calls.index("systemctl reload-or-restart caddy")
+    assert validate < reload < calls.index("systemctl stop fitcheck")
+    assert _git(opt / "fitcheck", "rev-parse", "HEAD") == fork.main
+
+
+@needs_git_bash
+def test_b11_cutover_leaves_an_unchanged_caddyfile_and_drops_a_stale_prev(tmp_path, vm):
+    fork, opt = _swap_setup(tmp_path, vm)
+    arg = _caddy(tmp_path)
+    (tmp_path / "etc" / "caddy" / "Caddyfile.prev").write_text("from an older cutover\n")
+    result = _run(_remote("cutover", tmp_path), vm, fork.main, *arg)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "Caddyfile unchanged; removed a stale" in result.stdout
+    assert not (tmp_path / "etc" / "caddy" / "Caddyfile.prev").exists()
+    calls = Path(vm["STUB_LOG"]).read_text().splitlines()
+    assert not [c for c in calls if c.startswith("caddy ") or c.endswith(" caddy")]
+    assert _git(opt / "fitcheck", "rev-parse", "HEAD") == fork.main
+
+
+@needs_git_bash
+def test_b11_cutover_with_an_invalid_caddyfile_keeps_the_old_head_live(tmp_path, vm):
+    fork, opt = _swap_setup(tmp_path, vm)
+    arg = _caddy(tmp_path, installed="old config\n")
+    vm["STUB_CADDY_INVALID"] = "1"
+    result = _run(_remote("cutover", tmp_path), vm, fork.main, *arg)
+    assert result.returncode == 1
+    assert "!! the new Caddyfile does not validate" in result.stdout
+    caddy_dir = tmp_path / "etc" / "caddy"
+    assert (caddy_dir / "Caddyfile").read_text() == "old config\n"
+    assert not (caddy_dir / "Caddyfile.prev").exists()
+    assert not (caddy_dir / "Caddyfile.new").exists()
+    calls = Path(vm["STUB_LOG"]).read_text().splitlines()
+    assert "systemctl stop fitcheck" not in calls
+    assert "systemctl reload-or-restart caddy" not in calls
+    assert _git(opt / "fitcheck", "rev-parse", "HEAD") == fork.first
+
+
+@needs_git_bash
+def test_b11_cutover_puts_the_old_caddyfile_back_when_caddy_refuses_the_new(tmp_path, vm):
+    fork, opt = _swap_setup(tmp_path, vm)
+    arg = _caddy(tmp_path, installed="old config\n")
+    vm["STUB_RELOAD_FAIL"] = "1"
+    result = _run(_remote("cutover", tmp_path), vm, fork.main, *arg)
+    assert result.returncode == 1
+    assert "!! Caddy would not take the new Caddyfile" in result.stdout
+    caddy_dir = tmp_path / "etc" / "caddy"
+    assert (caddy_dir / "Caddyfile").read_text() == "old config\n"
+    assert not (caddy_dir / "Caddyfile.prev").exists()
+    assert "systemctl stop fitcheck" not in Path(vm["STUB_LOG"]).read_text().splitlines()
+    assert _git(opt / "fitcheck", "rev-parse", "HEAD") == fork.first
+
+
+@needs_git_bash
+@pytest.mark.parametrize("with_prev", [True, False])
+def test_b11_rollback_restores_the_caddyfile_only_when_cutover_replaced_it(tmp_path, vm, with_prev):
+    opt = tmp_path / "opt"
+    (opt / "fitcheck-prev").mkdir(parents=True)
+    _caddy(tmp_path, installed="new config\n")
+    caddy_dir = tmp_path / "etc" / "caddy"
+    if with_prev:
+        (caddy_dir / "Caddyfile.prev").write_text("old config\n")
+    _stubs(tmp_path, curl="exit 0", git="echo abc1234 head")
+    result = _run(_remote("rollback", tmp_path), vm)
+    assert result.returncode == 0, result.stdout + result.stderr
+    calls = Path(vm["STUB_LOG"]).read_text().splitlines()
+    if with_prev:
+        assert (caddy_dir / "Caddyfile").read_text() == "old config\n"
+        assert not (caddy_dir / "Caddyfile.prev").exists()
+        assert "systemctl reload-or-restart caddy" in calls
+    else:
+        assert (caddy_dir / "Caddyfile").read_text() == "new config\n"
+        assert "systemctl reload-or-restart caddy" not in calls
+
+
+# The public checks, run through redeploy.sh itself against fake sites on localhost.
+
+SEED_OUT = (
+    "  offer 8 added: DeVilbiss Healthcare 525DS x1 from Nashville\n"
+    "  offer 9 added: DeVilbiss Healthcare 525KS x1 from Leeds\n"
+    "  offer 10 added: this device x2 from Houston\n"
+    "  request 1 added: Kayunga, 1 oxygen concentrator\n"
+)
+
+# A site that passes check_live.py ("good"), shows a wrong matches page ("bad"), or
+# answers 404 everywhere ("404").
+FAKE_SITE = """
+import http.server, sys
+MATCHES = ('<a href="/request/1/offer/9">B</a> Ship with '
+           "<h2>Won't work at Kayunga District Hospital</h2>"
+           '<a href="/request/1/offer/8">A</a> Buy locally instead? '
+           '<a href="/request/1/offer/10">C</a> Needs info').encode()
+MODE = sys.argv[2]
+class Handler(http.server.BaseHTTPRequestHandler):
+    def do_GET(self):
+        status, body = 200, b"ok"
+        if MODE == "404":
+            status = 404
+        elif self.path.startswith("/request/1/matches"):
+            body = b"no verdicts here" if MODE == "bad" else MATCHES
+        self.send_response(status)
+        self.send_header("Content-Length", str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+    def log_message(self, *args):
+        pass
+http.server.HTTPServer(("127.0.0.1", int(sys.argv[1])), Handler).serve_forever()
+"""
+
+# Logs each call; answers the seed and demo_ids commands with SEED_OUT.
+SSH_STUB = '''cat > /dev/null
+echo "ssh $*" >> "$STUB_LOG"
+case "$*" in
+  *seed_demo*|*"python -") printf '%s' "$STUB_SEED" ;;
+esac'''
+
+
+@pytest.fixture
+def sites(tmp_path):
+    """Starts fake sites on demand: sites("good") -> its base URL."""
+    script = tmp_path / "fake_site.py"
+    script.write_text(FAKE_SITE)
+    procs = []
+
+    def start(mode: str) -> str:
+        port = _free_port()
+        procs.append(subprocess.Popen([sys.executable, str(script), str(port), mode],
+                                      stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL))
+        for _ in range(200):
+            try:
+                socket.create_connection(("127.0.0.1", port), timeout=0.1).close()
+                return f"http://127.0.0.1:{port}"
+            except OSError:
+                time.sleep(0.025)
+        raise RuntimeError("fake site did not start")
+
+    yield start
+    for proc in procs:
+        proc.terminate()
+        proc.wait(timeout=10)
+
+
+def _redeploy(tmp_path: Path, ip_site: str, *args: str, public_url: str | None = None,
+              getent: str = "exit 2", **stubs: str) -> subprocess.CompletedProcess:
+    env = _stubs(tmp_path, ssh=SSH_STUB, getent=getent, **stubs)
+    env.pop("FITCHECK_PUBLIC_URL", None)
+    env.update(FITCHECK_HOST="opc@" + ip_site.removeprefix("http://"), STUB_SEED=SEED_OUT,
+               STUB_LOG=str(tmp_path / "stub.log"))
+    if public_url is not None:
+        env["FITCHECK_PUBLIC_URL"] = public_url
+    return subprocess.run(["bash", str(DEPLOY / "redeploy.sh"), *args], env=env,
+                          stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=120)
+
+
+needs_curl = pytest.mark.skipif(
+    shutil.which("bash") is None or shutil.which("curl") is None, reason="no bash or curl")
+
+
+@needs_curl
+@pytest.mark.parametrize("getent", ["exit 2", "echo '147.224.201.81  fitcheck.care'"],
+                         ids=["no-record", "other-address"])
+def test_b11_check_skips_the_hostname_when_it_does_not_resolve_to_the_vm(tmp_path, sites, getent):
+    ip_site = sites("good")
+    result = _redeploy(tmp_path, ip_site, "check", getent=getent)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert f"GET {ip_site}/request/1/matches -> 200" in result.stdout
+    assert "  ok: B ships (Ship with / Clear to ship)" in result.stdout
+    skipped = [line for line in result.stdout.splitlines() if "hostname check skipped" in line]
+    assert len(skipped) == 1
+    assert skipped[0].startswith(
+        "-- hostname check skipped: fitcheck.care does not resolve to 127.0.0.1")
+    assert "https://fitcheck.care" not in result.stdout
+
+
+@needs_curl
+def test_b11_check_tries_the_name_when_it_resolves_and_warns_on_a_tls_failure(tmp_path, sites):
+    ip_site = sites("good")
+    real_curl = shutil.which("curl")
+    curl = ('for a in "$@"; do case "$a" in https://fitcheck.care*) '
+            'echo "curl $*" >> "$STUB_LOG"; echo "curl: (35) TLS alert" >&2; exit 35;; esac; done\n'
+            f'exec {real_curl} "$@"')
+    result = _redeploy(tmp_path, ip_site, "check", curl=curl,
+                       getent="echo '127.0.0.1  fitcheck.care'")
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "-- hostname check against https://fitcheck.care" in result.stdout
+    assert ("!! warning: https://fitcheck.care not checked: the TLS handshake failed"
+            in result.stdout)
+    assert "curl exit 35" in result.stdout and "not rolling back" in result.stdout
+    log = (tmp_path / "stub.log").read_text()
+    assert "curl -sS -o /dev/null -m 20 https://fitcheck.care/" in log
+    assert "GET https://fitcheck.care" not in result.stdout
+
+
+@needs_curl
+def test_b11_check_runs_both_halves_against_the_public_url(tmp_path, sites):
+    ip_site, name_site = sites("good"), sites("good")
+    result = _redeploy(tmp_path, ip_site, "check", public_url=name_site)
+    assert result.returncode == 0, result.stdout + result.stderr
+    for base in (ip_site, name_site):
+        for path in ("/", "/offer", "/impact", "/request/1/matches",
+                     "/packet/9?facility=uganda-district"):
+            assert f"GET {base}{path} -> 200" in result.stdout
+    assert result.stdout.count("  ok: C needs info") == 2
+    assert "hostname check skipped" not in result.stdout
+
+
+@needs_curl
+def test_b11_check_warns_without_failing_when_the_public_url_refuses(tmp_path, sites):
+    ip_site = sites("good")
+    closed = f"http://127.0.0.1:{_free_port()}"
+    result = _redeploy(tmp_path, ip_site, "check", public_url=closed)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert f"!! warning: {closed} not checked: nothing accepted the connection" in result.stdout
+    assert f"GET {closed}" not in result.stdout
+
+
+@needs_curl
+@pytest.mark.parametrize("mode", ["bad", "404"])
+def test_b11_check_fails_on_a_bad_page_or_status_at_the_public_url(tmp_path, sites, mode):
+    ip_site, name_site = sites("good"), sites(mode)
+    result = _redeploy(tmp_path, ip_site, "check", public_url=name_site)
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert "warning" not in result.stdout
+    assert f"GET {name_site}/request/1/matches -> " in result.stdout
+
+
+@needs_curl
+def test_b11_cutover_does_not_roll_back_for_a_certificate_not_yet_issued(tmp_path, sites):
+    ip_site = sites("good")
+    closed = f"http://127.0.0.1:{_free_port()}"
+    result = _redeploy(tmp_path, ip_site, "cutover", "a" * 40, public_url=closed)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "!! warning:" in result.stdout and "cutover OK" in result.stdout
+    assert "==> rollback" not in result.stdout
+
+
+@needs_curl
+def test_b11_cutover_rolls_back_for_a_bad_page_at_the_public_url(tmp_path, sites):
+    ip_site, name_site = sites("good"), sites("bad")
+    result = _redeploy(tmp_path, ip_site, "cutover", "a" * 40, public_url=name_site)
+    assert result.returncode == 1
+    assert "!! public checks failed; rolling back" in result.stdout
+    assert "==> rollback" in result.stdout
+    # The Caddyfile went to the VM as the remote script's second argument.
+    log = (tmp_path / "stub.log").read_text()
+    assert base64.b64encode((DEPLOY / "Caddyfile").read_bytes()).decode() in log
