@@ -337,3 +337,14 @@ def test_the_download_names_the_library_entry_and_the_cells_it_overrode():
     assert donor["notes"] == ""
     assert resembles["notes"] == ("resembles library model Draeger Medical Systems Isolette "
                                   "C2000; row facts used")
+
+
+# ---- check 1 L4: an oversize file is "over" the limit, not a made-up size ----
+
+@pytest.mark.parametrize("size", [csv_screen.MAX_BYTES + 1, 1_110_048])
+def test_an_oversize_file_says_it_is_over_the_limit(size):
+    data = b"device_type,country\n" + b"x" * size
+    with pytest.raises(csv_screen.CsvError) as caught:
+        csv_screen.screen_csv(data, CLINIC)
+    assert str(caught.value).startswith("The file is over 1,000,000 bytes")
+    assert "1,000,001" not in str(caught.value)

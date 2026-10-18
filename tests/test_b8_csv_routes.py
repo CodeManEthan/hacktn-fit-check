@@ -181,3 +181,14 @@ def test_the_offer_page_and_the_nonprofit_bar_link_here(client):
 
 def test_offer_ids_still_route_past_the_csv_paths(client):
     assert client.get("/offer/999").status_code == 400  # the existing "No offer" page
+
+
+@pytest.mark.parametrize("size", [1_055_944, 1_110_048])
+def test_an_oversize_upload_says_over_the_limit_whatever_its_size(client, size):
+    text = "device_type,country\n" + "x" * size
+    response = upload(client, text)
+    assert response.status_code == 400
+    body = html.unescape(response.text)
+    assert "stock.csv: The file is over 1,000,000 bytes" in body
+    assert "1,000,001" not in body
+    assert offers_saved() == 0

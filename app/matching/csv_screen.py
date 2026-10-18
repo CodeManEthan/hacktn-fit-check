@@ -185,7 +185,10 @@ def header_key(raw: str | None) -> str:
 def decode(data: bytes) -> str:
     """UTF-8 (with or without Excel's byte-order mark), else Windows-1252."""
     if len(data) > MAX_BYTES:
-        raise CsvError(f"The file is {len(data):,} bytes; the limit is {MAX_BYTES:,}.")
+        # The upload route reads only MAX_BYTES + 1 bytes, so the true size is
+        # not known here: say only that it is over (check 1 L4).
+        raise CsvError(f"The file is over {MAX_BYTES:,} bytes, the limit; "
+                       "split it and upload each part.")
     try:
         return data.decode("utf-8-sig")
     except UnicodeDecodeError:
