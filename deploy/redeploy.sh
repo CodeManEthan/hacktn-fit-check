@@ -16,7 +16,7 @@
 #
 # Public checks (design 9.1): always against http://<VM IP>, the plain-HTTP door that
 # needs no DNS; then against https://fitcheck.care only when that name resolves here
-# (getent hosts) to the VM's IP. A connection or TLS failure on the name (Caddy still
+# (getent ahostsv4) to the VM's IP. A connection or TLS failure on the name (Caddy still
 # waiting for its certificate) is a warning, not a rollback; a bad status or page is.
 #
 # Layout on the VM:
@@ -164,12 +164,14 @@ check_live() {
   if [ -n "${FITCHECK_PUBLIC_URL:-}" ]; then
     name_url="${FITCHECK_PUBLIC_URL%/}"
   else
-    addrs=$(getent hosts "$PUBLIC_NAME" | awk '{print $1}' || true)
+    # ahostsv4, not hosts: with an AAAA record, `getent hosts` prints only the IPv6
+    # addresses and the VM's IPv4 never matches. One line of output whatever it prints.
+    addrs=$(getent ahostsv4 "$PUBLIC_NAME" 2>/dev/null | awk '{print $1}' | sort -u | tr '\n' ' ' | sed 's/ *$//' || true)
     for addr in $addrs; do
       if [ "$addr" = "$VM_IP" ]; then resolved=1; fi
     done
     if [ "$resolved" != 1 ]; then
-      echo "-- hostname check skipped: $PUBLIC_NAME does not resolve to $VM_IP from here (getent hosts gave: ${addrs:-nothing})"
+      echo "-- hostname check skipped: $PUBLIC_NAME does not resolve to $VM_IP from here (getent ahostsv4 gave: ${addrs:-nothing})"
       return "$fail"
     fi
     name_url="https://$PUBLIC_NAME"
@@ -197,6 +199,10 @@ caddyfile() {
   local new="$CADDY_DIR/Caddyfile.new" cf="$CADDY_DIR/Caddyfile" prev="$CADDY_DIR/Caddyfile.prev"
   local caddy
   caddy="$(command -v caddy || echo /usr/local/bin/caddy)"
+  if ! sudo test -d "$CADDY_DIR" || [ ! -x "$caddy" ]; then
+    echo "!! Caddy is not installed on the VM (no $CADDY_DIR or no caddy binary): run deploy/bootstrap.sh first; nothing changed, the old head is still live"
+    exit 1
+  fi
   printf '%s' "$CADDYFILE_B64" | base64 -d | sudo tee "$new" >/dev/null
   sudo chmod 644 "$new"
   if sudo cmp -s "$new" "$cf"; then

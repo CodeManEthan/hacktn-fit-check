@@ -584,6 +584,21 @@ def test_b11_cutover_leaves_an_unchanged_caddyfile_and_drops_a_stale_prev(tmp_pa
 
 
 @needs_git_bash
+def test_b11_cutover_without_caddy_installed_says_so_and_keeps_the_old_head_live(tmp_path, vm):
+    fork, opt = _swap_setup(tmp_path, vm)
+    payload = base64.b64encode((DEPLOY / "Caddyfile").read_bytes()).decode()
+    assert not (tmp_path / "etc" / "caddy").exists()
+    result = _run(_remote("cutover", tmp_path), vm, fork.main, payload)
+    assert result.returncode == 1
+    assert "!! Caddy is not installed on the VM" in result.stdout
+    assert "run deploy/bootstrap.sh first" in result.stdout
+    assert not (tmp_path / "etc" / "caddy").exists()
+    calls = Path(vm["STUB_LOG"]).read_text().splitlines()
+    assert "systemctl stop fitcheck" not in calls
+    assert _git(opt / "fitcheck", "rev-parse", "HEAD") == fork.first
+
+
+@needs_git_bash
 def test_b11_cutover_with_an_invalid_caddyfile_keeps_the_old_head_live(tmp_path, vm):
     fork, opt = _swap_setup(tmp_path, vm)
     arg = _caddy(tmp_path, installed="old config\n")
@@ -721,9 +736,14 @@ needs_curl = pytest.mark.skipif(
     shutil.which("bash") is None or shutil.which("curl") is None, reason="no bash or curl")
 
 
+# getent ahostsv4 prints one line per socket type for each address.
+TWO_OTHERS = ("printf '%s\\n' '147.224.201.81 STREAM fitcheck.care' '147.224.201.81 DGRAM '"
+              " '147.224.201.81 RAW ' '10.9.9.9 STREAM ' '10.9.9.9 DGRAM ' '10.9.9.9 RAW '")
+
+
 @needs_curl
-@pytest.mark.parametrize("getent", ["exit 2", "echo '147.224.201.81  fitcheck.care'"],
-                         ids=["no-record", "other-address"])
+@pytest.mark.parametrize("getent", ["exit 2", "echo '147.224.201.81  fitcheck.care'", TWO_OTHERS],
+                         ids=["no-record", "other-address", "two-other-addresses"])
 def test_b11_check_skips_the_hostname_when_it_does_not_resolve_to_the_vm(tmp_path, sites, getent):
     ip_site = sites("good")
     result = _redeploy(tmp_path, ip_site, "check", getent=getent)
@@ -734,7 +754,25 @@ def test_b11_check_skips_the_hostname_when_it_does_not_resolve_to_the_vm(tmp_pat
     assert len(skipped) == 1
     assert skipped[0].startswith(
         "-- hostname check skipped: fitcheck.care does not resolve to 127.0.0.1")
+    assert skipped[0].endswith(")")  # one line, the addresses joined with spaces
     assert "https://fitcheck.care" not in result.stdout
+
+
+@needs_curl
+def test_b11_check_resolves_when_the_vm_ip_is_not_the_first_address(tmp_path, sites):
+    """Several addresses, the VM's second, each repeated per socket type as ahostsv4 prints."""
+    ip_site = sites("good")
+    real_curl = shutil.which("curl")
+    curl = ('for a in "$@"; do case "$a" in https://fitcheck.care*) '
+            'echo "curl: (7) refused" >&2; exit 7;; esac; done\n'
+            f'exec {real_curl} "$@"')
+    getent = ("printf '%s\\n' '10.9.9.9 STREAM fitcheck.care' '10.9.9.9 DGRAM ' "
+              "'127.0.0.1 STREAM ' '127.0.0.1 DGRAM '")
+    result = _redeploy(tmp_path, ip_site, "check", curl=curl, getent=getent)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert "-- hostname check against https://fitcheck.care" in result.stdout
+    assert "hostname check skipped" not in result.stdout
+    assert "not rolling back" in result.stdout
 
 
 @needs_curl

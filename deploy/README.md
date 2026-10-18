@@ -145,7 +145,7 @@ itself.
 
 The public checks always run against the bare IP over plain HTTP, so they need
 no DNS. They run against https://fitcheck.care as well only when
-`getent hosts fitcheck.care` on your machine gives the VM's address; otherwise one
+`getent ahostsv4 fitcheck.care` on your machine gives the VM's address; otherwise one
 `-- hostname check skipped` line says so. On the name, a bad status or page rolls
 back; a refused connection, a timeout or a TLS failure (no certificate yet) prints
 a warning and does not. `FITCHECK_PUBLIC_URL`, if set, is checked in the name's
