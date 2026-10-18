@@ -289,6 +289,13 @@ def donor_device(values: dict[str, str]) -> DeviceFacts:
     return DeviceFacts(**facts)
 
 
+def _same_value(left, right) -> bool:
+    """Equal, with a list compared as a set (50/60 is 60/50; en;fr is fr;en)."""
+    if isinstance(left, list) and isinstance(right, list):
+        return set(left) == set(right)
+    return left == right
+
+
 def _origin(country: str, city: str) -> GeoPoint:
     latitude, longitude = country_centroid(country) or (None, None)
     return GeoPoint(country=country, city=city, latitude=latitude, longitude=longitude)
@@ -307,11 +314,15 @@ def build_offer(values: dict[str, str], donor_name: str = "", donor_email: str =
     year = parse_year(values.get("year", ""))
     if picked is not None:
         device = device_library.to_device_facts(picked)
-        typed = [c for c in SPEC_COLUMNS if values.get(c, "").strip()]
-        if typed:
-            # Read them anyway, so a malformed cell is still reported.
-            donor_device(values)
-            notes.append("library facts used; the row's own " + ", ".join(typed) + " not read")
+        # The row's own plate cells are read (so a malformed one is still
+        # reported) and compared, never used: a cited value is not edited here.
+        typed = donor_device(values)
+        differ = [c for c in SPEC_COLUMNS
+                  if getattr(typed, c).known
+                  and _same_value(getattr(typed, c).value, getattr(device, c).value) is False]
+        if differ:
+            notes.append("the library's documented " + ", ".join(differ)
+                         + " used, not the row's")
     else:
         device = donor_device(values)
     if year is not None:

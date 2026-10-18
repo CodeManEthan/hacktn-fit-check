@@ -14,6 +14,10 @@
   .csv-acts a.go { text-decoration: none; }
   .csv-post { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--s3); align-items: end; margin-top: var(--s4); }
   .csv-posted { margin: var(--s2) 0 0; padding-left: var(--s4); }
+  @media (max-width: 480px) {
+    .csv-counters { grid-template-columns: 1fr 1fr; gap: var(--s3); }
+    .csv-counters .counter b { font-size: 32px; }
+  }
 </style>
 <section class="masthead">
   <p class="eyebrow"><a class="link" href="/offer/csv?facility={{ s.facility_slug }}">&larr; Screen another file</a></p>
@@ -23,7 +27,7 @@
 </section>
 
 <section class="plate">
-  <div class="counters">
+  <div class="counters csv-counters">
     {% for label, n, t in counts %}
     <div class="counter {{ t }}"><b>{{ n }}</b><span>{{ label }}</span></div>
     {% endfor %}

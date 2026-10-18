@@ -228,7 +228,14 @@ def test_a_library_row_ignores_typed_specs_but_says_so():
     assert row.library_slug == "drive-devilbiss-525ks"
     assert row.offer.device.voltage_min_v.value == 187
     assert row.offer.device.frequencies_hz.value == [50]
-    assert any("not read" in n and "voltage_min_v" in n for n in row.notes)
+    assert row.notes == ("the library's documented voltage_min_v, frequencies_hz used, not the row's",)
+
+
+def test_a_library_row_whose_cells_agree_with_the_library_has_no_note():
+    text = ("manufacturer,model,voltage_min_v,voltage_max_v,frequencies_hz,manual_languages,country\n"
+            "DeVilbiss,525DS,97,127,60,en;es;fr,United States\n")
+    row = csv_screen.screen_csv(text, CLINIC, intel_for=lambda d, t, c: intel(country=c)).rows[0]
+    assert row.library_slug == "drive-devilbiss-525ds" and row.notes == ()
 
 
 def test_a_tied_model_is_not_a_library_row():
