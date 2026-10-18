@@ -123,7 +123,7 @@ def test_an_advisory_renders_under_its_rejected_offer(client, monkeypatch):
     request_id = a_request()
     rejected = Candidate(offer=an_offer(id=2), verdict=verdict_of(Outcome.WONT_WORK, CheckStatus.FAIL))
     fake_screening(monkeypatch, rejected=[rejected])
-    advice = Advisory(rows=[{"item": "5 LPM concentrator", "price": "about $290",
+    advice = Advisory(rows=[{"what": "5 LPM concentrator", "price_text": "about $290", "source": "UNICEF",
                              "url": "https://example.org/p"}],
                       as_of="2026-10-17", sold_locally_text="sold in Testland: yes")
     monkeypatch.setattr(marketplace_routes, "advisory_for", lambda c: advice)

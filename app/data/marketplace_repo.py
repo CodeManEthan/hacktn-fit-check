@@ -694,15 +694,15 @@ def load_packet(offer_id: int, facility_slug: str) -> StoredPacket | None:
 
 
 def save_packet(
-    offer_id: int, facility_slug: str, language: str, card: dict,
-    translated: dict | None = None, *, now: datetime | None = None,
+    offer_id: int, facility_slug: str, language: str, card_json: dict,
+    translated_json: dict | None = None, *, now: datetime | None = None,
 ) -> None:
     """Store (or replace) the packet built for this offer at this clinic."""
     key = _packet_key(offer_id, facility_slug)
     values = {
         "language": language or "",
-        "card_json": json.dumps(card),
-        "translated_json": None if translated is None else json.dumps(translated),
+        "card_json": json.dumps(card_json),
+        "translated_json": None if translated_json is None else json.dumps(translated_json),
         "built_at": now or datetime.now(),
     }
     try:

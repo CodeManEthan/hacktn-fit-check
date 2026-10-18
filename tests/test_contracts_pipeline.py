@@ -64,7 +64,7 @@ def test_screen_offers_ranks_as_rank_candidates_and_rejects_nothing_yet():
     assert [c.offer.id for c in screening.ranked] == [
         c.offer.id for c in rank_candidates(facility(), offers)
     ]
-    assert screening.rejected == []
+    assert screening.rejected == ()
 
 
 def test_screen_offers_passes_today_and_the_lookup_through():
@@ -88,7 +88,7 @@ def test_supply_lookup_states_nothing_until_its_sources_are_wired():
 def test_line_coverage_has_an_empty_rejected_list_by_default():
     cover = LineCoverage(line=RequestLine(device_type="oxygen concentrator", quantity=1))
 
-    assert cover.rejected == []
+    assert cover.rejected == ()
 
 
 def test_bundle_items_carry_empty_rejected_and_unverified_offers():

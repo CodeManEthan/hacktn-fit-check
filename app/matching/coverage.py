@@ -27,7 +27,7 @@ class LineCoverage:
     candidates: list["Candidate"] = field(default_factory=list)
     screened: int = NOTHING
     # Offers of this kind the screening rejected, each with its verdict.
-    rejected: list["Candidate"] = field(default_factory=list)
+    rejected: tuple["Candidate", ...] = ()
 
     @property
     def units_available(self) -> int:

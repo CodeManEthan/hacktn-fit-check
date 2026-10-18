@@ -7,8 +7,8 @@
   <p class="bundle-head"><b>Buying locally instead</b>{% if adv.as_of %} &mdash; prices as of {{ adv.as_of }}{% endif %}</p>
   {% for row in adv.rows %}
   <div class="bundle-row">
-    <span class="bundle-what">{{ row.get('item', '') }}</span>
-    <span class="bundle-src">{% if row.get('url') %}<a href="{{ row.url }}">{{ row.get('price', 'source') }}</a>{% else %}{{ row.get('price', '') }}{% endif %}</span>
+    <span class="bundle-what">{{ row.get('what', '') }}</span>
+    <span class="bundle-src">{{ row.get('price_text', '') }}{% if row.get('url') %} &mdash; <a href="{{ row.url }}">{{ row.get('source', 'source') }}</a>{% elif row.get('source') %} &mdash; {{ row.source }}{% endif %}</span>
   </div>
   {% endfor %}
   {% if adv.sold_locally_text %}<p class="note">{{ adv.sold_locally_text }}{% if adv.supply_url %} &mdash; <a href="{{ adv.supply_url }}">record an answer</a>{% endif %}</p>{% endif %}

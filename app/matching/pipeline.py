@@ -71,7 +71,7 @@ class Screening:
     """
 
     ranked: list[Candidate] = field(default_factory=list)
-    rejected: list[Candidate] = field(default_factory=list)
+    rejected: tuple[Candidate, ...] = ()
 
 
 def empty_intel(device: DeviceFacts, device_type: str, country: str) -> SupplyIntel:
@@ -111,7 +111,7 @@ def screen_offers(
     """The survivors in rank order, and the offers the screening rejected."""
     return Screening(
         ranked=rank_candidates(facility, offers, intel_for, today=today),
-        rejected=[],
+        rejected=(),
     )
 
 

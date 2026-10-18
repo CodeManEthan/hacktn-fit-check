@@ -138,8 +138,13 @@ def search(text: str) -> list[LibraryEntry]:
     return [e for *_, e in sorted(scored, key=lambda s: s[:3])]
 
 
+def _key(text: str) -> str:
+    """A model string with spaces, hyphens and case removed, so "525 DS" is "525DS"."""
+    return re.sub(r"[\s\-]+", "", text or "").casefold()
+
+
 def _same(left: str, right: str) -> bool:
-    return bool(left.strip()) and left.strip().casefold() == right.strip().casefold()
+    return bool(_key(left)) and _key(left) == _key(right)
 
 
 def _rank(e: LibraryEntry, manufacturer: str, model: str) -> int:
