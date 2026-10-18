@@ -103,3 +103,21 @@ def test_create_match_refuses_an_asking_offer_and_a_rejected_one(client):
         assert reply.status_code == 400
 
     assert repo.matches_for_request(request_id) == []
+
+
+def test_the_verdict_page_stamps_a_needs_info_verdict(client):
+    from app.checks import check_fit
+    from app.data import repository as legacy
+
+    site = facility(slug="uganda-district", country="Uganda")
+    dev = device(frequencies_hz=UNKNOWN, voltage_min_v=fact(110, DONOR), voltage_max_v=fact(120, DONOR))
+    verdict = check_fit(dev, site, intel(country="Uganda"))
+    device_id = legacy.save_device(dev)
+    verdict_id = legacy.save_verdict(device_id=device_id, device=dev, facility=site,
+                                     verdict=verdict, intel=intel(country="Uganda"))
+
+    text = " ".join(client.get(f"/verdict/{verdict_id}").text.split())
+
+    assert '<div class="stamp ask"> <b>Needs info</b> <i>1 question before a verdict</i>' in text
+    assert "It would also need, once the questions are answered" in text
+    assert "transformer" in text

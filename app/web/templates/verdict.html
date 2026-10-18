@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block title %}{{ verdict.stamp }} &middot; {{ record.device_label }}{% endblock %}
 {% block content %}
+<style>
+  .stamp.ask { color: var(--query); background: var(--query-wash); border-color: var(--query-line); }
+</style>
 
 <section class="plate">
   <div class="readout">
@@ -56,7 +59,7 @@
 
 {% if verdict.requirements %}
 <div class="flag hold">
-  <h2>{% if verdict.failures %}Still missing, even if you solve that{% else %}It cannot arrive without{% endif %}</h2>
+  <h2>{% if verdict.failures %}Still missing, even if you solve that{% elif verdict.outcome == 'needs info' %}It would also need, once the questions are answered{% else %}It cannot arrive without{% endif %}</h2>
   <ul>{% for r in verdict.requirements %}<li>{{ r }}</li>{% endfor %}</ul>
 </div>
 {% endif %}
