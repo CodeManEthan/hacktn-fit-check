@@ -52,6 +52,8 @@ if [ ! -d "$NEXT/.git" ]; then
 fi
 git -C "$NEXT" remote set-url origin "$REPO"
 git -C "$NEXT" fetch --quiet origin
+git -C "$NEXT" merge-base --is-ancestor "$HEAD" origin/main 2>/dev/null \
+  || { echo "!! $HEAD is not on the fork's main; the live site is untouched"; exit 1; }
 git -C "$NEXT" checkout --quiet --detach "$HEAD"
 echo "checkout: $(git -C "$NEXT" log --oneline -1)"
 [ -x "$NEXT/.venv/bin/python" ] || python3.12 -m venv "$NEXT/.venv"

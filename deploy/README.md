@@ -104,7 +104,8 @@ deploy/redeploy.sh cutover <head>
 ```
 
 `stage` clones or fetches the fork into `/opt/fitcheck-next`, checks out the
-head, builds its venv, copies the `.env`, runs it as the transient unit
+head (a head that is not on the fork's main is refused with `!! <head> is not on
+the fork's main`, before anything runs), builds its venv, copies the `.env`, runs it as the transient unit
 `fitcheck-stage` on 127.0.0.1:8001, and checks `/`, `/offer`, `/impact` and one
 model call through `/offer/extract` (retried twice a minute apart, for a policy
 still applying). The live site is not touched.

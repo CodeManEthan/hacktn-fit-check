@@ -103,6 +103,51 @@ def _run(script: str, env: dict[str, str], *args: str) -> subprocess.CompletedPr
                           capture_output=True, text=True, timeout=120)
 
 
+def _free_port() -> int:
+    with socket.socket() as sock:
+        sock.bind(("127.0.0.1", 0))
+        return sock.getsockname()[1]
+
+
+def _remote(function: str, root: Path, port: int | None = None) -> str:
+    """The heredoc that redeploy.sh's function sends to the VM, with /opt under root."""
+    text = (DEPLOY / "redeploy.sh").read_text()
+    body = text[text.index(f"\n{function}() {{"):]
+    body = body[body.index("<<'REMOTE'\n") + len("<<'REMOTE'\n"):]
+    body = body[:body.index("\nREMOTE\n") + 1]
+    body = body.replace("/opt/fitcheck", str(root / "opt" / "fitcheck"))
+    if port is not None:
+        assert "PORT=8001;" in body
+        body = body.replace("PORT=8001;", f"PORT={port};")
+    return body
+
+
+VM_STUBS = {
+    "sudo": SUDO,
+    "systemctl": 'echo "systemctl $*" >> "$STUB_LOG"\n'
+                 'if [ "$1" = is-active ]; then echo "${STUB_UNIT_STATE:-inactive}";'
+                 ' [ "${STUB_UNIT_STATE:-inactive}" = active ]; exit; fi',
+    "systemd-run": 'echo "systemd-run $*" >> "$STUB_LOG"',
+    "journalctl": 'echo "(journal)"',
+    "sleep": "exit 0",
+    "python3.12": f'''if [ "$1 $2" = "-m venv" ]; then
+  mkdir -p "$3/bin"
+  printf '#!/bin/sh\\nexec {sys.executable} "$@"\\n' > "$3/bin/python"
+  printf '#!/bin/sh\\nexit 0\\n' > "$3/bin/pip"
+  chmod +x "$3/bin/python" "$3/bin/pip"
+fi''',
+}
+
+
+def _vm(tmp_path: Path, **overrides: str) -> dict[str, str]:
+    """A stand-in VM under tmp_path: /opt/fitcheck holds the .env, commands are stubbed."""
+    (tmp_path / "opt" / "fitcheck").mkdir(parents=True, exist_ok=True)
+    (tmp_path / "opt" / "fitcheck" / ".env").write_text("KEY=value\n")
+    env = _stubs(tmp_path, **{**VM_STUBS, **overrides})
+    env["STUB_LOG"] = str(tmp_path / "stub.log")
+    return env
+
+
 def _bootstrap_code_step(repo: str, app_dir: Path) -> str:
     text = (DEPLOY / "bootstrap.sh").read_text()
     block = text[text.index('echo "==> code"'):text.index('echo "==> virtualenv')]
@@ -211,3 +256,27 @@ def test_l2_shell_scripts_are_executable_in_the_index(script):
     if listed.returncode != 0 or not listed.stdout:
         pytest.skip("not a git checkout")
     assert listed.stdout.split()[0] == "100755", listed.stdout
+
+
+@needs_git_bash
+@pytest.mark.parametrize("which", ["side", "unknown"])
+def test_l3_stage_refuses_a_head_that_is_not_on_the_forks_main(tmp_path, which):
+    fork = Fork(tmp_path)
+    head = fork.side if which == "side" else "0" * 40
+    env = _vm(tmp_path)
+    result = _run(_remote("stage", tmp_path, _free_port()), env, fork.url, head, "1", "0")
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert f"!! {head} is not on the fork's main" in result.stdout
+    assert _git(tmp_path / "opt" / "fitcheck-next", "rev-parse", "HEAD") == fork.main
+    assert "systemd-run" not in Path(env["STUB_LOG"]).read_text()
+
+
+@needs_git_bash
+def test_l3_stage_takes_a_head_on_main(tmp_path):
+    fork = Fork(tmp_path)
+    fork.advance("two")
+    env = _vm(tmp_path)
+    result = _run(_remote("stage", tmp_path, _free_port()), env, fork.url, fork.main, "1", "0")
+    assert "is not on the fork's main" not in result.stdout
+    assert f"checkout: {fork.main[:7]}" in result.stdout
+    assert "systemd-run" in Path(env["STUB_LOG"]).read_text()
