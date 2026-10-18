@@ -10,9 +10,18 @@ from dataclasses import dataclass
 from typing import Any
 
 from app.ai.json_io import JsonReplyError, parse_json_object
-from app.config import SETTINGS, Settings
+from app.config import (
+    OCI_AUTH_API_KEY,
+    OCI_AUTH_INSTANCE_PRINCIPAL,
+    OCI_AUTH_MODES,
+    SETTINGS,
+    ConfigError,
+    Settings,
+)
 
-DEFAULT_MAX_TOKENS = 1600
+# Reasoning models spend tokens before they answer; the cap leaves room for a
+# one-page card plus the reasoning.
+DEFAULT_MAX_TOKENS = 6000
 DEFAULT_TEMPERATURE = 0.0
 
 
@@ -27,6 +36,27 @@ class ChatReply:
     seconds: float
 
 
+def build_signer_and_config(settings: Settings) -> tuple[dict[str, Any], Any | None]:
+    """The OCI config and signer every client is built with.
+
+    The one place the chat client and the Language client get credentials.
+    Under `api_key` the config comes from the key file and there is no
+    separate signer. Raises ConfigError for a mode it cannot use.
+    """
+    mode = (settings.oci_auth or OCI_AUTH_API_KEY).strip().lower()
+    if mode == OCI_AUTH_API_KEY:
+        import oci
+
+        config = oci.config.from_file(settings.oci_config_path, settings.oci_profile)
+        oci.config.validate_config(config)
+        return config, None
+    if mode == OCI_AUTH_INSTANCE_PRINCIPAL:
+        raise ConfigError("instance principals not yet wired")
+    raise ConfigError(
+        f"OCI_AUTH={settings.oci_auth!r} is not one of {', '.join(OCI_AUTH_MODES)}."
+    )
+
+
 class GenAiClient:
     """Lazily built so importing the app never needs OCI credentials."""
 
@@ -39,18 +69,16 @@ class GenAiClient:
         if self._client is not None:
             return self._client
         try:
-            import oci
             from oci.generative_ai_inference import GenerativeAiInferenceClient
 
-            config = oci.config.from_file(
-                self._settings.oci_config_path, self._settings.oci_profile
-            )
-            oci.config.validate_config(config)
-            self._compartment_id = self._compartment_id or config["tenancy"]
+            config, signer = build_signer_and_config(self._settings)
+            self._compartment_id = self._compartment_id or config.get("tenancy")
+            extra = {"signer": signer} if signer is not None else {}
             self._client = GenerativeAiInferenceClient(
                 config,
                 service_endpoint=self._settings.genai_endpoint,
                 timeout=self._settings.timeout,
+                **extra,
             )
         except Exception as exc:  # noqa: BLE001 - surfaced to the user as one message
             raise GenAiError(

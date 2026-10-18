@@ -17,6 +17,15 @@ GENAI_ENDPOINT_TEMPLATE = "https://inference.generativeai.{region}.oci.oracleclo
 CONNECT_TIMEOUT_SECONDS = 10
 READ_TIMEOUT_SECONDS = 240
 
+DEFAULT_REASONING_MODEL = "openai.gpt-oss-120b"
+DEFAULT_VISION_MODEL = "meta.llama-4-maverick-17b-128e-instruct-fp8"
+
+# How the app signs OCI requests: the API key in ~/.oci/config, or the
+# instance's own identity on the VM, so no key has to live on the server.
+OCI_AUTH_API_KEY = "api_key"
+OCI_AUTH_INSTANCE_PRINCIPAL = "instance_principal"
+OCI_AUTH_MODES = (OCI_AUTH_API_KEY, OCI_AUTH_INSTANCE_PRINCIPAL)
+
 
 class ConfigError(RuntimeError):
     """Raised when a required setting is missing or unusable."""
@@ -31,6 +40,7 @@ class Settings:
     reasoning_model: str
     vision_model: str
     database_url: str
+    oci_auth: str = OCI_AUTH_API_KEY
 
     @property
     def genai_endpoint(self) -> str:
@@ -55,9 +65,10 @@ def load_settings() -> Settings:
         oci_config_path=os.getenv("OCI_CONFIG_PATH", "~/.oci/config"),
         region=os.getenv("OCI_REGION", "us-chicago-1"),
         compartment_id=os.getenv("OCI_COMPARTMENT_ID", "").strip() or None,
-        reasoning_model=os.getenv("REASONING_MODEL", "meta.llama-3.3-70b-instruct"),
-        vision_model=os.getenv("VISION_MODEL", "meta.llama-3.2-90b-vision-instruct"),
+        reasoning_model=os.getenv("REASONING_MODEL", "").strip() or DEFAULT_REASONING_MODEL,
+        vision_model=os.getenv("VISION_MODEL", "").strip() or DEFAULT_VISION_MODEL,
         database_url=_database_url(),
+        oci_auth=os.getenv("OCI_AUTH", "").strip().lower() or OCI_AUTH_API_KEY,
     )
 
 
