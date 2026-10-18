@@ -156,3 +156,13 @@ def test_the_committed_uganda_row_is_the_moh_guideline():
     assert "useful life of at least two years" in uganda["quotes"]["min_remaining_life_years"]
     assert "no-objection" in uganda["quotes"]["documents_required"]
     assert set(table) == {"Uganda"}
+
+
+def test_a_known_but_empty_language_list_reads_as_unknown_not_as_a_failed_label():
+    """verification-b1-verdict-rules-1 L1: [] names no language, so it is a gap, not a label."""
+    result = check_import_rules(
+        device(manual_languages=fact([], Provenance.SPEC_SHEET),
+               year_of_manufacture=fact(2019, Provenance.DONOR_STATED)),
+        facility(country="Uganda", staff_languages=("English",)), intel())
+
+    assert result.status is CheckStatus.NEEDS_INFO

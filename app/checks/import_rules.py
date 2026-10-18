@@ -70,8 +70,10 @@ def check_import_rules(
     label_source = Provenance.UNKNOWN
     if labels:
         manual = device.manual_languages
-        if manual.known:
-            in_manual = normalise_languages(manual.value)
+        # A known but empty list names no language, so it is read as unknown:
+        # an empty answer is a gap, not a label in no language.
+        in_manual = normalise_languages(manual.value) if manual.known else []
+        if manual.known and in_manual:
             shared = sorted(set(in_manual) & set(labels))
             if not shared:
                 return CheckResult(
