@@ -55,7 +55,7 @@ def test_the_lookup_is_called_with_the_offer_device_type():
     assert seen == [("oxygen concentrator", "Uganda")]
 
 
-def test_screen_offers_ranks_as_rank_candidates_and_rejects_nothing_yet():
+def test_screen_offers_ranks_as_rank_candidates_and_returns_the_rejected():
     offers = [an_offer(id=1), an_offer(id=2, device=device(frequencies_hz=fact([60], Provenance.NAMEPLATE)))]
 
     screening = screen_offers(facility(), offers)
@@ -64,7 +64,7 @@ def test_screen_offers_ranks_as_rank_candidates_and_rejects_nothing_yet():
     assert [c.offer.id for c in screening.ranked] == [
         c.offer.id for c in rank_candidates(facility(), offers)
     ]
-    assert screening.rejected == ()
+    assert [c.offer.id for c in screening.rejected] == [2]
 
 
 def test_screen_offers_passes_today_and_the_lookup_through():

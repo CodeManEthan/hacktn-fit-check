@@ -50,9 +50,10 @@ def test_the_api_key_path_reads_and_validates_the_config_file(monkeypatch):
     assert calls == [("/k", "P"), "validated"]
 
 
-def test_instance_principals_are_not_wired_yet():
-    with pytest.raises(ConfigError, match="not yet wired"):
-        build_signer_and_config(replace(SETTINGS, oci_auth="instance_principal"))
+def test_instance_principals_need_a_compartment():
+    with pytest.raises(ConfigError, match="OCI_COMPARTMENT_ID"):
+        build_signer_and_config(replace(SETTINGS, oci_auth="instance_principal",
+                                        compartment_id=None))
 
 
 def test_an_unknown_auth_mode_is_a_config_error():

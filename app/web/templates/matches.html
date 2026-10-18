@@ -24,12 +24,53 @@
     </div>
 {% endmacro %}
 
+
+{% macro offer_names(offers) %}{% for o in offers %}{{ o.device.label }} ({{ o.donor_name }}){{ ', ' if not loop.last }}{% endfor %}{% endmacro %}
+
+{% macro send_with(c) %}
+    {% set bundle = bundles.get(c.offer.id) %}
+    {% if bundle and bundle.items %}
+    <div class="bundle">
+      <p class="bundle-head"><b>{{ 'Would go with it' if c.verdict.outcome == 'needs info' else 'Must go with it' }}</b> &mdash; {{ bundle.summary }}</p>
+      {% for item in bundle.items %}
+      <div class="bundle-row {{ 'is-covered' if item.available else ('is-arranged' if not item.requirement.shippable else 'is-gap') }}">
+        <span class="bundle-what">{{ item.requirement.detail }}</span>
+        {% if not item.requirement.shippable %}
+        <span class="bundle-src">{{ item.status }}</span>
+        {% elif item.available %}
+        <span class="bundle-src">{{ item.total_units }} available &mdash;
+          {{ item.offers | map(attribute='donor_name') | unique | join(', ') }}</span>
+        {% else %}
+        <span class="bundle-src">no donor has one yet</span>
+        {% endif %}
+      </div>
+      {% if item.rejected_offers %}
+      <p class="bundle-aside is-rejected-addon">Won't work here itself: {{ offer_names(item.rejected_offers) }}
+        &mdash; its own plate fails {{ facility.mains_voltage_v }} V {{ facility.mains_frequency_hz }} Hz.</p>
+      {% endif %}
+      {% if item.unverified_offers %}
+      <p class="bundle-aside is-unverified-addon">Unverified: {{ offer_names(item.unverified_offers) }}
+        &mdash; its plate does not yet show it runs on {{ facility.mains_voltage_v }} V {{ facility.mains_frequency_hz }} Hz.</p>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% endif %}
+{% endmacro %}
+
 {% block content %}
+<style>
+  .bundle-aside { font-size: 13px; margin: var(--s1, 4px) 0 var(--s2, 8px) var(--s4, 16px); color: var(--etch); }
+  .bundle-aside.is-rejected-addon { color: var(--block); }
+  .rejected { margin-top: var(--s6, 24px); }
+  .candidate.is-rejected { border-left: 3px solid var(--block-line, var(--block)); }
+  .candidate.is-asking { border-left: 3px solid var(--query-line, var(--query)); }
+</style>
 <section class="plate">
   <p class="eyebrow">{{ facility.name }}, {{ facility.country }}</p>
   <h1>{{ request_row.summary }}</h1>
-  <p class="sub">Everything blocked by the screening has already been removed.
-     What is left is ordered by how little has to ship alongside it, then by distance.</p>
+  <p class="sub">Offers known to work come first, ordered by how little has to ship
+     alongside them, then by distance. Below them, the offers that cannot work here and
+     what blocks each one; last, the offers with questions to answer before a verdict.</p>
 
   <div class="coverage">
     {% for cover in coverages %}
@@ -50,41 +91,29 @@
 {% for cover in coverages %}
 <section class="plate">
   <h2>{{ cover.line.label }}</h2>
-  <p class="sub">{{ cover.candidates | length }} of {{ cover.screened }} offers of this
-     kind can work at {{ facility.name }}.</p>
-
-  {% if not cover.candidates %}
-  <p class="empty">No open offer of this kind passes the screening for
-     {{ facility.name }}. The log shows which constraint keeps blocking them.</p>
+  {% set known = cover.proposable %}
+  {% set asking = cover.asking %}
+  {% if not cover.screened %}
+  <p class="empty">No open offers of this kind yet.</p>
+  {% else %}
+  <p class="sub">Of {{ cover.screened }} offers of this kind, {{ known | length }}
+     {{ 'is' if known | length == 1 else 'are' }} known to work at {{ facility.name }},
+     {{ cover.rejected | length }} won't, and {{ asking | length }}
+     {{ 'needs' if asking | length == 1 else 'need' }} answers first.</p>
   {% endif %}
 
-  {% set known = cover.candidates | rejectattr('verdict.outcome', 'equalto', 'needs info') | list %}
-  {% set asking = cover.candidates | selectattr('verdict.outcome', 'equalto', 'needs info') | list %}
+  {% if cover.screened and not known %}
+  <p class="empty">No open offer of this kind is known to work at {{ facility.name }} yet.
+     {% if cover.rejected %}What blocks each one is listed below.{% endif %}
+     {% if asking %}Answering the open questions below may clear one.{% endif %}</p>
+  {% endif %}
 
   {% for c in known %}
   <article class="candidate">
     {{ head(c) }}
     {{ segments(c) }}
 
-    {% set bundle = bundles.get(c.offer.id) %}
-    {% if bundle and bundle.items %}
-    <div class="bundle">
-      <p class="bundle-head"><b>Must go with it</b> &mdash; {{ bundle.summary }}</p>
-      {% for item in bundle.items %}
-      <div class="bundle-row {{ 'is-covered' if item.available else ('is-arranged' if not item.requirement.shippable else 'is-gap') }}">
-        <span class="bundle-what">{{ item.requirement.detail }}</span>
-        {% if not item.requirement.shippable %}
-        <span class="bundle-src">arranged, not shipped</span>
-        {% elif item.available %}
-        <span class="bundle-src">{{ item.total_units }} available &mdash;
-          {{ item.offers | map(attribute='donor_name') | unique | join(', ') }}</span>
-        {% else %}
-        <span class="bundle-src">no donor has one yet</span>
-        {% endif %}
-      </div>
-      {% endfor %}
-    </div>
-    {% endif %}
+    {{ send_with(c) }}
 
     <form method="post" action="/match" class="candidate-act">
       <input type="hidden" name="request_id" value="{{ request_row.id }}">
@@ -114,6 +143,7 @@
   <article class="candidate is-asking">
     {{ head(c) }}
     {{ segments(c) }}
+    {{ send_with(c) }}
     <div class="candidate-act">
       <a class="go" href="/request/{{ request_row.id }}/offer/{{ c.offer.id }}"
          style="text-decoration:none">Answer {{ asked }} question{{ '' if asked == 1 else 's' }} first</a>

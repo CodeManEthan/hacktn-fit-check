@@ -29,6 +29,7 @@ def device(**overrides) -> DeviceFacts:
         needs_distilled_water=fact(False, Provenance.SPEC_SHEET),
         needs_compressed_air=fact(False, Provenance.SPEC_SHEET),
         consumables=fact([], Provenance.SPEC_SHEET),
+        dated_items=fact(False, Provenance.DONOR_STATED),
         manual_languages=fact(["English"], Provenance.SPEC_SHEET),
         operating_complexity=fact("low", Provenance.MODEL_KNOWLEDGE),
     )

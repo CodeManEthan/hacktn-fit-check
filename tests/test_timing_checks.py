@@ -9,11 +9,24 @@ from __future__ import annotations
 
 from datetime import date, timedelta
 
-from app.checks.timing import MIN_USABLE_DAYS_ON_ARRIVAL, check_shelf_life
-from app.domain.provenance import Provenance, fact
+from app.checks.timing import MIN_USABLE_DAYS_ON_ARRIVAL, NOTHING_DATED, check_shelf_life
+from app.domain.provenance import UNKNOWN, Provenance, fact
 from app.domain.result import CheckStatus
 from app.domain.shipment import Shipment
-from tests.factories import device, facility, intel
+from tests.factories import device as _device
+from tests.factories import facility, intel
+
+
+def device(**overrides):
+    """The factory device with the donor's dated-items answer as the form would set it.
+
+    A filled expiry means something is dated; no expiry here means nobody answered.
+    """
+    overrides.setdefault(
+        "dated_items",
+        fact(True, Provenance.DONOR_STATED) if "expiry_date" in overrides else UNKNOWN,
+    )
+    return _device(**overrides)
 
 TODAY = date(2026, 1, 1)
 TRANSIT_DAYS = 55
@@ -105,3 +118,22 @@ def test_the_detail_tells_the_clinic_when_it_would_land():
 
     # Assert
     assert str(TRANSIT_DAYS) in result.detail
+
+
+def test_the_donors_nothing_dated_answer_passes():
+    subject = device(dated_items=fact(False, Provenance.DONOR_STATED))
+
+    result = check_shelf_life(subject, facility(), intel(), None, today=TODAY)
+
+    assert result.status is CheckStatus.PASS
+    assert result.detail == NOTHING_DATED
+    assert result.source is Provenance.DONOR_STATED
+
+
+def test_dated_but_no_date_given_still_asks():
+    subject = device(dated_items=fact(True, Provenance.DONOR_STATED))
+
+    result = check_shelf_life(subject, facility(), intel(), shipment(), today=TODAY)
+
+    assert result.status is CheckStatus.NEEDS_INFO
+    assert result.question

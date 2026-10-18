@@ -1,0 +1,23 @@
+{
+  "Uganda": {
+    "source": {
+      "title": "MoH Uganda, National Medical Equipment Guidelines, November 2024, section 3.6 Donated Equipment and Supplies",
+      "url": "https://nms.go.ug/wp-content/uploads/2025/12/National-Medical-Equipment-Guidelines-November-20241.pdf",
+      "date": "2024-11",
+      "pages": "29-30"
+    },
+    "label_languages": ["English"],
+    "min_remaining_life_years": 2,
+    "documents_required": [
+      "Prior no-objection from the Ministry of Health before shipment (item 11)",
+      "Detailed equipment list: name and purpose, serial number, manufacturer, year of manufacture, last service certificate, quality assurance documents (CE, FDA, EU etc) and quantity (item 6)",
+      "Detailed packing list: equipment name, quantity, serial number, weight and any special storage conditions (item 7)"
+    ],
+    "quotes": {
+      "label_languages": "Each donated equipment to Uganda shall have labels in English and should be easy to use by health professionals in Uganda.",
+      "min_remaining_life_years": "On arrival in Uganda, the donated medical equipment shall have a useful life of at least two years.",
+      "min_remaining_life_years_item_2": "Donated equipment shall be obtained from reliable sources and shall comply with quality standards of both the donor country and Uganda with at least two years guaranteed service life",
+      "documents_required": "The donor shall provide a detailed list of equipment including the name of the equipment and purpose, serial number, name of manufacturer, year of manufacture, last service certificate, quality assurance documents (CE, FDA, EU etc) and quantity. | The donated equipment shall be packed in accordance with international shipping regulations and shall be accompanied by a detailed packing list which specifies the equipment name, quantity, serial number, weight, and any special storage conditions. | Donation of medical equipment or other related supplies shall be sent with prior no-objection from the Ministry of Health, after confirming that the donor has met all the donation requirements."
+    }
+  }
+}

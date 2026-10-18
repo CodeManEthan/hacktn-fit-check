@@ -1,9 +1,10 @@
 """How much of one request line the compatible offers can actually cover.
 
-Coverage is counted only across offers that already passed the screening. An
-incompatible donor with a full warehouse contributes nothing here, which is
-the point: this is the stage that decides *how much*, after the checks have
-decided *whether*.
+Coverage is counted only across offers that already passed the screening and
+whose facts are known. An incompatible donor with a full warehouse
+contributes nothing here, nor does one whose offer still has open questions:
+this is the stage that decides *how much*, after the checks have decided
+*whether*.
 """
 
 from __future__ import annotations
@@ -12,6 +13,7 @@ from dataclasses import dataclass, field
 from typing import TYPE_CHECKING
 
 from app.domain.marketplace import RequestLine
+from app.domain.result import Outcome
 
 if TYPE_CHECKING:  # pragma: no cover - import cycle only matters to type checkers
     from app.matching.pipeline import Candidate
@@ -30,9 +32,23 @@ class LineCoverage:
     rejected: tuple["Candidate", ...] = ()
 
     @property
+    def proposable(self) -> list["Candidate"]:
+        """The survivors that can be proposed to a donor today.
+
+        A NEEDS_INFO survivor is listed on the page but is not stock anyone
+        can ask for until its questions are answered (design §2.3).
+        """
+        return [c for c in self.candidates if c.verdict.outcome is not Outcome.NEEDS_INFO]
+
+    @property
+    def asking(self) -> list["Candidate"]:
+        """The survivors that have questions to answer first."""
+        return [c for c in self.candidates if c.verdict.outcome is Outcome.NEEDS_INFO]
+
+    @property
     def units_available(self) -> int:
         """Units this line could actually draw, never more than it asked for."""
-        pooled = sum(c.offer.quantity_available for c in self.candidates)
+        pooled = sum(c.offer.quantity_available for c in self.proposable)
         return min(pooled, self.line.quantity)
 
     @property
@@ -50,7 +66,7 @@ class LineCoverage:
         remaining = self.line.quantity
         used = NOTHING
         for candidate in sorted(
-            self.candidates, key=lambda c: c.offer.quantity_available, reverse=True
+            self.proposable, key=lambda c: c.offer.quantity_available, reverse=True
         ):
             if remaining <= NOTHING:
                 break

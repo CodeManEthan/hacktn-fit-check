@@ -142,14 +142,14 @@ def check_operation_and_repair(
             source=complexity.source,
         )
 
+    # Training and a service contract are not shipped in a crate (design
+    # §2.4): a high-skill device at a clinic without the people fails.
     return CheckResult(
         key="training",
         label="Training and repair",
-        status=CheckStatus.MITIGABLE,
-        detail=f"A high-skill device, and there is {' and '.join(gaps)}.",
-        fix="Operator training on commissioning, and a service contract or a named "
-        "regional technician.",
+        status=CheckStatus.FAIL,
+        detail=f"A high-skill device, and {facility.name} has {' and '.join(gaps)}.",
+        fix=f"{facility.name} would need operators trained on commissioning, and a "
+        "service contract or a named regional technician, before this could run.",
         source=complexity.source,
-        requirement=Requirement(RequirementKind.TRAINING,
-                                 "Operator training and a service contract.", "training"),
     )

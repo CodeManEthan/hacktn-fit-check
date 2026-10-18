@@ -18,14 +18,17 @@ def test_temperature_passes_when_the_room_stays_inside_the_rating():
     assert result.status is CheckStatus.PASS
 
 
-def test_temperature_is_mitigable_when_a_hot_room_has_no_air_conditioning():
+def test_temperature_fails_when_a_hot_room_has_no_air_conditioning():
+    # Cooling is site works, not an add-on (design §2.4).
     dev = device(temp_max_c=fact(40.0, Provenance.SPEC_SHEET))
     site = facility(ambient_temp_max_c=44.0, has_air_conditioning=False)
 
     result = check_temperature(dev, site, intel())
 
-    assert result.status is CheckStatus.MITIGABLE
-    assert "air conditioning" in result.fix.lower()
+    assert result.status is CheckStatus.FAIL
+    assert "needs air conditioning the ward" in result.detail
+    assert "air-condition" in result.fix.lower()
+    assert result.requirement is None
 
 
 def test_temperature_fails_when_even_air_conditioning_cannot_save_it():
@@ -45,8 +48,8 @@ def test_an_unstated_climate_range_falls_back_to_the_standard_default():
     site = facility(ambient_temp_max_c=44.0, has_air_conditioning=False)
     result = check_temperature(dev, site, intel())
 
-    # Assert: 40 C is the IEC 60601-1 default, so a 44 C room is a flag, not a blank
-    assert result.status is CheckStatus.MITIGABLE
+    # Assert: 40 C is the IEC 60601-1 default, so a 44 C room is judged, not a blank
+    assert result.status is CheckStatus.FAIL
     assert result.source is Provenance.STANDARD_DEFAULT
 
 
