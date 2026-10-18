@@ -59,6 +59,20 @@ def check_manual_language(
         )
 
     manual_text = ", ".join(manual) if manual else "no stated language"
+    if not _documents(device):
+        # The languages differ and there is no manual on file to build the
+        # packet from, so the packet cannot exist yet. [F9]: needs info only
+        # when no manual can be found, and this is that case.
+        return CheckResult(
+            key="manual",
+            label="Manual language",
+            status=CheckStatus.NEEDS_INFO,
+            detail=f"The manual is in {manual_text}; staff read {staff_text}. No "
+            "manual could be found to build a handover packet from.",
+            question="Can the donor supply the manufacturer's manual (a PDF or a link), "
+            f"so Fit-Check can build a handover packet in {wanted}?",
+            source=languages.source,
+        )
     return _packet_result(
         f"The manual is in {manual_text}; staff read {staff_text}. Fit-Check "
         f"generates a handover packet in {wanted} from the manufacturer's manual.",

@@ -24,7 +24,8 @@ def test_a_shared_language_passes():
 
 def test_no_shared_language_is_a_handover_packet_not_a_failure():
     result = check_manual_language(
-        device(manual_languages=fact(["en"], Provenance.SPEC_SHEET)),
+        device(manual_languages=fact(["en"], Provenance.SPEC_SHEET),
+               documents=fact([DOC], Provenance.SPEC_SHEET)),
         facility(staff_languages=("fr",)), intel())
 
     assert result.status is CheckStatus.MITIGABLE
@@ -62,3 +63,15 @@ def test_an_empty_document_list_counts_as_no_document():
         facility(), intel())
 
     assert result.status is CheckStatus.NEEDS_INFO
+
+
+def test_no_shared_language_and_no_document_asks_for_the_manual():
+    """[F9]: needs info only when no manual can be found. Different languages
+    with nothing on file is that case: the packet has no source yet."""
+    result = check_manual_language(
+        device(manual_languages=fact(["en"], Provenance.SPEC_SHEET)),
+        facility(staff_languages=("fr",)), intel())
+
+    assert result.status is CheckStatus.NEEDS_INFO
+    assert result.requirement is None
+    assert "manual" in result.question.lower()
