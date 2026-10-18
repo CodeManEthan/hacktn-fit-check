@@ -599,4 +599,7 @@ def test_the_clinic_form_offers_the_country_list_and_no_three_phase_box(web):
 def test_registering_a_clinic_goes_to_the_list_upload(web):
     reply = web.post("/clinic", data={"name": "New Clinic", "country": "Uganda"},
                      follow_redirects=False)
-    assert reply.status_code == 303 and reply.headers["location"] == "/request/upload"
+    assert reply.status_code == 303
+    assert reply.headers["location"] == "/request/upload?facility=new-clinic"
+    page = web.get(reply.headers["location"])
+    assert '<option value="new-clinic" selected>' in page.text

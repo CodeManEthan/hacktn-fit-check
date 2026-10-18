@@ -60,11 +60,15 @@ def help_page(request: Request) -> HTMLResponse:
 
 
 @router.get("/request/upload", response_class=HTMLResponse)
-def request_upload_form(request: Request) -> HTMLResponse:
-    """Arrive with a spreadsheet or a sentence instead of typing a form."""
+def request_upload_form(request: Request, facility: str = "") -> HTMLResponse:
+    """Arrive with a spreadsheet or a sentence instead of typing a form.
+
+    `facility` is the slug the register handler sends a new clinic on with,
+    so the clinic it just registered is the one chosen.
+    """
     return TEMPLATES.TemplateResponse(
         request=request, name="request_upload.html",
-        context={"facilities": repo.list_facilities()},
+        context={"facilities": repo.list_facilities(), "chosen": facility},
     )
 
 

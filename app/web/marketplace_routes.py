@@ -253,7 +253,7 @@ async def facility_submit(request: Request) -> HTMLResponse:
         return _error(request, str(exc), back="/clinic")
 
     # A registered clinic goes straight to the list upload (design §13, [B14]).
-    return RedirectResponse(url="/request/upload", status_code=303)
+    return RedirectResponse(url=f"/request/upload?facility={profile.slug}", status_code=303)
 
 
 # ---- requests and matching --------------------------------------------
