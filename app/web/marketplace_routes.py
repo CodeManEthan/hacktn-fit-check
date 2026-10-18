@@ -33,12 +33,14 @@ from app.matching.supply_order import supply_lookup
 from app.matching.verification import confirm, request_confirmation, withdraw
 from app.reference.country_power import country_centroid, lookup
 from app.reference.facility_registry import corroborates, find_candidates
-from app.web import forms, inspector
+from app.web import forms, inspector, presenters
 from app.web.forms import FormError
 from app.web.presenters import advisory_for, rule_count, TONE_BY_OUTCOME, TONE_BY_STATUS
 
 TEMPLATES = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 TEMPLATES.env.globals["rule_count"] = rule_count()
+TEMPLATES.env.globals["offer_name"] = presenters.offer_name
+TEMPLATES.env.globals["supply_url"] = presenters.supply_url
 router = APIRouter()
 
 
@@ -47,6 +49,9 @@ def _error(request: Request, message: str, back: str = "/") -> HTMLResponse:
         request=request, name="error.html",
         context={"message": message, "back": back}, status_code=400,
     )
+
+
+DEMO_CLINIC = "uganda-district"
 
 
 @router.get("/", response_class=HTMLResponse)
@@ -69,9 +74,33 @@ def landing(request: Request) -> HTMLResponse:
         }
         for f in repo.list_facilities()
     ]
+    # The demo clinic leads the strip (§7.1); the rest keep their order.
+    testbeds.sort(key=lambda bed: bed["slug"] != DEMO_CLINIC)
     return TEMPLATES.TemplateResponse(
         request=request, name="landing.html", context={"testbeds": testbeds}
     )
+
+
+# ---- role toggle (design §7.1) -----------------------------------------
+
+ROLES = ("donor", "clinic", "nonprofit")
+ROLE_COOKIE_DAYS = 30
+
+
+@router.post("/role")
+def set_role(role: str = Form(default=""), back: str = Form(default="/")) -> RedirectResponse:
+    """Remember who is looking, as a cookie, and go back to the same page.
+
+    Purely presentational: the role recolours the bar and the primary
+    buttons and hides nothing (no logins). An unknown role clears it.
+    """
+    target = _local_path(back) or "/"
+    response = RedirectResponse(url=target, status_code=303)
+    if role in ROLES:
+        response.set_cookie("role", role, max_age=ROLE_COOKIE_DAYS * 86400, samesite="lax")
+    else:
+        response.delete_cookie("role")
+    return response
 
 
 # ---- donor side --------------------------------------------------------
@@ -267,6 +296,8 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
     coverages = []
     bundles: dict[int, object] = {}
     advisory: dict[int, object] = {}
+    questions: dict[int, list[dict]] = {}
+    here = request.url.path
     for line in row.lines:
         offers = repo.open_offers_for_type(line.device_type)
         screening = screen_offers(facility, offers, intel_for=supply_lookup)
@@ -278,6 +309,10 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
         )
         for c in screening.ranked:
             bundles[c.offer.id] = build_bundle(c.verdict, facility, repo.offers_for_support)
+            if c.verdict.outcome is Outcome.NEEDS_INFO:
+                questions[c.offer.id] = presenters.open_questions(
+                    c.verdict, c.offer.device, c.intel, c.offer.device_type,
+                    facility.country, back=here)
         advisory.update({c.offer.id: advisory_for(c) for c in screening.rejected})
 
     return TEMPLATES.TemplateResponse(
@@ -285,6 +320,63 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
         context={
             "request_row": row, "facility": facility,
             "coverages": coverages, "bundles": bundles, "advisory": advisory,
+            "questions": questions,
+            "symbol": TONE_BY_STATUS, "tone": TONE_BY_OUTCOME,
+        },
+    )
+
+
+@router.get("/request/{request_id}/offer/{offer_id}", response_class=HTMLResponse)
+def candidate_page(request: Request, request_id: int, offer_id: int) -> HTMLResponse:
+    """One offer's verdict for one request's clinic (design §7.2).
+
+    The offer is screened again here, with the same supply order the matches
+    page uses, so a rejected or a needs-info offer renders as well as a
+    survivor: stamp, every check with the citation of the facts it read, the
+    send-with list and each add-on's own plate check, the open questions
+    (the nonprofit's link to /supply), and the advisory when rejected.
+    """
+    row = repo.load_request(request_id)
+    if row is None:
+        return _error(request, f"No request with id {request_id}.")
+    back = f"/request/{request_id}/matches"
+    offer = repo.load_offer(offer_id)
+    if offer is None:
+        return _error(request, f"No offer with id {offer_id}.", back=back)
+    facility = repo.load_facility(row.facility_slug)
+    if facility is None:
+        return _error(request, f"No facility profile for {row.facility_slug}.")
+
+    screening = screen_offers(facility, [offer], intel_for=supply_lookup)
+    found = [*screening.ranked, *screening.rejected]
+    if not found:
+        return _error(
+            request,
+            f"Offer {offer_id} is no longer open (reserved, withdrawn or past its date), "
+            "so there is nothing to screen.",
+            back=back,
+        )
+    candidate = found[0]
+    verdict = candidate.verdict
+    rejected = verdict.outcome is Outcome.WONT_WORK
+    here = request.url.path
+    return TEMPLATES.TemplateResponse(
+        request=request, name="candidate.html",
+        context={
+            "request_row": row, "facility": facility, "c": candidate,
+            "offer": offer, "verdict": verdict, "rejected": rejected,
+            "rows": presenters.check_rows(verdict, offer.device, candidate.intel,
+                                          facility.country),
+            "questions": presenters.open_questions(
+                verdict, offer.device, candidate.intel, offer.device_type,
+                facility.country, back=here),
+            "addons": presenters.addon_states(
+                build_bundle(verdict, facility, repo.offers_for_support)),
+            "advisory": {offer.id: advisory_for(candidate)} if rejected else {},
+            "pairs": presenters.identity_pairs(offer.device),
+            "proposable": verdict.outcome in (Outcome.WORKS, Outcome.WORKS_IF),
+            "packet_url": f"/packet/{offer.id}?facility={facility.slug}",
+            "back": back,
             "symbol": TONE_BY_STATUS, "tone": TONE_BY_OUTCOME,
         },
     )
@@ -607,6 +699,15 @@ def _supply_page(request: Request, country: str, values: dict, *,
         request=request, name="supply_form.html", status_code=status_code,
         context={"country": country, "questions": SUPPLY_QUESTIONS,
                  "saved": saved, "error": error, **values},
+    )
+
+
+@router.get("/supply", response_class=HTMLResponse)
+def supply_index(request: Request) -> HTMLResponse:
+    """The nonprofit's supply desk: one form per country a registered clinic is in."""
+    countries = sorted({f.country for f in repo.list_facilities() if f.country})
+    return TEMPLATES.TemplateResponse(
+        request=request, name="supply_index.html", context={"countries": countries},
     )
 
 

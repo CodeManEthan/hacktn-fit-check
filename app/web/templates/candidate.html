@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+{% block title %}{{ verdict.stamp }} &middot; {{ offer_name(offer) }}{% endblock %}
+{% macro offer_names(offers) %}{% for o in offers %}{{ offer_name(o) }} ({{ o.donor_name }}){{ ', ' if not loop.last }}{% endfor %}{% endmacro %}
+{% block content %}
+<section class="plate">
+  <p class="eyebrow"><a class="link" href="{{ back }}">&larr; {{ request_row.summary }} for {{ facility.name }}</a></p>
+  <div class="readout">
+    <div class="ident">
+      <h1 class="ident-name">{{ offer_name(offer) }}</h1>
+      <p class="ident-kind">{{ offer.device_type }} &middot; {{ offer.quantity_available }} available from
+         {{ offer.donor_name }}, {{ offer.origin.city }}{% if offer.origin.city %}, {% endif %}{{ offer.origin.country }}</p>
+      <dl class="pairs">
+        {% for label, value in pairs %}
+        <dt>{{ label }}</dt><dd>{{ value }}</dd>
+        {% endfor %}
+      </dl>
+    </div>
+
+    <div class="readout-side">
+      <div class="stamp {{ tone[verdict.outcome] }}">
+        <b>{{ verdict.stamp }}</b>
+        <i>{{ verdict.headline }}</i>
+      </div>
+      <p class="oversight">A screen, not a clearance. A person decides before anything ships.</p>
+      <div class="dest">
+        <p class="dest-name">{{ facility.name }} <em>{{ facility.country }}</em></p>
+        <span class="specs">
+          <span><b>{{ facility.mains_voltage_v }} V</b></span>
+          <span><b>{{ facility.mains_frequency_hz }} Hz</b></span>
+          <span>wards to <b>{{ facility.ambient_temp_max_c }}&deg;C</b></span>
+          <span><b>{{ facility.outages_per_week }}</b> outages a week</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="segments">
+    {% for r in verdict.results %}
+    <span class="seg {{ symbol[r.status] }}" title="{{ r.label }}: {{ r.detail }}"></span>
+    {% endfor %}
+  </div>
+  <div class="key">
+    {% if verdict.failures %}<i><u class="bad"></u>{{ verdict.failures | length }} blocked</i>{% endif %}
+    {% if verdict.conditional %}<i><u class="hold"></u>{{ verdict.conditional | length }} conditional</i>{% endif %}
+    {% if verdict.unknowns %}<i><u class="ask"></u>{{ verdict.unknowns | length }} unanswered</i>{% endif %}
+    {% if verdict.passes %}<i><u class="good"></u>{{ verdict.passes | length }} clear</i>{% endif %}
+  </div>
+
+  <div class="after candidate-acts">
+    {% if not rejected %}
+    <a class="go" href="{{ packet_url }}">Generate handover packet</a>
+    {% endif %}
+    {% if proposable %}
+    <form method="post" action="/match">
+      <input type="hidden" name="request_id" value="{{ request_row.id }}">
+      <input type="hidden" name="offer_id" value="{{ offer.id }}">
+      <button class="go-quiet" type="submit">Ask this donor</button>
+    </form>
+    {% endif %}
+  </div>
+</section>
+
+{% if verdict.failures %}
+<div class="flag bad">
+  <h2>What blocks it at {{ facility.name }}</h2>
+  <ul>{% for r in verdict.failures %}<li><b>{{ r.label }}.</b> {{ r.detail }}{% if r.fix %} <span class="note">{{ r.fix }}</span>{% endif %}</li>{% endfor %}</ul>
+  {% include "_advisory.html" %}
+</div>
+{% endif %}
+
+{% if addons %}
+<section class="plate">
+  <h2>{% if rejected %}Still missing, even if that were solved{% elif verdict.outcome == 'needs info' %}Would go with it, once the questions are answered{% else %}Must go with it{% endif %}</h2>
+  <div class="bundle sendwith">
+    {% for a in addons %}
+    {% set item = a.item %}
+    <div class="bundle-row {{ 'is-covered' if item.available else ('is-arranged' if not item.requirement.shippable else 'is-gap') }}">
+      <span class="bundle-what">{{ item.requirement.detail }}</span>
+      {% if not item.requirement.shippable %}
+      <span class="bundle-src">{{ item.status }}</span>
+      {% elif item.available %}
+      <span class="bundle-src">covered: {{ item.total_units }} available</span>
+      {% else %}
+      <span class="bundle-src">no donor has one yet</span>
+      {% endif %}
+    </div>
+    {% for o in a.covers %}
+    <p class="addon is-covers"><span class="pill good">covers</span> {{ offer_names([o]) }}, {{ o.quantity_available }} available{% if item.requirement.kind.value in ('transformer', 'voltage stabiliser', 'backup power', 'dehumidifier') %} &mdash; its own plate runs on {{ facility.mains_voltage_v }} V {{ facility.mains_frequency_hz }} Hz{% endif %}</p>
+    {% endfor %}
+    {% for o in a.rejected %}
+    <p class="addon is-rejected"><span class="pill bad">won't work here itself</span> {{ offer_names([o]) }} &mdash; its own plate fails {{ facility.mains_voltage_v }} V {{ facility.mains_frequency_hz }} Hz; it does not count</p>
+    {% endfor %}
+    {% for o in a.unverified %}
+    <p class="addon is-unverified"><span class="pill ask">unverified</span> {{ offer_names([o]) }} &mdash; its plate does not yet show it runs on {{ facility.mains_voltage_v }} V {{ facility.mains_frequency_hz }} Hz; it does not count</p>
+    {% endfor %}
+    {% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% if questions %}
+<div class="flag ask">
+  <h2>{{ questions | length }} open question{{ '' if questions | length == 1 else 's' }} before a verdict</h2>
+  <ul>
+    {% for q in questions %}
+    <li>{{ q.text }}
+      {% if q.url %}<a class="link" href="{{ q.url }}">Record the nonprofit's answer</a>{% else %}<span class="note">(for {{ q.who }})</span>{% endif %}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}
+
+<section class="plate plate-tight">
+  <h2>Audit trail &mdash; {{ verdict.results | length }} checks</h2>
+  <p class="note">Every row is decided by code, not by a model. The tag says where the
+     fact came from, and the link under it opens the page it was read on.</p>
+  <div class="audit-scroll">
+  <table class="audit">
+    <thead>
+      <tr>
+        <th scope="col">Check</th>
+        <th scope="col">Finding</th>
+        <th scope="col">What would fix it</th>
+        <th scope="col">Fact from</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      {% set r = row.result %}
+      <tr class="is-{{ symbol[r.status] }}" data-check="{{ r.key }}">
+        <td class="audit-name">{{ r.label }}</td>
+        <td class="audit-detail">{{ r.detail }}</td>
+        <td class="audit-detail">{{ r.fix or r.question or '&mdash;' | safe }}</td>
+        <td class="audit-source">
+          <span class="tag" data-source="{{ r.source.value }}">{{ r.source.value }}</span>
+          {% for l in row.links %}
+          <span class="source-cite">{% if l.tag and l.tag != r.source.value %}<span class="tag" data-source="{{ l.tag }}">{{ l.tag }}</span> {% endif %}{% if l.url %}<a class="link" href="{{ l.url }}" rel="noopener" target="_blank">{{ l.text }}</a>{% else %}{{ l.text }}{% endif %}{% if l.aside %}<span class="source-aside">{{ l.aside }}</span>{% endif %}</span>
+          {% endfor %}
+        </td>
+        <td><span class="pill {{ symbol[r.status] }}">{{ r.status.value | upper }}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+
+  <div class="after">
+    <a class="go" href="/offer">Screen another device</a>
+    <a class="link" href="{{ back }}">Back to every offer for this request</a>
+  </div>
+</section>
+{% endblock %}

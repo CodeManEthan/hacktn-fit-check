@@ -8,11 +8,29 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/static/style.css">
 </head>
-<body>
+{# The role toggle (§7.1) is a cookie and a colour. It hides nothing; the
+   nonprofit role adds its two desks to the bar. #}
+{% set roles = (("donor", "Donor"), ("clinic", "Clinic"), ("nonprofit", "Nonprofit")) %}
+{% set role = request.cookies.get("role", "") if request is defined and request else "" %}
+{% set role = role if role in ("donor", "clinic", "nonprofit") else "" %}
+<body{% if role %} data-role="{{ role }}"{% endif %}>
   <header class="topbar">
     <div class="topbar-in">
       <a class="mark" href="/">Fit-Check</a>
+      {% if role == "nonprofit" %}
+      <nav class="desk-links" aria-label="Nonprofit desks">
+        <a href="/supply">Supply answers</a>
+        <a href="/review">Recipients</a>
+      </nav>
+      {% endif %}
       <span class="status"><i class="dot"></i>{{ rule_count }} deterministic rules active</span>
+      <form class="role-toggle" method="post" action="/role" aria-label="Viewing as">
+        <input type="hidden" name="back" value="{{ request.url.path if request is defined and request else '/' }}{% if request is defined and request and request.url.query %}?{{ request.url.query }}{% endif %}">
+        {% for value, name in roles %}
+        <button type="submit" name="role" value="{{ value }}" class="role-btn role-btn-{{ value }}"
+                aria-pressed="{{ 'true' if role == value else 'false' }}">{{ name }}</button>
+        {% endfor %}
+      </form>
     </div>
   </header>
   <main class="deck">

@@ -3,7 +3,7 @@
 {% macro head(c) %}
     <div class="candidate-head">
       <div>
-        <p class="candidate-name">{{ c.offer.device.label }}</p>
+        <p class="candidate-name"><a class="candidate-link" href="/request/{{ request_row.id }}/offer/{{ c.offer.id }}">{{ offer_name(c.offer) }}</a></p>
         <p class="candidate-donor">{{ c.offer.donor_name }} &mdash;
           {{ c.offer.origin.city }}{% if c.offer.origin.city %}, {% endif %}{{ c.offer.origin.country }}</p>
       </div>
@@ -25,7 +25,7 @@
 {% endmacro %}
 
 
-{% macro offer_names(offers) %}{% for o in offers %}{{ o.device.label }} ({{ o.donor_name }}){{ ', ' if not loop.last }}{% endfor %}{% endmacro %}
+{% macro offer_names(offers) %}{% for o in offers %}{{ offer_name(o) }} ({{ o.donor_name }}){{ ', ' if not loop.last }}{% endfor %}{% endmacro %}
 
 {% macro send_with(c) %}
     {% set bundle = bundles.get(c.offer.id) %}
@@ -68,9 +68,11 @@
 <section class="plate">
   <p class="eyebrow">{{ facility.name }}, {{ facility.country }}</p>
   <h1>{{ request_row.summary }}</h1>
-  <p class="sub">Offers known to work come first, ordered by how little has to ship
-     alongside them, then by distance. Below them, the offers that cannot work here and
-     what blocks each one; last, the offers with questions to answer before a verdict.</p>
+  <p class="sub">Every open offer of each kind was screened against {{ facility.name }}.
+     Offers known to work come first, ordered by how little has to ship alongside them,
+     then by distance. The offers that cannot work here stay on the page, each with what
+     blocks it; last come the offers with questions to answer before a verdict. Open any
+     device for its fifteen checks and their sources.</p>
 
   <div class="coverage">
     {% for cover in coverages %}
@@ -119,6 +121,7 @@
       <input type="hidden" name="request_id" value="{{ request_row.id }}">
       <input type="hidden" name="offer_id" value="{{ c.offer.id }}">
       <button class="go" type="submit">Ask this donor</button>
+      <a class="link" href="/packet/{{ c.offer.id }}?facility={{ facility.slug }}">Generate handover packet</a>
     </form>
   </article>
   {% endfor %}
@@ -144,9 +147,18 @@
     {{ head(c) }}
     {{ segments(c) }}
     {{ send_with(c) }}
+    {% set supply_asks = (questions.get(c.offer.id) or []) | selectattr('url') | list %}
+    {% if supply_asks %}
+    <ul class="candidate-questions">
+      {% for q in supply_asks %}
+      <li>{{ q.text }} <a class="link" href="{{ q.url }}">Record the nonprofit's answer</a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
     <div class="candidate-act">
       <a class="go" href="/request/{{ request_row.id }}/offer/{{ c.offer.id }}"
          style="text-decoration:none">Answer {{ asked }} question{{ '' if asked == 1 else 's' }} first</a>
+      <a class="link" href="/packet/{{ c.offer.id }}?facility={{ facility.slug }}">Generate handover packet</a>
     </div>
   </article>
   {% endfor %}

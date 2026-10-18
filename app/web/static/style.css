@@ -859,3 +859,90 @@ button.go-quiet:hover { border-color: var(--block); color: var(--block); }
 .footer-mark { font-family: var(--mono); color: #6F7D96; }
 
 @media (prefers-reduced-motion: reduce) { .bed-chip { transition: none; } }
+
+/* ---- [B6] role toggle (§7.1) -------------------------------------------- */
+
+/* A cookie and a colour: the role tints the bar and the primary buttons and
+   hides nothing. Amber for the donor, teal for the clinic, slate for the
+   nonprofit. Each fill keeps white text at AA (amber 5.0:1, teal 5.5:1,
+   slate 7.6:1). */
+:root { --role: var(--accent-deep); --role-edge: var(--accent); --role-wash: var(--accent-wash); }
+body[data-role="donor"]     { --role: #B45309; --role-edge: #F59E0B; --role-wash: rgba(245, 158, 11, 0.12); }
+body[data-role="clinic"]    { --role: #0F766E; --role-edge: #14B8A6; --role-wash: rgba(20, 184, 166, 0.12); }
+body[data-role="nonprofit"] { --role: #475569; --role-edge: #94A3B8; --role-wash: rgba(148, 163, 184, 0.14); }
+
+body[data-role] .topbar { border-bottom: 2px solid var(--role-edge); background: linear-gradient(var(--role-wash), var(--role-wash)), var(--face); }
+body[data-role] button.go, body[data-role] a.go { background: var(--role); border-color: var(--role-edge); }
+body[data-role] button.go:hover, body[data-role] a.go:hover { background: var(--role-edge); color: #0B0E14; }
+
+.role-toggle { display: inline-flex; border: 1px solid var(--rule); border-radius: 999px; padding: 2px; gap: 2px; margin: 0; }
+.role-btn {
+  font: 600 12px/1 var(--text);
+  color: var(--etch);
+  background: transparent;
+  border: 0;
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.role-btn:hover { color: var(--ink); }
+.role-btn-donor[aria-pressed="true"]     { background: #B45309; color: #fff; }
+.role-btn-clinic[aria-pressed="true"]    { background: #0F766E; color: #fff; }
+.role-btn-nonprofit[aria-pressed="true"] { background: #475569; color: #fff; }
+
+.desk-links { display: flex; gap: var(--s3); margin-right: auto; margin-left: var(--s4); }
+.desk-links a { font: 500 13px/1 var(--text); color: var(--ink); text-decoration: none; padding: 6px 10px;
+  border: 1px solid var(--role-edge, var(--rule)); border-radius: 6px; }
+.desk-links a:hover { background: var(--role-wash); }
+
+/* ---- [B6] landing: two intake forms, the operator between them ------------ */
+
+.flow { display: grid; grid-template-columns: 1fr 0.8fr 1fr; gap: var(--s4); align-items: stretch; }
+.operator {
+  display: flex; flex-direction: column; justify-content: center;
+  border: 1px dashed #94A3B8; border-radius: 8px; padding: var(--s4);
+  background: rgba(148, 163, 184, 0.06); text-align: center;
+}
+.operator .role-kicker { color: #94A3B8; }
+.operator-name { font: 700 23px/1.2 var(--display); margin: var(--s2) 0 var(--s3); }
+.operator-line { color: var(--etch); font-size: 14px; margin: 0 0 var(--s4); }
+.middlemen { list-style: none; margin: 0; padding: var(--s3) 0 0; border-top: 1px solid var(--rule);
+  display: grid; gap: var(--s1); color: #6F7D96; font-size: 13px; }
+.middlemen::before { content: "also in the chain"; display: block; font: 500 11px/1.6 var(--mono); color: #6F7D96; }
+.role-alt { font-size: 13px; margin-top: var(--s3); }
+.country-list { margin: 0; padding-left: var(--s4); display: grid; gap: var(--s2); }
+
+/* ---- [B6] candidate verdict page (§7.2) and matches links ------------------ */
+
+.candidate-link { color: inherit; text-decoration: none; border-bottom: 1px solid var(--accent-line); }
+.candidate-link:hover { color: var(--accent-text); }
+.candidate-act .link, .candidate-act a.link { margin-left: var(--s4); font-size: 14px; align-self: center; }
+.candidate-questions { margin: var(--s2) 0 0; padding-left: var(--s4); font-size: 14px; color: var(--etch); }
+.candidate-questions li { margin: var(--s1) 0; }
+.candidate-acts { display: flex; flex-wrap: wrap; gap: var(--s3); align-items: center; margin-top: var(--s4); }
+.candidate-acts form { margin: 0; }
+.candidate-acts a.go, .after a.go { text-decoration: none; }
+.sendwith .addon { font-size: 13px; margin: var(--s1) 0 var(--s2) var(--s4); color: var(--etch); }
+.sendwith .addon .pill { margin-right: var(--s2); }
+.sendwith .addon.is-rejected { color: var(--block); }
+.audit-scroll { overflow-x: auto; }
+.audit-source { min-width: 14ch; }
+.audit-source .source-cite { display: block; font-size: 12px; margin-top: var(--s1); overflow-wrap: anywhere; }
+.audit-source .source-aside { display: block; color: var(--etch); margin-top: 2px; }
+.flag .note { display: block; color: var(--etch); margin-top: 2px; }
+.stamp.ask { color: var(--query); background: var(--query-wash); border-color: var(--query-line); }
+
+/* ---- [B6] narrow screens: the 16px side gutter, no sideways scroll ---------- */
+
+@media (max-width: 900px) {
+  .flow { grid-template-columns: 1fr; }
+  .desk-links { margin-left: 0; }
+}
+@media (max-width: 480px) {
+  .deck { padding-left: 16px; padding-right: 16px; }
+  .topbar-in, .footer-in { padding-left: 16px; padding-right: 16px; }
+  .plate { padding: var(--s4) 16px; }
+  .role-toggle { width: 100%; justify-content: space-between; }
+  .role-btn { flex: 1; }
+  h1 { font-size: 30px; }
+}
