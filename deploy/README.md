@@ -85,6 +85,10 @@ reuses them, and prints names only. A new policy can take a minute to apply.
    ```
    curl -fsSL https://raw.githubusercontent.com/CodeManEthan/hacktn-fit-check/main/deploy/bootstrap.sh | bash
    ```
+   `/opt` belongs to root, so the clone goes to a temporary directory under
+   `$HOME` and is moved into `/opt/fitcheck`. On an instance that already has the
+   checkout, a rerun fetches and checks out the fork's main (detached, as
+   `redeploy.sh` leaves it).
 
 The app creates any missing table at startup. No build adds a column to an
 existing table, so an older database keeps working.

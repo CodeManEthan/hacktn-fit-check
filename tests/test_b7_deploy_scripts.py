@@ -1,13 +1,22 @@
 """[B7] The deploy scripts parse, the live checker reads the seed's output, and
-nothing under deploy/ carries an OCID or a password."""
+nothing under deploy/ carries an OCID or a password.
+
+The fix-pass tests run pieces of the scripts locally: bootstrap's code step and
+redeploy's remote stage and cutover scripts, with /opt rewritten to a temporary
+directory, a local bare repository for the fork, and stubs for sudo, systemctl and
+the other VM commands. Nothing here reaches the VM."""
 
 from __future__ import annotations
 
 import importlib.util
+import os
 import py_compile
 import re
 import shutil
+import socket
+import stat
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -16,12 +25,89 @@ DEPLOY = Path(__file__).resolve().parent.parent / "deploy"
 SHELL_SCRIPTS = sorted(DEPLOY.glob("*.sh"))
 PY_SCRIPTS = sorted(DEPLOY.glob("*.py"))
 
+needs_git_bash = pytest.mark.skipif(
+    shutil.which("bash") is None or shutil.which("git") is None, reason="no bash or git")
+
 
 def _load(name: str):
     spec = importlib.util.spec_from_file_location(f"deploy_{name}", DEPLOY / f"{name}.py")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
+
+
+# --- local harness -------------------------------------------------------------------
+
+def _git(cwd: Path, *args: str) -> str:
+    result = subprocess.run(
+        ["git", "-C", str(cwd), "-c", "user.name=t", "-c", "user.email=t@example.invalid",
+         *args], check=True, capture_output=True, text=True)
+    return result.stdout.strip()
+
+
+def _commit(work: Path, name: str) -> str:
+    (work / name).write_text(name + "\n")
+    _git(work, "add", name)
+    _git(work, "commit", "-q", "-m", name)
+    return _git(work, "rev-parse", "HEAD")
+
+
+class Fork:
+    """A bare repository standing in for the fork: main, plus a side branch."""
+
+    def __init__(self, root: Path):
+        self.bare = root / "fork.git"
+        self.work = root / "fork-work"
+        subprocess.run(["git", "init", "-q", "--bare", "-b", "main", str(self.bare)], check=True)
+        subprocess.run(["git", "init", "-q", "-b", "main", str(self.work)], check=True)
+        _git(self.work, "remote", "add", "origin", str(self.bare))
+        self.first = _commit(self.work, "requirements.txt")
+        self.main = _commit(self.work, "one")
+        _git(self.work, "push", "-q", "origin", "main")
+        _git(self.work, "checkout", "-q", "-b", "side")
+        self.side = _commit(self.work, "side")
+        _git(self.work, "push", "-q", "origin", "side")
+        _git(self.work, "checkout", "-q", "main")
+
+    @property
+    def url(self) -> str:
+        return str(self.bare)
+
+    def advance(self, name: str) -> str:
+        head = _commit(self.work, name)
+        _git(self.work, "push", "-q", "origin", "main")
+        return head
+
+
+def _stubs(tmp_path: Path, **scripts: str) -> dict[str, str]:
+    """Executables on PATH ahead of the real ones; returns the environment to run with."""
+    bindir = tmp_path / "bin"
+    bindir.mkdir(exist_ok=True)
+    for name, body in scripts.items():
+        path = bindir / name
+        path.write_text("#!/usr/bin/env bash\n" + body + "\n")
+        path.chmod(0o755)
+    home = tmp_path / "home"
+    home.mkdir(exist_ok=True)
+    env = {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
+    env.update(PATH=f"{bindir}{os.pathsep}{env['PATH']}", HOME=str(home),
+               GIT_CONFIG_NOSYSTEM="1", GIT_CONFIG_GLOBAL=os.devnull)
+    return env
+
+
+SUDO = 'exec "$@"'
+
+
+def _run(script: str, env: dict[str, str], *args: str) -> subprocess.CompletedProcess:
+    return subprocess.run(["bash", "-s", "--", *args], input=script, env=env,
+                          capture_output=True, text=True, timeout=120)
+
+
+def _bootstrap_code_step(repo: str, app_dir: Path) -> str:
+    text = (DEPLOY / "bootstrap.sh").read_text()
+    block = text[text.index('echo "==> code"'):text.index('echo "==> virtualenv')]
+    return (f'set -euo pipefail\nREPO="{repo}"\nAPP_DIR="{app_dir}"\n'
+            f'RUN_USER="$(id -un)"\n' + block)
 
 
 def test_the_deploy_scripts_exist():
@@ -78,3 +164,39 @@ def test_check_live_fails_without_ids(monkeypatch, capsys):
     monkeypatch.setattr("sys.stdin", __import__("io").StringIO(""))
     assert module.main(["check_live.py", "http://127.0.0.1:1"]) == 1
     assert "could not read" in capsys.readouterr().out
+
+
+# --- fix pass 1 ----------------------------------------------------------------------
+
+@needs_git_bash
+def test_l1_bootstrap_clones_when_the_parent_of_the_app_dir_is_not_writable(tmp_path):
+    """/opt is root's on the VM: the clone must not need to create a sibling of /opt/fitcheck."""
+    fork = Fork(tmp_path)
+    opt = tmp_path / "opt"
+    app_dir = opt / "fitcheck"
+    app_dir.mkdir(parents=True)
+    (app_dir / ".env").write_text("KEY=kept\n")
+    env = _stubs(tmp_path, sudo=SUDO)
+    opt.chmod(0o555)
+    try:
+        result = _run(_bootstrap_code_step(fork.url, app_dir), env)
+    finally:
+        opt.chmod(0o755)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert _git(app_dir, "rev-parse", "HEAD") == fork.main
+    assert (app_dir / ".env").read_text() == "KEY=kept\n"
+    assert not list((tmp_path / "home").glob("fitcheck-clone.*"))
+
+
+@needs_git_bash
+def test_l1_bootstrap_rerun_moves_a_detached_checkout_to_main(tmp_path):
+    """redeploy.sh leaves /opt/fitcheck detached; a rerun of bootstrap must still update it."""
+    fork = Fork(tmp_path)
+    app_dir = tmp_path / "opt" / "fitcheck"
+    subprocess.run(["git", "clone", "-q", fork.url, str(app_dir)], check=True)
+    _git(app_dir, "checkout", "-q", "--detach", fork.first)
+    newer = fork.advance("two")
+    result = _run(_bootstrap_code_step(fork.url, app_dir), _stubs(tmp_path, sudo=SUDO))
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert _git(app_dir, "rev-parse", "HEAD") == newer
+    assert "pull --ff-only" not in (DEPLOY / "bootstrap.sh").read_text()

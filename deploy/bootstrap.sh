@@ -18,17 +18,22 @@ sudo dnf install -y git python3.12 python3.12-pip >/dev/null
 
 echo "==> code"
 if [ -d "$APP_DIR/.git" ]; then
-  git -C "$APP_DIR" pull --ff-only
+  # redeploy.sh leaves the checkout detached, where pull refuses; move to main instead.
+  git -C "$APP_DIR" fetch --quiet origin
+  git -C "$APP_DIR" checkout --quiet --detach origin/main
 else
-  # The directory may already exist holding only .env; clone beside it, then move in.
+  # The directory may already exist holding only .env. /opt is root's, so clone into
+  # a temporary directory under $HOME, then move the checkout in.
   sudo mkdir -p "$APP_DIR"
   sudo chown "$RUN_USER":"$(id -gn)" "$APP_DIR"
-  git clone --quiet "$REPO" "$APP_DIR.clone"
+  CLONE_TMP="$(mktemp -d "$HOME/fitcheck-clone.XXXXXX")"
+  git clone --quiet "$REPO" "$CLONE_TMP/repo"
   shopt -s dotglob
-  mv "$APP_DIR.clone"/* "$APP_DIR"/
+  mv "$CLONE_TMP/repo"/* "$APP_DIR"/
   shopt -u dotglob
-  rmdir "$APP_DIR.clone"
+  rm -rf "$CLONE_TMP"
 fi
+echo "checkout: $(git -C "$APP_DIR" log --oneline -1)"
 
 echo "==> virtualenv (python3.12)"
 [ -x "$APP_DIR/.venv/bin/python" ] || python3.12 -m venv "$APP_DIR/.venv"
