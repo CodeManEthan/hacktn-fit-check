@@ -3,7 +3,7 @@
 Code builds the figures from the stored verdicts. The model is asked for two
 or three sentences that use only those figures. The gate then reads every
 number in the reply: each must be one of the figures, or the sum of two of
-them. A reply that brings in any other number is replaced by a sentence code
+them stated so (both addends also appear in the paragraph). A reply that brings in any other number is replaced by a sentence code
 writes from the same figures, so the page can never state a figure the log
 does not hold.
 
@@ -57,7 +57,7 @@ PROMPT = (
 _UNITS = ("zero one two three four five six seven eight nine ten eleven twelve thirteen "
           "fourteen fifteen sixteen seventeen eighteen nineteen").split()
 _TENS = {"twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60,
-         "seventy": 70, "eighty": 80, "ninety": 90, "hundred": 100}
+         "seventy": 70, "eighty": 80, "ninety": 90, "hundred": 100, "dozen": 12}
 NUMBER_WORDS: dict[str, int] = {word: n for n, word in enumerate(_UNITS)} | _TENS
 _DIGITS = re.compile(r"\d[\d,]*(?:\.\d+)?")
 _WORDS = re.compile(r"[a-z]+(?:-[a-z]+)?")
@@ -138,13 +138,25 @@ def write_summary(figures: dict, client: ChatClient) -> str:
     return str(getattr(reply, "text", reply) or "").strip()
 
 
-def allowed_numbers(figures: dict) -> set[int]:
-    """Every figure, the count of countries, and every sum of two figures."""
+def figure_values(figures: dict) -> list[int]:
+    """Every figure, the blockers' counts and the count of countries."""
     values = [v for k, v in figures.items() if isinstance(v, int) and not isinstance(v, bool)]
     values += [v for v in figures.get("blockers", {}).values() if isinstance(v, int)]
     values.append(len(figures.get("countries", ())))
+    return values
+
+
+def allowed_numbers(figures: dict, stated: set[int] | frozenset[int] = frozenset()) -> set[int]:
+    """Every figure, the count of countries, and each sum of two figures stated so.
+
+    A sum counts as stated only when both of its addends are among `stated`,
+    the numbers the paragraph itself gives (§7.3: "a sum of two of them,
+    stated so"). With nothing stated, no sum is allowed: twelve is not a
+    figure just because three and nine are.
+    """
+    values = figure_values(figures)
     allowed = set(values)
-    allowed |= {a + b for a, b in combinations(values, 2)}
+    allowed |= {a + b for a, b in combinations(values, 2) if a in stated and b in stated}
     return allowed
 
 
@@ -162,12 +174,14 @@ def numbers_in(text: str) -> list[int | float]:
 
 
 def gate(paragraph: str, figures: dict) -> str:
-    """The paragraph if every number in it is a figure or a sum of two; else code's sentence."""
+    """The paragraph if every number in it is a figure or a stated sum of two; else code's sentence."""
     text = (paragraph or "").strip()
     if not text:
         return code_sentence(figures)
-    allowed = allowed_numbers(figures)
-    for number in numbers_in(text):
+    found = numbers_in(text)
+    stated = {n for n in found if isinstance(n, int)}
+    allowed = allowed_numbers(figures, stated)
+    for number in found:
         if isinstance(number, float) or number not in allowed:
             return code_sentence(figures)
     return text

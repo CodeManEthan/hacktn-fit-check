@@ -75,6 +75,41 @@ def test_a_stated_sum_of_two_figures_is_allowed():
     assert 8 + 3 in impact.allowed_numbers(FIGURES)
 
 
+
+# (B6 check L2) a sum passes only when the paragraph states both addends.
+
+def test_a_number_that_is_an_unstated_sum_of_two_figures_is_refused():
+    # 17 = 8 + 9, but the paragraph gives neither.
+    text = "Of the 20 devices, 17 failed on climate."
+    assert impact.gate(text, FIGURES) == impact.code_sentence(FIGURES)
+
+
+def test_a_number_word_that_is_an_unstated_sum_is_refused():
+    # 12 is not a figure; 3 + 9 would make it, but neither is in the text.
+    assert 12 not in impact.figure_values(FIGURES)
+    assert impact.gate("Twelve devices are still waiting.", FIGURES) == impact.code_sentence(FIGURES)
+    assert impact.gate("A dozen devices are still waiting.", FIGURES) == impact.code_sentence(FIGURES)
+
+
+def test_direct_figures_are_kept_without_any_sum():
+    text = "Eleven were blocked, 9 need answers, 20 in all"
+    assert impact.gate(text, FIGURES) == text
+
+
+def test_a_sum_stated_with_both_addends_is_kept():
+    text = "The checks stopped 8 on temperature and 3 on training, 11 together."
+    assert impact.gate(text, FIGURES) == text
+
+
+def test_a_sum_that_is_not_a_figure_passes_only_with_its_addends_stated():
+    # 13 = 11 + 2: kept when both are given, refused when only the total is.
+    stated = "11 were blocked and 2 more on supply frequency, 13 stops in all."
+    assert impact.gate(stated, FIGURES) == stated
+    bare = "Power and training together stopped 13 devices."
+    assert impact.gate(bare, FIGURES) == impact.code_sentence(FIGURES)
+    assert 13 not in impact.allowed_numbers(FIGURES)
+    assert 13 in impact.allowed_numbers(FIGURES, {11, 2})
+
 def test_the_code_sentence_uses_only_the_figures():
     sentence = impact.code_sentence(FIGURES)
     assert impact.gate(sentence, FIGURES) == sentence
