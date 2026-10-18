@@ -183,7 +183,6 @@ def test_an_unknown_role_cookie_is_ignored(demo):
 # [B13]'s landing (design §13): the operator is a one-line strip under the
 # two cards and the seeded-clinic strip is gone. Replacement from B13's report;
 # it passes once b13-ui-landing's landing.html is merged beside this base.
-@pytest.mark.xfail(strict=False, reason="needs [B13]'s landing.html (b13-ui-landing), joined at the merge")
 def test_the_landing_shows_two_intake_forms_and_the_operator_under_them(demo):
     body = demo["client"].get("/").text
     donor, clinic, operator = (body.index(s) for s in

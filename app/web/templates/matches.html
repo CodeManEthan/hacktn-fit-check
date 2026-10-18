@@ -59,8 +59,8 @@
     {% endif %}
 {% endmacro %}
 
+{% block head %}<link rel="stylesheet" href="/static/matches.css">{% endblock %}
 {% block content %}
-<link rel="stylesheet" href="/static/matches.css">
 <section class="plate">
   <p class="eyebrow">{{ facility.name }}, {{ facility.country }}</p>
   <h1>{{ request_row.summary }}</h1>

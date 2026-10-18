@@ -3,10 +3,9 @@
 {% block body_class %}lander{% endblock %}
 
 {# Layout from upstream ce2bf2c / e94d756 / 3bb4e93; copy, images and the
-   operator strip are ours (design §13, report F3). Neither base.html has a
-   head block, so landing.css is linked here in the body. #}
+   operator strip are ours (design §13, report F3). #}
+{% block head %}<link rel="stylesheet" href="/static/landing.css">{% endblock %}
 {% block content %}
-<link rel="stylesheet" href="/static/landing.css">
 
 <section class="lander-hero">
   <h1>Equipment that fits the place it is going</h1>
