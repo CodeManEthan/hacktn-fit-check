@@ -166,3 +166,33 @@ def test_the_default_registry_is_the_gudid_client_and_stays_offline(store):
     intel = supply_lookup(device(), "oxygen concentrator", "Uganda")
 
     assert intel.manufacturer_supported is UNKNOWN
+
+
+def test_a_model_answer_leaves_open_questions_to_the_type_answer():
+    calls = []
+
+    def load(device_type, model, country):
+        calls.append(model)
+        if model:
+            return an_answer(model="V100", sold_locally=None, consumables_available=False)
+        return an_answer(sold_locally=True, consumables_available=True, recorded_by="Type desk")
+
+    intel = supply_lookup(device(), "oxygen concentrator", "Uganda",
+                          registry=registry_says(None), recorded=load)
+
+    assert calls == ["V100", ""]
+    assert intel.consumables_available.value is False
+    assert intel.sold_locally.value is True
+    assert intel.sold_locally.note.startswith("recorded by Type desk")
+
+
+def test_without_a_type_no_second_lookup_is_made():
+    calls = []
+
+    def load(device_type, model, country):
+        calls.append(model)
+        return an_answer(model="V100")
+
+    supply_lookup(device(), "", "Uganda", registry=registry_says(None), recorded=load)
+
+    assert calls == ["V100"]

@@ -2,7 +2,7 @@
 
 1. The FDA's registry (GUDID): it can affirm that the manufacturer still
    supports the model. It never denies it.
-2. What the nonprofit recorded for this model in this country, else for this
+2. What the nonprofit recorded for this model in this country, then for this
    device type in this country (`supply_answers`).
 3. Otherwise unknown, and the supply checks ask.
 
@@ -20,7 +20,7 @@ from typing import Callable
 from app.data import marketplace_repo as repo
 from app.domain.device import DeviceFacts, SupplyIntel
 from app.domain.provenance import Provenance, fact
-from app.domain.supply_answer import SupplyAnswer
+from app.domain.supply_answer import ANY_MODEL, SupplyAnswer
 from app.reference import gudid
 from app.reference.gudid import RegistryResult
 
@@ -86,9 +86,17 @@ def supply_lookup(
     recorded = recorded or repo.load_supply_answer
 
     intel = _from_registry(SupplyIntel(country=country), device, registry)
+    answer = _load(recorded, device_type or "", _text(device.model.value), country)
+    intel = _from_answer(intel, answer)
+    # A model answer may leave a question open that the type answer settles.
+    if answer is not None and not answer.for_any_model and device_type:
+        intel = _from_answer(intel, _load(recorded, device_type, ANY_MODEL, country))
+    return intel
+
+
+def _load(recorded: AnswerLoader, device_type: str, model: str, country: str) -> SupplyAnswer | None:
     try:
-        answer = recorded(device_type or "", _text(device.model.value), country)
+        return recorded(device_type, model, country)
     except repo.RepositoryError as exc:
         LOG.warning("recorded supply answer unreadable: %s", exc)
-        answer = None
-    return _from_answer(intel, answer)
+        return None
