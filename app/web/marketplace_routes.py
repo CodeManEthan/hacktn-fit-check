@@ -85,20 +85,24 @@ def landing(request: Request) -> HTMLResponse:
 
 ROLES = ("donor", "clinic", "nonprofit")
 ROLE_COOKIE_DAYS = 30
+# Where each button in the bar lands: the party's own intake or desk.
+ROLE_HOME = {"donor": "/offer", "clinic": "/request", "nonprofit": "/review"}
 
 
 @router.post("/role")
 def set_role(role: str = Form(default=""), back: str = Form(default="/")) -> RedirectResponse:
-    """Remember who is looking, as a cookie, and go back to the same page.
+    """Remember who is looking, as a cookie, and open that party's home page.
 
-    Purely presentational: the role recolours the bar and the primary
-    buttons and hides nothing (no logins). An unknown role clears it.
+    The cookie recolours the bar and the primary buttons and hides nothing
+    (no logins). A button in a bar reads as a destination, so pressing Clinic
+    on the donor's form opens the clinic's request form rather than tinting
+    the donor's form teal. An unknown role clears the cookie and goes back.
     """
-    target = _local_path(back) or "/"
-    response = RedirectResponse(url=target, status_code=303)
     if role in ROLES:
+        response = RedirectResponse(url=ROLE_HOME[role], status_code=303)
         response.set_cookie("role", role, max_age=ROLE_COOKIE_DAYS * 86400, samesite="lax")
     else:
+        response = RedirectResponse(url=_local_path(back) or "/", status_code=303)
         response.delete_cookie("role")
     return response
 

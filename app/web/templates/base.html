@@ -8,8 +8,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/static/style.css">
 </head>
-{# The role toggle (§7.1) is a cookie and a colour. It hides nothing; the
-   nonprofit role adds its two desks to the bar. #}
+{# The role toggle (§7.1) is a cookie and a colour, and each button opens
+   its party's home page. It hides nothing; the nonprofit role adds its
+   desks to the bar. #}
 {% set roles = (("donor", "Donor"), ("clinic", "Clinic"), ("nonprofit", "Nonprofit")) %}
 {% set role = request.cookies.get("role", "") if request is defined and request else "" %}
 {% set role = role if role in ("donor", "clinic", "nonprofit") else "" %}
