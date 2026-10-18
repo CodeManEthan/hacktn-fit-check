@@ -14,6 +14,89 @@
     <div class="plate workbench">
       <h2 class="panel-head">Source material</h2>
 
+      {# [B3] library pick: a cited model fills the inspector from its documents. #}
+      <div class="library-pick" data-library-pick>
+        <div class="field">
+          <label class="name" for="f-library-slug">Pick from the library</label>
+          <select id="f-library-slug" name="library_slug">
+            <option value="">Not listed: paste or photograph it below</option>
+            {% for e in library_entries() %}
+            <option value="{{ e.slug }}" data-device-type="{{ e.device_type }}">{{ e.label }} ({{ e.device_type }})</option>
+            {% endfor %}
+          </select>
+          <p class="note">Every value comes from the maker's documents, with its page.
+             They cannot be edited here; clear the pick to paste a spec instead.</p>
+        </div>
+        <div class="field">
+          <label class="name" for="f-year-made">Year this unit was made</label>
+          <input type="text" id="f-year-made" name="year_of_manufacture" inputmode="numeric" placeholder="2016">
+          <p class="note">From the unit's own label. The library knows the model, not this unit.</p>
+        </div>
+      </div>
+      <script>
+        // Fills the inspector from the library on a pick; no model call is made.
+        (function () {
+          var select = document.getElementById('f-library-slug');
+          var body = document.querySelector('[data-inspector-body]');
+          var message = document.querySelector('[data-inspector-msg]');
+          var kind = document.getElementById('f-device-type');
+          if (!select || !body) return;
+
+          function cell(text, cls) {
+            var td = document.createElement('td');
+            if (cls) td.className = cls;
+            td.textContent = text;
+            return td;
+          }
+
+          function render(rows) {
+            body.textContent = '';
+            rows.forEach(function (row) {
+              var tr = document.createElement('tr');
+              tr.appendChild(cell(row.label, 'audit-name'));
+              tr.appendChild(cell(row.known ? row.value : '\u2014',
+                                  row.known ? 'audit-value' : 'audit-value is-empty'));
+              var source = document.createElement('td');
+              var tag = document.createElement('span');
+              tag.className = 'tag';
+              tag.setAttribute('data-source', row.source);
+              tag.textContent = row.source;
+              source.appendChild(tag);
+              if (row.known && row.source_url) {
+                var link = document.createElement('a');
+                link.href = row.source_url;
+                link.target = '_blank';
+                link.rel = 'noopener';
+                link.title = row.document || '';
+                link.textContent = row.page ? ' p.' + row.page : ' document';
+                source.appendChild(link);
+              }
+              tr.appendChild(source);
+              body.appendChild(tr);
+            });
+          }
+
+          select.addEventListener('change', function () {
+            var slug = select.value;
+            if (message) message.textContent = '';
+            if (!slug) { render([]); return; }
+            var option = select.options[select.selectedIndex];
+            if (kind && !kind.value) kind.value = option.getAttribute('data-device-type') || '';
+            var payload = new FormData();
+            payload.append('slug', slug);
+            fetch('/offer/prefill', { method: 'POST', body: payload })
+              .then(function (response) { return response.json(); })
+              .then(function (data) {
+                render(data.rows || []);
+                if (message) message.textContent = data.message || '';
+              })
+              .catch(function () {
+                if (message) message.textContent = 'The library did not answer. The pick still applies on submit.';
+              });
+          });
+        })();
+      </script>
+
       <div class="tabs" role="tablist">
         <button type="button" class="tab" role="tab" id="tab-photo"
                 aria-controls="panel-photo" aria-selected="true">Rating plate photo</button>
