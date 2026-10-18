@@ -1,0 +1,376 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care. While we make every effort to ensure that data is accurate, you should assume all results are unvalidated. We may limit or otherwise restrict your access to the API in line with our Terms of Service.",
+    "terms": "https://open.fda.gov/terms/",
+    "license": "https://open.fda.gov/license/",
+    "last_updated": "2026-10-01",
+    "results": {
+      "skip": 0,
+      "limit": 10,
+      "total": 4
+    }
+  },
+  "results": [
+    {
+      "has_donation_id_number": "false",
+      "mri_safety": "Labeling does not contain MRI Safety Information",
+      "record_status": "Published",
+      "is_labeled_as_nrl": "false",
+      "is_rx": "false",
+      "commercial_distribution_status": "In Commercial Distribution",
+      "device_description": "CONCENTRATOR, OXYGEN 5LTR W/OXY SENSOR",
+      "public_device_record_key": "3d811df9-3463-4727-9af0-df7bc1358aec",
+      "has_serial_number": "true",
+      "public_version_date": "2020-04-20",
+      "sterilization": {
+        "is_sterile": "false",
+        "is_sterilization_prior_use": "false"
+      },
+      "is_direct_marking_exempt": "false",
+      "public_version_number": "2",
+      "labeler_duns_number": "023904428",
+      "is_labeled_as_no_nrl": "true",
+      "identifiers": [
+        {
+          "id": "10612479248158",
+          "type": "Primary",
+          "issuing_agency": "GS1"
+        }
+      ],
+      "is_single_use": "false",
+      "is_otc": "true",
+      "version_or_model_number": "146-525DS",
+      "has_manufacturing_date": "false",
+      "brand_name": "McKesson",
+      "is_combination_product": "false",
+      "is_kit": "false",
+      "product_codes": [
+        {
+          "code": "CAW",
+          "name": "Generator, Oxygen, Portable",
+          "openfda": {
+            "device_name": "Generator, Oxygen, Portable",
+            "medical_specialty_description": "Anesthesiology",
+            "regulation_number": "868.5440",
+            "device_class": "2"
+          }
+        }
+      ],
+      "premarket_submissions": [
+        {
+          "submission_number": "K071397",
+          "supplement_number": "000"
+        }
+      ],
+      "device_count_in_base_package": "1",
+      "is_pm_exempt": "false",
+      "has_lot_or_batch_number": "false",
+      "company_name": "MCKESSON MEDICAL-SURGICAL INC.",
+      "public_version_status": "Update",
+      "has_expiration_date": "false",
+      "is_hct_p": "false",
+      "gmdn_terms": [
+        {
+          "code": "31321",
+          "name": "Mobile/portable oxygen concentrator",
+          "definition": "A mobile/portable mains electricity (AC-powered) device designed to concentrate oxygen (O2) from ambient air and deliver the concentrated O2, typically through an attached nasal cannula, to a patient requiring oxygen therapy. It processes the air through an internal filtration system, e.g., a molecular sieve (zeolite granules or membranes), having a large total surface area to separate nitrogen (N2) from the air. It typically consists of an air compressor, filters, dual chambers, a reservoir and controls. The O2 concentration is variable depending on the flow rate utilized. It is used in a home, institution, or a vehicle and typically has internal batteries for transportable use.",
+          "implantable": "false",
+          "code_status": "Active"
+        }
+      ],
+      "publish_date": "2019-09-24"
+    },
+    {
+      "has_donation_id_number": "false",
+      "mri_safety": "Labeling does not contain MRI Safety Information",
+      "record_status": "Published",
+      "is_labeled_as_nrl": "false",
+      "is_rx": "true",
+      "commercial_distribution_status": "In Commercial Distribution",
+      "device_description": "5-liter oxygen concentrator - Quiet Unit",
+      "public_device_record_key": "1612080d-ef20-4db3-a911-ea41625672c0",
+      "has_serial_number": "true",
+      "storage": [
+        {
+          "type": "Storage Environment Temperature",
+          "high": {
+            "unit": "Degrees Celsius",
+            "value": "60"
+          },
+          "low": {
+            "unit": "Degrees Celsius",
+            "value": "-20"
+          }
+        },
+        {
+          "type": "Storage Environment Humidity",
+          "high": {
+            "unit": "Percent (%) Relative Humidity",
+            "value": "95"
+          },
+          "low": {
+            "unit": "Percent (%) Relative Humidity",
+            "value": "10"
+          }
+        },
+        {
+          "type": "Storage Environment Atmospheric Pressure",
+          "high": {
+            "unit": "KiloPascal",
+            "value": "101"
+          },
+          "low": {
+            "unit": "KiloPascal",
+            "value": "64"
+          }
+        }
+      ],
+      "public_version_date": "2018-07-06",
+      "sterilization": {
+        "is_sterile": "false",
+        "is_sterilization_prior_use": "false"
+      },
+      "is_direct_marking_exempt": "false",
+      "public_version_number": "3",
+      "labeler_duns_number": "962175894",
+      "is_labeled_as_no_nrl": "false",
+      "identifiers": [
+        {
+          "id": "00885304009689",
+          "type": "Primary",
+          "issuing_agency": "GS1"
+        }
+      ],
+      "is_single_use": "false",
+      "is_otc": "false",
+      "version_or_model_number": "525DS-Q",
+      "has_manufacturing_date": "true",
+      "brand_name": "DeVilbiss",
+      "is_combination_product": "false",
+      "is_kit": "false",
+      "product_codes": [
+        {
+          "code": "CAW",
+          "name": "Generator, Oxygen, Portable",
+          "openfda": {
+            "device_name": "Generator, Oxygen, Portable",
+            "medical_specialty_description": "Anesthesiology",
+            "regulation_number": "868.5440",
+            "device_class": "2"
+          }
+        }
+      ],
+      "premarket_submissions": [
+        {
+          "submission_number": "K071397",
+          "supplement_number": "000"
+        }
+      ],
+      "device_count_in_base_package": "1",
+      "is_pm_exempt": "false",
+      "has_lot_or_batch_number": "false",
+      "customer_contacts": [
+        {
+          "phone": "800-338-1988",
+          "email": "somdhccustomerservice@devilbisshc.com"
+        }
+      ],
+      "catalog_number": "525DS-Q",
+      "company_name": "DEVILBISS HEALTHCARE LLC",
+      "public_version_status": "Update",
+      "has_expiration_date": "false",
+      "is_hct_p": "false",
+      "gmdn_terms": [
+        {
+          "code": "12873",
+          "name": "Stationary oxygen concentrator",
+          "definition": "A stationary mains electricity (AC-powered) device designed to concentrate oxygen (O2) from ambient air and deliver the concentrated O2, typically through an attached nasal cannula, to a patient requiring oxygen therapy. It processes the air through an internal filtration system, e.g., a molecular sieve (zeolite granules or membranes), having a large total surface area to separate nitrogen (N2) from the air. It typically consists of an air compressor, filters, dual chambers, a reservoir and controls. The O2 concentration is variable depending on the flow rate utilized. It is typically wheeled but is designed to be placed in one location, e.g., an institution or a home setting.",
+          "implantable": "false",
+          "code_status": "Active"
+        }
+      ],
+      "publish_date": "2016-09-20"
+    },
+    {
+      "has_donation_id_number": "false",
+      "mri_safety": "Labeling does not contain MRI Safety Information",
+      "record_status": "Published",
+      "is_labeled_as_nrl": "false",
+      "is_rx": "true",
+      "commercial_distribution_status": "In Commercial Distribution",
+      "device_description": "5-liter oxygen concentrator",
+      "public_device_record_key": "13a0b017-97c7-489e-aa6c-222fee15f5a2",
+      "has_serial_number": "true",
+      "storage": [
+        {
+          "type": "Storage Environment Atmospheric Pressure",
+          "high": {
+            "unit": "KiloPascal",
+            "value": "101"
+          },
+          "low": {
+            "unit": "KiloPascal",
+            "value": "61"
+          }
+        },
+        {
+          "type": "Storage Environment Humidity",
+          "high": {
+            "unit": "Percent (%) Relative Humidity",
+            "value": "93"
+          },
+          "low": {
+            "unit": "Percent (%) Relative Humidity",
+            "value": "15"
+          }
+        },
+        {
+          "type": "Storage Environment Temperature",
+          "high": {
+            "unit": "Degrees Celsius",
+            "value": "70"
+          },
+          "low": {
+            "unit": "Degrees Celsius",
+            "value": "-25"
+          }
+        }
+      ],
+      "public_version_date": "2024-07-18",
+      "sterilization": {
+        "is_sterile": "false",
+        "is_sterilization_prior_use": "false"
+      },
+      "is_direct_marking_exempt": "false",
+      "public_version_number": "5",
+      "labeler_duns_number": "962175894",
+      "is_labeled_as_no_nrl": "false",
+      "identifiers": [
+        {
+          "id": "00885304000846",
+          "type": "Primary",
+          "issuing_agency": "GS1"
+        }
+      ],
+      "is_single_use": "false",
+      "is_otc": "false",
+      "version_or_model_number": "525DS",
+      "has_manufacturing_date": "false",
+      "brand_name": "DeVilbiss",
+      "is_combination_product": "false",
+      "is_kit": "false",
+      "product_codes": [
+        {
+          "code": "CAW",
+          "name": "Generator, Oxygen, Portable",
+          "openfda": {
+            "device_name": "Generator, Oxygen, Portable",
+            "medical_specialty_description": "Anesthesiology",
+            "regulation_number": "868.5440",
+            "device_class": "2"
+          }
+        }
+      ],
+      "premarket_submissions": [
+        {
+          "submission_number": "K071397",
+          "supplement_number": "000"
+        }
+      ],
+      "device_count_in_base_package": "1",
+      "is_pm_exempt": "false",
+      "has_lot_or_batch_number": "false",
+      "customer_contacts": [
+        {
+          "phone": "800-338-1988",
+          "email": "somdhccustomerservice@devilbisshc.com"
+        }
+      ],
+      "catalog_number": "525DS",
+      "company_name": "DEVILBISS HEALTHCARE LLC",
+      "public_version_status": "Update",
+      "has_expiration_date": "false",
+      "is_hct_p": "false",
+      "gmdn_terms": [
+        {
+          "code": "12873",
+          "name": "Stationary oxygen concentrator",
+          "definition": "A stationary mains electricity (AC-powered) device designed to concentrate oxygen (O2) from ambient air and deliver the concentrated O2, typically through an attached nasal cannula, to a patient requiring oxygen therapy. It processes the air through an internal filtration system, e.g., a molecular sieve (zeolite granules or membranes), having a large total surface area to separate nitrogen (N2) from the air. It typically consists of an air compressor, filters, dual chambers, a reservoir and controls. The O2 concentration is variable depending on the flow rate utilized. It is typically wheeled but is designed to be placed in one location, e.g., an institution or a home setting.",
+          "implantable": "false",
+          "code_status": "Active"
+        }
+      ],
+      "publish_date": "2015-11-06"
+    },
+    {
+      "has_donation_id_number": "false",
+      "mri_safety": "Labeling does not contain MRI Safety Information",
+      "record_status": "Published",
+      "is_labeled_as_nrl": "false",
+      "is_rx": "true",
+      "commercial_distribution_status": "Not in Commercial Distribution",
+      "device_description": "Respiratory Concentrators Product Description 5 Liter Compact Concentrator - Rebuilt",
+      "public_device_record_key": "4473e2bf-7525-4cb7-a576-293a8292d587",
+      "has_serial_number": "true",
+      "public_version_date": "2024-01-30",
+      "commercial_distribution_end_date": "2024-01-29",
+      "sterilization": {
+        "is_sterile": "false",
+        "is_sterilization_prior_use": "false"
+      },
+      "is_direct_marking_exempt": "false",
+      "public_version_number": "2",
+      "labeler_duns_number": "867673159",
+      "is_labeled_as_no_nrl": "true",
+      "identifiers": [
+        {
+          "id": "00885304002550",
+          "type": "Primary",
+          "issuing_agency": "GS1"
+        }
+      ],
+      "is_single_use": "false",
+      "is_otc": "false",
+      "version_or_model_number": "525DS-RE",
+      "has_manufacturing_date": "false",
+      "brand_name": "DEVILBISS",
+      "is_combination_product": "false",
+      "is_kit": "false",
+      "product_codes": [
+        {
+          "code": "CAW",
+          "name": "Generator, oxygen, portable",
+          "openfda": {
+            "device_name": "Generator, Oxygen, Portable",
+            "medical_specialty_description": "Anesthesiology",
+            "regulation_number": "868.5440",
+            "device_class": "2"
+          }
+        }
+      ],
+      "premarket_submissions": [
+        {
+          "submission_number": "K071397",
+          "supplement_number": "000"
+        }
+      ],
+      "device_count_in_base_package": "1",
+      "is_pm_exempt": "false",
+      "has_lot_or_batch_number": "false",
+      "company_name": "Drive Devilbiss Healthcare",
+      "public_version_status": "Update",
+      "has_expiration_date": "false",
+      "is_hct_p": "false",
+      "gmdn_terms": [
+        {
+          "code": "61605",
+          "name": "Oxygen compressor, home-use",
+          "definition": "A mains electricity (AC-powered) electromechanical device intended to be used in conjunction with a stationary oxygen concentrator to pressurize and fill/refill ambulatory oxygen cylinders with medical oxygen (O2). It is operated by the patient in the home to facilitate mobile oxygen therapy.",
+          "implantable": "false",
+          "code_status": "Active"
+        }
+      ],
+      "publish_date": "2020-02-07"
+    }
+  ]
+}
