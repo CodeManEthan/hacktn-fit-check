@@ -116,7 +116,8 @@ def test_matches_orders_known_then_rejected_then_needs_info(client, monkeypatch)
     assert f'href="/request/{request_id}/offer/3"' in text
     assert "Answer 1 question first" in text
     assert text.count("Ask this donor") == 1
-    assert "Buying locally instead" not in text
+    # The rejected offer failed on frequency, so the buy-locally advisory shows under it.
+    assert "Buy locally instead?" in text
 
 
 def test_an_advisory_renders_under_its_rejected_offer(client, monkeypatch):
@@ -130,7 +131,7 @@ def test_an_advisory_renders_under_its_rejected_offer(client, monkeypatch):
 
     text = client.get(f"/request/{request_id}/matches").text
 
-    assert "Buying locally instead" in text
+    assert "Buy locally instead?" in text
     assert "about $290" in text and "sold in Testland: yes" in text
 
 

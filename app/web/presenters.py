@@ -5,8 +5,11 @@ Keeps formatting decisions out of Jinja, where they are hard to test.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+import json
+from dataclasses import dataclass
+from pathlib import Path
 from typing import TYPE_CHECKING
+from urllib.parse import quote, urlencode
 
 from app.domain.device import DeviceFacts
 from app.domain.result import CheckStatus, Outcome
@@ -81,28 +84,104 @@ def device_kind(device: DeviceFacts) -> str:
     return line[:90]
 
 
+LOCAL_PRICES_PATH = Path(__file__).resolve().parents[2] / "data" / "local_prices.json"
+
+# The one plate check whose failure a local purchase answers today. Voltage
+# is MITIGABLE (a transformer ships), so it never reaches a rejected offer.
+ADVISED_FAILURES = frozenset({"frequency"})
+
+
 @dataclass(frozen=True)
 class Advisory:
     """What buying locally would cost instead, shown under a rejected offer.
 
-    It reads the verdict and never writes one. `rows` are the price rows, each
-    a dict with the figures and the source URL; `as_of` is the date the prices
-    were read; `sold_locally_text` is the sold-locally fact in words; and
-    `supply_url` is where the nonprofit records an answer.
+    It reads the verdict and never writes one. `rows` are the price rows,
+    each a dict with `what`, `price_text`, `source` and `url` (plus `role`:
+    "instead", "add-on" or "with it"); `as_of` is the date the prices were
+    read; `sold_locally_text` is the sold-locally fact in words; and
+    `supply_url` is where the nonprofit records an answer, set only while
+    that fact is unknown.
     """
 
-    rows: list[dict] = field(default_factory=list)
+    rows: tuple[dict, ...] = ()
     as_of: str = ""
     sold_locally_text: str = ""
     supply_url: str = ""
 
 
-def advisory_for(candidate: "Candidate") -> Advisory | None:
+def _type_key(device_type: str) -> str:
+    return " ".join((device_type or "").lower().split())
+
+
+def load_local_prices(path: Path | None = None) -> dict[str, dict]:
+    """The price table by device type (lower case). Empty when the file is absent."""
+    path = path or LOCAL_PRICES_PATH
+    try:
+        table = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return {}
+    return {
+        _type_key(kind): entry for kind, entry in table.items()
+        if not kind.startswith("_") and isinstance(entry, dict)
+    }
+
+
+def _dollars(amount: float) -> str:
+    return f"${amount:,.0f}"
+
+
+def price_text(row: dict) -> str:
+    """'about $290' for an indicative price, '$1,319 to $2,273' for a range, '$205' else."""
+    if "price_usd_min" in row and "price_usd_max" in row:
+        return f"{_dollars(row['price_usd_min'])} to {_dollars(row['price_usd_max'])}"
+    if "price_usd" not in row:
+        return str(row.get("price_text", ""))
+    if row.get("indicative"):
+        return f"about {_dollars(round(row['price_usd'], -1))}"
+    return _dollars(row["price_usd"])
+
+
+def sold_locally_line(sold, country: str) -> str:
+    where = country or "the country"
+    if not sold.known:
+        return f"Sold in {where}: don't know, ask the nonprofit"
+    answer = "yes" if sold.value else "no"
+    return f"Sold in {where}: {answer}" + (f" ({sold.note})" if sold.note else "")
+
+
+def supply_url(country: str, device_type: str) -> str:
+    """The form where the nonprofit records the answer. The template adds `back`."""
+    query = urlencode({"device_type": device_type, "model": ""})
+    return f"/supply/{quote(country)}?{query}"
+
+
+def advisory_for(candidate: "Candidate", prices: dict[str, dict] | None = None) -> Advisory | None:
     """The buy-locally advisory for one rejected candidate, or None.
 
-    None until the price table and its rule are wired in.
+    Only for a WONT_WORK verdict that a frequency failure is part of, and
+    only for a device type the price table knows.
     """
-    return None
+    verdict = candidate.verdict
+    if verdict.outcome is not Outcome.WONT_WORK:
+        return None
+    if not any(r.key in ADVISED_FAILURES for r in verdict.failures):
+        return None
+    device_type = candidate.offer.device_type
+    entry = (load_local_prices() if prices is None else prices).get(_type_key(device_type))
+    if not entry or not entry.get("rows"):
+        return None
+
+    rows = tuple(
+        {**row, "price_text": price_text(row)} for row in entry["rows"]
+    )
+    country = candidate.intel.country
+    sold = candidate.intel.sold_locally
+    return Advisory(
+        rows=rows,
+        as_of=str(entry.get("as_of", "")),
+        sold_locally_text=sold_locally_line(sold, country),
+        supply_url="" if sold.known or not country else supply_url(country, device_type),
+    )
 
 
 def rule_count() -> int:

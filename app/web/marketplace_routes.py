@@ -570,3 +570,104 @@ def _support_kind(device_type: str, label: str) -> str:
     """
     kind = categorise_support(device_type, label)
     return kind.value if kind else ""
+
+
+# ---- recorded supply answers (§2.7) ------------------------------------
+
+from urllib.parse import quote, urlencode  # noqa: E402
+
+from app.domain.supply_answer import ANY_MODEL, SupplyAnswer  # noqa: E402
+
+SUPPLY_QUESTIONS = (
+    ("consumables_available", "Are its consumables (filters, circuits, cartridges) sold here?"),
+    ("spare_parts_available", "Can spare parts for it be bought here?"),
+    ("sold_locally", "Is this kind of device sold here, new?"),
+    ("manufacturer_supported", "Does the manufacturer or a local distributor still support it?"),
+)
+SUPPLY_CHOICES = {"yes": True, "no": False, "unknown": None, "": None}
+
+
+def _local_path(back: str) -> str:
+    """Only a path on this site: never another host, so the form is no open redirect."""
+    back = (back or "").strip()
+    if back.startswith("/") and not back.startswith(("//", "/\\")):
+        return back
+    return ""
+
+
+def _supply_page(request: Request, country: str, values: dict, *,
+                 saved: bool = False, error: str = "", status_code: int = 200) -> HTMLResponse:
+    return TEMPLATES.TemplateResponse(
+        request=request, name="supply_form.html", status_code=status_code,
+        context={"country": country, "questions": SUPPLY_QUESTIONS,
+                 "saved": saved, "error": error, **values},
+    )
+
+
+@router.get("/supply/{country}", response_class=HTMLResponse)
+def supply_form(request: Request, country: str, device_type: str = "", model: str = "",
+                back: str = "", saved: int = 0) -> HTMLResponse:
+    """The nonprofit's four answers for one device type (or model) in one country.
+
+    An answer already stored for exactly this type, model and country fills
+    the form in, so a correction starts from what was written.
+    """
+    answers: dict = {}
+    recorded_by = note = ""
+    try:
+        stored = repo.load_supply_answer(device_type, model, country) if device_type else None
+    except repo.RepositoryError:
+        stored = None
+    if (stored and stored.device_type.lower() == device_type.strip().lower()
+            and stored.model.lower() == model.strip().lower()):
+        answers = {name: getattr(stored, name) for name, _ in SUPPLY_QUESTIONS}
+        recorded_by, note = stored.recorded_by, stored.note
+    return _supply_page(request, country, {
+        "device_type": device_type, "model": model, "back": _local_path(back),
+        "answers": answers, "recorded_by": recorded_by, "note": note,
+    }, saved=bool(saved))
+
+
+@router.post("/supply/{country}", response_class=HTMLResponse)
+def supply_save(
+    request: Request,
+    country: str,
+    device_type: str = Form(default=""),
+    model: str = Form(default=""),
+    consumables_available: str = Form(default=""),
+    spare_parts_available: str = Form(default=""),
+    sold_locally: str = Form(default=""),
+    manufacturer_supported: str = Form(default=""),
+    recorded_by: str = Form(default=""),
+    note: str = Form(default=""),
+    back: str = Form(default=""),
+) -> HTMLResponse:
+    """Write one recorded answer, then go back to the page that asked."""
+    raw = {"consumables_available": consumables_available,
+           "spare_parts_available": spare_parts_available,
+           "sold_locally": sold_locally, "manufacturer_supported": manufacturer_supported}
+    values = {"device_type": device_type, "model": model, "back": _local_path(back),
+              "recorded_by": recorded_by, "note": note,
+              "answers": {k: SUPPLY_CHOICES.get(v.strip().lower()) for k, v in raw.items()}}
+    try:
+        unknown = [k for k, v in raw.items() if v.strip().lower() not in SUPPLY_CHOICES]
+        if unknown:
+            raise FormError("Each question takes yes, no or don't know.")
+        answer = SupplyAnswer(
+            device_type=forms.text(device_type, "Kind of equipment", required=True, limit=120),
+            model=forms.text(model, "Model", limit=200) or ANY_MODEL,
+            country=forms.text(country, "Country", required=True, limit=100),
+            recorded_by=forms.text(recorded_by, "Who is answering", required=True, limit=200),
+            note=forms.text(note, "How you know", limit=2000),
+            **values["answers"],
+        )
+        repo.save_supply_answer(answer)
+    except FormError as exc:
+        return _supply_page(request, country, values, error=str(exc), status_code=400)
+    except repo.RepositoryError as exc:
+        return _supply_page(request, country, values, error=str(exc), status_code=500)
+
+    if values["back"]:
+        return RedirectResponse(url=values["back"], status_code=303)
+    query = urlencode({"device_type": answer.device_type, "model": answer.model, "saved": 1})
+    return RedirectResponse(url=f"/supply/{quote(answer.country)}?{query}", status_code=303)
