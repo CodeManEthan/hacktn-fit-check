@@ -18,6 +18,7 @@ from fastapi.testclient import TestClient
 from app.config import SETTINGS
 from app.data import db
 from app.data import marketplace_repo as repo
+from app.domain.result import Outcome
 from app.main import app
 from app.matching import csv_screen
 from app.reference import device_library
@@ -87,6 +88,11 @@ def test_the_sample_screens_cleanly_against_kayunga(kayunga):
     assert by_model["5650D"].outcome == "won't work"
     assert by_model["5650D"].blockers[0].startswith("Supply frequency:")
     assert {r.outcome for r in result.rows} == {"works if you also send", "needs info", "won't work"}
+    # Every row is its library entry (check 1 L1: maker and device type agree),
+    # and the screening is 0 works, 1 works-if, 3 needs info, 2 won't work.
+    assert all(r.library_slug for r in result.rows)
+    assert [result.count(o) for o in (Outcome.WORKS, Outcome.WORKS_IF, Outcome.NEEDS_INFO,
+                                      Outcome.WONT_WORK)] == [0, 1, 3, 2]
 
 
 def test_the_sample_through_the_routes_posts_six_offers_only_on_the_button(kayunga):

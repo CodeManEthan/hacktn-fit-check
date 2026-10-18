@@ -16,6 +16,8 @@ from __future__ import annotations
 
 import csv
 import io
+import re
+import unicodedata
 from dataclasses import dataclass, field, replace
 from datetime import date
 from typing import Iterable
@@ -62,6 +64,14 @@ MAX_ROWS = 500
 MAX_BYTES = 1_000_000
 EARLIEST_BUILD_YEAR = 1950
 LIST_SEPARATORS = (";", "/", ",", "|")
+
+# Words in a maker's name that say nothing about which maker it is, so two
+# makers sharing only one of these are not the same maker.
+GENERIC_MAKER_WORDS = frozenset({
+    "medical", "systems", "system", "healthcare", "health", "care", "instruments",
+    "inc", "ltd", "llc", "co", "corp", "corporation", "company", "gmbh", "ag", "sa",
+    "plc", "limited", "group", "international", "the", "and", "of",
+})
 
 STATUS_SCREENED = "screened"
 STATUS_ERROR = "error"
@@ -301,6 +311,41 @@ def _origin(country: str, city: str) -> GeoPoint:
     return GeoPoint(country=country, city=city, latitude=latitude, longitude=longitude)
 
 
+def _plain(text: str) -> str:
+    """Case and accents folded: "Dräger" is "drager"."""
+    folded = unicodedata.normalize("NFKD", text or "").casefold()
+    return "".join(ch for ch in folded if not unicodedata.combining(ch))
+
+
+def _maker_tokens(text: str) -> set[str]:
+    """The words that name a maker; "Dräger", "Drager" and "Draeger" all read alike."""
+    words = set(re.findall(r"[a-z0-9]+", _plain(text))) - GENERIC_MAKER_WORDS
+    return {w.replace("ae", "a").replace("oe", "o").replace("ue", "u") for w in words}
+
+
+def _type_key(text: str) -> str:
+    """A device type with case, hyphens, underscores, spacing and -ize folded."""
+    words = re.sub(r"[\s_\-]+", " ", _plain(text)).strip()
+    return words.replace("izer", "iser")
+
+
+def library_fits(entry: device_library.LibraryEntry, manufacturer: str,
+                 device_type: str) -> bool:
+    """Whether a row naming the entry's model is the entry's device (check 1 L1).
+
+    A model or alias hit alone is not enough: the row's maker, when given, must
+    share a word with the entry's maker, and its device type, when given, must
+    be the entry's. "Medela C2000, suction pump" is not the Draeger Isolette
+    C2000 incubator.
+    """
+    if manufacturer.strip() and not (_maker_tokens(manufacturer)
+                                     & _maker_tokens(entry.manufacturer)):
+        return False
+    if device_type.strip() and _type_key(device_type) != _type_key(entry.device_type):
+        return False
+    return True
+
+
 def build_offer(values: dict[str, str], donor_name: str = "", donor_email: str = "",
                 ) -> tuple[Offer, device_library.LibraryEntry | None, tuple[str, ...]]:
     """The unsaved Offer one row describes, the library entry it named, and notes.
@@ -311,6 +356,10 @@ def build_offer(values: dict[str, str], donor_name: str = "", donor_email: str =
     manufacturer = values.get("manufacturer", "").strip()
     model = values.get("model", "").strip()
     picked = device_library.best_match(manufacturer, model) if model else None
+    if picked is not None and not library_fits(picked, manufacturer,
+                                               values.get("device_type", "")):
+        notes.append(f"resembles library model {picked.label}; row facts used")
+        picked = None
     year = parse_year(values.get("year", ""))
     if picked is not None:
         device = device_library.to_device_facts(picked)

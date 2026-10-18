@@ -266,3 +266,52 @@ def test_too_many_rows_is_refused(monkeypatch):
     text = "device_type,country\n" + "x,Uganda\n" * 3
     with pytest.raises(csv_screen.CsvError, match="more than 2 rows"):
         csv_screen.screen_csv(text, CLINIC, intel_for=lambda d, t, c: intel(country=c))
+
+
+# ---- check 1 L1: a model hit must also be the entry's maker and device ------
+
+L1_HEADER = "device_type,manufacturer,model,quantity,year,voltage_min_v,voltage_max_v,frequencies_hz,country\n"
+
+
+def _one_row(line: str):
+    text = L1_HEADER + line + "\n"
+    return csv_screen.screen_csv(text, CLINIC, intel_for=lambda d, t, c: intel(country=c)).rows[0]
+
+
+def test_a_model_hit_from_another_maker_and_device_is_donor_stated_with_a_note():
+    row = _one_row("suction pump,Medela,C2000,1,2020,220,240,50,Uganda")
+    assert row.status == "screened"
+    assert row.library_slug == "" and row.library_label == ""
+    device = row.offer.device
+    assert device.manufacturer.value == "Medela"
+    assert device.model.value == "C2000" and device.model.source is Provenance.DONOR_STATED
+    assert device.voltage_min_v.value == 220 and device.voltage_min_v.source is Provenance.DONOR_STATED
+    assert row.offer.device_type == "suction pump"
+    assert row.notes == ("resembles library model Draeger Medical Systems Isolette C2000; "
+                         "row facts used",)
+    assert row.name == "Medela C2000"
+
+
+def test_a_right_maker_but_another_device_type_is_not_a_library_row():
+    row = _one_row("suction pump,Draeger,C2000,1,,,,,Uganda")
+    assert row.library_slug == ""
+    assert "resembles library model Draeger Medical Systems Isolette C2000" in row.notes[0]
+
+
+def test_a_shared_generic_word_is_not_the_same_maker():
+    # "Medical" alone does not make Laerdal Medical the Draeger Medical Systems.
+    row = _one_row(",Laerdal Medical,C2000,1,,,,,Uganda")
+    assert row.library_slug == ""
+
+
+@pytest.mark.parametrize("line", [
+    "oxygen concentrator,DeVilbiss,525KS,1,,,,,United Kingdom",
+    ",,525KS,1,,,,,United Kingdom",
+    "Oxygen-Concentrator,DEVILBISS HEALTHCARE,525KS,1,,,,,United Kingdom",
+    "infant incubator,Dräger,C2000,1,,,,,Uganda",
+])
+def test_the_right_maker_and_device_or_blanks_still_take_the_library(line):
+    row = _one_row(line)
+    assert row.library_slug, row
+    assert not any(n.startswith("resembles") for n in row.notes)
+    assert row.offer.device.voltage_min_v.source is Provenance.SPEC_SHEET
