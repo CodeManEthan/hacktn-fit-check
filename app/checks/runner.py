@@ -10,6 +10,7 @@ from __future__ import annotations
 from typing import Callable
 
 from app.checks.documentation import check_manual_language, check_operation_and_repair
+from app.checks.import_rules import check_import_rules
 from app.checks.environment import (
     check_grid_reliability,
     check_humidity,
@@ -47,6 +48,7 @@ ALL_CHECKS: tuple[Check, ...] = (
     check_support_window,
     check_manual_language,
     check_operation_and_repair,
+    check_import_rules,
 )
 
 ROUTE_CHECKS: tuple[RouteCheck, ...] = (check_shelf_life,)
@@ -100,9 +102,10 @@ def build_verdict(results: tuple[CheckResult, ...]) -> Verdict:
     requirements = tuple(
         r.fix for r in results if r.status is CheckStatus.MITIGABLE and r.fix
     )
-    questions = tuple(
+    # One question is asked once, even when two checks need the same answer.
+    questions = tuple(dict.fromkeys(
         r.question for r in results if r.status is CheckStatus.NEEDS_INFO and r.question
-    )
+    ))
     return Verdict(
         outcome=outcome,
         results=results,
