@@ -7,6 +7,8 @@ work is ranked by distance.
 
 Built for HackTN, Track 1: From Surplus to Social Good.
 
+**Live:** https://fitcheck.care
+
 ## The pipeline
 
 1. **Filter** — offers of the right type, with stock, not past their expiry.
@@ -111,15 +113,20 @@ app/
 
 ## Deploying to the OCI VM
 
-The only change is the database. Set `DATABASE_URL` in `.env`:
+The live site is https://fitcheck.care: one OCI Compute instance running the app
+under systemd on `127.0.0.1:8000`, with Caddy in front on ports 80 and 443
+holding the Let's Encrypt certificate. The database is MySQL HeatWave on a
+private subnet, set through `DATABASE_URL` in `.env`:
 
 ```
 DATABASE_URL=mysql+pymysql://USER:PASSWORD@HOST:3306/fitcheck
 ```
 
-Then run uvicorn behind nginx on the VM. Once the app runs on OCI Compute,
-switch authentication from the API key to instance principals so no key file
-sits on the server.
+On the VM the app signs its OCI calls as an instance principal, so no key file
+sits on the server. `deploy/` holds the Caddyfile, the bootstrap for a fresh VM
+and `redeploy.sh`, which stages a head, checks it and cuts over with a rollback.
+`docs/deploy.md` is the operator's page: the stack, auth, redeploying, and what
+to do when the site stops answering.
 
 ## Seeded clinics
 
