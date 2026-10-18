@@ -946,3 +946,11 @@ body[data-role] button.go:hover, body[data-role] a.go:hover { background: var(--
   .role-btn { flex: 1; }
   h1 { font-size: 30px; }
 }
+
+/* ---- [B6] impact paragraph (§7.3) ---------------------------------------- */
+
+.counter.ask b { color: var(--query); }
+.impact-summary { margin: var(--s4) 0 var(--s5); padding: var(--s4); border-left: 3px solid var(--accent-line);
+  background: var(--raise); border-radius: 0 6px 6px 0; max-width: 72ch; }
+.impact-summary p { margin: 0 0 var(--s2); }
+.impact-summary .note { margin: 0; font-size: 12px; }
