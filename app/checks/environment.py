@@ -45,16 +45,17 @@ def check_temperature(
             source=rated.source,
         )
 
+    # Cooling a room is building works, not an add-on (design §2.4): nothing
+    # ships in the crate that fixes it, so it fails and says what is missing.
     return CheckResult(
         key="temperature",
         label="Operating temperature",
-        status=CheckStatus.MITIGABLE,
-        detail=f"Rated to {rated.value:g} C, but rooms reach {room:g} C and there "
-        "is no air conditioning.",
-        fix="Air conditioning for the room it will live in, or a device rated higher.",
+        status=CheckStatus.FAIL,
+        detail=f"Rated to {rated.value:g} C, but rooms reach {room:g} C. It needs "
+        f"air conditioning the ward at {facility.name} does not have.",
+        fix=f"{facility.name} would have to air-condition the room it lives in, "
+        "or be sent a device rated for the heat.",
         source=rated.source,
-        requirement=Requirement(RequirementKind.COOLING,
-                                 "Air conditioning for the room it will live in.", "temperature"),
     )
 
 
