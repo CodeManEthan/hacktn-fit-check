@@ -201,16 +201,38 @@ def verifications_for(slugs: list[str]) -> dict[str, VerificationStatus]:
     return found
 
 
-def save_facility(profile: FacilityProfile) -> str:
-    """Insert the profile, or replace whatever is already stored under its slug."""
-    values = _facility_values(profile)
-    slug_match = facilities_v2.c.slug == profile.slug
+def save_facility(profile: FacilityProfile, *, new: bool = False) -> str:
+    """Store the profile and return the slug it was stored under.
+
+    By default this inserts the profile, or replaces whatever is already stored
+    under its slug; the seed relies on that to replace its own rows on a rerun.
+    With `new=True` (a public registration) it never touches an existing row:
+    when the slug is taken it stores the profile under the first free one of
+    `slug-2`, `slug-3`, ..., so a newcomer can neither rewrite another clinic's
+    profile nor inherit its reviewer verification.
+    """
+    from dataclasses import replace as with_fields
+
+    from app.data.marketplace_schema import SLUG_LENGTH
+
     try:
         with get_engine().begin() as conn:
-            stored = conn.execute(select(facilities_v2.c.slug).where(slug_match)).first()
+            def taken(slug: str) -> bool:
+                found = select(facilities_v2.c.slug).where(facilities_v2.c.slug == slug)
+                return conn.execute(found).first() is not None
+
+            if new:
+                slug, number = profile.slug, 1
+                while taken(slug):
+                    number += 1
+                    suffix = f"-{number}"
+                    slug = profile.slug[: SLUG_LENGTH - len(suffix)].rstrip("-") + suffix
+                profile = with_fields(profile, slug=slug)
+            values = _facility_values(profile)
+            slug_match = facilities_v2.c.slug == profile.slug
             statement = (
                 update(facilities_v2).where(slug_match).values(**values)
-                if stored
+                if not new and taken(profile.slug)
                 else insert(facilities_v2).values(
                     slug=profile.slug, created_at=datetime.now(), **values
                 )

@@ -216,8 +216,12 @@ async def facility_submit(request: Request) -> HTMLResponse:
                 str(form.get("mains_frequency_hz", "")), "Frequency",
                 default=grid.mains_frequency_hz if grid else 50, minimum=1),
             plug_types=tuple(grid.plug_types) if grid else (),
-            ambient_temp_max_c=forms.decimal(str(form.get("ambient_temp_max_c", "")), "Temperature", default=30.0),
-            humidity_max_pct=forms.decimal(str(form.get("humidity_max_pct", "")), "Humidity", default=70.0),
+            ambient_temp_max_c=forms.decimal(
+                str(form.get("ambient_temp_max_c", "")), "Temperature",
+                default=30.0, minimum=-50, maximum=70, unit=" C"),
+            humidity_max_pct=forms.decimal(
+                str(form.get("humidity_max_pct", "")), "Humidity",
+                default=70.0, minimum=0, maximum=100, unit="%"),
             has_air_conditioning=forms.flag(form.get("has_air_conditioning")),
             outages_per_week=forms.whole_number(str(form.get("outages_per_week", "")), "Outages"),
             has_voltage_stabilizer=forms.flag(form.get("has_voltage_stabilizer")),
@@ -233,12 +237,14 @@ async def facility_submit(request: Request) -> HTMLResponse:
             latitude=latitude,
             longitude=longitude,
         )
-        repo.save_facility(profile)
+        # A registration is always a new clinic: if the name's slug is taken it
+        # gets a free one rather than replacing that clinic's row.
+        slug = repo.save_facility(profile, new=True)
     except (FormError, RepositoryError) as exc:
         return _error(request, str(exc), back="/clinic")
 
     # A registered clinic goes straight to the list upload (design §13, [B14]).
-    return RedirectResponse(url=f"/request/upload?facility={profile.slug}", status_code=303)
+    return RedirectResponse(url=f"/request/upload?facility={slug}", status_code=303)
 
 
 # ---- requests and matching --------------------------------------------

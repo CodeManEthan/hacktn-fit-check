@@ -47,7 +47,7 @@ These back the two-sided marketplace: offers, requests, matches. The first five 
 
 One row per clinic: `slug` (key), `name`, `country`, `latitude`, `longitude`, `profile_json`, `verification`, `verification_note`, `created_at`.
 
-- Written by `POST /clinic` (the clinic's own form) and by the seed, both through `save_facility`, which replaces the row with the same slug.
+- Written by `POST /clinic` (the clinic's own form) and by the seed, both through `save_facility`. The seed replaces the row with the same slug, so a rerun overwrites its own rows. The form only ever inserts: its slug comes from the name, and when that slug is taken the new clinic gets the first free one of `<slug>-2`, `<slug>-3`, ..., so a registration never changes another clinic's row or its verification.
 - `latitude` and `longitude` are copied out of the profile so distance needs no JSON parsing. On the form they come from the country's centroid, not the clinic's address.
 - `verification` and `verification_note` are written only by a reviewer on `POST /review/<slug>`. Values: `entered on the form` (the default), `matched in a public registry`, `registration document on file`, `approved by a reviewer`, `contradicted by a check`. A clinic writes its profile, and a reviewer writes these two columns, so `save_facility` never touches them.
 - After a fresh seed: 3 rows. `uganda-district` is Kayunga District Hospital, `haiti-community` is Hopital Communautaire de Pignon, and `nepal-phc` is Bardiya Primary Health Centre.
