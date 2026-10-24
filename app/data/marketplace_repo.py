@@ -13,7 +13,7 @@ from dataclasses import asdict, fields
 from datetime import date, datetime, timedelta
 from typing import Any
 
-from sqlalchemy import and_, delete, func, insert, or_, select, update
+from sqlalchemy import and_, case, delete, func, insert, or_, select, update
 
 from app.data.db import get_engine
 from app.data.marketplace_schema import (
@@ -456,7 +456,12 @@ def save_match(match: MatchRecord) -> str:
     open_matches_older_than compares two readings of the same clock.
     """
     match_id = match.id or _new_match_id()
-    statement = insert(matches).values(
+    _write(_match_insert(match, match_id), "Could not save the match")
+    return match_id
+
+
+def _match_insert(match: MatchRecord, match_id: str) -> Any:
+    return insert(matches).values(
         id=match_id,
         request_id=match.request_id,
         offer_id=match.offer_id,
@@ -469,8 +474,6 @@ def save_match(match: MatchRecord) -> str:
         created_at=match.created_at or datetime.now(),
         responded_at=match.responded_at,
     )
-    _write(statement, "Could not save the match")
-    return match_id
 
 
 def load_match(match_id: str) -> MatchRecord | None:
@@ -499,6 +502,82 @@ def update_match_state(
         .values(state=state.value, responded_at=responded_at or datetime.now())
     )
     _write(statement, "Could not update the match")
+
+
+class StockHeld(RepositoryError):
+    """The units a match asked for were taken by another request first."""
+
+
+def line_for_offer(lines: tuple[RequestLine, ...], device_type: str) -> RequestLine | None:
+    """The request line an offer of this type is listed under on the matches page.
+
+    Uses the same type rule as open_offers_for_type, so an offer the page shows
+    under a line is always found here. None when the offer is on no line.
+    """
+    return next((line for line in lines if _type_matches(line.device_type, device_type)), None)
+
+
+def save_match_reserving(match: MatchRecord) -> str:
+    """Hold the match's units on its offer and store the match, as one step.
+
+    The hold is a conditional increment, so two requests racing for the last
+    unit cannot both win: the loser's UPDATE touches no row and nothing is
+    written. Raises StockHeld when the units are no longer free.
+    """
+    match_id = match.id or _new_match_id()
+    available = (
+        offers.c.quantity_offered - offers.c.quantity_reserved - offers.c.quantity_shipped
+    )
+    hold = (
+        update(offers)
+        .where(offers.c.id == match.offer_id, available >= match.quantity)
+        .values(quantity_reserved=offers.c.quantity_reserved + match.quantity)
+    )
+    try:
+        with get_engine().begin() as conn:
+            if conn.execute(hold).rowcount != 1:
+                raise StockHeld("Its units are already held for another request.")
+            conn.execute(_match_insert(match, match_id))
+    except RepositoryError:
+        raise
+    except Exception as exc:  # noqa: BLE001
+        raise RepositoryError(f"Could not save the match: {exc}") from exc
+    return match_id
+
+
+def respond_to_match(
+    match: MatchRecord, state: MatchState, responded_at: datetime, *, release: bool
+) -> bool:
+    """Move a match out of the state it was loaded in, releasing its units if asked.
+
+    The state change only applies while the row is still in the state the
+    caller loaded, so two answers to the same link cannot both act: the second
+    touches no row, releases nothing, and gets False back. The release is a
+    decrement in SQL, floored at zero, in the same transaction.
+    """
+    move = (
+        update(matches)
+        .where(matches.c.id == match.id, matches.c.state == match.state.value)
+        .values(state=state.value, responded_at=responded_at)
+    )
+    give_back = (
+        update(offers)
+        .where(offers.c.id == match.offer_id)
+        .values(quantity_reserved=case(
+            (offers.c.quantity_reserved > match.quantity,
+             offers.c.quantity_reserved - match.quantity),
+            else_=NO_STOCK,
+        ))
+    )
+    try:
+        with get_engine().begin() as conn:
+            if conn.execute(move).rowcount != 1:
+                return False
+            if release:
+                conn.execute(give_back)
+    except Exception as exc:  # noqa: BLE001
+        raise RepositoryError(f"Could not update the match: {exc}") from exc
+    return True
 
 
 def matches_for_request(request_id: int) -> list[MatchRecord]:
