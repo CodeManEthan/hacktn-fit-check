@@ -6,6 +6,7 @@ failure rather than a silent default.
 
 from __future__ import annotations
 
+import math
 from dataclasses import replace
 from datetime import date
 
@@ -32,7 +33,8 @@ def whole_number(raw: str, field: str, *, default: int = 0, minimum: int = 0) ->
         return default
     try:
         number = int(float(value))
-    except ValueError as exc:
+    except (ValueError, OverflowError) as exc:
+        # "inf", "nan" and "1e400" parse as floats but have no integer value.
         raise FormError(f"{field} must be a number. You gave {value!r}.") from exc
     if number < minimum:
         raise FormError(f"{field} cannot be below {minimum}.")
@@ -41,14 +43,30 @@ def whole_number(raw: str, field: str, *, default: int = 0, minimum: int = 0) ->
     return number
 
 
-def decimal(raw: str, field: str, *, default: float | None = None) -> float | None:
+def decimal(
+    raw: str,
+    field: str,
+    *,
+    default: float | None = None,
+    minimum: float | None = None,
+    maximum: float | None = None,
+    unit: str = "",
+) -> float | None:
+    """A finite number, within [minimum, maximum] when those are given."""
     value = (raw or "").strip()
     if not value:
         return default
     try:
-        return float(value)
+        number = float(value)
     except ValueError as exc:
         raise FormError(f"{field} must be a number. You gave {value!r}.") from exc
+    if not math.isfinite(number):
+        raise FormError(f"{field} must be a number. You gave {value!r}.")
+    if minimum is not None and number < minimum:
+        raise FormError(f"{field} cannot be below {minimum:g}{unit}.")
+    if maximum is not None and number > maximum:
+        raise FormError(f"{field} cannot be above {maximum:g}{unit}.")
+    return number
 
 
 def iso_date(raw: str, field: str) -> date | None:
