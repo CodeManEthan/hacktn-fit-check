@@ -30,7 +30,12 @@ from app.matching.bundle import build_bundle
 from app.matching.coverage import LineCoverage
 from app.matching.pipeline import propose_match, screen_offers
 from app.matching.supply_order import supply_lookup
-from app.matching.verification import confirm, request_confirmation, withdraw
+from app.matching.verification import (
+    confirm,
+    request_confirmation,
+    run_timeout_sweep,
+    withdraw,
+)
 from app.reference.country_power import country_centroid, lookup
 from app.reference.facility_registry import corroborates, find_candidates
 from app.web import forms, inspector, presenters
@@ -295,6 +300,7 @@ async def request_submit(request: Request) -> HTMLResponse:
 
 @router.get("/request/{request_id}/matches", response_class=HTMLResponse)
 def matches(request: Request, request_id: int) -> HTMLResponse:
+    run_timeout_sweep()
     row = repo.load_request(request_id)
     if row is None:
         return _error(request, f"No request with id {request_id}.")
@@ -440,6 +446,7 @@ def create_match(
 
 @router.get("/match/{match_id}", response_class=HTMLResponse)
 def match_sent(request: Request, match_id: str) -> HTMLResponse:
+    run_timeout_sweep()
     match = repo.load_match(match_id)
     if match is None:
         return _error(request, f"No match with id {match_id}.")
