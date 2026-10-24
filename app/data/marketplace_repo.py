@@ -526,6 +526,28 @@ def open_matches_older_than(hours: int, now: datetime | None = None) -> list[Mat
     return [_match_from_row(row) for row in rows]
 
 
+def withdraw_if_awaiting(match_id: str, now: datetime | None = None) -> bool:
+    """Withdraw a match only if it is still waiting on the donor.
+
+    One conditional UPDATE, so of a timeout sweep and a donor's answer arriving
+    together exactly one wins. True means this call made the move and the
+    caller owns releasing the stock; False means someone else already did.
+    """
+    statement = (
+        update(matches)
+        .where(
+            matches.c.id == match_id,
+            matches.c.state == MatchState.AWAITING_DONOR.value,
+        )
+        .values(state=MatchState.WITHDRAWN.value, responded_at=now or datetime.now())
+    )
+    try:
+        with get_engine().begin() as conn:
+            return conn.execute(statement).rowcount == 1
+    except Exception as exc:  # noqa: BLE001
+        raise RepositoryError(f"Could not withdraw the match: {exc}") from exc
+
+
 def offers_for_support(kind_value: str, terms: tuple[str, ...], today: date | None = None) -> list[Offer]:
     """Open offers that could satisfy a support requirement.
 
