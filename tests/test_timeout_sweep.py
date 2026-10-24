@@ -90,3 +90,16 @@ def test_the_sweep_runs_at_most_once_per_interval(stock):
 
     assert verification.run_timeout_sweep(now) == 0
     assert verification.run_timeout_sweep(now + verification.SWEEP_INTERVAL) == 1
+
+
+def test_the_sweep_releases_by_decrement_so_a_hold_placed_meanwhile_survives(stock, monkeypatch):
+    # Writing back an offer loaded earlier would overwrite a hold another
+    # clinic placed in between, so the sweep must never write a whole offer.
+    def no_absolute_write(_offer):
+        raise AssertionError("the sweep wrote an absolute reserved count")
+
+    monkeypatch.setattr(repo, "update_offer", no_absolute_write)
+
+    assert verification.run_timeout_sweep(force=True) == 1
+    assert repo.load_match(stock["stale"]).state is MatchState.WITHDRAWN
+    assert repo.load_offer(stock["offer"]).quantity_reserved == FRESH_QUANTITY

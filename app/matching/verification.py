@@ -150,14 +150,14 @@ def run_timeout_sweep(
         _last_sweep = now
         withdrawn = 0
         try:
-            stale = repo.open_matches_older_than(window_hours, now)
-            for expired in sweep_timeouts(stale, now, window_hours):
-                if not repo.withdraw_if_awaiting(expired.id, now):
+            # The move and the give-back are one transaction in the repo, and
+            # the give-back is a decrement in SQL, so a hold placed on the same
+            # offer meanwhile is never overwritten.
+            for match in repo.open_matches_older_than(window_hours, now):
+                if not has_timed_out(match, now, window_hours):
                     continue
-                withdrawn += 1
-                offer = repo.load_offer(expired.offer_id)
-                if offer is not None:
-                    repo.update_offer(offer.release(expired.quantity))
+                if repo.respond_to_match(match, MatchState.WITHDRAWN, now, release=True):
+                    withdrawn += 1
         except repo.RepositoryError:
             _LOG.exception("The timeout sweep stopped early")
         return withdrawn
