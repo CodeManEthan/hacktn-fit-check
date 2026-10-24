@@ -186,7 +186,7 @@ SUPPORT_OFFERS = (
     Offer(
         donor_name="Kampala Power Trust",
         donor_email="trust@example.org",
-        device_type="voltage stabiliser",
+        device_type="voltage stabilizer",
         support_kind="voltage stabiliser",
         origin=GeoPoint(country="Uganda", city="Kampala", latitude=0.3476, longitude=32.5825),
         quantity_offered=4,
@@ -214,7 +214,7 @@ SUPPORT_OFFERS = (
     Offer(
         donor_name="Houston surplus AVR",
         donor_email="avr@example.org",
-        device_type="voltage stabiliser",
+        device_type="voltage stabilizer",
         support_kind="voltage stabiliser",
         origin=GeoPoint(country="United States", city="Houston",
                         latitude=29.7604, longitude=-95.3698),

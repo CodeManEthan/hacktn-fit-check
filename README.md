@@ -83,7 +83,8 @@ With `DATABASE_URL` blank (the default) the app uses the SQLite file
 `fitcheck.db` in the checkout. `scripts.seed_demo` fills it with the three
 clinics, the demo offers and an open Kayunga request, and it can be rerun.
 
-Settings, all read in `app/config.py` and listed in `.env.example`:
+Settings, all listed in `.env.example` and read in `app/config.py`, except
+`GUDID_LOOKUP`, which `app/reference/gudid.py` reads:
 
 | Variable | Default | Needed for |
 |---|---|---|
@@ -99,10 +100,12 @@ Settings, all read in `app/config.py` and listed in `.env.example`:
 candidate pages, CSV screening on `/offer/csv`, spreadsheet uploads on
 `/request/upload`, offers prefilled from the device library, `/review` and
 `/supply`; seeding needs no model either. What needs OCI: naming a device from
-a photo or pasted text, reading facts for a device the library lacks, a typed
-wish-list on `/request/upload`, the packet's handover card and its
-translation. `/impact` falls back to a sentence written by code. A missing
-setting shows as an error on the page, not a 500.
+a photo or pasted text, reading facts for a device the library lacks, the
+packet's handover card and its translation. `/impact` falls back to a sentence
+written by code. A typed wish-list on `/request/upload` is still saved without
+OCI, but unparsed: it is split at line breaks, commas, semicolons and "and",
+so "two monitors" becomes one line of that name rather than two monitors. A
+missing setting shows as an error on the page, not a 500.
 
 ## Test
 
