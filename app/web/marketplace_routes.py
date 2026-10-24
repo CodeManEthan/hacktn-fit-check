@@ -68,6 +68,7 @@ def landing(request: Request) -> HTMLResponse:
 
 ROLES = ("donor", "clinic", "nonprofit")
 ROLE_COOKIE_DAYS = 30
+HELD_MESSAGE = "That device's units are already held for another request."
 # Where each button in the bar lands: the party's own intake or desk. A
 # clinic starts by registering (GET /clinic); a registered one then goes on
 # to the list upload, and /request stays one link away for known clinics.
@@ -403,10 +404,17 @@ def create_match(
     facility = repo.load_facility(row.facility_slug)
     if facility is None:
         return _error(request, f"No facility profile for {row.facility_slug}.")
+    back = f"/request/{request_id}/matches"
+    line = repo.line_for_offer(row.lines, offer.device_type)
+    if line is None:
+        return _error(
+            request, "That offer is not for any of the device types on this request.", back=back
+        )
+    if offer.quantity_available <= 0:
+        return _error(request, HELD_MESSAGE, back=back)
 
     screening = screen_offers(facility, [offer], intel_for=supply_lookup)
     candidates = [c for c in screening.ranked if c.offer.id == offer_id]
-    back = f"/request/{request_id}/matches"
     if not candidates or candidates[0].verdict.outcome is Outcome.WONT_WORK:
         return _error(
             request, "That device no longer passes the screening for this facility.", back=back
@@ -419,14 +427,11 @@ def create_match(
         )
 
     try:
-        wanted = next(
-            (l.quantity for l in row.lines if l.device_type == offer.device_type),
-            offer.quantity_available,
-        )
-        quantity = min(wanted, offer.quantity_available)
+        quantity = min(line.quantity, offer.quantity_available)
         match = request_confirmation(propose_match(row, candidates[0], quantity))
-        match_id = repo.save_match(match)
-        repo.update_offer(offer.reserve(quantity))
+        match_id = repo.save_match_reserving(match)
+    except repo.StockHeld:
+        return _error(request, HELD_MESSAGE, back=back)
     except (ValueError, RepositoryError) as exc:
         return _error(request, str(exc), back=f"/request/{request_id}/matches")
 
@@ -469,19 +474,17 @@ def confirm_submit(request: Request, token: str, answer: str = Form(...)) -> HTM
     match = repo.load_match_by_token(token)
     if match is None:
         return _error(request, "That confirmation link is not valid.")
-    offer = repo.load_offer(match.offer_id)
     now = datetime.now()
 
     try:
-        if answer == "yes":
-            updated = confirm(match, now)
-        else:
-            updated = withdraw(match, now)
-            if offer is not None:
-                repo.update_offer(offer.release(match.quantity))
-        repo.update_match_state(match.id, updated.state, now)
+        updated = confirm(match, now) if answer == "yes" else withdraw(match, now)
+        moved = repo.respond_to_match(
+            match, updated.state, now, release=updated.state is MatchState.WITHDRAWN
+        )
     except (ValueError, RepositoryError) as exc:
         return _error(request, str(exc))
+    if not moved:
+        return _error(request, "This match was already answered.")
 
     return RedirectResponse(url=f"/confirm/{token}", status_code=303)
 
