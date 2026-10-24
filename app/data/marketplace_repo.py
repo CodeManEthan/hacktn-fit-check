@@ -576,27 +576,45 @@ def _answer_from_row(row: Any) -> SupplyAnswer:
     )
 
 
+def _supply_text(text: str) -> str:
+    """A supply-answer key part as stored: trimmed, inner spaces collapsed."""
+    return " ".join((text or "").split())
+
+
+def _supply_match(column: Any, text: str) -> Any:
+    """The one comparison save and load both key on: case ignored."""
+    return func.lower(column) == _supply_text(text).lower()
+
+
 def save_supply_answer(answer: SupplyAnswer) -> int:
-    """Insert the answer, or replace the one stored for its (type, model, country)."""
+    """Insert the answer, or replace the one stored for its (type, model, country).
+
+    The key ignores case and extra spaces, as the load does, so "Uganda" and
+    "uganda" update one row. Rows keep the spelling they were saved with.
+    """
     values = {
-        "device_type": answer.device_type.strip(),
-        "model": answer.model.strip(),
-        "country": answer.country.strip(),
+        "device_type": _supply_text(answer.device_type),
+        "model": _supply_text(answer.model),
+        "country": _supply_text(answer.country),
         "recorded_by": answer.recorded_by,
         "note": answer.note,
         "recorded_at": answer.recorded_at or datetime.now(),
         **{name: getattr(answer, name) for name in _ANSWER_FIELDS},
     }
     key = and_(
-        supply_answers.c.device_type == values["device_type"],
-        supply_answers.c.model == values["model"],
-        supply_answers.c.country == values["country"],
+        _supply_match(supply_answers.c.device_type, values["device_type"]),
+        _supply_match(supply_answers.c.model, values["model"]),
+        _supply_match(supply_answers.c.country, values["country"]),
     )
     try:
         with get_engine().begin() as conn:
-            stored = conn.execute(select(supply_answers.c.id).where(key)).first()
+            stored = conn.execute(
+                select(supply_answers.c.id).where(key).order_by(supply_answers.c.id.desc())
+            ).first()
             if stored:
-                conn.execute(update(supply_answers).where(key).values(**values))
+                conn.execute(
+                    update(supply_answers).where(supply_answers.c.id == stored[0]).values(**values)
+                )
                 return int(stored[0])
             return int(conn.execute(insert(supply_answers).values(**values)).inserted_primary_key[0])
     except Exception as exc:  # noqa: BLE001
@@ -610,27 +628,25 @@ def load_supply_answer(device_type: str, model: str, country: str) -> SupplyAnsw
     the model still finds a model-specific answer. The type fallback reads
     only rows recorded for any model (model ''). Matching ignores case.
     """
-    in_country = func.lower(supply_answers.c.country) == (country or "").strip().lower()
+    in_country = _supply_match(supply_answers.c.country, country)
     newest = supply_answers.c.id.desc()
-    wanted_model = (model or "").strip().lower()
-    if wanted_model:
+    if _supply_text(model):
         row = _first_row(
             select(supply_answers)
-            .where(in_country, func.lower(supply_answers.c.model) == wanted_model)
+            .where(in_country, _supply_match(supply_answers.c.model, model))
             .order_by(newest),
             "Could not load the supply answer",
         )
         if row is not None:
             return _answer_from_row(row)
-    wanted_type = (device_type or "").strip().lower()
-    if not wanted_type:
+    if not _supply_text(device_type):
         return None
     row = _first_row(
         select(supply_answers)
         .where(
             in_country,
             supply_answers.c.model == ANY_MODEL,
-            func.lower(supply_answers.c.device_type) == wanted_type,
+            _supply_match(supply_answers.c.device_type, device_type),
         )
         .order_by(newest),
         "Could not load the supply answer",

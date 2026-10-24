@@ -5,6 +5,7 @@ Every call out of the process goes through here so failures have one shape.
 
 from __future__ import annotations
 
+import logging
 import time
 from dataclasses import dataclass
 from typing import Any
@@ -18,6 +19,16 @@ from app.config import (
     SETTINGS,
     ConfigError,
     Settings,
+)
+
+LOGGER = logging.getLogger(__name__)
+
+# What a visitor reads when the model cannot be reached or fails. The SDK's
+# own text can name the server's config path or instance details, so it goes
+# to the log, never to the page.
+UNAVAILABLE_MESSAGE = (
+    "The AI service is not available right now. Try again in a minute, "
+    "or fill the fields in by hand."
 )
 
 # Reasoning models spend tokens before they answer; the cap leaves room for a
@@ -107,10 +118,11 @@ class GenAiClient:
         except ConfigError as exc:
             raise GenAiError(f"OCI is not configured: {exc}") from exc
         except Exception as exc:  # noqa: BLE001 - surfaced to the user as one message
-            raise GenAiError(
-                "Could not reach OCI Generative AI. Check ~/.oci/config and that "
-                f"the key is uploaded. Underlying error: {exc}"
-            ) from exc
+            LOGGER.warning(
+                "could not build the OCI Generative AI client (check the OCI "
+                "config and that the key is uploaded): %s", exc
+            )
+            raise GenAiError(UNAVAILABLE_MESSAGE) from exc
         return self._client
 
     def complete(
@@ -169,7 +181,8 @@ class GenAiClient:
         except GenAiError:
             raise
         except Exception as exc:  # noqa: BLE001
-            raise GenAiError(f"Generative AI call failed: {exc}") from exc
+            LOGGER.warning("Generative AI call to %s failed: %s", model_id, exc)
+            raise GenAiError(UNAVAILABLE_MESSAGE) from exc
 
         return ChatReply(text=text, model_id=model_id, seconds=time.time() - started)
 
