@@ -233,12 +233,14 @@ async def facility_submit(request: Request) -> HTMLResponse:
             latitude=latitude,
             longitude=longitude,
         )
-        repo.save_facility(profile)
+        # A registration is always a new clinic: if the name's slug is taken it
+        # gets a free one rather than replacing that clinic's row.
+        slug = repo.save_facility(profile, new=True)
     except (FormError, RepositoryError) as exc:
         return _error(request, str(exc), back="/clinic")
 
     # A registered clinic goes straight to the list upload (design §13, [B14]).
-    return RedirectResponse(url=f"/request/upload?facility={profile.slug}", status_code=303)
+    return RedirectResponse(url=f"/request/upload?facility={slug}", status_code=303)
 
 
 # ---- requests and matching --------------------------------------------
