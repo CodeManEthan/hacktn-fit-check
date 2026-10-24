@@ -1,21 +1,23 @@
-"""HTTP routes. Three pages: add a device, pick a clinic, read the verdict."""
+"""The legacy single-device routes still in use: POST /check, /verdict/<id> and /impact.
+
+The old /donor form and its /clinic picker were removed; GET /clinic is the
+clinic registration form in marketplace_routes.
+"""
 
 from __future__ import annotations
 
 from pathlib import Path
 
-from fastapi import APIRouter, File, Form, Request, UploadFile
+from fastapi import APIRouter, Form, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
 from app.ai import impact
 from app.ai.client import CLIENT, GenAiError
-from app.ai.extract import extract_device, image_to_data_url
 from app.checks import check_fit
 from app.data import repository
 from app.data.repository import RepositoryError
-from app.data.seed import FACILITIES, get_facility
-from app.domain.result import CheckStatus, Outcome
+from app.data.seed import get_facility
 from app.matching.supply_order import supply_lookup
 from app.web.presenters import (
     TONE_BY_OUTCOME,
@@ -30,59 +32,12 @@ TEMPLATES = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 TEMPLATES.env.globals["rule_count"] = rule_count()
 router = APIRouter()
 
-def _error(request: Request, message: str, back: str = "/donor") -> HTMLResponse:
+def _error(request: Request, message: str, back: str = "/") -> HTMLResponse:
     return TEMPLATES.TemplateResponse(
         request=request,
         name="error.html",
         context={"message": message, "back": back},
         status_code=400,
-    )
-
-
-@router.get("/donor", response_class=HTMLResponse)
-def donor_form(request: Request) -> HTMLResponse:
-    return TEMPLATES.TemplateResponse(
-        request=request, name="donor.html", context={}
-    )
-
-
-@router.post("/donor", response_class=HTMLResponse)
-async def donor_submit(
-    request: Request,
-    model_name: str = Form(default=""),
-    spec_text: str = Form(default=""),
-    nameplate: UploadFile | None = File(default=None),
-) -> HTMLResponse:
-    typed = "\n".join(part for part in (model_name.strip(), spec_text.strip()) if part)
-
-    image_data_url = ""
-    if nameplate is not None and nameplate.filename:
-        try:
-            raw = await nameplate.read()
-            image_data_url = image_to_data_url(raw, nameplate.content_type or "")
-        except ValueError as exc:
-            return _error(request, str(exc))
-
-    if not typed and not image_data_url:
-        return _error(
-            request, "Give a model name, paste some spec text, or add a nameplate photo."
-        )
-
-    try:
-        device = extract_device(typed_text=typed, image_data_url=image_data_url)
-        device_id = repository.save_device(device)
-    except (GenAiError, RepositoryError, ValueError) as exc:
-        return _error(request, str(exc))
-
-    return RedirectResponse(url=f"/clinic?device_id={device_id}", status_code=303)
-
-
-@router.get("/clinic", response_class=HTMLResponse)
-def clinic_form(request: Request, device_id: int) -> HTMLResponse:
-    return TEMPLATES.TemplateResponse(
-        request=request,
-        name="clinic.html",
-        context={"device_id": device_id, "facilities": FACILITIES},
     )
 
 
@@ -99,7 +54,7 @@ def run_check(
     try:
         facility = get_facility(facility_slug)
     except KeyError as exc:
-        return _error(request, str(exc), back=f"/clinic?device_id={device_id}")
+        return _error(request, str(exc), back="/")
 
     try:
         # No device type is stored on this path, so only a recorded answer
@@ -114,7 +69,7 @@ def run_check(
             intel=intel,
         )
     except (GenAiError, RepositoryError) as exc:
-        return _error(request, str(exc), back=f"/clinic?device_id={device_id}")
+        return _error(request, str(exc), back="/")
 
     return RedirectResponse(url=f"/verdict/{verdict_id}", status_code=303)
 
@@ -166,7 +121,7 @@ def impact_page(request: Request) -> HTMLResponse:
             "tone": TONE_BY_OUTCOME_VALUE,
         }
     except RepositoryError as exc:
-        return _error(request, str(exc), back="/donor")
+        return _error(request, str(exc), back="/impact")
     return TEMPLATES.TemplateResponse(
         request=request, name="impact.html", context=context
     )

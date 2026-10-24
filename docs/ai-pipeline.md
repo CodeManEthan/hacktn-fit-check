@@ -29,7 +29,7 @@ The primary translation path is not a chat model. It is OCI Language, `AIService
 
 Both the chat client and the Language client get credentials from one function, `build_signer_and_config` in `app/ai/client.py`: `OCI_AUTH=api_key` reads `~/.oci/config`; `OCI_AUTH=instance_principal` signs as the VM and needs `OCI_COMPARTMENT_ID`. Deploy details are in `docs/deploy.md`.
 
-`categorise_support` is the one model call outside the four jobs. When an offer is posted, it picks which support need the item meets (stabiliser, UPS and so on) from a closed list, or null. It normalises the donor's words; it decides no device fact and no verdict. If the model fails it falls back to a keyword table (`keyword_category`). CSV rows use the keyword table only.
+`categorise_support` is the one model call outside the four jobs. When an offer is posted, it picks which support need the item meets (stabilizer, UPS and so on) from a closed list, or null. It normalises the donor's words; it decides no device fact and no verdict. If the model fails it falls back to a keyword table (`keyword_category`). CSV rows use the keyword table only.
 
 ## 2. The prompt files
 

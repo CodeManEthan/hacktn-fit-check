@@ -68,7 +68,7 @@ def test_with_no_stored_match_the_packet_names_the_stabiliser_and_the_filters(se
 
     section = send_with(client.get(f"/packet/{offer_b.id}?facility={KAYUNGA}").text)
 
-    assert "<b>Grid reliability.</b> A voltage stabiliser" in section
+    assert "<b>Grid reliability.</b> A voltage stabilizer" in section
     assert "<b>Consumables.</b> 2 years of" in section
     assert "MC44D-605 intake bacteria filter" in section
 

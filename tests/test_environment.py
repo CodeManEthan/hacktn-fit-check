@@ -76,7 +76,7 @@ def test_grid_is_mitigable_when_outages_are_frequent_and_unprotected():
     result = check_grid_reliability(device(), site, intel())
 
     assert result.status is CheckStatus.MITIGABLE
-    assert "stabiliser" in result.fix
+    assert "stabilizer" in result.fix
 
 
 def test_grid_findings_are_attributed_to_the_clinic_not_the_device():

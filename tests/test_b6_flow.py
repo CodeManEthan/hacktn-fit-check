@@ -137,7 +137,7 @@ def test_matches_links_each_candidate_and_its_packet(demo):
 # ---- §7.1 role toggle and landing ------------------------------------------------
 
 @pytest.mark.parametrize("role, home", [
-    ("donor", "/offer"), ("clinic", "/request"), ("nonprofit", "/review"),
+    ("donor", "/offer"), ("clinic", "/clinic"), ("nonprofit", "/review"),
 ])
 def test_each_role_button_sets_the_cookie_and_opens_that_partys_home(demo, role, home):
     # Pressed from the impact page: the button is a destination, not a tint

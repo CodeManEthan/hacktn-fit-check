@@ -75,7 +75,7 @@ FACILITIES: tuple[FacilityProfile, ...] = (
         trained_operators=True,
         staff_languages=("Nepali", "English"),
         notes="Primary health centre in the Terai. Summer ward temperatures pass "
-        "42 C. Stabiliser on the main feed, no generator.",
+        "42 C. Stabilizer on the main feed, no generator.",
     ),
 )
 

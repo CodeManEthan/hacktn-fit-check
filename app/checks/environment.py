@@ -110,7 +110,7 @@ def check_grid_reliability(
 
     protection = []
     if not facility.has_voltage_stabilizer:
-        protection.append("A voltage stabiliser")
+        protection.append("A voltage stabilizer")
     if not facility.has_generator:
         protection.append("a UPS sized to ride through an outage")
 

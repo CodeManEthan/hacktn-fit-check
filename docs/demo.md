@@ -117,19 +117,19 @@ If it breaks: if the pick does not fill the table, use the paste. If "Read these
 
 ## Screen 2: the clinic sees three verdicts
 
-URL: https://fitcheck.care/request/1/matches (role toggle: Clinic, pressed first; it opens the request form, so then open this URL)
+URL: https://fitcheck.care/request/1/matches (role toggle: Clinic, pressed first; it opens the clinic registration form at `/clinic`, so then open this URL)
 
 The page reads "Of 3 offers of this kind, 1 is known to work at Kayunga District Hospital, 1 won't, and 1 needs answers first." In page order:
 
-- **525KS, Leeds: Ship with.** It must go with a voltage stabiliser and 2 years of the four 525 filters. The Sollatek AVS30 from Kampala Power Trust covers the stabiliser. The Houston surplus AVR is listed as "Won't work here itself": its own plate fails 240 V 50 Hz. The filters have no donor yet. It has "Ask this donor" (do not press it) and "Generate handover packet".
-- **Under "Won't work at Kayunga District Hospital": 525DS, Nashville: Do not ship.** Supply frequency: "Rated 60 Hz, but the grid is 50 Hz." Under it, "Buy locally instead?": a new 5 LPM concentrator for local power, about $290 (UNICEF); a frequency converter, $1,319 to $2,273 (ATO); a 1 kVA 230 V stabiliser, $205 (UNICEF S0002632). "Sold in Uganda: don't know, ask the nonprofit." No packet link and no "Ask this donor".
+- **525KS, Leeds: Ship with.** It must go with a voltage stabilizer and 2 years of the four 525 filters. The Sollatek AVS30 from Kampala Power Trust covers the stabilizer. The Houston surplus AVR is listed as "Won't work here itself": its own plate fails 240 V 50 Hz. The filters have no donor yet. It has "Ask this donor" (do not press it) and "Generate handover packet".
+- **Under "Won't work at Kayunga District Hospital": 525DS, Nashville: Do not ship.** Supply frequency: "Rated 60 Hz, but the grid is 50 Hz." Under it, "Buy locally instead?": a new 5 LPM concentrator for local power, about $290 (UNICEF); a frequency converter, $1,319 to $2,273 (ATO); a 1 kVA 230 V stabilizer, $205 (UNICEF S0002632). "Sold in Uganda: don't know, ask the nonprofit." No packet link and no "Ask this donor".
 - **Unnamed oxygen concentrator, Houston: Needs info.** "Answer 11 questions first." Its spare-parts question links to `/supply`.
 
 The seeded request is there so this is one click. The landing page (rebuilt 2026-10-18 from the teammate's design: a hero, a donor card to `/offer` and a clinic card to `/clinic`, with the nonprofit's operator strip under them) no longer has the seeded-clinic chips, so open this URL directly. Each unit on the matches page shows its distance in km and miles.
 
 Why each verdict:
 
-- 525KS: its plate (187-253 V, 50 Hz, 5-35 °C, 93 %) fits Kayunga's 240 V 50 Hz and 34 °C wards. Six outages a week make the stabiliser a condition. The nonprofit's recorded answer says the filters are not stocked in Kampala, which makes 2 years of filters the second condition, and that spare parts are available. Made 2019, so its age passes.
+- 525KS: its plate (187-253 V, 50 Hz, 5-35 °C, 93 %) fits Kayunga's 240 V 50 Hz and 34 °C wards. Six outages a week make the stabilizer a condition. The nonprofit's recorded answer says the filters are not stocked in Kampala, which makes 2 years of filters the second condition, and that spare parts are available. Made 2019, so its age passes.
 - 525DS: same family, the US build. Its plate is 97-127 V, 60 Hz. The voltage alone would be a condition (a step transformer), but the frequency cannot be fixed by anything that ships in the box, so it fails.
 - Houston unit: "older oxygen concentrator, works fine, 2 units", no plate. Every fact is unknown, and an unknown never reads as a pass.
 
@@ -148,7 +148,7 @@ The 525KS has no open questions: its year is stated and the nonprofit's recorded
 - https://fitcheck.care/request/1/offer/8 (525DS): "Do not ship", the advisory, and 2 open questions (a supplier for the four filters in Uganda; spare parts), each linking to `/supply`. Its support row carries the FDA GUDID record link.
 - https://fitcheck.care/request/1/offer/10 (Houston): "Needs info", "11 questions before a verdict". Only spare parts links to `/supply`; the other ten say "(for the donor)".
 
-What to say: "Fifteen checks, each decided by code, each pointing at its source. The add-ons are checked too: a stabiliser counts only if its own plate runs on this clinic's mains."
+What to say: "Fifteen checks, each decided by code, each pointing at its source. The add-ons are checked too: a stabilizer counts only if its own plate runs on this clinic's mains."
 
 If it breaks: the page is screened again on every load. If it shows an error saying the offer can no longer be proposed, someone pressed "Ask this donor"; release the unit through the `/confirm` link (see "Before the pitch") or show offer 8 and 10 instead.
 
@@ -168,9 +168,9 @@ The rejected 525DS has no packet link (B6 Decision 1). `/packet/8` still answers
 
 What to say: "The card is the manual's own words, cut to a page. A line whose numbers aren't in the manual is dropped before anyone sees it. For a clinic that reads French, OCI Language puts the translation beside the English, marked 'machine-translated, verify'."
 
-"Send with it" lists the voltage stabiliser and the 2 years of filters, the same two conditions as the candidate page. With no stored match for this offer and clinic, `_packet_verdict` (`app/web/marketplace_routes.py`) screens the offer with the same supply intel the candidate page uses, so the recorded answer about filters carries over. A stored match still wins.
+"Send with it" lists the voltage stabilizer and the 2 years of filters, the same two conditions as the candidate page. With no stored match for this offer and clinic, `_packet_verdict` (`app/web/marketplace_routes.py`) screens the offer with the same supply intel the candidate page uses, so the recorded answer about filters carries over. A stored match still wins.
 
-This went live with the lead's redeploy after these docs were written (build b10-packet-intel). If the packet still lists only the stabiliser, a rebuild should not be needed, since the send-with list is computed on each request, not cached with the card; if it is, add `&rebuild=1` to the packet URL.
+This went live with the lead's redeploy after these docs were written (build b10-packet-intel). If the packet still lists only the stabilizer, a rebuild should not be needed, since the send-with list is computed on each request, not cached with the card; if it is, add `&rebuild=1` to the packet URL.
 
 Other clinics, if asked: `/packet/9?facility=haiti-community` (French beside English) and `/packet/9?facility=nepal-phc` (Nepali flag, English card). Neither is pre-built: the first open makes one card call, and Haiti also one OCI Language call.
 
@@ -202,7 +202,7 @@ Upload `data/sample_inventory.csv` (also at https://fitcheck.care/offer/csv/samp
 
 | Line | Device | Verdict |
 |---|---|---|
-| 2 | DeVilbiss 525KS | Ship with: stabiliser and 2 years of filters |
+| 2 | DeVilbiss 525KS | Ship with: stabilizer and 2 years of filters |
 | 3 | Laerdal LSU | Needs info |
 | 4 | Philips SureSigns VM6 | Needs info |
 | 5 | Nellcor N-560 | Needs info |

@@ -14,7 +14,7 @@ Everything here was read from `app/data/db.py`, `app/data/marketplace_schema.py`
 
 ## Tables in `app/data/db.py`
 
-These three come from the original single-device screener. They back the legacy `/donor` → `/check` → `/verdict/<id>` path and the impact page.
+These three come from the original single-device screener. They back the legacy `/check` → `/verdict/<id>` path and the impact page. The `/donor` form that once fed `/check` was removed on 2026-10-23; no page posts to `/check` now, and `devices` gains rows only from the seed.
 
 ### `facilities`
 
@@ -27,7 +27,7 @@ One row per staged clinic: `slug` (key), `name`, `country`, and `profile_json`.
 
 One row per device screened on the legacy path: `id`, `label` (manufacturer and model as one string), `raw_input` (what the donor typed), `facts_json`, `created_at`.
 
-- Written by `POST /donor` after extraction, and by the seed's impact history.
+- Written by the seed's impact history. (`POST /donor` wrote it too until that route was removed on 2026-10-23.)
 - The seed marks its own rows with `raw_input = "seed_demo: impact history"` so a rerun can delete and rewrite exactly those.
 - After a fresh seed: 20 rows.
 
@@ -127,7 +127,7 @@ All of them are plain JSON in a `Text` column, written by `app/data/serialize.py
 - `dated_items` is the donor's answer to "does anything in this consignment expire?". A blank expiry field on the form stores `false`.
 - `documents` is a list of the manufacturer documents for the model, each `{"slug", "file", "title", "url", "languages", "kind"}`. It points at a text file under `data/library/<slug>/`. The packet reads the manual through it.
 
-**`facilities.profile_json`, `facilities_v2.profile_json`.** Every `FacilityProfile` field as a plain value, not a fact: mains voltage and frequency, plug types, maximum temperature and humidity, air conditioning, outages per week, stabiliser, generator, oxygen, distilled water, compressed air, technician, trained operators, staff languages, notes, coordinates. These are the clinic's own statements, so they carry no provenance per field.
+**`facilities.profile_json`, `facilities_v2.profile_json`.** Every `FacilityProfile` field as a plain value, not a fact: mains voltage and frequency, plug types, maximum temperature and humidity, air conditioning, outages per week, stabilizer, generator, oxygen, distilled water, compressed air, technician, trained operators, staff languages, notes, coordinates. These are the clinic's own statements, so they carry no provenance per field.
 
 **`verdicts.verdict_json`, `matches.verdict_json`.** `{"outcome", "results", "requirements", "questions"}`. Each result is `{"key", "label", "status", "detail", "fix", "source", "question"}`. `requirements` is the list of fix texts, and `questions` the de-duplicated questions.
 

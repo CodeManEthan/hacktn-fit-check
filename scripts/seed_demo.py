@@ -166,7 +166,7 @@ DEMO_OFFERS = (
     ),
 )
 
-SOLLATEK_NOTE = ("stand-in figures: the UNICEF S0002632 1 kVA medical stabiliser's stated "
+SOLLATEK_NOTE = ("stand-in figures: the UNICEF S0002632 1 kVA medical stabilizer's stated "
                  "160-260 V input (add-on-fulfillment-research.md [A9]) until a Sollatek AVS30 "
                  "document is fetched")
 

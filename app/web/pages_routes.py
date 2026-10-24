@@ -89,7 +89,8 @@ async def request_upload_submit(request: Request) -> HTMLResponse:
         if not facility_slug:
             raise FormError("Choose which facility this request is for.")
         if repo.load_facility(facility_slug) is None:
-            raise FormError("That facility is not registered. Register it first.")
+            return _error(request, "That facility is not registered. Register it first.",
+                          back="/clinic")
 
         if upload is not None and getattr(upload, "filename", ""):
             lines = parse_table(await upload.read(), upload.filename)

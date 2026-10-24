@@ -68,8 +68,10 @@ def landing(request: Request) -> HTMLResponse:
 
 ROLES = ("donor", "clinic", "nonprofit")
 ROLE_COOKIE_DAYS = 30
-# Where each button in the bar lands: the party's own intake or desk.
-ROLE_HOME = {"donor": "/offer", "clinic": "/request", "nonprofit": "/review"}
+# Where each button in the bar lands: the party's own intake or desk. A
+# clinic starts by registering (GET /clinic); a registered one then goes on
+# to the list upload, and /request stays one link away for known clinics.
+ROLE_HOME = {"donor": "/offer", "clinic": "/clinic", "nonprofit": "/review"}
 
 
 @router.post("/role")
@@ -78,7 +80,7 @@ def set_role(role: str = Form(default=""), back: str = Form(default="/")) -> Red
 
     The cookie recolours the bar and the primary buttons and hides nothing
     (no logins). A button in a bar reads as a destination, so pressing Clinic
-    on the donor's form opens the clinic's request form rather than tinting
+    on the donor's form opens the clinic registration form rather than tinting
     the donor's form teal. An unknown role clears the cookie and goes back.
     """
     if role in ROLES:
@@ -273,6 +275,11 @@ async def request_submit(request: Request) -> HTMLResponse:
             ),
             note=forms.text(str(form.get("note") or ""), "Note", limit=600),
         )
+        if repo.load_facility(row.facility_slug) is None:
+            # Same guard as the list upload: a request for a clinic that is not
+            # registered would only fail later, on its matches page.
+            return _error(request, "That facility is not registered. Register it first.",
+                          back="/clinic")
         request_id = repo.save_request(row)
     except (FormError, ValueError, RepositoryError) as exc:
         return _error(request, str(exc), back="/request")
