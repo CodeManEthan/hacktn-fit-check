@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import csv
 import logging
+import math
 import os
 from collections.abc import Sequence
 from dataclasses import dataclass
@@ -20,6 +21,7 @@ from itertools import islice
 from openpyxl import load_workbook
 
 from app.domain.marketplace import DEFAULT_LINE_QUANTITY, MIN_LINE_QUANTITY, RequestLine
+from app.web.forms import MAX_QUANTITY
 
 LOGGER = logging.getLogger(__name__)
 
@@ -27,7 +29,11 @@ LOGGER = logging.getLogger(__name__)
 # and we would be filing hundreds of lines nobody will read.
 MAX_ROWS = 200
 
-DEVICE_HEADERS = frozenset({"device", "item", "equipment", "name", "description"})
+# "device_type" is the column the donor's inventory CSV uses, so a clinic
+# copying that format is read too.
+DEVICE_HEADERS = frozenset(
+    {"device", "item", "equipment", "name", "description", "device_type", "device type", "type"}
+)
 QUANTITY_HEADERS = frozenset({"quantity", "qty", "count", "units", "number"})
 
 CSV_SUFFIX = ".csv"
@@ -152,9 +158,13 @@ def _lines(rows: Sequence[Row]) -> tuple[RequestLine, ...]:
         name = _cell(row, layout.device)
         if not name:
             continue
-        found.append(
-            RequestLine(device_type=name, quantity=to_quantity(_cell(row, layout.quantity)))
-        )
+        quantity = to_quantity(_cell(row, layout.quantity))
+        if quantity > MAX_QUANTITY:
+            raise IntakeError(
+                f"The line for {name} asks for {quantity} units. One line can ask "
+                f"for at most {MAX_QUANTITY}; lower it and upload the list again."
+            )
+        found.append(RequestLine(device_type=name, quantity=quantity))
         if len(found) == MAX_ROWS:
             LOGGER.warning("wish-list truncated to its first %d rows", MAX_ROWS)
             break
@@ -169,6 +179,12 @@ def _layout(rows: Sequence[Row]) -> _Layout:
         headers = [_normalise(cell) for cell in row]
         device = _column(headers, DEVICE_HEADERS)
         if device is None:
+            if _looks_like_headers(headers):
+                raise IntakeError(
+                    "The first row looks like column headings, but none of them "
+                    "says which column holds the equipment. Head that column "
+                    "Device and upload the list again."
+                )
             break  # The first row with content is equipment, not headers.
         return _Layout(
             device=device,
@@ -180,6 +196,20 @@ def _layout(rows: Sequence[Row]) -> _Layout:
         quantity=FALLBACK_QUANTITY_COLUMN,
         first_data_row=0,
     )
+
+
+def _looks_like_headers(headers: Sequence[str]) -> bool:
+    """A row naming a quantity column and holding no count is headings."""
+    return _column(headers, QUANTITY_HEADERS) is not None and not any(
+        _is_number(cell) for cell in headers
+    )
+
+
+def _is_number(cell: str) -> bool:
+    try:
+        return math.isfinite(float(cell))
+    except ValueError:
+        return False
 
 
 def _column(headers: Sequence[str], names: frozenset[str]) -> int | None:
