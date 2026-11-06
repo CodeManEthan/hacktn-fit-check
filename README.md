@@ -9,6 +9,28 @@ Built for HackTN, Track 1: From Surplus to Social Good.
 
 **Live:** https://fitcheck.care
 
+## Team and my part
+
+Fit-Check was built at HackTN 2026 by a team of two, Sakxam Shrestha and
+Ethan Plunk.
+
+- **Sakxam** started the project on 2026-10-17 and built the first version: the
+  constraint checks, the fact and provenance model, the two-sided marketplace,
+  the public-registry verification and the OCI bootstrap. The split where the
+  model researches and code judges was already in his first commit. The landing
+  layout, nav bar and 404 page here are also his, carried over from his repo.
+- **Ethan** forked it during the hackathon and built most of what runs today:
+  the device library with page-cited manufacturer facts, the code gates on
+  every model output (extraction, the handover card, translation and the impact
+  paragraph), the GUDID lookup and supply-answer desk, the four-key ranking, CSV
+  inventory screening and spreadsheet intake, match holds and donor
+  confirmation, the model comparison in `prompt_lab/`, the docs, the deployment
+  and redeploy scripts, and most of the tests.
+
+This fork is the deployed, maintained line: 112 of its 127 commits are Ethan's.
+Sakxam's original repository is
+[SakxamShrestha/hacktn-fit-check](https://github.com/SakxamShrestha/hacktn-fit-check).
+
 ## The pipeline
 
 1. **Filter.** Open offers of the requested type, with stock, not past expiry.

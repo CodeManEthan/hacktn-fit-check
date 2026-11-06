@@ -210,7 +210,13 @@ def test_the_bar_carries_the_mark_the_three_links_impact_and_no_badge(demo, role
     assert 'class="role-toggle"' in bar
     assert "deterministic rules active" not in body and "lander-avatar" not in body
     footer = body[body.index("<footer"):]
-    assert "IEC 60601-1 and WHO Annex 1" in footer and "href=" not in footer
+    assert "IEC 60601-1 and WHO Annex 1" in footer
+    assert "Built at HackTN 2026 by" in footer
+    assert re.findall(r'href="([^"]+)"', footer) == [
+        "https://codemanethan.github.io",
+        "https://github.com/SakxamShrestha",
+        "https://github.com/CodeManEthan/hacktn-fit-check",
+    ]
 
 
 def test_the_impact_link_marks_the_page_it_is_on(demo):
