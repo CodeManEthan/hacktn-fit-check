@@ -69,6 +69,37 @@ def landing(request: Request) -> HTMLResponse:
     return TEMPLATES.TemplateResponse(request=request, name="landing.html", context={})
 
 
+# The worked example is the seeded Kayunga request for one oxygen concentrator.
+# scripts/seed_demo.py makes it once and finds it again by these two values;
+# its id differs from one database to the next, so the landing links here.
+EXAMPLE_TYPE = "oxygen concentrator"
+
+
+def example_request_id() -> int | None:
+    """The seeded Kayunga request's id, found as the seed finds it, or None."""
+    try:
+        open_requests = repo.list_open_requests()
+    except repo.RepositoryError:
+        return None
+    for row in open_requests:
+        if row.facility_slug == DEMO_CLINIC and any(
+            line.device_type.strip().casefold() == EXAMPLE_TYPE for line in row.lines
+        ):
+            return row.id
+    return None
+
+
+@router.get("/example", response_class=HTMLResponse)
+def example(request: Request):
+    """Open the seeded request's matches page, or say the example is not loaded."""
+    request_id = example_request_id()
+    if request_id is None:
+        return TEMPLATES.TemplateResponse(
+            request=request, name="example_missing.html", context={}, status_code=404,
+        )
+    return RedirectResponse(url=f"/request/{request_id}/matches", status_code=303)
+
+
 # ---- role toggle (design §7.1) -----------------------------------------
 
 ROLES = ("donor", "clinic", "nonprofit")

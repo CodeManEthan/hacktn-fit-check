@@ -170,6 +170,7 @@ legacy, so `/offer/csv` resolves before `/offer/{offer_id}`. The role bar
 | Nonprofit | `/review`, `/review/{slug}` | check each clinic's claim against registry evidence; only a person moves its tier |
 | Nonprofit | `/supply`, `/supply/{country}` | per country and device type: consumables sold, parts available, sold new, still supported |
 | Shared | `/` | landing page |
+| Shared | `/example` | redirects to the seeded Kayunga request's matches page, or says the demo data is not loaded |
 | Shared | `/impact` | totals, failures by reason, recent verdicts |
 | Shared | `/about`, `/help`, `/contact` | what Fit-Check checks, how to use it, who to reach |
 

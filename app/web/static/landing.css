@@ -42,6 +42,12 @@
 .lander-operator .lander-kicker { display: inline; margin: 0 var(--s1, 4px) 0 0; }
 .lander-operator .lander-middlemen { margin-top: var(--s2, 8px); font-size: 13px; color: var(--faint, #667080); }
 
+/* The worked example under the hero: the cards' button, sized to its label,
+   with one grey line saying what opens. */
+.lander-example { margin: var(--s5, 32px) auto 0; max-width: 760px; }
+.lander-example .lander-cta { display: inline-block; }
+.lander-example p { margin: var(--s3, 12px) 0 0; font-size: 14px; line-height: 1.5; color: var(--etch, #5B6779); }
+
 @media (max-width: 760px) {
   .lander-operator { padding: var(--s4, 20px); text-align: left; }
 }
