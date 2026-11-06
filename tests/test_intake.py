@@ -578,7 +578,8 @@ def test_help_and_contact_render_without_substitutes_or_placeholder_mail(web):
     assert help_page.status_code == 200 and contact.status_code == 200
     assert "substitute" not in help_page.text.lower()
     assert "fit-check.example" not in help_page.text + contact.text
-    assert "HackTN table" in contact.text
+    assert "HackTN table" not in contact.text
+    assert "github.com/CodeManEthan/hacktn-fit-check/issues" in contact.text
 
 
 def test_an_unknown_address_renders_the_not_found_page(web):

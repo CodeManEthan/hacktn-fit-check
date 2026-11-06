@@ -14,12 +14,14 @@
    (§7.1): a cookie and a colour, and each button opens its party's home
    page. It hides nothing; the nonprofit role adds its desks under the bar.
    Blocks for child templates: title, head (a page's own stylesheet),
-   body_class, chrome, content, footer. #}
+   body_class, chrome, content, footer. The prototype note sits above the
+   chrome block, so a page that replaces the bar still says it is a demo. #}
 {% set roles = (("donor", "Donor"), ("clinic", "Clinic"), ("nonprofit", "Nonprofit")) %}
 {% set role = request.cookies.get("role", "") if request is defined and request else "" %}
 {% set role = role if role in ("donor", "clinic", "nonprofit") else "" %}
 {% set here = request.url.path if request is defined and request else "" %}
 <body class="{% block body_class %}{% endblock %}"{% if role %} data-role="{{ role }}"{% endif %}>
+  <p class="proto-note" role="note"><b>HackTN 2026 prototype</b> with demo data. Nothing is shipped and no one is emailed.</p>
   {% block chrome %}
   <header class="lander-bar">
     <div class="lander-bar-in">

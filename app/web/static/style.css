@@ -749,6 +749,22 @@ button.go-quiet:hover { border-color: var(--block); color: var(--block); }
 }
 
 
+/* ---- prototype note ------------------------------------------------- */
+
+/* One quiet line above the bar on every page: this is a demo, so nobody posts
+   real stock expecting action. Grey on the panel tint, no colour of its own. */
+.proto-note {
+  margin: 0;
+  padding: 6px 16px;
+  background: var(--raise);
+  border-bottom: 1px solid var(--rule);
+  color: var(--etch);
+  font-size: 13px;
+  line-height: 1.45;
+  text-align: center;
+}
+.proto-note b { color: var(--ink); font-weight: 600; }
+
 /* ---- landing bar ------------------------------------------------------ */
 
 .lander-bar { background: var(--face); border-bottom: 1px solid var(--rule); }
