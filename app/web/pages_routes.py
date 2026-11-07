@@ -21,7 +21,7 @@ from app.reference.country_power import country_count
 from app.reference.device_library import load_library
 from app.reference.import_rules import load_import_rules
 from app.web.forms import FormError
-from app.web.marketplace_routes import TEMPLATES, _error
+from app.web.shared import TEMPLATES, _error
 
 router = APIRouter()
 

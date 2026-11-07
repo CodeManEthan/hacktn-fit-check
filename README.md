@@ -150,9 +150,11 @@ answering.
 ## Pages
 
 Routers are included in `app/main.py` in the order csv, pages, marketplace,
-legacy, so `/offer/csv` resolves before `/offer/{offer_id}`. The role bar
-(`POST /role`) sends Donor to `/offer`, Clinic to `/clinic` and Nonprofit to
-`/review`.
+packet, library, legacy, so `/offer/csv` resolves before `/offer/{offer_id}`.
+The packet and library routers hold `/packet/{offer_id}` and `/offer/prefill`;
+what the routers share (the templates, the error page, the library pick) is in
+`app/web/shared.py`. The role bar (`POST /role`) sends Donor to `/offer`,
+Clinic to `/clinic` and Nonprofit to `/review`.
 
 | Party | Path | What it is |
 |---|---|---|

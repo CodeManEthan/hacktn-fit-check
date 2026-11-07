@@ -23,7 +23,7 @@ from app.domain.requirement import Requirement, RequirementKind
 from app.domain.result import CheckResult, CheckStatus, Outcome, Verdict
 from app.main import app
 from app.reference import device_library, import_rules
-from app.web import marketplace_routes
+from app.web import packet_routes
 from tests.factories import device, facility
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -82,8 +82,8 @@ def fakes(tmp_path, monkeypatch):
     monkeypatch.setattr(device_library, "LIBRARY_DIR", tmp_path / "library")
     monkeypatch.setattr(import_rules, "RULES_PATH", FIXTURES / "import_rules.json")
     chat, language = FakeChat(), FakeLanguage()
-    monkeypatch.setattr(marketplace_routes, "_packet_chat", lambda: chat)
-    monkeypatch.setattr(marketplace_routes, "_packet_language", lambda: language)
+    monkeypatch.setattr(packet_routes, "_packet_chat", lambda: chat)
+    monkeypatch.setattr(packet_routes, "_packet_language", lambda: language)
     ns = SimpleNamespace(client=TestClient(app), chat=chat, language=language)
     yield ns
     if db._engine is not None:
@@ -119,7 +119,7 @@ def test_an_english_clinic_gets_the_gated_english_card_and_the_paperwork(fakes):
     assert "no-objection letter" in body and "packing list with serial numbers" in body
     assert "525KS instruction guide" in body            # an edition in English, linked
     assert "machine-translated" not in body
-    assert fakes.language.calls == 0
+    assert fakes.language.calls == 0 and fakes.chat.calls == 1
 
 
 def test_the_packet_is_cached_and_rebuild_clears_it(fakes):
@@ -164,7 +164,7 @@ def test_a_nepali_clinic_gets_the_english_card_with_a_visible_flag(fakes):
     assert "Nepali is not supported by OCI Language; English card supplied" in body
     assert 'class="flag hold"' in body
     assert "Allow up to 15 minutes for start up." in body
-    assert fakes.language.calls == 0
+    assert fakes.language.calls == 0 and fakes.chat.calls == 1
 
 
 def test_an_offer_with_no_documents_says_so_and_still_lists_the_paperwork(fakes):
@@ -196,6 +196,7 @@ def test_send_with_comes_from_a_fresh_check_when_no_match_is_stored(fakes):
 
     assert "Manual language." in body
     assert "A handover packet in French, built from the manufacturer" in body
+    assert fakes.chat.calls == 1
 
 
 def test_send_with_uses_the_stored_verdict_of_a_match(fakes):
@@ -212,6 +213,7 @@ def test_send_with_uses_the_stored_verdict_of_a_match(fakes):
     body = fakes.client.get(f"/packet/{offer_id}?facility={slug}").text
 
     assert "A 1 kVA stabiliser." in body
+    assert fakes.chat.calls == 1
 
 
 def test_an_unknown_offer_or_a_missing_clinic_is_an_error(fakes):
@@ -225,13 +227,17 @@ def test_a_model_failure_shows_the_problem_and_caches_nothing(fakes, monkeypatch
     from app.ai.client import GenAiError
 
     class Down:
+        calls = 0
+
         def complete_json(self, *a, **k):
+            Down.calls += 1
             raise GenAiError("Generative AI call failed: timeout")
 
-    monkeypatch.setattr(marketplace_routes, "_packet_chat", lambda: Down())
+    monkeypatch.setattr(packet_routes, "_packet_chat", lambda: Down())
     offer_id, slug = an_offer(), a_clinic()
 
     body = fakes.client.get(f"/packet/{offer_id}?facility={slug}").text
 
     assert "The card could not be built" in body
     assert repo.load_packet(offer_id, slug) is None
+    assert Down.calls == 1

@@ -462,14 +462,15 @@ def _caddyfile_sites() -> dict[str, str]:
     """deploy/Caddyfile's site blocks, address -> body, comments dropped."""
     lines = [line for line in (DEPLOY / "Caddyfile").read_text().splitlines()
              if line.strip() and not line.lstrip().startswith("#")]
-    sites, address, body = {}, None, []
+    sites, address, body, depth = {}, None, [], 0
     for line in lines:
         if address is None and line.endswith("{"):
-            address, body = line[:-1].strip(), []
-        elif address is not None and line.strip() == "}":
+            address, body, depth = line[:-1].strip(), [], 0
+        elif address is not None and line.strip() == "}" and depth == 0:
             sites[address] = "\n".join(body)
             address = None
         else:
+            depth += line.strip().endswith("{") - (line.strip() == "}")
             body.append(line.strip())
     return sites
 
@@ -479,6 +480,7 @@ def test_caddyfile_has_the_name_and_the_ip_door_both_proxying_to_the_app():
     assert set(sites) == {"fitcheck.care", "http://147.224.201.81"}
     for body in sites.values():
         assert "reverse_proxy 127.0.0.1:8000" in body
+        assert "request_body {\nmax_size 10MB\n}" in body
         assert "redir" not in body
     text = (DEPLOY / "Caddyfile").read_text()
     assert text.count("fitcheck.care") == 1, "the public name is written once"

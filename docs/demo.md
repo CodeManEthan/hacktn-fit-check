@@ -172,7 +172,7 @@ The rejected 525DS has no packet link. `/packet/8` still answers if typed; do no
 
 What to say: "The card is the manual's own words, cut to a page. A line whose numbers aren't in the manual is dropped before anyone sees it. For a clinic that reads French, OCI Language puts the translation beside the English, marked 'machine-translated, verify'."
 
-"Send with it" lists the voltage stabilizer and the 2 years of filters, the same two conditions as the candidate page. With no stored match for this offer and clinic, `_packet_verdict` (`app/web/marketplace_routes.py`) screens the offer with the same supply intel the candidate page uses, so the recorded answer about filters carries over. A stored match still wins.
+"Send with it" lists the voltage stabilizer and the 2 years of filters, the same two conditions as the candidate page. With no stored match for this offer and clinic, `_packet_verdict` (`app/web/packet_routes.py`) screens the offer with the same supply intel the candidate page uses, so the recorded answer about filters carries over. A stored match still wins.
 
 The send-with list is computed on each request, not cached with the card, so it does not need a rebuild. If the packet ever lists only the stabilizer, add `&rebuild=1` to the packet URL (one model call).
 

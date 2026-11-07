@@ -32,7 +32,7 @@ from app.matching.csv_screen import CsvError, CsvScreening
 from app.matching.supply_order import supply_lookup
 from app.web import forms
 from app.web.forms import FormError
-from app.web.marketplace_routes import DEMO_CLINIC, TEMPLATES
+from app.web.shared import DEMO_CLINIC, TEMPLATES
 
 router = APIRouter()
 

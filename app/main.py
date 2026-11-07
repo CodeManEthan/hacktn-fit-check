@@ -11,9 +11,12 @@ from fastapi.staticfiles import StaticFiles
 
 from app.data import repository
 from app.web.csv_routes import router as csv_router
-from app.web.marketplace_routes import TEMPLATES, router as marketplace_router
+from app.web.library_routes import router as library_router
+from app.web.marketplace_routes import router as marketplace_router
+from app.web.packet_routes import router as packet_router
 from app.web.pages_routes import router as pages_router
 from app.web.routes import router
+from app.web.shared import TEMPLATES
 
 STATIC_DIR = Path(__file__).parent / "web" / "static"
 
@@ -30,6 +33,8 @@ app.mount("/static", StaticFiles(directory=str(STATIC_DIR)), name="static")
 app.include_router(csv_router)
 app.include_router(pages_router)
 app.include_router(marketplace_router)
+app.include_router(packet_router)
+app.include_router(library_router)
 app.include_router(router)
 
 
