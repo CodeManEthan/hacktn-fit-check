@@ -184,9 +184,9 @@ If it breaks: the card is cached after the first build, so a model outage on sta
 
 URL: https://fitcheck.care/impact
 
-The counters read: 20 devices screened, 11 stopped before shipping, 0 need extras sent with them, 0 cleared as they are, 9 need answers first. The seeded history has no works or works-if verdict, so those two counters read 0.
+The counters read: 22 devices screened, 12 stopped before shipping, 1 needs extras sent with it, 0 cleared as they are, 9 need answers first. The one with extras is the 525KS at Kayunga, the same verdict as the matches page. No seeded device works as it is at any seeded clinic, so that counter reads 0.
 
-Under them is the paragraph, labelled "written by the model from the figures above". On 2026-10-18 it read:
+Under them is the paragraph, labelled "written by the model from the figures above". On 2026-10-18, before the two Kayunga rows joined the history, it read:
 
 > The tool screened 20 devices for three clinics in Haiti, Nepal and Uganda, and stopped 11 shipments because they would not work in the target setting. The most frequent blockers were operating temperature (8 cases), supply frequency (2 cases) and training and repair (3 cases), while 9 screenings remain pending further information and none required additional add‑ons. This ensures that only equipment that truly matches each clinic's conditions is sent, protecting resources and patient safety.
 
@@ -194,7 +194,7 @@ It is cached per process, so a restart can reword it. Its numbers are gated: eac
 
 What to say: "Every number on this page is a query. The model wrote the sentences, and code checked each number in them against the log before showing it."
 
-Disclose if asked: the paragraph's blocker counts (temperature 8, frequency 2, training 3) count hard failures only. The bars under it, "Why donations failed", count failures and conditions together, so they lead with grid reliability 20 and supply voltage 7, which the paragraph does not name. The blocker counts add to 13 against 11 blocked devices, because one device can fail more than one check.
+Disclose if asked: the bars under it, "Why donations failed", and the paragraph's blocker counts both count hard failures only (temperature 8, frequency 3, training 3). They add to 14 against 12 blocked devices, because one device can fail more than one check.
 
 If it breaks: if the model fails or the gate refuses the reply, the page shows a sentence code writes from the same figures, labelled "written by code from the figures above". A failed call is retried after 5 minutes.
 

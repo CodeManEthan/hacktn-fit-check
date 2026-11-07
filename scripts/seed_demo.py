@@ -49,7 +49,9 @@ OFFER_C_TEXT = "older oxygen concentrator, works fine, 2 units"
 # Devices saved for the seeded history carry this as their raw input, so a
 # rerun can find and replace exactly the rows it wrote before.
 HISTORY_MARKER = "seed_demo: impact history"
-HISTORY_SIZE = 20
+LIBRARY_PAIRS = 20
+# The twenty library pairs, then the 525DS and 525KS hero offers at Kayunga.
+HISTORY_SIZE = LIBRARY_PAIRS + 2
 
 
 def _device(**kwargs) -> DeviceFacts:
@@ -360,7 +362,7 @@ def history_pairs() -> list[tuple[device_library.LibraryEntry, object]]:
     clinics = FACILITIES
     pairs = [(e, clinics[i % len(clinics)]) for i, e in enumerate(entries)]
     pairs += [(e, clinics[(i + 1) % len(clinics)]) for i, e in enumerate(entries)]
-    return pairs[:HISTORY_SIZE]
+    return pairs[:LIBRARY_PAIRS]
 
 
 def _clear_history() -> int:
@@ -374,13 +376,31 @@ def _clear_history() -> int:
     return len(ids)
 
 
+def hero_history_pairs() -> list[tuple[DeviceFacts, str, object]]:
+    """The 525DS and 525KS hero offers at Kayunga, as the matches page screens them.
+
+    These carry the donor's build year and answers, not the bare library
+    entries, which screen as "needs info"; the 525KS is the one that ships.
+    """
+    kayunga = next(clinic for clinic in FACILITIES if clinic.slug == KAYUNGA)
+    by_model = {offer.device.model.value: offer for offer in hero_offers()}
+    return [(by_model[model].device, by_model[model].device_type, kayunga)
+            for model in ("525DS", "525KS")]
+
+
 def seed_history() -> list[tuple[str, str, str]]:
-    """Screen library devices against the clinics and store each real verdict."""
+    """Screen devices against the clinics and store each real verdict.
+
+    Every row is check_fit's own result for its pair, with the recorded
+    supply answers only; nothing is written by hand.
+    """
     _clear_history()
+    pairs = [(device_library.to_device_facts(found), found.device_type, clinic)
+             for found, clinic in history_pairs()]
     written = []
-    for found, clinic in history_pairs():
-        device = replace(device_library.to_device_facts(found), raw_input=HISTORY_MARKER)
-        intel = recorded_intel(device, found.device_type, clinic.country)
+    for facts, device_type, clinic in pairs + hero_history_pairs():
+        device = replace(facts, raw_input=HISTORY_MARKER)
+        intel = recorded_intel(device, device_type, clinic.country)
         verdict = check_fit(device, clinic, intel)
         device_id = repository.save_device(device)
         repository.save_verdict(device_id=device_id, device=device, facility=clinic,

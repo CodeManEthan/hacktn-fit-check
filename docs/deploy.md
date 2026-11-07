@@ -92,7 +92,7 @@ The public checks want `/`, `/offer` and `/impact` to answer 200, and the Kayung
 
 If the live checkout is already at `<head>`, `cutover` does not swap. It removes the staged copy and only restarts the unit, so `/opt/fitcheck-prev` keeps the checkout from before that head.
 
-The seed upserts. Running it again leaves one of each offer, answer and request, and rewrites the twenty history verdicts.
+The seed upserts. Running it again leaves one of each offer, answer and request, and rewrites the 22 history verdicts.
 
 ## The rollback
 

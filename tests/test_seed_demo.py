@@ -17,7 +17,9 @@ from app.data import db, seeded
 from app.data import marketplace_repo as repo
 from app.data.marketplace_schema import offers, requests, supply_answers
 from app.domain.marketplace import GeoPoint, Offer, OfferStatus
+from app.checks.runner import check_fit
 from app.domain.provenance import Provenance
+from app.domain.result import Outcome
 import scripts
 from scripts import seed_demo
 from tests.test_seeded import reverse_update_sql
@@ -59,7 +61,8 @@ def test_running_twice_leaves_one_of_each(fresh_db):
     second = (_count(offers), _count(supply_answers), _count(requests), _count(db.verdicts),
               _count(db.devices))
 
-    assert first == second == (len(seed_demo.all_offers()), 1, 1, 20, 20)
+    assert first == second == (len(seed_demo.all_offers()), 1, 1, seed_demo.HISTORY_SIZE,
+                               seed_demo.HISTORY_SIZE)
     assert _count(offers, offers.c.status == OfferStatus.OPEN.value) == len(seed_demo.all_offers())
 
 
@@ -155,13 +158,38 @@ def test_recorded_intel_reads_the_answer_as_recorded_facts(fresh_db):
     assert not seed_demo.recorded_intel(b.device, b.device_type, "Haiti").consumables_available.known
 
 
-def test_the_history_is_twenty_real_verdicts_across_the_three_clinics(fresh_db):
+def test_the_history_is_real_verdicts_across_the_three_clinics(fresh_db):
     seed_demo.main()
     with db.get_engine().connect() as conn:
         rows = conn.execute(select(db.verdicts.c.facility_slug, db.verdicts.c.outcome)).all()
-    assert len(rows) == 20
+    assert len(rows) == seed_demo.HISTORY_SIZE == seed_demo.LIBRARY_PAIRS + 2
     assert {slug for slug, _ in rows} == {"uganda-district", "haiti-community", "nepal-phc"}
     assert len({outcome for _, outcome in rows}) >= 2
+
+
+def test_the_history_holds_the_kayunga_heroes_with_their_matches_page_verdicts(fresh_db):
+    seed_demo.main()
+    with db.get_engine().connect() as conn:
+        rows = conn.execute(select(db.verdicts.c.device_label, db.verdicts.c.facility_slug,
+                                   db.verdicts.c.outcome)).all()
+    at_kayunga = {label: outcome for label, slug, outcome in rows if slug == "uganda-district"}
+    assert at_kayunga["DeVilbiss Healthcare 525KS"] == Outcome.WORKS_IF.value
+    assert at_kayunga["DeVilbiss Healthcare 525DS"] == Outcome.WONT_WORK.value
+    assert sum(outcome == Outcome.WORKS_IF.value for _, _, outcome in rows) >= 1
+
+
+def test_every_history_verdict_is_check_fits_own_result(fresh_db):
+    seed_demo.main()
+    pairs = [(seed_demo.device_library.to_device_facts(found), found.device_type, clinic)
+             for found, clinic in seed_demo.history_pairs()] + seed_demo.hero_history_pairs()
+    expected = [
+        (clinic.slug, check_fit(device, clinic,
+                                seed_demo.recorded_intel(device, device_type, clinic.country)).outcome.value)
+        for device, device_type, clinic in pairs
+    ]
+    with db.get_engine().connect() as conn:
+        stored = conn.execute(select(db.verdicts.c.facility_slug, db.verdicts.c.outcome)).all()
+    assert sorted(expected) == sorted(tuple(row) for row in stored)
 
 
 # ---- the donors' old, real names ---------------------------------------------------
