@@ -11,6 +11,7 @@ from app.ai.categorise import categorise_support
 from app.ai.client import GenAiError
 from app.ai.extract import extract, extract_device, image_to_data_url
 from app.data import marketplace_repo as repo
+from app.data import seeded
 from app.data.repository import RepositoryError
 from app.domain.device import DeviceFacts
 from app.domain.facility import FacilityProfile
@@ -36,10 +37,10 @@ from app.matching.verification import (
 )
 from app.reference.country_power import country_centroid, lookup
 from app.reference.facility_registry import corroborates, find_candidates
-from app.web import forms, inspector, presenters
+from app.web import demo_guard, forms, inspector, presenters
 from app.web.forms import FormError
 from app.web.presenters import advisory_for, TONE_BY_OUTCOME, TONE_BY_STATUS
-from app.web.shared import DEMO_CLINIC, TEMPLATES, _error, _library_device, _library_entry
+from app.web.shared import TEMPLATES, _error, _library_device, _library_entry, _refused
 
 router = APIRouter()
 
@@ -55,23 +56,13 @@ def landing(request: Request) -> HTMLResponse:
 
 
 # The worked example is the seeded Kayunga request for one oxygen concentrator.
-# scripts/seed_demo.py makes it once and finds it again by these two values;
-# its id differs from one database to the next, so the landing links here.
-EXAMPLE_TYPE = "oxygen concentrator"
-
-
+# Its id differs from one database to the next, so the landing links here.
 def example_request_id() -> int | None:
     """The seeded Kayunga request's id, found as the seed finds it, or None."""
     try:
-        open_requests = repo.list_open_requests()
+        return seeded.kayunga_request_id()
     except repo.RepositoryError:
         return None
-    for row in open_requests:
-        if row.facility_slug == DEMO_CLINIC and any(
-            line.device_type.strip().casefold() == EXAMPLE_TYPE for line in row.lines
-        ):
-            return row.id
-    return None
 
 
 @router.get("/example", response_class=HTMLResponse)
@@ -325,6 +316,8 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
         return _error(request, f"No facility profile for {row.facility_slug}.")
 
     coverages = []
+    locked: set[int] = set()
+    whole_request = demo_guard.request_locked(request_id)
     bundles: dict[int, object] = {}
     advisory: dict[int, object] = {}
     questions: dict[int, list[dict]] = {}
@@ -339,6 +332,8 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
             )
         )
         for c in screening.ranked:
+            if whole_request or demo_guard.offer_locked(c.offer):
+                locked.add(c.offer.id)
             bundles[c.offer.id] = build_bundle(c.verdict, facility, repo.offers_for_support)
             if c.verdict.outcome is Outcome.NEEDS_INFO:
                 questions[c.offer.id] = presenters.open_questions(
@@ -351,7 +346,7 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
         context={
             "request_row": row, "facility": facility,
             "coverages": coverages, "bundles": bundles, "advisory": advisory,
-            "questions": questions,
+            "questions": questions, "locked": locked,
             "symbol": TONE_BY_STATUS, "tone": TONE_BY_OUTCOME,
         },
     )
@@ -406,6 +401,7 @@ def candidate_page(request: Request, request_id: int, offer_id: int) -> HTMLResp
             "advisory": {offer.id: advisory_for(candidate)} if rejected else {},
             "pairs": presenters.identity_pairs(offer.device),
             "proposable": verdict.outcome in (Outcome.WORKS, Outcome.WORKS_IF),
+            "locked": demo_guard.request_locked(request_id) or demo_guard.offer_locked(offer),
             "packet_url": f"/packet/{offer.id}?facility={facility.slug}",
             "back": back,
             "symbol": TONE_BY_STATUS, "tone": TONE_BY_OUTCOME,
@@ -423,10 +419,12 @@ def create_match(
     offer = repo.load_offer(offer_id)
     if row is None or offer is None:
         return _error(request, "That request or offer no longer exists.")
+    back = f"/request/{request_id}/matches"
+    if demo_guard.request_locked(request_id) or demo_guard.offer_locked(offer):
+        return _refused(request, back=back)
     facility = repo.load_facility(row.facility_slug)
     if facility is None:
         return _error(request, f"No facility profile for {row.facility_slug}.")
-    back = f"/request/{request_id}/matches"
     line = repo.line_for_offer(row.lines, offer.device_type)
     if line is None:
         return _error(
@@ -488,6 +486,7 @@ def confirm_page(request: Request, token: str) -> HTMLResponse:
         context={
             "match": match, "offer": offer, "facility": facility,
             "trust": repo.load_verification(row.facility_slug) if row else VerificationStatus(),
+            "locked": demo_guard.match_locked(match),
         },
     )
 
@@ -497,6 +496,8 @@ def confirm_submit(request: Request, token: str, answer: str = Form(...)) -> HTM
     match = repo.load_match_by_token(token)
     if match is None:
         return _error(request, "That confirmation link is not valid.")
+    if demo_guard.match_locked(match):
+        return _refused(request, back=f"/confirm/{token}")
     now = datetime.now()
 
     try:
@@ -633,6 +634,7 @@ def review_facility(request: Request, slug: str, check: int = 0) -> HTMLResponse
             "checked": bool(check),
             "corroborates": corroborates,
             "supported": any(corroborates(c) for c in candidates),
+            "locked": demo_guard.clinic_locked(slug),
         },
     )
 
@@ -645,6 +647,8 @@ def review_decide(
     note: str = Form(default=""),
 ) -> HTMLResponse:
     """Record a reviewer's decision. Only a person moves a clinic's tier."""
+    if demo_guard.clinic_locked(slug):
+        return _refused(request, back=f"/review/{slug}")
     try:
         tier = Verification(decision)
     except ValueError:
@@ -732,7 +736,8 @@ def _supply_page(request: Request, country: str, values: dict, *,
     return TEMPLATES.TemplateResponse(
         request=request, name="supply_form.html", status_code=status_code,
         context={"country": country, "questions": SUPPLY_QUESTIONS,
-                 "saved": saved, "error": error, **values},
+                 "saved": saved, "error": error, "locked": demo_guard.supply_locked(),
+                 **values},
     )
 
 
@@ -784,6 +789,8 @@ def supply_save(
     back: str = Form(default=""),
 ) -> HTMLResponse:
     """Write one recorded answer, then go back to the page that asked."""
+    if demo_guard.supply_locked():
+        return _refused(request, back=f"/supply/{quote(country)}")
     raw = {"consumables_available": consumables_available,
            "spare_parts_available": spare_parts_available,
            "sold_locally": sold_locally, "manufacturer_supported": manufacturer_supported}

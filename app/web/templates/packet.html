@@ -128,5 +128,9 @@
   </section>
 </div>
 
+{% if locked %}
+<p class="note">Rebuild this packet: {{ seeded_message }}</p>
+{% else %}
 <p class="note"><a class="link" href="/packet/{{ offer.id }}?facility={{ facility.slug }}&amp;rebuild=1">Rebuild this packet</a></p>
+{% endif %}
 {% endblock %}

@@ -38,7 +38,8 @@
           <a href="{{ href }}"{% if here == href %} aria-current="page"{% endif %}>{{ name }}</a>
           {% endfor %}
         </nav>
-        <form class="role-toggle" method="post" action="/role" aria-label="Viewing as">
+        <span class="role-hint" id="role-hint" style="font-size:12px;color:var(--etch)">Demo: switch viewpoint. There are no logins.</span>
+        <form class="role-toggle" method="post" action="/role" aria-label="Viewing as" aria-describedby="role-hint">
           <input type="hidden" name="back" value="{{ here or '/' }}{% if request is defined and request and request.url.query %}?{{ request.url.query }}{% endif %}">
           {% for value, name in roles %}
           <button type="submit" name="role" value="{{ value }}" class="role-btn role-btn-{{ value }}"

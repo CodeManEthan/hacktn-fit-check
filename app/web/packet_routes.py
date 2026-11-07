@@ -25,7 +25,8 @@ from app.matching.pipeline import screen_offers
 from app.matching.supply_order import supply_lookup
 from app.reference.device_library import document_text
 from app.reference.import_rules import documents_required
-from app.web.shared import TEMPLATES, _error
+from app.web import demo_guard
+from app.web.shared import TEMPLATES, _error, _refused
 
 router = APIRouter()
 
@@ -129,6 +130,9 @@ def packet_page(
     clinic = repo.load_facility(facility) if facility else None
     if clinic is None:
         return _error(request, "Name the clinic: /packet/<offer id>?facility=<clinic slug>.")
+    locked = demo_guard.offer_locked(offer)
+    if rebuild and locked:
+        return _refused(request, back=f"/packet/{offer_id}?facility={clinic.slug}")
 
     staff = normalise_languages(clinic.staff_languages)
     target = pick_target(staff)
@@ -188,6 +192,6 @@ def packet_page(
             # The conditional results, not verdict.needs: a stored verdict
             # keeps each result's fix but not its structured requirement.
             "send_with": [(r.label, r.fix or r.detail) for r in verdict.conditional],
-            "verdict": verdict,
+            "verdict": verdict, "locked": locked,
         },
     )

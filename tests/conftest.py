@@ -63,3 +63,9 @@ def no_model(monkeypatch):
     monkeypatch.setattr(packet_routes, "_packet_chat", lambda: down)
     monkeypatch.setattr(packet_routes, "_packet_language", lambda: NoLanguage())
     return down
+
+
+@pytest.fixture(autouse=True)
+def demo_protection_off(monkeypatch):
+    """DEMO_PROTECT_SEED is off unless a test turns it on, whatever a local .env says."""
+    monkeypatch.delenv("DEMO_PROTECT_SEED", raising=False)

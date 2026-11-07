@@ -117,6 +117,7 @@ Settings, all listed in `.env.example` and read in `app/config.py`, except
 | `REASONING_MODEL`, `VISION_MODEL` | `openai.gpt-oss-120b`, `meta.llama-4-maverick-17b-128e-instruct-fp8` | model overrides |
 | `DATABASE_URL` | SQLite `fitcheck.db` | MySQL on the VM |
 | `GUDID_LOOKUP` | on | `off` stops the live FDA lookup |
+| `DEMO_PROTECT_SEED` | off | `on` on the shared demo: seeded rows and supply-desk saves are refused (403) |
 
 **Without OCI credentials** these still work: the checks, the matches and
 candidate pages, CSV screening on `/offer/csv`, spreadsheet uploads on

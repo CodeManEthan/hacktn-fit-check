@@ -58,7 +58,8 @@
     <form method="post" action="/match">
       <input type="hidden" name="request_id" value="{{ request_row.id }}">
       <input type="hidden" name="offer_id" value="{{ offer.id }}">
-      <button class="go-quiet" type="submit">Ask this donor</button>
+      {% if locked %}{% with lock_label="Ask this donor", lock_class="go-quiet" %}{% include "_seeded_lock.html" %}{% endwith %}
+      {% else %}<button class="go-quiet" type="submit">Ask this donor</button>{% endif %}
     </form>
     {% endif %}
   </div>
