@@ -1,4 +1,4 @@
-"""Standing pages and the clinic's list upload (design §13, [B14]).
+"""Standing pages and the clinic's list upload.
 
 About, contact and help carry no state of their own. The upload turns a
 spreadsheet or a typed list into one request and sends the clinic to that

@@ -9,7 +9,7 @@ withdrawn from the US can still be sold and serviced elsewhere (the 525KS is
 exactly that).
 
 Answers are cached in `registry_lookups` for seven days, so the demo never
-waits on the FDA twice. Errors are not cached: a timeout tonight should not
+waits on the FDA twice. Errors are not cached: a timeout today should not
 hide a record tomorrow.
 
 This module never raises. Every failure path returns a result with
@@ -124,7 +124,7 @@ def _http_get(url: str, params: dict[str, Any], timeout: float) -> tuple[int, An
 
 #: A failed lookup (timeout, connection error, 5xx, bad JSON) is remembered for
 #: this long so a cold matches page does not wait on the FDA for every offer on
-#: every load. It is short: a transient failure tonight should not hide a record
+#: every load. It is short: a transient failure should not hide a record
 #: for a week.
 FAILED_CACHE_MINUTES = 10
 

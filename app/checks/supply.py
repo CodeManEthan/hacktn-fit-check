@@ -1,7 +1,9 @@
 """Checks that depend on what can be bought and serviced in the country.
 
-These are the only checks where the model's world knowledge decides the
-outcome. The arithmetic checks never call a model.
+The supply facts come from the FDA's GUDID registry and from the answers
+the nonprofit recorded for the country (app/matching/supply_order.py). A
+fact neither source holds stays unknown and the check asks. No check calls
+a model.
 """
 
 from __future__ import annotations

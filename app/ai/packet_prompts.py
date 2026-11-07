@@ -1,7 +1,7 @@
-"""Prompt text for the handover card (design §5.2).
+"""Prompt text for the handover card.
 
-Kept apart from the extraction prompts in prompts.py: [B4] owns those and
-[B5] owns these.
+Kept apart from the extraction prompts in prompts.py, so either set can
+change without touching the other.
 """
 
 from __future__ import annotations

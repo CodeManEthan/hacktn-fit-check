@@ -64,15 +64,15 @@ def candidate(outcome=Outcome.WONT_WORK, keys=("frequency",), status=CheckStatus
 
 def test_the_table_carries_the_research_figures():
     entry = load_local_prices()["oxygen concentrator"]
-    rows = {row["ref"]: row for row in entry["rows"]}
+    rows = {row["role"]: row for row in entry["rows"]}
 
     assert entry["as_of"] == "2026-10-17"
-    assert rows["A12"]["price_usd"] == 288
-    assert rows["A12"]["url"] == "https://supply.unicef.org/catalogsearch/result/?q=oxygen"
-    assert (rows["A1"]["price_usd_min"], rows["A1"]["price_usd_max"]) == (1319.19, 2272.98)
-    assert rows["A1"]["url"] == "https://www.ato.com/1-phase-frequency-converter"
-    assert rows["A9"]["price_usd"] == 205.41
-    assert rows["A9"]["url"] == "https://supply.unicef.org/s0002632.html"
+    assert rows["instead"]["price_usd"] == 288
+    assert rows["instead"]["url"] == "https://supply.unicef.org/catalogsearch/result/?q=oxygen"
+    assert (rows["add-on"]["price_usd_min"], rows["add-on"]["price_usd_max"]) == (1319.19, 2272.98)
+    assert rows["add-on"]["url"] == "https://www.ato.com/1-phase-frequency-converter"
+    assert rows["with it"]["price_usd"] == 205.41
+    assert rows["with it"]["url"] == "https://supply.unicef.org/s0002632.html"
     assert all(row["quote"] for row in entry["rows"])
 
 

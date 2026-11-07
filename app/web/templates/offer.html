@@ -15,7 +15,7 @@
     <div class="plate workbench">
       <h2 class="panel-head">Source material</h2>
 
-      {# [B3] library pick: a cited model fills the inspector from its documents. #}
+      {# Library pick: a cited model fills the inspector from its documents. #}
       <div class="library-pick" data-library-pick>
         <div class="field">
           <label class="name" for="f-library-slug">Pick from the library</label>
@@ -177,7 +177,7 @@
   </form>
 
 <style>
-  /* [B15] spacing on their light palette: the plate's two lines stack, the
+  /* Spacing on the light palette: the plate's two lines stack, the
      library pick's two fields and the button sit apart from their notes. */
   .scan .scan-head, .scan .scan-sub { display: block; }
   .scan .scan-sub { margin-top: var(--s2); }
@@ -186,7 +186,7 @@
   #extract-now { margin-top: var(--s4); }
   .form .rowset + .rowset { margin-top: var(--s4); }
 
-  /* [B4] inspector rows: source link, "wrong" mark, a cleared row. */
+  /* Inspector rows: source link, "wrong" mark, a cleared row. */
   #inspector .source-link { font-size: 12px; margin-left: 4px; white-space: nowrap; }
   #inspector .source-why { display: block; font-size: 12px; color: var(--etch); margin-top: 2px; }
   #inspector .row-wrong { font: inherit; font-size: 12px; padding: 1px 8px; border-radius: 999px;
@@ -402,7 +402,7 @@
 </script>
 <script>
   // Fills the inspector from the library on a pick; no model call is made.
-  // It sits below the inspector table and the [B4] script on purpose: run any
+  // It sits below the inspector table and its script on purpose: run any
   // earlier and [data-inspector-body] does not exist yet, so no listener is set.
   (function () {
     var select = document.getElementById('f-library-slug');
@@ -411,7 +411,7 @@
     var kind = document.getElementById('f-device-type');
     if (!select || !body) return;
 
-    // One renderer for both paths (the [B4] inspector's), with no
+    // One renderer for both paths (the inspector's), with no
     // "wrong" mark: a cited value is corrected by a document, not by hand.
     function render(rows) {
       if (window.fitInspector) { window.fitInspector.render(rows, false); return; }

@@ -61,7 +61,7 @@ DEMO_CLINIC = "uganda-district"
 
 @router.get("/", response_class=HTMLResponse)
 def landing(request: Request) -> HTMLResponse:
-    """The landing page (design §13): two doors and the operator between them.
+    """The landing page: two doors and the operator between them.
 
     The seeded-clinic strip is gone, so the page needs no data; the role
     cookie is read by base.html from the request.
@@ -100,7 +100,7 @@ def example(request: Request):
     return RedirectResponse(url=f"/request/{request_id}/matches", status_code=303)
 
 
-# ---- role toggle (design §7.1) -----------------------------------------
+# ---- role toggle --------------------------------------------------------
 
 ROLES = ("donor", "clinic", "nonprofit")
 ROLE_COOKIE_DAYS = 30
@@ -158,7 +158,7 @@ async def offer_submit(
         posted = await request.form()
         library_slug = str(posted.get("library_slug") or "").strip()
         if library_slug:
-            # [B3] A library pick: the facts are rebuilt from the library, never
+            # A library pick: the facts are rebuilt from the library, never
             # read from the form, so a cited value cannot be edited by hand.
             # The donor adds only what is about this unit: its build year here,
             # quantity and location below.
@@ -167,7 +167,7 @@ async def offer_submit(
             device_type = device_type.strip() or picked.device_type
             model_name = model_name.strip() or picked.label
 
-        # [B4] Facts the inspector already read and showed, reloaded from the
+        # Facts the inspector already read and showed, reloaded from the
         # server's cache; the donor's "wrong" marks clear those fields. The
         # client posts only the id and field names, never a value.
         if device is None and extraction_id.strip():
@@ -224,7 +224,7 @@ def offer_posted(request: Request, offer_id: int) -> HTMLResponse:
 @router.get("/clinic", response_class=HTMLResponse)
 def facility_form(request: Request) -> HTMLResponse:
     """The clinic's profile form; country is a list so the grid lookup never misses."""
-    # Imported here, not at the top: this handler is the only reader ([B14], design §13).
+    # Imported here, not at the top: this handler is the only reader.
     from app.reference.country_power import known_countries
 
     return TEMPLATES.TemplateResponse(
@@ -280,7 +280,7 @@ async def facility_submit(request: Request) -> HTMLResponse:
     except (FormError, RepositoryError) as exc:
         return _error(request, str(exc), back="/clinic")
 
-    # A registered clinic goes straight to the list upload (design §13, [B14]).
+    # A registered clinic goes straight to the list upload.
     return RedirectResponse(url=f"/request/upload?facility={slug}", status_code=303)
 
 
@@ -374,7 +374,7 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
 
 @router.get("/request/{request_id}/offer/{offer_id}", response_class=HTMLResponse)
 def candidate_page(request: Request, request_id: int, offer_id: int) -> HTMLResponse:
-    """One offer's verdict for one request's clinic (design §7.2).
+    """One offer's verdict for one request's clinic.
 
     The offer is screened again here, with the same supply order the matches
     page uses, so a rejected or a needs-info offer renders as well as a
@@ -719,7 +719,7 @@ def _support_kind(device_type: str, label: str) -> str:
     return kind.value if kind else ""
 
 
-# ---- recorded supply answers (§2.7) ------------------------------------
+# ---- recorded supply answers -------------------------------------------
 
 from urllib.parse import quote, urlencode  # noqa: E402
 
@@ -828,9 +828,9 @@ def supply_save(
     query = urlencode({"device_type": answer.device_type, "model": answer.model, "saved": 1})
     return RedirectResponse(url=f"/supply/{quote(answer.country)}?{query}", status_code=303)
 
-# ---- handover packet (design §5.3; [B5]) -----------------------------------
+# ---- handover packet ------------------------------------------------------
 
-from app.ai.client import CLIENT as _PACKET_CHAT  # noqa: E402 - the [B5] block stands alone
+from app.ai.client import CLIENT as _PACKET_CHAT  # noqa: E402 - the packet block stands alone
 from app.ai.packet import Card, build_card, card_from_dict, gate, split_pages  # noqa: E402
 from app.ai.translate import ENGINE_CHAT, Target, pick_target, translate_card  # noqa: E402
 from app.checks import check_fit  # noqa: E402
@@ -913,7 +913,7 @@ def _packet_translation(card: Card, target: Target) -> dict | None:
 
 
 def _packet_header(target: Target, translated: dict | None) -> tuple[str, bool]:
-    """The header line per [F10], and whether it is a warning."""
+    """The packet's header line, and whether it is a warning."""
     if not target.language:
         return target.note, target.note != "English, as requested"
     if not translated or not translated.get("card"):
@@ -931,7 +931,7 @@ def _packet_header(target: Target, translated: dict | None) -> tuple[str, bool]:
 def packet_page(
     request: Request, offer_id: int, facility: str = "", rebuild: int = 0
 ) -> HTMLResponse:
-    """The handover packet for one offer at one clinic (design §5.3)."""
+    """The handover packet for one offer at one clinic."""
     offer = repo.load_offer(offer_id)
     if offer is None:
         return _error(request, f"No offer with id {offer_id}.")
@@ -1001,7 +1001,7 @@ def packet_page(
         },
     )
 
-# ---- [B3] library pick ------------------------------------------------------
+# ---- library pick -----------------------------------------------------------
 
 from dataclasses import replace as _replace  # noqa: E402
 

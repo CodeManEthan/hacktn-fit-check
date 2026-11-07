@@ -1,6 +1,6 @@
 """Create (or reuse) the dynamic group and policy the VM's instance principal needs.
 
-Run from a machine with the operator's API key (~/.oci/config) and the OCI Python SDK:
+Run from a machine with the tenancy owner's API key (~/.oci/config) and the OCI Python SDK:
 
     .venv/bin/python deploy/instance_principals.py --public-ip 147.224.201.81
 

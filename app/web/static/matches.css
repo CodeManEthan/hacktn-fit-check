@@ -1,7 +1,7 @@
-/* [B15] The matches and candidate pages (design §13, §2.3, §7.2).
+/* The matches and candidate pages.
 
-   Linked from matches.html and candidate.html only, so style.css stays
-   [B12]'s. Every colour here is a token from style.css: the light status
+   Linked from matches.html and candidate.html only, so the shared style.css
+   is left as it is. Every colour here is a token from style.css: the light status
    tokens (#B91C1C fail, #B45309 conditional, #047857 pass, blue for a
    question), all AA on white. */
 

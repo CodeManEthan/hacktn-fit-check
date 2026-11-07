@@ -333,7 +333,7 @@ def known_device_types() -> list[str]:
     Fed to the free-text intake as a controlled vocabulary, so a clinic writing
     "concentrator" can be read as the stocked "oxygen concentrator" rather than
     a line that matches nothing. Copied from upstream 3236e78 without the
-    substitute terms, which this tree does not carry (design §13).
+    substitute terms, which this tree does not carry.
     """
     rows = _all_rows(
         select(offers.c.device_type)

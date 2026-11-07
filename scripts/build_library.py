@@ -2,7 +2,8 @@
 
 Run once with:  ./.venv/bin/python -m scripts.build_library [NOTES_DIR]
 
-Sources (read-only, in the notes tree):
+Sources (read-only, in the author's research notes, which are not
+published; the build needs a copy of them):
 - the hero JSON block and fact tables in reports/verify-hero-device.md, for the
   DeVilbiss 525DS and 525KS, typed here with each quote and checked against
   the document text below;
@@ -16,7 +17,7 @@ pages); a quote that cannot be found keeps the page its report gave. Only
 the .txt extractions are copied; the PDFs stay in the notes tree and are
 linked by URL.
 
-Mapping rules (design §4.1):
+Mapping rules:
 - a value that is null, or whose quote says "not stated", is left out (unknown);
 - a frequencies_hz of [] is left out: "no mains", not "no frequency";
 - year_introduced, support status, battery and UI-language facts go to notes;

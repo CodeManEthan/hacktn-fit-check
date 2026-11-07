@@ -1,4 +1,4 @@
-"""Translate the handover card for the clinic's staff (design §5.3, §5.4).
+"""Translate the handover card for the clinic's staff.
 
 OCI Language's batch translation does the work, with credentials from
 build_signer_and_config. If the service answers with a 4xx saying it is not
