@@ -224,12 +224,15 @@ def rule_count() -> int:
 
 # The facts each check reads, as (where, field): "device" is the offer's
 # DeviceFacts, "intel" the SupplyIntel. The page links each one's citation.
+# The three mains checks also read mains_powered, which is what a
+# battery-only device's pass rests on.
 CHECK_FACTS: dict[str, tuple[tuple[str, str], ...]] = {
-    "frequency": (("device", "frequencies_hz"),),
-    "voltage": (("device", "voltage_min_v"), ("device", "voltage_max_v")),
+    "frequency": (("device", "frequencies_hz"), ("device", "mains_powered")),
+    "voltage": (("device", "voltage_min_v"), ("device", "voltage_max_v"),
+                ("device", "mains_powered")),
     "temperature": (("device", "temp_min_c"), ("device", "temp_max_c")),
     "humidity": (("device", "humidity_max_pct"),),
-    "grid": (("device", "needs_stable_power"),),
+    "grid": (("device", "needs_stable_power"), ("device", "mains_powered")),
     "oxygen": (("device", "needs_oxygen"),),
     "water": (("device", "needs_distilled_water"),),
     "air": (("device", "needs_compressed_air"),),
