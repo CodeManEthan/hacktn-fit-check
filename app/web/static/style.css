@@ -1064,3 +1064,10 @@ body[data-role] button.go:hover, body[data-role] a.go:hover { background: var(--
 
 /* A long unbroken token (an error's URL) must wrap rather than widen the page. */
 p, li, td, dd { overflow-wrap: anywhere; }
+
+/* Audit tables keep whole words; on a phone the table scrolls sideways
+   inside its .audit-scroll wrapper instead of widening the page. */
+.audit-scroll .audit td { overflow-wrap: normal; word-break: normal; }
+@media (max-width: 600px) {
+  .audit-scroll .audit { min-width: 36rem; }
+}

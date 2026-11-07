@@ -33,6 +33,7 @@ from app.matching.supply_order import supply_lookup
 from app.web import forms
 from app.web.forms import FormError
 from app.web.marketplace_routes import DEMO_CLINIC, TEMPLATES
+from app.web.presenters import STAMP_BY_OUTCOME_VALUE
 
 router = APIRouter()
 
@@ -134,7 +135,7 @@ def _upload_page(request: Request, *, selected: str = "", donor_name: str = "",
 
 def _result_page(request: Request, token: str, item: Held) -> HTMLResponse:
     screening = item.screening
-    counts = [(outcome.value, screening.count(outcome), TONE[outcome.value])
+    counts = [(STAMP_BY_OUTCOME_VALUE[outcome.value], screening.count(outcome), TONE[outcome.value])
               for outcome in (Outcome.WORKS, Outcome.WORKS_IF, Outcome.NEEDS_INFO,
                               Outcome.WONT_WORK)]
     return TEMPLATES.TemplateResponse(

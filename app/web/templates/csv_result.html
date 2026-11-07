@@ -21,7 +21,7 @@
 </style>
 <section class="masthead">
   <p class="eyebrow"><a class="link" href="/offer/csv?facility={{ s.facility_slug }}">&larr; Screen another file</a></p>
-  <h1>{{ s.rows | length }} row{{ '' if s.rows | length == 1 else 's' }} screened against {{ s.facility_name }}</h1>
+  <h1>{{ s.rows | length | plural('row') }} screened against {{ s.facility_name }}</h1>
   <p class="sub">{{ held.filename }}. Each row is an offer that has not been posted: nothing
      here is saved yet. The results are held for {{ hours }} hour{{ '' if hours == 1 else 's' }}.</p>
 </section>
@@ -94,14 +94,14 @@
 <section class="plate">
   {% if held.complete %}
   <h2>Posted</h2>
-  <p>{{ held.posted | length }} offer{{ '' if held.posted | length == 1 else 's' }} saved for {{ held.donor_name }}. Each is now open to every clinic's request.</p>
+  <p>{{ held.posted | length | plural('offer') }} saved for {{ held.donor_name }}. Each is now open to every clinic's request.</p>
   <ul class="csv-posted">
     {% for id in held.posted %}<li><a class="link" href="/offer/{{ id }}">Offer {{ id }}</a></li>{% endfor %}
   </ul>
   {% elif postable %}
   {% if held.posted %}
   <h2>Partly posted</h2>
-  <p>Saving stopped after {{ held.posted | length }} of {{ postable }} offers. These are saved:</p>
+  <p>Saving stopped after {{ held.posted | length }} of {{ postable | plural('offer') }}. These are saved:</p>
   <ul class="csv-posted">
     {% for id in held.posted %}<li><a class="link" href="/offer/{{ id }}">Offer {{ id }}</a></li>{% endfor %}
   </ul>
@@ -109,7 +109,7 @@
   {% else %}
   <h2>Post these offers</h2>
   {% endif %}
-  <p class="note">Saves the {{ postable }} screened row{{ '' if postable == 1 else 's' }} as open offers,
+  <p class="note">Saves the {{ postable | plural('screened row') }} as open offers,
      so any clinic's request can find them, including rows that will not work at
      {{ s.facility_name }}. Rows that were not read are not posted.</p>
   <form method="post" action="/offer/csv/{{ token }}/post" class="csv-post">
@@ -124,7 +124,7 @@
     {% if held.posted %}
     <button class="go" type="submit">Post the remaining {{ remaining }} offer{{ '' if remaining == 1 else 's' }}</button>
     {% else %}
-    <button class="go" type="submit">Post these {{ postable }} offers</button>
+    <button class="go" type="submit">Post {{ 'this offer' if postable == 1 else 'these ' ~ postable | plural('offer') }}</button>
     {% endif %}
   </form>
   {% else %}

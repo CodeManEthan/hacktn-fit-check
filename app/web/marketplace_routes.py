@@ -26,6 +26,7 @@ from app.domain.marketplace import (
     RequestLine,
 )
 from app.domain.result import Outcome
+from app.domain.text import plural
 from app.matching.bundle import build_bundle
 from app.matching.coverage import LineCoverage
 from app.matching.pipeline import propose_match, screen_offers
@@ -46,6 +47,8 @@ TEMPLATES = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 TEMPLATES.env.globals["rule_count"] = rule_count()
 TEMPLATES.env.globals["offer_name"] = presenters.offer_name
 TEMPLATES.env.globals["supply_url"] = presenters.supply_url
+TEMPLATES.env.filters["plural"] = plural
+TEMPLATES.env.filters["stamp"] = presenters.outcome_stamp
 router = APIRouter()
 
 

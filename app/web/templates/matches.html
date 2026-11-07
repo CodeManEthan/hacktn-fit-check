@@ -9,7 +9,7 @@
       </span>
       <span class="option-far">
         {% if c.distance_km is not none %}<b>{{ c.distance_km | round | int }} km</b><span>{{ c.distance_miles | round | int }} mi</span>{% endif %}
-        {% if c.shipment %}<i>about {{ c.shipment.transit_days }} days to deliver</i>{% endif %}
+        {% if c.shipment %}<i>about {{ c.shipment.transit_days | plural('day') }} to deliver</i>{% endif %}
       </span>
       <span class="unit-badges">
         <span class="chip">{{ c.offer.quantity_available }} available</span>
@@ -70,6 +70,8 @@
      blocks it; last come the offers with questions to answer before a verdict. Open any
      device for its fifteen checks and their sources.</p>
 
+  {# One kind: its section below opens with the same line, so no summary here. #}
+  {% if coverages | length > 1 %}
   <div class="coverage">
     {% for cover in coverages %}
     <div class="coverage-line {{ 'is-met' if cover.complete else 'is-short' }}">
@@ -77,13 +79,14 @@
       <span class="coverage-count">{{ cover.headline }}</span>
       {% if cover.needs_split %}
       <span class="coverage-note">no single donor has all {{ cover.line.quantity }} &mdash;
-        {{ cover.donors_needed }} donors together do</span>
+        {{ cover.donors_needed | plural('donor') }} together do</span>
       {% elif cover.shortfall %}
       <span class="coverage-note">{{ cover.shortfall }} short</span>
       {% endif %}
     </div>
     {% endfor %}
   </div>
+  {% endif %}
 </section>
 
 {% for cover in coverages %}
@@ -97,7 +100,7 @@
   {% if not cover.screened %}
   <p class="empty">No open offers of this kind yet.</p>
   {% else %}
-  <p class="sub">Of {{ cover.screened }} offers of this kind, {{ known | length }}
+  <p class="sub">Of {{ cover.screened | plural('offer') }} of this kind, {{ known | length }}
      {{ 'is' if known | length == 1 else 'are' }} known to work at {{ facility.name }},
      {{ cover.rejected | length }} won't, and {{ asking | length }}
      {{ 'needs' if asking | length == 1 else 'need' }} answers first.</p>
@@ -162,7 +165,7 @@
     </ul>
     {% endif %}
     <div class="candidate-act">
-      <a class="go" href="/request/{{ request_row.id }}/offer/{{ c.offer.id }}">Answer {{ asked }} question{{ '' if asked == 1 else 's' }} first</a>
+      <a class="go" href="/request/{{ request_row.id }}/offer/{{ c.offer.id }}">Answer {{ asked | plural('question') }} first</a>
       <a class="link" href="/packet/{{ c.offer.id }}?facility={{ facility.slug }}">Generate handover packet</a>
     </div>
   </article>
