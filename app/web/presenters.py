@@ -11,8 +11,11 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 from urllib.parse import quote, urlencode
 
+from markupsafe import Markup
+
+from app.data import seeded
 from app.domain.device import DeviceFacts
-from app.domain.result import CheckStatus, Outcome
+from app.domain.result import CheckStatus, Outcome, Verdict
 
 if TYPE_CHECKING:  # pragma: no cover - the pipeline imports nothing from here
     from app.matching.pipeline import Candidate
@@ -33,6 +36,15 @@ TONE_BY_OUTCOME = {
 
 # The log reads outcomes back as stored strings, not enum members.
 TONE_BY_OUTCOME_VALUE = {o.value: tone for o, tone in TONE_BY_OUTCOME.items()}
+
+# One label per outcome on every page: the verdict stamp's words, keyed by the
+# stored string.
+STAMP_BY_OUTCOME_VALUE = {o.value: Verdict(o, ()).stamp for o in Outcome}
+
+
+def outcome_stamp(value: str) -> str:
+    """The stamp's words for a stored outcome string; anything else as given."""
+    return STAMP_BY_OUTCOME_VALUE.get(value, value)
 
 
 def _range(low, high, unit: str) -> str | None:
@@ -71,11 +83,18 @@ def identity_pairs(device: DeviceFacts) -> list[tuple[str, str]]:
     return pairs
 
 
+# The raw_input the demo seed writes on its impact-history devices
+# (scripts/seed_demo.py HISTORY_MARKER); a visitor sees "Sample screening".
+SEED_HISTORY_MARKER = "seed_demo: impact history"
+
+
 def device_kind(device: DeviceFacts) -> str:
     """What the donor called it, minus the name already shown above it."""
     raw = (device.raw_input or "").strip().splitlines()
     if not raw:
         return ""
+    if raw[0].strip() == SEED_HISTORY_MARKER:
+        return "Sample screening"
     line = raw[0].strip()
     label = device.label
     if label and label.lower() in line.lower():
@@ -370,3 +389,19 @@ def addon_states(bundle) -> list[dict]:
             "unverified": list(item.unverified_offers),
         })
     return items
+
+
+# ---- the "sample" tag ------------------------------------------------------
+
+_SAMPLE_TAG = Markup(' <span class="tag sample-tag" title="Demo data: a sample row,'
+                     ' not a real offer or request">sample</span>')
+
+
+def donor_tag(name: str) -> Markup:
+    """The "sample" tag after a donor name the demo seed writes; nothing otherwise."""
+    return _SAMPLE_TAG if seeded.is_seeded_donor(name) else Markup("")
+
+
+def clinic_tag(slug: str) -> Markup:
+    """The "sample" tag after a seeded clinic's name; nothing otherwise."""
+    return _SAMPLE_TAG if seeded.is_seeded_clinic(slug) else Markup("")

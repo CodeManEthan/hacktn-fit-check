@@ -4,7 +4,7 @@
 <section class="masthead">
   <p class="eyebrow">Match {{ match.id }}</p>
   <h1>Waiting on the donor</h1>
-  <p class="sub">{{ offer.donor_name }} has been asked whether
+  <p class="sub">{{ offer.donor_name }}{{ donor_tag(offer.donor_name) }} has been asked whether
      {{ match.quantity }} &times; {{ offer.device.label }} is still available.
      The stock is held against this request until they answer.</p>
 

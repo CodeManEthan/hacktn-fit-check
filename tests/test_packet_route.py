@@ -115,7 +115,7 @@ def test_an_english_clinic_gets_the_gated_english_card_and_the_paperwork(fakes):
     assert "English, as requested" in body
     assert "Allow up to 15 minutes for start up." in body and "p.&nbsp;8" in body
     assert "MC99Z-123" not in body                      # invented part code, gated out
-    assert "1 lines dropped: not found in the manual" in body
+    assert "1 line dropped: not found in the manual" in body
     assert "no-objection letter" in body and "packing list with serial numbers" in body
     assert "525KS instruction guide" in body            # an edition in English, linked
     assert "machine-translated" not in body

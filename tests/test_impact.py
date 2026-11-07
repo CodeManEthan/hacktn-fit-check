@@ -193,7 +193,7 @@ def test_the_impact_page_shows_the_gated_paragraph_and_its_label(seeded, monkeyp
     assert "999" not in paragraph and "found 999 problems" not in body
     assert html.escape(impact.code_sentence(impact.figures())) in paragraph
     assert impact.WRITTEN_BY_CODE in paragraph
-    assert "need answers first" in body
+    assert "Needs info" in body
 
     impact.clear_cache()
     chat.text = f"Fit-Check screened {seed_demo.HISTORY_SIZE} devices for 3 clinics."

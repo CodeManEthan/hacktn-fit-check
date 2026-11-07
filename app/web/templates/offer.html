@@ -105,15 +105,17 @@
       </div>
 
       <button type="button" class="go-quiet" id="extract-now">Read these facts now</button>
-      <p class="note">Reads the source without posting the offer, so you can see what
+      <p class="note" data-extract-note>Reads the source without posting the offer, so you can see what
          was understood before committing to anything.</p>
+      <p class="note" data-library-note hidden>These facts came from the library. Clear the
+         pick above to read a paste or photo instead.</p>
     </div>
 
     <div class="plate inspector" id="inspector">
-      <h2 class="panel-head">Live extraction &amp; provenance telemetry</h2>
+      <h2 class="panel-head">What we read</h2>
       <p class="telemetry" data-telemetry>
         <span class="dot" aria-hidden="true"></span>
-        <span data-telemetry-text>STATUS: AWAITING ARTIFACT</span>
+        <span data-telemetry-text>Waiting for a photo or text</span>
       </p>
       <table class="audit inspector-table">
         <thead>
@@ -166,9 +168,10 @@
           <input type="text" id="f-donor-name" name="donor_name" placeholder="Baptist Hospital biomedical dept">
         </div>
         <div class="field">
-          <label class="name" for="f-donor-email">Email for confirmation</label>
+          <label class="name" for="f-donor-email">Email a real service would write to</label>
           <input type="text" id="f-donor-email" name="donor_email" placeholder="biomed@example.org">
-          <p class="note">Used only to ask whether the stock still exists when a match comes up.</p>
+          <p class="note">A real service would use it only to ask whether the stock still
+             exists when a match comes up. This prototype sends no email.</p>
         </div>
       </div>
     </div>
@@ -193,6 +196,9 @@
     border: 1px solid var(--rule); background: transparent; color: var(--etch); cursor: pointer; }
   #inspector .row-wrong[aria-pressed="true"] { border-color: currentColor; color: var(--ink); }
   #inspector tr.is-cleared .audit-value { text-decoration: line-through; opacity: 0.6; }
+  /* Field names stay whole words: the page-wide wrap-anywhere rule split
+     "Voltage" and "Consumables" mid-word on narrow and wide screens. */
+  #inspector .audit-name { min-width: 12ch; word-break: normal; overflow-wrap: normal; }
   #inspector .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden;
     clip: rect(0 0 0 0); white-space: nowrap; }
 </style>
@@ -211,6 +217,8 @@
     var idInput = form.querySelector('[data-extraction-id]');
     var clearedInput = form.querySelector('[data-cleared-fields]');
     var confirmNote = document.querySelector('[data-inspector-confirm]');
+    var pick = document.getElementById('f-library-slug');
+    function picked() { return pick ? pick.value : ''; }
     var FIELDS = Array.prototype.map.call(
       body.querySelectorAll('.audit-name'), function (td) { return td.textContent; });
     var cleared = [];
@@ -312,7 +320,7 @@
 
     // The library pick (above) renders through this too: one row set, one
     // column count.
-    window.fitInspector = { render: render, blank: blankRows };
+    window.fitInspector = { render: render, blank: blankRows, status: status, factCount: factCount };
 
     function say(text) { if (message) message.textContent = text || ''; }
 
@@ -325,6 +333,8 @@
       bannerText.textContent = text;
     }
 
+    function factCount(n) { return n + (n === 1 ? ' fact' : ' facts'); }
+
     ['model_name', 'spec_text', 'nameplate'].forEach(function (field) {
       var input = form.elements[field];
       if (!input || !input.addEventListener) return;
@@ -332,7 +342,7 @@
         if (idInput && idInput.value) {
           forget();
           render(blankRows(), false);
-          status('working', 'STATUS: SOURCE CHANGED, READ AGAIN');
+          status('working', 'Source changed, read again');
         }
       });
     });
@@ -351,7 +361,7 @@
 
       button.disabled = true;
       forget();
-      status('working', 'STATUS: READING ARTIFACT');
+      status('working', 'Reading...');
       say('');
       fetch('/offer/extract', { method: 'POST', body: payload })
         .then(function (response) { return response.json(); })
@@ -364,17 +374,15 @@
           var typeInput = form.elements['device_type'];
           if (typeInput && !typeInput.value && data.device_type) typeInput.value = data.device_type;
           var known = rows.filter(function (r) { return r.known; }).length;
-          status(known ? 'live' : '', known
-            ? 'STATUS: ' + known + ' FACT' + (known === 1 ? '' : 'S') + ' EXTRACTED'
-            : 'STATUS: NOTHING READ');
+          status(known ? 'live' : '', known ? factCount(known) + ' read' : 'Nothing read');
           say(data.message || '');
         })
         .catch(function () {
           render(blankRows(), false);
-          status('', 'STATUS: READER UNREACHABLE');
+          status('', 'Reader unreachable');
           say('The offer can still be posted; the facts are read again on submit.');
         })
-        .finally(function () { button.disabled = false; });
+        .finally(function () { button.disabled = Boolean(picked()); });
     });
 
     // Tabs: one source panel visible at a time, both still posted.
@@ -395,7 +403,7 @@
       input.addEventListener('change', function () {
         var out = input.closest('.scan').querySelector('[data-scan-name]');
         if (out) out.textContent = input.files.length ? input.files[0].name : 'No file chosen';
-        if (input.files.length) status('working', 'STATUS: ARTIFACT LOADED, NOT YET READ');
+        if (input.files.length) status('working', 'Photo loaded, not yet read');
       });
     });
   })();
@@ -409,7 +417,22 @@
     var body = document.querySelector('[data-inspector-body]');
     var message = document.querySelector('[data-inspector-msg]');
     var kind = document.getElementById('f-device-type');
+    var readButton = document.getElementById('extract-now');
+    var readNote = document.querySelector('[data-extract-note]');
+    var libraryNote = document.querySelector('[data-library-note]');
     if (!select || !body) return;
+
+    // While a library device is picked the read button is off: the server
+    // rebuilds the facts from the library on submit, so a paste would be ignored.
+    function lockRead(on) {
+      if (readButton) readButton.disabled = on;
+      if (readNote) readNote.hidden = on;
+      if (libraryNote) libraryNote.hidden = !on;
+    }
+
+    function status(state, text) {
+      if (window.fitInspector) window.fitInspector.status(state, text);
+    }
 
     // One renderer for both paths (the inspector's), with no
     // "wrong" mark: a cited value is corrected by a document, not by hand.
@@ -421,7 +444,12 @@
     select.addEventListener('change', function () {
       var slug = select.value;
       if (message) message.textContent = '';
-      if (!slug) { render(window.fitInspector ? window.fitInspector.blank() : []); return; }
+      lockRead(Boolean(slug));
+      if (!slug) {
+        render(window.fitInspector ? window.fitInspector.blank() : []);
+        status('', 'Waiting for a photo or text');
+        return;
+      }
       var option = select.options[select.selectedIndex];
       if (kind && !kind.value) kind.value = option.getAttribute('data-device-type') || '';
       var payload = new FormData();
@@ -429,13 +457,21 @@
       fetch('/offer/prefill', { method: 'POST', body: payload })
         .then(function (response) { return response.json(); })
         .then(function (data) {
-          render(data.rows || []);
+          var rows = data.rows || [];
+          render(rows);
+          var known = rows.filter(function (r) { return r.known; }).length;
+          var count = window.fitInspector ? window.fitInspector.factCount(known) : known + ' facts';
+          status(known ? 'live' : '', count + ' from the library');
           if (message) message.textContent = data.message || '';
         })
         .catch(function () {
+          status('', 'Reader unreachable');
           if (message) message.textContent = 'The library did not answer. The pick still applies on submit.';
         });
     });
+
+    // A reload can keep the browser's last pick; show it the same way.
+    if (select.value) select.dispatchEvent(new Event('change'));
   })();
 </script>
 {% endblock %}

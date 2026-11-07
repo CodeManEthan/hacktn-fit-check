@@ -426,6 +426,7 @@ button.go-quiet:hover { border-color: var(--block); color: var(--block); }
   padding: 1px 6px;
   white-space: nowrap;
 }
+.tag.sample-tag { font-size: 10px; vertical-align: 1px; }
 .tag.is-trusted { color: var(--accent-text); border-color: var(--accent-line); background: var(--accent-wash); }
 
 .audit { width: 100%; border-collapse: collapse; margin-top: var(--s4); font-size: 14px; }
@@ -1064,3 +1065,10 @@ body[data-role] button.go:hover, body[data-role] a.go:hover { background: var(--
 
 /* A long unbroken token (an error's URL) must wrap rather than widen the page. */
 p, li, td, dd { overflow-wrap: anywhere; }
+
+/* Audit tables keep whole words; on a phone the table scrolls sideways
+   inside its .audit-scroll wrapper instead of widening the page. */
+.audit-scroll .audit td { overflow-wrap: normal; word-break: normal; }
+@media (max-width: 600px) {
+  .audit-scroll .audit { min-width: 36rem; }
+}

@@ -108,7 +108,7 @@ def test_offer_form_keeps_its_notes_and_balances_its_divs(demo):
     body = demo["client"].get("/offer").text
     assert "Blank if nothing dated." in body
     assert "After this date the offer stops being matched." in body
-    assert "Used only to ask whether the stock still exists" in body
+    assert "only to ask whether the stock still" in body
     assert 'name="extraction_id"' in body and 'name="library_slug"' in body
     markup = re.sub(r"<script>.*?</script>", "", body, flags=re.S)
     form = markup[markup.index('<form method="post" action="/offer"'):markup.index("</form>")]

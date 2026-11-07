@@ -7,6 +7,7 @@ from enum import Enum
 
 from app.domain.provenance import Provenance
 from app.domain.requirement import Requirement
+from app.domain.text import plural
 
 
 class CheckStatus(str, Enum):
@@ -81,13 +82,12 @@ class Verdict:
     @property
     def headline(self) -> str:
         if self.outcome is Outcome.WORKS:
-            return f"All {len(self.results)} checks pass"
+            checks = len(self.results)
+            return "1 check passes" if checks == 1 else f"All {checks} checks pass"
         if self.outcome is Outcome.WONT_WORK:
-            blockers = len(self.failures)
-            word = "blocker" if blockers == 1 else "blockers"
-            return f"{blockers} {word}, {len(self.conditional)} conditions"
+            blockers = plural(len(self.failures), "blocker")
+            return f"{blockers}, {plural(len(self.conditional), 'condition')}"
         if self.outcome is Outcome.NEEDS_INFO:
             asked = len(self.questions) or len(self.unknowns)
-            return f"{asked} question{'' if asked == 1 else 's'} before a verdict"
-        count = len(self.requirements)
-        return f"{count} thing{'' if count == 1 else 's'} it cannot arrive without"
+            return f"{plural(asked, 'question')} before a verdict"
+        return f"{plural(len(self.requirements), 'thing')} it cannot arrive without"

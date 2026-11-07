@@ -15,8 +15,10 @@ from fastapi import Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
+from app.data import seeded
 from app.domain.device import DeviceFacts
 from app.domain.provenance import Provenance, fact
+from app.domain.text import plural
 from app.reference import device_library
 from app.web import presenters
 from app.web.forms import FormError
@@ -26,6 +28,11 @@ TEMPLATES = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 TEMPLATES.env.globals["rule_count"] = rule_count()
 TEMPLATES.env.globals["offer_name"] = presenters.offer_name
 TEMPLATES.env.globals["supply_url"] = presenters.supply_url
+TEMPLATES.env.filters["plural"] = plural
+TEMPLATES.env.filters["stamp"] = presenters.outcome_stamp
+TEMPLATES.env.globals["donor_tag"] = presenters.donor_tag
+TEMPLATES.env.globals["clinic_tag"] = presenters.clinic_tag
+TEMPLATES.env.globals["seeded_clinic"] = seeded.is_seeded_clinic
 # The offer page lists the library through this, read at render time, so a
 # rebuilt library file shows without a restart.
 TEMPLATES.env.globals["library_entries"] = device_library.load_library

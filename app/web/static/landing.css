@@ -27,6 +27,9 @@
 }
 .lander-alt:hover { color: var(--accent-deep, #1D4ED8); }
 
+/* One grey line under each card's links saying what pressing them does. */
+.lander-body p.lander-what { margin: var(--s3, 12px) 0 0; font-size: 13px; line-height: 1.5; color: var(--etch, #5B6779); }
+
 /* One-line operator strip under the cards: the nonprofit between
    donor and clinic, the middlemen in grey. */
 .lander-operator {
