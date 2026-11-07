@@ -117,6 +117,7 @@
         <span class="dot" aria-hidden="true"></span>
         <span data-telemetry-text>Waiting for a photo or text</span>
       </p>
+      <div class="inspector-scroll">
       <table class="audit inspector-table">
         <thead>
           <tr><th scope="col">Field</th><th scope="col">Value</th><th scope="col">Provenance</th><th scope="col"><span class="visually-hidden">Confirm</span></th></tr>
@@ -132,6 +133,7 @@
           {% endfor %}
         </tbody>
       </table>
+      </div>
       {# The confirm controls: the server holds the facts under this id; the
          donor's "wrong" marks post field names only, never a value. #}
       <input type="hidden" name="extraction_id" value="" data-extraction-id>
@@ -199,6 +201,13 @@
   /* Field names stay whole words: the page-wide wrap-anywhere rule split
      "Voltage" and "Consumables" mid-word on narrow and wide screens. */
   #inspector .audit-name { min-width: 12ch; word-break: normal; overflow-wrap: normal; }
+  /* Values keep whole words too ("DeVilbiss Healthcare", "Portuguese"). On a
+     phone a value with a long token ("invasive/surgical") makes the table
+     scroll sideways inside its wrapper instead of widening the page; the
+     panel's min-width lets its grid column stay as wide as the screen. */
+  #inspector .audit-value { word-break: normal; overflow-wrap: normal; }
+  #inspector { min-width: 0; }
+  #inspector .inspector-scroll { overflow-x: auto; position: relative; }
   #inspector .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden;
     clip: rect(0 0 0 0); white-space: nowrap; }
 </style>
