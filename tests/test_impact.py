@@ -1,4 +1,4 @@
-"""[B6] §7.3 the impact paragraph: figures from the log, a gated model paragraph,
+"""The impact paragraph: figures from the log, a gated model paragraph,
 cached per process. Fake clients only; no model is called.
 """
 
@@ -77,7 +77,7 @@ def test_a_stated_sum_of_two_figures_is_allowed():
 
 
 
-# (B6 check L2) a sum passes only when the paragraph states both addends.
+# A sum passes only when the paragraph states both addends.
 
 def test_a_number_that_is_an_unstated_sum_of_two_figures_is_refused():
     # 17 = 8 + 9, but the paragraph gives neither.

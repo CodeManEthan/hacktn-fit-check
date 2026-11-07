@@ -1,4 +1,4 @@
-"""[B6] The four demo screens of [F4], walked with TestClient against the
+"""The four demo screens, walked with TestClient against the
 seeded demo (scripts/seed_demo.py into a fresh SQLite file). Fake model
 clients only; GUDID is off under pytest.
 

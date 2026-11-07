@@ -1,4 +1,4 @@
-"""The matches page and create_match on real screening data (design §2.3, §2.4).
+"""The matches page and create_match on real screening data.
 
 Same harness as tests/test_contract_routes.py: per-test SQLite, no lifespan,
 no model calls. The screening here is the real one.

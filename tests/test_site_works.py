@@ -1,4 +1,4 @@
-"""Design §2.4: site works and training fail; a FAIL never carries a Requirement."""
+"""Site works and training fail; a FAIL never carries a Requirement."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""[B6] The candidate page's presenters: citation links, questions, names."""
+"""The candidate page's presenters: citation links, questions, names."""
 
 from __future__ import annotations
 

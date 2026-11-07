@@ -1,4 +1,4 @@
-"""[B6] §7.1 role toggle and landing, §7.2 candidate verdict page, and the
+"""The role toggle and landing, the candidate verdict page, and the
 matches page links, on the seeded demo data (scripts/seed_demo.py into a
 fresh SQLite file). No model is called; GUDID is off under pytest.
 """
@@ -25,7 +25,7 @@ KAYUNGA = seed_demo.KAYUNGA
 
 @pytest.fixture(scope="module")
 def demo(tmp_path_factory):
-    path = tmp_path_factory.mktemp("b6") / "demo.db"
+    path = tmp_path_factory.mktemp("demo") / "demo.db"
     with pytest.MonkeyPatch.context() as mp:
         mp.setattr(db, "SETTINGS", replace(SETTINGS, database_url=f"sqlite:///{path}"))
         mp.setattr(db, "_engine", None)
@@ -52,7 +52,7 @@ def check_rows(body: str) -> list[str]:
     return re.findall(r'data-check="([a-z_]+)"', body)
 
 
-# ---- §7.2 the candidate verdict page ------------------------------------------
+# ---- the candidate verdict page --------------------------------------------
 
 def test_b_works_if_with_fifteen_cited_checks_and_the_send_with_list(demo):
     body = page(demo, "B")
@@ -129,12 +129,12 @@ def test_matches_links_each_candidate_and_its_packet(demo):
     assert "Record the nonprofit's answer" in body
     assert "already been removed" not in body
     assert "stay on the page" in body
-    # The order of [F3]: B first, then A among the won't-works, then C.
+    # The ranked order: B first, then A among the won't-works, then C.
     at = {w: body.index(f'/request/{ids["request"]}/offer/{ids[w]}"') for w in "ABC"}
     assert at["B"] < at["A"] < at["C"]
 
 
-# ---- §7.1 role toggle and landing ------------------------------------------------
+# ---- role toggle and landing ----------------------------------------------------
 
 @pytest.mark.parametrize("role, home", [
     ("donor", "/offer"), ("clinic", "/clinic"), ("nonprofit", "/review"),
@@ -162,7 +162,7 @@ def test_each_role_recolours_the_bar_and_hides_nothing(demo):
         body = client.get("/").text
         assert re.search(rf'<body class="[^"]*" data-role="{role}">', body)
         assert re.search(rf'value="{role}" class="role-btn role-btn-{role}"\s+aria-pressed="true"', body)
-        # [B12] exactly one button is pressed, and it is this role's.
+        # Exactly one button is pressed, and it is this role's.
         assert len(re.findall(r'aria-pressed="true"', body)) == 1
         assert 'href="/offer"' in body and 'href="/request"' in body
 
@@ -180,9 +180,8 @@ def test_an_unknown_role_cookie_is_ignored(demo):
     assert re.search(r'<body class="[^"]*">', body) and "data-role" not in body.split("<body", 1)[1][:40]
 
 
-# [B13]'s landing (design §13): the operator is a one-line strip under the
-# two cards and the seeded-clinic strip is gone. Replacement from B13's report;
-# it passes once b13-ui-landing's landing.html is merged beside this base.
+# The landing: the operator is a one-line strip under the two cards, and the
+# seeded-clinic strip is gone.
 def test_the_landing_shows_two_intake_forms_and_the_operator_under_them(demo):
     body = demo["client"].get("/").text
     donor, clinic, operator = (body.index(s) for s in
@@ -197,7 +196,7 @@ def test_the_supply_desk_lists_each_clinic_country(demo):
     assert 'href="/supply/Uganda"' in body
 
 
-# ---- [B12] chrome (design §13): their bar, our toggle, no badge ---------------
+# ---- chrome: upstream's bar, our toggle, no badge ---------------------------
 
 @pytest.mark.parametrize("role", ["", "donor", "clinic", "nonprofit"])
 def test_the_bar_carries_the_mark_the_three_links_impact_and_no_badge(demo, role):

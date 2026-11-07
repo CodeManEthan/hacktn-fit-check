@@ -19,7 +19,7 @@ def test_temperature_passes_when_the_room_stays_inside_the_rating():
 
 
 def test_temperature_fails_when_a_hot_room_has_no_air_conditioning():
-    # Cooling is site works, not an add-on (design §2.4).
+    # Cooling is site works, not an add-on.
     dev = device(temp_max_c=fact(40.0, Provenance.SPEC_SHEET))
     site = facility(ambient_temp_max_c=44.0, has_air_conditioning=False)
 

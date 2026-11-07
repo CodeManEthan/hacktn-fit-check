@@ -1,4 +1,4 @@
-"""§5.2: the handover card, its section selection and the gate.
+"""The handover card, its section selection and the gate.
 
 The fixture is pages 8, 9, 10, 13 and 14 of the DeVilbiss 525 series
 instruction guide SE-525KS-2 Rev A (English part), copied verbatim from

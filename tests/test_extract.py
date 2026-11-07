@@ -37,7 +37,7 @@ class FakeClient:
 
 @pytest.fixture
 def library(monkeypatch):
-    monkeypatch.setattr(lib, "LIBRARY_PATH", LIBRARY / "b4-index.json")
+    monkeypatch.setattr(lib, "LIBRARY_PATH", LIBRARY / "fixture-index.json")
     monkeypatch.setattr(lib, "LIBRARY_DIR", LIBRARY)
     monkeypatch.delenv(fetch.SEARCH_PROVIDER_ENV, raising=False)
 
@@ -97,7 +97,7 @@ def test_a_525ds_paste_hits_the_525ds_entry_and_reads_nothing_more(library):
     result = ex.extract(typed_text="Specifications 525DS\n310 Watt Average", client=client)
 
     assert len(client.calls) == 1
-    assert result.library_hit and result.library_slug == "b4-525ds"
+    assert result.library_hit and result.library_slug == "fixture-525ds"
     assert result.device_type == "oxygen concentrator"
     facts = result.facts
     assert facts.voltage_min_v == Fact(97, SHEET, "DeVilbiss 525 owner's manual, p.11")
@@ -115,7 +115,7 @@ def test_a_525ds_paste_hits_the_525ds_entry_and_reads_nothing_more(library):
 
 def test_spacing_and_hyphens_in_the_named_model_still_hit(library):
     client = FakeClient(naming("DeVilbiss", "525-KS"))
-    assert ex.extract(typed_text="525-KS", client=client).library_slug == "b4-525ks"
+    assert ex.extract(typed_text="525-KS", client=client).library_slug == "fixture-525ks"
 
 
 def test_a_url_with_an_anchor_keeps_it(library):

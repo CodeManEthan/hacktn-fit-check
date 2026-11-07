@@ -1,4 +1,4 @@
-"""[B8] data/sample_inventory.csv: six library devices, screened against the
+"""data/sample_inventory.csv: six library devices, screened against the
 seeded Kayunga clinic (scripts/seed_demo.py into a fresh SQLite file).
 
 Every plate cell in the sample must be the library's own value, so the file
@@ -63,7 +63,7 @@ def test_every_plate_cell_in_the_sample_is_the_library_value():
 
 @pytest.fixture(scope="module")
 def kayunga(tmp_path_factory):
-    path = tmp_path_factory.mktemp("b8") / "demo.db"
+    path = tmp_path_factory.mktemp("demo") / "demo.db"
     with pytest.MonkeyPatch.context() as mp:
         mp.setattr(db, "SETTINGS", replace(SETTINGS, database_url=f"sqlite:///{path}"))
         mp.setattr(db, "_engine", None)
@@ -88,7 +88,7 @@ def test_the_sample_screens_cleanly_against_kayunga(kayunga):
     assert by_model["5650D"].outcome == "won't work"
     assert by_model["5650D"].blockers[0].startswith("Supply frequency:")
     assert {r.outcome for r in result.rows} == {"works if you also send", "needs info", "won't work"}
-    # Every row is its library entry (check 1 L1: maker and device type agree),
+    # Every row is its library entry (maker and device type agree),
     # and the screening is 0 works, 1 works-if, 3 needs info, 2 won't work.
     assert all(r.library_slug for r in result.rows)
     assert [result.count(o) for o in (Outcome.WORKS, Outcome.WORKS_IF, Outcome.NEEDS_INFO,

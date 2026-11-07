@@ -20,7 +20,7 @@ from app.main import app
 from app.web import csv_routes, forms, marketplace_routes
 from app.web.forms import FormError
 from tests.factories import facility
-from tests.test_b8_csv_screen import FIVE_ROWS
+from tests.test_csv_screen import FIVE_ROWS
 
 NOT_FINITE = ["inf", "-inf", "Infinity", "nan", "1e400", "-1e400"]
 

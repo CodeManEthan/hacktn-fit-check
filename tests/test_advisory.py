@@ -1,8 +1,8 @@
 """The buy-locally advisory: prices under a frequency rejection, never a verdict.
 
-The last tests seed a 60 Hz concentrator and Kayunga (50 Hz) in SQLite. Until
-[B1]'s screen_offers lists rejected offers, the page test feeds the real
-verdict through a stubbed screening, and the end-to-end test skips.
+The last tests seed a 60 Hz concentrator and Kayunga (50 Hz) in SQLite. The
+page test feeds the real verdict through a stubbed screening; the end-to-end
+test skips if screen_offers lists no rejected offers.
 """
 
 from __future__ import annotations
@@ -241,7 +241,7 @@ def test_end_to_end_once_the_screening_lists_rejections(client):
     screening = marketplace_routes.screen_offers(KAYUNGA, [offer],
                                                  intel_for=marketplace_routes.supply_lookup)
     if not screening.rejected:
-        pytest.skip("screen_offers lists no rejected offers until [B1] lands")
+        pytest.skip("screen_offers lists no rejected offers")
 
     text = client.get(f"/request/{request_id}/matches").text
 

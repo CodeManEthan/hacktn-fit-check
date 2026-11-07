@@ -20,7 +20,7 @@ NOW = datetime(2026, 10, 18, 3, 0, 0)
 
 @pytest.fixture
 def library(monkeypatch):
-    monkeypatch.setattr(lib, "LIBRARY_PATH", LIBRARY / "b4-index.json")
+    monkeypatch.setattr(lib, "LIBRARY_PATH", LIBRARY / "fixture-index.json")
     monkeypatch.setattr(lib, "LIBRARY_DIR", LIBRARY)
     monkeypatch.delenv(fetch.SEARCH_PROVIDER_ENV, raising=False)
 
@@ -59,12 +59,12 @@ def test_library_search_returns_each_document_of_each_matching_entry(library):
 
     assert hits[0] == fetch.Hit(
         title="DeVilbiss 525 owner's manual", url="https://example.org/525ds-manual.pdf",
-        source="library", slug="b4-525ds", file="b4-525ds/owners_manual.txt",
+        source="library", slug="fixture-525ds", file="fixture-525ds/owners_manual.txt",
     )
     assert [(h.slug, h.file) for h in hits] == [
-        ("b4-525ds", "b4-525ds/owners_manual.txt"),
-        ("b4-525ds", "b4-525ds/sell_sheet.txt"),
-        ("b4-525ks", "b4-525ks/owners_manual.txt"),
+        ("fixture-525ds", "fixture-525ds/owners_manual.txt"),
+        ("fixture-525ds", "fixture-525ds/sell_sheet.txt"),
+        ("fixture-525ks", "fixture-525ks/owners_manual.txt"),
     ]
 
 
@@ -115,7 +115,7 @@ def test_library_fetch_reads_the_stored_text_split_on_form_feeds(library):
 
 def test_library_fetch_of_a_missing_file_is_a_fetch_error(library):
     with pytest.raises(fetch.FetchError):
-        fetch.fetch(fetch.Hit(title="x", url="", slug="b4-525ds", file="b4-525ds/absent.txt"))
+        fetch.fetch(fetch.Hit(title="x", url="", slug="fixture-525ds", file="fixture-525ds/absent.txt"))
 
 
 # ---- page splitting ---------------------------------------------------------

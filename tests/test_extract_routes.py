@@ -1,6 +1,6 @@
-"""/offer/extract and the offer form's confirm controls (design §6.3).
+"""/offer/extract and the offer form's confirm controls.
 
-The real extraction pipeline runs against the B4 fixture library with a fake
+The real extraction pipeline runs against the fixture library with a fake
 model client; each test gets its own SQLite file.
 """
 
@@ -45,12 +45,12 @@ class FakeClient:
 
 @pytest.fixture
 def client(tmp_path, monkeypatch):
-    url = f"sqlite:///{tmp_path / 'b4.db'}"
+    url = f"sqlite:///{tmp_path / 'extract.db'}"
     monkeypatch.setattr(db, "SETTINGS", replace(SETTINGS, database_url=url))
     monkeypatch.setattr(db, "_engine", None)
     repository.setup()
     monkeypatch.setattr(marketplace_routes, "categorise_support", lambda *a: None)
-    monkeypatch.setattr(lib, "LIBRARY_PATH", LIBRARY / "b4-index.json")
+    monkeypatch.setattr(lib, "LIBRARY_PATH", LIBRARY / "fixture-index.json")
     monkeypatch.setattr(lib, "LIBRARY_DIR", LIBRARY)
     monkeypatch.delenv(fetch.SEARCH_PROVIDER_ENV, raising=False)
     yield TestClient(app)
@@ -85,7 +85,7 @@ def test_extract_returns_cited_rows_and_holds_the_facts(client, monkeypatch):
 
     assert fake.calls == 1
     assert re.fullmatch(r"[0-9a-f]{32}", data["extraction_id"])
-    assert data["library_slug"] == "b4-525ds"
+    assert data["library_slug"] == "fixture-525ds"
     assert data["device_type"] == "oxygen concentrator"
     voltage = row(data["rows"], "Voltage")
     assert voltage == {
@@ -99,7 +99,7 @@ def test_extract_returns_cited_rows_and_holds_the_facts(client, monkeypatch):
     assert [r["label"] for r in data["rows"]] == list(inspector.ROW_LABELS)
     held = repo.load_extraction(data["extraction_id"])
     assert held.facts.voltage_min_v.value == 97
-    assert held.document["library_slug"] == "b4-525ds"
+    assert held.document["library_slug"] == "fixture-525ds"
     assert held.document["citations"]["frequencies_hz"]["page"] == 11
 
 
@@ -156,7 +156,7 @@ def held_extraction() -> str:
         frequencies_hz=Fact([60], Provenance.SPEC_SHEET, "manual, p.11"),
         expiry_date=Fact("2030-01-01", Provenance.DONOR_STATED),
     )
-    return repo.save_extraction(facts, {"library_slug": "b4-525ds"})
+    return repo.save_extraction(facts, {"library_slug": "fixture-525ds"})
 
 
 def posted_device(response):

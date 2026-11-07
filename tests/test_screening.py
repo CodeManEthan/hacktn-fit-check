@@ -1,4 +1,4 @@
-"""Design §2.3: the sort key, the screened-out list, and what coverage counts."""
+"""The sort key, the screened-out list, and what coverage counts."""
 
 from __future__ import annotations
 

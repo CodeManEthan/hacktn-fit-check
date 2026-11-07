@@ -1,4 +1,4 @@
-"""§5.3: GET /packet/<offer_id>?facility=<slug>, with a fake model and a fake
+"""GET /packet/<offer_id>?facility=<slug>, with a fake model and a fake
 translator. Each test gets its own SQLite file and a fixture library holding
 the 525KS instruction-guide excerpt.
 """
