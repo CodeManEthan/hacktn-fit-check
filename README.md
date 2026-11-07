@@ -1,5 +1,7 @@
 # Fit-Check
 
+[![tests](https://github.com/CodeManEthan/hacktn-fit-check/actions/workflows/test.yml/badge.svg)](https://github.com/CodeManEthan/hacktn-fit-check/actions/workflows/test.yml)
+
 A two-sided platform for medical equipment donations. Clinics state their real
 conditions once. Donors post what they hold. Every offer is screened against the
 receiving clinic before anyone books a container, and only what can actually
@@ -9,12 +11,29 @@ Built for HackTN, Track 1: From Surplus to Social Good.
 
 **Live:** https://fitcheck.care
 
+## What it looks like
+
+![Matches page for Kayunga District Hospital's request for one oxygen concentrator. The DeVilbiss 525KS ranks first as "Ship with": two of its fifteen checks are conditional, and a voltage stabilizer and two years of filters must go with it. Below it, the 525DS is listed under "Won't work at Kayunga District Hospital" because it is rated 60 Hz and the grid is 50 Hz, with local purchase prices beside it.](docs/img/matches.png)
+
+A clinic's request, every open offer screened against it. The one that can work
+comes first; the one that can't stays on the page with its reason.
+
+![Audit trail for the DeVilbiss 525KS at Kayunga: one row per check, with the finding, what would fix it, where each fact came from (a spec sheet link to the manual page, the clinic profile, or an answer the nonprofit recorded) and a Pass or Mitigable status.](docs/img/candidate.png)
+
+One offer's checks, each row linked to the page its fact was read on.
+
+![Handover packet for the DeVilbiss 525KS at Kayunga: links to the manufacturer's manual editions, then a quick start, care schedule, consumables and warnings with a page number on every line, the import paperwork Uganda asks for, and what must ship with the device.](docs/img/packet.png)
+
+The handover packet, from the live site: the card is written by the model from
+the manual and checked by code, so every line cites its page.
+
 ## Team and my part
 
-Fit-Check was built at HackTN 2026 by a team of two, Sakxam Shrestha and
-Ethan Plunk.
+Built at HackTN 2026, where it placed 6th of 37. The idea was Ethan Plunk's. The team
+was four people, and two of them built the application: Sakxam Shrestha built the first
+prototype, and Ethan built the final version.
 
-- **Sakxam** started the project on 2026-10-17 and built the first version: the
+- **Sakxam** started the code on 2026-10-17 and built the first version: the
   constraint checks, the fact and provenance model, the two-sided marketplace,
   the public-registry verification and the OCI bootstrap. The split where the
   model researches and code judges was already in his first commit. The landing
@@ -27,9 +46,11 @@ Ethan Plunk.
   confirmation, the model comparison in `prompt_lab/`, the docs, the deployment
   and redeploy scripts, and most of the tests.
 
-This fork is the deployed, maintained line: 112 of its 127 commits are Ethan's.
-Sakxam's original repository is
+This fork is the deployed, maintained line: Sakxam's 15 commits start its history,
+and the rest are Ethan's. Sakxam's original repository is
 [SakxamShrestha/hacktn-fit-check](https://github.com/SakxamShrestha/hacktn-fit-check).
+GitHub shows this fork ten commits behind it because his last ten commits there, from
+2026-10-18, were ported here by hand rather than merged.
 
 ## The pipeline
 
@@ -69,6 +90,15 @@ each input came from. A missing fact becomes a question, never a guess. The
 model also writes the packet's handover card and the `/impact` paragraph, each
 gated by code against its source.
 
+The reasoning model was chosen in `prompt_lab/`. On 2026-10-17 it ran one
+device-and-clinic prompt on four OCI models (gpt-oss-120b, Cohere Command A,
+Llama 3.3 70B and Llama 4 Maverick), scoring strict JSON, the 60 Hz device on a
+50 Hz grid, and whether the model said "needs info" for a vaguely described
+device instead of guessing. In the last run all four caught the frequency and
+three returned strict JSON every time, but only gpt-oss-120b also said "needs
+info", so it is the default `REASONING_MODEL`
+(`prompt_lab/results/20261017-125139.md`).
+
 ## Checks
 
 Fifteen, from the WHO guidance *Medical device donations: considerations for
@@ -103,7 +133,8 @@ and in the tests.
 
 With `DATABASE_URL` blank (the default) the app uses the SQLite file
 `fitcheck.db` in the checkout. `scripts.seed_demo` fills it with the three
-clinics, the demo offers and an open Kayunga request, and it can be rerun.
+clinics, the demo offers, an open Kayunga request and 22 past screenings for
+`/impact`, and it can be rerun.
 
 Settings, all listed in `.env.example` and read in `app/config.py`, except
 `GUDID_LOOKUP`, which `app/reference/gudid.py` reads:
@@ -130,13 +161,24 @@ OCI, but unparsed: it is split at line breaks, commas, semicolons and "and",
 so "two monitors" becomes one line of that name rather than two monitors. A
 missing setting shows as an error on the page, not a 500.
 
+No web search provider is configured, so a device outside the library is read
+only from the donor's text and photo. `SEARCH_PROVIDER` defaults to `library`;
+its `google_cse` and `brave` values are stubs that say they are not wired yet.
+
 ## Test
 
 ```
 .venv/bin/python -m pytest -q
 ```
 
-The live GUDID call is off under pytest unless `GUDID_LOOKUP=on` is set.
+The live GUDID call is off under pytest unless `GUDID_LOOKUP=on` is set, and
+no test reaches a model: `tests/conftest.py` puts a fake in front of every model
+client. On a machine with the device notes (the research notes the device
+library is built from, which are not in this repo), the suite gives 1078 passed
+and 1 skipped. The skip is the `caddy validate` test, which needs a `caddy`
+binary on the PATH. GitHub Actions runs the suite on every push and pull request
+(`.github/workflows/test.yml`); the runner has no device notes, so the two tests
+that read them skip there.
 
 ## Deploy
 
@@ -156,6 +198,11 @@ The packet and library routers hold `/packet/{offer_id}` and `/offer/prefill`;
 what the routers share (the templates, the error page, the library pick) is in
 `app/web/shared.py`. The role bar (`POST /role`) sends Donor to `/offer`,
 Clinic to `/clinic` and Nonprofit to `/review`.
+
+The prototype has no logins; the role bar only switches viewpoint. On the live
+demo, which runs with `DEMO_PROTECT_SEED=on`, the review desk is open for
+visitors' own clinics, the supply desk can be read but not saved to, and the
+seeded rows can't be changed. Accounts are out of scope for the prototype.
 
 | Party | Path | What it is |
 |---|---|---|
@@ -207,3 +254,8 @@ Only Uganda has import rules on file; elsewhere the import check asks.
   November 2024, section 3.6, for the import and registration rules.
 - National Academy of Medicine, *Access to Medical Devices in Low-Income
   Countries*, 2018.
+
+## Reuse
+
+The code has no licence yet, so please ask before reusing it: open an issue on
+this repository.

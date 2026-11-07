@@ -11,7 +11,7 @@ One Resource Manager stack in the project's OCI tenancy, region `us-chicago-1`:
 | Resource | Address |
 |---|---|
 | Compute instance `fitcheckfitcheck-web`, Oracle Linux, python3.12 | 147.224.201.81, public |
-| MySQL HeatWave, schema `fitcheck`, user `admin` | 10.0.1.229:3306, private subnet |
+| MySQL HeatWave, schema `fitcheck`, user `<db-user>` | `<db-private-ip>`:3306, private subnet |
 | VCN, public and private subnets | ingress on 22, 80 and 443 only |
 | Caddy 2.11.7, unit `caddy`, user `caddy` | ports 80 and 443 on the instance; `https://fitcheck.care` and the plain-HTTP door on 147.224.201.81 |
 | The app, unit `fitcheck`, user `opc` | 127.0.0.1:8000 on the instance |
@@ -61,7 +61,7 @@ In the code, `build_signer_and_config` in `app/ai/client.py` is the one place bo
 The `.env` keys, from `deploy/README.md`. No value belongs in the repository:
 
 ```
-DATABASE_URL=mysql+pymysql://admin:<password>@10.0.1.229:3306/fitcheck
+DATABASE_URL=mysql+pymysql://<db-user>:<password>@<db-private-ip>:3306/fitcheck
 OCI_REGION=us-chicago-1
 OCI_AUTH=instance_principal
 OCI_COMPARTMENT_ID=<the tenancy OCID from the console>

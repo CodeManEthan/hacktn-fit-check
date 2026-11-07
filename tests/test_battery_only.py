@@ -16,7 +16,7 @@ from app.domain.provenance import UNKNOWN, Provenance, fact
 from app.domain.requirement import RequirementKind
 from app.domain.result import CheckStatus
 from app.reference import device_library as lib
-from app.web.presenters import identity_pairs
+from app.web.presenters import check_rows, identity_pairs
 from tests.factories import device, facility, intel
 
 SPEC = Provenance.SPEC_SHEET
@@ -138,3 +138,17 @@ def test_the_supply_line_says_batteries():
     assert ("Supply", "Batteries") in identity_pairs(_library(SONOTRAX))
     assert ("Supply", "100–240 V") in identity_pairs(device())
     assert ("Supply", "Batteries") not in identity_pairs(device())
+
+
+@pytest.mark.parametrize("slug", sorted(BATTERY_SLUGS))
+def test_the_battery_pass_rows_cite_their_source(slug):
+    battery = _library(slug)
+    clinic = CLINICS["uganda-district"]
+    rows = {row["result"].key: row for row in
+            check_rows(check_fit(battery, clinic, SupplyIntel()), battery, SupplyIntel(),
+                       clinic.country)}
+    quoted = lib.entry(slug).facts["mains_powered"]["url"]
+
+    for key in MAINS_KEYS:
+        assert rows[key]["result"].detail == BATTERY_ONLY
+        assert [link.url for link in rows[key]["links"]] == [quoted]
