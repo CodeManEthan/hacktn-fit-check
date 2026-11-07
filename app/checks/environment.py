@@ -45,7 +45,7 @@ def check_temperature(
             source=rated.source,
         )
 
-    # Cooling a room is building works, not an add-on (design §2.4): nothing
+    # Cooling a room is building works, not an add-on: nothing
     # ships in the crate that fixes it, so it fails and says what is missing.
     return CheckResult(
         key="temperature",

@@ -93,7 +93,7 @@ def build_bundle(
 
     `facility` is the clinic the add-ons must run at. A power add-on offer
     counts as a fix only when its own plate says it runs on this clinic's
-    mains (design §2.4); consumables and parts kits have no plate and count
+    mains; consumables and parts kits have no plate and count
     as found.
     """
     items = []

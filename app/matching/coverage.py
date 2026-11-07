@@ -36,7 +36,7 @@ class LineCoverage:
         """The survivors that can be proposed to a donor today.
 
         A NEEDS_INFO survivor is listed on the page but is not stock anyone
-        can ask for until its questions are answered (design §2.3).
+        can ask for until its questions are answered.
         """
         return [c for c in self.candidates if c.verdict.outcome is not Outcome.NEEDS_INFO]
 

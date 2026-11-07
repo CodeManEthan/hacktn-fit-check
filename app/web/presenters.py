@@ -201,7 +201,7 @@ def rule_count() -> int:
     return len(ALL_CHECKS) + len(ROUTE_CHECKS)
 
 
-# ---- the candidate verdict page (§7.2) -------------------------------------
+# ---- the candidate verdict page --------------------------------------------
 
 # The facts each check reads, as (where, field): "device" is the offer's
 # DeviceFacts, "intel" the SupplyIntel. The page links each one's citation.
@@ -355,7 +355,7 @@ def offer_name(offer) -> str:
 
 
 def addon_states(bundle) -> list[dict]:
-    """Each send-with item with its offers in the three self-check states (§2.4).
+    """Each send-with item with its offers in the three self-check states.
 
     `covers` (counts), `rejected` ("won't work here itself") and `unverified`
     (listed, not counting). Non-power add-ons are never self-checked and

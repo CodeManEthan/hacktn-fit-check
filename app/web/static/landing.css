@@ -1,4 +1,4 @@
-/* Landing-only rules ([B13], design §13). The shared lander-* classes
+/* Landing-only rules. The shared lander-* classes
    (hero, cards, CTA) live in style.css from upstream; this file adds only
    what the upstream stylesheet lacks. Light theme; every colour reads on
    white. */
@@ -27,7 +27,7 @@
 }
 .lander-alt:hover { color: var(--accent-deep, #1D4ED8); }
 
-/* One-line operator strip under the cards ([F2]): the nonprofit between
+/* One-line operator strip under the cards: the nonprofit between
    donor and clinic, the middlemen in grey. */
 .lander-operator {
   max-width: 880px;

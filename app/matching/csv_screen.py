@@ -1,4 +1,4 @@
-"""Screen a donor's whole inventory, one CSV row per offer (design §8).
+"""Screen a donor's whole inventory, one CSV row per offer.
 
 Each row becomes an Offer that is never saved here, and goes through the same
 `screen_offers` the matches page uses, against one chosen clinic, with the
@@ -36,19 +36,19 @@ from app.reference.country_power import country_centroid
 from app.web import forms
 from app.web.forms import FormError
 
-# The §8 column contract, in the order the download writes them.
+# The input columns, in the order the download writes them.
 COLUMNS = (
     "device_type", "manufacturer", "model", "quantity", "year",
     "voltage_min_v", "voltage_max_v", "frequencies_hz", "power_watts",
     "temp_min_c", "temp_max_c", "humidity_max_pct", "manual_languages",
     "expiry_date", "city", "country",
 )
-# The four §8 result names, then `notes`: whether the verdict was made on a
-# library entry's facts rather than the typed plate cells, and why (check 1 L2).
+# The four result names, then `notes`: whether the verdict was made on a
+# library entry's facts rather than the typed plate cells, and why.
 RESULT_COLUMNS = ("verdict", "blockers", "send_with", "questions", "notes")
 
 # The plate and climate columns. On a library row these are the library's,
-# never the row's: a cited value is not edited by hand (§4.2).
+# never the row's: a cited value is not edited by hand.
 SPEC_COLUMNS = (
     "voltage_min_v", "voltage_max_v", "frequencies_hz", "power_watts",
     "temp_min_c", "temp_max_c", "humidity_max_pct", "manual_languages",
@@ -89,7 +89,7 @@ class RowResult:
     """One input row and what the screening said about it.
 
     `line` is the row's line number in the file (the header is line 1).
-    `values` holds the row's cells under the §8 column names, as typed.
+    `values` holds the row's cells under the COLUMNS names, as typed.
     `offer` is the unsaved Offer the row became, None for an error or blank row.
     """
 
@@ -186,7 +186,7 @@ def decode(data: bytes) -> str:
     """UTF-8 (with or without Excel's byte-order mark), else Windows-1252."""
     if len(data) > MAX_BYTES:
         # The upload route reads only MAX_BYTES + 1 bytes, so the true size is
-        # not known here: say only that it is over (check 1 L4).
+        # not known here: say only that it is over.
         raise CsvError(f"The file is over {MAX_BYTES:,} bytes, the limit; "
                        "split it and upload each part.")
     try:
@@ -261,7 +261,7 @@ def parse_frequencies(raw: str) -> list[int] | None:
 
 
 def parse_languages(raw: str) -> list[str] | None:
-    """ "en;fr" → ["English", "French"], through the one language vocabulary (§2.9)."""
+    """ "en;fr" → ["English", "French"], through the one language vocabulary."""
     names = normalise_languages(_split(raw or ""))
     return names or None
 
@@ -336,7 +336,7 @@ def _type_key(text: str) -> str:
 
 def library_fits(entry: device_library.LibraryEntry, manufacturer: str,
                  device_type: str) -> bool:
-    """Whether a row naming the entry's model is the entry's device (check 1 L1).
+    """Whether a row naming the entry's model is the entry's device.
 
     A model or alias hit alone is not enough: the row's maker, when given, must
     share a word with the entry's maker, and its device type, when given, must
@@ -406,7 +406,7 @@ def build_offer(values: dict[str, str], donor_name: str = "", donor_email: str =
 
 
 def row_values(keys: list[str], cells: list[str]) -> dict[str, str]:
-    """The row's cells under the §8 names; unknown columns dropped."""
+    """The row's cells under the COLUMNS names; unknown columns dropped."""
     values = {name: "" for name in COLUMNS}
     for key, cell in zip(keys, cells):
         if key in values and not values[key]:
@@ -496,7 +496,7 @@ def result_cells(row: RowResult) -> dict[str, str]:
 
 
 def to_csv(screening: CsvScreening) -> str:
-    """The input columns plus verdict, blockers, send_with, questions (§8), notes."""
+    """The input columns plus verdict, blockers, send_with, questions, notes."""
     out = io.StringIO()
     writer = csv.DictWriter(out, fieldnames=[*COLUMNS, *RESULT_COLUMNS], lineterminator="\r\n")
     writer.writeheader()

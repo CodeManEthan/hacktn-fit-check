@@ -45,7 +45,7 @@ def _utility_check(
             source=need.source,
         )
 
-    # A supply the building lacks is site works, not an add-on (design §2.4):
+    # A supply the building lacks is site works, not an add-on:
     # it fails, the fix says what the clinic would have to put in, and
     # nothing searches the inventory for it.
     return CheckResult(

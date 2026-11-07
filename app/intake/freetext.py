@@ -22,7 +22,7 @@ LOGGER = logging.getLogger(__name__)
 
 # One request, not a procurement catalogue.
 MAX_ITEMS = 50
-# gpt-oss reasons before it answers (design §3); 1200 left too little room
+# gpt-oss reasons before it answers; 1200 left too little room
 # for the reasoning and the list. The client lowers it for a model that caps lower.
 MAX_TOKENS = 3000
 

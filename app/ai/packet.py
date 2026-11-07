@@ -1,4 +1,4 @@
-"""The handover card: the manual's own words, cut to one page (design §5.2).
+"""The handover card: the manual's own words, cut to one page.
 
 Retrieval first: the model sees only the manual sections whose headings match
 what a clinic needs on day one (setup, operation, cleaning, maintenance,
@@ -71,7 +71,7 @@ class CardLine:
     page: int | None = None
     interval: str = ""
     part_number: str = ""
-    # Set on a translated line that shows the English instead (design §5.4).
+    # Set on a translated line that shows the English instead.
     note: str = ""
 
 
@@ -95,7 +95,7 @@ class Card:
         return not self.lines
 
     def to_dict(self) -> dict[str, Any]:
-        """The §5.2 JSON shape, plus the label and the dropped count."""
+        """The card's JSON shape, plus the label and the dropped count."""
         def row(line: CardLine, **fields: Any) -> dict[str, Any]:
             out = {**fields, "page": line.page}
             if line.note:
@@ -167,7 +167,7 @@ def split_pages(text: str) -> dict[int, str]:
     """Page number -> page text, from "=== page N ===" markers or form feeds.
 
     {} when the text carries neither: the pages are unknown and the whole text
-    is one page (design §4.1).
+    is one page.
     """
     markers = list(PAGE_MARKER.finditer(text or ""))
     if markers:

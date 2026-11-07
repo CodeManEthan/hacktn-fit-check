@@ -1,6 +1,6 @@
 """Turn whatever the donor gave us into DeviceFacts that point at a source.
 
-Retrieval first (design §6):
+Retrieval first:
 
 1. Name it. The model reads the paste or the plate photo and returns the
    manufacturer, model, kind of device and a transcription of the plate.
@@ -512,7 +512,7 @@ def _item_found(name: str, item: Any, quote: str, source: _Source) -> bool:
 def gate_against_text(
     facts: DeviceFacts, texts: Mapping[Provenance, str | Document]
 ) -> DeviceFacts:
-    """Keep a value only where it is printed in the source text (design §6.2).
+    """Keep a value only where it is printed in the source text.
 
     Numbers must occur as printed numbers ("115" in "115V", "115-120"; "35"
     as "35.0"); names and list strings must occur as words; a boolean or the

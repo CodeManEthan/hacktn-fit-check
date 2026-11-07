@@ -79,7 +79,7 @@ def run_checks(
 
 
 def build_verdict(results: tuple[CheckResult, ...]) -> Verdict:
-    """Roll results up, in this order (design §2.1).
+    """Roll results up, in this order.
 
     1. any FAIL → WONT_WORK;
     2. else any NEEDS_INFO → NEEDS_INFO;

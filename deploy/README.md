@@ -9,7 +9,7 @@ instance principal, so the VM holds no API key.
 
 ## The stack
 
-One Resource Manager stack in the operator's tenancy, region us-chicago-1, made
+One Resource Manager stack in the owner's tenancy, region us-chicago-1, made
 these:
 
 | Resource | Address |
@@ -75,7 +75,7 @@ tenancy root, so it is the tenancy OCID (Console, profile menu, Tenancy, OCID).
    and restart the unit (`sudo systemctl restart fitcheck`).
 4. Check one model call answers, then delete `/home/opc/.oci/` from the VM.
 
-Steps 1 and 2 are scripted. From a machine with the operator's API key in
+Steps 1 and 2 are scripted. From a machine with the tenancy owner's API key in
 `~/.oci/config` and the OCI Python SDK (the repo's venv has it):
 
 ```
@@ -162,8 +162,8 @@ back, and `/etc/caddy/Caddyfile.prev` too when the last cutover left one;
 answer at all (refused or timed out) prints `-> 000` and the run goes on to the
 next path, in `check` and in `stage`.
 
-A rollback to a head older than instance-principal auth (the overnight round's
-B0 merge added it; 9e00968, the head before that round, is older) needs the API
+A rollback to a head older than instance-principal auth (05702bf, merged
+in fbc5325; 9e00968 and older heads lack it) needs the API
 key back in `/home/opc/.oci/`, because that code reads only the key file.
 
 ## When something is wrong

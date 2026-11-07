@@ -1,5 +1,5 @@
 {
-  "_source": "reports/add-on-fulfillment-research.md (research date 2026-10-17). Prices are USD, freight, duty and VAT excluded. UNICEF figures are snapshots from a search-engine index of the catalogue page.",
+  "_source": "author's research notes, 2026-10-17 (not published). Prices are USD, freight, duty and VAT excluded. UNICEF figures are snapshots from a search-engine index of the catalogue page.",
   "oxygen concentrator": {
     "as_of": "2026-10-17",
     "rows": [
@@ -10,8 +10,7 @@
         "indicative": true,
         "source": "UNICEF indicative price",
         "url": "https://supply.unicef.org/catalogsearch/result/?q=oxygen",
-        "ref": "A12",
-        "quote": "Oxygen concentrator 5 LPM, new, local power (reference) | replacement option | $288 (snapshot) | UNICEF indicative [A12]"
+        "quote": "Oxygen concentrator 5 LPM, new, local power (reference) | replacement option | $288 (snapshot) | UNICEF indicative"
       },
       {
         "role": "add-on",
@@ -20,8 +19,7 @@
         "price_usd_max": 2272.98,
         "source": "ATO 1-phase frequency converters",
         "url": "https://www.ato.com/1-phase-frequency-converter",
-        "ref": "A1",
-        "quote": "Frequency converter, 500 VA | 60 Hz device on 50 Hz mains | $1,319.19 | ATO (GoHz-type), HZ-60-500W [A1]; Frequency converter, 2 kVA | same | $2,272.98 | ATO HZ-50-1102 [A1]"
+        "quote": "Frequency converter, 500 VA | 60 Hz device on 50 Hz mains | $1,319.19 | ATO (GoHz-type), HZ-60-500W; Frequency converter, 2 kVA | same | $2,272.98 | ATO HZ-50-1102"
       },
       {
         "role": "with it",
@@ -29,8 +27,7 @@
         "price_usd": 205.41,
         "source": "UNICEF S0002632",
         "url": "https://supply.unicef.org/s0002632.html",
-        "ref": "A9",
-        "quote": "Voltage stabilizer 1 kVA 230 V, medical | brownouts and surges | $205.41 (snapshot) | UNICEF S0002632 [A9]"
+        "quote": "Voltage stabilizer 1 kVA 230 V, medical | brownouts and surges | $205.41 (snapshot) | UNICEF S0002632"
       }
     ]
   }

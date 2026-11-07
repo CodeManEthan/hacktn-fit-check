@@ -70,7 +70,7 @@ def _from_library(slug: str, year: int) -> DeviceFacts:
 
 
 def hero_offers() -> tuple[Offer, ...]:
-    """The three oxygen concentrators screened against Kayunga on stage ([F3])."""
+    """The three oxygen concentrators the worked example screens against Kayunga."""
     return (
         Offer(
             donor_name="Nashville General Hospital biomedical department",
@@ -167,7 +167,7 @@ DEMO_OFFERS = (
 )
 
 SOLLATEK_NOTE = ("stand-in figures: the UNICEF S0002632 1 kVA medical stabilizer's stated "
-                 "160-260 V input (add-on-fulfillment-research.md [A9]) until a Sollatek AVS30 "
+                 "160-260 V input (price research, 2026-10-17) until a Sollatek AVS30 "
                  "document is fetched")
 
 
@@ -210,7 +210,7 @@ SUPPORT_OFFERS = (
         quantity_offered=1,
         device=_device(manufacturer="Bambi", model="VT200", year_of_manufacture=2020),
     ),
-    # The on-stage reject: a US regulator that fails frequency at Kayunga.
+    # The example's reject: a US regulator that fails frequency at Kayunga.
     Offer(
         donor_name="Houston surplus AVR",
         donor_email="avr@example.org",
@@ -225,7 +225,7 @@ SUPPORT_OFFERS = (
     ),
 )
 
-# The nonprofit's recorded answer for the 525KS in Uganda ([R20]): filters are
+# The nonprofit's recorded answer for the 525KS in Uganda: filters are
 # not stocked, so the consumables check raises "two years of filters".
 KAYUNGA_ANSWERS = (
     SupplyAnswer(

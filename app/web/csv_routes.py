@@ -1,4 +1,4 @@
-"""The inventory CSV upload (design §8): screen a whole list, save nothing until asked.
+"""The inventory CSV upload: screen a whole list, save nothing until asked.
 
 GET  /offer/csv                 the upload form: a file and the clinic to screen against
 POST /offer/csv                 screens every row and renders the result table
@@ -58,7 +58,7 @@ class Held:
     donor_email: str = ""
     # Saved offer ids, in the order of `screening.screened`: posted[i] is row i.
     # A post that stopped partway leaves the rows saved so far here, and the
-    # next press saves only the rest (check 1 L5).
+    # next press saves only the rest.
     posted: list[int] = field(default_factory=list)
 
     @property

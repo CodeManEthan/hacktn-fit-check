@@ -1,4 +1,4 @@
-"""The impact page's paragraph (design §7.3): figures from the log, words from the model.
+"""The impact page's paragraph: figures from the log, words from the model.
 
 Code builds the figures from the stored verdicts. The model is asked for two
 or three sentences that use only those figures. The gate then reads every
@@ -150,8 +150,7 @@ def allowed_numbers(figures: dict, stated: set[int] | frozenset[int] = frozenset
     """Every figure, the count of countries, and each sum of two figures stated so.
 
     A sum counts as stated only when both of its addends are among `stated`,
-    the numbers the paragraph itself gives (§7.3: "a sum of two of them,
-    stated so"). With nothing stated, no sum is allowed: twelve is not a
+    the numbers the paragraph itself gives. With nothing stated, no sum is allowed: twelve is not a
     figure just because three and nine are.
     """
     values = figure_values(figures)
