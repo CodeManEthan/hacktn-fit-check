@@ -13,7 +13,7 @@ Built for HackTN, Track 1: From Surplus to Social Good.
 
 ## What it looks like
 
-![Matches page for Kayunga District Hospital's request for one oxygen concentrator. The DeVilbiss 525KS ranks first as "Ship with": two of its fifteen checks are conditional, and a voltage stabilizer and two years of filters must go with it. Below it, the 525DS is listed under "Won't work at Kayunga District Hospital" because it is rated 60 Hz and the grid is 50 Hz, with local purchase prices beside it.](docs/img/matches.png)
+![Matches page for Kayunga District Hospital's request for one oxygen concentrator. The DeVilbiss 525KS ranks first as "Ship with": two of its fifteen checks are conditional, and a voltage stabilizer and two years of filters must go with it. Its "Ask this donor" button is greyed out, with a note that the seeded demo data stays as it is. Below it, the 525DS is listed under "Won't work at Kayunga District Hospital" because it is rated 60 Hz and the grid is 50 Hz, with local purchase prices beside it.](docs/img/matches.png)
 
 A clinic's request, every open offer screened against it. The one that can work
 comes first; the one that can't stays on the page with its reason.
