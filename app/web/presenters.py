@@ -47,7 +47,7 @@ def identity_pairs(device: DeviceFacts) -> list[tuple[str, str]]:
     """Label and value pairs for the rating-plate block. Unknowns are left out."""
     pairs: list[tuple[str, str]] = []
 
-    supply = _range(device.voltage_min_v, device.voltage_max_v, "V")
+    supply = "Batteries" if device.battery_only else _range(device.voltage_min_v, device.voltage_max_v, "V")
     if supply:
         pairs.append(("Supply", supply))
 

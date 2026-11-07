@@ -1422,6 +1422,15 @@
         "page": 6,
         "quote": "intended to be used by health care professionals including registered nurses, practical nurses, midwives, ultrasound technicians, and physician assistants, by prescription from licensed",
         "note": "Low: one button, battery handheld; but meant for trained clinicians (fetal vs maternal signal confusion)."
+      },
+      "mains_powered": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "edan-sonotrax-basic-a/edan-sonotrax-series-manual-tigermedical.txt",
+        "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf#page=15",
+        "page": 15,
+        "quote": "SONOTRAX Lite, SONOTRAX Basic, SONOTRAX Basic A, SONOTRAX Pro and SONOTRAX Vascular are powered either by two alkaline batteries or two rechargeable NI-MH batteries.",
+        "note": "the documents give no mains input; it runs on batteries only"
       }
     },
     "documents": [
@@ -1737,6 +1746,15 @@
         "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-test-strip-insert-0/download?inline",
         "page": null,
         "quote": "They are intended for self-testing by people with diabetes and for near-patient testing by healthcare professionals."
+      },
+      "mains_powered": {
+        "value": false,
+        "source": "spec sheet",
+        "document": "roche-accu-chek-performa/accu-chek-performa-user-manual-uk.txt",
+        "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-blood-glucose-meter-user-manual/download?inline#page=39",
+        "page": 39,
+        "quote": "Power supply One 3-volt lithium battery (coin cell type CR2032)",
+        "note": "the documents give no mains input; it runs on batteries only"
       }
     },
     "documents": [

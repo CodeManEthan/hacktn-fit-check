@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from app.checks.power import battery_only_pass
 from app.domain.device import DeviceFacts, SupplyIntel
 from app.domain.facility import FacilityProfile
 from app.domain.provenance import Provenance
@@ -99,6 +100,9 @@ def check_humidity(
 def check_grid_reliability(
     device: DeviceFacts, facility: FacilityProfile, intel: SupplyIntel
 ) -> CheckResult:
+    if device.battery_only:
+        # No mains input, so outages and transients never reach it.
+        return battery_only_pass(device, "grid", "Grid reliability")
     if not facility.power_is_unstable:
         return CheckResult(
             key="grid",

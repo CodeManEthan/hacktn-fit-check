@@ -27,6 +27,9 @@ class DeviceFacts:
     frequencies_hz: Fact = UNKNOWN
     power_watts: Fact = UNKNOWN
     needs_stable_power: Fact = UNKNOWN
+    # False when the documents say the device has no mains connection (it
+    # runs on batteries only). The supply and grid checks then do not apply.
+    mains_powered: Fact = UNKNOWN
 
     temp_min_c: Fact = UNKNOWN
     temp_max_c: Fact = UNKNOWN
@@ -55,6 +58,11 @@ class DeviceFacts:
         parts = [str(self.manufacturer.value or ""), str(self.model.value or "")]
         name = " ".join(p for p in parts if p).strip()
         return name or "this device"
+
+    @property
+    def battery_only(self) -> bool:
+        """True only when the documents say there is no mains connection."""
+        return self.mains_powered.known and self.mains_powered.value is False
 
     def with_defaults(self) -> DeviceFacts:
         """Fill the climate fields from the standard's default when nothing is stated.
