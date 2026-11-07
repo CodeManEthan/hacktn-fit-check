@@ -25,7 +25,7 @@
       {% for f in facilities %}
       {% set status = statuses.get(f.slug, default_status) %}
       <tr>
-        <td class="audit-name">{{ f.name }}</td>
+        <td class="audit-name">{{ f.name }}{{ clinic_tag(f.slug) }}</td>
         <td class="audit-value">{{ f.country }}</td>
         <td><span class="pill {{ 'good' if status.trusted else ('bad' if status.tier.value == 'contradicted by a check' else 'ask') }}">{{ status.label }}</span></td>
         <td class="audit-detail">{{ status.note or '&mdash;' | safe }}</td>

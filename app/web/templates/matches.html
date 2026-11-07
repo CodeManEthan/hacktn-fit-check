@@ -4,7 +4,7 @@
     <div class="unit-top">
       <span class="option-body">
         <span class="option-name">{% if blocked %}<span class="option-lock" aria-hidden="true">&times;</span>{% endif %}<a class="candidate-link" href="/request/{{ request_row.id }}/offer/{{ c.offer.id }}">{{ offer_name(c.offer) }}</a></span>
-        <span class="option-from">{{ c.offer.donor_name }} &mdash;
+        <span class="option-from">{{ c.offer.donor_name }}{{ donor_tag(c.offer.donor_name) }} &mdash;
           {{ c.offer.origin.city }}{% if c.offer.origin.city %}, {% endif %}{{ c.offer.origin.country }}</span>
       </span>
       <span class="option-far">
@@ -62,7 +62,7 @@
 {% block head %}<link rel="stylesheet" href="/static/matches.css">{% endblock %}
 {% block content %}
 <section class="plate">
-  <p class="eyebrow">{{ facility.name }}, {{ facility.country }}</p>
+  <p class="eyebrow">{{ facility.name }}, {{ facility.country }}{{ clinic_tag(facility.slug) }}</p>
   <h1>{{ request_row.summary }}</h1>
   <p class="sub">Every open offer of each kind was screened against {{ facility.name }}.
      Offers known to work come first, ordered by how little has to ship alongside them,

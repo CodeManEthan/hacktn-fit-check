@@ -4,7 +4,7 @@
 <section class="masthead">
   <p class="eyebrow">{{ match.id }}</p>
   <h1>Do you still have it?</h1>
-  <p class="sub">{{ facility.name }} in {{ facility.country }} needs
+  <p class="sub">{{ facility.name }}{{ clinic_tag(facility.slug) }} in {{ facility.country }} needs
      {{ match.quantity }} &times; {{ offer.device.label }}. You posted this offer
      {% if offer.created_at %}on {{ offer.created_at.date() }}{% else %}earlier{% endif %},
      so we are checking before anyone arranges shipping.</p>

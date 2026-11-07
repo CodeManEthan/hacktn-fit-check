@@ -43,7 +43,7 @@
         <label class="name" for="f-facility">Clinic</label>
         <select id="f-facility" name="facility" required>
           {% for f in facilities %}
-          <option value="{{ f.slug }}"{% if f.slug == selected %} selected{% endif %}>{{ f.name }} ({{ f.country }}, {{ f.mains_voltage_v }} V {{ f.mains_frequency_hz }} Hz)</option>
+          <option value="{{ f.slug }}"{% if f.slug == selected %} selected{% endif %}>{{ f.name }} ({{ f.country }}, {{ f.mains_voltage_v }} V {{ f.mains_frequency_hz }} Hz){{ ' (sample)' if seeded_clinic(f.slug) }}</option>
           {% endfor %}
         </select>
       </div>

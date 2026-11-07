@@ -426,6 +426,7 @@ button.go-quiet:hover { border-color: var(--block); color: var(--block); }
   padding: 1px 6px;
   white-space: nowrap;
 }
+.tag.sample-tag { font-size: 10px; vertical-align: 1px; }
 .tag.is-trusted { color: var(--accent-text); border-color: var(--accent-line); background: var(--accent-wash); }
 
 .audit { width: 100%; border-collapse: collapse; margin-top: var(--s4); font-size: 14px; }

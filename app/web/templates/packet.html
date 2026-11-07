@@ -48,7 +48,7 @@
 <section class="masthead">
   <p class="eyebrow">Handover packet</p>
   <h1>{{ offer.device.label }}</h1>
-  <p class="sub">For {{ facility.name }}, {{ facility.country }}.
+  <p class="sub">For {{ facility.name }}, {{ facility.country }}{{ clinic_tag(facility.slug) }}.
      Staff read {{ staff | join(", ") if staff else "no language on file" }}.</p>
 </section>
 

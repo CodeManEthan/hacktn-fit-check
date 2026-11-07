@@ -24,6 +24,7 @@ from app.web.presenters import (
     TONE_BY_OUTCOME,
     TONE_BY_OUTCOME_VALUE,
     TONE_BY_STATUS,
+    clinic_tag,
     device_kind,
     identity_pairs,
     outcome_stamp,
@@ -34,6 +35,7 @@ TEMPLATES = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
 TEMPLATES.env.globals["rule_count"] = rule_count()
 TEMPLATES.env.filters["plural"] = plural
 TEMPLATES.env.filters["stamp"] = outcome_stamp
+TEMPLATES.env.globals["clinic_tag"] = clinic_tag
 router = APIRouter()
 
 def _error(request: Request, message: str, back: str = "/") -> HTMLResponse:

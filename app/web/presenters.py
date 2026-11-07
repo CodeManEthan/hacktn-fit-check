@@ -11,6 +11,9 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 from urllib.parse import quote, urlencode
 
+from markupsafe import Markup
+
+from app.data import seeded
 from app.domain.device import DeviceFacts
 from app.domain.result import CheckStatus, Outcome, Verdict
 
@@ -386,3 +389,19 @@ def addon_states(bundle) -> list[dict]:
             "unverified": list(item.unverified_offers),
         })
     return items
+
+
+# ---- the "sample" tag ------------------------------------------------------
+
+_SAMPLE_TAG = Markup(' <span class="tag sample-tag" title="Demo data: a sample row,'
+                     ' not a real offer or request">sample</span>')
+
+
+def donor_tag(name: str) -> Markup:
+    """The "sample" tag after a donor name the demo seed writes; nothing otherwise."""
+    return _SAMPLE_TAG if seeded.is_seeded_donor(name) else Markup("")
+
+
+def clinic_tag(slug: str) -> Markup:
+    """The "sample" tag after a seeded clinic's name; nothing otherwise."""
+    return _SAMPLE_TAG if seeded.is_seeded_clinic(slug) else Markup("")

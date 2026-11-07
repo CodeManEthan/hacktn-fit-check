@@ -13,6 +13,7 @@ from app.ai.categorise import categorise_support
 from app.ai.client import GenAiError
 from app.ai.extract import extract, extract_device, image_to_data_url, library_citations
 from app.data import marketplace_repo as repo
+from app.data import seeded
 from app.data.repository import RepositoryError
 from app.domain.device import DeviceFacts
 from app.domain.facility import FacilityProfile
@@ -49,6 +50,9 @@ TEMPLATES.env.globals["offer_name"] = presenters.offer_name
 TEMPLATES.env.globals["supply_url"] = presenters.supply_url
 TEMPLATES.env.filters["plural"] = plural
 TEMPLATES.env.filters["stamp"] = presenters.outcome_stamp
+TEMPLATES.env.globals["donor_tag"] = presenters.donor_tag
+TEMPLATES.env.globals["clinic_tag"] = presenters.clinic_tag
+TEMPLATES.env.globals["seeded_clinic"] = seeded.is_seeded_clinic
 router = APIRouter()
 
 

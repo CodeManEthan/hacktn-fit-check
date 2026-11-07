@@ -26,7 +26,7 @@
       </div>
       <p class="oversight">A screen, not a clearance. A person decides before anything ships.</p>
       <div class="dest">
-        <p class="dest-name">{{ facility.name }} <em>{{ facility.country }}</em></p>
+        <p class="dest-name">{{ facility.name }} <em>{{ facility.country }}</em>{{ clinic_tag(facility.slug) }}</p>
         <span class="specs">
           <span><b>{{ facility.mains_voltage_v }} V</b></span>
           <span><b>{{ facility.mains_frequency_hz }} Hz</b></span>

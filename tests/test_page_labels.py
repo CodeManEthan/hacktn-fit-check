@@ -190,3 +190,72 @@ def test_the_seed_marker_never_renders(demo):
         body = client.get(f"/verdict/{row['id']}").text
         assert seed_demo.HISTORY_MARKER not in body
         assert "Sample screening" in body
+
+
+# --- the "sample" tag on seeded rows ---------------------------------------------
+
+SAMPLE = 'class="tag sample-tag"'
+
+
+@pytest.fixture
+def visitor(tmp_path, monkeypatch, capsys):
+    """The seeded demo plus one visitor's offer and one visitor's clinic."""
+    monkeypatch.setattr(db, "SETTINGS", replace(SETTINGS, database_url=f"sqlite:///{tmp_path / 'v.db'}"))
+    monkeypatch.setattr(db, "_engine", None)
+    monkeypatch.setenv("GUDID_LOOKUP", "off")
+    seeded = seed_demo.main()
+    capsys.readouterr()
+    hero = repo.open_offers_for_type(seed_demo.HERO_TYPE)[0]
+    offer_id = repo.save_offer(replace(hero, id=None, created_at=None, donor_name="Visitor biomed"))
+    clinic = replace(repo.load_facility(seed_demo.KAYUNGA), slug="visitor-clinic", name="Visitor Clinic")
+    slug = repo.save_facility(clinic, new=True)
+    yield TestClient(app), seeded, offer_id, slug
+    if db._engine is not None:
+        db._engine.dispose()
+
+
+def _option_from(body, offer_id):
+    """The donor line of one offer on the matches page."""
+    at = body.index(f'/offer/{offer_id}">')
+    start = body.index('<span class="option-from">', at)
+    return body[start:body.index("&mdash;", start)]
+
+
+def test_the_tag_marks_seeded_donors_and_clinics_and_not_a_visitors(visitor):
+    client, seeded, offer_id, slug = visitor
+    body = client.get(f"/request/{seeded['request_id']}/matches").text
+    eyebrow = body[body.index('<p class="eyebrow">'):].split("</p>", 1)[0]
+    assert SAMPLE in eyebrow
+    heroes = [o.id for o in repo.open_offers_for_type(seed_demo.HERO_TYPE) if o.id != offer_id]
+    for hero in heroes:
+        assert SAMPLE in _option_from(body, hero)
+    assert "Visitor biomed" in _option_from(body, offer_id)
+    assert SAMPLE not in _option_from(body, offer_id)
+    # check_live.py reads this heading; the tag stays out of it.
+    assert "Won't work at Kayunga District Hospital</h3>" in body
+
+    seeded_page = client.get(f"/request/{seeded['request_id']}/offer/{heroes[0]}").text
+    visitor_page = client.get(f"/request/{seeded['request_id']}/offer/{offer_id}").text
+    assert seeded_page.count(SAMPLE) == 2  # the donor and the clinic
+    assert visitor_page.count(SAMPLE) == 1  # the clinic only
+
+    assert SAMPLE in client.get(f"/offer/{heroes[0]}").text
+    assert SAMPLE not in client.get(f"/offer/{offer_id}").text
+
+    review = client.get("/review").text
+    rows = {m.group(1).strip(): m.group(0) for m in re.finditer(
+        r'<td class="audit-name">([^<]*)(?:<span[^>]*>[^<]*</span>)?</td>', review)}
+    assert SAMPLE in rows["Kayunga District Hospital"]
+    assert SAMPLE not in rows["Visitor Clinic"]
+    assert SAMPLE in client.get(f"/review/{seed_demo.KAYUNGA}").text
+    assert SAMPLE not in client.get(f"/review/{slug}").text
+
+    picker = client.get("/offer/csv").text
+    assert re.search(rf'<option value="{seed_demo.KAYUNGA}"[^>]*>[^<]*\(sample\)</option>', picker)
+    assert re.search(rf'<option value="{slug}"[^>]*>[^<(]*\([^)]*Hz\)</option>', picker)
+
+
+def test_the_tag_on_verdict_pages(demo):
+    client, _, _ = demo
+    row = repository.recent_verdicts()[0]
+    assert SAMPLE in client.get(f"/verdict/{row['id']}").text

@@ -9,7 +9,7 @@
     <div class="ident">
       <h1 class="ident-name">{{ offer_name(offer) }}</h1>
       <p class="ident-kind">{{ offer.device_type }} &middot; {{ offer.quantity_available }} available from
-         {{ offer.donor_name }}, {{ offer.origin.city }}{% if offer.origin.city %}, {% endif %}{{ offer.origin.country }}</p>
+         {{ offer.donor_name }}{{ donor_tag(offer.donor_name) }}, {{ offer.origin.city }}{% if offer.origin.city %}, {% endif %}{{ offer.origin.country }}</p>
       {% if c.distance_km is not none %}
       <p class="ident-far">{{ c.distance_km | round | int }} km &middot; {{ c.distance_miles | round | int }} mi to {{ facility.name }}{% if c.shipment %}, about {{ c.shipment.transit_days | plural('day') }} to deliver{% endif %}</p>
       {% endif %}
@@ -27,7 +27,7 @@
       </div>
       <p class="oversight">A screen, not a clearance. A person decides before anything ships.</p>
       <div class="dest">
-        <p class="dest-name">{{ facility.name }} <em>{{ facility.country }}</em></p>
+        <p class="dest-name">{{ facility.name }} <em>{{ facility.country }}</em>{{ clinic_tag(facility.slug) }}</p>
         <span class="specs">
           <span><b>{{ facility.mains_voltage_v }} V</b></span>
           <span><b>{{ facility.mains_frequency_hz }} Hz</b></span>
