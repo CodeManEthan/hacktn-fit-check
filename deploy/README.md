@@ -15,7 +15,7 @@ these:
 | Resource | Address |
 |---|---|
 | Compute instance `fitcheckfitcheck-web`, Oracle Linux, python3.12 | 147.224.201.81 public |
-| MySQL HeatWave, schema `fitcheck`, user `admin` | 10.0.1.229:3306, private subnet |
+| MySQL HeatWave, schema `fitcheck`, user `<db-user>` | `<db-private-ip>`:3306, private subnet |
 | VCN, public and private subnets | ingress 22, 80 and 443 only |
 | Caddy 2.11.7 on the instance, unit `caddy`, user `caddy` | ports 80 and 443; `https://fitcheck.care`, and plain HTTP on 147.224.201.81 |
 | The app on the instance, unit `fitcheck`, user `opc` | 127.0.0.1:8000 |
@@ -47,7 +47,7 @@ open it. On the VM:
 and no value in it belongs in the repository.
 
 ```
-DATABASE_URL=mysql+pymysql://admin:<password>@10.0.1.229:3306/fitcheck
+DATABASE_URL=mysql+pymysql://<db-user>:<password>@<db-private-ip>:3306/fitcheck
 OCI_REGION=us-chicago-1
 OCI_AUTH=instance_principal
 OCI_COMPARTMENT_ID=<the tenancy OCID from the console>
@@ -89,7 +89,7 @@ reuses them, and prints names only. A new policy can take a minute to apply.
 
 1. Write `/opt/fitcheck/.env` as above.
 2. Create the schema once from the instance:
-   `mysql -h 10.0.1.229 -u admin -p -e "CREATE DATABASE IF NOT EXISTS fitcheck;"`
+   `mysql -h <db-private-ip> -u <db-user> -p -e "CREATE DATABASE IF NOT EXISTS fitcheck;"`
 3. Run the bootstrap on the instance. It installs git and python3.12, clones
    the fork into `/opt/fitcheck`, builds the venv, opens http and https in
    firewalld, writes the unit for 127.0.0.1:8000 and starts it, installs Caddy
