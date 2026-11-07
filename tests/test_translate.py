@@ -1,4 +1,4 @@
-"""§5.3-§5.4: translation of the card, its fallback and its number re-check.
+"""Translation of the card, its fallback and its number re-check.
 
 No service is called: the OCI Language client and the chat client are fakes.
 """

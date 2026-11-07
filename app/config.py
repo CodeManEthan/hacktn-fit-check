@@ -73,3 +73,16 @@ def load_settings() -> Settings:
 
 
 SETTINGS = load_settings()
+
+# Values of DEMO_PROTECT_SEED that turn the protection on; anything else is off.
+SWITCH_ON = frozenset({"on", "true", "yes", "1"})
+
+
+def demo_protect_seed() -> bool:
+    """DEMO_PROTECT_SEED=on keeps the seeded demo rows as they are; off by default.
+
+    On the shared public demo, on refuses every write to a row the seed wrote
+    and every supply-desk save, so one visitor can't change what the next one
+    sees. Read on every call, like GUDID_LOOKUP, so a test can set it.
+    """
+    return os.getenv("DEMO_PROTECT_SEED", "").strip().lower() in SWITCH_ON

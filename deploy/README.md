@@ -9,13 +9,13 @@ instance principal, so the VM holds no API key.
 
 ## The stack
 
-One Resource Manager stack in the operator's tenancy, region us-chicago-1, made
+One Resource Manager stack in the owner's tenancy, region us-chicago-1, made
 these:
 
 | Resource | Address |
 |---|---|
 | Compute instance `fitcheckfitcheck-web`, Oracle Linux, python3.12 | 147.224.201.81 public |
-| MySQL HeatWave, schema `fitcheck`, user `admin` | 10.0.1.229:3306, private subnet |
+| MySQL HeatWave, schema `fitcheck`, user `<db-user>` | `<db-private-ip>`:3306, private subnet |
 | VCN, public and private subnets | ingress 22, 80 and 443 only |
 | Caddy 2.11.7 on the instance, unit `caddy`, user `caddy` | ports 80 and 443; `https://fitcheck.care`, and plain HTTP on 147.224.201.81 |
 | The app on the instance, unit `fitcheck`, user `opc` | 127.0.0.1:8000 |
@@ -47,7 +47,7 @@ open it. On the VM:
 and no value in it belongs in the repository.
 
 ```
-DATABASE_URL=mysql+pymysql://admin:<password>@10.0.1.229:3306/fitcheck
+DATABASE_URL=mysql+pymysql://<db-user>:<password>@<db-private-ip>:3306/fitcheck
 OCI_REGION=us-chicago-1
 OCI_AUTH=instance_principal
 OCI_COMPARTMENT_ID=<the tenancy OCID from the console>
@@ -75,7 +75,7 @@ tenancy root, so it is the tenancy OCID (Console, profile menu, Tenancy, OCID).
    and restart the unit (`sudo systemctl restart fitcheck`).
 4. Check one model call answers, then delete `/home/opc/.oci/` from the VM.
 
-Steps 1 and 2 are scripted. From a machine with the operator's API key in
+Steps 1 and 2 are scripted. From a machine with the tenancy owner's API key in
 `~/.oci/config` and the OCI Python SDK (the repo's venv has it):
 
 ```
@@ -89,7 +89,7 @@ reuses them, and prints names only. A new policy can take a minute to apply.
 
 1. Write `/opt/fitcheck/.env` as above.
 2. Create the schema once from the instance:
-   `mysql -h 10.0.1.229 -u admin -p -e "CREATE DATABASE IF NOT EXISTS fitcheck;"`
+   `mysql -h <db-private-ip> -u <db-user> -p -e "CREATE DATABASE IF NOT EXISTS fitcheck;"`
 3. Run the bootstrap on the instance. It installs git and python3.12, clones
    the fork into `/opt/fitcheck`, builds the venv, opens http and https in
    firewalld, writes the unit for 127.0.0.1:8000 and starts it, installs Caddy
@@ -162,8 +162,8 @@ back, and `/etc/caddy/Caddyfile.prev` too when the last cutover left one;
 answer at all (refused or timed out) prints `-> 000` and the run goes on to the
 next path, in `check` and in `stage`.
 
-A rollback to a head older than instance-principal auth (the overnight round's
-B0 merge added it; 9e00968, the head before that round, is older) needs the API
+A rollback to a head older than instance-principal auth (05702bf, merged
+in fbc5325; 9e00968 and older heads lack it) needs the API
 key back in `/home/opc/.oci/`, because that code reads only the key file.
 
 ## When something is wrong

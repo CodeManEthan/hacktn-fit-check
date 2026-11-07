@@ -26,7 +26,7 @@
       </div>
       <p class="oversight">A screen, not a clearance. A person decides before anything ships.</p>
       <div class="dest">
-        <p class="dest-name">{{ facility.name }} <em>{{ facility.country }}</em></p>
+        <p class="dest-name">{{ facility.name }} <em>{{ facility.country }}</em>{{ clinic_tag(facility.slug) }}</p>
         <span class="specs">
           <span><b>{{ facility.mains_voltage_v }} V</b></span>
           <span><b>{{ facility.mains_frequency_hz }} Hz</b></span>
@@ -72,9 +72,10 @@
 {% endif %}
 
 <section class="plate plate-tight">
-  <h2>Audit trail &mdash; {{ verdict.results | length }} checks</h2>
+  <h2>Audit trail &mdash; {{ verdict.results | length | plural('check') }}</h2>
   <p class="note">Every row is decided by code, not by a model. The tag on the
      right says where the fact came from, which is the only part a model touched.</p>
+  <div class="audit-scroll">
   <table class="audit">
     <thead>
       <tr>
@@ -97,6 +98,7 @@
       {% endfor %}
     </tbody>
   </table>
+  </div>
 
   {% if intel.reasoning %}
   <h2>On supplying this in {{ intel.country }}</h2>

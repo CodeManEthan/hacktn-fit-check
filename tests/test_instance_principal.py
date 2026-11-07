@@ -1,4 +1,4 @@
-"""Design §3: the instance-principal path of build_signer_and_config. oci is faked."""
+"""The instance-principal path of build_signer_and_config. oci is faked."""
 
 from __future__ import annotations
 

@@ -2,7 +2,8 @@
 
 Run once with:  ./.venv/bin/python -m scripts.build_library [NOTES_DIR]
 
-Sources (read-only, in the notes tree):
+Sources (read-only, in the author's research notes, which are not
+published; the build needs a copy of them):
 - the hero JSON block and fact tables in reports/verify-hero-device.md, for the
   DeVilbiss 525DS and 525KS, typed here with each quote and checked against
   the document text below;
@@ -16,9 +17,11 @@ pages); a quote that cannot be found keeps the page its report gave. Only
 the .txt extractions are copied; the PDFs stay in the notes tree and are
 linked by URL.
 
-Mapping rules (design §4.1):
+Mapping rules:
 - a value that is null, or whose quote says "not stated", is left out (unknown);
-- a frequencies_hz of [] is left out: "no mains", not "no frequency";
+- a frequencies_hz of [] is left out: "no mains", not "no frequency"; it
+  writes mains_powered = False instead, citing the battery quote (or the
+  voltage quote when there is no battery quote);
 - year_introduced, support status, battery and UI-language facts go to notes;
 - languages are normalised through app.domain.language;
 - device_type uses the request vocabulary.
@@ -77,6 +80,9 @@ FACT_FIELDS = {
     "operating_complexity": "operating_complexity",
 }
 SUPPLY_FIELDS = ("needs_oxygen", "needs_distilled_water", "needs_compressed_air")
+# mains_powered has no field of its own in the library JSON: an empty
+# frequencies_hz means "no mains", and these quote keys say why, in order.
+NO_MAINS_QUOTES = ("has_battery", "voltage_min_v")
 NOT_STATED = "not stated"
 
 S1_URL = ("https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxp"
@@ -108,7 +114,7 @@ WATER_NOTE = ("no water requirement in the owner's manual; the bubble humidifier
 INDICATIONS = ("The DeVilbiss Oxygen Concentrator is intended for use as an oxygen concentrator "
                "to provide supplemental low flow oxygen therapy in the home, nursing homes, "
                "patient care facilities, etc.")
-COMPLEXITY_NOTE = ("lead's reading of the intended use: supplemental low flow oxygen therapy in "
+COMPLEXITY_NOTE = ("author's reading of the intended use: supplemental low flow oxygen therapy in "
                    "the home, nursing homes, patient care facilities; the manual does not grade "
                    "operator skill")
 FILTERS = ["MC44D-605 intake bacteria filter", "303DZ-605 cabinet air filter",
@@ -517,6 +523,22 @@ def _strip_anchor(url: str) -> str:
     return url.split("#", 1)[0]
 
 
+def _no_mains_fact(raw: dict[str, Any], quotes: dict[str, str], documents: list[dict],
+                   by_url: dict[str, dict], slug: str, checks: Checks) -> dict[str, Any]:
+    """mains_powered = False for a battery-only device, cited like any other fact."""
+    key = next((k for k in NO_MAINS_QUOTES if quotes.get(k)), NO_MAINS_QUOTES[0])
+    quote = quotes.get(key) or ""
+    url = _source_url(raw, key, key)
+    doc = by_url.get(_strip_anchor(url)) or documents[0]
+    page = checks.locate(doc["text"], quote, f"{slug}.mains_powered") if quote else None
+    page = (page or _reported_page(quote, url)) if doc["src"] else None
+    source = PRODUCT_PAGE if doc["kind"] == PRODUCT_PAGE else SPEC
+    file = f"{slug}/{doc['src']}" if doc["src"] else ""
+    link = f"{_strip_anchor(doc['url'])}#page={page}" if page and doc["src"] else doc["url"]
+    return _fact(False, source, file, link, page, quote,
+                 "the documents give no mains input; it runs on batteries only")
+
+
 def build_library_entry(slug: str, spec: dict[str, Any], notes: Path, checks: Checks) -> tuple[dict, list[Path]]:
     library, index, folder = spec["source"]
     raw = json.loads((notes / "device-docs" / library / f"{library}.json").read_text())[index]
@@ -560,15 +582,18 @@ def build_library_entry(slug: str, spec: dict[str, Any], notes: Path, checks: Ch
         note = field_notes.get(name, "")
         if name in SUPPLY_FIELDS and not note:
             note = ("inferred from a complete supply specification that names electrical power "
-                    "only; not an explicit statement (verify report)")
+                    "only; not an explicit statement (author's research notes)")
         if name == "operating_complexity" and raw.get("operating_complexity_reason"):
-            note = f"verifier's reading: {raw['operating_complexity_reason']}"
+            note = f"reviewer's reading: {raw['operating_complexity_reason']}"
         if name == "power_watts" and "DERIVED" in quote:
             note = "derived from the adapter rating, not stated as watts"
         source = PRODUCT_PAGE if doc["kind"] == PRODUCT_PAGE else SPEC
         file = f"{slug}/{doc['src']}" if doc["src"] else ""
         link = f"{_strip_anchor(doc['url'])}#page={page}" if page and doc["src"] else doc["url"]
         facts[name] = _fact(value, source, file, link, page, quote, note)
+
+    if raw.get("frequencies_hz") == []:
+        facts["mains_powered"] = _no_mains_fact(raw, quotes, documents, by_url, slug, checks)
 
     for key in NOTE_KEYS:
         if raw.get(key) not in (None, "", []):

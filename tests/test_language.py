@@ -59,7 +59,7 @@ def _languages_in_source_files() -> set[str]:
     return found
 
 
-@pytest.mark.skipif(not NOTES.exists(), reason="the notes tree is on the operator's machine only")
+@pytest.mark.skipif(not NOTES.exists(), reason="the device notes are not in this repo")
 def test_the_source_files_hold_no_language_outside_the_table():
     found = _languages_in_source_files()
 

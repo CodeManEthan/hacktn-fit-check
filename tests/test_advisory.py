@@ -1,8 +1,8 @@
 """The buy-locally advisory: prices under a frequency rejection, never a verdict.
 
-The last tests seed a 60 Hz concentrator and Kayunga (50 Hz) in SQLite. Until
-[B1]'s screen_offers lists rejected offers, the page test feeds the real
-verdict through a stubbed screening, and the end-to-end test skips.
+The last tests seed a 60 Hz concentrator and Kayunga (50 Hz) in SQLite. The
+page test feeds the real verdict through a stubbed screening; the end-to-end
+test skips if screen_offers lists no rejected offers.
 """
 
 from __future__ import annotations
@@ -64,15 +64,15 @@ def candidate(outcome=Outcome.WONT_WORK, keys=("frequency",), status=CheckStatus
 
 def test_the_table_carries_the_research_figures():
     entry = load_local_prices()["oxygen concentrator"]
-    rows = {row["ref"]: row for row in entry["rows"]}
+    rows = {row["role"]: row for row in entry["rows"]}
 
     assert entry["as_of"] == "2026-10-17"
-    assert rows["A12"]["price_usd"] == 288
-    assert rows["A12"]["url"] == "https://supply.unicef.org/catalogsearch/result/?q=oxygen"
-    assert (rows["A1"]["price_usd_min"], rows["A1"]["price_usd_max"]) == (1319.19, 2272.98)
-    assert rows["A1"]["url"] == "https://www.ato.com/1-phase-frequency-converter"
-    assert rows["A9"]["price_usd"] == 205.41
-    assert rows["A9"]["url"] == "https://supply.unicef.org/s0002632.html"
+    assert rows["instead"]["price_usd"] == 288
+    assert rows["instead"]["url"] == "https://supply.unicef.org/catalogsearch/result/?q=oxygen"
+    assert (rows["add-on"]["price_usd_min"], rows["add-on"]["price_usd_max"]) == (1319.19, 2272.98)
+    assert rows["add-on"]["url"] == "https://www.ato.com/1-phase-frequency-converter"
+    assert rows["with it"]["price_usd"] == 205.41
+    assert rows["with it"]["url"] == "https://supply.unicef.org/s0002632.html"
     assert all(row["quote"] for row in entry["rows"])
 
 
@@ -241,7 +241,7 @@ def test_end_to_end_once_the_screening_lists_rejections(client):
     screening = marketplace_routes.screen_offers(KAYUNGA, [offer],
                                                  intel_for=marketplace_routes.supply_lookup)
     if not screening.rejected:
-        pytest.skip("screen_offers lists no rejected offers until [B1] lands")
+        pytest.skip("screen_offers lists no rejected offers")
 
     text = client.get(f"/request/{request_id}/matches").text
 

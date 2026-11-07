@@ -8,8 +8,8 @@ Everything here was read from `app/data/db.py`, `app/data/marketplace_schema.py`
 
 - Twelve tables. SQLite on a laptop (`fitcheck.db` in the checkout when `DATABASE_URL` is blank), MySQL HeatWave on the VM.
 - The app creates any missing table at startup (`repository.setup()` calls `METADATA.create_all`). It never alters a table that already exists.
-- Eight tables predate this round. Four are new: `supply_answers`, `registry_lookups`, `packets` and `extractions`. They arrived in one commit, 386f383 ("feat(contracts): library, import rules and the round's new tables").
-- No column was added to, removed from or changed in any of the eight older tables this round. That is the rule in design §4.4 and §9: new facts travel inside the existing JSON columns, new records get new tables. I checked it by diffing every `Table(` and `Column(` line in both schema files against 9e00968, the head before the round. Only the four new tables differ.
+- Eight tables were there before 2026-10-18. Four were added on 2026-10-18: `supply_answers`, `registry_lookups`, `packets` and `extractions`, in one commit, 386f383.
+- No column was added to, removed from or changed in any of the eight older tables since. The rule is that new facts travel inside the existing JSON columns and new records get new tables. I checked it by diffing every `Table(` and `Column(` line in both schema files against 9e00968, the head before those four. Only the four new tables differ.
 - Most facts live in JSON text columns, not in typed columns. A device's facts, a clinic's profile and a verdict are each one JSON blob.
 
 ## Tables in `app/data/db.py`
@@ -21,7 +21,16 @@ These three come from the original single-device screener. They back the legacy 
 One row per staged clinic: `slug` (key), `name`, `country`, and `profile_json`.
 
 - Filled by `repository.setup()` at every startup, but only when the table is empty. It copies the three profiles in `app/data/seed.py`.
-- Nothing reads it. The legacy `/check` route looks clinics up in the in-code list `FACILITIES_BY_SLUG`, and every newer route reads `facilities_v2`. It is a leftover. It was left in place because dropping it would change a table on the operator's MySQL.
+- Nothing reads it. The legacy `/check` route looks clinics up in the in-code list `FACILITIES_BY_SLUG`, and every newer route reads `facilities_v2`. It is a leftover. It was left in place because dropping it would change a table on the live MySQL.
+
+### Two facility tables, and `POST /check`
+
+A reader meets two clinic tables and a route no page uses. All three are kept on purpose.
+
+- `facilities` is the original screener's table, described above. No page reads it.
+- `facilities_v2` is the clinic table every page reads (below): the clinic form, the request form and list upload, the matches and candidate pages, `POST /match`, the review desk, the supply desk's country list, the CSV screening, the handover packet, and `/impact`, which reads a clinic's country from it.
+- `/verdict/<id>` and `POST /check` read neither table. They look clinics up in `FACILITIES_BY_SLUG` (`app/data/seed.py`), the same three profiles that fill `facilities` at startup and that `scripts/seed_demo.py` writes into `facilities_v2`.
+- `POST /check` is the legacy path's write: it screens a stored device against one of those clinics, saves a row in `verdicts` and redirects to `/verdict/<id>`. No page posts to it. It stays because the legacy verdict path is still tested through it (`test_the_legacy_check_uses_the_supply_lookup_without_a_device_type` in `tests/test_contract_routes.py`), and the seeded verdicts that `/impact` links to are read on the same `/verdict/<id>` page.
 
 ### `devices`
 
@@ -29,19 +38,19 @@ One row per device screened on the legacy path: `id`, `label` (manufacturer and 
 
 - Written by the seed's impact history. (`POST /donor` wrote it too until that route was removed on 2026-10-23.)
 - The seed marks its own rows with `raw_input = "seed_demo: impact history"` so a rerun can delete and rewrite exactly those.
-- After a fresh seed: 20 rows.
+- After a fresh seed: 22 rows.
 
 ### `verdicts`
 
 One row per legacy screening: `id` (8 hex characters), `device_id`, `device_label`, `facility_slug`, `facility_name`, `outcome` (the outcome's text, such as `won't work`), `verdict_json`, `intel_json`, `created_at`.
 
-- Written by `POST /check` and by the seed's history (twenty screenings of library devices against the three clinics).
+- Written by `POST /check` and by the seed's history: twenty screenings of library devices against the three clinics, then the 525DS and 525KS hero offers at Kayunga, each with the verdict `check_fit` gives it.
 - Read by `/verdict/<id>` and by `/impact`. The impact page's counters, bars and model paragraph are built from this table and nothing else. Screenings on the matches page are not logged here, so they do not move the impact figures.
-- After a fresh seed: 20 rows, 11 `won't work` and 9 `needs info`. There is no `works if you also send` row in the seeded history, so that counter reads 0 (the B6 report lists this).
+- After a fresh seed: 22 rows, 12 `won't work`, 9 `needs info` and 1 `works if you also send` (the 525KS at Kayunga). No library device works as it is at any seeded clinic, so the `works` counter reads 0.
 
 ## Tables in `app/data/marketplace_schema.py`
 
-These back the two-sided marketplace: offers, requests, matches. The first five predate this round.
+These back the two-sided marketplace: offers, requests, matches. The first five were there before 2026-10-18.
 
 ### `facilities_v2`
 
@@ -60,7 +69,7 @@ One row per donor offer: `id`, `donor_name`, `donor_email`, `device_label`, `dev
 - `support_kind` is set by a model call on the offer form (`categorise_support`, keywords as fallback) and by keywords only on the CSV path.
 - `quantity_reserved` goes up when a clinic presses "Ask this donor" (`POST /match`) and back down when the donor says no on the confirm page. Nothing in the app writes `quantity_shipped`.
 - `status` is `open` for every offer the app writes. The app never stores `exhausted` or `expired`. Whether an offer can be matched is worked out on each read from the quantities and `available_until`. The seed writes `withdrawn` on a duplicate of an offer it is replacing, instead of deleting it, so an old match still loads.
-- After a fresh seed: 11 rows. Offers 1 to 3 are the hero trio on a fresh database (A 525DS from Nashville, B 525KS from Leeds, C the unnamed concentrator from Houston). On the VM, whose database was seeded before this round, they are 8, 9 and 10.
+- After a fresh seed: 11 rows. Offers 1 to 3 are the hero trio on a fresh database (A 525DS from Nashville, B 525KS from Leeds, C the unnamed concentrator from Houston). On the VM, whose database already held earlier seed rows, they are 8, 9 and 10.
 
 ### `requests`
 
@@ -83,7 +92,7 @@ One row per proposal to a donor: `id` (12 characters), `request_id`, `offer_id`,
 - `verdict_json` and `intel_json` freeze the verdict and supply facts the proposal was made on. The packet page reads the newest match's verdict for its send-with list. When no match exists it screens the offer again with the same supply facts as the candidate page, so the two list the same conditions.
 - After a fresh seed: 0 rows.
 
-### `supply_answers` (new this round)
+### `supply_answers` (added 2026-10-18)
 
 One row per recorded answer about supporting a device in a country: `id`, `device_type`, `model` (empty string means any model of the type), `country`, `consumables_available`, `spare_parts_available`, `sold_locally`, `manufacturer_supported`, `recorded_by`, `note`, `recorded_at`.
 
@@ -92,7 +101,7 @@ One row per recorded answer about supporting a device in a country: `id`, `devic
 - Read by `supply_lookup` in `app/matching/supply_order.py`: the exact model in the country first, then the device type with `model = ''`. The model lookup ignores device type, so the legacy `/check` route, which has no type, still finds a model answer.
 - After a fresh seed: 1 row, `("oxygen concentrator", "525KS", "Uganda")`, consumables no, spare parts yes, sold locally and manufacturer support NULL, recorded by "Fit-Check field team". No row for the type alone, so Offer C's supply questions stay open.
 
-### `registry_lookups` (new this round)
+### `registry_lookups` (added 2026-10-18)
 
 A cache of FDA GUDID answers: `model` (key, stripped and lower case), `fetched_at`, `status`, `record_url`, `raw_json`.
 
@@ -100,7 +109,7 @@ A cache of FDA GUDID answers: `model` (key, stripped and lower case), `fetched_a
 - A good answer, including openFDA's 404 "no matches", is reused for 7 days. A timeout or error is stored as `lookup failed` and blocks a retry for 10 minutes only.
 - The seed never calls GUDID, so after a fresh seed this table is empty. On the VM it fills the first time someone opens the matches page with `GUDID_LOOKUP=on`.
 
-### `packets` (new this round)
+### `packets` (added 2026-10-18)
 
 One built handover packet per offer and clinic: `offer_id` and `facility_slug` (together the key), `language`, `card_json`, `translated_json`, `built_at`.
 
@@ -108,7 +117,7 @@ One built handover packet per offer and clinic: `offer_id` and `facility_slug` (
 - A failed translation is not stored, so the next visit retries it. `translated_json` is NULL when no translation was made or kept.
 - After a fresh seed: 0 rows.
 
-### `extractions` (new this round)
+### `extractions` (added 2026-10-18)
 
 Facts read from a donor's paste or photo, held for the confirm step: `id` (32 hex characters), `facts_json`, `document_json`, `created_at`.
 
@@ -123,7 +132,7 @@ All of them are plain JSON in a `Text` column, written by `app/data/serialize.py
 
 **A fact** is `{"value": ..., "source": "...", "note": "..."}`. `source` is a provenance label: `nameplate`, `spec sheet`, `stated by the donor`, `clinic profile`, `model knowledge`, `IEC 60601-1 default`, `FDA GUDID`, `recorded by the nonprofit` or `unknown`. `note` is the citation: a document title and page (`"<title>, p.11"`), a URL, or who recorded an answer and when. An unknown fact is stored with `value` null. A date is stored as `{"date": "2027-03-31"}` so it comes back as a date.
 
-**`offers.device_json`, `devices.facts_json`, `extractions.facts_json`.** One fact per `DeviceFacts` field, plus `raw_input` as a plain string. The fields are manufacturer, model, year of manufacture, voltage min and max, frequencies, power, needs stable power, temperature min and max, humidity max, needs oxygen, needs distilled water, needs compressed air, consumables, expiry date, dated items, manual languages, documents, and operating complexity. Two of them were added this round inside the JSON, with no column change:
+**`offers.device_json`, `devices.facts_json`, `extractions.facts_json`.** One fact per `DeviceFacts` field, plus `raw_input` as a plain string. The fields are manufacturer, model, year of manufacture, voltage min and max, frequencies, power, needs stable power, temperature min and max, humidity max, needs oxygen, needs distilled water, needs compressed air, consumables, expiry date, dated items, manual languages, documents, and operating complexity. Two of them were added on 2026-10-18 inside the JSON, with no column change:
 - `dated_items` is the donor's answer to "does anything in this consignment expire?". A blank expiry field on the form stores `false`.
 - `documents` is a list of the manufacturer documents for the model, each `{"slug", "file", "title", "url", "languages", "kind"}`. It points at a text file under `data/library/<slug>/`. The packet reads the manual through it.
 

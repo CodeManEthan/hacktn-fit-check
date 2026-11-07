@@ -1,4 +1,4 @@
-"""[B8] §8 CSV screen: parsing the column contract and screening each row.
+"""CSV screen: parsing the column contract and screening each row.
 
 The library is the committed data/device_library.json. No database, no
 model, no network: the supply lookup is a fake that records its calls.
@@ -271,7 +271,7 @@ def test_too_many_rows_is_refused(monkeypatch):
         csv_screen.screen_csv(text, CLINIC, intel_for=lambda d, t, c: intel(country=c))
 
 
-# ---- check 1 L1: a model hit must also be the entry's maker and device ------
+# ---- a model hit must also be the entry's maker and device ---------------
 
 L1_HEADER = "device_type,manufacturer,model,quantity,year,voltage_min_v,voltage_max_v,frequencies_hz,country\n"
 
@@ -320,7 +320,7 @@ def test_the_right_maker_and_device_or_blanks_still_take_the_library(line):
     assert row.offer.device.voltage_min_v.source is Provenance.SPEC_SHEET
 
 
-# ---- check 1 L2: the download says when the library's facts were used -------
+# ---- the download says when the library's facts were used ----------------
 
 def test_the_download_names_the_library_entry_and_the_cells_it_overrode():
     text = (L1_HEADER
@@ -339,7 +339,7 @@ def test_the_download_names_the_library_entry_and_the_cells_it_overrode():
                                   "C2000; row facts used")
 
 
-# ---- check 1 L4: an oversize file is "over" the limit, not a made-up size ----
+# ---- an oversize file is "over" the limit, not a made-up size -------------
 
 @pytest.mark.parametrize("size", [csv_screen.MAX_BYTES + 1, 1_110_048])
 def test_an_oversize_file_says_it_is_over_the_limit(size):

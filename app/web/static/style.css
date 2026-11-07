@@ -426,6 +426,7 @@ button.go-quiet:hover { border-color: var(--block); color: var(--block); }
   padding: 1px 6px;
   white-space: nowrap;
 }
+.tag.sample-tag { font-size: 10px; vertical-align: 1px; }
 .tag.is-trusted { color: var(--accent-text); border-color: var(--accent-line); background: var(--accent-wash); }
 
 .audit { width: 100%; border-collapse: collapse; margin-top: var(--s4); font-size: 14px; }
@@ -924,12 +925,11 @@ body.lander .deck { padding-top: var(--s7); }
 .plate > p { max-width: 62ch; }
 
 /* ======================================================================
-   Ours, re-appended on their palette ([B12], design §13). The [B6] blocks
-   below were tuned for the old dark theme; every hardcoded colour is
+   Ours, re-appended on their palette. The blocks below were tuned for the old dark theme; every hardcoded colour is
    restated for white and carries its contrast ratio against #FFFFFF.
    ====================================================================== */
 
-/* ---- [B6] role toggle (§7.1) -------------------------------------------- */
+/* ---- role toggle ------------------------------------------------------- */
 
 /* A cookie and a colour: the role tints the bar and the primary buttons and
    hides nothing. Amber for the donor, teal for the clinic, slate for the
@@ -976,7 +976,7 @@ body[data-role] button.go:hover, body[data-role] a.go:hover { background: var(--
   background: var(--face); border: 1px solid var(--role-edge, var(--rule)); border-radius: 6px; }
 .desk-links a:hover { background: var(--role-wash); }
 
-/* ---- [B6] landing: two intake forms, the operator between them ------------ */
+/* ---- landing: two intake forms, the operator between them ------------ */
 
 .flow { display: grid; grid-template-columns: 1fr 0.8fr 1fr; gap: var(--s4); align-items: stretch; }
 .operator {
@@ -987,14 +987,14 @@ body[data-role] button.go:hover, body[data-role] a.go:hover { background: var(--
 .operator .role-kicker { color: #475569; }  /* was #94A3B8 (2.6:1); now 7.6:1 */
 .operator-name { font: 700 23px/1.2 var(--display); margin: var(--s2) 0 var(--s3); }
 .operator-line { color: var(--etch); font-size: 14px; margin: 0 0 var(--s4); }
-/* The middlemen stay gray ([F2]): --etch, 5.4:1 on --plate (was #6F7D96, 4.2:1). */
+/* The middlemen stay gray: --etch, 5.4:1 on --plate (was #6F7D96, 4.2:1). */
 .middlemen { list-style: none; margin: 0; padding: var(--s3) 0 0; border-top: 1px solid var(--rule);
   display: grid; gap: var(--s1); color: var(--etch); font-size: 13px; }
 .middlemen::before { content: "also in the chain"; display: block; font: 500 11px/1.6 var(--mono); color: var(--etch); }
 .role-alt { font-size: 13px; margin-top: var(--s3); }
 .country-list { margin: 0; padding-left: var(--s4); display: grid; gap: var(--s2); }
 
-/* ---- [B6] candidate verdict page (§7.2) and matches links ------------------ */
+/* ---- candidate verdict page and matches links ----------------------------- */
 
 .candidate-link { color: inherit; text-decoration: none; border-bottom: 1px solid var(--accent-line); }
 .candidate-link:hover { color: var(--accent-text); }
@@ -1017,7 +1017,7 @@ body[data-role] button.go:hover, body[data-role] a.go:hover { background: var(--
 /* Carried from our old sheet: offer.html still stacks its readout panels. */
 .stack { display: flex; flex-direction: column; gap: var(--s4); }
 
-/* ---- [B6] narrow screens: the 16px side gutter, no sideways scroll ---------- */
+/* ---- narrow screens: the 16px side gutter, no sideways scroll ---------- */
 
 @media (max-width: 900px) {
   .flow { grid-template-columns: 1fr; }
@@ -1041,7 +1041,7 @@ body[data-role] button.go:hover, body[data-role] a.go:hover { background: var(--
   .candidate-act { flex-wrap: wrap; gap: var(--s3); }
 }
 
-/* ---- [B6] impact paragraph (§7.3) ---------------------------------------- */
+/* ---- impact paragraph -------------------------------------------------- */
 
 .counter.ask b { color: var(--query); }
 .impact-summary { margin: var(--s4) 0 var(--s5); padding: var(--s4); border-left: 3px solid var(--accent-line);
@@ -1065,3 +1065,10 @@ body[data-role] button.go:hover, body[data-role] a.go:hover { background: var(--
 
 /* A long unbroken token (an error's URL) must wrap rather than widen the page. */
 p, li, td, dd { overflow-wrap: anywhere; }
+
+/* Audit tables keep whole words; on a phone the table scrolls sideways
+   inside its .audit-scroll wrapper instead of widening the page. */
+.audit-scroll .audit td { overflow-wrap: normal; word-break: normal; }
+@media (max-width: 600px) {
+  .audit-scroll .audit { min-width: 36rem; }
+}

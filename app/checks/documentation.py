@@ -14,7 +14,7 @@ HIGH_COMPLEXITY = "high"
 def check_manual_language(
     device: DeviceFacts, facility: FacilityProfile, intel: SupplyIntel
 ) -> CheckResult:
-    """Can the staff read the manual? Manuals never fail ([F9], design §5.1).
+    """Can the staff read the manual? Manuals never fail.
 
     A shared language passes. Otherwise Fit-Check builds a handover packet
     from the manufacturer's manual, so the check is MITIGABLE with the MANUAL
@@ -61,8 +61,8 @@ def check_manual_language(
     manual_text = ", ".join(manual) if manual else "no stated language"
     if not _documents(device):
         # The languages differ and there is no manual on file to build the
-        # packet from, so the packet cannot exist yet. [F9]: needs info only
-        # when no manual can be found, and this is that case.
+        # packet from, so the packet cannot exist yet. This is the one case that
+        # needs info: no manual can be found.
         return CheckResult(
             key="manual",
             label="Manual language",
@@ -142,8 +142,8 @@ def check_operation_and_repair(
             source=complexity.source,
         )
 
-    # Training and a service contract are not shipped in a crate (design
-    # §2.4): a high-skill device at a clinic without the people fails.
+    # Training and a service contract are not shipped in a crate: a
+    # high-skill device at a clinic without the people fails.
     return CheckResult(
         key="training",
         label="Training and repair",

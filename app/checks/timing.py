@@ -41,7 +41,7 @@ def check_shelf_life(
     dated = device.expiry_date
     answered = device.dated_items
 
-    # The donor's "nothing dated" is an answer, not a gap (design §2.2).
+    # The donor's "nothing dated" is an answer, not a gap.
     if answered.known and answered.value is False:
         return CheckResult(
             key=KEY,

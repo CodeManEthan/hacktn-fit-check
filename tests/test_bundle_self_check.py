@@ -1,4 +1,4 @@
-"""Design §2.4: a power add-on counts only when its own plate runs on the clinic's mains."""
+"""A power add-on counts only when its own plate runs on the clinic's mains."""
 
 from __future__ import annotations
 

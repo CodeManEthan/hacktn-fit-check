@@ -1,4 +1,4 @@
-"""The round's acceptance test for [F3]: the hero trio screened against Kayunga.
+"""The acceptance test: the hero trio screened against Kayunga.
 
 The seed (scripts/seed_demo.py) runs into a fresh SQLite file; the Kayunga
 request's line is screened with the supply order. GUDID is stubbed to "no
@@ -6,9 +6,9 @@ record" by refusing every HTTP call, so the registry can only stay silent.
 The recorded answer reaches the checks through `supply_lookup`; on a tree
 where that is still the empty default, the test's lookup fills what is
 still unknown from `repo.load_supply_answer`, the source `supply_lookup`
-reads second (design §2.6).
+reads second.
 
-Five facts (design §4.3):
+Five facts:
 1. A (525DS, Nashville) is rejected, with `frequency` its only FAIL;
 2. B (525KS, Leeds) is WORKS_IF with requirement kinds exactly
    {STABILISER, CONSUMABLES} and no NEEDS_INFO result;
@@ -16,10 +16,6 @@ Five facts (design §4.3):
 4. the ranked list reads B then C;
 5. B's bundle shows the Sollatek covering the stabiliser and the Houston
    AVR rejected.
-
-Facts that need [B1]'s rules (the rejected list, the dated-items check,
-NEEDS_INFO, the add-on self-check) are marked xfail(strict=False) so the
-test documents the target; the lead runs it strict on the merged tree.
 """
 
 from __future__ import annotations
@@ -41,7 +37,6 @@ from app.matching.pipeline import screen_offers
 from app.matching.supply_order import supply_lookup
 from scripts import seed_demo
 
-NEEDS_B1 = pytest.mark.xfail(strict=False, reason="B1 not merged")
 SUPPLY_FIELDS = ("consumables_available", "spare_parts_available",
                  "manufacturer_supported", "sold_locally")
 
@@ -103,57 +98,52 @@ def _fails(verdict) -> set[str]:
 def test_the_seed_puts_the_trio_on_the_kayunga_request(seeded):
     _, offers = _kayunga()
     assert {o.donor_name for o in offers} == {
-        "Nashville General Hospital biomedical department",
-        "Leeds Teaching Hospitals NHS Trust, surplus",
-        "Harris County clinic network",
+        "Riverside General biomedical department",
+        "Midland Teaching Hospital, surplus",
+        "Bayou community clinic network",
     }
 
 
 def test_offer_a_fails_on_frequency_alone(seeded):
-    verdict = _verdict("Nashville")
+    verdict = _verdict("Riverside")
     assert verdict.outcome is Outcome.WONT_WORK
     assert _fails(verdict) == {"frequency"}
 
 
-@NEEDS_B1
 def test_offer_a_is_on_the_rejected_list(seeded):
     _, _, screening = _screen()
     rejected = {c.offer.donor_name: c for c in screening.rejected}
-    a = rejected["Nashville General Hospital biomedical department"]
+    a = rejected["Riverside General biomedical department"]
     assert _fails(a.verdict) == {"frequency"}
 
 
 def test_offer_b_works_if_a_stabiliser_and_filters_go_with_it(seeded):
-    verdict = _verdict("Leeds")
+    verdict = _verdict("Midland")
     assert verdict.outcome is Outcome.WORKS_IF
     assert {r.kind for r in verdict.needs} == {RequirementKind.STABILISER,
                                                RequirementKind.CONSUMABLES}
 
 
-@NEEDS_B1
 def test_offer_b_has_no_open_question(seeded):
-    verdict = _verdict("Leeds")
+    verdict = _verdict("Midland")
     assert [r.key for r in verdict.results if r.status is CheckStatus.NEEDS_INFO] == []
 
 
-@NEEDS_B1
 def test_offer_c_needs_info(seeded):
-    assert _verdict("Harris").outcome is Outcome.NEEDS_INFO
+    assert _verdict("Bayou").outcome is Outcome.NEEDS_INFO
 
 
-@NEEDS_B1
 def test_the_ranked_list_reads_b_then_c(seeded):
     _, _, screening = _screen()
     assert [c.offer.donor_name for c in screening.ranked] == [
-        "Leeds Teaching Hospitals NHS Trust, surplus",
-        "Harris County clinic network",
+        "Midland Teaching Hospital, surplus",
+        "Bayou community clinic network",
     ]
 
 
-@NEEDS_B1
 def test_b_bundle_takes_the_sollatek_and_rejects_the_houston_avr(seeded):
     facility, _, screening = _screen()
-    b = next(c for c in screening.ranked if c.offer.donor_name.startswith("Leeds"))
+    b = next(c for c in screening.ranked if c.offer.donor_name.startswith("Midland"))
     bundle = build_bundle(b.verdict, facility, repo.offers_for_support)
     item = next(i for i in bundle.items if i.requirement.kind is RequirementKind.STABILISER)
     assert [o.donor_name for o in item.offers] == ["Kampala Power Trust"]

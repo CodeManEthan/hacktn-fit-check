@@ -48,7 +48,7 @@
 <section class="masthead">
   <p class="eyebrow">Handover packet</p>
   <h1>{{ offer.device.label }}</h1>
-  <p class="sub">For {{ facility.name }}, {{ facility.country }}.
+  <p class="sub">For {{ facility.name }}, {{ facility.country }}{{ clinic_tag(facility.slug) }}.
      Staff read {{ staff | join(", ") if staff else "no language on file" }}.</p>
 </section>
 
@@ -83,14 +83,14 @@
   <p>No manual could be found for this device.</p>
   {% elif card.empty %}
   <p>The card could not be built from this manual.</p>
-  {% if card.dropped %}<p class="note">{{ card.dropped }} lines dropped: not found in the manual.</p>{% endif %}
+  {% if card.dropped %}<p class="note">{{ card.dropped | plural('line') }} dropped: not found in the manual.</p>{% endif %}
   {% else %}
   <div class="{{ 'split' if translated else '' }}">
     <div class="card-col">
       <h2>English</h2>
       <p class="note">From {{ manual.title or manual.file }}. Every line cites its page.</p>
       {{ card_body(card) }}
-      {% if card.dropped %}<p class="note">{{ card.dropped }} lines dropped: not found in the manual.</p>{% endif %}
+      {% if card.dropped %}<p class="note">{{ card.dropped | plural('line') }} dropped: not found in the manual.</p>{% endif %}
     </div>
     {% if translated %}
     <div class="card-col" lang="{{ translation.language }}">
@@ -128,5 +128,9 @@
   </section>
 </div>
 
+{% if locked %}
+<p class="note">Rebuild this packet: {{ seeded_message }}</p>
+{% else %}
 <p class="note"><a class="link" href="/packet/{{ offer.id }}?facility={{ facility.slug }}&amp;rebuild=1">Rebuild this packet</a></p>
+{% endif %}
 {% endblock %}

@@ -1,7 +1,7 @@
 """Find a manufacturer document for a named device and read its text.
 
 `search(query)` returns hits; `fetch(hit)` returns the document's text split
-into pages. Tonight the only working provider is the device library: a hit is
+into pages. For now the only working provider is the device library: a hit is
 one of an entry's stored documents and fetching it reads the stored `.txt`.
 The live providers (`google_cse`, `brave`) keep the same interface and raise
 NotConfigured, naming the environment variables they need, so a key drops in

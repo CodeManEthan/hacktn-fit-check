@@ -16,6 +16,7 @@ from app.domain.facility import FacilityProfile
 from app.domain.marketplace import Offer
 from app.domain.requirement import POWER_ADD_ONS, Requirement, RequirementKind
 from app.domain.result import CheckStatus, Verdict
+from app.domain.text import plural
 
 OfferFinder = Callable[[str, tuple[str, ...]], Iterable[Offer]]
 
@@ -81,9 +82,11 @@ class Bundle:
             return "Nothing needs to ship alongside it."
         if not self.shippable:
             return "What it needs cannot be shipped, only arranged."
+        count = len(self.shippable)
         if self.complete:
-            return f"All {len(self.shippable)} items can be sourced from open offers."
-        return f"{len(self.covered)} of {len(self.shippable)} items can be sourced."
+            every = "All " if count > 1 else ""
+            return f"{every}{plural(count, 'item')} can be sourced from open offers."
+        return f"{len(self.covered)} of {plural(count, 'item')} can be sourced."
 
 
 def build_bundle(
@@ -93,7 +96,7 @@ def build_bundle(
 
     `facility` is the clinic the add-ons must run at. A power add-on offer
     counts as a fix only when its own plate says it runs on this clinic's
-    mains (design §2.4); consumables and parts kits have no plate and count
+    mains; consumables and parts kits have no plate and count
     as found.
     """
     items = []

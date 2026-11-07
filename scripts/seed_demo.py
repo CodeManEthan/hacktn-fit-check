@@ -4,9 +4,11 @@ Run with: ./.venv/bin/python -m scripts.seed_demo
 
 Safe to run again on a database that is already seeded (the VM was seeded once
 by the earlier script). Offers are keyed on (donor name, manufacturer, model)
-and replaced in place; recorded answers are keyed on (device type, model,
-country); the Kayunga request is created once; the seeded history is
-deleted and written again. Running it twice leaves one of each.
+and replaced in place; offers stored under a donor's old, real name are first
+renamed to its fictional one (app/data/seeded.py holds the names and the map);
+recorded answers are keyed on (device type, model, country); the Kayunga
+request is created once; the seeded history is deleted and written again.
+Running it twice leaves one of each.
 
 The hero offers are built from the device library (data/device_library.json),
 so every value they carry cites a manufacturer document; the donor adds only
@@ -19,12 +21,12 @@ from __future__ import annotations
 from dataclasses import replace
 from datetime import date, timedelta
 
-from sqlalchemy import delete, select
+from sqlalchemy import delete, func, select, update
 
 from app.checks.runner import check_fit
 from app.data import db
 from app.data import marketplace_repo as repo
-from app.data import repository
+from app.data import repository, seeded
 from app.data.marketplace_schema import offers as offers_table
 from app.data.seed import FACILITIES
 from app.domain.device import DeviceFacts, SupplyIntel
@@ -38,7 +40,7 @@ STATED = Provenance.DONOR_STATED
 OFFER_WINDOW_DAYS = 180
 NOTHING_DATED = fact(False, STATED)
 
-KAYUNGA = "uganda-district"
+KAYUNGA = seeded.KAYUNGA
 HERO_TYPE = "oxygen concentrator"
 HERO_A_SLUG = "drive-devilbiss-525ds"
 HERO_B_SLUG = "drive-devilbiss-525ks"
@@ -47,7 +49,9 @@ OFFER_C_TEXT = "older oxygen concentrator, works fine, 2 units"
 # Devices saved for the seeded history carry this as their raw input, so a
 # rerun can find and replace exactly the rows it wrote before.
 HISTORY_MARKER = "seed_demo: impact history"
-HISTORY_SIZE = 20
+LIBRARY_PAIRS = 20
+# The twenty library pairs, then the 525DS and 525KS hero offers at Kayunga.
+HISTORY_SIZE = LIBRARY_PAIRS + 2
 
 
 def _device(**kwargs) -> DeviceFacts:
@@ -70,10 +74,10 @@ def _from_library(slug: str, year: int) -> DeviceFacts:
 
 
 def hero_offers() -> tuple[Offer, ...]:
-    """The three oxygen concentrators screened against Kayunga on stage ([F3])."""
+    """The three oxygen concentrators the worked example screens against Kayunga."""
     return (
         Offer(
-            donor_name="Nashville General Hospital biomedical department",
+            donor_name=seeded.HERO_A_DONOR,
             donor_email="biomed@example.org",
             device_type=HERO_TYPE,
             origin=GeoPoint(country="United States", city="Nashville",
@@ -82,7 +86,7 @@ def hero_offers() -> tuple[Offer, ...]:
             device=_from_library(HERO_A_SLUG, 2016),
         ),
         Offer(
-            donor_name="Leeds Teaching Hospitals NHS Trust, surplus",
+            donor_name=seeded.HERO_B_DONOR,
             donor_email="surplus@example.org",
             device_type=HERO_TYPE,
             origin=GeoPoint(country="United Kingdom", city="Leeds",
@@ -91,7 +95,7 @@ def hero_offers() -> tuple[Offer, ...]:
             device=_from_library(HERO_B_SLUG, 2019),
         ),
         Offer(
-            donor_name="Harris County clinic network",
+            donor_name=seeded.HERO_C_DONOR,
             donor_email="clinics@example.org",
             device_type=HERO_TYPE,
             origin=GeoPoint(country="United States", city="Houston",
@@ -105,7 +109,7 @@ def hero_offers() -> tuple[Offer, ...]:
 
 DEMO_OFFERS = (
     Offer(
-        donor_name="Baptist Health biomedical department",
+        donor_name=seeded.VENTILATOR_DONOR,
         donor_email="biomed@example.org",
         device_type="ventilator",
         origin=GeoPoint(country="United States", city="Nashville", latitude=36.1627, longitude=-86.7816),
@@ -120,7 +124,7 @@ DEMO_OFFERS = (
         ),
     ),
     Offer(
-        donor_name="St Mary's Hospital surplus",
+        donor_name=seeded.ANAESTHESIA_DONOR,
         donor_email="surplus@example.org",
         device_type="anaesthesia machine",
         origin=GeoPoint(country="United States", city="Chicago", latitude=41.8781, longitude=-87.6298),
@@ -135,7 +139,7 @@ DEMO_OFFERS = (
         ),
     ),
     Offer(
-        donor_name="Nairobi Equipment Trust",
+        donor_name=seeded.MONITOR_DONOR,
         donor_email="trust@example.org",
         device_type="patient monitor",
         origin=GeoPoint(country="Kenya", city="Nairobi", latitude=-1.2921, longitude=36.8219),
@@ -150,7 +154,7 @@ DEMO_OFFERS = (
         ),
     ),
     Offer(
-        donor_name="Gulf Coast Medical Center",
+        donor_name=seeded.MOMBASA_VENTILATOR_DONOR,
         donor_email="surplus@example.org",
         device_type="ventilator",
         origin=GeoPoint(country="Kenya", city="Mombasa", latitude=-4.0435, longitude=39.6682),
@@ -167,7 +171,7 @@ DEMO_OFFERS = (
 )
 
 SOLLATEK_NOTE = ("stand-in figures: the UNICEF S0002632 1 kVA medical stabilizer's stated "
-                 "160-260 V input (add-on-fulfillment-research.md [A9]) until a Sollatek AVS30 "
+                 "160-260 V input (price research, 2026-10-17) until a Sollatek AVS30 "
                  "document is fetched")
 
 
@@ -184,7 +188,7 @@ def _sollatek() -> DeviceFacts:
 # Support equipment. Without these in the inventory a requirement stays advice.
 SUPPORT_OFFERS = (
     Offer(
-        donor_name="Kampala Power Trust",
+        donor_name=seeded.POWER_DONOR,
         donor_email="trust@example.org",
         device_type="voltage stabilizer",
         support_kind="voltage stabiliser",
@@ -193,7 +197,7 @@ SUPPORT_OFFERS = (
         device=_sollatek(),
     ),
     Offer(
-        donor_name="Kampala Power Trust",
+        donor_name=seeded.POWER_DONOR,
         donor_email="trust@example.org",
         device_type="UPS 3kVA",
         support_kind="backup power",
@@ -202,7 +206,7 @@ SUPPORT_OFFERS = (
         device=_device(manufacturer="APC", model="Smart-UPS 3000", year_of_manufacture=2021),
     ),
     Offer(
-        donor_name="Mombasa Medical Gases",
+        donor_name=seeded.GASES_DONOR,
         donor_email="gases@example.org",
         device_type="medical air compressor",
         support_kind="medical air compressor",
@@ -210,9 +214,9 @@ SUPPORT_OFFERS = (
         quantity_offered=1,
         device=_device(manufacturer="Bambi", model="VT200", year_of_manufacture=2020),
     ),
-    # The on-stage reject: a US regulator that fails frequency at Kayunga.
+    # The example's reject: a US regulator that fails frequency at Kayunga.
     Offer(
-        donor_name="Houston surplus AVR",
+        donor_name=seeded.AVR_DONOR,
         donor_email="avr@example.org",
         device_type="voltage stabilizer",
         support_kind="voltage stabiliser",
@@ -225,7 +229,7 @@ SUPPORT_OFFERS = (
     ),
 )
 
-# The nonprofit's recorded answer for the 525KS in Uganda ([R20]): filters are
+# The nonprofit's recorded answer for the 525KS in Uganda: filters are
 # not stocked, so the consumables check raises "two years of filters".
 KAYUNGA_ANSWERS = (
     SupplyAnswer(
@@ -292,6 +296,25 @@ def _stored_offers_by_key() -> dict[tuple[str, str, str], list[Offer]]:
     return grouped
 
 
+def rename_old_donors() -> int:
+    """Give offers stored under a donor's old, real name its fictional one, in place.
+
+    The offer key includes the donor name, so without this the upsert would
+    add a second offer beside each renamed one. Renamed in place, the offers
+    keep their ids, and with them their matches and cached packets. A visitor's
+    offer typed with an old name is renamed too. Nothing to do on a rerun.
+    """
+    renamed = 0
+    with db.get_engine().begin() as conn:
+        for old, new in seeded.DONOR_RENAMES.items():
+            renamed += conn.execute(
+                update(offers_table)
+                .where(func.lower(func.trim(offers_table.c.donor_name)) == old.casefold())
+                .values(donor_name=new)
+            ).rowcount
+    return renamed
+
+
 def upsert_offers(offers: tuple[Offer, ...], available_until: date) -> list[tuple[int, Offer, str]]:
     """Save each offer, or replace the stored one with the same key.
 
@@ -321,11 +344,9 @@ def upsert_offers(offers: tuple[Offer, ...], available_until: date) -> list[tupl
 
 def ensure_kayunga_request() -> tuple[int, bool]:
     """The open Kayunga request for one oxygen concentrator, made once."""
-    for open_request in repo.list_open_requests():
-        if open_request.facility_slug == KAYUNGA and any(
-            line.device_type.strip().casefold() == HERO_TYPE for line in open_request.lines
-        ):
-            return open_request.id, False
+    found = seeded.kayunga_request_id()
+    if found is not None:
+        return found, False
     return repo.save_request(Request(
         facility_slug=KAYUNGA,
         lines=(RequestLine(device_type=HERO_TYPE, quantity=1),),
@@ -341,7 +362,7 @@ def history_pairs() -> list[tuple[device_library.LibraryEntry, object]]:
     clinics = FACILITIES
     pairs = [(e, clinics[i % len(clinics)]) for i, e in enumerate(entries)]
     pairs += [(e, clinics[(i + 1) % len(clinics)]) for i, e in enumerate(entries)]
-    return pairs[:HISTORY_SIZE]
+    return pairs[:LIBRARY_PAIRS]
 
 
 def _clear_history() -> int:
@@ -355,13 +376,31 @@ def _clear_history() -> int:
     return len(ids)
 
 
+def hero_history_pairs() -> list[tuple[DeviceFacts, str, object]]:
+    """The 525DS and 525KS hero offers at Kayunga, as the matches page screens them.
+
+    These carry the donor's build year and answers, not the bare library
+    entries, which screen as "needs info"; the 525KS is the one that ships.
+    """
+    kayunga = next(clinic for clinic in FACILITIES if clinic.slug == KAYUNGA)
+    by_model = {offer.device.model.value: offer for offer in hero_offers()}
+    return [(by_model[model].device, by_model[model].device_type, kayunga)
+            for model in ("525DS", "525KS")]
+
+
 def seed_history() -> list[tuple[str, str, str]]:
-    """Screen library devices against the clinics and store each real verdict."""
+    """Screen devices against the clinics and store each real verdict.
+
+    Every row is check_fit's own result for its pair, with the recorded
+    supply answers only; nothing is written by hand.
+    """
     _clear_history()
+    pairs = [(device_library.to_device_facts(found), found.device_type, clinic)
+             for found, clinic in history_pairs()]
     written = []
-    for found, clinic in history_pairs():
-        device = replace(device_library.to_device_facts(found), raw_input=HISTORY_MARKER)
-        intel = recorded_intel(device, found.device_type, clinic.country)
+    for facts, device_type, clinic in pairs + hero_history_pairs():
+        device = replace(facts, raw_input=HISTORY_MARKER)
+        intel = recorded_intel(device, device_type, clinic.country)
         verdict = check_fit(device, clinic, intel)
         device_id = repository.save_device(device)
         repository.save_verdict(device_id=device_id, device=device, facility=clinic,
@@ -376,6 +415,9 @@ def main(today: date | None = None) -> dict[str, int]:
         repo.save_facility(profile)
     print(f"facilities: {len(FACILITIES)}")
 
+    renamed = rename_old_donors()
+    if renamed:
+        print(f"  offers renamed to fictional donors: {renamed}")
     expires = (today or date.today()) + timedelta(days=OFFER_WINDOW_DAYS)
     written = upsert_offers(all_offers(), expires)
     for offer_id, offer, action in written:

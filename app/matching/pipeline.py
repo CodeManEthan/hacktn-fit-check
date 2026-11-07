@@ -196,7 +196,7 @@ def _assess(
 def _sort_key(candidate: Candidate) -> tuple[int, int, int, float]:
     """Known before unknown, then fewest conditions, then nearest. Unlocated last.
 
-    `info_rank` comes first (design §2.3): a fully known offer with three
+    `info_rank` comes first: a fully known offer with three
     add-ons ranks above an unknown one with none. Every part is an ordinal in
     one tuple, not a term in a sum: no number of kilometres saved can offset a
     condition or an open question, and nothing here can resurrect a device

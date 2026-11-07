@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from app.checks.power import battery_only_pass
 from app.domain.device import DeviceFacts, SupplyIntel
 from app.domain.facility import FacilityProfile
 from app.domain.provenance import Provenance
@@ -45,7 +46,7 @@ def check_temperature(
             source=rated.source,
         )
 
-    # Cooling a room is building works, not an add-on (design §2.4): nothing
+    # Cooling a room is building works, not an add-on: nothing
     # ships in the crate that fixes it, so it fails and says what is missing.
     return CheckResult(
         key="temperature",
@@ -99,6 +100,9 @@ def check_humidity(
 def check_grid_reliability(
     device: DeviceFacts, facility: FacilityProfile, intel: SupplyIntel
 ) -> CheckResult:
+    if device.battery_only:
+        # No mains input, so outages and transients never reach it.
+        return battery_only_pass(device, "grid", "Grid reliability")
     if not facility.power_is_unstable:
         return CheckResult(
             key="grid",

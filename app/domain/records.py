@@ -1,4 +1,4 @@
-"""Stored records the overnight round caches: registry lookups, packets, extractions.
+"""Stored records the app caches: registry lookups, packets, extractions.
 
 Plain values handed out by app/data/marketplace_repo.py, so no caller sees a
 row or a JSON blob.

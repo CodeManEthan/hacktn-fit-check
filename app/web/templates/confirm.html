@@ -4,7 +4,7 @@
 <section class="masthead">
   <p class="eyebrow">{{ match.id }}</p>
   <h1>Do you still have it?</h1>
-  <p class="sub">{{ facility.name }} in {{ facility.country }} needs
+  <p class="sub">{{ facility.name }}{{ clinic_tag(facility.slug) }} in {{ facility.country }} needs
      {{ match.quantity }} &times; {{ offer.device.label }}. You posted this offer
      {% if offer.created_at %}on {{ offer.created_at.date() }}{% else %}earlier{% endif %},
      so we are checking before anyone arranges shipping.</p>
@@ -25,6 +25,11 @@
   {% endif %}
 
   {% if match.state.value in ('proposed', 'awaiting donor') %}
+  {% if locked %}
+  <div class="confirm-acts">
+    {% with lock_label="Yes, it is still here" %}{% include "_seeded_lock.html" %}{% endwith %}
+  </div>
+  {% else %}
   <div class="confirm-acts">
     <form method="post" action="/confirm/{{ match.token }}">
       <input type="hidden" name="answer" value="yes">
@@ -35,6 +40,7 @@
       <button class="go-quiet" type="submit">No, it has gone</button>
     </form>
   </div>
+  {% endif %}
   <p class="note">Saying no is useful. The clinic is told straight away and the
      next-nearest donor is approached automatically.</p>
   {% else %}

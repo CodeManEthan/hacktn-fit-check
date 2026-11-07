@@ -7,11 +7,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/static/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2.6 2.8 9.4V21h18.4V9.4L12 2.6Z' fill='%232563EB'/%3E%3Cpath d='M12 10.4v6.4M8.8 13.6h6.4' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
   {% block head %}{% endblock %}
 </head>
-{# The bar is the teammate's (upstream de6b0fb, 3bb4e93): white, the house
-   mark, About us / Contact / Get help. On its right sits our role toggle
-   (§7.1): a cookie and a colour, and each button opens its party's home
+{# The bar comes from upstream (de6b0fb, 3bb4e93): white, the house
+   mark, About us / Contact / Get help. On its right sits our role toggle:
+   a cookie and a colour, and each button opens its party's home
    page. It hides nothing; the nonprofit role adds its desks under the bar.
    Blocks for child templates: title, head (a page's own stylesheet),
    body_class, chrome, content, footer. The prototype note sits above the
@@ -38,7 +39,8 @@
           <a href="{{ href }}"{% if here == href %} aria-current="page"{% endif %}>{{ name }}</a>
           {% endfor %}
         </nav>
-        <form class="role-toggle" method="post" action="/role" aria-label="Viewing as">
+        <span class="role-hint" id="role-hint" style="font-size:12px;color:var(--etch)">Demo: switch viewpoint. There are no logins.</span>
+        <form class="role-toggle" method="post" action="/role" aria-label="Viewing as" aria-describedby="role-hint">
           <input type="hidden" name="back" value="{{ here or '/' }}{% if request is defined and request and request.url.query %}?{{ request.url.query }}{% endif %}">
           {% for value, name in roles %}
           <button type="submit" name="role" value="{{ value }}" class="role-btn role-btn-{{ value }}"

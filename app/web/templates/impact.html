@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Log &middot; Fit-Check{% endblock %}
+{% block title %}Impact &middot; Fit-Check{% endblock %}
 {% block content %}
 <section class="masthead">
   <h1>What the screening has caught</h1>
@@ -13,10 +13,9 @@
   <div class="counters">
     {% set total = counts.values() | sum %}
     <div class="counter"><b>{{ total }}</b><span>devices screened</span></div>
-    <div class="counter bad"><b>{{ counts.get("won't work", 0) }}</b><span>stopped before shipping</span></div>
-    <div class="counter hold"><b>{{ counts.get('works if you also send', 0) }}</b><span>need extras sent with them</span></div>
-    <div class="counter good"><b>{{ counts.get('works', 0) }}</b><span>cleared as they are</span></div>
-    <div class="counter ask"><b>{{ counts.get('needs info', 0) }}</b><span>need answers first</span></div>
+    {% for value in ("won't work", 'works if you also send', 'works', 'needs info') %}
+    <div class="counter {{ tone[value] }}"><b>{{ counts.get(value, 0) }}</b><span>{{ value | stamp }}</span></div>
+    {% endfor %}
   </div>
   {% if summary %}
   <div class="impact-summary">
@@ -50,7 +49,7 @@
       <tr>
         <td class="what">{{ row.device_label }}</td>
         <td>{{ row.facility_name }}</td>
-        <td><span class="pill {{ tone.get(row.outcome, 'hold') }}">{{ row.outcome }}</span></td>
+        <td><span class="pill {{ tone.get(row.outcome, 'hold') }}">{{ row.outcome | stamp }}</span></td>
         <td><a class="link" href="/verdict/{{ row.id }}">open</a></td>
       </tr>
       {% endfor %}

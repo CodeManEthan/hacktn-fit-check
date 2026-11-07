@@ -9,9 +9,9 @@
     <div class="ident">
       <h1 class="ident-name">{{ offer_name(offer) }}</h1>
       <p class="ident-kind">{{ offer.device_type }} &middot; {{ offer.quantity_available }} available from
-         {{ offer.donor_name }}, {{ offer.origin.city }}{% if offer.origin.city %}, {% endif %}{{ offer.origin.country }}</p>
+         {{ offer.donor_name }}{{ donor_tag(offer.donor_name) }}, {{ offer.origin.city }}{% if offer.origin.city %}, {% endif %}{{ offer.origin.country }}</p>
       {% if c.distance_km is not none %}
-      <p class="ident-far">{{ c.distance_km | round | int }} km &middot; {{ c.distance_miles | round | int }} mi to {{ facility.name }}{% if c.shipment %}, about {{ c.shipment.transit_days }} days to deliver{% endif %}</p>
+      <p class="ident-far">{{ c.distance_km | round | int }} km &middot; {{ c.distance_miles | round | int }} mi to {{ facility.name }}{% if c.shipment %}, about {{ c.shipment.transit_days | plural('day') }} to deliver{% endif %}</p>
       {% endif %}
       <dl class="pairs">
         {% for label, value in pairs %}
@@ -27,7 +27,7 @@
       </div>
       <p class="oversight">A screen, not a clearance. A person decides before anything ships.</p>
       <div class="dest">
-        <p class="dest-name">{{ facility.name }} <em>{{ facility.country }}</em></p>
+        <p class="dest-name">{{ facility.name }} <em>{{ facility.country }}</em>{{ clinic_tag(facility.slug) }}</p>
         <span class="specs">
           <span><b>{{ facility.mains_voltage_v }} V</b></span>
           <span><b>{{ facility.mains_frequency_hz }} Hz</b></span>
@@ -58,7 +58,8 @@
     <form method="post" action="/match">
       <input type="hidden" name="request_id" value="{{ request_row.id }}">
       <input type="hidden" name="offer_id" value="{{ offer.id }}">
-      <button class="go-quiet" type="submit">Ask this donor</button>
+      {% if locked %}{% with lock_label="Ask this donor", lock_class="go-quiet" %}{% include "_seeded_lock.html" %}{% endwith %}
+      {% else %}<button class="go-quiet" type="submit">Ask this donor</button>{% endif %}
     </form>
     {% endif %}
   </div>
@@ -104,7 +105,7 @@
 
 {% if questions %}
 <div class="flag ask">
-  <h2>{{ questions | length }} open question{{ '' if questions | length == 1 else 's' }} before a verdict</h2>
+  <h2>{{ questions | length | plural('open question') }} before a verdict</h2>
   <ul>
     {% for q in questions %}
     <li>{{ q.text }}
@@ -115,7 +116,7 @@
 {% endif %}
 
 <section class="plate plate-tight">
-  <h2>Audit trail &mdash; {{ verdict.results | length }} checks</h2>
+  <h2>Audit trail &mdash; {{ verdict.results | length | plural('check') }}</h2>
   <p class="note">Every row is decided by code, not by a model. The tag says where the
      fact came from, and the link under it opens the page it was read on.</p>
   <div class="audit-scroll">

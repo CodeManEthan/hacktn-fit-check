@@ -62,7 +62,7 @@ def test_both_525s_answer_the_utility_and_training_checks(slug):
     assert facts.operating_complexity.value == "low"
     assert "separates oxygen from room air" in e.facts["needs_oxygen"]["quote"]
     assert "bubble humidifier is an optional accessory" in facts.needs_distilled_water.note
-    assert facts.operating_complexity.note.split("; ", 1)[1].startswith("lead's reading of the intended use")
+    assert facts.operating_complexity.note.split("; ", 1)[1].startswith("author's reading of the intended use")
     assert "nursing homes, patient care facilities" in e.facts["operating_complexity"]["quote"]
     assert facts.consumables.value == [
         "MC44D-605 intake bacteria filter", "303DZ-605 cabinet air filter",
@@ -150,7 +150,7 @@ def test_citation_gives_the_page_link():
     assert lib.citation(lib.entry("drive-devilbiss-525ks"), "year_of_manufacture")["url"] == ""
 
 
-@pytest.mark.skipif(not NOTES.exists(), reason="the notes tree is not on this machine")
+@pytest.mark.skipif(not NOTES.exists(), reason="the device notes are not in this repo")
 def test_the_committed_file_is_what_the_build_script_makes(tmp_path):
     from scripts import build_library
 

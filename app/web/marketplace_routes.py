@@ -3,16 +3,15 @@
 from __future__ import annotations
 
 from datetime import datetime
-from pathlib import Path
 
 from fastapi import APIRouter, File, Form, Request, UploadFile
 from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse
-from fastapi.templating import Jinja2Templates
 
 from app.ai.categorise import categorise_support
 from app.ai.client import GenAiError
-from app.ai.extract import extract, extract_device, image_to_data_url, library_citations
+from app.ai.extract import extract, extract_device, image_to_data_url
 from app.data import marketplace_repo as repo
+from app.data import seeded
 from app.data.repository import RepositoryError
 from app.domain.device import DeviceFacts
 from app.domain.facility import FacilityProfile
@@ -38,30 +37,17 @@ from app.matching.verification import (
 )
 from app.reference.country_power import country_centroid, lookup
 from app.reference.facility_registry import corroborates, find_candidates
-from app.web import forms, inspector, presenters
+from app.web import demo_guard, forms, inspector, presenters
 from app.web.forms import FormError
-from app.web.presenters import advisory_for, rule_count, TONE_BY_OUTCOME, TONE_BY_STATUS
+from app.web.presenters import advisory_for, TONE_BY_OUTCOME, TONE_BY_STATUS
+from app.web.shared import TEMPLATES, _error, _library_device, _library_entry, _refused
 
-TEMPLATES = Jinja2Templates(directory=str(Path(__file__).parent / "templates"))
-TEMPLATES.env.globals["rule_count"] = rule_count()
-TEMPLATES.env.globals["offer_name"] = presenters.offer_name
-TEMPLATES.env.globals["supply_url"] = presenters.supply_url
 router = APIRouter()
-
-
-def _error(request: Request, message: str, back: str = "/") -> HTMLResponse:
-    return TEMPLATES.TemplateResponse(
-        request=request, name="error.html",
-        context={"message": message, "back": back}, status_code=400,
-    )
-
-
-DEMO_CLINIC = "uganda-district"
 
 
 @router.get("/", response_class=HTMLResponse)
 def landing(request: Request) -> HTMLResponse:
-    """The landing page (design §13): two doors and the operator between them.
+    """The landing page: two doors and the operator between them.
 
     The seeded-clinic strip is gone, so the page needs no data; the role
     cookie is read by base.html from the request.
@@ -70,23 +56,13 @@ def landing(request: Request) -> HTMLResponse:
 
 
 # The worked example is the seeded Kayunga request for one oxygen concentrator.
-# scripts/seed_demo.py makes it once and finds it again by these two values;
-# its id differs from one database to the next, so the landing links here.
-EXAMPLE_TYPE = "oxygen concentrator"
-
-
+# Its id differs from one database to the next, so the landing links here.
 def example_request_id() -> int | None:
     """The seeded Kayunga request's id, found as the seed finds it, or None."""
     try:
-        open_requests = repo.list_open_requests()
+        return seeded.kayunga_request_id()
     except repo.RepositoryError:
         return None
-    for row in open_requests:
-        if row.facility_slug == DEMO_CLINIC and any(
-            line.device_type.strip().casefold() == EXAMPLE_TYPE for line in row.lines
-        ):
-            return row.id
-    return None
 
 
 @router.get("/example", response_class=HTMLResponse)
@@ -100,7 +76,7 @@ def example(request: Request):
     return RedirectResponse(url=f"/request/{request_id}/matches", status_code=303)
 
 
-# ---- role toggle (design §7.1) -----------------------------------------
+# ---- role toggle --------------------------------------------------------
 
 ROLES = ("donor", "clinic", "nonprofit")
 ROLE_COOKIE_DAYS = 30
@@ -158,7 +134,7 @@ async def offer_submit(
         posted = await request.form()
         library_slug = str(posted.get("library_slug") or "").strip()
         if library_slug:
-            # [B3] A library pick: the facts are rebuilt from the library, never
+            # A library pick: the facts are rebuilt from the library, never
             # read from the form, so a cited value cannot be edited by hand.
             # The donor adds only what is about this unit: its build year here,
             # quantity and location below.
@@ -167,7 +143,7 @@ async def offer_submit(
             device_type = device_type.strip() or picked.device_type
             model_name = model_name.strip() or picked.label
 
-        # [B4] Facts the inspector already read and showed, reloaded from the
+        # Facts the inspector already read and showed, reloaded from the
         # server's cache; the donor's "wrong" marks clear those fields. The
         # client posts only the id and field names, never a value.
         if device is None and extraction_id.strip():
@@ -224,7 +200,7 @@ def offer_posted(request: Request, offer_id: int) -> HTMLResponse:
 @router.get("/clinic", response_class=HTMLResponse)
 def facility_form(request: Request) -> HTMLResponse:
     """The clinic's profile form; country is a list so the grid lookup never misses."""
-    # Imported here, not at the top: this handler is the only reader ([B14], design §13).
+    # Imported here, not at the top: this handler is the only reader.
     from app.reference.country_power import known_countries
 
     return TEMPLATES.TemplateResponse(
@@ -280,7 +256,7 @@ async def facility_submit(request: Request) -> HTMLResponse:
     except (FormError, RepositoryError) as exc:
         return _error(request, str(exc), back="/clinic")
 
-    # A registered clinic goes straight to the list upload (design §13, [B14]).
+    # A registered clinic goes straight to the list upload.
     return RedirectResponse(url=f"/request/upload?facility={slug}", status_code=303)
 
 
@@ -340,6 +316,8 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
         return _error(request, f"No facility profile for {row.facility_slug}.")
 
     coverages = []
+    locked: set[int] = set()
+    whole_request = demo_guard.request_locked(request_id)
     bundles: dict[int, object] = {}
     advisory: dict[int, object] = {}
     questions: dict[int, list[dict]] = {}
@@ -354,6 +332,8 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
             )
         )
         for c in screening.ranked:
+            if whole_request or demo_guard.offer_locked(c.offer):
+                locked.add(c.offer.id)
             bundles[c.offer.id] = build_bundle(c.verdict, facility, repo.offers_for_support)
             if c.verdict.outcome is Outcome.NEEDS_INFO:
                 questions[c.offer.id] = presenters.open_questions(
@@ -366,7 +346,7 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
         context={
             "request_row": row, "facility": facility,
             "coverages": coverages, "bundles": bundles, "advisory": advisory,
-            "questions": questions,
+            "questions": questions, "locked": locked,
             "symbol": TONE_BY_STATUS, "tone": TONE_BY_OUTCOME,
         },
     )
@@ -374,7 +354,7 @@ def matches(request: Request, request_id: int) -> HTMLResponse:
 
 @router.get("/request/{request_id}/offer/{offer_id}", response_class=HTMLResponse)
 def candidate_page(request: Request, request_id: int, offer_id: int) -> HTMLResponse:
-    """One offer's verdict for one request's clinic (design §7.2).
+    """One offer's verdict for one request's clinic.
 
     The offer is screened again here, with the same supply order the matches
     page uses, so a rejected or a needs-info offer renders as well as a
@@ -421,6 +401,7 @@ def candidate_page(request: Request, request_id: int, offer_id: int) -> HTMLResp
             "advisory": {offer.id: advisory_for(candidate)} if rejected else {},
             "pairs": presenters.identity_pairs(offer.device),
             "proposable": verdict.outcome in (Outcome.WORKS, Outcome.WORKS_IF),
+            "locked": demo_guard.request_locked(request_id) or demo_guard.offer_locked(offer),
             "packet_url": f"/packet/{offer.id}?facility={facility.slug}",
             "back": back,
             "symbol": TONE_BY_STATUS, "tone": TONE_BY_OUTCOME,
@@ -438,10 +419,12 @@ def create_match(
     offer = repo.load_offer(offer_id)
     if row is None or offer is None:
         return _error(request, "That request or offer no longer exists.")
+    back = f"/request/{request_id}/matches"
+    if demo_guard.request_locked(request_id) or demo_guard.offer_locked(offer):
+        return _refused(request, back=back)
     facility = repo.load_facility(row.facility_slug)
     if facility is None:
         return _error(request, f"No facility profile for {row.facility_slug}.")
-    back = f"/request/{request_id}/matches"
     line = repo.line_for_offer(row.lines, offer.device_type)
     if line is None:
         return _error(
@@ -503,6 +486,7 @@ def confirm_page(request: Request, token: str) -> HTMLResponse:
         context={
             "match": match, "offer": offer, "facility": facility,
             "trust": repo.load_verification(row.facility_slug) if row else VerificationStatus(),
+            "locked": demo_guard.match_locked(match),
         },
     )
 
@@ -512,6 +496,8 @@ def confirm_submit(request: Request, token: str, answer: str = Form(...)) -> HTM
     match = repo.load_match_by_token(token)
     if match is None:
         return _error(request, "That confirmation link is not valid.")
+    if demo_guard.match_locked(match):
+        return _refused(request, back=f"/confirm/{token}")
     now = datetime.now()
 
     try:
@@ -648,6 +634,7 @@ def review_facility(request: Request, slug: str, check: int = 0) -> HTMLResponse
             "checked": bool(check),
             "corroborates": corroborates,
             "supported": any(corroborates(c) for c in candidates),
+            "locked": demo_guard.clinic_locked(slug),
         },
     )
 
@@ -660,6 +647,8 @@ def review_decide(
     note: str = Form(default=""),
 ) -> HTMLResponse:
     """Record a reviewer's decision. Only a person moves a clinic's tier."""
+    if demo_guard.clinic_locked(slug):
+        return _refused(request, back=f"/review/{slug}")
     try:
         tier = Verification(decision)
     except ValueError:
@@ -719,7 +708,7 @@ def _support_kind(device_type: str, label: str) -> str:
     return kind.value if kind else ""
 
 
-# ---- recorded supply answers (§2.7) ------------------------------------
+# ---- recorded supply answers -------------------------------------------
 
 from urllib.parse import quote, urlencode  # noqa: E402
 
@@ -747,7 +736,8 @@ def _supply_page(request: Request, country: str, values: dict, *,
     return TEMPLATES.TemplateResponse(
         request=request, name="supply_form.html", status_code=status_code,
         context={"country": country, "questions": SUPPLY_QUESTIONS,
-                 "saved": saved, "error": error, **values},
+                 "saved": saved, "error": error, "locked": demo_guard.supply_locked(),
+                 **values},
     )
 
 
@@ -799,6 +789,8 @@ def supply_save(
     back: str = Form(default=""),
 ) -> HTMLResponse:
     """Write one recorded answer, then go back to the page that asked."""
+    if demo_guard.supply_locked():
+        return _refused(request, back=f"/supply/{quote(country)}")
     raw = {"consumables_available": consumables_available,
            "spare_parts_available": spare_parts_available,
            "sold_locally": sold_locally, "manufacturer_supported": manufacturer_supported}
@@ -828,248 +820,3 @@ def supply_save(
     query = urlencode({"device_type": answer.device_type, "model": answer.model, "saved": 1})
     return RedirectResponse(url=f"/supply/{quote(answer.country)}?{query}", status_code=303)
 
-# ---- handover packet (design §5.3; [B5]) -----------------------------------
-
-from app.ai.client import CLIENT as _PACKET_CHAT  # noqa: E402 - the [B5] block stands alone
-from app.ai.packet import Card, build_card, card_from_dict, gate, split_pages  # noqa: E402
-from app.ai.translate import ENGINE_CHAT, Target, pick_target, translate_card  # noqa: E402
-from app.checks import check_fit  # noqa: E402
-from app.domain.result import Verdict  # noqa: E402
-from app.reference.device_library import document_text  # noqa: E402
-from app.reference.import_rules import documents_required  # noqa: E402
-
-MANUAL_KIND = "manual"
-MANUAL_TITLE_WORDS = ("manual", "instruction", "guide", "ifu")
-# The kinds that are editions of the manufacturer's manual. A registry
-# record, a shop's product page, a declaration or a notice is about the
-# device, not an edition of its manual. A document stored before kinds were
-# carried (no kind) is still listed.
-EDITION_KINDS = frozenset({"manual", "service manual"})
-
-
-def _packet_chat():
-    """The chat client the card is built with; tests replace it."""
-    return _PACKET_CHAT
-
-
-def _packet_language():
-    """The OCI Language client; None builds one from the settings. Tests replace it."""
-    return None
-
-
-def _packet_documents(device: DeviceFacts) -> list[dict]:
-    documents = device.documents
-    if not documents.known or not isinstance(documents.value, (list, tuple)):
-        return []
-    return [d for d in documents.value if isinstance(d, dict)]
-
-
-def _packet_manual(documents: list[dict]) -> dict | None:
-    """The first document of kind manual, else the first titled like one, else the first."""
-    if not documents:
-        return None
-    by_kind = next((d for d in documents if str(d.get("kind", "")).lower() == MANUAL_KIND), None)
-    by_title = next((d for d in documents
-                     if any(w in str(d.get("title", "")).lower() for w in MANUAL_TITLE_WORDS)),
-                    None)
-    return by_kind or by_title or documents[0]
-
-
-def _packet_verdict(offer: Offer, clinic: FacilityProfile) -> Verdict:
-    """The verdict stored on a match of this offer for this clinic, else a fresh one.
-
-    The fresh one is screened the way the candidate page screens it (the
-    supply order's intel and the shipment estimate), so the send-with list
-    carries the same conditions. An offer no longer open is not screened;
-    it is checked with the same intel and no shipment.
-    """
-    for row in repo.list_open_requests():
-        if row.facility_slug != clinic.slug or row.id is None:
-            continue
-        stored = [m for m in repo.matches_for_request(row.id) if m.offer_id == offer.id]
-        if stored:
-            return stored[-1].verdict
-    screening = screen_offers(clinic, [offer], intel_for=supply_lookup)
-    found = [*screening.ranked, *screening.rejected]
-    if found:
-        return found[0].verdict
-    return check_fit(offer.device, clinic, supply_lookup(offer.device, offer.device_type,
-                                                         clinic.country))
-
-
-def _packet_translation(card: Card, target: Target) -> dict | None:
-    """The stored form of the translated card, or None when none was made."""
-    if not target.language or card.empty:
-        return None
-    translated, result = translate_card(card, target.language, _packet_language(),
-                                        chat=_packet_chat())
-    if translated is None:
-        return {"language": result.language, "engine": result.engine, "flag": result.flag}
-    return {
-        "language": result.language, "engine": result.engine, "flag": result.flag,
-        "provenance": result.provenance.value if result.provenance else "",
-        "card": translated.to_dict(),
-    }
-
-
-def _packet_header(target: Target, translated: dict | None) -> tuple[str, bool]:
-    """The header line per [F10], and whether it is a warning."""
-    if not target.language:
-        return target.note, target.note != "English, as requested"
-    if not translated or not translated.get("card"):
-        flag = (translated or {}).get("flag") or f"No {target.language} card; English supplied"
-        return flag, True
-    line = f"{target.language} beside English, {translated.get('flag')}"
-    if translated.get("engine") == ENGINE_CHAT:
-        line += " (translated by the chat model: model knowledge, not OCI Language)"
-    if target.note:
-        line = f"{target.note}. {line}"
-    return line, False
-
-
-@router.get("/packet/{offer_id}", response_class=HTMLResponse)
-def packet_page(
-    request: Request, offer_id: int, facility: str = "", rebuild: int = 0
-) -> HTMLResponse:
-    """The handover packet for one offer at one clinic (design §5.3)."""
-    offer = repo.load_offer(offer_id)
-    if offer is None:
-        return _error(request, f"No offer with id {offer_id}.")
-    clinic = repo.load_facility(facility) if facility else None
-    if clinic is None:
-        return _error(request, "Name the clinic: /packet/<offer id>?facility=<clinic slug>.")
-
-    staff = normalise_languages(clinic.staff_languages)
-    target = pick_target(staff)
-    documents = _packet_documents(offer.device)
-    manual = _packet_manual(documents)
-    problem = ""
-    card: Card | None = None
-    translated: dict | None = None
-
-    try:
-        if rebuild:
-            repo.clear_packet(offer_id, clinic.slug)
-        stored = repo.load_packet(offer_id, clinic.slug)
-        built = False
-        if stored is not None:
-            card, translated = card_from_dict(stored.card), stored.translated
-        elif manual is not None:
-            text = document_text(str(manual.get("slug", "")), str(manual.get("file", "")))
-            if not text:
-                problem = "The manual's text is not in the library, so no card could be built."
-            else:
-                pages = split_pages(text)
-                card = gate(build_card(text, pages, offer.device.label, _packet_chat()),
-                            text, pages)
-                built = True
-        stale = card is not None and target.language is not None and not (
-            translated and translated.get("card")
-            and translated.get("language") == target.language)
-        if stale:
-            translated = _packet_translation(card, target)
-        # A failed translation is shown but not cached, so the next visit retries it.
-        keep = translated if translated and translated.get("card") else None
-        if card is not None and (built or (stale and keep is not None)):
-            repo.save_packet(offer_id, clinic.slug, target.language or "English",
-                             card.to_dict(), keep)
-    except GenAiError as exc:
-        problem = f"The card could not be built: {exc}"
-    except RepositoryError as exc:
-        problem = str(exc)
-
-    header, header_warns = _packet_header(target, translated)
-    verdict = _packet_verdict(offer, clinic)
-    editions = [d for d in documents
-                if str(d.get("kind") or "").lower() in EDITION_KINDS | {""}
-                and set(normalise_languages(d.get("languages") or ())) & set(staff)]
-    return TEMPLATES.TemplateResponse(
-        request=request, name="packet.html",
-        context={
-            "offer": offer, "facility": clinic, "staff": staff,
-            "header": header, "header_warns": header_warns,
-            "editions": editions, "documents": documents, "manual": manual,
-            "card": card, "problem": problem,
-            "translated": card_from_dict(translated["card"])
-            if translated and translated.get("card") else None,
-            "translation": translated or {},
-            "paperwork": documents_required(clinic.country),
-            # The conditional results, not verdict.needs: a stored verdict
-            # keeps each result's fix but not its structured requirement.
-            "send_with": [(r.label, r.fix or r.detail) for r in verdict.conditional],
-            "verdict": verdict,
-        },
-    )
-
-# ---- [B3] library pick ------------------------------------------------------
-
-from dataclasses import replace as _replace  # noqa: E402
-
-from app.domain.provenance import Provenance, fact  # noqa: E402
-from app.reference import device_library  # noqa: E402
-
-# The offer page lists the library through this, read at render time, so a
-# rebuilt library file shows without a restart.
-TEMPLATES.env.globals["library_entries"] = device_library.load_library
-
-EARLIEST_BUILD_YEAR = 1950
-
-def _library_entry(slug: str) -> device_library.LibraryEntry:
-    picked = device_library.entry(slug)
-    if picked is None:
-        raise FormError(f"No library entry {slug!r}. Clear the pick and paste the spec instead.")
-    return picked
-
-
-def _build_year(raw: str) -> int | None:
-    value = (raw or "").strip()
-    if not value:
-        return None
-    if not value.isdigit():
-        raise FormError(f"Year made must be a year such as 2016. You gave {value!r}.")
-    year = int(value)
-    if not EARLIEST_BUILD_YEAR <= year <= datetime.now().year:
-        raise FormError(f"Year made must be between {EARLIEST_BUILD_YEAR} and {datetime.now().year}.")
-    return year
-
-
-def _library_device(picked: device_library.LibraryEntry, year_text: str) -> DeviceFacts:
-    """The entry's cited facts plus the donor's word on when this unit was built."""
-    device = device_library.to_device_facts(picked)
-    year = _build_year(year_text)
-    if year is not None:
-        device = _replace(device, year_of_manufacture=fact(year, Provenance.DONOR_STATED))
-    return device
-
-
-def _prefill_rows(picked: device_library.LibraryEntry) -> list[dict]:
-    """The inspector's own rows for a library entry, each linked to its page.
-
-    The same row set and columns as /offer/extract (one builder,
-    `inspector.inspector_rows`); the page shows no "wrong" mark on a library
-    pick, because a cited value is corrected by a document, not by hand.
-    """
-    device = device_library.to_device_facts(picked)
-    return inspector.inspector_rows(device, library_citations(picked))
-
-
-@router.post("/offer/prefill")
-async def offer_prefill(request: Request) -> JSONResponse:
-    """The inspector rows for one library entry, each with its document link.
-
-    Never raises at the client: an unknown slug comes back as a message with
-    no rows, the way /offer/extract reports a reader that did not answer.
-    """
-    form = await request.form()
-    slug = str(form.get("slug") or form.get("library_slug") or "").strip()
-    picked = device_library.entry(slug) if slug else None
-    if picked is None:
-        return JSONResponse({"rows": [], "device_type": "", "label": "",
-                             "message": "Pick a device from the library." if not slug
-                             else f"No library entry {slug!r}."})
-    return JSONResponse({
-        "rows": _prefill_rows(picked),
-        "device_type": picked.device_type,
-        "label": picked.label,
-        "message": "Facts from the maker's documents. Clear the pick to paste a spec instead.",
-    })

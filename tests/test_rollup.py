@@ -1,4 +1,4 @@
-"""The rollup order of design §2.1, and the rule that a FAIL carries no Requirement."""
+"""The rollup order, and the rule that a FAIL carries no Requirement."""
 
 from __future__ import annotations
 

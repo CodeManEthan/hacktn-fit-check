@@ -5,7 +5,7 @@
 # Later heads go out with deploy/redeploy.sh from a machine holding the ssh key.
 # This script writes no secrets: the environment file is written by hand.
 #
-# Design 9.1: the app (unit `fitcheck`) listens on 127.0.0.1:8000 only; Caddy (unit
+# The app (unit `fitcheck`) listens on 127.0.0.1:8000 only; Caddy (unit
 # `caddy`, user `caddy`) owns ports 80 and 443, serves https://fitcheck.care with a
 # certificate it fetches itself, and proxies to the app. deploy/Caddyfile is its config.
 set -euo pipefail

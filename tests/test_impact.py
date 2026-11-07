@@ -1,20 +1,23 @@
-"""[B6] §7.3 the impact paragraph: figures from the log, a gated model paragraph,
+"""The impact paragraph: figures from the log, a gated model paragraph,
 cached per process. Fake clients only; no model is called.
 """
 
 from __future__ import annotations
 
 import html
+import json
 from dataclasses import replace
 from types import SimpleNamespace
 
 import pytest
 from fastapi.testclient import TestClient
+from sqlalchemy import delete, insert, select
 
 from app.ai import impact
 from app.ai.client import GenAiError
 from app.config import SETTINGS
-from app.data import db
+from app.data import db, repository
+from app.domain.result import CheckStatus
 from app.main import app
 from app.web import routes
 from scripts import seed_demo
@@ -77,7 +80,7 @@ def test_a_stated_sum_of_two_figures_is_allowed():
 
 
 
-# (B6 check L2) a sum passes only when the paragraph states both addends.
+# A sum passes only when the paragraph states both addends.
 
 def test_a_number_that_is_an_unstated_sum_of_two_figures_is_refused():
     # 17 = 8 + 9, but the paragraph gives neither.
@@ -181,7 +184,7 @@ def test_figures_come_from_the_seeded_history(seeded):
 
 
 def test_the_impact_page_shows_the_gated_paragraph_and_its_label(seeded, monkeypatch):
-    chat = FakeChat("Fit-Check screened 20 devices and found 999 problems.")
+    chat = FakeChat(f"Fit-Check screened {seed_demo.HISTORY_SIZE} devices and found 999 problems.")
     monkeypatch.setattr(routes, "_impact_client", lambda: chat)
     body = TestClient(app).get("/impact").text
     # The page's /verdict/<id> links carry random hex ids, so a bare "999"
@@ -190,9 +193,52 @@ def test_the_impact_page_shows_the_gated_paragraph_and_its_label(seeded, monkeyp
     assert "999" not in paragraph and "found 999 problems" not in body
     assert html.escape(impact.code_sentence(impact.figures())) in paragraph
     assert impact.WRITTEN_BY_CODE in paragraph
-    assert "need answers first" in body
+    assert "Needs info" in body
 
     impact.clear_cache()
-    chat.text = "Fit-Check screened 20 devices for 3 clinics."
+    chat.text = f"Fit-Check screened {seed_demo.HISTORY_SIZE} devices for 3 clinics."
     body = TestClient(app).get("/impact").text
     assert chat.text in body and impact.WRITTEN_BY_MODEL in body
+
+
+def test_the_impact_page_is_titled_impact(seeded):
+    body = TestClient(app).get("/impact").text
+    assert "<title>Impact &middot; Fit-Check</title>" in body or "<title>Impact · Fit-Check</title>" in body
+    assert "<title>Log" not in body
+
+
+def test_the_seeded_history_counts_match_the_seed(seeded):
+    found = impact.figures()
+    assert found["add_ons"] >= 1  # the 525KS at Kayunga
+    assert (found["screened"], found["blocked"], found["needs_info"], found["add_ons"]) == (
+        seed_demo.HISTORY_SIZE, 12, 9, 1)
+
+
+def test_why_donations_failed_counts_failures_only(seeded):
+    # The bars and the paragraph's blockers count the same thing.
+    reasons = dict(repository.failures_by_reason(limit=100))
+    assert reasons == impact.figures()["blockers"]
+    with db.get_engine().connect() as conn:
+        payloads = conn.execute(select(db.verdicts.c.verdict_json)).scalars().all()
+    statuses: dict[str, set[str]] = {}
+    for payload in payloads:
+        for result in json.loads(payload)["results"]:
+            statuses.setdefault(result["label"], set()).add(result["status"])
+    mitigable_only = {label for label, seen in statuses.items()
+                      if CheckStatus.MITIGABLE.value in seen and CheckStatus.FAIL.value not in seen}
+    assert mitigable_only, "the seeded history should hold a MITIGABLE result"
+    assert not mitigable_only & reasons.keys()
+
+
+def test_a_mitigable_result_is_not_a_reason_a_donation_failed(seeded):
+    with db.get_engine().begin() as conn:
+        conn.execute(delete(db.verdicts))
+        conn.execute(insert(db.verdicts).values(
+            id="abcd1234", device_id=1, device_label="x", facility_slug="uganda-district",
+            facility_name="Kayunga District Hospital", outcome="won't work", intel_json="{}",
+            verdict_json=json.dumps({"results": [
+                {"label": "Supply frequency", "status": CheckStatus.FAIL.value},
+                {"label": "Grid reliability", "status": CheckStatus.MITIGABLE.value},
+            ]}),
+        ))
+    assert repository.failures_by_reason() == [("Supply frequency", 1)]

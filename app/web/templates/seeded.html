@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Demo data &middot; Fit-Check{% endblock %}
+{% block content %}
+<section class="masthead">
+  <h1>This part of the demo is read-only</h1>
+  <p class="sub">{{ message }}</p>
+</section>
+
+<section class="plate">
+  <p>Nothing was saved. Every visitor sees the same worked example, so its offers,
+     clinics, request and the supply desk's answers can be read but not changed here.
+     <a class="link" href="/clinic">Register a clinic</a> or
+     <a class="link" href="/offer">offer a device</a> to try the whole flow on your own rows.</p>
+  <p><a class="go" href="{{ back }}" style="text-decoration:none;display:inline-block">Go back</a></p>
+</section>
+{% endblock %}

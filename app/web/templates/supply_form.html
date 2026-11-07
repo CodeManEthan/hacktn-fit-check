@@ -50,7 +50,8 @@
       <textarea id="f-note" name="note" rows="3"
                 placeholder="Called the two medical suppliers on Kampala Road; both stock the filters.">{{ note }}</textarea>
     </div>
-    <button class="go" type="submit">Record this answer</button>
+    {% if locked %}{% with lock_label="Record this answer" %}{% include "_seeded_lock.html" %}{% endwith %}
+    {% else %}<button class="go" type="submit">Record this answer</button>{% endif %}
   </form>
 </section>
 {% endblock %}

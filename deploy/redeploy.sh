@@ -3,8 +3,8 @@
 # then cut the live app over to it, seed, and run the public checks from here. Run
 # from a machine that holds the VM's ssh key. Every step is safe to rerun.
 #
-#   deploy/redeploy.sh stage    <head>   # design 9 step 2: /opt/fitcheck-next on 127.0.0.1:8001
-#   deploy/redeploy.sh cutover  <head>   # step 3: swap into /opt/fitcheck, restart, seed, check
+#   deploy/redeploy.sh stage    <head>   # /opt/fitcheck-next on 127.0.0.1:8001
+#   deploy/redeploy.sh cutover  <head>   # swap into /opt/fitcheck, restart, seed, check
 #   deploy/redeploy.sh all      <head>   # stage, then cutover if the stage checks pass
 #   deploy/redeploy.sh rollback          # put the previous checkout (and Caddyfile) back
 #   deploy/redeploy.sh check             # rerun the public checks only (no seed)
@@ -14,7 +14,7 @@
 # it into the new checkout and cutover copies it again just before the swap, so an
 # edit made in between is kept. A failed public check rolls back by itself.
 #
-# Public checks (design 9.1): always against http://<VM IP>, the plain-HTTP door that
+# Public checks: always against http://<VM IP>, the plain-HTTP door that
 # needs no DNS; then against https://fitcheck.care only when that name resolves here
 # (getent ahostsv4) to the VM's IP. A connection or TLS failure on the name (Caddy still
 # waiting for its certificate) is a warning, not a rollback; a bad status or page is.

@@ -1,6 +1,6 @@
 [
  {
-  "slug": "b4-525ds",
+  "slug": "fixture-525ds",
   "manufacturer": "Drive DeVilbiss",
   "model": "525DS",
   "aliases": [
@@ -12,14 +12,14 @@
    "voltage_min_v": {
     "value": 97,
     "source": "manual",
-    "document": "b4-525ds/owners_manual.txt",
+    "document": "fixture-525ds/owners_manual.txt",
     "page": 11,
     "quote": "97-127 V~, 60 Hz"
    },
    "voltage_max_v": {
     "value": 127,
     "source": "manual",
-    "document": "b4-525ds/owners_manual.txt",
+    "document": "fixture-525ds/owners_manual.txt",
     "page": 11,
     "quote": "97-127 V~, 60 Hz"
    },
@@ -28,42 +28,42 @@
      60
     ],
     "source": "manual",
-    "document": "b4-525ds/owners_manual.txt",
+    "document": "fixture-525ds/owners_manual.txt",
     "page": 11,
     "quote": "97-127 V~, 60 Hz"
    },
    "power_watts": {
     "value": 310,
     "source": "spec sheet",
-    "document": "b4-525ds/sell_sheet.txt",
+    "document": "fixture-525ds/sell_sheet.txt",
     "page": 2,
     "quote": "310 Watt Average"
    },
    "temp_min_c": {
     "value": 5,
     "source": "manual",
-    "document": "b4-525ds/owners_manual.txt",
+    "document": "fixture-525ds/owners_manual.txt",
     "page": 3,
     "quote": "Range +5 to +35˚C"
    },
    "temp_max_c": {
     "value": 35,
     "source": "manual",
-    "document": "b4-525ds/owners_manual.txt",
+    "document": "fixture-525ds/owners_manual.txt",
     "page": 3,
     "quote": "Range +5 to +35˚C"
    },
    "humidity_max_pct": {
     "value": 93,
     "source": "manual",
-    "document": "b4-525ds/owners_manual.txt",
+    "document": "fixture-525ds/owners_manual.txt",
     "page": 11,
     "quote": "15% to 93%, non-condensing"
    }
   },
   "documents": [
    {
-    "file": "b4-525ds/owners_manual.txt",
+    "file": "fixture-525ds/owners_manual.txt",
     "title": "DeVilbiss 525 owner's manual",
     "url": "https://example.org/525ds-manual.pdf",
     "kind": "manual",
@@ -74,7 +74,7 @@
     ]
    },
    {
-    "file": "b4-525ds/sell_sheet.txt",
+    "file": "fixture-525ds/sell_sheet.txt",
     "title": "525DS sell sheet",
     "url": "https://example.org/525ds-sell-sheet.pdf",
     "kind": "spec sheet",
@@ -83,10 +83,10 @@
     ]
    }
   ],
-  "notes": "B4 test fixture"
+  "notes": "test fixture"
  },
  {
-  "slug": "b4-525ks",
+  "slug": "fixture-525ks",
   "manufacturer": "Drive DeVilbiss",
   "model": "525KS",
   "aliases": [
@@ -98,14 +98,14 @@
    "voltage_min_v": {
     "value": 187,
     "source": "manual",
-    "document": "b4-525ks/owners_manual.txt",
+    "document": "fixture-525ks/owners_manual.txt",
     "page": 11,
     "quote": "187-253 V~, 50 Hz"
    },
    "voltage_max_v": {
     "value": 253,
     "source": "manual",
-    "document": "b4-525ks/owners_manual.txt",
+    "document": "fixture-525ks/owners_manual.txt",
     "page": 11,
     "quote": "187-253 V~, 50 Hz"
    },
@@ -114,14 +114,14 @@
      50
     ],
     "source": "manual",
-    "document": "b4-525ks/owners_manual.txt",
+    "document": "fixture-525ks/owners_manual.txt",
     "page": 11,
     "quote": "187-253 V~, 50 Hz"
    }
   },
   "documents": [
    {
-    "file": "b4-525ks/owners_manual.txt",
+    "file": "fixture-525ks/owners_manual.txt",
     "title": "DeVilbiss 525 owner's manual",
     "url": "https://example.org/525ks-manual.pdf#page=1",
     "kind": "manual",
@@ -130,6 +130,6 @@
     ]
    }
   ],
-  "notes": "B4 test fixture"
+  "notes": "test fixture"
  }
 ]

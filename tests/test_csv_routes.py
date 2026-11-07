@@ -1,4 +1,4 @@
-"""[B8] §8 routes: upload form, result table, download, and the post button.
+"""CSV routes: upload form, result table, download, and the post button.
 
 Each test gets its own SQLite file and a TestClient without the lifespan; the
 test saves the one clinic it screens against. GUDID is off and no model is
@@ -23,7 +23,7 @@ from app.data import marketplace_repo as repo
 from app.main import app
 from app.web import csv_routes
 from tests.factories import facility
-from tests.test_b8_csv_screen import FIVE_ROWS
+from tests.test_csv_screen import FIVE_ROWS
 
 CLINIC = facility(slug="test-clinic", name="Test Clinic", country="Testland",
                   latitude=0.0, longitude=0.0)
@@ -195,7 +195,7 @@ def test_an_oversize_upload_says_over_the_limit_whatever_its_size(client, size):
     assert offers_saved() == 0
 
 
-# ---- check 1 L5: a post that stops partway resumes, saving none twice --------
+# ---- a post that stops partway resumes, saving none twice ------------------
 
 FOUR_ROWS = "\n".join([
     "device_type,manufacturer,model,quantity,country",

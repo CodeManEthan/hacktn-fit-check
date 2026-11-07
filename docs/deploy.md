@@ -2,16 +2,16 @@
 
 This page answers one question: how does the live demo run, how does it sign in to OCI without a key, and what do you type if it stops answering just before the pitch?
 
-It is written from `deploy/README.md`, `deploy/redeploy.sh`, `deploy/bootstrap.sh`, `deploy/Caddyfile`, `deploy/check_live.py`, `app/ai/client.py`, `app/reference/gudid.py` and the B7 and B11 build reports. Every command below is one you run yourself, one per line.
+It is written from `deploy/README.md`, `deploy/redeploy.sh`, `deploy/bootstrap.sh`, `deploy/Caddyfile`, `deploy/check_live.py`, `app/ai/client.py`, `app/reference/gudid.py` and the record of deploying it. Every command below is one you run yourself, one per line.
 
 ## The stack
 
-One Resource Manager stack in the operator's tenancy, region `us-chicago-1`:
+One Resource Manager stack in the project's OCI tenancy, region `us-chicago-1`:
 
 | Resource | Address |
 |---|---|
 | Compute instance `fitcheckfitcheck-web`, Oracle Linux, python3.12 | 147.224.201.81, public |
-| MySQL HeatWave, schema `fitcheck`, user `admin` | 10.0.1.229:3306, private subnet |
+| MySQL HeatWave, schema `fitcheck`, user `<db-user>` | `<db-private-ip>`:3306, private subnet |
 | VCN, public and private subnets | ingress on 22, 80 and 443 only |
 | Caddy 2.11.7, unit `caddy`, user `caddy` | ports 80 and 443 on the instance; `https://fitcheck.care` and the plain-HTTP door on 147.224.201.81 |
 | The app, unit `fitcheck`, user `opc` | 127.0.0.1:8000 on the instance |
@@ -30,15 +30,15 @@ Paths on the VM:
 | `/etc/caddy/Caddyfile` | Caddy's config, installed from `deploy/Caddyfile` |
 | `/etc/caddy/Caddyfile.prev` | the file the last cutover replaced, only when that cutover changed the Caddyfile |
 
-**What is live.** The VM serves the fork's main (`https://github.com/CodeManEthan/hacktn-fit-check`). The lead's redeploy log is the record of which commit went out. To see the live head yourself:
+**What is live.** The VM serves the fork's main (`https://github.com/CodeManEthan/hacktn-fit-check`). To see which commit is live:
 
 ```
-ssh -i /home/jpluto/.ssh/id_fitcheck_vm opc@147.224.201.81 'git -C /opt/fitcheck log --oneline -1'
+ssh -i ~/.ssh/id_fitcheck_vm opc@147.224.201.81 'git -C /opt/fitcheck log --oneline -1'
 ```
 
 ## Auth: instance principals, no key on the VM
 
-The app calls OCI Generative AI (naming, reading, the handover card, the impact paragraph) and OCI Language (the packet's translation). On the VM it signs those calls as the instance itself. There is no API key on the VM. B7 deleted `/home/opc/.oci/`, and a search for `oci_api_key*.pem` on the VM's disk found none.
+The app calls OCI Generative AI (naming, reading, the handover card, the impact paragraph) and OCI Language (the packet's translation). On the VM it signs those calls as the instance itself. There is no API key on the VM. `/home/opc/.oci/` was deleted when the VM moved to instance principals, and a search for `oci_api_key*.pem` on the VM's disk found none.
 
 What makes that work:
 
@@ -50,7 +50,7 @@ What makes that work:
   ```
 - **`.env` on the VM** sets `OCI_AUTH=instance_principal` and `OCI_COMPARTMENT_ID` to the tenancy OCID from the console (the instance sits in the tenancy root).
 
-`deploy/instance_principals.py` creates or reuses the group and the policy. It runs from a machine with the operator's API key, finds the instance by public IP, and prints names only:
+`deploy/instance_principals.py` creates or reuses the group and the policy. It runs from a machine with an API key for the tenancy, finds the instance by public IP, and prints names only:
 
 ```
 .venv/bin/python deploy/instance_principals.py --public-ip 147.224.201.81
@@ -61,7 +61,7 @@ In the code, `build_signer_and_config` in `app/ai/client.py` is the one place bo
 The `.env` keys, from `deploy/README.md`. No value belongs in the repository:
 
 ```
-DATABASE_URL=mysql+pymysql://admin:<password>@10.0.1.229:3306/fitcheck
+DATABASE_URL=mysql+pymysql://<db-user>:<password>@<db-private-ip>:3306/fitcheck
 OCI_REGION=us-chicago-1
 OCI_AUTH=instance_principal
 OCI_COMPARTMENT_ID=<the tenancy OCID from the console>
@@ -92,7 +92,7 @@ The public checks want `/`, `/offer` and `/impact` to answer 200, and the Kayung
 
 If the live checkout is already at `<head>`, `cutover` does not swap. It removes the staged copy and only restarts the unit, so `/opt/fitcheck-prev` keeps the checkout from before that head.
 
-The seed upserts. Running it again leaves one of each offer, answer and request, and rewrites the twenty history verdicts.
+The seed upserts. Running it again leaves one of each offer, answer and request, and rewrites the 22 history verdicts.
 
 ## The rollback
 
@@ -100,14 +100,37 @@ The seed upserts. Running it again leaves one of each offer, answer and request,
 bash deploy/redeploy.sh rollback
 ```
 
-It stops `fitcheck`, moves the live checkout to `/opt/fitcheck-failed`, moves `/opt/fitcheck-prev` into `/opt/fitcheck`, and starts the unit. If `/etc/caddy/Caddyfile.prev` exists, it puts that file back and reloads Caddy; otherwise it leaves Caddy alone. Three things to know:
+It stops `fitcheck`, moves the live checkout to `/opt/fitcheck-failed`, moves `/opt/fitcheck-prev` into `/opt/fitcheck`, and starts the unit. If `/etc/caddy/Caddyfile.prev` exists, it puts that file back and reloads Caddy; otherwise it leaves Caddy alone. Four things to know:
 
 - **It works once.** After it runs, `/opt/fitcheck-prev` no longer exists. A second `rollback` prints `!! no /opt/fitcheck-prev to roll back to`. To go forward again, redeploy a head with `all`.
-- **It does not reseed.** The database is shared by every checkout. No build this round changed an existing table, so an older checkout reads the newer rows.
-- **Not older than B0.** A head older than instance-principal auth, such as 9e00968, reads only the key file, which is gone. Rolling back that far loses every model call until the key is copied back. After the lead's cutover of 385bc8f, `/opt/fitcheck-prev` should hold e64eba6 (B6), which has instance-principal auth. Check before you rely on it:
+- **It does not reseed.** The database is shared by every checkout. Since 9e00968 the schema has only gained tables, never changed one, so an older checkout reads the newer rows.
+- **Not older than instance-principal auth.** A head older than that, such as 9e00968, reads only the key file, which is gone. Rolling back that far loses every model call until the key is copied back. `/opt/fitcheck-prev` holds whatever the last cutover replaced, so check it before you rely on it:
 
 ```
-ssh -i /home/jpluto/.ssh/id_fitcheck_vm opc@147.224.201.81 'git -C /opt/fitcheck-prev log --oneline -1'
+ssh -i ~/.ssh/id_fitcheck_vm opc@147.224.201.81 'git -C /opt/fitcheck-prev log --oneline -1'
+```
+
+- **Old donor names.** The seed now gives its donors fictional names and renames the stored offers in place, keeping their ids. An older head reads offers by id, so a plain `rollback` needs nothing. But an older head's seed knows only the old, real names: rerun, it would add the hero offers a second time. Before you redeploy a head from before the rename with `all` or `cutover`, put the old names back with this one statement (`app/data/seeded.py` holds the same map), then redeploy:
+
+```
+ssh -i ~/.ssh/id_fitcheck_vm opc@147.224.201.81 'cd /opt/fitcheck && ./.venv/bin/python -' <<'EOF'
+from app.data import db
+SQL = """
+UPDATE offers SET donor_name = CASE donor_name
+  WHEN 'Riverside General biomedical department' THEN 'Nashville General Hospital biomedical department'
+  WHEN 'Midland Teaching Hospital, surplus' THEN 'Leeds Teaching Hospitals NHS Trust, surplus'
+  WHEN 'Bayou community clinic network' THEN 'Harris County clinic network'
+  WHEN 'Westbrook Hospital biomedical department' THEN 'Baptist Health biomedical department'
+  WHEN 'Lakefront Hospital surplus' THEN 'St Mary''s Hospital surplus'
+  WHEN 'Coral Coast Medical Centre' THEN 'Gulf Coast Medical Center'
+END
+WHERE donor_name IN ('Riverside General biomedical department', 'Midland Teaching Hospital, surplus',
+  'Bayou community clinic network', 'Westbrook Hospital biomedical department',
+  'Lakefront Hospital surplus', 'Coral Coast Medical Centre')
+"""
+with db.get_engine().begin() as conn:
+    print(conn.exec_driver_sql(SQL).rowcount, "offers given their old donor names")
+EOF
 ```
 
 ## When the VM stops answering at 12:45
@@ -115,7 +138,7 @@ ssh -i /home/jpluto/.ssh/id_fitcheck_vm opc@147.224.201.81 'git -C /opt/fitcheck
 Work down the list and stop at the first step that brings it back. Run everything from the main checkout on this machine:
 
 ```
-cd /home/jpluto/projects/hospital-surplus
+cd ~/projects/hospital-surplus
 ```
 
 **1. See what is down.** If this prints `200`, the site is up and the problem is in the page, not the server:
@@ -133,7 +156,7 @@ If `check` prints `-> 000` for every path, the app or Caddy is not answering. Go
 **2. Restart the app.** Log in, read the log, restart:
 
 ```
-ssh -i /home/jpluto/.ssh/id_fitcheck_vm opc@147.224.201.81
+ssh -i ~/.ssh/id_fitcheck_vm opc@147.224.201.81
 ```
 
 On the VM:
@@ -228,7 +251,7 @@ The second should print `308 https://fitcheck.care/`. The bare IP is a second si
 So turn it off when the FDA is slow and the matches page hangs on a cold load. Leave it on otherwise. On the VM:
 
 ```
-ssh -i /home/jpluto/.ssh/id_fitcheck_vm opc@147.224.201.81
+ssh -i ~/.ssh/id_fitcheck_vm opc@147.224.201.81
 ```
 
 ```
@@ -245,7 +268,7 @@ The comment in `.env.example` says that with the lookup off "every support row t
 
 ## Rough edges
 
-- `bootstrap.sh` was never run against the live VM. B7 and B11 checked it by reading, with `bash -n` and with tests that run its code step against a fake `/opt`. It rewrites the unit file, which is why it was not run on the pitch host. B11 installed Caddy and rewrote the `fitcheck` unit by hand, with the same contents `bootstrap.sh` writes.
+- `bootstrap.sh` was never run against the live VM. It was checked by reading, with `bash -n` and with tests that run its code step against a fake `/opt`. It rewrites the unit file, which is why it was not run on the pitch host. Caddy was installed and the `fitcheck` unit rewritten by hand, with the same contents `bootstrap.sh` writes.
 - The CSV screening cache lives in the app process's memory. A restart, a rollback or a cutover drops every held screening, and the result links give a clean 404. Upload the file again.
 - The impact paragraph is cached in memory too. After a restart the first `/impact` load makes one model call.
 - During a cutover the site is down for the seconds between `systemctl stop` and the new process answering. The script waits up to 40 seconds for it.

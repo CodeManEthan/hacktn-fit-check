@@ -34,7 +34,7 @@ def client(tmp_path, monkeypatch):
 
 def _offer_form(**kw) -> dict:
     base = {"library_slug": "drive-devilbiss-525ks", "device_type": "", "quantity": "1",
-            "country": "United Kingdom", "city": "Leeds", "donor_name": "Leeds Teaching Hospitals",
+            "country": "United Kingdom", "city": "Leeds", "donor_name": "Midland Teaching Hospital",
             "donor_email": "surplus@example.org", "year_of_manufacture": "2019", "expiry_date": ""}
     return {**base, **kw}
 

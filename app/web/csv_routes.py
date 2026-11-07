@@ -1,4 +1,4 @@
-"""The inventory CSV upload (design §8): screen a whole list, save nothing until asked.
+"""The inventory CSV upload: screen a whole list, save nothing until asked.
 
 GET  /offer/csv                 the upload form: a file and the clinic to screen against
 POST /offer/csv                 screens every row and renders the result table
@@ -32,7 +32,8 @@ from app.matching.csv_screen import CsvError, CsvScreening
 from app.matching.supply_order import supply_lookup
 from app.web import forms
 from app.web.forms import FormError
-from app.web.marketplace_routes import DEMO_CLINIC, TEMPLATES
+from app.web.shared import DEMO_CLINIC, TEMPLATES
+from app.web.presenters import STAMP_BY_OUTCOME_VALUE
 
 router = APIRouter()
 
@@ -58,7 +59,7 @@ class Held:
     donor_email: str = ""
     # Saved offer ids, in the order of `screening.screened`: posted[i] is row i.
     # A post that stopped partway leaves the rows saved so far here, and the
-    # next press saves only the rest (check 1 L5).
+    # next press saves only the rest.
     posted: list[int] = field(default_factory=list)
 
     @property
@@ -134,7 +135,7 @@ def _upload_page(request: Request, *, selected: str = "", donor_name: str = "",
 
 def _result_page(request: Request, token: str, item: Held) -> HTMLResponse:
     screening = item.screening
-    counts = [(outcome.value, screening.count(outcome), TONE[outcome.value])
+    counts = [(STAMP_BY_OUTCOME_VALUE[outcome.value], screening.count(outcome), TONE[outcome.value])
               for outcome in (Outcome.WORKS, Outcome.WORKS_IF, Outcome.NEEDS_INFO,
                               Outcome.WONT_WORK)]
     return TEMPLATES.TemplateResponse(

@@ -1,7 +1,7 @@
 """Can the device get into the country at all? The import and registration check.
 
 Reads the country's row from data/import_rules.json through
-app/reference/import_rules.py. Three rules, in this order (design §2.5):
+app/reference/import_rules.py. Three rules, in this order:
 
 - Country not on file → NEEDS_INFO. The table is filled from documents; a
   country nobody has read the rules for is a question, never a pass.
@@ -11,7 +11,7 @@ app/reference/import_rules.py. Three rules, in this order (design §2.5):
   because the support check already asks for the year.
 - Label language: no label-language fact exists, and a manufacturer prints
   its labels in the languages of its manual, so `manual_languages` stands in
-  for the label ([R26]). No shared language → FAIL. Manual languages unknown
+  for the label. No shared language → FAIL. Manual languages unknown
   but a document known → skipped (the handover packet reads the language
   off the document). Both unknown → NEEDS_INFO.
 
