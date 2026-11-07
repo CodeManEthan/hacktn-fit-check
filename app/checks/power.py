@@ -8,11 +8,25 @@ from app.domain.requirement import Requirement, RequirementKind
 from app.domain.result import CheckResult, CheckStatus
 
 TRANSFORMER_HEADROOM = 1.25
+BATTERY_ONLY = "Runs on batteries; no mains connection."
+
+
+def battery_only_pass(device: DeviceFacts, key: str, label: str) -> CheckResult:
+    """The mains checks' answer for a device whose documents say it has no mains input."""
+    return CheckResult(
+        key=key,
+        label=label,
+        status=CheckStatus.PASS,
+        detail=BATTERY_ONLY,
+        source=device.mains_powered.source,
+    )
 
 
 def check_frequency(
     device: DeviceFacts, facility: FacilityProfile, intel: SupplyIntel
 ) -> CheckResult:
+    if device.battery_only:
+        return battery_only_pass(device, "frequency", "Supply frequency")
     rated = device.frequencies_hz
     if not rated.known:
         return CheckResult(
@@ -53,6 +67,8 @@ def check_frequency(
 def check_voltage(
     device: DeviceFacts, facility: FacilityProfile, intel: SupplyIntel
 ) -> CheckResult:
+    if device.battery_only:
+        return battery_only_pass(device, "voltage", "Supply voltage")
     low, high = device.voltage_min_v, device.voltage_max_v
     mains = facility.mains_voltage_v
 

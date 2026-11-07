@@ -19,7 +19,9 @@ linked by URL.
 
 Mapping rules:
 - a value that is null, or whose quote says "not stated", is left out (unknown);
-- a frequencies_hz of [] is left out: "no mains", not "no frequency";
+- a frequencies_hz of [] is left out: "no mains", not "no frequency"; it
+  writes mains_powered = False instead, citing the battery quote (or the
+  voltage quote when there is no battery quote);
 - year_introduced, support status, battery and UI-language facts go to notes;
 - languages are normalised through app.domain.language;
 - device_type uses the request vocabulary.
@@ -78,6 +80,9 @@ FACT_FIELDS = {
     "operating_complexity": "operating_complexity",
 }
 SUPPLY_FIELDS = ("needs_oxygen", "needs_distilled_water", "needs_compressed_air")
+# mains_powered has no field of its own in the library JSON: an empty
+# frequencies_hz means "no mains", and these quote keys say why, in order.
+NO_MAINS_QUOTES = ("has_battery", "voltage_min_v")
 NOT_STATED = "not stated"
 
 S1_URL = ("https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxp"
@@ -518,6 +523,22 @@ def _strip_anchor(url: str) -> str:
     return url.split("#", 1)[0]
 
 
+def _no_mains_fact(raw: dict[str, Any], quotes: dict[str, str], documents: list[dict],
+                   by_url: dict[str, dict], slug: str, checks: Checks) -> dict[str, Any]:
+    """mains_powered = False for a battery-only device, cited like any other fact."""
+    key = next((k for k in NO_MAINS_QUOTES if quotes.get(k)), NO_MAINS_QUOTES[0])
+    quote = quotes.get(key) or ""
+    url = _source_url(raw, key, key)
+    doc = by_url.get(_strip_anchor(url)) or documents[0]
+    page = checks.locate(doc["text"], quote, f"{slug}.mains_powered") if quote else None
+    page = (page or _reported_page(quote, url)) if doc["src"] else None
+    source = PRODUCT_PAGE if doc["kind"] == PRODUCT_PAGE else SPEC
+    file = f"{slug}/{doc['src']}" if doc["src"] else ""
+    link = f"{_strip_anchor(doc['url'])}#page={page}" if page and doc["src"] else doc["url"]
+    return _fact(False, source, file, link, page, quote,
+                 "the documents give no mains input; it runs on batteries only")
+
+
 def build_library_entry(slug: str, spec: dict[str, Any], notes: Path, checks: Checks) -> tuple[dict, list[Path]]:
     library, index, folder = spec["source"]
     raw = json.loads((notes / "device-docs" / library / f"{library}.json").read_text())[index]
@@ -570,6 +591,9 @@ def build_library_entry(slug: str, spec: dict[str, Any], notes: Path, checks: Ch
         file = f"{slug}/{doc['src']}" if doc["src"] else ""
         link = f"{_strip_anchor(doc['url'])}#page={page}" if page and doc["src"] else doc["url"]
         facts[name] = _fact(value, source, file, link, page, quote, note)
+
+    if raw.get("frequencies_hz") == []:
+        facts["mains_powered"] = _no_mains_fact(raw, quotes, documents, by_url, slug, checks)
 
     for key in NOTE_KEYS:
         if raw.get(key) not in (None, "", []):
