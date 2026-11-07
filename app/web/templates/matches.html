@@ -124,7 +124,8 @@
     <form method="post" action="/match" class="candidate-act">
       <input type="hidden" name="request_id" value="{{ request_row.id }}">
       <input type="hidden" name="offer_id" value="{{ c.offer.id }}">
-      <button class="go" type="submit">Ask this donor</button>
+      {% if c.offer.id in locked %}{% with lock_label="Ask this donor" %}{% include "_seeded_lock.html" %}{% endwith %}
+      {% else %}<button class="go" type="submit">Ask this donor</button>{% endif %}
       <a class="link" href="/packet/{{ c.offer.id }}?facility={{ facility.slug }}">Generate handover packet</a>
     </form>
   </article>

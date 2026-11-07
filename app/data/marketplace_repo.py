@@ -445,7 +445,7 @@ def list_open_requests() -> list[Request]:
     rows = _all_rows(
         select(requests)
         .where(requests.c.status == RequestStatus.OPEN.value)
-        .order_by(requests.c.created_at),
+        .order_by(requests.c.created_at, requests.c.id),
         "Could not list the open requests",
     )
     by_request = _lines_for([row["id"] for row in rows])

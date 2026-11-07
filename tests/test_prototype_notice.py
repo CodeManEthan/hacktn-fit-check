@@ -10,6 +10,7 @@ from fastapi.testclient import TestClient
 
 from app.config import SETTINGS
 from app.data import db, repository
+from app.data import seeded as seeded_rows
 from app.main import app
 from app.web import marketplace_routes
 from scripts import seed_demo
@@ -94,9 +95,11 @@ def test_example_redirects_to_the_seeded_request_matches_page(seeded):
     assert landed.status_code == 200 and "Kayunga" in landed.text
 
 
-def test_example_looks_the_request_up_as_the_seed_does():
-    assert marketplace_routes.DEMO_CLINIC == seed_demo.KAYUNGA
-    assert marketplace_routes.EXAMPLE_TYPE == seed_demo.HERO_TYPE
+def test_example_looks_the_request_up_as_the_seed_does(monkeypatch):
+    assert seeded_rows.KAYUNGA == seed_demo.KAYUNGA
+    assert seeded_rows.KAYUNGA_REQUEST_TYPE == seed_demo.HERO_TYPE
+    monkeypatch.setattr(seeded_rows, "kayunga_request_id", lambda: 41)
+    assert marketplace_routes.example_request_id() == 41
 
 
 def test_example_without_a_seed_says_so_instead_of_redirecting(empty):

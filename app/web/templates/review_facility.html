@@ -65,7 +65,8 @@
       <textarea id="f-note" name="note" rows="2"
                 placeholder="Matched Kayunga Hospital in OpenStreetMap, 2 km from the stated point."></textarea>
     </div>
-    <button class="go" type="submit">Record this decision</button>
+    {% if locked %}{% with lock_label="Record this decision" %}{% include "_seeded_lock.html" %}{% endwith %}
+    {% else %}<button class="go" type="submit">Record this decision</button>{% endif %}
   </form>
 </section>
 {% endblock %}

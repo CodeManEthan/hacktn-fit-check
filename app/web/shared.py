@@ -21,6 +21,7 @@ from app.domain.provenance import Provenance, fact
 from app.domain.text import plural
 from app.reference import device_library
 from app.web import presenters
+from app.web.demo_guard import SEEDED_MESSAGE
 from app.web.forms import FormError
 from app.web.presenters import rule_count
 
@@ -36,12 +37,21 @@ TEMPLATES.env.globals["seeded_clinic"] = seeded.is_seeded_clinic
 # The offer page lists the library through this, read at render time, so a
 # rebuilt library file shows without a restart.
 TEMPLATES.env.globals["library_entries"] = device_library.load_library
+TEMPLATES.env.globals["seeded_message"] = SEEDED_MESSAGE
 
 
 def _error(request: Request, message: str, back: str = "/") -> HTMLResponse:
     return TEMPLATES.TemplateResponse(
         request=request, name="error.html",
         context={"message": message, "back": back}, status_code=400,
+    )
+
+
+def _refused(request: Request, back: str = "/") -> HTMLResponse:
+    """A write DEMO_PROTECT_SEED keeps off a seeded row: 403, nothing written."""
+    return TEMPLATES.TemplateResponse(
+        request=request, name="seeded.html",
+        context={"message": SEEDED_MESSAGE, "back": back}, status_code=403,
     )
 
 

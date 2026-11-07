@@ -1,0 +1,4 @@
+{# A write button on a seeded row while DEMO_PROTECT_SEED is on: disabled, with the reason beside it. #}
+<button class="{{ lock_class | default('go') }}" type="button" disabled aria-disabled="true"
+        style="opacity:.45;pointer-events:none">{{ lock_label }}</button>
+<p class="note seeded-note">{{ seeded_message }}</p>
