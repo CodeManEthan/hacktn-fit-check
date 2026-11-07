@@ -305,7 +305,7 @@ def test_with_the_setting_off_seeded_rows_take_writes_as_before(demo):
     assert reply.status_code == 200
 
 
-# ---- the list for the operator ---------------------------------------------------
+# ---- the list to review ----------------------------------------------------------
 
 def test_visitor_rows_lists_what_moves_the_seeded_demo_and_writes_nothing(demo, capsys):
     from tests.test_deploy_scripts import _load

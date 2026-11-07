@@ -1,4 +1,4 @@
-"""The shared names the overnight round's builds read: values, labels, round trips."""
+"""The shared domain names the rest of the app reads: values, labels, round trips."""
 
 from __future__ import annotations
 

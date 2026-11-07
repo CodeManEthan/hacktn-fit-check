@@ -1,4 +1,4 @@
-"""The pipeline names the overnight builds fill in, at their working defaults."""
+"""The shared pipeline functions and fields, at their working defaults."""
 
 from __future__ import annotations
 
