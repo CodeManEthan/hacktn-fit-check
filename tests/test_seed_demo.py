@@ -2,18 +2,25 @@
 
 from __future__ import annotations
 
+import runpy
+import sys
+import types
 from dataclasses import replace
+from datetime import date
+from pathlib import Path
 
 import pytest
 from sqlalchemy import func, select
 
 from app.config import SETTINGS
-from app.data import db
+from app.data import db, seeded
 from app.data import marketplace_repo as repo
 from app.data.marketplace_schema import offers, requests, supply_answers
 from app.domain.marketplace import GeoPoint, Offer, OfferStatus
 from app.domain.provenance import Provenance
+import scripts
 from scripts import seed_demo
+from tests.test_seeded import reverse_update_sql
 
 
 @pytest.fixture
@@ -76,9 +83,9 @@ def test_a_database_seeded_by_the_old_script_is_replaced_in_place(fresh_db):
 
 def test_the_hero_offers_carry_library_facts_and_donor_facts(fresh_db):
     seed_demo.main()
-    a = _offer("Nashville General")
-    b = _offer("Leeds Teaching")
-    c = _offer("Harris County")
+    a = _offer("Riverside General")
+    b = _offer("Midland Teaching")
+    c = _offer("Bayou community")
 
     assert a.device.model.value == "525DS" and a.device.frequencies_hz.value == [60]
     assert a.device.frequencies_hz.source is Provenance.SPEC_SHEET
@@ -99,7 +106,7 @@ def test_the_hero_offers_carry_library_facts_and_donor_facts(fresh_db):
 def test_every_durable_offer_says_nothing_is_dated(fresh_db):
     seed_demo.main()
     for offer in _all_offers():
-        if offer.donor_name.startswith("Harris County"):
+        if offer.donor_name.startswith("Bayou community"):
             continue
         assert offer.device.dated_items.value is False, offer.donor_name
         assert offer.device.dated_items.source is Provenance.DONOR_STATED
@@ -139,7 +146,7 @@ def test_the_recorded_answer_and_the_request(fresh_db):
 
 def test_recorded_intel_reads_the_answer_as_recorded_facts(fresh_db):
     seed_demo.main()
-    b = _offer("Leeds Teaching")
+    b = _offer("Midland Teaching")
     intel = seed_demo.recorded_intel(b.device, b.device_type, "Uganda")
     assert intel.consumables_available.value is False
     assert intel.consumables_available.source is Provenance.RECORDED
@@ -155,3 +162,94 @@ def test_the_history_is_twenty_real_verdicts_across_the_three_clinics(fresh_db):
     assert len(rows) == 20
     assert {slug for slug, _ in rows} == {"uganda-district", "haiti-community", "nepal-phc"}
     assert len({outcome for _, outcome in rows}) >= 2
+
+
+# ---- the donors' old, real names ---------------------------------------------------
+
+OLD_NAMES = {new: old for old, new in seeded.DONOR_RENAMES.items()}
+DEMO_IDS = Path(__file__).resolve().parents[1] / "deploy" / "demo_ids.py"
+
+
+def _as_old_head(offers: tuple[Offer, ...]) -> tuple[Offer, ...]:
+    return tuple(replace(o, donor_name=OLD_NAMES.get(o.donor_name, o.donor_name)) for o in offers)
+
+
+def _seed_as_old_head() -> dict[tuple[str, str], int]:
+    """What the seed before the rename wrote: the same offers under the real names."""
+    seed_demo.repository.setup()
+    written = seed_demo.upsert_offers(_as_old_head(seed_demo.all_offers()), date(2027, 1, 1))
+    seed_demo.ensure_kayunga_request()
+    return {(o.donor_name, str(o.device.model.value or "")): i for i, o, _ in written}
+
+
+def _ids_by_donor() -> dict[tuple[str, str], int]:
+    return {(o.donor_name, str(o.device.model.value or "")): o.id for o in _all_offers()}
+
+
+def test_a_database_seeded_with_the_old_names_keeps_its_ids_under_the_new(fresh_db):
+    before = _seed_as_old_head()
+    seed_demo.main()
+    after = _ids_by_donor()
+
+    assert len(after) == _count(offers) == len(seed_demo.all_offers())
+    assert not any(name in seeded.DONOR_RENAMES for name, _ in after)
+    for (old, model), offer_id in before.items():
+        new = seeded.DONOR_RENAMES.get(old, old)
+        assert after[(new, model)] == offer_id
+
+
+def test_the_deploy_notes_reverse_update_gives_the_old_names_back_in_place(fresh_db):
+    seed_demo.main()
+    new_ids = _ids_by_donor()
+    with db.get_engine().begin() as conn:
+        conn.exec_driver_sql(reverse_update_sql())
+    old_ids = _ids_by_donor()
+    assert old_ids == {(OLD_NAMES.get(name, name), model): i for (name, model), i in new_ids.items()}
+    seed_demo.main()
+    assert _ids_by_donor() == new_ids
+
+
+def _seed_module_as(names: dict[str, str]) -> types.ModuleType:
+    """scripts.seed_demo as a head with these donor names would have it."""
+    stub = types.ModuleType("scripts.seed_demo")
+    for attr in ("_stored_offers_by_key", "_offer_key", "repo", "KAYUNGA", "HERO_TYPE"):
+        setattr(stub, attr, getattr(seed_demo, attr))
+    renamed = lambda: tuple(  # noqa: E731
+        replace(o, donor_name=names.get(o.donor_name, o.donor_name)) for o in seed_demo.all_offers())
+    stub.all_offers = renamed
+    stub.hero_offers = lambda: renamed()[:3]
+    return stub
+
+
+def _run_demo_ids(capsys, stub: types.ModuleType) -> list[str]:
+    """Run deploy/demo_ids.py with `from scripts import seed_demo` giving the stub."""
+    real = sys.modules["scripts.seed_demo"]
+    sys.modules["scripts.seed_demo"] = scripts.seed_demo = stub
+    try:
+        capsys.readouterr()
+        runpy.run_path(str(DEMO_IDS))
+        out = capsys.readouterr().out
+    finally:
+        sys.modules["scripts.seed_demo"] = scripts.seed_demo = real
+    return [line.strip() for line in out.splitlines()]
+
+
+def test_demo_ids_finds_the_heroes_under_either_name_whichever_head_is_live(fresh_db, capsys):
+    _seed_as_old_head()
+    request_id, _ = seed_demo.ensure_kayunga_request()
+    old_head, new_head = _seed_module_as(OLD_NAMES), _seed_module_as({})
+
+    def run(stub):
+        return _run_demo_ids(capsys, stub)
+
+    runs = [run(old_head), run(new_head)]
+    seed_demo.main()
+    runs += [run(old_head), run(new_head)]
+
+    heroes = [o for o in _all_offers() if o.donor_name in seeded.HERO_DONORS]
+    by_name = {o.donor_name: o for o in heroes}
+    expected = [f"offer {by_name[name].id} kept: {by_name[name].device.label}"
+                for name in seeded.HERO_DONORS]
+    expected.append(f"request {request_id} kept: Kayunga, 1 oxygen concentrator")
+    assert all(lines == expected for lines in runs), runs
+    assert "525DS" in expected[0] and "525KS" in expected[1]

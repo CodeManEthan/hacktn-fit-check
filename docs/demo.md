@@ -14,9 +14,9 @@ ssh -i ~/.ssh/id_fitcheck_vm opc@147.224.201.81 'cd /opt/fitcheck && ./.venv/bin
 
 | Offer | Device | Donor, city | Verdict at Kayunga |
 |---|---|---|---|
-| 8 (A) | DeVilbiss Healthcare 525DS | Nashville General Hospital biomedical department, Nashville | Do not ship |
-| 9 (B) | DeVilbiss Healthcare 525KS | Leeds Teaching Hospitals NHS Trust, surplus, Leeds | Ship with |
-| 10 (C) | Unnamed oxygen concentrator | Harris County clinic network, Houston | Needs info |
+| 8 (A) | DeVilbiss Healthcare 525DS | Riverside General biomedical department, Nashville | Do not ship |
+| 9 (B) | DeVilbiss Healthcare 525KS | Midland Teaching Hospital, surplus, Leeds | Ship with |
+| 10 (C) | Unnamed oxygen concentrator | Bayou community clinic network, Houston | Needs info |
 
 The Kayunga request is request 1.
 

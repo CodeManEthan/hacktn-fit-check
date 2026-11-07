@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import ast
+import re
 from dataclasses import replace
+from pathlib import Path
 
 import pytest
 
@@ -82,3 +85,41 @@ def test_the_kayunga_request_is_found_by_clinic_and_type(fresh_db):
     assert seeded.is_seeded_request(kayunga)
     assert not seeded.is_seeded_request(other_type)
     assert not seeded.is_seeded_request(other_clinic)
+
+
+# ---- the copies of the rename map ----------------------------------------------
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def _demo_ids_hero_donors() -> tuple[tuple[str, str], ...]:
+    tree = ast.parse((ROOT / "deploy" / "demo_ids.py").read_text())
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and getattr(node.targets[0], "id", "") == "HERO_DONORS":
+            return ast.literal_eval(node.value)
+    raise AssertionError("deploy/demo_ids.py has no HERO_DONORS")
+
+
+def test_demo_ids_carries_the_same_hero_names_as_this_module():
+    pairs = _demo_ids_hero_donors()
+    assert tuple(new for _, new in pairs) == seeded.HERO_DONORS
+    assert {old: new for old, new in pairs} == {
+        old: new for old, new in seeded.DONOR_RENAMES.items() if new in seeded.HERO_DONORS
+    }
+
+
+def reverse_update_sql() -> str:
+    """The statement docs/deploy.md gives for putting the old donor names back."""
+    text = (ROOT / "docs" / "deploy.md").read_text()
+    return text.split('SQL = """', 1)[1].split('"""', 1)[0]
+
+
+def test_the_deploy_notes_reverse_update_undoes_the_whole_map():
+    sql = reverse_update_sql()
+    unquote = lambda s: s.replace("''", "'")  # noqa: E731
+    back = {unquote(new): unquote(old)
+            for new, old in re.findall(r"WHEN '((?:[^']|'')*)' THEN '((?:[^']|'')*)'", sql)}
+    assert back == {new: old for old, new in seeded.DONOR_RENAMES.items()}
+    listed = {unquote(name) for name in re.findall(
+        r"'((?:[^']|'')*)'", sql.split("WHERE", 1)[1])}
+    assert listed == set(seeded.DONOR_RENAMES.values())

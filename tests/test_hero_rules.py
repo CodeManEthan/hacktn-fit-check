@@ -64,19 +64,19 @@ def concentrator(model: str, low: int, high: int, hz: list[int], watts: int, yea
 
 
 OFFER_A = Offer(  # Nashville, the 115 V / 60 Hz build
-    donor_name="Nashville General Hospital biomedical department", donor_email="a@example.org",
+    donor_name="Riverside General biomedical department", donor_email="a@example.org",
     device=concentrator("525DS", 97, 127, [60], 310, 2016, ["en", "es", "fr"]),
     device_type="oxygen concentrator", quantity_offered=1, id=1,
     origin=GeoPoint(country="United States", city="Nashville", latitude=36.1627, longitude=-86.7816),
 )
 OFFER_B = Offer(  # Leeds, the 230 V / 50 Hz build
-    donor_name="Leeds Teaching Hospitals NHS Trust, surplus", donor_email="b@example.org",
+    donor_name="Midland Teaching Hospital, surplus", donor_email="b@example.org",
     device=concentrator("525KS", 187, 253, [50], 312, 2019, KS_LANGUAGES),
     device_type="oxygen concentrator", quantity_offered=1, id=2,
     origin=GeoPoint(country="United Kingdom", city="Leeds", latitude=53.8008, longitude=-1.5491),
 )
 OFFER_C = Offer(  # Houston, nothing known
-    donor_name="Harris County clinic network", donor_email="c@example.org",
+    donor_name="Bayou community clinic network", donor_email="c@example.org",
     device=DeviceFacts(raw_input="older oxygen concentrator, works fine, 2 units"),
     device_type="oxygen concentrator", quantity_offered=2, id=3,
     origin=GeoPoint(country="United States", city="Houston", latitude=29.7604, longitude=-95.3698),
