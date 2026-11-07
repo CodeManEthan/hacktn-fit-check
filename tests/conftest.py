@@ -1,6 +1,6 @@
 """Suite-wide fixtures.
 
-The import check (design §2.5) reads data/import_rules.json, where only real
+The import check reads data/import_rules.json, where only real
 countries live, so the factories' "Testland" would read as not on file and
 every factory device would need info. Each test sees the committed table
 plus the fixture's Testland row. A test that sets RULES_PATH itself wins.

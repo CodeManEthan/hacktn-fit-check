@@ -150,7 +150,7 @@ def test_citation_gives_the_page_link():
     assert lib.citation(lib.entry("drive-devilbiss-525ks"), "year_of_manufacture")["url"] == ""
 
 
-@pytest.mark.skipif(not NOTES.exists(), reason="the notes tree is not on this machine")
+@pytest.mark.skipif(not NOTES.exists(), reason="the device notes are not in this repo")
 def test_the_committed_file_is_what_the_build_script_makes(tmp_path):
     from scripts import build_library
 

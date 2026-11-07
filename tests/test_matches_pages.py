@@ -1,4 +1,4 @@
-"""[B15] The matches, candidate and offer pages after the UI merge (design §13):
+"""The matches, candidate and offer pages after the UI merge:
 miles beside kilometres, a genuine 0 km shown, a double confirm answering a
 page, and the offer form keeping "Blank if nothing dated." with its divs
 balanced. Seeded demo data in a fresh SQLite file; no model is called.
@@ -27,7 +27,7 @@ from tests.test_pipeline import _clean_verdict, offer
 
 @pytest.fixture(scope="module")
 def demo(tmp_path_factory):
-    path = tmp_path_factory.mktemp("b15") / "demo.db"
+    path = tmp_path_factory.mktemp("demo") / "demo.db"
     with pytest.MonkeyPatch.context() as mp:
         mp.setattr(db, "SETTINGS", replace(SETTINGS, database_url=f"sqlite:///{path}"))
         mp.setattr(db, "_engine", None)

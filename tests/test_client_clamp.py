@@ -1,4 +1,4 @@
-"""[B6] The client clamps max_tokens to what each model accepts. No model is called."""
+"""The client clamps max_tokens to what each model accepts. No model is called."""
 
 from __future__ import annotations
 

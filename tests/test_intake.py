@@ -460,7 +460,7 @@ def test_empty_text_asks_for_nothing_and_never_calls_the_model():
     assert client.calls == []
 
 
-# --- [B14] the routes in this tree: upload, standing pages, 404, clinic form --
+# --- the routes: upload, standing pages, 404, clinic form --
 #
 # Each test gets its own SQLite file and a TestClient without the lifespan, so
 # no seed runs. No model is called: the typed path is given a StubClient.

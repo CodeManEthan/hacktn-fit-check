@@ -1,4 +1,4 @@
-"""Design §2.5: the import and registration check, and the committed Uganda row."""
+"""The import and registration check, and the committed Uganda row."""
 
 from __future__ import annotations
 
@@ -159,7 +159,7 @@ def test_the_committed_uganda_row_is_the_moh_guideline():
 
 
 def test_a_known_but_empty_language_list_reads_as_unknown_not_as_a_failed_label():
-    """verification-b1-verdict-rules-1 L1: [] names no language, so it is a gap, not a label."""
+    """[] names no language, so it is a gap, not a label."""
     result = check_import_rules(
         device(manual_languages=fact([], Provenance.SPEC_SHEET),
                year_of_manufacture=fact(2019, Provenance.DONOR_STATED)),

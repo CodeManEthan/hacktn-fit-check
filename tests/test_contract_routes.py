@@ -69,7 +69,7 @@ def verdict_of(outcome: Outcome, status: CheckStatus) -> Verdict:
 def known_supply(monkeypatch):
     """A supply lookup that knows the answers, so the factory device reads WORKS.
 
-    Since the rollup turned unknowns into NEEDS_INFO (§2.1), the default lookup's
+    Since the rollup turns unknowns into NEEDS_INFO, the default lookup's
     silence on spare parts would leave the device needing info.
     """
     monkeypatch.setattr(marketplace_routes, "supply_lookup",

@@ -1,7 +1,7 @@
-"""[B7] The deploy scripts parse, the live checker reads the seed's output, and
+"""The deploy scripts parse, the live checker reads the seed's output, and
 nothing under deploy/ carries an OCID or a password.
 
-The fix-pass tests run pieces of the scripts locally: bootstrap's code step and
+The later tests run pieces of the scripts locally: bootstrap's code step and
 redeploy's remote stage and cutover scripts, with /opt rewritten to a temporary
 directory, a local bare repository for the fork, and stubs for sudo, systemctl and
 the other VM commands. Nothing here reaches the VM."""
@@ -421,7 +421,7 @@ def test_l5_cutover_to_a_new_head_still_swaps(tmp_path, vm):
 
 def test_l6_every_curl_assignment_survives_set_e():
     """Under set -e, code=$(curl ...) exits on a refused or timed-out connection.
-    [B11]: `msg=$(curl ...) || rc=$?` keeps curl's exit code and survives too."""
+    `msg=$(curl ...) || rc=$?` keeps curl's exit code and survives too."""
     for script in SHELL_SCRIPTS:
         for line in script.read_text().splitlines():
             if re.search(r"=\$\(curl ", line):
@@ -456,7 +456,7 @@ def test_l6_check_reports_every_path_when_the_site_is_unreachable(tmp_path):
         assert f"GET http://127.0.0.1:{port}{path} -> 000" in result.stdout
 
 
-# --- [B11] HTTPS on fitcheck.care (design 9.1) ---------------------------------------
+# --- HTTPS on fitcheck.care -------------------------------------------------------
 
 def _caddyfile_sites() -> dict[str, str]:
     """deploy/Caddyfile's site blocks, address -> body, comments dropped."""
@@ -474,7 +474,7 @@ def _caddyfile_sites() -> dict[str, str]:
     return sites
 
 
-def test_b11_caddyfile_has_the_name_and_the_ip_door_both_proxying_to_the_app():
+def test_caddyfile_has_the_name_and_the_ip_door_both_proxying_to_the_app():
     sites = _caddyfile_sites()
     assert set(sites) == {"fitcheck.care", "http://147.224.201.81"}
     for body in sites.values():
@@ -486,14 +486,14 @@ def test_b11_caddyfile_has_the_name_and_the_ip_door_both_proxying_to_the_app():
     assert "the one place" in text
 
 
-def test_b11_the_scripts_check_the_name_the_caddyfile_serves():
+def test_the_scripts_check_the_name_the_caddyfile_serves():
     name = next(a for a in _caddyfile_sites() if not a.startswith("http://"))
     assert f'PUBLIC_NAME="{name}"' in (DEPLOY / "redeploy.sh").read_text()
     assert _load("check_live").DEFAULT_BASE == f"https://{name}"
 
 
 @pytest.mark.skipif(shutil.which("caddy") is None, reason="no caddy binary here")
-def test_b11_caddyfile_validates(tmp_path):
+def test_caddyfile_validates(tmp_path):
     env = {**os.environ, "HOME": str(tmp_path), "XDG_DATA_HOME": str(tmp_path),
            "XDG_CONFIG_HOME": str(tmp_path)}
     result = subprocess.run(["caddy", "validate", "--config", str(DEPLOY / "Caddyfile"),
@@ -506,7 +506,7 @@ def _fitcheck_unit(text: str) -> str:
     return text[start:text.index("\nUNIT\n", start)]
 
 
-def test_b11_bootstrap_unit_binds_localhost_with_proxy_headers_and_no_capability():
+def test_bootstrap_unit_binds_localhost_with_proxy_headers_and_no_capability():
     text = (DEPLOY / "bootstrap.sh").read_text()
     unit = _fitcheck_unit(text)
     assert 'BIND_HOST="127.0.0.1"' in text and 'PORT="8000"' in text
@@ -517,7 +517,7 @@ def test_b11_bootstrap_unit_binds_localhost_with_proxy_headers_and_no_capability
     assert "--add-service=http " in text and "--add-service=https " in text
 
 
-def test_b11_bootstrap_installs_caddy_and_the_caddyfile():
+def test_bootstrap_installs_caddy_and_the_caddyfile():
     text = (DEPLOY / "bootstrap.sh").read_text()
     assert re.search(r'CADDY_VERSION="\d+\.\d+\.\d+"', text)
     assert "sha512sum -c" in text, "the release tarball is checked against its checksum file"
@@ -530,7 +530,7 @@ def test_b11_bootstrap_installs_caddy_and_the_caddyfile():
     assert text.index("sudo systemctl restart ${SERVICE}") < text.index("reload-or-restart caddy")
 
 
-def test_b11_redeploy_waits_on_8000_and_says_public_checks():
+def test_redeploy_waits_on_8000_and_says_public_checks():
     text = (DEPLOY / "redeploy.sh").read_text()
     assert text.count("curl -fs -o /dev/null http://127.0.0.1:8000/ && break") == 2
     assert "127.0.0.1:80/" not in text
@@ -553,7 +553,7 @@ def _swap_setup(tmp_path: Path, vm: dict) -> tuple[Fork, Path]:
 
 
 @needs_git_bash
-def test_b11_cutover_installs_a_changed_caddyfile_before_stopping_the_app(tmp_path, vm):
+def test_cutover_installs_a_changed_caddyfile_before_stopping_the_app(tmp_path, vm):
     fork, opt = _swap_setup(tmp_path, vm)
     arg = _caddy(tmp_path, installed="old config\n")
     result = _run(_remote("cutover", tmp_path), vm, fork.main, *arg)
@@ -570,7 +570,7 @@ def test_b11_cutover_installs_a_changed_caddyfile_before_stopping_the_app(tmp_pa
 
 
 @needs_git_bash
-def test_b11_cutover_leaves_an_unchanged_caddyfile_and_drops_a_stale_prev(tmp_path, vm):
+def test_cutover_leaves_an_unchanged_caddyfile_and_drops_a_stale_prev(tmp_path, vm):
     fork, opt = _swap_setup(tmp_path, vm)
     arg = _caddy(tmp_path)
     (tmp_path / "etc" / "caddy" / "Caddyfile.prev").write_text("from an older cutover\n")
@@ -584,7 +584,7 @@ def test_b11_cutover_leaves_an_unchanged_caddyfile_and_drops_a_stale_prev(tmp_pa
 
 
 @needs_git_bash
-def test_b11_cutover_without_caddy_installed_says_so_and_keeps_the_old_head_live(tmp_path, vm):
+def test_cutover_without_caddy_installed_says_so_and_keeps_the_old_head_live(tmp_path, vm):
     fork, opt = _swap_setup(tmp_path, vm)
     payload = base64.b64encode((DEPLOY / "Caddyfile").read_bytes()).decode()
     assert not (tmp_path / "etc" / "caddy").exists()
@@ -599,7 +599,7 @@ def test_b11_cutover_without_caddy_installed_says_so_and_keeps_the_old_head_live
 
 
 @needs_git_bash
-def test_b11_cutover_with_an_invalid_caddyfile_keeps_the_old_head_live(tmp_path, vm):
+def test_cutover_with_an_invalid_caddyfile_keeps_the_old_head_live(tmp_path, vm):
     fork, opt = _swap_setup(tmp_path, vm)
     arg = _caddy(tmp_path, installed="old config\n")
     vm["STUB_CADDY_INVALID"] = "1"
@@ -617,7 +617,7 @@ def test_b11_cutover_with_an_invalid_caddyfile_keeps_the_old_head_live(tmp_path,
 
 
 @needs_git_bash
-def test_b11_cutover_puts_the_old_caddyfile_back_when_caddy_refuses_the_new(tmp_path, vm):
+def test_cutover_puts_the_old_caddyfile_back_when_caddy_refuses_the_new(tmp_path, vm):
     fork, opt = _swap_setup(tmp_path, vm)
     arg = _caddy(tmp_path, installed="old config\n")
     vm["STUB_RELOAD_FAIL"] = "1"
@@ -633,7 +633,7 @@ def test_b11_cutover_puts_the_old_caddyfile_back_when_caddy_refuses_the_new(tmp_
 
 @needs_git_bash
 @pytest.mark.parametrize("with_prev", [True, False])
-def test_b11_rollback_restores_the_caddyfile_only_when_cutover_replaced_it(tmp_path, vm, with_prev):
+def test_rollback_restores_the_caddyfile_only_when_cutover_replaced_it(tmp_path, vm, with_prev):
     opt = tmp_path / "opt"
     (opt / "fitcheck-prev").mkdir(parents=True)
     _caddy(tmp_path, installed="new config\n")
@@ -744,7 +744,7 @@ TWO_OTHERS = ("printf '%s\\n' '147.224.201.81 STREAM fitcheck.care' '147.224.201
 @needs_curl
 @pytest.mark.parametrize("getent", ["exit 2", "echo '147.224.201.81  fitcheck.care'", TWO_OTHERS],
                          ids=["no-record", "other-address", "two-other-addresses"])
-def test_b11_check_skips_the_hostname_when_it_does_not_resolve_to_the_vm(tmp_path, sites, getent):
+def test_check_skips_the_hostname_when_it_does_not_resolve_to_the_vm(tmp_path, sites, getent):
     ip_site = sites("good")
     result = _redeploy(tmp_path, ip_site, "check", getent=getent)
     assert result.returncode == 0, result.stdout + result.stderr
@@ -759,7 +759,7 @@ def test_b11_check_skips_the_hostname_when_it_does_not_resolve_to_the_vm(tmp_pat
 
 
 @needs_curl
-def test_b11_check_resolves_when_the_vm_ip_is_not_the_first_address(tmp_path, sites):
+def test_check_resolves_when_the_vm_ip_is_not_the_first_address(tmp_path, sites):
     """Several addresses, the VM's second, each repeated per socket type as ahostsv4 prints."""
     ip_site = sites("good")
     real_curl = shutil.which("curl")
@@ -776,7 +776,7 @@ def test_b11_check_resolves_when_the_vm_ip_is_not_the_first_address(tmp_path, si
 
 
 @needs_curl
-def test_b11_check_tries_the_name_when_it_resolves_and_warns_on_a_tls_failure(tmp_path, sites):
+def test_check_tries_the_name_when_it_resolves_and_warns_on_a_tls_failure(tmp_path, sites):
     ip_site = sites("good")
     real_curl = shutil.which("curl")
     curl = ('for a in "$@"; do case "$a" in https://fitcheck.care*) '
@@ -795,7 +795,7 @@ def test_b11_check_tries_the_name_when_it_resolves_and_warns_on_a_tls_failure(tm
 
 
 @needs_curl
-def test_b11_check_runs_both_halves_against_the_public_url(tmp_path, sites):
+def test_check_runs_both_halves_against_the_public_url(tmp_path, sites):
     ip_site, name_site = sites("good"), sites("good")
     result = _redeploy(tmp_path, ip_site, "check", public_url=name_site)
     assert result.returncode == 0, result.stdout + result.stderr
@@ -808,7 +808,7 @@ def test_b11_check_runs_both_halves_against_the_public_url(tmp_path, sites):
 
 
 @needs_curl
-def test_b11_check_warns_without_failing_when_the_public_url_refuses(tmp_path, sites):
+def test_check_warns_without_failing_when_the_public_url_refuses(tmp_path, sites):
     ip_site = sites("good")
     closed = f"http://127.0.0.1:{_free_port()}"
     result = _redeploy(tmp_path, ip_site, "check", public_url=closed)
@@ -819,7 +819,7 @@ def test_b11_check_warns_without_failing_when_the_public_url_refuses(tmp_path, s
 
 @needs_curl
 @pytest.mark.parametrize("mode", ["bad", "404"])
-def test_b11_check_fails_on_a_bad_page_or_status_at_the_public_url(tmp_path, sites, mode):
+def test_check_fails_on_a_bad_page_or_status_at_the_public_url(tmp_path, sites, mode):
     ip_site, name_site = sites("good"), sites(mode)
     result = _redeploy(tmp_path, ip_site, "check", public_url=name_site)
     assert result.returncode == 1, result.stdout + result.stderr
@@ -828,7 +828,7 @@ def test_b11_check_fails_on_a_bad_page_or_status_at_the_public_url(tmp_path, sit
 
 
 @needs_curl
-def test_b11_cutover_does_not_roll_back_for_a_certificate_not_yet_issued(tmp_path, sites):
+def test_cutover_does_not_roll_back_for_a_certificate_not_yet_issued(tmp_path, sites):
     ip_site = sites("good")
     closed = f"http://127.0.0.1:{_free_port()}"
     result = _redeploy(tmp_path, ip_site, "cutover", "a" * 40, public_url=closed)
@@ -838,7 +838,7 @@ def test_b11_cutover_does_not_roll_back_for_a_certificate_not_yet_issued(tmp_pat
 
 
 @needs_curl
-def test_b11_cutover_rolls_back_for_a_bad_page_at_the_public_url(tmp_path, sites):
+def test_cutover_rolls_back_for_a_bad_page_at_the_public_url(tmp_path, sites):
     ip_site, name_site = sites("good"), sites("bad")
     result = _redeploy(tmp_path, ip_site, "cutover", "a" * 40, public_url=name_site)
     assert result.returncode == 1

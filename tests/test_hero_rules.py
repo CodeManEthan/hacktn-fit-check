@@ -1,8 +1,8 @@
-"""The hero trio against Kayunga on facts typed here (design §4.1, §4.3; verification-1).
+"""The hero trio against Kayunga on facts typed here.
 
-B3 owns the seeded acceptance test (tests/test_hero_trio.py). This one pins
+tests/test_hero_trio.py is the seeded acceptance test. This one pins
 the rules: with the 525KS and 525DS facts as the library will carry them,
-and the recorded Uganda answer for the 525KS, the outcomes are the ruled
+and the recorded Uganda answer for the 525KS, the outcomes are the intended
 ones. The import check reads the committed data/import_rules.json.
 """
 
@@ -84,7 +84,7 @@ OFFER_C = Offer(  # Houston, nothing known
 
 
 def recorded_uganda(device: DeviceFacts, device_type: str, country: str) -> SupplyIntel:
-    """The one supply_answers row of §4.3: the 525KS in Uganda. Nothing for any model."""
+    """The one seeded supply_answers row: the 525KS in Uganda. Nothing for any model."""
     if country == "Uganda" and device.model.value == "525KS":
         return SupplyIntel(
             country=country,

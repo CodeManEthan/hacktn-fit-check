@@ -1,4 +1,4 @@
-"""[B10] The packet's "Send with it" list for hero offer B at Kayunga is built
+"""The packet's "Send with it" list for hero offer B at Kayunga is built
 on the same intel the candidate page screens with (the supply order: registry,
 then the nonprofit's recorded answer), so it names the stabiliser and the two
 years of filters. A stored match's verdict still wins. Seeded demo in a fresh
@@ -42,7 +42,7 @@ class FakeCardChat:
 
 @pytest.fixture
 def seeded(tmp_path, monkeypatch, capsys):
-    url = f"sqlite:///{tmp_path / 'b10.db'}"
+    url = f"sqlite:///{tmp_path / 'demo.db'}"
     monkeypatch.setattr(db, "SETTINGS", replace(SETTINGS, database_url=url))
     monkeypatch.setattr(db, "_engine", None)
     monkeypatch.setenv("GUDID_LOOKUP", "off")

@@ -1,4 +1,4 @@
-"""§5.1: the manual check never fails; a packet is built when no language is shared."""
+"""The manual check never fails; a packet is built when no language is shared."""
 
 from __future__ import annotations
 
@@ -66,7 +66,7 @@ def test_an_empty_document_list_counts_as_no_document():
 
 
 def test_no_shared_language_and_no_document_asks_for_the_manual():
-    """[F9]: needs info only when no manual can be found. Different languages
+    """Needs info only when no manual can be found. Different languages
     with nothing on file is that case: the packet has no source yet."""
     result = check_manual_language(
         device(manual_languages=fact(["en"], Provenance.SPEC_SHEET)),

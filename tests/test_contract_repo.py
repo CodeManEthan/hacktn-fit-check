@@ -1,4 +1,4 @@
-"""Storage for the round's new tables: supply answers, registry cache, packets, extractions."""
+"""Storage for the four newer tables: supply answers, registry cache, packets, extractions."""
 
 from __future__ import annotations
 

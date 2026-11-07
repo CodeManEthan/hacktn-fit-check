@@ -1,4 +1,4 @@
-"""[B6] The wave-one join fixes: page links on library citations, one inspector
+"""Page links on library citations, one inspector
 row builder for both offer paths, and the document `kind` the packet reads.
 No model is called.
 """
@@ -34,7 +34,7 @@ def client(tmp_path, monkeypatch):
         db._engine.dispose()
 
 
-# ---- (B4 check L1) the source link keeps its page -----------------------------
+# ---- the source link keeps its page -------------------------------------------
 
 def test_the_525ds_voltage_citation_links_to_its_page():
     entry = device_library.entry(DS)
@@ -53,7 +53,7 @@ def test_a_fact_without_its_own_url_falls_back_to_the_document():
     assert library_citations(stripped)["voltage_min_v"].url == doc["url"]
 
 
-# ---- (B4 check L2) one inspector row set ----------------------------------------
+# ---- one inspector row set ------------------------------------------------------
 
 def test_prefill_returns_the_inspector_rows_with_page_links(client):
     data = client.post("/offer/prefill", data={"slug": DS}).json()
@@ -84,7 +84,7 @@ def test_the_offer_page_renders_both_paths_through_one_renderer(client):
 
 
 def test_the_library_pick_script_runs_after_the_inspector_exists(client):
-    """(B6 check L1) An inline script that runs before <tbody data-inspector-body>
+    """An inline script that runs before <tbody data-inspector-body>
     finds no body, returns early and never listens for the pick. Every script
     that looks the body up must come after it, and the pick after the renderer."""
     page = client.get("/offer").text
@@ -107,7 +107,7 @@ def _note_page(note):
 
 
 def test_the_525ds_model_row_links_the_page_its_note_cites():
-    """(B6 check L3) The Model row showed the model fact's note (p.11) but linked
+    """The Model row showed the model fact's note (p.11) but linked
     the manufacturer fact's page (p.44, the address). Both now come from one fact."""
     entry = device_library.entry(DS)
     rows = inspector.inspector_rows(device_library.to_device_facts(entry), library_citations(entry))
@@ -125,7 +125,7 @@ def test_every_library_row_links_the_page_its_note_cites():
             if row["known"] and page is not None and row["source_url"]:
                 assert row["source_url"].endswith(f"#page={page}"), (entry.slug, row["label"])
 
-# ---- (B5 check L2) documents carry their kind ---------------------------------------
+# ---- documents carry their kind ------------------------------------------------------
 
 def test_the_525ks_documents_fact_carries_each_kind():
     facts = device_library.to_device_facts(device_library.entry(KS))

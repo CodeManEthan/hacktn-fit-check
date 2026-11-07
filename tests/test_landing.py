@@ -1,4 +1,4 @@
-"""[B13] design §13 landing: upstream's layout with our copy, vendored images,
+"""The landing: upstream's layout with our copy, vendored images,
 the operator strip under the cards, no seeded-clinic strip, no dead links."""
 from __future__ import annotations
 
