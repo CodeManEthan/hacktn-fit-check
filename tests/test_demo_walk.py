@@ -25,7 +25,7 @@ from app.data import db
 from app.data import marketplace_repo as repo
 from app.main import app
 from app.reference import device_library
-from app.web import marketplace_routes
+from app.web import marketplace_routes, packet_routes
 from scripts import seed_demo
 
 KAYUNGA = seed_demo.KAYUNGA
@@ -121,8 +121,8 @@ def test_screen_3_b_shows_fifteen_checks_and_the_send_with_list(walk):
 def test_screen_4_the_packet_for_b_at_kayunga_is_english_as_requested(walk, monkeypatch):
     client, ids = walk
     chat = FakeCardChat()
-    monkeypatch.setattr(marketplace_routes, "_packet_chat", lambda: chat)
-    monkeypatch.setattr(marketplace_routes, "_packet_language", lambda: None)
+    monkeypatch.setattr(packet_routes, "_packet_chat", lambda: chat)
+    monkeypatch.setattr(packet_routes, "_packet_language", lambda: None)
     body = client.get(f"/packet/{ids['B']}?facility={KAYUNGA}").text
     assert "English, as requested" in body
     assert "The start up may take up to 15 minutes." in body

@@ -16,7 +16,7 @@ from app.config import SETTINGS
 from app.data import db, repository
 from app.main import app
 from app.reference import device_library
-from app.web import inspector, marketplace_routes
+from app.web import inspector, library_routes, marketplace_routes, packet_routes, shared
 from tests.test_packet_route import a_clinic, an_offer, fakes  # noqa: F401 - fixture
 
 DS = "drive-devilbiss-525ds"
@@ -69,7 +69,8 @@ def test_prefill_returns_the_inspector_rows_with_page_links(client):
 
 def test_the_old_prefill_row_builder_is_gone():
     for name in ("_inspector_rows", "INSPECTOR_ROWS", "PREFILL_ROWS", "_prefill_value"):
-        assert not hasattr(marketplace_routes, name)
+        for module in (marketplace_routes, library_routes, shared):
+            assert not hasattr(module, name), (module.__name__, name)
 
 
 def test_the_offer_page_renders_both_paths_through_one_renderer(client):
@@ -136,7 +137,7 @@ def test_the_525ks_documents_fact_carries_each_kind():
 def test_the_packet_picks_the_manual_by_kind():
     docs = device_library.to_device_facts(device_library.entry(KS)).documents.value
     reordered = [d for d in docs if d["kind"] != "manual"] + [d for d in docs if d["kind"] == "manual"]
-    picked = marketplace_routes._packet_manual(reordered)
+    picked = packet_routes._packet_manual(reordered)
     assert picked["kind"] == "manual"
 
 

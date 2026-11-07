@@ -23,6 +23,15 @@ One row per staged clinic: `slug` (key), `name`, `country`, and `profile_json`.
 - Filled by `repository.setup()` at every startup, but only when the table is empty. It copies the three profiles in `app/data/seed.py`.
 - Nothing reads it. The legacy `/check` route looks clinics up in the in-code list `FACILITIES_BY_SLUG`, and every newer route reads `facilities_v2`. It is a leftover. It was left in place because dropping it would change a table on the live MySQL.
 
+### Two facility tables, and `POST /check`
+
+A reader meets two clinic tables and a route no page uses. All three are kept on purpose.
+
+- `facilities` is the original screener's table, described above. No page reads it.
+- `facilities_v2` is the clinic table every page reads (below): the clinic form, the request form and list upload, the matches and candidate pages, `POST /match`, the review desk, the supply desk's country list, the CSV screening, the handover packet, and `/impact`, which reads a clinic's country from it.
+- `/verdict/<id>` and `POST /check` read neither table. They look clinics up in `FACILITIES_BY_SLUG` (`app/data/seed.py`), the same three profiles that fill `facilities` at startup and that `scripts/seed_demo.py` writes into `facilities_v2`.
+- `POST /check` is the legacy path's write: it screens a stored device against one of those clinics, saves a row in `verdicts` and redirects to `/verdict/<id>`. No page posts to it. It stays because the legacy verdict path is still tested through it (`test_the_legacy_check_uses_the_supply_lookup_without_a_device_type` in `tests/test_contract_routes.py`), and the seeded verdicts that `/impact` links to are read on the same `/verdict/<id>` page.
+
 ### `devices`
 
 One row per device screened on the legacy path: `id`, `label` (manufacturer and model as one string), `raw_input` (what the donor typed), `facts_json`, `created_at`.
