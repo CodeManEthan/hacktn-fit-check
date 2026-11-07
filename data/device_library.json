@@ -122,7 +122,7 @@
         "url": "https://shop.drivemedical.com/medias/3061-1?context=bWFzdGVyfGltYWdlc3w3NzU1NDE1fGFwcGxpY2F0aW9uL3BkZnxhRGxoTDJobFl5OHhNalE1TXpVMU9UUTVOamN6TkM4ek1EWXhMVEV8ZTRlMTg5ZDU5M2ExYmY5NzYyNDYyYmNhMjczMDJlNzU0OTJiZmIyYmVhN2ZmNGVjOGVlMzY5MDE4MzVjYjZhNw#page=6",
         "page": 6,
         "quote": "The DeVilbiss Oxygen Concentrator is intended for use as an oxygen concentrator to provide supplemental low flow oxygen therapy in the home, nursing homes, patient care facilities, etc.",
-        "note": "lead's reading of the intended use: supplemental low flow oxygen therapy in the home, nursing homes, patient care facilities; the manual does not grade operator skill"
+        "note": "author's reading of the intended use: supplemental low flow oxygen therapy in the home, nursing homes, patient care facilities; the manual does not grade operator skill"
       },
       "consumables": {
         "value": [
@@ -334,7 +334,7 @@
         "url": "https://www.drivemedical.de/ALL_PRODUCT_Media/RESPIRATORY/Oxygen/525KS/pdf/User%20Manual/SE-525KS-2-Rev-A.pdf#page=6",
         "page": 6,
         "quote": "The DeVilbiss Oxygen Concentrator is intended for use as an oxygen concentrator to provide supplemental low flow oxygen therapy in the home, nursing homes, patient care facilities, etc.",
-        "note": "lead's reading of the intended use: supplemental low flow oxygen therapy in the home, nursing homes, patient care facilities; the manual does not grade operator skill"
+        "note": "author's reading of the intended use: supplemental low flow oxygen therapy in the home, nursing homes, patient care facilities; the manual does not grade operator skill"
       },
       "consumables": {
         "value": [
@@ -553,7 +553,7 @@
         "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
         "page": 32,
         "quote": "PDF p.32: \"Inflation: Automatic inflation with pumping\" (self-contained pump; only AC adapter or battery listed as supply)",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_distilled_water": {
         "value": false,
@@ -562,7 +562,7 @@
         "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
         "page": 32,
         "quote": "PDF p.32: \"Inflation: Automatic inflation with pumping\" (self-contained pump; only AC adapter or battery listed as supply)",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_compressed_air": {
         "value": false,
@@ -571,7 +571,7 @@
         "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf#page=32",
         "page": 32,
         "quote": "PDF p.32: \"Inflation: Automatic inflation with pumping\" (self-contained pump; only AC adapter or battery listed as supply)",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "consumables": {
         "value": [
@@ -603,7 +603,7 @@
         "url": "https://omronhealthcare.com/storage/pdfs/intellisense-blood-pressure-monitor-hem-907xl-im-en_1628519-0k.pdf",
         "page": null,
         "quote": "",
-        "note": "verifier's reading: One-button oscillometric cuff measurement; the only judgment is cuff size."
+        "note": "reviewer's reading: One-button oscillometric cuff measurement; the only judgment is cuff size."
       }
     },
     "documents": [
@@ -714,7 +714,7 @@
         "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=23",
         "page": 23,
         "quote": "2023 guide PDF p.23: \"Electrically powered medical suction equipment for field and transport use, according to ISO10079-1.\" (vacuum is generated internally; only AC/DC/battery power listed)",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_distilled_water": {
         "value": false,
@@ -723,7 +723,7 @@
         "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=23",
         "page": 23,
         "quote": "2023 guide PDF p.23: \"Electrically powered medical suction equipment for field and transport use, according to ISO10079-1.\" (vacuum is generated internally; only AC/DC/battery power listed)",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_compressed_air": {
         "value": false,
@@ -732,7 +732,7 @@
         "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_#page=23",
         "page": 23,
         "quote": "2023 guide PDF p.23: \"Electrically powered medical suction equipment for field and transport use, according to ISO10079-1.\" (vacuum is generated internally; only AC/DC/battery power listed)",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "consumables": {
         "value": [
@@ -774,7 +774,7 @@
         "url": "https://cdn.laerdal.com/downloads/f6374/user_guide_lsu_w_serres_suction_bag_canister__international_",
         "page": null,
         "quote": "",
-        "note": "verifier's reading: One dial sets vacuum; daily work is bag/canister changes and a built-in device test."
+        "note": "reviewer's reading: One dial sets vacuum; daily work is bag/canister changes and a built-in device test."
       }
     },
     "documents": [
@@ -895,7 +895,7 @@
         "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=35",
         "page": 35,
         "quote": "PDF p.35 (printed 25): \"Plug the other end of the power cord into a properly grounded AC outlet.\" (AC mains or internal battery are the only supplies described)",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_distilled_water": {
         "value": false,
@@ -904,7 +904,7 @@
         "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=35",
         "page": 35,
         "quote": "PDF p.35 (printed 25): \"Plug the other end of the power cord into a properly grounded AC outlet.\" (AC mains or internal battery are the only supplies described)",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_compressed_air": {
         "value": false,
@@ -913,7 +913,7 @@
         "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf#page=35",
         "page": 35,
         "quote": "PDF p.35 (printed 25): \"Plug the other end of the power cord into a properly grounded AC outlet.\" (AC mains or internal battery are the only supplies described)",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "consumables": {
         "value": [
@@ -946,7 +946,7 @@
         "url": "https://intranet.rhn.org.uk/wp-content/uploads/2024/08/N560_HomeUseGuide_EN_10075132A00.pdf",
         "page": null,
         "quote": "",
-        "note": "verifier's reading: Clip on a sensor and read SpO2/pulse; the only trap is it needs Nellcor OXIMAX sensors, not generic ones."
+        "note": "reviewer's reading: Clip on a sensor and read SpO2/pulse; the only trap is it needs Nellcor OXIMAX sensors, not generic ones."
       }
     },
     "documents": [
@@ -1056,7 +1056,7 @@
         "url": "https://www.philips.com.au/healthcare/product/HC863065",
         "page": null,
         "quote": "Product page electrical spec lists only \"Internal power supply 100 to 240 VAC\" and internal battery; NBP is \"Oscillometric using stepwise deflation pressure\" with internal \"NBP pump/valve assembly with filter\" (service guide PDF p.152)",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_distilled_water": {
         "value": false,
@@ -1065,7 +1065,7 @@
         "url": "https://www.philips.com.au/healthcare/product/HC863065",
         "page": null,
         "quote": "Product page electrical spec lists only \"Internal power supply 100 to 240 VAC\" and internal battery; NBP is \"Oscillometric using stepwise deflation pressure\" with internal \"NBP pump/valve assembly with filter\" (service guide PDF p.152)",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_compressed_air": {
         "value": false,
@@ -1074,7 +1074,7 @@
         "url": "https://www.philips.com.au/healthcare/product/HC863065",
         "page": null,
         "quote": "Product page electrical spec lists only \"Internal power supply 100 to 240 VAC\" and internal battery; NBP is \"Oscillometric using stepwise deflation pressure\" with internal \"NBP pump/valve assembly with filter\" (service guide PDF p.152)",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "consumables": {
         "value": [
@@ -1110,7 +1110,7 @@
         "url": "https://www.philips.com.au/healthcare/product/HC863065",
         "page": null,
         "quote": "",
-        "note": "verifier's reading: Multi-parameter alarms, ECG lead placement and admin settings (including setting AC mains to 50 or 60 Hz) need trained nursing staff."
+        "note": "reviewer's reading: Multi-parameter alarms, ECG lead placement and admin settings (including setting AC mains to 50 or 60 Hz) need trained nursing staff."
       }
     },
     "documents": [
@@ -1227,7 +1227,7 @@
         "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=247",
         "page": 247,
         "quote": "PDF p.247 (10-3): only \"Power Supply Input: 100-240 VAC\" and battery are listed as supplies",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_distilled_water": {
         "value": false,
@@ -1236,7 +1236,7 @@
         "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=247",
         "page": 247,
         "quote": "PDF p.247 (10-3): only \"Power Supply Input: 100-240 VAC\" and battery are listed as supplies",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_compressed_air": {
         "value": false,
@@ -1245,7 +1245,7 @@
         "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf#page=247",
         "page": 247,
         "quote": "PDF p.247 (10-3): only \"Power Supply Input: 100-240 VAC\" and battery are listed as supplies",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "consumables": {
         "value": [
@@ -1280,7 +1280,7 @@
         "url": "https://www.sonosite.com/support/userdocs/M-Turbo_UG_ENG_P07662-09C_e.pdf",
         "page": null,
         "quote": "",
-        "note": "verifier's reading: Image capture and reading are operator-dependent and need clinical ultrasound training; also choosing transducers and presets."
+        "note": "reviewer's reading: Image capture and reading are operator-dependent and need clinical ultrasound training; also choosing transducers and presets."
       }
     },
     "documents": [
@@ -1381,7 +1381,7 @@
         "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf#page=34",
         "page": 34,
         "quote": "",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_compressed_air": {
         "value": false,
@@ -1390,7 +1390,7 @@
         "url": "https://tigermedical.com/cdn/shop/files/EDASonoTraxVascular--20160729102756394.pdf#page=34",
         "page": 34,
         "quote": "",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "consumables": {
         "value": [
@@ -1565,7 +1565,7 @@
         "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=30",
         "page": 30,
         "quote": "USE DISTILLED WATER ONLY. Use water-having characteristics as per table in sec 5. The impurities in tap water will create the need for more frequent cleaning and maintenance, in addition, they will accumulate and block the hole of the Air Jet.",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_compressed_air": {
         "value": false,
@@ -1574,7 +1574,7 @@
         "url": "https://statimusa.com/wp-content/uploads/2019/09/M___MK_Operator_s_Manual__Rev_Q.pdf#page=9",
         "page": 9,
         "quote": "",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "consumables": {
         "value": [
@@ -1702,7 +1702,7 @@
         "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-blood-glucose-meter-user-manual/download?inline#page=39",
         "page": 39,
         "quote": "",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_compressed_air": {
         "value": false,
@@ -1711,7 +1711,7 @@
         "url": "https://www.accu-chek.co.uk/document/accu-chek-performa-blood-glucose-meter-user-manual/download?inline#page=39",
         "page": 39,
         "quote": "",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "consumables": {
         "value": [
@@ -1884,7 +1884,7 @@
         "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=3",
         "page": 3,
         "quote": "Do not use in an oxygen enriched environment.",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "needs_distilled_water": {
         "value": false,
@@ -1902,7 +1902,7 @@
         "url": "https://shop.drivemedical.com/medias/3087-1?context=bWFzdGVyfGltYWdlc3wxNjY3ODAwfGFwcGxpY2F0aW9uL3BkZnxhR1E1TDJnME5TOHhNalE1TXpNM05ERXlPREUxT0M4ek1EZzNMVEV8NjUwMWM5MzA2NTkwN2VmYzVmNmZjNTk4YjRjY2RkODY3YzUzN2FjYjM0YzBlMmY4NmE2ZGRlZmNmYzBiMzQ1Nw#page=3",
         "page": 3,
         "quote": "includes an AC powered air compressor that provides a source of compressed air",
-        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (verify report)"
+        "note": "inferred from a complete supply specification that names electrical power only; not an explicit statement (author's research notes)"
       },
       "consumables": {
         "value": [

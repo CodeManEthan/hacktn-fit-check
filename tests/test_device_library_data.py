@@ -62,7 +62,7 @@ def test_both_525s_answer_the_utility_and_training_checks(slug):
     assert facts.operating_complexity.value == "low"
     assert "separates oxygen from room air" in e.facts["needs_oxygen"]["quote"]
     assert "bubble humidifier is an optional accessory" in facts.needs_distilled_water.note
-    assert facts.operating_complexity.note.split("; ", 1)[1].startswith("lead's reading of the intended use")
+    assert facts.operating_complexity.note.split("; ", 1)[1].startswith("author's reading of the intended use")
     assert "nursing homes, patient care facilities" in e.facts["operating_complexity"]["quote"]
     assert facts.consumables.value == [
         "MC44D-605 intake bacteria filter", "303DZ-605 cabinet air filter",

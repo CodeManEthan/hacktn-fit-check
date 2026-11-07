@@ -114,7 +114,7 @@ WATER_NOTE = ("no water requirement in the owner's manual; the bubble humidifier
 INDICATIONS = ("The DeVilbiss Oxygen Concentrator is intended for use as an oxygen concentrator "
                "to provide supplemental low flow oxygen therapy in the home, nursing homes, "
                "patient care facilities, etc.")
-COMPLEXITY_NOTE = ("lead's reading of the intended use: supplemental low flow oxygen therapy in "
+COMPLEXITY_NOTE = ("author's reading of the intended use: supplemental low flow oxygen therapy in "
                    "the home, nursing homes, patient care facilities; the manual does not grade "
                    "operator skill")
 FILTERS = ["MC44D-605 intake bacteria filter", "303DZ-605 cabinet air filter",
@@ -582,9 +582,9 @@ def build_library_entry(slug: str, spec: dict[str, Any], notes: Path, checks: Ch
         note = field_notes.get(name, "")
         if name in SUPPLY_FIELDS and not note:
             note = ("inferred from a complete supply specification that names electrical power "
-                    "only; not an explicit statement (verify report)")
+                    "only; not an explicit statement (author's research notes)")
         if name == "operating_complexity" and raw.get("operating_complexity_reason"):
-            note = f"verifier's reading: {raw['operating_complexity_reason']}"
+            note = f"reviewer's reading: {raw['operating_complexity_reason']}"
         if name == "power_watts" and "DERIVED" in quote:
             note = "derived from the adapter rating, not stated as watts"
         source = PRODUCT_PAGE if doc["kind"] == PRODUCT_PAGE else SPEC
