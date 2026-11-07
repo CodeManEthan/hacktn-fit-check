@@ -1,0 +1,53 @@
+name: tests
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      # The release the VM runs (deploy/bootstrap.sh), so the Caddyfile is
+      # validated by the same Caddy that serves it.
+      CADDY_VERSION: "2.11.7"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install the pinned dependencies
+        run: pip install -r requirements.txt
+
+      # Only the Caddyfile check needs Caddy, and it skips without it, so a
+      # failed install leaves the rest of the run alone.
+      - name: Install Caddy
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          base="https://github.com/caddyserver/caddy/releases/download/v${CADDY_VERSION}"
+          tarball="caddy_${CADDY_VERSION}_linux_amd64.tar.gz"
+          cd "$RUNNER_TEMP"
+          if curl -fsSL -m 120 -o "$tarball" "$base/$tarball" \
+              && curl -fsSL -m 60 -o checksums.txt "$base/caddy_${CADDY_VERSION}_checksums.txt" \
+              && grep " ${tarball}\$" checksums.txt | sha512sum -c --quiet -; then
+            tar -xzf "$tarball" caddy
+            sudo install -m 755 caddy /usr/local/bin/caddy
+          else
+            sudo apt-get update -qq
+            sudo apt-get install -y -qq caddy
+          fi
+          caddy version
+
+      # No test reaches a model or the network: tests/conftest.py fakes every
+      # model client, and the GUDID lookup is off under pytest. The tests that
+      # read the device notes skip here, since the notes are not in the repo.
+      - name: Run the tests
+        run: python -m pytest -q -rs
