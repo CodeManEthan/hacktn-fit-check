@@ -83,7 +83,7 @@ def figures() -> dict:
     """The log's figures: the counters' tally plus blockers, clinics and countries.
 
     `blockers` counts FAIL results only (a check that stopped a screening),
-    not the MITIGABLE ones the bars also count, so "blocked" means blocked.
+    as the page's bars do, so "blocked" means blocked.
     Raises RepositoryError when the log cannot be read.
     """
     counts = repository.count_by_outcome()

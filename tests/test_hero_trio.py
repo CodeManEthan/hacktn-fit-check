@@ -98,14 +98,14 @@ def _fails(verdict) -> set[str]:
 def test_the_seed_puts_the_trio_on_the_kayunga_request(seeded):
     _, offers = _kayunga()
     assert {o.donor_name for o in offers} == {
-        "Nashville General Hospital biomedical department",
-        "Leeds Teaching Hospitals NHS Trust, surplus",
-        "Harris County clinic network",
+        "Riverside General biomedical department",
+        "Midland Teaching Hospital, surplus",
+        "Bayou community clinic network",
     }
 
 
 def test_offer_a_fails_on_frequency_alone(seeded):
-    verdict = _verdict("Nashville")
+    verdict = _verdict("Riverside")
     assert verdict.outcome is Outcome.WONT_WORK
     assert _fails(verdict) == {"frequency"}
 
@@ -113,37 +113,37 @@ def test_offer_a_fails_on_frequency_alone(seeded):
 def test_offer_a_is_on_the_rejected_list(seeded):
     _, _, screening = _screen()
     rejected = {c.offer.donor_name: c for c in screening.rejected}
-    a = rejected["Nashville General Hospital biomedical department"]
+    a = rejected["Riverside General biomedical department"]
     assert _fails(a.verdict) == {"frequency"}
 
 
 def test_offer_b_works_if_a_stabiliser_and_filters_go_with_it(seeded):
-    verdict = _verdict("Leeds")
+    verdict = _verdict("Midland")
     assert verdict.outcome is Outcome.WORKS_IF
     assert {r.kind for r in verdict.needs} == {RequirementKind.STABILISER,
                                                RequirementKind.CONSUMABLES}
 
 
 def test_offer_b_has_no_open_question(seeded):
-    verdict = _verdict("Leeds")
+    verdict = _verdict("Midland")
     assert [r.key for r in verdict.results if r.status is CheckStatus.NEEDS_INFO] == []
 
 
 def test_offer_c_needs_info(seeded):
-    assert _verdict("Harris").outcome is Outcome.NEEDS_INFO
+    assert _verdict("Bayou").outcome is Outcome.NEEDS_INFO
 
 
 def test_the_ranked_list_reads_b_then_c(seeded):
     _, _, screening = _screen()
     assert [c.offer.donor_name for c in screening.ranked] == [
-        "Leeds Teaching Hospitals NHS Trust, surplus",
-        "Harris County clinic network",
+        "Midland Teaching Hospital, surplus",
+        "Bayou community clinic network",
     ]
 
 
 def test_b_bundle_takes_the_sollatek_and_rejects_the_houston_avr(seeded):
     facility, _, screening = _screen()
-    b = next(c for c in screening.ranked if c.offer.donor_name.startswith("Leeds"))
+    b = next(c for c in screening.ranked if c.offer.donor_name.startswith("Midland"))
     bundle = build_bundle(b.verdict, facility, repo.offers_for_support)
     item = next(i for i in bundle.items if i.requirement.kind is RequirementKind.STABILISER)
     assert [o.donor_name for o in item.offers] == ["Kampala Power Trust"]

@@ -92,7 +92,7 @@ The public checks want `/`, `/offer` and `/impact` to answer 200, and the Kayung
 
 If the live checkout is already at `<head>`, `cutover` does not swap. It removes the staged copy and only restarts the unit, so `/opt/fitcheck-prev` keeps the checkout from before that head.
 
-The seed upserts. Running it again leaves one of each offer, answer and request, and rewrites the twenty history verdicts.
+The seed upserts. Running it again leaves one of each offer, answer and request, and rewrites the 22 history verdicts.
 
 ## The rollback
 
@@ -100,7 +100,7 @@ The seed upserts. Running it again leaves one of each offer, answer and request,
 bash deploy/redeploy.sh rollback
 ```
 
-It stops `fitcheck`, moves the live checkout to `/opt/fitcheck-failed`, moves `/opt/fitcheck-prev` into `/opt/fitcheck`, and starts the unit. If `/etc/caddy/Caddyfile.prev` exists, it puts that file back and reloads Caddy; otherwise it leaves Caddy alone. Three things to know:
+It stops `fitcheck`, moves the live checkout to `/opt/fitcheck-failed`, moves `/opt/fitcheck-prev` into `/opt/fitcheck`, and starts the unit. If `/etc/caddy/Caddyfile.prev` exists, it puts that file back and reloads Caddy; otherwise it leaves Caddy alone. Four things to know:
 
 - **It works once.** After it runs, `/opt/fitcheck-prev` no longer exists. A second `rollback` prints `!! no /opt/fitcheck-prev to roll back to`. To go forward again, redeploy a head with `all`.
 - **It does not reseed.** The database is shared by every checkout. Since 9e00968 the schema has only gained tables, never changed one, so an older checkout reads the newer rows.
@@ -108,6 +108,29 @@ It stops `fitcheck`, moves the live checkout to `/opt/fitcheck-failed`, moves `/
 
 ```
 ssh -i ~/.ssh/id_fitcheck_vm opc@147.224.201.81 'git -C /opt/fitcheck-prev log --oneline -1'
+```
+
+- **Old donor names.** The seed now gives its donors fictional names and renames the stored offers in place, keeping their ids. An older head reads offers by id, so a plain `rollback` needs nothing. But an older head's seed knows only the old, real names: rerun, it would add the hero offers a second time. Before you redeploy a head from before the rename with `all` or `cutover`, put the old names back with this one statement (`app/data/seeded.py` holds the same map), then redeploy:
+
+```
+ssh -i ~/.ssh/id_fitcheck_vm opc@147.224.201.81 'cd /opt/fitcheck && ./.venv/bin/python -' <<'EOF'
+from app.data import db
+SQL = """
+UPDATE offers SET donor_name = CASE donor_name
+  WHEN 'Riverside General biomedical department' THEN 'Nashville General Hospital biomedical department'
+  WHEN 'Midland Teaching Hospital, surplus' THEN 'Leeds Teaching Hospitals NHS Trust, surplus'
+  WHEN 'Bayou community clinic network' THEN 'Harris County clinic network'
+  WHEN 'Westbrook Hospital biomedical department' THEN 'Baptist Health biomedical department'
+  WHEN 'Lakefront Hospital surplus' THEN 'St Mary''s Hospital surplus'
+  WHEN 'Coral Coast Medical Centre' THEN 'Gulf Coast Medical Center'
+END
+WHERE donor_name IN ('Riverside General biomedical department', 'Midland Teaching Hospital, surplus',
+  'Bayou community clinic network', 'Westbrook Hospital biomedical department',
+  'Lakefront Hospital surplus', 'Coral Coast Medical Centre')
+"""
+with db.get_engine().begin() as conn:
+    print(conn.exec_driver_sql(SQL).rowcount, "offers given their old donor names")
+EOF
 ```
 
 ## When the VM stops answering at 12:45

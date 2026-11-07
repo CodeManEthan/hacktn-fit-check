@@ -125,7 +125,7 @@ Code: [app/ai/impact.py](../app/ai/impact.py). Route: `GET /impact` (`app/web/ro
 `gate(paragraph, figures)` reads every number in the reply, in digits and in words ("twenty", "twenty-one", "dozen"). It keeps the reply only if each number is:
 
 - one of the figures, a blocker count, or the number of countries; or
-- the sum of two figures, and both addends are also stated in the paragraph. With the live figures (20 screened, 11 blocked, 9 needs info, 0 add-ons, 3 clinics, 3 countries; blockers temperature 8, frequency 2, training 3), 10 is not a figure. "8 on temperature and 2 on frequency, 10 together" passes; "10 together" alone does not, and neither does a bare "twelve", even though 3 + 9 = 12.
+- the sum of two figures, and both addends are also stated in the paragraph. With the seeded figures (22 screened, 12 blocked, 9 needs info, 1 add-on, 3 clinics, 3 countries; blockers temperature 8, frequency 3, training 3), 11 is not a figure. "8 on temperature and 3 on frequency, 11 together" passes; "11 together" alone does not, and neither does a bare "thirteen", even though 1 + 12 = 13.
 
 A decimal fails. Any failing number replaces the whole reply with `code_sentence(figures)`, a sentence code writes from the same figures. The page labels the paragraph "written by the model from the figures above" or "written by code from the figures above".
 

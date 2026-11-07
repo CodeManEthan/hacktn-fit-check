@@ -29,15 +29,15 @@ One row per device screened on the legacy path: `id`, `label` (manufacturer and 
 
 - Written by the seed's impact history. (`POST /donor` wrote it too until that route was removed on 2026-10-23.)
 - The seed marks its own rows with `raw_input = "seed_demo: impact history"` so a rerun can delete and rewrite exactly those.
-- After a fresh seed: 20 rows.
+- After a fresh seed: 22 rows.
 
 ### `verdicts`
 
 One row per legacy screening: `id` (8 hex characters), `device_id`, `device_label`, `facility_slug`, `facility_name`, `outcome` (the outcome's text, such as `won't work`), `verdict_json`, `intel_json`, `created_at`.
 
-- Written by `POST /check` and by the seed's history (twenty screenings of library devices against the three clinics).
+- Written by `POST /check` and by the seed's history: twenty screenings of library devices against the three clinics, then the 525DS and 525KS hero offers at Kayunga, each with the verdict `check_fit` gives it.
 - Read by `/verdict/<id>` and by `/impact`. The impact page's counters, bars and model paragraph are built from this table and nothing else. Screenings on the matches page are not logged here, so they do not move the impact figures.
-- After a fresh seed: 20 rows, 11 `won't work` and 9 `needs info`. There is no `works if you also send` row in the seeded history, so that counter reads 0.
+- After a fresh seed: 22 rows, 12 `won't work`, 9 `needs info` and 1 `works if you also send` (the 525KS at Kayunga). No library device works as it is at any seeded clinic, so the `works` counter reads 0.
 
 ## Tables in `app/data/marketplace_schema.py`
 

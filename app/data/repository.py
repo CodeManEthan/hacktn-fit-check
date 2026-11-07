@@ -145,7 +145,12 @@ def count_by_outcome() -> dict[str, int]:
 
 
 def failures_by_reason(limit: int = 10) -> list[tuple[str, int]]:
-    """Which checks caught the most problems. Reads the stored verdict JSON."""
+    """Which checks stopped the most screenings. Reads the stored verdict JSON.
+
+    Counts FAIL results only. A MITIGABLE result (the device works if
+    something is sent with it) did not stop the donation, so it is not a
+    reason the donation failed.
+    """
     try:
         with get_engine().connect() as conn:
             rows = conn.execute(select(verdicts.c.verdict_json)).scalars().all()
@@ -153,10 +158,9 @@ def failures_by_reason(limit: int = 10) -> list[tuple[str, int]]:
         raise RepositoryError(f"Could not read the tally: {exc}") from exc
 
     tally: dict[str, int] = {}
-    blocking = {CheckStatus.FAIL.value, CheckStatus.MITIGABLE.value}
     for payload in rows:
         for result in json.loads(payload).get("results", []):
-            if result.get("status") in blocking:
+            if result.get("status") == CheckStatus.FAIL.value:
                 tally[result["label"]] = tally.get(result["label"], 0) + 1
     return sorted(tally.items(), key=lambda item: item[1], reverse=True)[:limit]
 
