@@ -61,7 +61,12 @@ def get_engine() -> Engine:
     if _engine is None:
         url = SETTINGS.database_url
         connect_args = {"check_same_thread": False} if url.startswith("sqlite") else {}
-        _engine = create_engine(url, future=True, connect_args=connect_args)
+        # pool_pre_ping tests a pooled connection before handing it out. MySQL drops
+        # connections idle past wait_timeout (8 hours on the live server), and without
+        # the ping the first request after a quiet spell failed on the dead one.
+        _engine = create_engine(
+            url, future=True, connect_args=connect_args, pool_pre_ping=True,
+        )
     return _engine
 
 
